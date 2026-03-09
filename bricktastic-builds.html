@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bricktastic Builds – LEGO YouTube Channel & Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#E3000B; --yellow:#FFD700; --blue:#006CB7; --green:#00A650;
+  --orange:#FF6B00; --black:#1A1A1A; --white:#FAFAF5; --bg:#F2EFE8;
+  --shadow:0 8px 0 rgba(0,0,0,0.18); --shadow-h:0 13px 0 rgba(0,0,0,0.22);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;background:var(--black);border-bottom:5px solid var(--yellow);box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+.nav-logo{font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);text-decoration:none;letter-spacing:1px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-b{width:34px;height:22px;background:var(--red);border-radius:4px;position:relative;transform:rotate(-6deg);box-shadow:0 3px 0 #8b0000;flex-shrink:0}
+.logo-b::before,.logo-b::after{content:'';position:absolute;top:-7px;width:11px;height:8px;background:var(--red);border-radius:50% 50% 0 0/80% 80% 0 0;filter:brightness(1.2)}
+.logo-b::before{left:4px}.logo-b::after{left:19px}
+nav ul{list-style:none;display:flex;gap:4px}
+nav ul li a{font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:#ddd;text-decoration:none;padding:6px 14px;border-radius:6px;border:2px solid transparent;transition:all .15s;cursor:pointer}
+nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
+.nav-shop-a{background:var(--orange)!important;color:#fff!important;border-color:var(--orange)!important}
+.nav-shop-a:hover{background:#d45500!important;border-color:#d45500!important}
+.nav-right{display:flex;align-items:center;gap:10px}
+.cart-btn{position:relative;cursor:pointer;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 14px;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;gap:7px;transition:all .15s;font-family:'Nunito',sans-serif}
+.cart-btn:hover{background:rgba(255,255,255,.18)}
+.cart-count{position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid var(--black);transform:scale(0);transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
+.cart-count.show{transform:scale(1)}
+.nav-yt{display:flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:900;font-size:13px;padding:7px 16px;border-radius:8px;border:3px solid rgba(255,255,255,.3);text-decoration:none;box-shadow:0 4px 0 #8b0000;transition:all .15s}
+.nav-yt:hover{transform:translateY(-2px);box-shadow:0 6px 0 #8b0000}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;text-decoration:none;padding:13px 26px;border-radius:10px;border:none;cursor:pointer;transition:all .15s;position:relative;top:0}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 6px 0 #8b0000}.btn-red:hover{top:3px;box-shadow:0 3px 0 #8b0000}
+.btn-yellow{background:var(--yellow);color:var(--black);box-shadow:0 6px 0 #b89a00}.btn-yellow:hover{top:3px;box-shadow:0 3px 0 #b89a00}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 6px 0 #004d25}.btn-green:hover{top:3px;box-shadow:0 3px 0 #004d25}
+.btn-white{background:#fff;color:var(--black);box-shadow:0 6px 0 rgba(0,0,0,.2)}.btn-white:hover{top:3px;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.btn-ow{background:transparent;color:#fff;border:3px solid rgba(255,255,255,.5)!important}.btn-ow:hover{background:rgba(255,255,255,.1)}
+.btn-lg{font-size:17px;padding:16px 34px;border-radius:12px}
+.btn-sm{font-size:13px;padding:9px 18px;border-radius:8px}
+
+/* STUD BAR */
+.stud-bar{height:24px;overflow:hidden;display:flex;align-items:flex-end}
+.stud-bar .inner{display:flex;width:100%;align-items:flex-end}
+.stud-bar .inner span{flex:1;height:18px;border-radius:50% 50% 0 0/80% 80% 0 0;border-top:2px solid rgba(255,255,255,.35);box-shadow:inset 0 -3px 5px rgba(0,0,0,.12)}
+
+/* SECTIONS */
+section{padding:80px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+.lbl{display:inline-block;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:3px;padding:5px 14px;border-radius:4px;margin-bottom:12px}
+.lbl-r{background:var(--red);color:#fff}.lbl-b{background:var(--blue);color:#fff}
+.lbl-g{background:var(--green);color:#fff}.lbl-y{background:var(--yellow);color:var(--black)}
+.lbl-o{background:var(--orange);color:#fff}
+.sec-title{font-family:'Boogaloo',cursive;font-size:clamp(34px,4.5vw,54px);line-height:1.1;margin-bottom:14px}
+.sec-sub{font-size:16px;color:#555;max-width:520px;line-height:1.65;font-weight:600;margin-bottom:48px}
+
+/* HERO */
+.hero{margin-top:66px;min-height:calc(100vh - 66px);display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;background:var(--black);position:relative}
+.hero-bg{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);gap:5px;padding:10px;opacity:.07;pointer-events:none}
+.hero-bg div{border-radius:4px;animation:bgP 4s ease-in-out infinite alternate}
+@keyframes bgP{from{opacity:.4}to{opacity:1}}
+.hero-left{padding:80px 50px 80px 72px;position:relative;z-index:2}
+.hero-badge{display:inline-block;background:var(--yellow);color:var(--black);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:4px;margin-bottom:22px;animation:fu .5s ease both}
+.hero h1{font-family:'Boogaloo',cursive;font-size:clamp(50px,6.5vw,86px);line-height:1.0;color:var(--white);margin-bottom:10px;animation:fu .5s .1s ease both}
+.hero h1 .y{color:var(--yellow)}.hero h1 .r{color:var(--red)}
+.hero-sub{font-size:17px;color:#bbb;line-height:1.6;max-width:420px;margin-bottom:36px;font-weight:600;animation:fu .5s .2s ease both}
+.hero-stats{display:flex;gap:28px;margin-bottom:40px;animation:fu .5s .3s ease both}
+.sn{font-family:'Boogaloo',cursive;font-size:34px;color:var(--yellow);display:block;line-height:1}
+.sl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#777}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;animation:fu .5s .4s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-right{height:100%;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fb{position:absolute;border-radius:8px;animation:fbA linear infinite}
+@keyframes fbA{0%{transform:translateY(0) rotate(var(--r0))}50%{transform:translateY(-22px) rotate(var(--r1))}100%{transform:translateY(0) rotate(var(--r0))}}
+.hcb{position:relative;z-index:2;animation:hf 3s ease-in-out infinite alternate}
+@keyframes hf{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-16px) rotate(2deg)}}
+.big-brick{width:260px;height:110px;background:var(--red);border-radius:12px;box-shadow:0 12px 0 #8b0000,0 18px 40px rgba(0,0,0,.5);position:relative}
+.big-brick::before{content:'';position:absolute;inset:0;border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.18) 0%,transparent 55%)}
+.bs{position:absolute;top:-20px;width:50px;height:22px;background:var(--red);border-radius:50% 50% 0 0/80% 80% 0 0;filter:brightness(1.22)}
+.ch-tag{position:absolute;bottom:-48px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--black);font-family:'Boogaloo',cursive;font-size:20px;padding:7px 22px;border-radius:8px;white-space:nowrap;box-shadow:0 5px 0 #b89a00}
+
+/* VIDEOS */
+#videos{background:var(--white)}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.vc{background:#fff;border-radius:14px;overflow:hidden;border:3px solid var(--black);box-shadow:var(--shadow);transition:all .2s;cursor:pointer;position:relative;top:0}
+.vc:hover{top:-5px;box-shadow:var(--shadow-h)}
+.vt{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.tbg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:46px;position:relative}
+.tbg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.25))}
+.pbtn{position:absolute;bottom:10px;right:10px;width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 3px 0 #8b0000}
+.pbtn svg{width:14px;height:14px;fill:#fff;margin-left:2px}
+.vi{padding:16px 18px 20px}
+.vcat{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px}
+.vtitle{font-weight:900;font-size:14px;line-height:1.4;color:var(--black);margin-bottom:9px}
+.vmeta{display:flex;gap:12px;font-size:12px;color:#888;font-weight:700}
+
+/* ABOUT */
+#about{background:var(--black);color:var(--white);position:relative;overflow:hidden}
+#about::before{content:'';position:absolute;top:-80px;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(255,215,0,.07) 0%,transparent 70%);pointer-events:none}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.perk{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;transition:all .2s}
+.perk:hover{background:rgba(255,215,0,.08);border-color:var(--yellow);transform:translateY(-3px)}
+.pi{font-size:26px;margin-bottom:7px}.pt{font-weight:900;font-size:14px;margin-bottom:3px}
+.pd{font-size:12px;color:#888;font-weight:600;line-height:1.5}
+.bstack{display:flex;flex-direction:column;align-items:center}
+.sbrick{border-radius:10px;position:relative;box-shadow:0 8px 0 rgba(0,0,0,.35);animation:sb 2.5s ease-in-out infinite alternate}
+@keyframes sb{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.ss{position:absolute;top:-15px;width:26px;height:14px;border-radius:50% 50% 0 0/80% 80% 0 0;filter:brightness(1.22)}
+
+/* CATEGORIES */
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cc{padding:28px 20px;border-radius:14px;border:3px solid var(--black);box-shadow:var(--shadow);cursor:pointer;transition:all .2s;position:relative;top:0;text-align:center}
+.cc:hover{top:-5px;box-shadow:var(--shadow-h)}
+.ci2{font-size:36px;margin-bottom:10px;display:block}
+.ct{font-family:'Boogaloo',cursive;font-size:19px;margin-bottom:4px}
+.cco{font-size:11px;font-weight:800;opacity:.75;text-transform:uppercase;letter-spacing:1px}
+
+/* SUBSCRIBE */
+#subscribe{background:var(--red);padding:60px 0;position:relative;overflow:hidden}
+#subscribe::before{content:'SUBSCRIBE • SUBSCRIBE • SUBSCRIBE • SUBSCRIBE • ';position:absolute;top:12%;font-family:'Boogaloo',cursive;font-size:72px;color:rgba(255,255,255,.06);white-space:nowrap;animation:mq 22s linear infinite;letter-spacing:4px;pointer-events:none}
+#subscribe::after{content:'BRICKTASTIC BUILDS • BRICKTASTIC BUILDS • ';position:absolute;bottom:10%;font-family:'Boogaloo',cursive;font-size:72px;color:rgba(255,255,255,.06);white-space:nowrap;animation:mq 18s linear infinite reverse;letter-spacing:4px;pointer-events:none}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.si{position:relative;z-index:2;text-align:center;color:#fff}
+.si h2{font-family:'Boogaloo',cursive;font-size:clamp(40px,5.5vw,70px);line-height:1.1;margin-bottom:14px;text-shadow:0 4px 0 rgba(0,0,0,.2)}
+.si p{font-size:17px;font-weight:700;opacity:.9;margin-bottom:34px}
+.sbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* SOCIAL + FOOTER */
+#social{background:var(--black);padding:56px 0}
+.soci{text-align:center;color:var(--white)}
+.soci h3{font-family:'Boogaloo',cursive;font-size:34px;color:var(--yellow);margin-bottom:6px}
+.soci p{color:#777;font-weight:600;font-size:14px;margin-bottom:30px}
+.slinks{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.sbtn{display:inline-flex;align-items:center;gap:9px;font-weight:900;font-size:14px;text-decoration:none;padding:11px 22px;border-radius:10px;border:3px solid rgba(255,255,255,.12);color:#fff;transition:all .2s;position:relative;top:0}
+.sbtn:hover{top:-3px}.sbtn.yt{background:#FF0000;border-color:#FF0000;box-shadow:0 5px 0 #8b0000}
+.sbtn.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-color:transparent;box-shadow:0 5px 0 rgba(0,0,0,.3)}
+.sbtn.tt{background:#010101;border-color:#69C9D0;box-shadow:0 5px 0 rgba(0,0,0,.4)}
+footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:4px solid var(--yellow)}
+.fl{font-family:'Boogaloo',cursive;font-size:21px;color:var(--yellow)}
+.fc{font-size:12px;color:#555;font-weight:700}
+.flinks{display:flex;gap:18px}
+.flinks a{font-size:12px;color:#555;font-weight:700;text-decoration:none;transition:color .15s;cursor:pointer}
+.flinks a:hover{color:var(--yellow)}
+
+/* SHOP */
+.shop-hero{background:var(--black);padding:52px 0 44px;position:relative;overflow:hidden;margin-top:66px}
+.shop-hero::before{content:'';position:absolute;inset:0;opacity:.07;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px)}
+.shop-tabs{display:flex;gap:0;margin-bottom:36px;border:3px solid var(--black);border-radius:12px;overflow:hidden;width:fit-content}
+.shop-tab{font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:11px 24px;border:none;cursor:pointer;background:#fff;color:#666;text-transform:uppercase;letter-spacing:.5px;transition:all .15s;border-right:3px solid var(--black)}
+.shop-tab:last-child{border-right:none}
+.shop-tab.active{background:var(--black);color:var(--yellow)}
+.shop-tab:hover:not(.active){background:#f0ede6}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pc{background:#fff;border-radius:16px;border:3px solid var(--black);box-shadow:var(--shadow);overflow:hidden;transition:all .2s;position:relative;top:0;cursor:pointer}
+.pc:hover{top:-6px;box-shadow:var(--shadow-h)}
+.pthumb{width:100%;aspect-ratio:4/3;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:64px}
+.te{position:relative;z-index:1;filter:drop-shadow(0 6px 12px rgba(0,0,0,.2))}
+.rib{position:absolute;top:14px;left:-6px;padding:4px 14px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;border-radius:0 4px 4px 0;z-index:2;box-shadow:3px 3px 0 rgba(0,0,0,.2)}
+.rib::before{content:'';position:absolute;bottom:-5px;left:0;border-left:6px solid transparent;border-top:5px solid rgba(0,0,0,.3)}
+.rib-moc{background:var(--blue);color:#fff}.rib-ins{background:var(--green);color:#fff}
+.rib-bun{background:var(--orange);color:#fff}.rib-new{background:var(--red);color:#fff}
+.db{position:absolute;top:14px;right:14px;z-index:2;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:900;border:2px solid rgba(0,0,0,.15)}
+.db-e{background:#e8f5e9;color:#2e7d32}.db-m{background:#fff3e0;color:#e65100}
+.db-h{background:#fce4ec;color:#c62828}.db-x{background:#1a1a1a;color:#FFD700}
+.pinfo{padding:18px 20px 22px}
+.ptyp{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px}
+.pname{font-weight:900;font-size:16px;line-height:1.35;margin-bottom:8px;color:var(--black)}
+.pmeta{display:flex;gap:12px;font-size:12px;color:#888;font-weight:700;margin-bottom:14px}
+.pmeta span{display:flex;align-items:center;gap:4px}
+.pfooter{display:flex;align-items:center;justify-content:space-between}
+.price{font-family:'Boogaloo',cursive;font-size:28px;color:var(--black)}
+.price .cur{font-size:16px;vertical-align:super}
+.acb{display:flex;align-items:center;gap:6px;background:var(--black);color:#fff;font-weight:900;font-size:13px;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;transition:all .15s;box-shadow:0 4px 0 rgba(0,0,0,.3);position:relative;top:0;font-family:'Nunito',sans-serif}
+.acb:hover{background:var(--red);top:2px;box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.acb.added{background:var(--green)}
+.pc.feat{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;aspect-ratio:auto}
+.pc.feat .pthumb{aspect-ratio:auto;min-height:260px;font-size:96px;border-radius:0}
+.pc.feat .pinfo{padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
+.pc.feat .pname{font-size:24px;margin-bottom:12px}
+.pdesc{font-size:14px;color:#666;font-weight:600;line-height:1.6;margin-bottom:16px}
+.pc.feat .price{font-size:42px}
+.trust{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:56px;padding:32px;background:#fff;border-radius:16px;border:3px solid #e8e4da}
+.tb{text-align:center;flex:1;min-width:140px}
+.tb .ti{font-size:32px;margin-bottom:8px}
+.tb .tv{font-weight:900;font-size:14px;margin-bottom:3px}
+.tb .td{font-size:12px;color:#888;font-weight:700}
+
+/* CART DRAWER */
+.cart-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;opacity:0;pointer-events:none;transition:opacity .25s}
+.cart-ov.open{opacity:1;pointer-events:all}
+.cart-dr{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:95vw;background:var(--white);z-index:600;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:4px solid var(--yellow);box-shadow:-10px 0 40px rgba(0,0,0,.3)}
+.cart-dr.open{transform:translateX(0)}
+.cart-hd{padding:22px 24px;background:var(--black);color:var(--yellow);display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid var(--yellow)}
+.cart-hd h3{font-family:'Boogaloo',cursive;font-size:26px}
+.cart-x{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.cart-x:hover{background:var(--red)}
+.cart-its{flex:1;overflow-y:auto;padding:20px}
+.cart-emp{text-align:center;padding:60px 20px;color:#999;font-weight:700}
+.cart-emp .cei{font-size:56px;margin-bottom:16px;display:block}
+.cart-item{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:12px;margin-bottom:12px;background:#fff;border:2px solid #e8e4da;animation:si .2s ease}
+@keyframes si{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.cii{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.cin{font-weight:900;font-size:14px;margin-bottom:3px;line-height:1.3}
+.cit{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#999}
+.cip{font-family:'Boogaloo',cursive;font-size:20px;margin-top:4px}
+.cir{background:none;border:none;cursor:pointer;color:#ccc;font-size:18px;padding:4px;transition:color .15s;border-radius:4px}
+.cir:hover{color:var(--red);background:#fff0f0}
+.cart-ft{padding:20px 24px;border-top:3px solid #e8e4da;background:#fff}
+.cart-tot{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cart-tot-l{font-weight:900;font-size:16px}
+.cart-tot-p{font-family:'Boogaloo',cursive;font-size:32px}
+.co-btn{width:100%;padding:16px;border:none;background:var(--green);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;border-radius:12px;cursor:pointer;box-shadow:0 6px 0 #004d25;transition:all .15s;position:relative;top:0;display:flex;align-items:center;justify-content:center;gap:10px}
+.co-btn:hover{top:3px;box-shadow:0 3px 0 #004d25}
+.cart-note{margin-top:12px;font-size:12px;color:#999;font-weight:700;text-align:center;line-height:1.5}
+
+/* MODAL */
+.mod-ov{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:700;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:center;justify-content:center;padding:20px}
+.mod-ov.open{opacity:1;pointer-events:all}
+.mod{background:var(--white);border-radius:20px;border:4px solid var(--black);box-shadow:0 20px 60px rgba(0,0,0,.5);max-width:760px;width:100%;max-height:90vh;overflow-y:auto;transform:scale(.9) translateY(20px);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.mod-ov.open .mod{transform:scale(1) translateY(0)}
+.mod-hero{width:100%;min-height:220px;display:flex;align-items:center;justify-content:center;font-size:88px;border-radius:16px 16px 0 0;position:relative}
+.mod-x{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.4);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:1}
+.mod-x:hover{background:var(--red)}
+.mod-body{padding:30px 36px 36px}
+.mod-tag{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.mod-title{font-family:'Boogaloo',cursive;font-size:34px;line-height:1.15;margin-bottom:14px}
+.mod-desc{font-size:15px;color:#555;font-weight:600;line-height:1.7;margin-bottom:24px}
+.mod-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+.spec-box{background:#f5f3ee;border-radius:10px;padding:14px 16px;border:2px solid #e8e4da;text-align:center}
+.sv{font-family:'Boogaloo',cursive;font-size:22px;display:block}
+.sk{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#999}
+.mod-inc{margin-bottom:28px}
+.mod-inc h4{font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;color:#888}
+.inc-list{display:flex;flex-wrap:wrap;gap:8px}
+.inc-list span{background:#fff;border:2px solid #e0ddd5;border-radius:6px;padding:5px 12px;font-size:13px;font-weight:700}
+.mod-ft{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.mod-price{font-family:'Boogaloo',cursive;font-size:48px}
+.mod-ab{flex:1;min-width:180px;padding:15px 28px;border:none;border-radius:12px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;position:relative;top:0;background:var(--green);color:#fff;box-shadow:0 6px 0 #004d25}
+.mod-ab:hover{top:3px;box-shadow:0 3px 0 #004d25}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--black);color:#fff;padding:14px 26px;border-radius:12px;font-weight:900;font-size:15px;border:3px solid var(--yellow);box-shadow:0 8px 30px rgba(0,0,0,.4);z-index:800;transition:transform .3s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:10px;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr}.hero-right{display:none}.hero-left{padding:60px 28px}
+  .ag{grid-template-columns:1fr;gap:40px}.about-visual{display:none}
+  .sgrid{grid-template-columns:1fr 1fr}.pc.feat{grid-column:span 2;grid-template-columns:1fr}
+  .pc.feat .pthumb{min-height:160px}.vgrid{grid-template-columns:1fr 1fr}
+  .cgrid{grid-template-columns:repeat(2,1fr)} nav ul{display:none}
+}
+@media(max-width:600px){
+  .sgrid{grid-template-columns:1fr}.pc.feat{grid-column:span 1}
+  .vgrid{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr 1fr}
+  .perks{grid-template-columns:1fr}.mod-specs{grid-template-columns:1fr 1fr}
+  .cart-dr{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="logo-b"></div>Bricktastic Builds
+  </div>
+  <ul>
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('home');scrollS('videos')">Videos</a></li>
+    <li><a onclick="showPage('shop')" class="nav-shop-a">🛒 Shop</a></li>
+    <li><a onclick="showPage('home');scrollS('about')">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="cart-btn" onclick="toggleCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </div>
+    <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="nav-yt">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      Subscribe
+    </a>
+  </div>
+</nav>
+
+<!-- ══ HOME PAGE ══ -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-left">
+      <span class="hero-badge">🧱 LEGO YouTube Channel + Shop</span>
+      <h1>Building<br><span class="y">Bricktastic</span><br><span class="r">Dreams.</span></h1>
+      <p class="hero-sub">Epic LEGO builds, deep dives, reviews & challenges — plus original MOC instructions you can build at home.</p>
+      <div class="hero-stats">
+        <div><span class="sn">257+</span><span class="sl">Subscribers</span></div>
+        <div><span class="sn">296</span><span class="sl">Videos</span></div>
+        <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Watch on YouTube
+        </a>
+        <a class="btn btn-yellow" onclick="showPage('shop')">🧱 Visit the Shop</a>
+      </div>
+    </div>
+    <div class="hero-right" id="heroR">
+      <div class="hcb">
+        <div class="big-brick">
+          <div class="bs" style="left:16px"></div><div class="bs" style="left:78px"></div>
+          <div class="bs" style="left:140px"></div><div class="bs" style="left:202px"></div>
+        </div>
+        <div class="ch-tag">@BricktasticBuilds</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stud-bar" style="background:#FFD700"><div class="inner" id="s1"></div></div>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <div class="container">
+      <span class="lbl lbl-r reveal">Latest Videos</span>
+      <h2 class="sec-title reveal">Fresh Off The Build Plate</h2>
+      <p class="sec-sub reveal">New videos every week — epic builds, wild challenges, honest reviews, and LEGO deep dives.</p>
+      <div class="vgrid">
+        <div class="vc reveal" onclick="open('https://youtube.com/@BricktasticBuilds','_blank')"><div class="vt"><div class="tbg" style="background:linear-gradient(135deg,#E3000B,#FFD700)">🏰</div><div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vi"><div class="vcat" style="color:var(--red)">Epic Build</div><div class="vtitle">I Built a LEGO Medieval Castle From Scratch (31 Days)</div><div class="vmeta"><span>👁 Hot</span><span>⏱ 18 min</span></div></div></div>
+        <div class="vc reveal" onclick="open('https://youtube.com/@BricktasticBuilds','_blank')"><div class="vt"><div class="tbg" style="background:linear-gradient(135deg,#006CB7,#00A650)">🏙️</div><div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vi"><div class="vcat" style="color:var(--blue)">City Build</div><div class="vtitle">Building a Working LEGO City for 30 Days Straight</div><div class="vmeta"><span>👁 Trending</span><span>⏱ 24 min</span></div></div></div>
+        <div class="vc reveal" onclick="open('https://youtube.com/@BricktasticBuilds','_blank')"><div class="vt"><div class="tbg" style="background:linear-gradient(135deg,#FFD700,#FF6B00)">🎢</div><div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vi"><div class="vcat" style="color:var(--orange)">Mega Project</div><div class="vtitle">I Built a LEGO Theme Park from Scratch...</div><div class="vmeta"><span>👁 Popular</span><span>⏱ 31 min</span></div></div></div>
+        <div class="vc reveal" onclick="open('https://youtube.com/@BricktasticBuilds','_blank')"><div class="vt"><div class="tbg" style="background:linear-gradient(135deg,#7B2FBE,#E3000B)">👾</div><div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vi"><div class="vcat" style="color:#7B2FBE">Deep Dive</div><div class="vtitle">CURSED LEGO Pieces You Didn't Know Existed...</div><div class="vmeta"><span>👁 Fan Fave</span><span>⏱ 14 min</span></div></div></div>
+        <div class="vc reveal" onclick="open('https://youtube.com/@BricktasticBuilds','_blank')"><div class="vt"><div class="tbg" style="background:linear-gradient(135deg,#00A650,#006CB7)">🔧</div><div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vi"><div class="vcat" style="color:var(--green)">Tips & Tricks</div><div class="vtitle">LEGO Hacks That Actually Work (Ranked & Tested)</div><div class="vmeta"><span>👁 Evergreen</span><span>⏱ 20 min</span></div></div></div>
+        <div class="vc reveal" onclick="open('https://youtube.com/@BricktasticBuilds','_blank')"><div class="vt"><div class="tbg" style="background:linear-gradient(135deg,#FFD700,#E3000B)">⭐</div><div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vi"><div class="vcat" style="color:var(--red)">Rankings</div><div class="vtitle">Every LEGO Theme Ranked Worst to Best (Hot Take)</div><div class="vmeta"><span>👁 Spicy</span><span>⏱ 22 min</span></div></div></div>
+      </div>
+      <div style="text-align:center;margin-top:44px" class="reveal"><a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red btn-lg">Watch All 296 Videos →</a></div>
+    </div>
+  </section>
+
+  <div class="stud-bar" style="background:var(--black)"><div class="inner" id="s2" style="background:var(--black)"></div></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="ag">
+        <div class="about-visual reveal">
+          <div class="bstack">
+            <div class="sbrick" style="width:240px;height:56px;background:var(--red);animation-delay:0s">
+              <div class="ss" style="background:var(--red);left:18px"></div><div class="ss" style="background:var(--red);left:62px"></div><div class="ss" style="background:var(--red);left:106px"></div><div class="ss" style="background:var(--red);left:150px"></div><div class="ss" style="background:var(--red);left:194px"></div>
+            </div>
+            <div class="sbrick" style="width:200px;height:56px;background:var(--blue);animation-delay:.25s;margin-top:-2px">
+              <div class="ss" style="background:var(--blue);left:16px"></div><div class="ss" style="background:var(--blue);left:60px"></div><div class="ss" style="background:var(--blue);left:104px"></div><div class="ss" style="background:var(--blue);left:148px"></div>
+            </div>
+            <div class="sbrick" style="width:160px;height:56px;background:var(--green);animation-delay:.5s;margin-top:-2px">
+              <div class="ss" style="background:var(--green);left:14px"></div><div class="ss" style="background:var(--green);left:58px"></div><div class="ss" style="background:var(--green);left:102px"></div>
+            </div>
+            <div class="sbrick" style="width:120px;height:56px;background:var(--yellow);animation-delay:.75s;margin-top:-2px">
+              <div class="ss" style="background:var(--yellow);filter:brightness(1.1);left:12px"></div><div class="ss" style="background:var(--yellow);filter:brightness(1.1);left:56px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <span class="lbl lbl-y">About the Channel</span>
+          <h2 class="sec-title" style="color:var(--white)">Where Bricks Become Epic</h2>
+          <p class="sec-sub" style="color:#aaa">Massive MOCs, honest reviews, technique breakdowns, and now: original instructions you can buy and build yourself.</p>
+          <div class="perks">
+            <div class="perk"><div class="pi">🏗️</div><div class="pt">Epic MOC Builds</div><div class="pd">Multi-week city, castle & landmark series.</div></div>
+            <div class="perk"><div class="pi">📐</div><div class="pt">Instructions for Sale</div><div class="pd">PDF instructions for our best MOCs.</div></div>
+            <div class="perk"><div class="pi">🧠</div><div class="pt">Building Techniques</div><div class="pd">SNOT, offsets & pro tricks.</div></div>
+            <div class="perk"><div class="pi">🎯</div><div class="pt">Challenges & Fun</div><div class="pd">24hr marathons & speed builds.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section style="background:var(--bg);padding:80px 0">
+    <div class="container">
+      <span class="lbl lbl-b reveal">Browse By Topic</span>
+      <h2 class="sec-title reveal">Find Your LEGO Obsession</h2>
+      <p class="sec-sub reveal">From epic city builds to rare piece deep dives — something for every LEGO fan.</p>
+      <div class="cgrid">
+        <div class="cc reveal" style="background:var(--red);color:#fff"><span class="ci2">🏰</span><div class="ct">Epic Builds</div><div class="cco">Multi-week projects</div></div>
+        <div class="cc reveal" style="background:var(--blue);color:#fff"><span class="ci2">📦</span><div class="ct">Set Reviews</div><div class="cco">Honest breakdowns</div></div>
+        <div class="cc reveal" style="background:var(--green);color:#fff"><span class="ci2">🔧</span><div class="ct">Tips & Tricks</div><div class="cco">Level-up techniques</div></div>
+        <div class="cc reveal" style="background:var(--yellow);color:var(--black)"><span class="ci2">🏆</span><div class="ct">Challenges</div><div class="cco">Chaos & creativity</div></div>
+        <div class="cc reveal" style="background:var(--orange);color:#fff"><span class="ci2">⭐</span><div class="ct">Rankings</div><div class="cco">Hot takes welcome</div></div>
+        <div class="cc reveal" style="background:#7B2FBE;color:#fff"><span class="ci2">🔍</span><div class="ct">Deep Dives</div><div class="cco">History & nerding out</div></div>
+        <div class="cc reveal" style="background:#00838F;color:#fff"><span class="ci2">⚙️</span><div class="ct">Technic</div><div class="cco">Gears & mechanics</div></div>
+        <div class="cc reveal" style="background:var(--black);color:#fff"><span class="ci2">💎</span><div class="ct">Collecting</div><div class="cco">Rare pieces & value</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE -->
+  <section id="subscribe">
+    <div class="container">
+      <div class="si">
+        <h2>Ready to Build Something Epic?</h2>
+        <p>New videos every week, totally free. Plus shop our original MOC instructions.</p>
+        <div class="sbtns">
+          <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-white btn-lg">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            Subscribe on YouTube
+          </a>
+          <a class="btn btn-ow btn-lg" onclick="showPage('shop')">🛒 Browse the Shop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social">
+    <div class="container">
+      <div class="soci">
+        <h3>Find Us Everywhere</h3>
+        <p>Behind-the-scenes builds, polls, and daily brick content</p>
+        <div class="slinks">
+          <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="sbtn yt"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>YouTube</a>
+          <a href="#" class="sbtn ig"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+          <a href="#" class="sbtn tt"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.97a8.27 8.27 0 004.84 1.55V7.07a4.85 4.85 0 01-1.07-.38z"/></svg>TikTok</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fl">🧱 Bricktastic Builds</div>
+    <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds · PDF instructions = instant digital download</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
+  </footer>
+</div>
+
+<!-- ══ SHOP PAGE ══ -->
+<div id="page-shop" class="page">
+  <div class="shop-hero">
+    <div class="container" style="position:relative;z-index:1">
+      <span class="lbl lbl-o" style="margin-bottom:12px;display:inline-block">Bricktastic Shop</span>
+      <h1 style="font-family:'Boogaloo',cursive;font-size:clamp(44px,6vw,72px);color:var(--white);line-height:1;margin-bottom:10px">Build What You <span style="color:var(--yellow)">See on the Channel</span></h1>
+      <p style="font-size:17px;color:#bbb;font-weight:600;max-width:500px;line-height:1.6">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download. Build it yourself.</p>
+    </div>
+  </div>
+  <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s3"></div></div>
+
+  <section style="background:var(--bg);padding-top:56px">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+        <div>
+          <h2 class="sec-title" style="margin-bottom:4px">The Bricktastic Shop</h2>
+          <p style="color:#888;font-weight:700;font-size:14px">PDF instructions delivered instantly · Physical MOCs ship worldwide</p>
+        </div>
+        <div class="shop-tabs">
+          <button class="shop-tab active" onclick="filterShop('all',this)">All Products</button>
+          <button class="shop-tab" onclick="filterShop('ins',this)">📐 Instructions</button>
+          <button class="shop-tab" onclick="filterShop('moc',this)">🏗️ Physical MOCs</button>
+          <button class="shop-tab" onclick="filterShop('bun',this)">📦 Bundles</button>
+        </div>
+      </div>
+
+      <div class="sgrid" id="shopGrid">
+        <!-- FEATURED -->
+        <div class="pc feat" data-cat="moc" data-id="0" onclick="openMod(0)">
+          <div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#3a1a00)"><span class="te">🏰</span><div class="rib rib-new">⭐ Featured</div></div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:var(--orange)">Physical MOC Build</div>
+            <div class="pname">The Grand Medieval Castle — Full MOC</div>
+            <div class="pdesc">The centrepiece of my 31-day build series. Four towers, working portcullis, great hall, stables, smithy, and market square. Hand-built and shipped worldwide. As seen on the channel.</div>
+            <div class="pmeta"><span>🧱 ~16,800 pcs</span><span>📏 48×48 studs</span><span>🚚 Ships worldwide</span></div>
+            <div class="pfooter"><div class="price"><span class="cur">$</span>349</div><button class="acb btn-lg" onclick="event.stopPropagation();addToCart(0)">🛒 Add to Cart</button></div>
+          </div>
+        </div>
+        <!-- INSTRUCTIONS -->
+        <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#006CB7)"><span class="te">🏙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-m">Intermediate</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">City Corner Café — Building Instructions</div><div class="pmeta"><span>🧱 340 pcs</span><span>📄 48 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>8</div><button class="acb" onclick="event.stopPropagation();addToCart(1)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="2" onclick="openMod(2)"><div class="pthumb" style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">🌲</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">PDF Instructions</div><div class="pname">Jungle Waterfall Vignette — Instructions</div><div class="pmeta"><span>🧱 180 pcs</span><span>📄 28 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>5</div><button class="acb" onclick="event.stopPropagation();addToCart(2)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="3" onclick="openMod(3)"><div class="pthumb" style="background:linear-gradient(135deg,#7B2FBE,#E3000B)"><span class="te">🏯</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">PDF Instructions</div><div class="pname">Japanese Ramen Street Scene — Instructions</div><div class="pmeta"><span>🧱 920 pcs</span><span>📄 96 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>14</div><button class="acb" onclick="event.stopPropagation();addToCart(3)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="moc" data-id="4" onclick="openMod(4)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#3d2200)"><span class="te">🚂</span><div class="rib rib-moc">🏗️ Physical MOC</div><div class="db db-x">Collector</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">Physical MOC</div><div class="pname">Victorian Train Station — Custom MOC</div><div class="pmeta"><span>🧱 ~3,200 pcs</span><span>📏 32×48 studs</span><span>🚚 Ships worldwide</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>129</div><button class="acb" onclick="event.stopPropagation();addToCart(4)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="5" onclick="openMod(5)"><div class="pthumb" style="background:linear-gradient(135deg,#b89a00,#FFD700)"><span class="te">⚙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-x">Expert</div></div><div class="pinfo"><div class="ptyp" style="color:#b89a00">PDF Instructions</div><div class="pname">Working Technic Engine Display — Instructions</div><div class="pmeta"><span>🧱 480 pcs</span><span>📄 64 pages</span><span>⚙️ Fully kinetic</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>12</div><button class="acb" onclick="event.stopPropagation();addToCart(5)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="6" onclick="openMod(6)"><div class="pthumb" style="background:linear-gradient(135deg,#8b3a00,#FF6B00)"><span class="te">📦</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">Bundle — Save 40%</div><div class="pname">Starter Pack — 5 Instructions for Beginners</div><div class="pmeta"><span>🧱 5 builds</span><span>📄 200+ pages</span><span>💰 Save 40%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>19</div><button class="acb" onclick="event.stopPropagation();addToCart(6)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="7" onclick="openMod(7)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#00838F)"><span class="te">🌉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Suspension Bridge Micro-Scale — Instructions</div><div class="pmeta"><span>🧱 620 pcs</span><span>📄 52 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>10</div><button class="acb" onclick="event.stopPropagation();addToCart(7)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="8" onclick="openMod(8)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#7B2FBE)"><span class="te">👑</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Ultimate Bundle — Save 60%</div><div class="pname">Complete Bricktastic Collection — All Instructions</div><div class="pmeta"><span>🧱 All builds</span><span>📄 All PDFs</span><span>💰 Save 60%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>39</div><button class="acb" onclick="event.stopPropagation();addToCart(8)">🛒 Add</button></div></div></div>
+      </div>
+
+      <!-- TRUST BADGES -->
+      <div class="trust reveal">
+        <div class="tb"><div class="ti">📄</div><div class="tv">Instant Download</div><div class="td">PDF delivered immediately to your email</div></div>
+        <div class="tb"><div class="ti">🔢</div><div class="tv">BrickLink List Included</div><div class="td">Every part listed so you can source easily</div></div>
+        <div class="tb"><div class="ti">🚚</div><div class="tv">Ships Worldwide</div><div class="td">Physical MOCs built and shipped with care</div></div>
+        <div class="tb"><div class="ti">💬</div><div class="tv">Builder Support</div><div class="td">Stuck? Ask in the YouTube comments</div></div>
+        <div class="tb"><div class="ti">🔒</div><div class="tv">Secure Checkout</div><div class="td">Powered by your preferred payment processor</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fl">🧱 Bricktastic Builds</div>
+    <div class="fc">© 2025 Bricktastic Builds · PDF instructions = digital download · MOCs ship worldwide</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
+  </footer>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-ov" id="cartOv" onclick="toggleCart()"></div>
+<div class="cart-dr" id="cartDr">
+  <div class="cart-hd"><h3>🛒 Your Cart</h3><button class="cart-x" onclick="toggleCart()">✕</button></div>
+  <div class="cart-its" id="cartIts"><div class="cart-emp"><span class="cei">🧱</span><p>Your cart is empty!<br>Add some builds to get started.</p></div></div>
+  <div class="cart-ft" id="cartFt" style="display:none">
+    <div class="cart-tot"><span class="cart-tot-l">Total</span><span class="cart-tot-p" id="cartTot">$0</span></div>
+    <button class="co-btn" onclick="checkout()">🔒 Proceed to Checkout</button>
+    <p class="cart-note">Instant PDF delivery · Secure payment · Worldwide shipping for MOCs</p>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="mod-ov" id="modOv" onclick="closeModOv(event)">
+  <div class="mod" id="mod">
+    <div class="mod-hero" id="modHero"><button class="mod-x" onclick="document.getElementById('modOv').classList.remove('open')">✕</button></div>
+    <div class="mod-body">
+      <div class="mod-tag" id="modTag"></div>
+      <h2 class="mod-title" id="modTitle"></h2>
+      <p class="mod-desc" id="modDesc"></p>
+      <div class="mod-specs" id="modSpecs"></div>
+      <div class="mod-inc" id="modInc"></div>
+      <div class="mod-ft"><div class="mod-price" id="modPrice"></div><button class="mod-ab" id="modAbtn" onclick="addFromMod()">🛒 Add to Cart</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">🧱 Added to cart!</div>
+
+<script>
+// DATA
+const P=[
+  {id:0,name:"The Grand Medieval Castle — Full MOC",type:"Physical MOC",price:349,emoji:"🏰",bg:"linear-gradient(135deg,#1A1A1A,#3a1a00)",tc:"var(--orange)",desc:"The centrepiece of my 31-day build series. Four towers, working portcullis, great hall with interior details, stables, smithy, and market square. Hand-built and shipped worldwide. Comes with certificate of authenticity.",specs:[["~16,800","Pieces"],["48×48","Stud Base"],["40+ hrs","Build Time"]],inc:["Fully assembled MOC","Certificate of authenticity","Protective packaging","Minifigures included","Signed build card"]},
+  {id:1,name:"City Corner Café — Building Instructions",type:"PDF Instructions",price:8,emoji:"🏙️",bg:"linear-gradient(135deg,#003d6b,#006CB7)",tc:"var(--blue)",desc:"A charming corner café with outdoor seating, detailed interior, menu boards, and working awning. 48 full-colour pages with step-by-step instructions and a complete BrickLink shopping list.",specs:[["340","Pieces"],["48 pgs","Instructions"],["PDF","Instant DL"]],inc:["48-page colour PDF","Full BrickLink parts list","Tips & technique guide","Free updates forever"]},
+  {id:2,name:"Jungle Waterfall Vignette — Instructions",type:"PDF Instructions",price:5,emoji:"🌲",bg:"linear-gradient(135deg,#004d25,#00A650)",tc:"var(--green)",desc:"A perfect beginner MOC. 16×16 stud vignette with cascading waterfall, lush jungle foliage, and hidden cave behind the falls. Great first build for learning organic textures and SNOT techniques.",specs:[["180","Pieces"],["28 pgs","Instructions"],["PDF","Instant DL"]],inc:["28-page colour PDF","BrickLink parts list","Beginner-friendly notes"]},
+  {id:3,name:"Japanese Ramen Street Scene — Instructions",type:"PDF Instructions",price:14,emoji:"🏯",bg:"linear-gradient(135deg,#7B2FBE,#E3000B)",tc:"#7B2FBE",desc:"Multi-level Japanese street scene as seen in my $1000 LEGO build video. Ramen shop, apartments above, temple in background, and rain effect throughout. Advanced techniques throughout.",specs:[["920","Pieces"],["96 pgs","Instructions"],["PDF","Instant DL"]],inc:["96-page colour PDF","BrickLink parts list","Advanced technique guide","Rain effect tutorial","Custom tile guide"]},
+  {id:4,name:"Victorian Train Station — Custom MOC",type:"Physical MOC",price:129,emoji:"🚂",bg:"linear-gradient(135deg,#1A1A1A,#3d2200)",tc:"var(--blue)",desc:"Ornate Victorian-era train station with arched iron roof, detailed ticket hall, platform signage, and working station clock. Dark tan and dark brown colour palette. Ships worldwide fully assembled.",specs:[["~3,200","Pieces"],["32×48","Stud Base"],["Ships","Worldwide"]],inc:["Fully assembled MOC","Protective packaging","Minifigures included","Signed build card"]},
+  {id:5,name:"Working Technic Engine Display — Instructions",type:"PDF Instructions",price:12,emoji:"⚙️",bg:"linear-gradient(135deg,#b89a00,#FFD700)",tc:"#b89a00",desc:"Fully kinetic 4-cylinder engine display model. Crank it by hand — all four pistons fire in sequence, valves operate, crankshaft turns. As seen in the Technic deep dive video.",specs:[["480","Pieces"],["64 pgs","Instructions"],["Fully","Kinetic"]],inc:["64-page colour PDF","BrickLink parts list","Engineering notes","Gear ratio explainer"]},
+  {id:6,name:"Starter Pack — 5 Instructions for Beginners",type:"Bundle",price:19,emoji:"📦",bg:"linear-gradient(135deg,#8b3a00,#FF6B00)",tc:"var(--orange)",desc:"5 beginner-to-intermediate builds at 40% discount. Corner Café, Waterfall Vignette, Market Stall, Cosy Cottage, and Mini Lighthouse. Perfect for building up your skills fast.",specs:[["5 PDFs","Included"],["40%","Discount"],["Instant","Download"]],inc:["Corner Café PDF","Waterfall Vignette PDF","Market Stall PDF","Cosy Cottage PDF","Mini Lighthouse PDF","All BrickLink lists"]},
+  {id:7,name:"Suspension Bridge Micro-Scale — Instructions",type:"PDF Instructions",price:10,emoji:"🌉",bg:"linear-gradient(135deg,#003d6b,#00838F)",tc:"var(--blue)",desc:"Technically impressive micro-scale suspension bridge. Uses Technic string and clever Technic-to-system connections for suspension cables. Display-ready centrepiece.",specs:[["620","Pieces"],["52 pgs","Instructions"],["PDF","Instant DL"]],inc:["52-page colour PDF","BrickLink parts list","Cable technique guide"]},
+  {id:8,name:"Complete Bricktastic Collection — All Instructions",type:"Ultimate Bundle",price:39,emoji:"👑",bg:"linear-gradient(135deg,#1A1A1A,#7B2FBE)",tc:"#7B2FBE",desc:"Every PDF instruction set bundled at 60% off, plus early access to all future releases at no extra cost. The definitive Bricktastic builder's library.",specs:[["All PDFs","Included"],["60%","Discount"],["+ Future","Releases"]],inc:["ALL current instruction PDFs","ALL BrickLink parts lists","Future releases included","Priority builder support","Exclusive technique guide"]}
+];
+
+// STATE
+let cart=[],curMod=null;
+
+// PAGE
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{initStuds();initReveal();},80);
+  return false;
+}
+function scrollS(id){setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},120)}
+
+// CART
+function toggleCart(){
+  document.getElementById('cartDr').classList.toggle('open');
+  document.getElementById('cartOv').classList.toggle('open');
+}
+function addToCart(id){
+  const p=P[id];
+  cart.push({...p,cid:Date.now()+Math.random()});
+  updateCart();
+  showToast('🧱 '+p.name.split('—')[0].trim()+' added!');
+  document.querySelectorAll(`[data-id="${id}"] .acb`).forEach(b=>{b.classList.add('added');b.textContent='✓ Added!';setTimeout(()=>{b.classList.remove('added');b.innerHTML='🛒 Add';},1800)});
+}
+function removeItem(cid){cart=cart.filter(i=>i.cid!==cid);updateCart()}
+function updateCart(){
+  const n=cart.length;
+  const cc=document.getElementById('cartCount');
+  cc.textContent=n;cc.classList.toggle('show',n>0);
+  const its=document.getElementById('cartIts');
+  const ft=document.getElementById('cartFt');
+  if(!n){its.innerHTML='<div class="cart-emp"><span class="cei">🧱</span><p>Your cart is empty!<br>Add some builds to get started.</p></div>';ft.style.display='none';return}
+  ft.style.display='block';
+  const tot=cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('cartTot').textContent='$'+tot;
+  const tc={PDF:'var(--green)',Physical:'var(--blue)',Bundle:'var(--orange)',Ultimate:'#7B2FBE'};
+  its.innerHTML=cart.map(item=>`<div class="cart-item"><div class="cii" style="background:${(tc[item.type.split(' ')[0]]||'var(--blue)')}22">${item.emoji}</div><div style="flex:1"><div class="cin">${item.name}</div><div class="cit">${item.type}</div><div class="cip">$${item.price}</div></div><button class="cir" onclick="removeItem(${item.cid})">✕</button></div>`).join('');
+}
+function checkout(){showToast('💳 Redirecting to checkout...');setTimeout(()=>alert('Connect Stripe, Gumroad, or PayPal to handle checkout!\n\nTotal: $'+cart.reduce((s,i)=>s+i.price,0)),400)}
+
+// MODAL
+function openMod(id){
+  curMod=id;const p=P[id];
+  const h=document.getElementById('modHero');
+  h.style.background=p.bg;
+  h.innerHTML=`<button class="mod-x" onclick="document.getElementById('modOv').classList.remove('open')">✕</button><span style="font-size:88px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.3))">${p.emoji}</span>`;
+  document.getElementById('modTag').textContent=p.type;
+  document.getElementById('modTag').style.color=p.tc;
+  document.getElementById('modTitle').textContent=p.name;
+  document.getElementById('modDesc').textContent=p.desc;
+  document.getElementById('modSpecs').innerHTML=p.specs.map(([v,k])=>`<div class="spec-box"><span class="sv">${v}</span><span class="sk">${k}</span></div>`).join('');
+  document.getElementById('modInc').innerHTML=`<h4>What's Included</h4><div class="inc-list">${p.inc.map(i=>`<span>✓ ${i}</span>`).join('')}</div>`;
+  document.getElementById('modPrice').textContent='$'+p.price;
+  const ab=document.getElementById('modAbtn');ab.innerHTML='🛒 Add to Cart';ab.style.background='var(--green)';
+  document.getElementById('modOv').classList.add('open');
+}
+function closeModOv(e){if(e.target===document.getElementById('modOv'))document.getElementById('modOv').classList.remove('open')}
+function addFromMod(){if(curMod!==null){addToCart(curMod);const b=document.getElementById('modAbtn');b.innerHTML='✓ Added!';b.style.background='var(--blue)';setTimeout(()=>{b.innerHTML='🛒 Add to Cart';b.style.background='var(--green)';},1800)}}
+
+// FILTER
+function filterShop(cat,btn){
+  document.querySelectorAll('.shop-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.pc').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none'});
+  const f=document.querySelector('.pc.feat');
+  if(f){if(cat==='all'||cat==='moc'){f.style.display='';f.style.gridColumn='span 3'}else f.style.display='none'}
+}
+
+// TOAST
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+
+// STUDS
+function initStuds(){['s1','s2','s3'].forEach(id=>{const el=document.getElementById(id);if(!el||el.children.length)return;const n=Math.ceil(window.innerWidth/38)+2;const bg=el.style.background||'var(--yellow)';for(let i=0;i<n;i++){const s=document.createElement('span');s.style.background=bg;el.appendChild(s)}})}
+
+// HERO BG
+function initHeroBg(){const g=document.getElementById('heroBg');if(!g||g.children.length)return;const c=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];for(let i=0;i<56;i++){const d=document.createElement('div');d.style.cssText=`background:${c[i%c.length]};border-radius:4px;animation-delay:${(i*.08)%4}s`;g.appendChild(d)}}
+
+// FLOATING BRICKS
+function initFloats(){const r=document.getElementById('heroR');if(!r||r.querySelector('.fb'))return;const bs=[{w:64,h:28,bg:'var(--blue)',sh:'#003d6b',t:'12%',l:'8%',d:'4s',r0:'-8deg',r1:'4deg',dl:'0s'},{w:96,h:30,bg:'var(--green)',sh:'#004d25',b:'18%',ri:'6%',d:'6s',r0:'5deg',r1:'-6deg',dl:'-2s'},{w:48,h:22,bg:'var(--yellow)',sh:'#b89a00',b:'40%',l:'5%',d:'3.5s',r0:'12deg',r1:'-3deg',dl:'-1s'},{w:72,h:26,bg:'var(--red)',sh:'#8b0000',t:'22%',ri:'5%',d:'5s',r0:'-5deg',r1:'8deg',dl:'-3s'}];bs.forEach(b=>{const el=document.createElement('div');el.className='fb';let p='';if(b.t)p+=`top:${b.t};`;if(b.b)p+=`bottom:${b.b};`;if(b.l)p+=`left:${b.l};`;if(b.ri)p+=`right:${b.ri};`;el.style.cssText=`width:${b.w}px;height:${b.h}px;background:${b.bg};box-shadow:0 4px 0 ${b.sh};${p}animation-duration:${b.d};animation-delay:${b.dl};--r0:${b.r0};--r1:${b.r1}`;r.appendChild(el)})}
+
+// REVEAL
+function initReveal(){setTimeout(()=>{const els=document.querySelectorAll('.reveal:not(.visible)');const obs=new IntersectionObserver(en=>{en.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target)}})},{threshold:.1});els.forEach((el,i)=>{el.style.transitionDelay=(i*.04)+'s';obs.observe(el)})},60)}
+
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{initStuds();initHeroBg();initFloats();initReveal()});
+</script>
+</body>
+</html>

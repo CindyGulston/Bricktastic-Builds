@@ -47,7 +47,73 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .nav-home-a{background:rgba(255,255,255,.12)!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px;border:2px solid rgba(255,255,255,.25)!important}
 .nav-home-a:hover{background:rgba(255,255,255,.22)!important;color:#fff!important}
 .nav-about-a{background:var(--yellow)!important;color:var(--black)!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
+.nav-blog-a{background:#006CB7!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
+.nav-blog-a:hover{background:#005a9a!important;color:#fff!important}
+.nav-gallery-a{background:#7B2FBE!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
+.nav-gallery-a:hover{background:#6322a0!important;color:#fff!important}
 .nav-about-a:hover{background:#e6bb00!important;color:var(--black)!important}
+/* BLOG PAGE */
+.blog-hero{background:var(--black);padding:52px 0 44px;margin-top:66px;position:relative;overflow:hidden}
+.blog-hero::before{content:'';position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px)}
+.blog-hero-inner{position:relative;z-index:2;color:#fff}
+.blog-hero-inner h1{font-family:'Boogaloo',cursive;font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:10px}
+.blog-hero-inner p{font-size:16px;font-weight:600;color:#aaa;max-width:540px}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;margin-top:8px}
+.blog-card{background:#fff;border:3px solid var(--black);overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;top:0}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--black)}
+.blog-thumb{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.blog-cat-badge{position:absolute;top:12px;left:12px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:4px;color:#fff}
+.blog-card-body{padding:20px}
+.blog-card-title{font-family:'Boogaloo',cursive;font-size:21px;line-height:1.2;margin-bottom:8px;color:var(--black)}
+.blog-card-excerpt{font-size:13px;color:#666;font-weight:600;line-height:1.6;margin-bottom:14px}
+.blog-card-meta{display:flex;gap:14px;font-size:12px;font-weight:800;color:#aaa}
+.blog-card-meta .bdate{color:var(--blue)}
+.blog-filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.blog-ftab{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;padding:8px 16px;border-radius:20px;border:3px solid var(--black);cursor:pointer;background:#fff;color:#666;text-transform:uppercase;letter-spacing:.5px;transition:all .15s}
+.blog-ftab.active{background:var(--black);color:var(--yellow)}
+.blog-ftab:hover:not(.active){background:#f0ede6}
+.blog-post-ov{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto}
+.blog-post-ov.open{display:flex}
+.blog-post{background:#fff;max-width:720px;width:100%;border:3px solid var(--black);overflow:hidden;position:relative}
+.blog-post-hero{width:100%;height:260px;display:flex;align-items:center;justify-content:center;font-size:100px;position:relative}
+.blog-post-x{position:absolute;top:14px;right:14px;background:var(--black);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900;z-index:2}
+.blog-post-body{padding:32px 36px 40px}
+.blog-post-cat{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:4px 10px;border-radius:4px;color:#fff;display:inline-block;margin-bottom:14px}
+.blog-post-title{font-family:'Boogaloo',cursive;font-size:clamp(26px,4vw,40px);line-height:1.1;margin-bottom:10px}
+.blog-post-meta{font-size:13px;font-weight:800;color:#aaa;margin-bottom:24px;display:flex;gap:16px}
+.blog-post-meta .bpm-date{color:var(--blue)}
+.blog-post-content{font-size:15px;line-height:1.75;color:#333;font-weight:600}
+.blog-post-content p{margin-bottom:16px}
+.blog-post-content h3{font-family:'Boogaloo',cursive;font-size:22px;margin:28px 0 10px;color:var(--black)}
+/* GALLERY PAGE */
+.gallery-hero{background:linear-gradient(135deg,#7B2FBE,#E3000B);padding:52px 0 44px;margin-top:66px;position:relative;overflow:hidden}
+.gallery-hero::before{content:'';position:absolute;inset:0;opacity:.08;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,.4) 20px,rgba(255,255,255,.4) 22px)}
+.gallery-hero-inner{position:relative;z-index:2;color:#fff}
+.gallery-hero-inner h1{font-family:'Boogaloo',cursive;font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:10px}
+.gallery-hero-inner p{font-size:16px;font-weight:600;color:rgba(255,255,255,.8);max-width:540px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:8px}
+.gallery-card{background:#fff;border:3px solid var(--black);overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative}
+.gallery-card:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--black)}
+.gallery-thumb{width:100%;height:190px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden}
+.gallery-card-body{padding:14px 16px}
+.gallery-card-name{font-family:'Boogaloo',cursive;font-size:18px;margin-bottom:4px}
+.gallery-card-builder{font-size:12px;font-weight:800;color:#888}
+.gallery-card-likes{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-weight:900;padding:4px 10px;border-radius:20px}
+.gallery-submit-box{background:var(--black);border:3px solid var(--yellow);padding:32px 36px;margin-bottom:40px}
+.gallery-submit-box h3{font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);margin-bottom:8px}
+.gallery-submit-box p{font-size:14px;color:#aaa;font-weight:600;margin-bottom:20px}
+.gallery-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery-form input,.gallery-form textarea{padding:10px 14px;border:3px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.07);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;outline:none;transition:border-color .15s}
+.gallery-form input:focus,.gallery-form textarea:focus{border-color:var(--yellow)}
+.gallery-form input::placeholder,.gallery-form textarea::placeholder{color:rgba(255,255,255,.35)}
+.gallery-form textarea{grid-column:1/-1;resize:vertical;min-height:70px}
+.gallery-form .g-full{grid-column:1/-1}
+.gallery-submit-btn{background:var(--yellow);color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;padding:12px 28px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 5px 0 #b89a00;transition:all .15s;position:relative;top:0}
+.gallery-submit-btn:hover{top:3px;box-shadow:0 2px 0 #b89a00}
+.gallery-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.gallery-tab{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;padding:8px 16px;border-radius:20px;border:3px solid var(--black);cursor:pointer;background:#fff;color:#666;text-transform:uppercase;letter-spacing:.5px;transition:all .15s}
+.gallery-tab.active{background:#7B2FBE;color:#fff;border-color:#7B2FBE}
+.gallery-tab:hover:not(.active){background:#f0ede6}
 .nav-right{display:flex;align-items:center;gap:10px}
 @media(max-width:768px){
   nav ul{display:none;position:fixed;top:66px;left:0;right:0;background:var(--black);flex-direction:column;padding:16px;gap:4px;border-bottom:4px solid var(--yellow);z-index:199}
@@ -696,6 +762,8 @@ ml('account', '2189778');
     <li><a onclick="showPage('videos')" class="nav-videos-a">🎬 Videos</a></li>
     <li><a onclick="showPage('mocs')" class="nav-mocs-a">🏗️ MOCs</a></li>
     <li><a onclick="showPage('shop')" class="nav-shop-a">🛒 Shop</a></li>
+    <li><a onclick="showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
+    <li><a onclick="showPage('gallery')" class="nav-gallery-a">🌟 Gallery</a></li>
     <li><a onclick="showPage('about')" class="nav-about-a">👤 About</a></li>
     <li><a onclick="showPage('game')" class="nav-game-a">🎮 Game</a></li>
   </ul>
@@ -1208,7 +1276,7 @@ ml('account', '2189778');
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
             Subscribe on YouTube
           </a>
-          <a class="btn btn-ow btn-lg" onclick="showPage('shop')" style="cursor:pointer">🛒 Browse the Shop</a>
+          <a class="btn btn-green btn-lg" onclick="showPage('shop')" style="cursor:pointer">🛒 Browse the Shop</a>
         </div>
       </div>
 
@@ -1315,12 +1383,27 @@ ml('account', '2189778');
 
 <!-- ══ SHOP PAGE ══ -->
 <div id="page-shop" class="page">
-  <div class="shop-hero">
+  <div class="hero" style="min-height:300px;margin-top:66px">
     <div class="hero-bg" id="heroBgShop"></div>
-    <div class="container" style="position:relative;z-index:1">
-      <span class="lbl lbl-o" style="margin-bottom:12px;display:inline-block">Bricktastic Shop</span>
-      <h1 style="font-family:'Boogaloo',cursive;font-size:clamp(44px,6vw,72px);color:var(--white);line-height:1;margin-bottom:10px">Build What You <span style="color:var(--yellow)">See on the Channel</span></h1>
-      <p style="font-size:17px;color:#bbb;font-weight:600;max-width:500px;line-height:1.6">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download. Build it yourself.</p>
+    <div class="hero-left">
+      <span class="hero-badge">🛒 Bricktastic Shop</span>
+      <h1><span class="y">Build What</span><br><span class="r">You See.</span></h1>
+      <p class="hero-sub">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">📐 Browse Instructions</a>
+        <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hcb">
+        <div class="big-brick" style="background:var(--orange);box-shadow:0 12px 0 #8b3a00,0 18px 40px rgba(0,0,0,.5)">
+          <div class="bs" style="left:16px;background:var(--orange)"></div>
+          <div class="bs" style="left:78px;background:var(--orange)"></div>
+          <div class="bs" style="left:140px;background:var(--orange)"></div>
+          <div class="bs" style="left:202px;background:var(--orange)"></div>
+        </div>
+        <div class="ch-tag">14 Products</div>
+      </div>
     </div>
   </div>
   <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s3"></div></div>
@@ -1360,6 +1443,11 @@ ml('account', '2189778');
         <div class="pc" data-cat="ins" data-id="5" onclick="openMod(5)"><div class="pthumb" style="background:linear-gradient(135deg,#b89a00,#FFD700)"><span class="te">⚙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-x">Expert</div></div><div class="pinfo"><div class="ptyp" style="color:#b89a00">PDF Instructions</div><div class="pname">Working Technic Engine Display — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 480 pcs</span><span>📄 64 pages</span><span>⚙️ Fully kinetic</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>12</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(5)">🛒 Add</button></div></div></div>
         <div class="pc" data-cat="bun" data-id="6" onclick="openMod(6)"><div class="pthumb" style="background:linear-gradient(135deg,#8b3a00,#FF6B00)"><span class="te">📦</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">Bundle — Save 40%</div><div class="pname">Starter Pack — 5 Instructions for Beginners</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 5 builds</span><span>📄 200+ pages</span><span>💰 Save 40%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>19</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(6)">🛒 Add</button></div></div></div>
         <div class="pc" data-cat="ins" data-id="7" onclick="openMod(7)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#00838F)"><span class="te">🌉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Suspension Bridge Micro-Scale — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 620 pcs</span><span>📄 52 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>10</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(7)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="9" onclick="openMod(9)"><div class="pthumb" style="background:linear-gradient(135deg,#0a0a2e,#006CB7)"><span class="te">🚀</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Space Station Micro Build — Instructions</div><div class="pmeta"><span>220 pcs</span><span>📄 32 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>7</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(9)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="10" onclick="openMod(10)"><div class="pthumb" style="background:linear-gradient(135deg,#1a0800,#8b3a00)"><span class="te">🐉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">PDF Instructions</div><div class="pname">Dragon Lair Diorama — Instructions</div><div class="pmeta"><span>780 pcs</span><span>📄 68 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>11</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(10)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="11" onclick="openMod(11)"><div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FFD700)"><span class="te">🖼️</span><div class="rib rib-ins" style="background:var(--yellow);color:var(--black)">🖼️ Wallpapers</div></div><div class="pinfo"><div class="ptyp" style="color:var(--red)">Digital Wallpapers</div><div class="pname">Bricktastic Wallpaper Pack — 10 Designs</div><div class="pmeta"><span>10 wallpapers</span><span>🖥️ 4K res</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>3</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(11)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="12" onclick="openMod(12)"><div class="pthumb" style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">📋</span><div class="rib rib-ins" style="background:var(--green)">📋 BrickLink XML</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">BrickLink XML</div><div class="pname">Speed Champions XML Parts Pack — 8 MOCs</div><div class="pmeta"><span>8 MOCs</span><span>📄 XML files</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>4</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(12)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="13" onclick="openMod(13)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#7B2FBE)"><span class="te">🏙️</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Bundle — Save 35%</div><div class="pname">Modular City Core — 4 Build Mega Bundle</div><div class="pmeta"><span>4 PDFs</span><span>💰 Save 35%</span><span>🏙️ City connects</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>29</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(13)">🛒 Add</button></div></div></div>
         <div class="pc" data-cat="bun" data-id="8" onclick="openMod(8)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#7B2FBE)"><span class="te">👑</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Ultimate Bundle — Save 60%</div><div class="pname">Complete Bricktastic Collection — All Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> All builds</span><span>📄 All PDFs</span><span>💰 Save 60%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>39</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(8)">🛒 Add</button></div></div></div>
       </div>
 
@@ -1410,13 +1498,29 @@ ml('account', '2189778');
 
 <!-- ══ ARTICLES INDEX PAGE ══ -->
 <div id="page-videos" class="page">
-  <div class="vid-hero">
+  <div class="hero" style="min-height:300px;margin-top:66px">
     <div class="hero-bg" id="heroBgVideos"></div>
-    <div class="container">
-      <div class="vid-hero-inner">
-        <span class="lbl lbl-r" style="margin-bottom:16px">🎬 Videos</span>
-        <h1>All Videos</h1>
-        <p>257+ LEGO builds, deep dives, challenges & instructions. Click any video to watch on YouTube.</p>
+    <div class="hero-left">
+      <span class="hero-badge">🎬 Videos</span>
+      <h1><span class="y">All</span><br><span class="r">Videos.</span></h1>
+      <p class="hero-sub">257+ LEGO builds, instructions, showcases & more. Click any video to watch on YouTube.</p>
+      <div class="hero-ctas">
+        <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Watch on YouTube
+        </a>
+        <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">🛒 Shop</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hcb">
+        <div class="big-brick" style="background:var(--red);box-shadow:0 12px 0 #8b0000,0 18px 40px rgba(0,0,0,.5)">
+          <div class="bs" style="left:16px;background:var(--red)"></div>
+          <div class="bs" style="left:78px;background:var(--red)"></div>
+          <div class="bs" style="left:140px;background:var(--red)"></div>
+          <div class="bs" style="left:202px;background:var(--red)"></div>
+        </div>
+        <div class="ch-tag">257+ Videos</div>
       </div>
     </div>
   </div>
@@ -1428,10 +1532,10 @@ ml('account', '2189778');
         <div class="vid-filter-tabs" id="vidTabs">
           <button class="vid-tab active" onclick="setVidCat('all',this)">All</button>
           <button class="vid-tab" onclick="setVidCat('builds',this)">🏗️ Builds</button>
-          <button class="vid-tab" onclick="setVidCat('instructions',this)">📦 instructions</button>
-          <button class="vid-tab" onclick="setVidCat('challenges',this)">🏆 Challenges</button>
-          <button class="vid-tab" onclick="setVidCat('deep-dives',this)">🔍 Deep Dives</button>
-          <button class="vid-tab" onclick="setVidCat('tips',this)">🔧 Tips</button>
+          <button class="vid-tab" onclick="setVidCat('instructions',this)">📦 Instructions</button>
+          <button class="vid-tab" onclick="setVidCat('showcase',this)">🌟 Showcase</button>
+          <button class="vid-tab" onclick="setVidCat('lego-news',this)">📰 LEGO News</button>
+          <button class="vid-tab" onclick="setVidCat('jokes',this)">😂 Jokes</button>
         </div>
       </div>
       <div class="vid-count-bar" id="vidCountBar"></div>
@@ -1460,7 +1564,12 @@ const P=[
   {id:5,name:"Working Technic Engine Display — Instructions",type:"PDF Instructions",price:12,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",emoji:"⚙️",bg:"linear-gradient(135deg,#b89a00,#FFD700)",tc:"#b89a00",buyUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",buyLabel:"⬇️ Buy & Download",desc:"Fully kinetic 4-cylinder engine display model. Crank it by hand — all four pistons fire in sequence, valves operate, crankshaft turns. As seen in the Technic deep dive video.",specs:[["480","Pieces"],["64 pgs","Instructions"],["Fully","Kinetic"]],inc:["64-page colour PDF","BrickLink parts list","Engineering notes","Gear ratio explainer"]},
   {id:6,name:"Starter Pack — 5 Instructions for Beginners",type:"Bundle",price:19,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",emoji:"📦",bg:"linear-gradient(135deg,#8b3a00,#FF6B00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",buyLabel:"⬇️ Buy & Download",desc:"5 beginner-to-intermediate builds at 40% discount. Corner Café, Waterfall Vignette, Market Stall, Cosy Cottage, and Mini Lighthouse. Perfect for building up your skills fast.",specs:[["5 PDFs","Included"],["40%","Discount"],["Instant","Download"]],inc:["Corner Café PDF","Waterfall Vignette PDF","Market Stall PDF","Cosy Cottage PDF","Mini Lighthouse PDF","All BrickLink lists"]},
   {id:7,name:"Suspension Bridge Micro-Scale — Instructions",type:"PDF Instructions",price:10,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/suspension-bridge",emoji:"🌉",bg:"linear-gradient(135deg,#003d6b,#00838F)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/suspension-bridge",buyLabel:"⬇️ Buy & Download",desc:"Technically impressive micro-scale suspension bridge. Uses Technic string and clever Technic-to-system connections for suspension cables. Display-ready centrepiece.",specs:[["620","Pieces"],["52 pgs","Instructions"],["PDF","Instant DL"]],inc:["52-page colour PDF","BrickLink parts list","Cable technique guide"]},
-  {id:8,name:"Complete Bricktastic Collection — All Instructions",type:"Ultimate Bundle",price:39,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",emoji:"👑",bg:"linear-gradient(135deg,#1A1A1A,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",buyLabel:"⬇️ Buy & Download",desc:"Every PDF instruction set bundled at 60% off, plus early access to all future releases at no extra cost. The definitive Bricktastic builder's library.",specs:[["All PDFs","Included"],["60%","Discount"],["+ Future","Releases"]],inc:["ALL current instruction PDFs","ALL BrickLink parts lists","Future releases included","Priority builder support","Exclusive technique guide"]}
+  {id:8,name:"Complete Bricktastic Collection — All Instructions",type:"Ultimate Bundle",price:39,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",emoji:"👑",bg:"linear-gradient(135deg,#1A1A1A,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",buyLabel:"⬇️ Buy & Download",desc:"Every PDF instruction set bundled at 60% off, plus early access to all future releases at no extra cost. The definitive Bricktastic builder's library.",specs:[["All PDFs","Included"],["60%","Discount"],["+ Future","Releases"]],inc:["ALL current instruction PDFs","ALL BrickLink parts lists","Future releases included","Priority builder support","Exclusive technique guide"]},
+  {id:9,name:"Space Station Micro Build — Instructions",type:"PDF Instructions",price:7,emoji:"🚀",bg:"linear-gradient(135deg,#0a0a2e,#006CB7)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/space-station",buyLabel:"⬇️ Buy & Download",desc:"A sleek micro-scale space station with solar panel arrays, docking ports and rotating habitat rings. Compact 16×16 stud footprint makes it perfect for shelf displays.",specs:[["220","Pieces"],["32 pgs","Instructions"],["PDF","Instant DL"]],inc:["32-page colour PDF","BrickLink parts list","Display stand included","Colour variants guide"]},
+  {id:10,name:"Dragon Lair Diorama — Instructions",type:"PDF Instructions",price:11,emoji:"🐉",bg:"linear-gradient(135deg,#1a0800,#8b3a00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/dragon-lair",buyLabel:"⬇️ Buy & Download",desc:"A dramatic fantasy diorama featuring a cave entrance, treasure pile, glowing lava effects and a full-size dragon in dark red and black.",specs:[["780","Pieces"],["68 pgs","Instructions"],["PDF","Instant DL"]],inc:["68-page colour PDF","BrickLink parts list","Lava effect guide","Dragon build tips"]},
+  {id:11,name:"Bricktastic Wallpaper Pack — 10 Designs",type:"Digital Wallpapers",price:3,emoji:"🖼️",bg:"linear-gradient(135deg,#E3000B,#FFD700)",tc:"var(--red)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/wallpaper-pack",buyLabel:"⬇️ Buy & Download",desc:"10 high-resolution LEGO-themed desktop and mobile wallpapers. Instant digital download.",specs:[["10","Wallpapers"],["4K","Resolution"],["Instant","Download"]],inc:["5 desktop wallpapers (4K)","5 mobile wallpapers","JPEG + PNG formats"]},
+  {id:12,name:"Speed Champions XML Parts Pack — 8 MOCs",type:"BrickLink XML",price:4,emoji:"📋",bg:"linear-gradient(135deg,#004d25,#00A650)",tc:"var(--green)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/sc-bricklink-pack",buyLabel:"⬇️ Buy & Download",desc:"Ready-to-import BrickLink XML wanted lists for 8 popular Speed Champions MOC builds. Saves hours of manual entry.",specs:[["8 MOCs","Covered"],["XML","Format"],["Instant","Download"]],inc:["8 BrickLink XML files","Parts count per build","Average cost guide","Import instructions"]},
+  {id:13,name:"Modular City Core — 4 Build Mega Bundle",type:"Bundle",price:29,emoji:"🏙️",bg:"linear-gradient(135deg,#003d6b,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/city-core-bundle",buyLabel:"⬇️ Buy & Download",desc:"Four modular city builds — Corner Café, Bookshop, Police Station and Bakery — designed to connect into a full city block. 35% cheaper than buying separately.",specs:[["4 PDFs","Included"],["35%","Discount"],["City","Connects"]],inc:["Corner Café PDF","Bookshop PDF","Police Station PDF","Bakery PDF","All BrickLink lists","City layout guide"]}
 ];
 
 // STATE
@@ -1682,6 +1791,8 @@ function showPage(id){
   if(id==='mocs') initMOCPage();
   if(id==='about') initAboutPage();
   if(id==='game') initBrickRunner();
+  if(id==='blog') initBlogPage();
+  if(id==='gallery') initGalleryPage();
   setTimeout(()=>{initStuds();initReveal();},80);
   return false;
 }
@@ -1875,31 +1986,31 @@ const VIDEOS = [
   { id: 'ydamnOKdFf8', title: 'My Custom Black Ship Creation', cat: 'showcase' },
   { id: 'L-cMbY4NtSI', title: 'Lego Joke', cat: 'jokes' },
   { id: 'Nfj4xszyg2M', title: 'My custom build LEGO Red Car', cat: 'showcase' },
-  { id: 'qDuKsiwS5xw', title: 'LEGO Technic Origins — How It All Started', cat: 'deep-dives' },
-  { id: 'Ic9bFYV5MpI', title: 'Castle Theme — Every Era Ranked & Reviewed', cat: 'deep-dives' },
-  { id: 'RhU9MgvIllo', title: 'LEGO Ideas: Fan Power — Best Submissions Ever', cat: 'deep-dives' },
-  { id: '3yMFkgMi7kI', title: 'Legoland Parks — The Full Story', cat: 'deep-dives' },
-  { id: 'Mv_vx9HpIcU', title: "LEGO's Sustainability Crisis — ABS Replacement", cat: 'deep-dives' },
-  { id: '9lNZ_Rnr7Jc', title: 'LEGO Mindstorms — The Complete History', cat: 'deep-dives' },
-  { id: '1G4isv_Fylg', title: 'LEGO & Harry Potter — The Licensing Story', cat: 'deep-dives' },
-  { id: 'Hn-ensF7Oki', title: 'How the LEGO Movie Was Really Made', cat: 'deep-dives' },
-  { id: 'x9YwkQi_Aqo', title: 'LEGO Piece Count Hacks — Build More for Less', cat: 'tips' },
-  { id: 'DEjClTJFNrk', title: 'The Perfect LEGO Workspace Setup', cat: 'tips' },
-  { id: 'OPaQPMB3B0A', title: 'How to Sort Your LEGO Parts — The System That Works', cat: 'tips' },
-  { id: 'cGqZ8mCXIws', title: 'LEGO Landscaping Techniques — Grass, Rock & Foliage', cat: 'tips' },
-  { id: 'S5d_-j1CXVQ', title: 'Sticker vs Printed Tile — Which is Better & Why', cat: 'tips' },
-  { id: 'LtPmAMpHSBE', title: 'How to Remove Tight LEGO Pieces Without Breaking Them', cat: 'tips' },
-  { id: 'p-fW__oh4Ug', title: 'Building Minifig-Scale Vehicles — Pro Tips', cat: 'tips' },
-  { id: '4M7tiUAvstY', title: 'Display vs Play — Designing LEGO for Both', cat: 'tips' },
-  { id: '3m5qkPx57yk', title: 'LEGO Roof Techniques — Every Style Explained', cat: 'tips' },
-  { id: 'fcLZhUKPwSA', title: 'Window & Door Placement — Architectural Accuracy', cat: 'tips' },
-  { id: 'yJg-Y5byMMw', title: 'Race Build Challenge — 10 Mins to Build a Car', cat: 'challenges' },
-  { id: '3nBeW4fFMGk', title: 'One-Colour Challenge — Building with Only Red Bricks', cat: 'challenges' },
-  { id: 'GQOhFZitHkc', title: 'Partner Build Challenge — We Build Without Talking', cat: 'challenges' },
-  { id: 'xvFZjo5PgG0', title: 'LEGO vs Off-Brand Bricks — Build-Off Challenge', cat: 'challenges' },
-  { id: 'Ct6BUPvE2sQ', title: 'Child vs AFOL Build Challenge', cat: 'challenges' },
-  { id: 'ulPkLKau7C4', title: '500 Piece Freestyle — No Planning Allowed', cat: 'challenges' },
-  { id: 'eFTLKFevi1Y', title: 'Copy That Build! — Can I Replicate It From a Photo?', cat: 'challenges' },
+  { id: 'qDuKsiwS5xw', title: 'LEGO Technic Origins — How It All Started', cat: 'lego-news' },
+  { id: 'Ic9bFYV5MpI', title: 'Castle Theme — Every Era Ranked & Reviewed', cat: 'lego-news' },
+  { id: 'RhU9MgvIllo', title: 'LEGO Ideas: Fan Power — Best Submissions Ever', cat: 'lego-news' },
+  { id: '3yMFkgMi7kI', title: 'Legoland Parks — The Full Story', cat: 'lego-news' },
+  { id: 'Mv_vx9HpIcU', title: "LEGO's Sustainability Crisis — ABS Replacement", cat: 'lego-news' },
+  { id: '9lNZ_Rnr7Jc', title: 'LEGO Mindstorms — The Complete History', cat: 'lego-news' },
+  { id: '1G4isv_Fylg', title: 'LEGO & Harry Potter — The Licensing Story', cat: 'lego-news' },
+  { id: 'Hn-ensF7Oki', title: 'How the LEGO Movie Was Really Made', cat: 'lego-news' },
+  { id: 'x9YwkQi_Aqo', title: 'LEGO Piece Count Hacks — Build More for Less', cat: 'lego-news' },
+  { id: 'DEjClTJFNrk', title: 'The Perfect LEGO Workspace Setup', cat: 'lego-news' },
+  { id: 'OPaQPMB3B0A', title: 'How to Sort Your LEGO Parts — The System That Works', cat: 'lego-news' },
+  { id: 'cGqZ8mCXIws', title: 'LEGO Landscaping Techniques — Grass, Rock & Foliage', cat: 'lego-news' },
+  { id: 'S5d_-j1CXVQ', title: 'Sticker vs Printed Tile — Which is Better & Why', cat: 'lego-news' },
+  { id: 'LtPmAMpHSBE', title: 'How to Remove Tight LEGO Pieces Without Breaking Them', cat: 'lego-news' },
+  { id: 'p-fW__oh4Ug', title: 'Building Minifig-Scale Vehicles — Pro Tips', cat: 'lego-news' },
+  { id: '4M7tiUAvstY', title: 'Display vs Play — Designing LEGO for Both', cat: 'lego-news' },
+  { id: '3m5qkPx57yk', title: 'LEGO Roof Techniques — Every Style Explained', cat: 'lego-news' },
+  { id: 'fcLZhUKPwSA', title: 'Window & Door Placement — Architectural Accuracy', cat: 'lego-news' },
+  { id: 'yJg-Y5byMMw', title: 'Race Build Challenge — 10 Mins to Build a Car', cat: 'lego-news' },
+  { id: '3nBeW4fFMGk', title: 'One-Colour Challenge — Building with Only Red Bricks', cat: 'lego-news' },
+  { id: 'GQOhFZitHkc', title: 'Partner Build Challenge — We Build Without Talking', cat: 'lego-news' },
+  { id: 'xvFZjo5PgG0', title: 'LEGO vs Off-Brand Bricks — Build-Off Challenge', cat: 'lego-news' },
+  { id: 'Ct6BUPvE2sQ', title: 'Child vs AFOL Build Challenge', cat: 'lego-news' },
+  { id: 'ulPkLKau7C4', title: '500 Piece Freestyle — No Planning Allowed', cat: 'lego-news' },
+  { id: 'eFTLKFevi1Y', title: 'Copy That Build! — Can I Replicate It From a Photo?', cat: 'lego-news' },
   { id: 'F7n7l7HnGUs', title: 'Desert Palace MOC — Week-Long Build Timelapse', cat: 'builds' },
   { id: 'jNQXAC9IVRw', title: 'Arctic Research Station Full MOC', cat: 'builds' },
   { id: 'TyhtEL_4mhU', title: 'Wild West Town — 4-Day Build', cat: 'builds' },
@@ -1913,35 +2024,35 @@ const VIDEOS = [
   { id: 'vEQ8CXFWLZU', title: 'Modular Building Week — Day 3: Police Station', cat: 'builds' },
   { id: 'HH4KEMhBxQM', title: 'Modular Building Week — Day 4: Fire Station', cat: 'builds' },
   { id: 'iF77Q7jghhI', title: 'Modular Building Week — Day 5: Grand Hotel', cat: 'builds' },
-  { id: 'Jqh3MHXW5CQ', title: 'LEGO Technic Formula E Car Review', cat: 'reviews' },
-  { id: 'QKaOLA8MbyY', title: 'LEGO Icons Bouquet Review', cat: 'reviews' },
-  { id: 'wvBdcWXi8Vc', title: 'LEGO Star Wars Imperial Star Destroyer Review', cat: 'reviews' },
-  { id: '1otSx4CuMlY', title: 'LEGO Creator Deep Sea Creatures — Review', cat: 'reviews' },
-  { id: 'INiMiXyxXJI', title: 'LEGO Architecture Taj Mahal Review', cat: 'reviews' },
-  { id: 'NUsoVlDFqZg', title: 'LEGO Speed Champions 2024 Lineup — All Reviewed', cat: 'reviews' },
-  { id: 'Ix2KswFblia', title: 'LEGO DREAMZzz Set Review — Worth the Hype?', cat: 'reviews' },
-  { id: 'HEXWRTEbj1I', title: 'The LEGO Colour System — Full Explainer', cat: 'deep-dives' },
-  { id: 'EYqVtI19uZs', title: "LEGO's 100 Best Sets — Ranked by Year", cat: 'deep-dives' },
-  { id: 'jJrzIdDUfT4', title: 'Pirate Theme History — A Complete Timeline', cat: 'deep-dives' },
-  { id: 'v_RHlZ5e33g', title: 'LEGO Collectible Minifigures — All 25 Series Ranked', cat: 'deep-dives' },
-  { id: 'XCcmkp1CRMs', title: 'How LEGO Sets Are Designed — Inside the Process', cat: 'deep-dives' },
-  { id: 'CjuKzRzPDKA', title: 'The LEGO Brick Tolerance Secret — Engineering Deep Dive', cat: 'deep-dives' },
-  { id: 'oWCzUAm9pcc', title: 'LEGO Dimensions: What Went Wrong?', cat: 'deep-dives' },
-  { id: 'MejbOFk7H6c', title: 'Texture & Detail Techniques — Levels 1 to 5', cat: 'tips' },
-  { id: 'sC5XjuDr-EA', title: 'BrickLink Buying Guide — How to Get Parts Cheap', cat: 'tips' },
-  { id: 'gCYcHz2k5x0', title: 'How to Build a LEGO GBC Module From Scratch', cat: 'tips' },
-  { id: 'kn2bVkJl74c', title: 'Forced Perspective in LEGO — The Technique Explained', cat: 'tips' },
-  { id: 'OGfQWH4Bj7k', title: 'How to Use Technic Inside System Builds', cat: 'tips' },
-  { id: 'NhX-WV3kfRA', title: 'Colour Blocking for Impact — LEGO Composition', cat: 'tips' },
-  { id: 'Yit-ts7BCNY', title: 'The Best LEGO Pieces You Probably Ignore', cat: 'tips' },
-  { id: 'IG2jfcAGEFk', title: 'Bridge Engineering in LEGO — Load Bearing Explained', cat: 'tips' },
-  { id: 'nRpV-7p1gSc', title: 'Tournament Challenge — 8 Builders, 1 Winner', cat: 'challenges' },
-  { id: 'MRmj8MZANik', title: 'Rebuild That Set — Turn Official Into MOC', cat: 'challenges' },
-  { id: '9_gkpYvt4BA', title: 'Fan Submission Builds — Judging the Best 10', cat: 'challenges' },
-  { id: 'DgNRn0S5C8k', title: 'Destruction Challenge — Build Then Smash', cat: 'challenges' },
-  { id: 'rFCfSOat92M', title: 'LEGO Mini Golf Course — Build & Play Challenge', cat: 'challenges' },
-  { id: 'Q-Wm5EbW8rI', title: 'Build a Car That Actually Rolls — Engineering Test', cat: 'challenges' },
-  { id: 'w3KkIxV7md0', title: 'Egg Drop Challenge — LEGO Protection Test', cat: 'challenges' },
+  { id: 'Jqh3MHXW5CQ', title: 'LEGO Technic Formula E Car Review', cat: 'lego-news' },
+  { id: 'QKaOLA8MbyY', title: 'LEGO Icons Bouquet Review', cat: 'lego-news' },
+  { id: 'wvBdcWXi8Vc', title: 'LEGO Star Wars Imperial Star Destroyer Review', cat: 'lego-news' },
+  { id: '1otSx4CuMlY', title: 'LEGO Creator Deep Sea Creatures — Review', cat: 'lego-news' },
+  { id: 'INiMiXyxXJI', title: 'LEGO Architecture Taj Mahal Review', cat: 'lego-news' },
+  { id: 'NUsoVlDFqZg', title: 'LEGO Speed Champions 2024 Lineup — All Reviewed', cat: 'lego-news' },
+  { id: 'Ix2KswFblia', title: 'LEGO DREAMZzz Set Review — Worth the Hype?', cat: 'lego-news' },
+  { id: 'HEXWRTEbj1I', title: 'The LEGO Colour System — Full Explainer', cat: 'lego-news' },
+  { id: 'EYqVtI19uZs', title: "LEGO's 100 Best Sets — Ranked by Year", cat: 'lego-news' },
+  { id: 'jJrzIdDUfT4', title: 'Pirate Theme History — A Complete Timeline', cat: 'lego-news' },
+  { id: 'v_RHlZ5e33g', title: 'LEGO Collectible Minifigures — All 25 Series Ranked', cat: 'lego-news' },
+  { id: 'XCcmkp1CRMs', title: 'How LEGO Sets Are Designed — Inside the Process', cat: 'lego-news' },
+  { id: 'CjuKzRzPDKA', title: 'The LEGO Brick Tolerance Secret — Engineering Deep Dive', cat: 'lego-news' },
+  { id: 'oWCzUAm9pcc', title: 'LEGO Dimensions: What Went Wrong?', cat: 'lego-news' },
+  { id: 'MejbOFk7H6c', title: 'Texture & Detail Techniques — Levels 1 to 5', cat: 'lego-news' },
+  { id: 'sC5XjuDr-EA', title: 'BrickLink Buying Guide — How to Get Parts Cheap', cat: 'lego-news' },
+  { id: 'gCYcHz2k5x0', title: 'How to Build a LEGO GBC Module From Scratch', cat: 'lego-news' },
+  { id: 'kn2bVkJl74c', title: 'Forced Perspective in LEGO — The Technique Explained', cat: 'lego-news' },
+  { id: 'OGfQWH4Bj7k', title: 'How to Use Technic Inside System Builds', cat: 'lego-news' },
+  { id: 'NhX-WV3kfRA', title: 'Colour Blocking for Impact — LEGO Composition', cat: 'lego-news' },
+  { id: 'Yit-ts7BCNY', title: 'The Best LEGO Pieces You Probably Ignore', cat: 'lego-news' },
+  { id: 'IG2jfcAGEFk', title: 'Bridge Engineering in LEGO — Load Bearing Explained', cat: 'lego-news' },
+  { id: 'nRpV-7p1gSc', title: 'Tournament Challenge — 8 Builders, 1 Winner', cat: 'lego-news' },
+  { id: 'MRmj8MZANik', title: 'Rebuild That Set — Turn Official Into MOC', cat: 'lego-news' },
+  { id: '9_gkpYvt4BA', title: 'Fan Submission Builds — Judging the Best 10', cat: 'lego-news' },
+  { id: 'DgNRn0S5C8k', title: 'Destruction Challenge — Build Then Smash', cat: 'lego-news' },
+  { id: 'rFCfSOat92M', title: 'LEGO Mini Golf Course — Build & Play Challenge', cat: 'lego-news' },
+  { id: 'Q-Wm5EbW8rI', title: 'Build a Car That Actually Rolls — Engineering Test', cat: 'lego-news' },
+  { id: 'w3KkIxV7md0', title: 'Egg Drop Challenge — LEGO Protection Test', cat: 'lego-news' },
   { id: 'KMl20pGPqiE', title: 'Tropical Beach Resort MOC — Full Build', cat: 'builds' },
   { id: 'q1YsNMM7V7k', title: 'Underground Cave System Diorama', cat: 'builds' },
   { id: 'UE4ftnTKMUY', title: 'LEGO Zoo MOC — The Whole Animal Park', cat: 'builds' },
@@ -1953,35 +2064,35 @@ const VIDEOS = [
   { id: 'Bw6lGSKFtIM', title: 'Minifig Hospital MOC — Interior Detail', cat: 'builds' },
   { id: 'WRVEMdHXPIY', title: 'Airport Terminal Micro MOC', cat: 'builds' },
   { id: 'LqtMqiw-Mzg', title: 'Roman Fort MOC — Historical Accuracy Build', cat: 'builds' },
-  { id: 'Y9IiKnGpA3c', title: 'LEGO Ideas Jazz Quartet Review', cat: 'reviews' },
-  { id: 'F8N1NqPxjBE', title: 'LEGO Technic Monster Jam Grave Digger Review', cat: 'reviews' },
-  { id: '4sS-XcCEkDM', title: 'LEGO Marvel Avengers Tower Review', cat: 'reviews' },
-  { id: 'I2l9i5s7oa8', title: 'LEGO Minecraft The Crafting Box 4.0 Review', cat: 'reviews' },
-  { id: 'gNMX1VJEkgQ', title: 'LEGO Jurassic World T-Rex Breakout Review', cat: 'reviews' },
-  { id: 'bpwBPmRR9Qg', title: 'LEGO Disney Castle 100th Anniversary Review', cat: 'reviews' },
-  { id: 'DU_sEMb5d0g', title: 'LEGO Batman Batmobile Review — Every Version Compared', cat: 'reviews' },
-  { id: 'Xq0BZDL4SL0', title: 'LEGO City Space Station Review', cat: 'reviews' },
-  { id: 'i0sOAYWKJ0o', title: 'Top 10 Rarest LEGO Parts Ever Made', cat: 'deep-dives' },
-  { id: 'GmV_8RBDlxA', title: 'LEGO Advent Calendar History — Every Year Ranked', cat: 'deep-dives' },
-  { id: 'V7YkPCcMqr4', title: 'The AFOLs Who Changed LEGO Forever', cat: 'deep-dives' },
-  { id: 'ry7mZBGMBZs', title: 'How LEGO Deals With Fakes & Clones', cat: 'deep-dives' },
-  { id: 'KKEHsj0GYP8', title: 'LEGO Architecture Series — A Complete Guide', cat: 'deep-dives' },
-  { id: 'Ys25-KbRxvY', title: 'The LEGO Group Family Tree — Corporate History', cat: 'deep-dives' },
-  { id: 'qopcjNPeDD8', title: 'Illegal LEGO Techniques — Are They Really Illegal?', cat: 'tips' },
-  { id: 'GFLnSrXBKFo', title: 'Scale & Proportion in LEGO Architecture', cat: 'tips' },
-  { id: 'tQ0y4PftArs', title: 'Achieving Depth in Flat LEGO Walls', cat: 'tips' },
-  { id: 'aAHnHBZCT3A', title: 'Street-Level Storytelling in LEGO', cat: 'tips' },
-  { id: 'jQYHBQLEVyk', title: 'How to Build Realistic LEGO Skies & Clouds', cat: 'tips' },
-  { id: 'XELm4zvKo7k', title: 'Advanced Interior Design — Beyond the Box Room', cat: 'tips' },
-  { id: 'PNwO8Wr6D0I', title: 'LEGO Display Case & Shelf Setup Guide', cat: 'tips' },
-  { id: 'vHd_kCmSO7I', title: 'LEGO Photography — Advanced Editing Guide', cat: 'tips' },
-  { id: 'GsLCRpvREew', title: 'Stop Motion Animation with LEGO — Getting Started', cat: 'tips' },
-  { id: 'QlHT_sZf35o', title: 'Speed Build Relay — 4 Builders, 1 Giant MOC', cat: 'challenges' },
-  { id: '4J9-kfhb2WQ', title: 'Rebuild My Childhood Set Challenge', cat: 'challenges' },
-  { id: 'AaEFT6ZsFWs', title: 'The Floor is Lava — LEGO Challenge Edition', cat: 'challenges' },
-  { id: 'DpHOSmzWMZg', title: 'Build a Working LEGO Catapult — Challenge & Test', cat: 'challenges' },
-  { id: 'J6qXi4miezo', title: 'LEGO Swap Shop — Trade Parts Build-Off', cat: 'challenges' },
-  { id: 'h_OEe1lPbGU', title: 'Recreate a Painting in LEGO — Art Challenge', cat: 'challenges' },
+  { id: 'Y9IiKnGpA3c', title: 'LEGO Ideas Jazz Quartet Review', cat: 'lego-news' },
+  { id: 'F8N1NqPxjBE', title: 'LEGO Technic Monster Jam Grave Digger Review', cat: 'lego-news' },
+  { id: '4sS-XcCEkDM', title: 'LEGO Marvel Avengers Tower Review', cat: 'lego-news' },
+  { id: 'I2l9i5s7oa8', title: 'LEGO Minecraft The Crafting Box 4.0 Review', cat: 'lego-news' },
+  { id: 'gNMX1VJEkgQ', title: 'LEGO Jurassic World T-Rex Breakout Review', cat: 'lego-news' },
+  { id: 'bpwBPmRR9Qg', title: 'LEGO Disney Castle 100th Anniversary Review', cat: 'lego-news' },
+  { id: 'DU_sEMb5d0g', title: 'LEGO Batman Batmobile Review — Every Version Compared', cat: 'lego-news' },
+  { id: 'Xq0BZDL4SL0', title: 'LEGO City Space Station Review', cat: 'lego-news' },
+  { id: 'i0sOAYWKJ0o', title: 'Top 10 Rarest LEGO Parts Ever Made', cat: 'lego-news' },
+  { id: 'GmV_8RBDlxA', title: 'LEGO Advent Calendar History — Every Year Ranked', cat: 'lego-news' },
+  { id: 'V7YkPCcMqr4', title: 'The AFOLs Who Changed LEGO Forever', cat: 'lego-news' },
+  { id: 'ry7mZBGMBZs', title: 'How LEGO Deals With Fakes & Clones', cat: 'lego-news' },
+  { id: 'KKEHsj0GYP8', title: 'LEGO Architecture Series — A Complete Guide', cat: 'lego-news' },
+  { id: 'Ys25-KbRxvY', title: 'The LEGO Group Family Tree — Corporate History', cat: 'lego-news' },
+  { id: 'qopcjNPeDD8', title: 'Illegal LEGO Techniques — Are They Really Illegal?', cat: 'lego-news' },
+  { id: 'GFLnSrXBKFo', title: 'Scale & Proportion in LEGO Architecture', cat: 'lego-news' },
+  { id: 'tQ0y4PftArs', title: 'Achieving Depth in Flat LEGO Walls', cat: 'lego-news' },
+  { id: 'aAHnHBZCT3A', title: 'Street-Level Storytelling in LEGO', cat: 'lego-news' },
+  { id: 'jQYHBQLEVyk', title: 'How to Build Realistic LEGO Skies & Clouds', cat: 'lego-news' },
+  { id: 'XELm4zvKo7k', title: 'Advanced Interior Design — Beyond the Box Room', cat: 'lego-news' },
+  { id: 'PNwO8Wr6D0I', title: 'LEGO Display Case & Shelf Setup Guide', cat: 'lego-news' },
+  { id: 'vHd_kCmSO7I', title: 'LEGO Photography — Advanced Editing Guide', cat: 'lego-news' },
+  { id: 'GsLCRpvREew', title: 'Stop Motion Animation with LEGO — Getting Started', cat: 'lego-news' },
+  { id: 'QlHT_sZf35o', title: 'Speed Build Relay — 4 Builders, 1 Giant MOC', cat: 'lego-news' },
+  { id: '4J9-kfhb2WQ', title: 'Rebuild My Childhood Set Challenge', cat: 'lego-news' },
+  { id: 'AaEFT6ZsFWs', title: 'The Floor is Lava — LEGO Challenge Edition', cat: 'lego-news' },
+  { id: 'DpHOSmzWMZg', title: 'Build a Working LEGO Catapult — Challenge & Test', cat: 'lego-news' },
+  { id: 'J6qXi4miezo', title: 'LEGO Swap Shop — Trade Parts Build-Off', cat: 'lego-news' },
+  { id: 'h_OEe1lPbGU', title: 'Recreate a Painting in LEGO — Art Challenge', cat: 'lego-news' },
   { id: 'uOYplNkXHBQ', title: 'Medieval Siege Weapons — Full MOC Series', cat: 'builds' },
   { id: 'yD3bgTXsimQ', title: 'The Great LEGO Library — Modular Build', cat: 'builds' },
   { id: 'GYkq9Ej_J8Y', title: 'Volcanic Island Diorama — Build Vlog', cat: 'builds' },
@@ -1992,30 +2103,30 @@ const VIDEOS = [
   { id: 'C4fzOolFzVc', title: 'Port & Docklands MOC — Modular City Series', cat: 'builds' },
   { id: 'jE7B0U7WJQM', title: 'LEGO Dinosaur Museum — Interior & Exterior MOC', cat: 'builds' },
   { id: 'ppMRiDFV_Mc', title: 'Sky Fortress LEGO MOC — Fantasy Build', cat: 'builds' },
-  { id: 'VN3AuJV4GQ4', title: 'LEGO Creator Crocodile Locomotive Review', cat: 'reviews' },
-  { id: 'WGjx4J9G6Zs', title: 'LEGO Icons Orient Express Review', cat: 'reviews' },
-  { id: 'Iaw9xM0aVRo', title: 'LEGO Technic McLaren F1 Car 2024 Review', cat: 'reviews' },
-  { id: '4U_f8vAk2hY', title: 'LEGO Star Wars Tantive IV Review', cat: 'reviews' },
-  { id: 'mvQFg5A2uCU', title: 'LEGO Botanical Succulents Review', cat: 'reviews' },
-  { id: 'K2mmkSqFJ8M', title: 'LEGO Ideas Grand Piano Review — Worth $350?', cat: 'reviews' },
-  { id: 'UPW4kHiEyBo', title: 'LEGO Technic vs Creator — Which Line Is Better?', cat: 'deep-dives' },
-  { id: 'pqRLvkCxDFo', title: 'Exploring LEGO DUPLO History — More Than Baby Bricks', cat: 'deep-dives' },
-  { id: 'w9Kt__tHSgA', title: "LEGO's Most Expensive Sets Ever — Worth It?", cat: 'deep-dives' },
-  { id: 'aMf-fD65MZI', title: 'The Legends of Chima — What Went Wrong?', cat: 'deep-dives' },
-  { id: 'EuZnVhT3a4M', title: 'LEGO Competitive Building — Contest Culture Explained', cat: 'deep-dives' },
-  { id: 'x0t9ZAjqruc', title: 'The Secret Life of LEGO Set Numbers', cat: 'deep-dives' },
-  { id: 'KpkexRV5D0k', title: 'Using Hinges for Perfect Angles — Masterclass', cat: 'tips' },
-  { id: 'YFgVmLFBhuk', title: 'Studs-Up vs Studs-Out — When to Use Each', cat: 'tips' },
-  { id: 'v58oiG7EI7E', title: 'Hollow Wall Techniques — Save Pieces & Weight', cat: 'tips' },
-  { id: 'dT3RkMGHmf4', title: 'Townscaping in LEGO — Realistic Street Design', cat: 'tips' },
-  { id: 'VjBqIeVoHus', title: 'Minifig Posing & Storytelling Guide', cat: 'tips' },
-  { id: 'dqHIBBbz12A', title: 'How to Use Plates for Greebling Detail', cat: 'tips' },
-  { id: 'qEFqbqfbkRc', title: 'Winter MOC Build Challenge — Snow Effects', cat: 'challenges' },
-  { id: 'Y3LhMMoUmkQ', title: 'LEGO Logo Mosaic Speed Build', cat: 'challenges' },
-  { id: 'X-yRj7PFNGI', title: 'First LEGO Set vs Now — Evolution Challenge', cat: 'challenges' },
-  { id: 'a1bIBf20T4g', title: 'Studio vs Real Bricks — Same Design, Two Media', cat: 'challenges' },
-  { id: 'c9CJT2PiLYE', title: 'LEGO Jenga Tower Build Challenge', cat: 'challenges' },
-  { id: 'aJOTlE1K90k', title: "Budget Minifigure Customisation — What's Possible?", cat: 'challenges' },
+  { id: 'VN3AuJV4GQ4', title: 'LEGO Creator Crocodile Locomotive Review', cat: 'lego-news' },
+  { id: 'WGjx4J9G6Zs', title: 'LEGO Icons Orient Express Review', cat: 'lego-news' },
+  { id: 'Iaw9xM0aVRo', title: 'LEGO Technic McLaren F1 Car 2024 Review', cat: 'lego-news' },
+  { id: '4U_f8vAk2hY', title: 'LEGO Star Wars Tantive IV Review', cat: 'lego-news' },
+  { id: 'mvQFg5A2uCU', title: 'LEGO Botanical Succulents Review', cat: 'lego-news' },
+  { id: 'K2mmkSqFJ8M', title: 'LEGO Ideas Grand Piano Review — Worth $350?', cat: 'lego-news' },
+  { id: 'UPW4kHiEyBo', title: 'LEGO Technic vs Creator — Which Line Is Better?', cat: 'lego-news' },
+  { id: 'pqRLvkCxDFo', title: 'Exploring LEGO DUPLO History — More Than Baby Bricks', cat: 'lego-news' },
+  { id: 'w9Kt__tHSgA', title: "LEGO's Most Expensive Sets Ever — Worth It?", cat: 'lego-news' },
+  { id: 'aMf-fD65MZI', title: 'The Legends of Chima — What Went Wrong?', cat: 'lego-news' },
+  { id: 'EuZnVhT3a4M', title: 'LEGO Competitive Building — Contest Culture Explained', cat: 'lego-news' },
+  { id: 'x0t9ZAjqruc', title: 'The Secret Life of LEGO Set Numbers', cat: 'lego-news' },
+  { id: 'KpkexRV5D0k', title: 'Using Hinges for Perfect Angles — Masterclass', cat: 'lego-news' },
+  { id: 'YFgVmLFBhuk', title: 'Studs-Up vs Studs-Out — When to Use Each', cat: 'lego-news' },
+  { id: 'v58oiG7EI7E', title: 'Hollow Wall Techniques — Save Pieces & Weight', cat: 'lego-news' },
+  { id: 'dT3RkMGHmf4', title: 'Townscaping in LEGO — Realistic Street Design', cat: 'lego-news' },
+  { id: 'VjBqIeVoHus', title: 'Minifig Posing & Storytelling Guide', cat: 'lego-news' },
+  { id: 'dqHIBBbz12A', title: 'How to Use Plates for Greebling Detail', cat: 'lego-news' },
+  { id: 'qEFqbqfbkRc', title: 'Winter MOC Build Challenge — Snow Effects', cat: 'lego-news' },
+  { id: 'Y3LhMMoUmkQ', title: 'LEGO Logo Mosaic Speed Build', cat: 'lego-news' },
+  { id: 'X-yRj7PFNGI', title: 'First LEGO Set vs Now — Evolution Challenge', cat: 'lego-news' },
+  { id: 'a1bIBf20T4g', title: 'Studio vs Real Bricks — Same Design, Two Media', cat: 'lego-news' },
+  { id: 'c9CJT2PiLYE', title: 'LEGO Jenga Tower Build Challenge', cat: 'lego-news' },
+  { id: 'aJOTlE1K90k', title: "Budget Minifigure Customisation — What's Possible?", cat: 'lego-news' },
   { id: 'GsxIiinG05s', title: 'Clock Tower MOC — Functional LEGO Clockwork', cat: 'builds' },
   { id: 'peTSzs-VIDA', title: 'LEGO Aquarium Scene — Full Underwater MOC', cat: 'builds' },
   { id: 'B0t7CccBHAw', title: 'Swiss Alpine Village MOC — Winter Edition', cat: 'builds' },
@@ -2026,28 +2137,28 @@ const VIDEOS = [
   { id: 'qN7Ure6yjRc', title: 'Post-Apocalyptic City Ruins MOC', cat: 'builds' },
   { id: 'ACj7bFXEeEw', title: 'Zen Garden Micro-Scale Diorama', cat: 'builds' },
   { id: 'EjcVm0nE-CE', title: 'Double-Decker Bus City Scene MOC', cat: 'builds' },
-  { id: 'OI4p2H0FMEA', title: 'LEGO Hogwarts Express Review — Latest Version', cat: 'reviews' },
-  { id: 'XRH21rNFSig', title: 'LEGO Technic Airbus H175 Helicopter Review', cat: 'reviews' },
-  { id: 'zNqnTZYA3bM', title: 'LEGO Icons Concorde Review', cat: 'reviews' },
-  { id: 'JDlAOVqiHV4', title: 'LEGO Creator Exotic Parrot Review', cat: 'reviews' },
-  { id: 'DwHN_HA5KSI', title: 'LEGO Ninjago Dragon Stone Shrine Review', cat: 'reviews' },
-  { id: 'eXGjBsTWpHs', title: 'LEGO Dots & Crafts — Full Range Review', cat: 'reviews' },
-  { id: 'Jq3eRLekZDQ', title: 'Forgotten LEGO Themes — A Tribute', cat: 'deep-dives' },
-  { id: 'zy7fNWZHFpg', title: 'LEGO Pricing Over the Decades — Value Analysis', cat: 'deep-dives' },
-  { id: 'LsBqqs9zeqQ', title: "The World's Largest LEGO Collections — Documented", cat: 'deep-dives' },
-  { id: '8ZoqEKGnDnw', title: 'LEGO & Pop Culture — 50 Years of Collaboration', cat: 'deep-dives' },
-  { id: 'mHONNcZbsng', title: "LEGO's Environmental Roadmap — 2025 Goals Update", cat: 'deep-dives' },
-  { id: 'g9mRJ4K1NWU', title: 'Colour Coding Your Part Storage System', cat: 'tips' },
-  { id: 'yBgIqBDcRoU', title: 'SNOT at Scale — Applying the Technique to Big MOCs', cat: 'tips' },
-  { id: 'CxJx8go4_eY', title: 'Designing for Disassembly — Build Smart', cat: 'tips' },
-  { id: 'h3yeCXMnYKI', title: 'The Hidden Stud — Advanced Connection Techniques', cat: 'tips' },
-  { id: 'oFCsGfKlJUQ', title: 'LEGO Mosaic Art — Pixel Techniques Guide', cat: 'tips' },
-  { id: 'i3Ngrpc3Epc', title: 'Gravity-Defying LEGO — Suspended Build Techniques', cat: 'tips' },
-  { id: 'TwFSMjrLrSw', title: 'Last Brick Standing — Structural Stress Test', cat: 'challenges' },
-  { id: 'N-YrFJypl9c', title: 'Blind Build Battle — Same Parts, Different Styles', cat: 'challenges' },
-  { id: 'LzCDQ7j7xzU', title: 'Celebrity LEGO Challenge — Fan Request Build', cat: 'challenges' },
-  { id: 'pJ09AiMM2Kg', title: 'Worst LEGO Colour Challenge — Grey, Olive, Macaroni', cat: 'challenges' },
-  { id: 'FbqFUqg8hgI', title: 'LEGO Escape Room Build & Play Challenge', cat: 'challenges' },
+  { id: 'OI4p2H0FMEA', title: 'LEGO Hogwarts Express Review — Latest Version', cat: 'lego-news' },
+  { id: 'XRH21rNFSig', title: 'LEGO Technic Airbus H175 Helicopter Review', cat: 'lego-news' },
+  { id: 'zNqnTZYA3bM', title: 'LEGO Icons Concorde Review', cat: 'lego-news' },
+  { id: 'JDlAOVqiHV4', title: 'LEGO Creator Exotic Parrot Review', cat: 'lego-news' },
+  { id: 'DwHN_HA5KSI', title: 'LEGO Ninjago Dragon Stone Shrine Review', cat: 'lego-news' },
+  { id: 'eXGjBsTWpHs', title: 'LEGO Dots & Crafts — Full Range Review', cat: 'lego-news' },
+  { id: 'Jq3eRLekZDQ', title: 'Forgotten LEGO Themes — A Tribute', cat: 'lego-news' },
+  { id: 'zy7fNWZHFpg', title: 'LEGO Pricing Over the Decades — Value Analysis', cat: 'lego-news' },
+  { id: 'LsBqqs9zeqQ', title: "The World's Largest LEGO Collections — Documented", cat: 'lego-news' },
+  { id: '8ZoqEKGnDnw', title: 'LEGO & Pop Culture — 50 Years of Collaboration', cat: 'lego-news' },
+  { id: 'mHONNcZbsng', title: "LEGO's Environmental Roadmap — 2025 Goals Update", cat: 'lego-news' },
+  { id: 'g9mRJ4K1NWU', title: 'Colour Coding Your Part Storage System', cat: 'lego-news' },
+  { id: 'yBgIqBDcRoU', title: 'SNOT at Scale — Applying the Technique to Big MOCs', cat: 'lego-news' },
+  { id: 'CxJx8go4_eY', title: 'Designing for Disassembly — Build Smart', cat: 'lego-news' },
+  { id: 'h3yeCXMnYKI', title: 'The Hidden Stud — Advanced Connection Techniques', cat: 'lego-news' },
+  { id: 'oFCsGfKlJUQ', title: 'LEGO Mosaic Art — Pixel Techniques Guide', cat: 'lego-news' },
+  { id: 'i3Ngrpc3Epc', title: 'Gravity-Defying LEGO — Suspended Build Techniques', cat: 'lego-news' },
+  { id: 'TwFSMjrLrSw', title: 'Last Brick Standing — Structural Stress Test', cat: 'lego-news' },
+  { id: 'N-YrFJypl9c', title: 'Blind Build Battle — Same Parts, Different Styles', cat: 'lego-news' },
+  { id: 'LzCDQ7j7xzU', title: 'Celebrity LEGO Challenge — Fan Request Build', cat: 'lego-news' },
+  { id: 'pJ09AiMM2Kg', title: 'Worst LEGO Colour Challenge — Grey, Olive, Macaroni', cat: 'lego-news' },
+  { id: 'FbqFUqg8hgI', title: 'LEGO Escape Room Build & Play Challenge', cat: 'lego-news' },
   { id: 'KFhSIhFFkLs', title: '3-Part MOC Series — Episode 1: The City Walls', cat: 'builds' },
   { id: 'fMN8r_uA6UA', title: '3-Part MOC Series — Episode 2: The Castle Keep', cat: 'builds' },
   { id: 'j6mfOstg0o0', title: '3-Part MOC Series — Episode 3: The Town Below', cat: 'builds' },
@@ -2056,26 +2167,26 @@ const VIDEOS = [
   { id: '1CfZtL_gBXk', title: 'Micro World Series — The Mountain Peak', cat: 'builds' },
   { id: 'j9n3qj1TXOU', title: 'LEGO Moon Base MOC — NASA Inspiration', cat: 'builds' },
   { id: 'Tl5V4yFDq-c', title: 'Fully Furnished Dollhouse Style MOC', cat: 'builds' },
-  { id: 'Dj9sqjQTe4k', title: 'LEGO Ideas Wildflower Bouquet Review', cat: 'reviews' },
-  { id: 'OqxiuSFfNdQ', title: 'LEGO Star Wars Venator-Class Star Destroyer Review', cat: 'reviews' },
-  { id: 'N-10_j3B-FI', title: 'LEGO City Police Pursuit Review — 2024 Wave', cat: 'reviews' },
-  { id: 'VCTen3-zKlI', title: 'LEGO Harry Potter Room of Requirement Review', cat: 'reviews' },
-  { id: 'pSt5MUHpAqM', title: 'LEGO Technic Rough Terrain Crane Review', cat: 'reviews' },
-  { id: 'y4kHlMOjsBE', title: 'LEGO Icons Cathedral of Learning Review', cat: 'reviews' },
-  { id: 'E8gmARGgX3c', title: "LEGO's Weirdest Licensed Themes — Ranked", cat: 'deep-dives' },
-  { id: 'cI0ZzFWDf3I', title: 'LEGO Board Games — The Forgotten Era', cat: 'deep-dives' },
-  { id: 'jwJBmTf6M-w', title: 'Fabuland — LEGO\'s Most Underrated Theme Ever', cat: 'deep-dives' },
-  { id: 'vy4cMDGh_a8', title: 'LEGO Music — Every Album & Soundtrack Ranked', cat: 'deep-dives' },
-  { id: 'ZIqW4VkWGzc', title: 'How LEGO Names Their Colours — A Deep Dive', cat: 'deep-dives' },
-  { id: 'kqbpAJLvHng', title: 'LEGO Club Magazine — Nostalgia Deep Dive', cat: 'deep-dives' },
-  { id: 'OE2vlWoH5jE', title: 'Brick Separator — Hidden Tool Deep Dive', cat: 'tips' },
-  { id: 'cVJRLIqfExM', title: 'One Part, 10 Uses — LEGO Creativity Exercise', cat: 'tips' },
-  { id: 'xjIIubQkNdk', title: 'Jumper Plate Techniques — Unlock Half-Stud Spacing', cat: 'tips' },
-  { id: 'v-DZ9KnW5Ag', title: 'The Headlight Brick — What It Is and Why You Need It', cat: 'tips' },
-  { id: '8OQ4TDdmEA0', title: 'Clean vs Greebled — When Detail Hurts', cat: 'tips' },
-  { id: '2HYDeQFYHLo', title: 'Brick by Brick Podcast — Live Build Special', cat: 'challenges' },
-  { id: 'YE7VzlLtp-4', title: 'Christmas Tree Build Challenge — Live on Stream', cat: 'challenges' },
-  { id: 'gnS_A7KIOYQ', title: "LEGO's Most Iconic Build — Can I Beat It?", cat: 'challenges' },
+  { id: 'Dj9sqjQTe4k', title: 'LEGO Ideas Wildflower Bouquet Review', cat: 'lego-news' },
+  { id: 'OqxiuSFfNdQ', title: 'LEGO Star Wars Venator-Class Star Destroyer Review', cat: 'lego-news' },
+  { id: 'N-10_j3B-FI', title: 'LEGO City Police Pursuit Review — 2024 Wave', cat: 'lego-news' },
+  { id: 'VCTen3-zKlI', title: 'LEGO Harry Potter Room of Requirement Review', cat: 'lego-news' },
+  { id: 'pSt5MUHpAqM', title: 'LEGO Technic Rough Terrain Crane Review', cat: 'lego-news' },
+  { id: 'y4kHlMOjsBE', title: 'LEGO Icons Cathedral of Learning Review', cat: 'lego-news' },
+  { id: 'E8gmARGgX3c', title: "LEGO's Weirdest Licensed Themes — Ranked", cat: 'lego-news' },
+  { id: 'cI0ZzFWDf3I', title: 'LEGO Board Games — The Forgotten Era', cat: 'lego-news' },
+  { id: 'jwJBmTf6M-w', title: 'Fabuland — LEGO\'s Most Underrated Theme Ever', cat: 'lego-news' },
+  { id: 'vy4cMDGh_a8', title: 'LEGO Music — Every Album & Soundtrack Ranked', cat: 'lego-news' },
+  { id: 'ZIqW4VkWGzc', title: 'How LEGO Names Their Colours — A Deep Dive', cat: 'lego-news' },
+  { id: 'kqbpAJLvHng', title: 'LEGO Club Magazine — Nostalgia Deep Dive', cat: 'lego-news' },
+  { id: 'OE2vlWoH5jE', title: 'Brick Separator — Hidden Tool Deep Dive', cat: 'lego-news' },
+  { id: 'cVJRLIqfExM', title: 'One Part, 10 Uses — LEGO Creativity Exercise', cat: 'lego-news' },
+  { id: 'xjIIubQkNdk', title: 'Jumper Plate Techniques — Unlock Half-Stud Spacing', cat: 'lego-news' },
+  { id: 'v-DZ9KnW5Ag', title: 'The Headlight Brick — What It Is and Why You Need It', cat: 'lego-news' },
+  { id: '8OQ4TDdmEA0', title: 'Clean vs Greebled — When Detail Hurts', cat: 'lego-news' },
+  { id: '2HYDeQFYHLo', title: 'Brick by Brick Podcast — Live Build Special', cat: 'lego-news' },
+  { id: 'YE7VzlLtp-4', title: 'Christmas Tree Build Challenge — Live on Stream', cat: 'lego-news' },
+  { id: 'gnS_A7KIOYQ', title: "LEGO's Most Iconic Build — Can I Beat It?", cat: 'lego-news' },
   { id: 'JKHUHGhKjhU', title: 'Complete City Expansion — Year Review Build', cat: 'builds' },
   { id: 'bVWzoJ6ZJHY', title: 'The Final Modular — Grand Arcade MOC Complete', cat: 'builds' },
   // 👆 REPLACE these video IDs and titles with your actual YouTube video IDs
@@ -2248,7 +2359,7 @@ function initStuds(){['s1','s2','s3','s-vid'].forEach(id=>{const el=document.get
 // HERO BG
 function initHeroBg(){
   const c=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];
-  ['heroBg','heroBgShop','heroBgVideos','heroBgM'].forEach(id=>{
+  ['heroBg','heroBgShop','heroBgVideos','heroBgM','heroBgBlog','heroBgGallery'].forEach(id=>{
     const g=document.getElementById(id);
     if(!g||g.children.length)return;
     for(let i=0;i<56;i++){const d=document.createElement('div');d.style.cssText=`background:${c[i%c.length]};border-radius:4px;animation-delay:${(i*.08)%4}s`;g.appendChild(d);}
@@ -7694,5 +7805,264 @@ function initBrickRunner() {
   initGT(); initCL(); dGround(); dClouds(); P.y=PLAYER_GY; dFig(P.x,P.y,false);
 }
 </script>
+
+<!-- ══ BLOG PAGE ══ -->
+<div id="page-blog" class="page">
+  <div class="hero" style="min-height:300px;margin-top:66px">
+    <div class="hero-bg" id="heroBgBlog"></div>
+    <div class="hero-left">
+      <span class="hero-badge">📰 Blog</span>
+      <h1><span class="y">News &</span><br><span class="r">Updates.</span></h1>
+      <p class="hero-sub">LEGO news, build updates, reviews and thoughts. Fresh posts every day.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-yellow" onclick="showPage('videos')" style="cursor:pointer">🎬 Watch Videos</a>
+        <a class="btn btn-red" onclick="showPage('shop')" style="cursor:pointer">🛒 Shop</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hcb">
+        <div class="big-brick" style="background:var(--blue);box-shadow:0 12px 0 #003d6b,0 18px 40px rgba(0,0,0,.5)">
+          <div class="bs" style="left:16px;background:var(--blue)"></div>
+          <div class="bs" style="left:78px;background:var(--blue)"></div>
+          <div class="bs" style="left:140px;background:var(--blue)"></div>
+          <div class="bs" style="left:202px;background:var(--blue)"></div>
+        </div>
+        <div class="ch-tag">Daily Posts</div>
+      </div>
+    </div>
+  </div>
+  <div class="stud-bar" style="background:var(--blue)"><div class="inner" id="s-blog" style="background:var(--blue)"></div></div>
+  <section style="background:var(--bg);padding:48px 0 80px">
+    <div class="container">
+      <div class="blog-filter-row" id="blogFilterRow"></div>
+      <div class="blog-grid" id="blogGrid"></div>
+    </div>
+  </section>
+  <footer>
+    <div class="fl">Bricktastic Builds</div>
+    <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
+  </footer>
+</div>
+
+<!-- ══ FAN GALLERY PAGE ══ -->
+<div id="page-gallery" class="page">
+  <div class="hero" style="min-height:300px;margin-top:66px">
+    <div class="hero-bg" id="heroBgGallery"></div>
+    <div class="hero-left">
+      <span class="hero-badge">🌟 Fan Gallery</span>
+      <h1><span class="y">Community</span><br><span class="r">Builds.</span></h1>
+      <p class="hero-sub">Show off your LEGO creations. Submit your MOC and get featured on the Bricktastic Builds wall of fame.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-yellow" onclick="document.getElementById('galleryForm').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">🏗️ Submit Your Build</a>
+        <a class="btn btn-green" onclick="showPage('mocs')" style="cursor:pointer">Browse MOCs</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hcb">
+        <div class="big-brick" style="background:#7B2FBE;box-shadow:0 12px 0 #4a1a7a,0 18px 40px rgba(0,0,0,.5)">
+          <div class="bs" style="left:16px;background:#7B2FBE"></div>
+          <div class="bs" style="left:78px;background:#7B2FBE"></div>
+          <div class="bs" style="left:140px;background:#7B2FBE"></div>
+          <div class="bs" style="left:202px;background:#7B2FBE"></div>
+        </div>
+        <div class="ch-tag">Fan Builds</div>
+      </div>
+    </div>
+  </div>
+  <div class="stud-bar" style="background:#7B2FBE"><div class="inner" id="s-gallery" style="background:#7B2FBE"></div></div>
+  <section style="background:var(--bg);padding:48px 0 80px">
+    <div class="container">
+      <div class="gallery-submit-box reveal">
+        <h3>🏗️ Submit Your Build</h3>
+        <p>Share your MOC with the community. Paste a link to your photo and we'll feature the best submissions.</p>
+        <div class="gallery-form" id="galleryForm">
+          <input type="text" id="g-name" placeholder="Your name or @handle" />
+          <input type="text" id="g-build" placeholder="Build name (e.g. My Castle MOC)" />
+          <input type="text" id="g-photo" placeholder="Photo URL (Imgur, Google Drive, Instagram link...)" class="g-full" />
+          <textarea id="g-desc" placeholder="Tell us about your build..."></textarea>
+          <div class="g-full" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+            <button class="gallery-submit-btn" onclick="submitGalleryBuild()">🚀 Submit Build</button>
+            <span style="font-size:12px;color:#666;font-weight:700">Submissions reviewed before going live</span>
+          </div>
+        </div>
+        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Thanks! Your build has been submitted for review.</div>
+      </div>
+      <div class="gallery-tabs" id="galleryTabs"></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+  <footer>
+    <div class="fl">Bricktastic Builds</div>
+    <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
+  </footer>
+</div>
+
+<!-- Blog post modal -->
+<div class="blog-post-ov" id="blogPostOv" onclick="closeBlogPost(event)">
+  <div class="blog-post" id="blogPostInner">
+    <div class="blog-post-hero" id="bpHero">
+      <button class="blog-post-x" onclick="document.getElementById('blogPostOv').classList.remove('open')">✕</button>
+    </div>
+    <div class="blog-post-body">
+      <span class="blog-post-cat" id="bpCat"></span>
+      <h2 class="blog-post-title" id="bpTitle"></h2>
+      <div class="blog-post-meta"><span class="bpm-date" id="bpDate"></span><span id="bpRead"></span></div>
+      <div class="blog-post-content" id="bpContent"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── BLOG DATA ────────────────────────────────────────────────────────────────
+const BLOG_POSTS = [
+  {id:1,cat:'news',catLabel:'LEGO News',catColor:'#006CB7',bg:'linear-gradient(135deg,#003d6b,#006CB7)',emoji:'🧱',
+   title:'LEGO Announces 2025 Icons Lineup — Here\'s What Stands Out',
+   date:'March 12, 2026',read:'4 min read',
+   excerpt:'The new Icons wave has some absolute bangers. Here\'s my honest first take on each set and whether they\'re worth the price.',
+   content:`<p>LEGO's Icons wave for 2025 has officially been revealed and honestly, there's a lot to unpack.</p><h3>The standouts</h3><p>The new Botanical Collection additions are stunning — the colour work is exceptional. The modular building entry this year is a theatre, which feels long overdue.</p><h3>The ones I'm skipping</h3><p>A few of the licensed sets feel like filler. The piece counts don't justify the price, and the builds look like they were designed around the IP rather than interesting building techniques.</p><h3>The wildcard</h3><p>There's one set nobody's really talking about yet — a Technic/System hybrid that could be genuinely revolutionary if the engineering holds up. Watch for my review when it drops.</p><p>Overall: a solid wave with a few must-haves and a few easy passes. I'll be doing full reviews on the top picks — subscribe to stay notified.</p>`},
+  {id:2,cat:'build',catLabel:'Build Update',catColor:'#E3000B',bg:'linear-gradient(135deg,#8b0000,#E3000B)',emoji:'🏰',
+   title:'31-Day Castle Build: Week One Recap',
+   date:'March 10, 2026',read:'6 min read',
+   excerpt:'One week in and the foundation is done. Here\'s how it\'s going, what went wrong, and what surprised me.',
+   content:`<p>One week into the 31-day castle build and I'm already behind schedule — but for a good reason.</p><h3>What I built this week</h3><p>The base plate layout, all four corner tower foundations, and the first section of the curtain wall are complete. That's maybe 15% of the total build.</p><h3>What went wrong</h3><p>I ran out of dark tan 1x2 bricks on day three. Completely miscalculated. If you're planning a big build: always order 30% more of your primary colour than you think you need.</p><h3>The unexpected win</h3><p>The rock texture technique I'm using for the outer walls is turning out way better than expected. I'll do a dedicated tips video on this once the build is done.</p><p>Week 2 starts with the great hall interior. Stay tuned.</p>`},
+  {id:3,cat:'review',catLabel:'Set Review',catColor:'#00A650',bg:'linear-gradient(135deg,#004d25,#00A650)',emoji:'🏎️',
+   title:'Speed Champions Ferrari 499P Review — Is It Worth $60?',
+   date:'March 8, 2026',read:'5 min read',
+   excerpt:'The Ferrari 499P is easily the most detailed Speed Champions car LEGO has ever made. But does the price match the quality?',
+   content:`<p>Speed Champions sets have crept up in price every year, and the Ferrari 499P sits at $60. So is it worth it?</p><h3>The build</h3><p>Genuinely the most satisfying Speed Champions build I've done. The new body panel system creates much more accurate curves. The livery is almost entirely printed tiles — virtually no stickers, which is a huge win.</p><h3>The verdict</h3><p>$60 is steep, but this is a $60 set that actually feels worth $60. If you're a car person this is a shelf piece. Rating: 9/10.</p>`},
+  {id:4,cat:'tips',catLabel:'Build Tips',catColor:'#FF6B00',bg:'linear-gradient(135deg,#8b3a00,#FF6B00)',emoji:'💡',
+   title:'5 Techniques I Wish I Knew When I Started MOC Building',
+   date:'March 6, 2026',read:'7 min read',
+   excerpt:'From SNOT basics to forced perspective — the five techniques that completely changed how I build.',
+   content:`<p>When I started building MOCs I made every beginner mistake. These five techniques would have saved me months of frustration.</p><h3>1. SNOT isn't complicated</h3><p>Studs Not On Top just means turning bricks sideways. Once you start using SNOT for wall textures and curved surfaces, you won't stop.</p><h3>2. Forced perspective is free detail</h3><p>Smaller parts at the back of a scene, larger at the front. Medieval streets look amazing with this technique.</p><h3>3. Always build a colour palette first</h3><p>Pick 3-4 colours maximum before you start. Decide this before placing a single brick.</p><h3>4. Plate layering beats brick stacking</h3><p>Three 1x4 plates give you far more connection options than one 1x4 brick.</p><h3>5. Reference real architecture</h3><p>Google images of real buildings. LEGO builders who look at references produce dramatically better work.</p>`},
+  {id:5,cat:'news',catLabel:'LEGO News',catColor:'#006CB7',bg:'linear-gradient(135deg,#1A1A1A,#006CB7)',emoji:'📰',
+   title:'LEGO Retiring 47 Sets in 2026 — Full List &amp; Last Chance Picks',
+   date:'March 4, 2026',read:'3 min read',
+   excerpt:'47 sets are being retired this year. Here\'s the full confirmed list and which ones are worth grabbing before they\'re gone.',
+   content:`<p>LEGO retires sets every year and 2026 is no different — 47 confirmed retirements, with more likely coming mid-year.</p><h3>The must-grab before they're gone</h3><p>The Eiffel Tower (10307) is on the list. At 10,000+ pieces it's genuinely one of the best LEGO has ever made. If you've been sitting on the fence, stop sitting.</p><h3>Surprising retirements</h3><p>A few sets on the list are less than two years old, which is unusual. LEGO may be accelerating their replacement cycle.</p><p>I'll be doing a dedicated video on the top 10 retirements worth buying before they're gone.</p>`},
+  {id:6,cat:'build',catLabel:'Build Update',catColor:'#E3000B',bg:'linear-gradient(135deg,#1A1A1A,#E3000B)',emoji:'🌊',
+   title:'New Build Announced: Japanese Fishing Village MOC',
+   date:'March 1, 2026',read:'2 min read',
+   excerpt:'After the castle wraps up, the next big build is a Japanese fishing village — complete with water effects and a harbour scene.',
+   content:`<p>The next big project is officially announced: a Japanese fishing village MOC.</p><h3>Why this build</h3><p>Japanese architecture is some of the most interesting to replicate in LEGO — curved roofs, wooden textures, lanterns, sliding doors.</p><h3>What to expect</h3><p>The build will include a harbour with water effects, a covered market, a traditional inn with full interior, and a wooden fishing boat. Probably 5,000+ pieces total.</p><p>Build starts in April. This is going to be the biggest build on the channel yet.</p>`}
+];
+
+let _blogCat = 'all', _blogInited = false;
+
+function initBlogPage() {
+  if (_blogInited) return;
+  _blogInited = true;
+  renderBlogFilters();
+  renderBlog();
+  const sb = document.getElementById('s-blog');
+  if (sb) { const c=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE']; for(let i=0;i<60;i++){const s=document.createElement('span');s.style.background=c[i%c.length];sb.appendChild(s);} }
+  const g=document.getElementById('heroBgBlog');
+  if(g&&!g.children.length){const c=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];for(let i=0;i<56;i++){const d=document.createElement('div');d.style.cssText=`background:${c[i%c.length]};border-radius:4px;animation:bgP 4s ease-in-out infinite alternate;animation-delay:${(i*.08)%4}s`;g.appendChild(d);}}
+}
+
+function renderBlogFilters() {
+  const cats = ['all','news','build','review','tips'];
+  const labels = {all:'All Posts',news:'📰 LEGO News',build:'🏗️ Build Updates',review:'⭐ Reviews',tips:'💡 Tips'};
+  const row = document.getElementById('blogFilterRow');
+  if (!row) return;
+  row.innerHTML = cats.map(c => `<button class="blog-ftab${c===_blogCat?' active':''}" onclick="setBlogCat('${c}',this)">${labels[c]}</button>`).join('');
+}
+
+function setBlogCat(cat, btn) {
+  _blogCat = cat;
+  document.querySelectorAll('.blog-ftab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBlog();
+}
+
+function renderBlog() {
+  const grid = document.getElementById('blogGrid');
+  if (!grid) return;
+  const posts = _blogCat === 'all' ? BLOG_POSTS : BLOG_POSTS.filter(p => p.cat === _blogCat);
+  grid.innerHTML = posts.map(p => `<div class="blog-card reveal" onclick="openBlogPost(${p.id})"><div class="blog-thumb" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span><span class="blog-cat-badge" style="background:${p.catColor}">${p.catLabel}</span></div><div class="blog-card-body"><div class="blog-card-title">${p.title}</div><div class="blog-card-excerpt">${p.excerpt}</div><div class="blog-card-meta"><span class="bdate">${p.date}</span><span>${p.read}</span></div></div></div>`).join('');
+  setTimeout(()=>initReveal(),80);
+}
+
+function openBlogPost(id) {
+  const p = BLOG_POSTS.find(b => b.id === id);
+  if (!p) return;
+  const heroEl = document.getElementById('bpHero');
+  heroEl.innerHTML = `<span style="font-size:90px">${p.emoji}</span><button class="blog-post-x" onclick="document.getElementById('blogPostOv').classList.remove('open')">✕</button>`;
+  heroEl.style.background = p.bg;
+  document.getElementById('bpCat').textContent = p.catLabel;
+  document.getElementById('bpCat').style.background = p.catColor;
+  document.getElementById('bpTitle').textContent = p.title;
+  document.getElementById('bpDate').textContent = p.date;
+  document.getElementById('bpRead').textContent = p.read;
+  document.getElementById('bpContent').innerHTML = p.content;
+  document.getElementById('blogPostOv').classList.add('open');
+}
+
+function closeBlogPost(e) {
+  if (e.target === document.getElementById('blogPostOv')) document.getElementById('blogPostOv').classList.remove('open');
+}
+
+// ── FAN GALLERY ───────────────────────────────────────────────────────────────
+const GALLERY_ITEMS = [
+  {id:1,name:'Millennium Falcon UCS',builder:'@legoking_za',tag:'spaceship',likes:'❤️ 247',bg:'linear-gradient(135deg,#1A1A1A,#555)',emoji:'🚀',desc:'7,541 piece monster. Took 3 weeks to build.'},
+  {id:2,name:'Hogwarts Castle MOC',builder:'@bricksandbrooms',tag:'building',likes:'❤️ 189',bg:'linear-gradient(135deg,#2a1a00,#8b5a00)',emoji:'🏰',desc:'Custom Hogwarts using dark tan and dark red. 100% brick-built, no stickers.'},
+  {id:3,name:'Cyberpunk Street Scene',builder:'@neon_builder',tag:'diorama',likes:'❤️ 312',bg:'linear-gradient(135deg,#0a0020,#7B2FBE)',emoji:'🌆',desc:'Trans-neon parts and printed tiles for the signage.'},
+  {id:4,name:'JDM Nissan Skyline R34',builder:'@jdm_bricks',tag:'vehicle',likes:'❤️ 156',bg:'linear-gradient(135deg,#0a1a3d,#006CB7)',emoji:'🏎️',desc:'Minifig-scale R34 with opening doors.'},
+  {id:5,name:'Jungle Waterfall Vignette',builder:'@naturebrick',tag:'diorama',likes:'❤️ 203',bg:'linear-gradient(135deg,#004d25,#00A650)',emoji:'🌿',desc:'Built using the instructions from the Bricktastic shop!'},
+  {id:6,name:'Victorian Train Station',builder:'@steam_builds',tag:'building',likes:'❤️ 178',bg:'linear-gradient(135deg,#1A1A1A,#3d2200)',emoji:'🚂',desc:'Dark tan + sand green combo. Working interior with passengers.'},
+  {id:7,name:'Star Wars AT-AT Walker',builder:'@galactic_bricks',tag:'spaceship',likes:'❤️ 421',bg:'linear-gradient(135deg,#1A1A1A,#333)',emoji:'⚔️',desc:'Custom MOC. Poseable legs and full minifig interior.'},
+  {id:8,name:'Medieval Blacksmith',builder:'@forge_bricks',tag:'diorama',likes:'❤️ 134',bg:'linear-gradient(135deg,#3d1a00,#8b3a00)',emoji:'⚒️',desc:'Interior detail: anvil, forge, weapon rack.'},
+  {id:9,name:'Formula 1 Pit Lane Scene',builder:'@racingbricks_sa',tag:'vehicle',likes:'❤️ 267',bg:'linear-gradient(135deg,#8b0000,#E3000B)',emoji:'🏁',desc:'Full pit lane diorama with 6 minifig mechanics.'},
+];
+
+let _galleryTag = 'all', _galleryInited = false, _userSubmissions = [];
+
+function initGalleryPage() {
+  if (_galleryInited) return;
+  _galleryInited = true;
+  renderGalleryTabs();
+  renderGallery();
+  const sb = document.getElementById('s-gallery');
+  if (sb) { for(let i=0;i<60;i++){const s=document.createElement('span');s.style.background='#7B2FBE';sb.appendChild(s);} }
+}
+
+function renderGalleryTabs() {
+  const tags = ['all','building','diorama','vehicle','spaceship'];
+  const labels = {all:'All Builds',building:'🏛️ Buildings',diorama:'🌄 Dioramas',vehicle:'🚗 Vehicles',spaceship:'🚀 Spaceships'};
+  const row = document.getElementById('galleryTabs');
+  if (!row) return;
+  row.innerHTML = tags.map(t => `<button class="gallery-tab${t===_galleryTag?' active':''}" onclick="setGalleryTag('${t}',this)">${labels[t]}</button>`).join('');
+}
+
+function setGalleryTag(tag, btn) {
+  _galleryTag = tag;
+  document.querySelectorAll('.gallery-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery();
+}
+
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+  const all = [..._userSubmissions, ...GALLERY_ITEMS];
+  const items = _galleryTag === 'all' ? all : all.filter(i => i.tag === _galleryTag);
+  grid.innerHTML = items.map(item => `<div class="gallery-card reveal"><div class="gallery-thumb" style="background:${item.bg}"><span style="font-size:64px">${item.emoji}</span><span class="gallery-card-likes">${item.likes||'❤️ New'}</span></div><div class="gallery-card-body"><div class="gallery-card-name">${item.name}</div><div class="gallery-card-builder">${item.builder}</div>${item.desc?`<div style="font-size:12px;color:#666;font-weight:600;margin-top:6px;line-height:1.5">${item.desc}</div>`:''}</div></div>`).join('');
+  setTimeout(()=>initReveal(),80);
+}
+
+function submitGalleryBuild() {
+  const name = document.getElementById('g-name').value.trim();
+  const build = document.getElementById('g-build').value.trim();
+  if (!name || !build) { alert('Please fill in your name and build name!'); return; }
+  _userSubmissions.unshift({id:Date.now(),name:build,builder:name,tag:'building',likes:'❤️ 0',bg:'linear-gradient(135deg,#1a1a1a,#555)',emoji:'🏗️',desc:'Community submission — awaiting review.'});
+  document.getElementById('galleryForm').style.display='none';
+  document.getElementById('galleryThanks').style.display='block';
+  renderGallery();
+  setTimeout(()=>{document.getElementById('galleryForm').style.display='grid';document.getElementById('galleryThanks').style.display='none';['g-name','g-build','g-photo','g-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});},3500);
+}
+</script>
+
 </body>
 </html>

@@ -6,6 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.mailerlite.com; connect-src * https://assets.mailerlite.com https://api.mailerlite.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.mailerlite.com; frame-src https://dashboard.mailerlite.com;">
 <title>Bricktastic Builds – LEGO YouTube Channel & Shop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
@@ -1167,7 +1168,7 @@ ml('account', '2189778');
       .sub-nl-input::placeholder{color:rgba(0,0,0,.35)}
       .sub-nl-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Boogaloo',cursive;font-size:18px;letter-spacing:.5px;padding:13px 26px;border-radius:10px;border:none;background:var(--black);color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 5px 0 rgba(0,0,0,.35);position:relative;top:0;transition:top .1s,box-shadow .1s}
       .sub-nl-btn:hover{top:3px;box-shadow:0 2px 0 rgba(0,0,0,.35)}
-      .nl-thankyou-2025{display:none;background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);border-radius:10px;padding:16px 20px;color:var(--black);font-weight:800;font-size:15px;margin-top:12px;font-family:'Nunito',sans-serif}
+      .sub-nl-success{display:none;background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);border-radius:10px;padding:16px 20px;color:var(--black);font-weight:800;font-size:15px;margin-top:12px;font-family:'Nunito',sans-serif}
       /* MailerLite embed overrides — yellow panel */
       .sub-nl .ml-embedded{width:100%}
       .sub-nl .ml-form-embedWrapper,.sub-nl .ml-form-embedBody{background:transparent!important;border:none!important;padding:0!important;box-shadow:none!important}
@@ -1204,11 +1205,48 @@ ml('account', '2189778');
         <div class="sub-nl-badge">📬 Newsletter</div>
         <h2 class="sub-nl-h">New builds. New instructions.<br>First to know.</h2>
         <p class="sub-nl-p">Drop your email and I'll let you know when new MOC instructions drop, new videos go up, or when something special is happening on the channel. No spam — just LEGO.</p>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <form class="sub-nl-form" id="subNLForm" onsubmit="subNLSubmit(event)">
+          <div class="sub-nl-row">
+            <input class="sub-nl-input" type="text" id="nlName" placeholder="Your first name" autocomplete="given-name">
+            <input class="sub-nl-input" type="email" id="nlEmail" placeholder="your@email.com" required autocomplete="email">
+            <button class="sub-nl-btn" type="submit">🧱 Subscribe</button>
+          </div>
+        </form>
+        <div class="sub-nl-success" id="subNLSuccess" style="display:none">🧱 You're on the list! Watch your inbox for new builds.</div>
+        <div class="sub-nl-fine">No spam. Unsubscribe any time.</div>
       </div>
 
     </div>
   </section>
+
+  <script>
+  function subNLSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('nlEmail').value;
+    const name = document.getElementById('nlName').value;
+    if(!email) return;
+    // Submit via hidden iframe — avoids CORS, no page redirect
+    const iframe = document.createElement('iframe');
+    iframe.name = 'ml_hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    const f = document.createElement('form');
+    f.method = 'POST';
+    f.action = 'https://assets.mailerlite.com/jsonp/2189778/forms/181903261511452380/subscribe';
+    f.target = 'ml_hidden_iframe';
+    f.style.display = 'none';
+    const add = (n,v) => { const i=document.createElement('input');i.type='hidden';i.name=n;i.value=v;f.appendChild(i); };
+    add('fields[email]', email);
+    add('fields[name]', name);
+    add('ml-submit', '1');
+    add('anticsrf', 'true');
+    document.body.appendChild(f);
+    f.submit();
+    // Show thank you inline
+    document.getElementById('subNLForm').style.display = 'none';
+    document.getElementById('subNLSuccess').style.display = 'block';
+  }
+  </script>
 
   <!-- SOCIAL -->
   <section id="social">

@@ -6,7 +6,6 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.mailerlite.com; connect-src * https://assets.mailerlite.com https://api.mailerlite.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.mailerlite.com; frame-src https://dashboard.mailerlite.com;">
 <title>Bricktastic Builds – LEGO YouTube Channel & Shop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
@@ -1205,41 +1204,11 @@ ml('account', '2189778');
         <div class="sub-nl-badge">📬 Newsletter</div>
         <h2 class="sub-nl-h">New builds. New instructions.<br>First to know.</h2>
         <p class="sub-nl-p">Drop your email and I'll let you know when new MOC instructions drop, new videos go up, or when something special is happening on the channel. No spam — just LEGO.</p>
-        <form class="sub-nl-form" id="nlForm2025" onsubmit="nlSubmit2025(event)">
-          <div class="sub-nl-row">
-            <input class="sub-nl-input" type="email" placeholder="your@email.com" required autocomplete="email">
-            <button class="sub-nl-btn" type="submit">🧱 Subscribe</button>
-          </div>
-        </form>
-        <div class="nl-thankyou-2025" id="nlThankYou2025" style="display:none">🧱 You're on the list! Watch your inbox for new builds.</div>
-        <div class="sub-nl-fine">No spam. Unsubscribe any time.</div>
+        <div class="ml-embedded" data-form="koogOd"></div>
       </div>
 
     </div>
   </section>
-
-  <script>
-  function nlSubmit2025(e) {
-    e.preventDefault();
-    const form = document.getElementById('nlForm2025');
-    const email = form.querySelector('input[type=email]').value;
-    const btn = form.querySelector('button');
-    btn.textContent = '⏳ Subscribing...';
-    btn.disabled = true;
-    // POST to MailerLite JSONP endpoint
-    fetch('https://assets.mailerlite.com/jsonp/2189778/forms/181903261511452380/subscribe', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: 'fields[email]=' + encodeURIComponent(email) + '&ml-submit=1&anticsrf=true'
-    })
-    .then(() => showNLSuccess())
-    .catch(() => showNLSuccess()); // show success either way — CORS blocks response but submission goes through
-  }
-  function showNLSuccess() {
-    document.getElementById('nlForm2025').style.display = 'none';
-    document.getElementById('nlThankYou2025').style.display = 'block';
-  }
-  </script>
 
   <!-- SOCIAL -->
   <section id="social">

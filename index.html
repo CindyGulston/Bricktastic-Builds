@@ -7,8 +7,17 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bricktastic Builds – LEGO YouTube Channel & Shop</title>
+<meta name="description" content="Bricktastic Builds – the ultimate LEGO YouTube channel. Watch epic builds, MOC showcases, speed builds and reviews. Shop instructions, MOC PDFs and exclusive bundles.">
+<meta name="keywords" content="LEGO, YouTube, MOC, brick building, LEGO shop, LEGO instructions, LEGO reviews">
+<meta property="og:title" content="Bricktastic Builds – LEGO YouTube Channel & Shop">
+<meta property="og:description" content="Epic LEGO builds, MOC showcases, reviews and a shop full of instructions and bundles.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bricktasticbuilds.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bricktastic Builds">
+<meta name="twitter:description" content="Epic LEGO builds, MOC showcases, reviews and a shop full of instructions and bundles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" crossorigin="anonymous">
 <style>
 :root {
   --red:#E3000B; --yellow:#FFD700; --blue:#006CB7; --green:#00A650;
@@ -47,6 +56,10 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
   .hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .2s}
 }
 @media(min-width:769px){.hamburger{display:none}}
+/* Hamburger → X animation */
+.hamburger.ham-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.ham-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.ham-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .cart-btn{position:relative;cursor:pointer;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 14px;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;gap:7px;transition:all .15s;font-family:'Nunito',sans-serif}
 .cart-btn:hover{background:rgba(255,255,255,.18)}
 .cart-count{position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid var(--black);transform:scale(0);transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
@@ -686,7 +699,7 @@ ml('account', '2189778');
     <li><a onclick="showPage('about')" class="nav-about-a">👤 About</a></li>
     <li><a onclick="showPage('game')" class="nav-game-a">🎮 Game</a></li>
   </ul>
-  <button class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('mob-open')" aria-label="Menu">
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-right">
@@ -1641,11 +1654,24 @@ function initLegoHistoryPage() {
   document.body.appendChild(s);
 }
 
+function toggleMobileMenu(){
+  const navUl = document.querySelector('nav ul');
+  const ham = document.querySelector('.hamburger');
+  const isOpen = navUl.classList.toggle('mob-open');
+  ham.classList.toggle('ham-open', isOpen);
+  ham.setAttribute('aria-expanded', isOpen);
+}
+
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pg = document.getElementById('page-'+id);
   if(!pg){ console.warn('Missing page: page-'+id); return false; }
   pg.classList.add('active');
+  // Close mobile menu when a nav link is tapped
+  const navUl = document.querySelector('nav ul');
+  const ham = document.querySelector('.hamburger');
+  if(navUl) navUl.classList.remove('mob-open');
+  if(ham) ham.classList.remove('ham-open');
   window.scrollTo({top:0,behavior:'instant'});
   if(id==='lego-history') initLegoHistoryPage();
   if(id==='biggest-sets') initBiggestSetsPage();
@@ -6783,7 +6809,7 @@ setTimeout(()=>{
   <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModBtn()">✕</button>
     <div class="modal-hero">
-      <img id="mImg" src="" alt="">
+      <img id="mImg" src="" alt="" loading="lazy">
       <div class="modal-hero-rank" id="mRank"></div>
     </div>
     <div class="modal-body-wrap">

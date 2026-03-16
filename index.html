@@ -1317,7 +1317,7 @@ ml('account', '2189778');
 
 <!-- ══ MOCs PAGE ══ -->
 <div id="page-mocs" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px">
+  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgM"></div>
     <div class="hero-left">
       <span class="hero-badge">🏗️ Original LEGO Creations</span>
@@ -1331,7 +1331,7 @@ ml('account', '2189778');
         <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">📐 Shop Instructions</a>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" id="heroR-mocs">
       <div class="hcb">
         <div class="big-brick" style="background:#7B2FBE;box-shadow:0 12px 0 #4a1a7a,0 18px 40px rgba(0,0,0,.5)">
           <div class="bs" style="left:16px;background:#7B2FBE"></div>
@@ -1383,7 +1383,7 @@ ml('account', '2189778');
 
 <!-- ══ SHOP PAGE ══ -->
 <div id="page-shop" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px">
+  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgShop"></div>
     <div class="hero-left">
       <span class="hero-badge">🛒 Bricktastic Shop</span>
@@ -1394,7 +1394,7 @@ ml('account', '2189778');
         <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">Watch on YouTube</a>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" id="heroR-shop">
       <div class="hcb">
         <div class="big-brick" style="background:var(--orange);box-shadow:0 12px 0 #8b3a00,0 18px 40px rgba(0,0,0,.5)">
           <div class="bs" style="left:16px;background:var(--orange)"></div>
@@ -1498,7 +1498,7 @@ ml('account', '2189778');
 
 <!-- ══ ARTICLES INDEX PAGE ══ -->
 <div id="page-videos" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px">
+  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgVideos"></div>
     <div class="hero-left">
       <span class="hero-badge">🎬 Videos</span>
@@ -1512,7 +1512,7 @@ ml('account', '2189778');
         <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">🛒 Shop</a>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" id="heroR-videos">
       <div class="hcb">
         <div class="big-brick" style="background:var(--red);box-shadow:0 12px 0 #8b0000,0 18px 40px rgba(0,0,0,.5)">
           <div class="bs" style="left:16px;background:var(--red)"></div>
@@ -1793,7 +1793,7 @@ function showPage(id){
   if(id==='game') initBrickRunner();
   if(id==='blog') initBlogPage();
   if(id==='gallery') initGalleryPage();
-  setTimeout(()=>{initStuds();initReveal();},80);
+  setTimeout(()=>{initStuds();initReveal();initFloats();},80);
   return false;
 }
 function scrollS(id){setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},120)}
@@ -2367,7 +2367,33 @@ function initHeroBg(){
 }
 
 // FLOATING BRICKS
-function initFloats(){const r=document.getElementById('heroR');if(!r||r.querySelector('.fb'))return;const bs=[{w:64,h:28,bg:'var(--blue)',sh:'#003d6b',t:'12%',l:'8%',d:'4s',r0:'-8deg',r1:'4deg',dl:'0s'},{w:96,h:30,bg:'var(--green)',sh:'#004d25',b:'18%',ri:'6%',d:'6s',r0:'5deg',r1:'-6deg',dl:'-2s'},{w:48,h:22,bg:'var(--yellow)',sh:'#b89a00',b:'40%',l:'5%',d:'3.5s',r0:'12deg',r1:'-3deg',dl:'-1s'},{w:72,h:26,bg:'var(--red)',sh:'#8b0000',t:'22%',ri:'5%',d:'5s',r0:'-5deg',r1:'8deg',dl:'-3s'}];bs.forEach(b=>{const el=document.createElement('div');el.className='fb';let p='';if(b.t)p+=`top:${b.t};`;if(b.b)p+=`bottom:${b.b};`;if(b.l)p+=`left:${b.l};`;if(b.ri)p+=`right:${b.ri};`;el.style.cssText=`width:${b.w}px;height:${b.h}px;background:${b.bg};box-shadow:0 4px 0 ${b.sh};${p}animation-duration:${b.d};animation-delay:${b.dl};--r0:${b.r0};--r1:${b.r1}`;r.appendChild(el)})}
+function initFloats(){
+  const configs=[
+    {id:'heroR',        colors:['var(--blue)','#003d6b','var(--green)','#004d25','var(--yellow)','#b89a00','var(--red)','#8b0000']},
+    {id:'heroR-mocs',   colors:['#7B2FBE','#4a1a7a','var(--red)','#8b0000','var(--yellow)','#b89a00','var(--blue)','#003d6b']},
+    {id:'heroR-shop',   colors:['var(--orange)','#8b3a00','var(--yellow)','#b89a00','var(--red)','#8b0000','var(--green)','#004d25']},
+    {id:'heroR-videos', colors:['var(--red)','#8b0000','var(--orange)','#8b3a00','var(--yellow)','#b89a00','var(--blue)','#003d6b']},
+    {id:'heroR-blog',   colors:['var(--blue)','#003d6b','var(--green)','#004d25','var(--yellow)','#b89a00','var(--red)','#8b0000']},
+    {id:'heroR-gallery',colors:['#7B2FBE','#4a1a7a','var(--red)','#8b0000','var(--blue)','#003d6b','var(--yellow)','#b89a00']},
+  ];
+  configs.forEach(cfg=>{
+    const r=document.getElementById(cfg.id);
+    if(!r||r.querySelector('.fb'))return;
+    const [c1,s1,c2,s2,c3,s3,c4,s4]=cfg.colors;
+    const bs=[
+      {w:64,h:28,bg:c1,sh:s1,t:'12%',l:'8%',d:'4s',r0:'-8deg',r1:'4deg',dl:'0s'},
+      {w:96,h:30,bg:c2,sh:s2,b:'18%',ri:'6%',d:'6s',r0:'5deg',r1:'-6deg',dl:'-2s'},
+      {w:48,h:22,bg:c3,sh:s3,b:'40%',l:'5%',d:'3.5s',r0:'12deg',r1:'-3deg',dl:'-1s'},
+      {w:72,h:26,bg:c4,sh:s4,t:'22%',ri:'5%',d:'5s',r0:'-5deg',r1:'8deg',dl:'-3s'}
+    ];
+    bs.forEach(b=>{
+      const el=document.createElement('div');el.className='fb';
+      let p='';if(b.t)p+=`top:${b.t};`;if(b.b)p+=`bottom:${b.b};`;if(b.l)p+=`left:${b.l};`;if(b.ri)p+=`right:${b.ri};`;
+      el.style.cssText=`width:${b.w}px;height:${b.h}px;background:${b.bg};box-shadow:0 4px 0 ${b.sh};${p}animation-duration:${b.d};animation-delay:${b.dl};--r0:${b.r0};--r1:${b.r1}`;
+      r.appendChild(el);
+    });
+  });
+}
 
 // REVEAL
 function initReveal(){setTimeout(()=>{const els=document.querySelectorAll('.reveal:not(.visible)');const obs=new IntersectionObserver(en=>{en.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target)}})},{threshold:.1});els.forEach((el,i)=>{el.style.transitionDelay=(i*.04)+'s';obs.observe(el)})},60)}
@@ -7808,7 +7834,7 @@ function initBrickRunner() {
 
 <!-- ══ BLOG PAGE ══ -->
 <div id="page-blog" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px">
+  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgBlog"></div>
     <div class="hero-left">
       <span class="hero-badge">📰 Blog</span>
@@ -7819,7 +7845,7 @@ function initBrickRunner() {
         <a class="btn btn-red" onclick="showPage('shop')" style="cursor:pointer">🛒 Shop</a>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" id="heroR-blog">
       <div class="hcb">
         <div class="big-brick" style="background:var(--blue);box-shadow:0 12px 0 #003d6b,0 18px 40px rgba(0,0,0,.5)">
           <div class="bs" style="left:16px;background:var(--blue)"></div>
@@ -7847,7 +7873,7 @@ function initBrickRunner() {
 
 <!-- ══ FAN GALLERY PAGE ══ -->
 <div id="page-gallery" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px">
+  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgGallery"></div>
     <div class="hero-left">
       <span class="hero-badge">🌟 Fan Gallery</span>
@@ -7858,7 +7884,7 @@ function initBrickRunner() {
         <a class="btn btn-green" onclick="showPage('mocs')" style="cursor:pointer">Browse MOCs</a>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" id="heroR-gallery">
       <div class="hcb">
         <div class="big-brick" style="background:#7B2FBE;box-shadow:0 12px 0 #4a1a7a,0 18px 40px rgba(0,0,0,.5)">
           <div class="bs" style="left:16px;background:#7B2FBE"></div>

@@ -108,6 +108,12 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .gallery-form input::placeholder,.gallery-form textarea::placeholder{color:rgba(255,255,255,.35)}
 .gallery-form textarea{grid-column:1/-1;resize:vertical;min-height:70px}
 .gallery-form .g-full{grid-column:1/-1}
+.gallery-file-label{grid-column:1/-1;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:3px dashed rgba(255,255,255,.2);border-radius:8px;padding:12px 16px;cursor:pointer;transition:border-color .15s}
+.gallery-file-label:hover{border-color:var(--yellow)}
+.gallery-file-label input[type=file]{display:none}
+.gallery-file-btn{background:var(--yellow);color:var(--black);font-weight:900;font-size:12px;padding:6px 14px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.gallery-file-name{font-size:12px;color:rgba(255,255,255,.5);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gallery-file-name.chosen{color:var(--yellow)}
 .gallery-submit-btn{background:var(--yellow);color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;padding:12px 28px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 5px 0 #b89a00;transition:all .15s;position:relative;top:0}
 .gallery-submit-btn:hover{top:3px;box-shadow:0 2px 0 #b89a00}
 .gallery-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
@@ -7901,18 +7907,24 @@ function initBrickRunner() {
     <div class="container">
       <div class="gallery-submit-box reveal">
         <h3>🏗️ Submit Your Build</h3>
-        <p>Share your MOC with the community. Paste a link to your photo and we'll feature the best submissions.</p>
+        <p>Share your MOC with the community. Upload a photo or paste a link — we'll review and feature the best builds!</p>
         <div class="gallery-form" id="galleryForm">
           <input type="text" id="g-name" placeholder="Your name or @handle" />
           <input type="text" id="g-build" placeholder="Build name (e.g. My Castle MOC)" />
-          <input type="text" id="g-photo" placeholder="Photo URL (Imgur, Google Drive, Instagram link...)" class="g-full" />
-          <textarea id="g-desc" placeholder="Tell us about your build..."></textarea>
+          <input type="email" id="g-email" placeholder="Your email (so we can notify you if featured)" class="g-full" />
+          <label class="gallery-file-label g-full" for="g-file-input">
+            <input type="file" id="g-file-input" accept="image/*" onchange="handleGalleryFile(this)" />
+            <span class="gallery-file-btn">📎 Upload Photo</span>
+            <span class="gallery-file-name" id="g-file-name">No file chosen — JPG, PNG, GIF up to 5MB</span>
+          </label>
+          <input type="text" id="g-photo" placeholder="Or paste a photo URL (Imgur, Google Drive, Instagram...)" class="g-full" />
+          <textarea id="g-desc" placeholder="Tell us about your build — pieces used, how long it took, any special techniques..."></textarea>
           <div class="g-full" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
             <button class="gallery-submit-btn" onclick="submitGalleryBuild()">🚀 Submit Build</button>
             <span style="font-size:12px;color:#666;font-weight:700">Submissions reviewed before going live</span>
           </div>
         </div>
-        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Thanks! Your build has been submitted for review.</div>
+        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Thanks! Your build has been submitted for review. We'll be in touch!</div>
       </div>
       <div class="gallery-tabs" id="galleryTabs"></div>
       <div class="gallery-grid" id="galleryGrid"></div>
@@ -8078,15 +8090,94 @@ function renderGallery() {
   setTimeout(()=>initReveal(),80);
 }
 
+function handleGalleryFile(input) {
+  const label = document.getElementById('g-file-name');
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File is too large! Please choose an image under 5MB.');
+      input.value = '';
+      label.textContent = 'No file chosen — JPG, PNG, GIF up to 5MB';
+      label.classList.remove('chosen');
+      return;
+    }
+    label.textContent = '✅ ' + file.name;
+    label.classList.add('chosen');
+  }
+}
+
 function submitGalleryBuild() {
-  const name = document.getElementById('g-name').value.trim();
+  const name  = document.getElementById('g-name').value.trim();
   const build = document.getElementById('g-build').value.trim();
+  const email = document.getElementById('g-email').value.trim();
+  const photo = document.getElementById('g-photo').value.trim();
+  const desc  = document.getElementById('g-desc').value.trim();
+  const fileInput = document.getElementById('g-file-input');
+  const hasFile = fileInput.files && fileInput.files[0];
+
   if (!name || !build) { alert('Please fill in your name and build name!'); return; }
-  _userSubmissions.unshift({id:Date.now(),name:build,builder:name,tag:'building',likes:'❤️ 0',bg:'linear-gradient(135deg,#1a1a1a,#555)',emoji:'🏗️',desc:'Community submission — awaiting review.'});
-  document.getElementById('galleryForm').style.display='none';
-  document.getElementById('galleryThanks').style.display='block';
-  renderGallery();
-  setTimeout(()=>{document.getElementById('galleryForm').style.display='grid';document.getElementById('galleryThanks').style.display='none';['g-name','g-build','g-photo','g-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});},3500);
+  if (!hasFile && !photo) { alert('Please upload a photo or paste a photo URL!'); return; }
+
+  const btn = document.querySelector('.gallery-submit-btn');
+  btn.textContent = '⏳ Submitting…';
+  btn.disabled = true;
+
+  // Build FormData for Web3Forms (free email service — no backend needed)
+  const fd = new FormData();
+  fd.append('access_key', '002d6404-f313-4293-b23c-d97ceed7466b');
+  fd.append('subject', '🏗️ New Gallery Submission: ' + build);
+  fd.append('from_name', name);
+  fd.append('email', email || 'not provided');
+  fd.append('Build Name', build);
+  fd.append('Photo URL', photo || 'see attached file');
+  fd.append('Description', desc || 'none');
+  if (hasFile) fd.append('photo', fileInput.files[0]);
+
+  fetch('https://api.web3forms.com/submit', { method:'POST', body: fd })
+    .then(r => r.json())
+    .then(data => {
+      // Show the submission in the gallery immediately (local preview)
+      const emoji = ['🏗️','🚀','🏰','🚂','🏎️','⚒️','🌿','🌆'][Math.floor(Math.random()*8)];
+      const photoPreview = hasFile ? URL.createObjectURL(fileInput.files[0]) : null;
+      _userSubmissions.unshift({
+        id: Date.now(), name: build, builder: name,
+        tag: 'building', likes: '❤️ New',
+        bg: photoPreview ? `url(${photoPreview}) center/cover` : 'linear-gradient(135deg,#1a1a1a,#555)',
+        emoji: photoPreview ? '' : emoji,
+        desc: desc || 'Community submission — awaiting review.'
+      });
+      document.getElementById('galleryForm').style.display = 'none';
+      document.getElementById('galleryThanks').style.display = 'block';
+      renderGallery();
+      setTimeout(() => {
+        document.getElementById('galleryForm').style.display = 'grid';
+        document.getElementById('galleryThanks').style.display = 'none';
+        btn.textContent = '🚀 Submit Build';
+        btn.disabled = false;
+        ['g-name','g-build','g-email','g-photo','g-desc'].forEach(id => {
+          const el = document.getElementById(id); if (el) el.value = '';
+        });
+        fileInput.value = '';
+        document.getElementById('g-file-name').textContent = 'No file chosen — JPG, PNG, GIF up to 5MB';
+        document.getElementById('g-file-name').classList.remove('chosen');
+      }, 3500);
+    })
+    .catch(() => {
+      // Even if email fails, still show the local preview
+      _userSubmissions.unshift({id:Date.now(),name:build,builder:name,tag:'building',likes:'❤️ New',bg:'linear-gradient(135deg,#1a1a1a,#555)',emoji:'🏗️',desc:desc||'Community submission — awaiting review.'});
+      document.getElementById('galleryForm').style.display='none';
+      document.getElementById('galleryThanks').style.display='block';
+      renderGallery();
+      setTimeout(()=>{
+        document.getElementById('galleryForm').style.display='grid';
+        document.getElementById('galleryThanks').style.display='none';
+        btn.textContent='🚀 Submit Build'; btn.disabled=false;
+        ['g-name','g-build','g-email','g-photo','g-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+        fileInput.value='';
+        document.getElementById('g-file-name').textContent='No file chosen — JPG, PNG, GIF up to 5MB';
+        document.getElementById('g-file-name').classList.remove('chosen');
+      },3500);
+    });
 }
 </script>
 

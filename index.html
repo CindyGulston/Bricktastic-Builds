@@ -8107,13 +8107,13 @@ function handleGalleryFile(input) {
 }
 
 function submitGalleryBuild() {
-  const name  = document.getElementById('g-name').value.trim();
-  const build = document.getElementById('g-build').value.trim();
-  const email = document.getElementById('g-email').value.trim();
-  const photo = document.getElementById('g-photo').value.trim();
-  const desc  = document.getElementById('g-desc').value.trim();
+  const name     = document.getElementById('g-name').value.trim();
+  const build    = document.getElementById('g-build').value.trim();
+  const email    = document.getElementById('g-email').value.trim();
+  const photo    = document.getElementById('g-photo').value.trim();
+  const desc     = document.getElementById('g-desc').value.trim();
   const fileInput = document.getElementById('g-file-input');
-  const hasFile = fileInput.files && fileInput.files[0];
+  const hasFile  = fileInput.files && fileInput.files[0];
 
   if (!name || !build) { alert('Please fill in your name and build name!'); return; }
   if (!hasFile && !photo) { alert('Please upload a photo or paste a photo URL!'); return; }
@@ -8122,62 +8122,51 @@ function submitGalleryBuild() {
   btn.textContent = '⏳ Submitting…';
   btn.disabled = true;
 
-  // Build FormData for Web3Forms (free email service — no backend needed)
   const fd = new FormData();
-  fd.append('access_key', '002d6404-f313-4293-b23c-d97ceed7466b');
-  fd.append('subject', '🏗️ New Gallery Submission: ' + build);
-  fd.append('from_name', name);
-  fd.append('email', email || 'not provided');
+  fd.append('Name / Handle', name);
   fd.append('Build Name', build);
+  fd.append('Email', email || 'not provided');
   fd.append('Photo URL', photo || 'see attached file');
   fd.append('Description', desc || 'none');
-  if (hasFile) fd.append('photo', fileInput.files[0]);
+  if (hasFile) fd.append('Photo', fileInput.files[0]);
 
-  fetch('https://api.web3forms.com/submit', { method:'POST', body: fd })
-    .then(r => r.json())
-    .then(data => {
-      // Show the submission in the gallery immediately (local preview)
-      const emoji = ['🏗️','🚀','🏰','🚂','🏎️','⚒️','🌿','🌆'][Math.floor(Math.random()*8)];
-      const photoPreview = hasFile ? URL.createObjectURL(fileInput.files[0]) : null;
-      _userSubmissions.unshift({
-        id: Date.now(), name: build, builder: name,
-        tag: 'building', likes: '❤️ New',
-        bg: photoPreview ? `url(${photoPreview}) center/cover` : 'linear-gradient(135deg,#1a1a1a,#555)',
-        emoji: photoPreview ? '' : emoji,
-        desc: desc || 'Community submission — awaiting review.'
+  fetch('https://formspree.io/f/xwvrrovz', {
+    method: 'POST',
+    body: fd,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      showThanks();
+    } else {
+      alert('Something went wrong. Please try again!');
+      btn.textContent = '🚀 Submit Build';
+      btn.disabled = false;
+    }
+  })
+  .catch(() => {
+    alert('Could not connect. Please check your internet and try again.');
+    btn.textContent = '🚀 Submit Build';
+    btn.disabled = false;
+  });
+
+  function showThanks() {
+    document.getElementById('galleryForm').style.display = 'none';
+    document.getElementById('galleryThanks').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('galleryForm').style.display = 'grid';
+      document.getElementById('galleryThanks').style.display = 'none';
+      btn.textContent = '🚀 Submit Build';
+      btn.disabled = false;
+      ['g-name','g-build','g-email','g-photo','g-desc'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.value = '';
       });
-      document.getElementById('galleryForm').style.display = 'none';
-      document.getElementById('galleryThanks').style.display = 'block';
-      renderGallery();
-      setTimeout(() => {
-        document.getElementById('galleryForm').style.display = 'grid';
-        document.getElementById('galleryThanks').style.display = 'none';
-        btn.textContent = '🚀 Submit Build';
-        btn.disabled = false;
-        ['g-name','g-build','g-email','g-photo','g-desc'].forEach(id => {
-          const el = document.getElementById(id); if (el) el.value = '';
-        });
-        fileInput.value = '';
-        document.getElementById('g-file-name').textContent = 'No file chosen — JPG, PNG, GIF up to 5MB';
-        document.getElementById('g-file-name').classList.remove('chosen');
-      }, 3500);
-    })
-    .catch(() => {
-      // Even if email fails, still show the local preview
-      _userSubmissions.unshift({id:Date.now(),name:build,builder:name,tag:'building',likes:'❤️ New',bg:'linear-gradient(135deg,#1a1a1a,#555)',emoji:'🏗️',desc:desc||'Community submission — awaiting review.'});
-      document.getElementById('galleryForm').style.display='none';
-      document.getElementById('galleryThanks').style.display='block';
-      renderGallery();
-      setTimeout(()=>{
-        document.getElementById('galleryForm').style.display='grid';
-        document.getElementById('galleryThanks').style.display='none';
-        btn.textContent='🚀 Submit Build'; btn.disabled=false;
-        ['g-name','g-build','g-email','g-photo','g-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-        fileInput.value='';
-        document.getElementById('g-file-name').textContent='No file chosen — JPG, PNG, GIF up to 5MB';
-        document.getElementById('g-file-name').classList.remove('chosen');
-      },3500);
-    });
+      fileInput.value = '';
+      document.getElementById('g-file-name').textContent = 'No file chosen — JPG, PNG, GIF up to 5MB';
+      document.getElementById('g-file-name').classList.remove('chosen');
+    }, 4000);
+  }
 }
 </script>
 

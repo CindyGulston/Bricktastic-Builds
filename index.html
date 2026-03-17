@@ -571,6 +571,21 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
 @media(max-width:860px){.moc-grid{grid-template-columns:1fr;gap:28px}}
 .moc-card{background:transparent}
 .moc-photo{position:relative;width:100%;aspect-ratio:16/9;background:#fff;overflow:hidden}
+/* MOC Lightbox */
+.moc-lightbox-ov{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:700;display:none;align-items:center;justify-content:center;padding:20px}
+.moc-lightbox-ov.open{display:flex}
+.moc-lightbox-img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:4px;display:block}
+.moc-lightbox-video{max-width:90vw;max-height:85vh;display:block;border-radius:4px}
+.moc-lightbox-close{position:fixed;top:16px;right:20px;background:transparent;border:none;color:#fff;font-size:36px;cursor:pointer;z-index:701;line-height:1;opacity:.8;transition:opacity .15s}
+.moc-lightbox-close:hover{opacity:1}
+.moc-lightbox-arr{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:48px;width:56px;height:80px;cursor:pointer;z-index:701;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.moc-lightbox-arr:hover{background:rgba(255,255,255,.25)}
+.moc-lightbox-arr:disabled{opacity:.2;cursor:default}
+.moc-lightbox-arr-l{left:12px}
+.moc-lightbox-arr-r{right:12px}
+.moc-lightbox-count{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:800;background:rgba(0,0,0,.5);padding:5px 16px;border-radius:20px}
+.moc-lightbox-name{position:fixed;top:16px;left:50%;transform:translateX(-50%);color:#fff;font-size:14px;font-weight:800;background:rgba(0,0,0,.5);padding:5px 16px;border-radius:20px;white-space:nowrap;max-width:70vw;overflow:hidden;text-overflow:ellipsis}
+.moc-media-wrap{cursor:zoom-in}
 .moc-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .22s ease}
 .moc-photo img.fading{opacity:0}
 .moc-arr{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);border:none;color:var(--black);font-size:24px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;transition:all .15s;line-height:1;box-shadow:0 2px 10px rgba(0,0,0,.18);user-select:none}
@@ -2644,6 +2659,71 @@ function updateLoadMore(){
   if(wrap) wrap.classList.toggle('visible',hasMore);
   if(show) show.textContent=hasMore?`Showing ${mocShownCount} of ${mocFiltered.length} MOCs`:(mocFiltered.length>MOC_PAGE_SIZE?`All ${mocFiltered.length} MOCs loaded`:'');
 }
+
+// ── MOC LIGHTBOX ─────────────────────────────────────────────
+let _lbMocId = null, _lbIdx = 0;
+
+function openMocLightbox(id, idx) {
+  const m = MOCS.find(x => x.id === id); if (!m) return;
+  const gallery = m.gallery || (m.images||[]).map(src=>({type:'image',src}));
+  _lbMocId = id; _lbIdx = idx !== undefined ? idx : (mocIdx[id]||0);
+  renderLightbox(m, gallery);
+  document.getElementById('mocLightboxOv').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderLightbox(m, gallery) {
+  const slide = gallery[_lbIdx] || {};
+  const isVid = slide.type === 'video';
+  const media = document.getElementById('mocLbMedia');
+  media.innerHTML = isVid
+    ? `<video class="moc-lightbox-video" src="${slide.src}" controls autoplay playsinline></video>`
+    : `<img class="moc-lightbox-img" src="${slide.src}" alt="${m.name}">`;
+  document.getElementById('mocLbName').textContent = m.name + (gallery.length > 1 ? ` — Photo ${_lbIdx+1}` : '');
+  document.getElementById('mocLbCount').textContent = gallery.length > 1 ? `${_lbIdx+1} / ${gallery.length}` : '';
+  document.getElementById('mocLbPrev').disabled = _lbIdx === 0;
+  document.getElementById('mocLbNext').disabled = _lbIdx === gallery.length - 1;
+}
+
+function lbNav(dir) {
+  const m = MOCS.find(x => x.id === _lbMocId); if (!m) return;
+  const gallery = m.gallery || (m.images||[]).map(src=>({type:'image',src}));
+  _lbIdx = Math.max(0, Math.min(gallery.length - 1, _lbIdx + dir));
+  // Also sync the card
+  mocIdx[_lbMocId] = _lbIdx;
+  const wrap = document.getElementById('moc-media-' + _lbMocId);
+  if (wrap) {
+    const slide = gallery[_lbIdx];
+    wrap.innerHTML = slide.type === 'video'
+      ? `<video id="moc-vid-${_lbMocId}" src="${slide.src}" controls playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`
+      : `<img id="moc-img-${_lbMocId}" src="${slide.src}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">`;
+    const cnt = document.getElementById('moc-cnt-' + _lbMocId);
+    if (cnt) cnt.textContent = `${_lbIdx+1} / ${gallery.length}`;
+    const al = document.getElementById('moc-al-' + _lbMocId);
+    const ar = document.getElementById('moc-ar-' + _lbMocId);
+    if (al) al.disabled = _lbIdx === 0;
+    if (ar) ar.disabled = _lbIdx === gallery.length - 1;
+  }
+  renderLightbox(m, gallery);
+}
+
+function closeMocLightbox(e) {
+  if (!e || e.target === document.getElementById('mocLightboxOv') || e.type === 'click') {
+    document.getElementById('mocLightboxOv').classList.remove('open');
+    document.body.style.overflow = '';
+    const vid = document.querySelector('#mocLbMedia video');
+    if (vid) vid.pause();
+  }
+}
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('mocLightboxOv');
+  if (!lb || !lb.classList.contains('open')) return;
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'Escape') closeMocLightbox({type:'click'});
+});
+
 function mocCardHTML(m){
   const gallery=m.gallery||(m.images||[]).map(src=>({type:'image',src}));
   const total=gallery.length,idx=mocIdx[m.id]||0,slide=gallery[idx]||{type:'image',src:''},multi=total>1;
@@ -2653,11 +2733,11 @@ function mocCardHTML(m){
     :`<img id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
   return `<div class="moc-card reveal">
     <div class="moc-photo">
-      <div id="moc-media-${m.id}" class="moc-media-wrap" style="width:100%;height:100%;transition:opacity .18s">${mediaHTML}</div>
+      <div id="moc-media-${m.id}" class="moc-media-wrap" onclick="openMocLightbox('${m.id}')" style="width:100%;height:100%;transition:opacity .18s">${mediaHTML}</div>
       ${m.isNew?`<div class="moc-new-badge">NEW</div>`:''}
       ${isVid?`<div class="moc-slide-type">▶ Video</div>`:''}
-      ${multi?`<button class="moc-arr moc-arr-l" id="moc-al-${m.id}" onclick="mocNav('${m.id}',-1)" ${idx===0?'disabled':''}>&#8249;</button>
-        <button class="moc-arr moc-arr-r" id="moc-ar-${m.id}" onclick="mocNav('${m.id}',1)" ${idx===total-1?'disabled':''}>&#8250;</button>
+      ${multi?`<button class="moc-arr moc-arr-l" id="moc-al-${m.id}" onclick="event.stopPropagation();mocNav('${m.id}',-1)" ${idx===0?'disabled':''}>&#8249;</button>
+        <button class="moc-arr moc-arr-r" id="moc-ar-${m.id}" onclick="event.stopPropagation();mocNav('${m.id}',1)" ${idx===total-1?'disabled':''}>&#8250;</button>
         <div class="moc-photo-count" id="moc-cnt-${m.id}">${idx+1} / ${total}</div>`:''}
     </div>
     <div class="moc-info">
@@ -2695,6 +2775,16 @@ function mocNav(id,dir){
   if(al)al.disabled=idx===0;if(ar)ar.disabled=idx===total-1;
 }
 </script>
+
+<!-- ══ MOC LIGHTBOX ══ -->
+<div class="moc-lightbox-ov" id="mocLightboxOv" onclick="closeMocLightbox(event)">
+  <button class="moc-lightbox-close" onclick="closeMocLightbox({type:'click'})">✕</button>
+  <div class="moc-lightbox-name" id="mocLbName"></div>
+  <button class="moc-lightbox-arr moc-lightbox-arr-l" id="mocLbPrev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</button>
+  <div id="mocLbMedia" onclick="event.stopPropagation()"></div>
+  <button class="moc-lightbox-arr moc-lightbox-arr-r" id="mocLbNext" onclick="event.stopPropagation();lbNav(1)">&#8250;</button>
+  <div class="moc-lightbox-count" id="mocLbCount"></div>
+</div>
 
 <!-- ══ LEGO HISTORY FULL PAGE ══ -->
 <div id="page-lego-history" class="page">
@@ -8108,17 +8198,8 @@ const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIs
 const CLOUD_NAME   = 'dqrowyx0h';
 const CLOUD_PRESET = 'bricktastic - gallery';
 
-const GALLERY_ITEMS = [
-  {id:'static-1',name:'Millennium Falcon UCS',builder:'@legoking_za',tag:'spaceship',hearts:247,photo_url:null,emoji:'🚀',description:'7,541 piece monster. Took 3 weeks to build.',bg:'linear-gradient(135deg,#1A1A1A,#555)'},
-  {id:'static-2',name:'Hogwarts Castle MOC',builder:'@bricksandbrooms',tag:'building',hearts:189,photo_url:null,emoji:'🏰',description:'Custom Hogwarts using dark tan and dark red. 100% brick-built, no stickers.',bg:'linear-gradient(135deg,#2a1a00,#8b5a00)'},
-  {id:'static-3',name:'Cyberpunk Street Scene',builder:'@neon_builder',tag:'diorama',hearts:312,photo_url:null,emoji:'🌆',description:'Trans-neon parts and printed tiles for the signage.',bg:'linear-gradient(135deg,#0a0020,#7B2FBE)'},
-  {id:'static-4',name:'JDM Nissan Skyline R34',builder:'@jdm_bricks',tag:'vehicle',hearts:156,photo_url:null,emoji:'🏎️',description:'Minifig-scale R34 with opening doors.',bg:'linear-gradient(135deg,#0a1a3d,#006CB7)'},
-  {id:'static-5',name:'Jungle Waterfall Vignette',builder:'@naturebrick',tag:'diorama',hearts:203,photo_url:null,emoji:'🌿',description:'Built using the instructions from the Bricktastic shop!',bg:'linear-gradient(135deg,#004d25,#00A650)'},
-  {id:'static-6',name:'Victorian Train Station',builder:'@steam_builds',tag:'building',hearts:178,photo_url:null,emoji:'🚂',description:'Dark tan + sand green combo. Working interior with passengers.',bg:'linear-gradient(135deg,#1A1A1A,#3d2200)'},
-  {id:'static-7',name:'Star Wars AT-AT Walker',builder:'@galactic_bricks',tag:'spaceship',hearts:421,photo_url:null,emoji:'⚔️',description:'Custom MOC. Poseable legs and full minifig interior.',bg:'linear-gradient(135deg,#1A1A1A,#333)'},
-  {id:'static-8',name:'Medieval Blacksmith',builder:'@forge_bricks',tag:'diorama',hearts:134,photo_url:null,emoji:'⚒️',description:'Interior detail: anvil, forge, weapon rack.',bg:'linear-gradient(135deg,#3d1a00,#8b3a00)'},
-  {id:'static-9',name:'Formula 1 Pit Lane Scene',builder:'@racingbricks_sa',tag:'vehicle',hearts:267,photo_url:null,emoji:'🏁',description:'Full pit lane diorama with 6 minifig mechanics.',bg:'linear-gradient(135deg,#8b0000,#E3000B)'},
-];
+const GALLERY_ITEMS = [];
+
 
 let _galleryTag = 'all', _galleryInited = false;
 let _liveBuilds = [];
@@ -8179,7 +8260,11 @@ function renderGallery() {
   const all = [..._liveBuilds, ...GALLERY_ITEMS];
   const items = _galleryTag === 'all' ? all : all.filter(i => i.tag === _galleryTag);
   if (items.length === 0) {
-    grid.innerHTML = '<p style="color:#888;font-weight:700;font-size:14px;grid-column:1/-1">No builds in this category yet — be the first to submit!</p>';
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px">
+      <div style="font-size:64px;margin-bottom:16px">🏗️</div>
+      <div style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--black);margin-bottom:8px">Be the first to submit!</div>
+      <p style="color:#888;font-weight:700;font-size:14px;max-width:400px;margin:0 auto">No builds here yet. Fill in the form above and show the community what you've built!</p>
+    </div>`;
     return;
   }
   grid.innerHTML = items.map(item => {

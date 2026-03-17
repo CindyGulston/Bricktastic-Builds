@@ -8641,30 +8641,25 @@ async function submitGalleryBuild() {
     if (newBuild && newBuild[0]) _liveBuilds.unshift(newBuild[0]);
     renderGallery();
 
-    // Send confirmation email to submitter if they provided an email
+    // Add submitter to MailerLite Gallery Submissions group & trigger confirmation email
     if (email) {
       try {
-        const emailFd = new FormData();
-        emailFd.append('access_key', '002d6404-f313-4293-b23c-d97ceed7466b');
-        emailFd.append('subject', '🧱 Your build is live on Bricktastic Builds!');
-        emailFd.append('from_name', 'Bricktastic Builds');
-        emailFd.append('replyto', 'bricktasticbuilds01@gmail.com');
-        emailFd.append('email', email);
-        emailFd.append('message',
-          `Hi ${name}! 🎉\n\n` +
-          `Your build "${build}" is now live on the Bricktastic Builds Community Gallery!\n\n` +
-          `Check it out here: https://www.bricktasticbuilds.co.za\n\n` +
-          (desc ? `Your description: "${desc}"\n\n` : '') +
-          `Thanks for being part of the Bricktastic Builds community! Keep building! 🧱\n\n` +
-          `— Tristan\n` +
-          `Bricktastic Builds\n` +
-          `https://www.bricktasticbuilds.co.za\n` +
-          `YouTube: @BricktasticBuilds`
-        );
-        await fetch('https://api.web3forms.com/submit', { method: 'POST', body: emailFd });
+        await fetch('https://connect.mailerlite.com/api/subscribers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDRmYzYyZDIwMDE4YTk3Yjc4ZDRkNzc2MzYwYzQ2NDhjM2FjYTU2MTNmODkxZWEzMDE1OTdjNDQ4MTNjYWExZWVlODA5MjdhNGQ4NWYyOWEiLCJpYXQiOjE3NzM3NDk5NTguODQ5MTk5LCJuYmYiOjE3NzM3NDk5NTguODQ5MjA0LCJleHAiOjQ5Mjk0MjM1NTguODM3Mzg5LCJzdWIiOiIyMjA5MzI2Iiwic2NvcGVzIjpbXX0.dz87RlgmTEHivYBgpiMVAPQHCJAE50CqYteHphj4RvyCcqrtcoJNGhRjAzFvI83Wx6__SJPH41FHTBY8aRLJlSLQeEwA-pwgsdryxksUP92q3RufQ6HzhegdpUXng_sPol_9pnSZWzilkLVpHqBo_MosSQz6ycGTZk9Stpw-kFcBK-ZlwW9Z7K6dZ31VM3sL4zQHl2l2Y3wwguIPwpasVRQUv_-R00x0IE_f6Oc5Aw4sf-AbHPbEPaFEJoB7LyW42k4g90ZUjjLK05MakB_-IZD8l_ISZ4Pbh4WqDrgJP1WgGVXRecH2iMmLhkXFgIZm6Spay2r_Nt4LU3TqLje6aA2U7r741S4d_QF4AeUi9lxPcdatH2jB4GMUZdadxubk7n1RjfFJqrZK1-qZpizLpkmYnDjtLjkE_60N6S6p---IN3QfNVlM6JZm0LEb-12Hv9ALrQU9BKn2DB45OXY-jwnPfVrliX2PUmoti0jCE-DSU_7DnKj-sXchQIcyhMQ6FF7SMFuD5UCQ1gF1dldUou7HgK4BEkfwOImtmHOmGIPYWfBa5re3kEqim1jdf8az32HoPI9w-2_pUVGbI7SPNkmLFYkglUutBA5iCPWcT4fk1KiFrHiYXgGu_pMUS-Mf3TozEA2mPNDHNGgqvz6g6Y26tIOfJd3rcSN_G07fdhI'
+          },
+          body: JSON.stringify({
+            email: email,
+            fields: { name: name },
+            groups: ['182159965256943153'],
+            status: 'active'
+          })
+        });
       } catch(e) {
-        // Email failure is silent — build is already saved
-        console.warn('Confirmation email failed:', e);
+        console.warn('MailerLite signup failed:', e);
       }
     }
 

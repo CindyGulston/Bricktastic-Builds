@@ -571,6 +571,38 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
 @media(max-width:860px){.moc-grid{grid-template-columns:1fr;gap:28px}}
 .moc-card{background:transparent}
 .moc-photo{position:relative;width:100%;aspect-ratio:16/9;background:#fff;overflow:hidden}
+/* MOC Detail Modal */
+.moc-detail-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:650;display:none;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto}
+.moc-detail-ov.open{display:flex}
+.moc-detail{background:#fff;max-width:760px;width:100%;border:3px solid var(--black);overflow:hidden;position:relative}
+.moc-detail-close{position:absolute;top:12px;right:12px;background:var(--black);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900;z-index:2}
+.moc-detail-body{padding:24px 28px}
+.moc-detail-title{font-family:'Boogaloo',cursive;font-size:28px;margin-bottom:4px}
+.moc-detail-tag{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:4px 10px;border-radius:4px;color:#fff;display:inline-block;margin-bottom:12px}
+.moc-detail-desc{font-size:14px;color:#444;font-weight:600;line-height:1.7;margin-bottom:20px}
+.moc-detail-hearts{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.moc-detail-heart-btn{background:var(--red);color:#fff;border:none;border-radius:20px;padding:8px 20px;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 4px 0 #8b0000;transition:all .15s;font-family:'Nunito',sans-serif}
+.moc-detail-heart-btn:hover{transform:translateY(-2px)}
+.moc-detail-heart-btn.liked{background:#aaa;box-shadow:0 4px 0 #666}
+.moc-detail-heart-count{font-size:16px;font-weight:900;color:var(--red)}
+.moc-detail-comments{border-top:3px solid #f0ede6;padding-top:20px}
+.moc-detail-comments h4{font-family:'Boogaloo',cursive;font-size:20px;margin-bottom:14px}
+.moc-detail-comment{background:#f8f5ee;border-left:4px solid var(--yellow);padding:10px 14px;margin-bottom:10px;border-radius:0 6px 6px 0}
+.moc-detail-comment-author{font-size:12px;font-weight:900;color:var(--black);margin-bottom:3px}
+.moc-detail-comment-text{font-size:13px;color:#444;font-weight:600;line-height:1.5}
+.moc-detail-comment-form{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.moc-detail-comment-form input{flex:1;min-width:120px;padding:8px 12px;border:3px solid #ddd;border-radius:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;outline:none}
+.moc-detail-comment-form input:focus{border-color:var(--yellow)}
+.moc-detail-comment-form textarea{width:100%;padding:8px 12px;border:3px solid #ddd;border-radius:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;outline:none;resize:vertical;min-height:60px}
+.moc-detail-comment-form textarea:focus{border-color:var(--yellow)}
+.moc-detail-comment-submit{background:var(--black);color:var(--yellow);border:none;border-radius:6px;padding:8px 18px;font-weight:900;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif}
+.moc-no-comments{font-size:13px;color:#aaa;font-weight:700;font-style:italic}
+.moc-info-footer{display:flex;align-items:center;justify-content:space-between;padding:8px 2px 0;gap:10px;flex-wrap:wrap}
+.moc-heart-pill{background:rgba(227,0,11,.08);color:var(--red);font-size:12px;font-weight:900;padding:4px 12px;border-radius:20px;cursor:pointer;border:2px solid rgba(227,0,11,.2);transition:all .15s}
+.moc-heart-pill:hover{background:var(--red);color:#fff}
+.moc-heart-pill.liked{background:var(--red);color:#fff;border-color:var(--red)}
+.moc-comment-pill{background:rgba(0,0,0,.06);color:#555;font-size:12px;font-weight:900;padding:4px 12px;border-radius:20px;cursor:pointer;border:2px solid rgba(0,0,0,.1);transition:all .15s}
+.moc-comment-pill:hover{background:var(--black);color:#fff}
 /* MOC Lightbox */
 .moc-lightbox-ov{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:700;display:none;align-items:center;justify-content:center;padding:20px}
 .moc-lightbox-ov.open{display:flex}
@@ -598,6 +630,28 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
 .moc-info{padding:12px 2px 0}
 .moc-cat-pill{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:6px}
 .moc-name{font-family:'Boogaloo',cursive;font-size:21px;line-height:1.2;color:var(--black)}
+.moc-actions{display:flex;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:2px solid #f0ede6}
+.moc-heart-btn{background:none;border:2px solid #eee;border-radius:20px;padding:5px 14px;font-size:13px;font-weight:900;cursor:pointer;color:#888;transition:all .15s;font-family:'Nunito',sans-serif}
+.moc-heart-btn:hover{border-color:var(--red);color:var(--red)}
+.moc-heart-btn.liked{background:var(--red);border-color:var(--red);color:#fff}
+.moc-comment-btn{background:none;border:2px solid #eee;border-radius:20px;padding:5px 14px;font-size:13px;font-weight:900;cursor:pointer;color:#888;transition:all .15s;font-family:'Nunito',sans-serif}
+.moc-comment-btn:hover{border-color:var(--blue);color:var(--blue)}
+/* MOC Comments Modal */
+.moc-comments-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:650;display:none;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto}
+.moc-comments-ov.open{display:flex}
+.moc-comments-modal{background:#fff;max-width:600px;width:100%;border:3px solid var(--black);padding:28px 32px;position:relative}
+.moc-comments-close{position:absolute;top:12px;right:12px;background:var(--black);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;font-weight:900;display:flex;align-items:center;justify-content:center}
+.moc-comments-title{font-family:'Boogaloo',cursive;font-size:24px;margin-bottom:4px}
+.moc-comments-sub{font-size:12px;color:#888;font-weight:700;margin-bottom:20px}
+.moc-comment{background:#f8f5ee;border-left:4px solid var(--yellow);padding:10px 14px;margin-bottom:10px;border-radius:0 6px 6px 0}
+.moc-comment-author{font-size:12px;font-weight:900;color:var(--black);margin-bottom:3px}
+.moc-comment-text{font-size:13px;color:#444;font-weight:600;line-height:1.5}
+.moc-comment-form{display:flex;flex-direction:column;gap:8px;margin-top:16px;border-top:2px solid #f0ede6;padding-top:16px}
+.moc-comment-form input,.moc-comment-form textarea{padding:8px 12px;border:3px solid #ddd;border-radius:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;outline:none}
+.moc-comment-form input:focus,.moc-comment-form textarea:focus{border-color:var(--yellow)}
+.moc-comment-form textarea{resize:vertical;min-height:70px}
+.moc-comment-submit{background:var(--black);color:var(--yellow);border:none;border-radius:6px;padding:10px 20px;font-weight:900;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;align-self:flex-start}
+.moc-no-comments{font-size:13px;color:#aaa;font-weight:700;font-style:italic}
 .moc-load-more-wrap{text-align:center;margin-top:52px;display:none}
 .moc-load-more-wrap.visible{display:block}
 .moc-load-more{font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;padding:15px 40px;border-radius:12px;border:none;cursor:pointer;background:var(--black);color:var(--yellow);box-shadow:0 6px 0 rgba(0,0,0,.35);transition:all .15s;position:relative;top:0}
@@ -2628,7 +2682,7 @@ function initMOCPage() {
   initHeroBg();
   const hc=document.getElementById('mocHeroCount');
   if(hc) hc.textContent=MOCS.length+' MOC'+(MOCS.length!==1?'s':'');
-  filterMOCs();
+  loadMocHearts().then(()=>filterMOCs());
 }
 function setMocTag(tag,btn){
   mocActiveTag=tag;
@@ -2670,6 +2724,81 @@ function updateLoadMore(){
 }
 
 // ── MOC LIGHTBOX ─────────────────────────────────────────────
+// ── MOC HEARTS & COMMENTS ────────────────────────────────────
+let _likedMocs = JSON.parse(localStorage.getItem('bb_liked_mocs') || '[]');
+let _mocHearts = JSON.parse(localStorage.getItem('bb_moc_hearts') || '{}');
+let _currentMocId = null;
+
+async function heartMoc(id) {
+  if (_likedMocs.includes(id)) return;
+  _likedMocs.push(id);
+  _mocHearts[id] = (_mocHearts[id] || 0) + 1;
+  localStorage.setItem('bb_liked_mocs', JSON.stringify(_likedMocs));
+  localStorage.setItem('bb_moc_hearts', JSON.stringify(_mocHearts));
+  // Update button instantly
+  const btn = document.getElementById('moc-hbtn-' + id);
+  if (btn) { btn.classList.add('liked'); btn.textContent = '❤️ ' + _mocHearts[id]; }
+  // Save to Supabase
+  try {
+    const existing = await supaFetch(`moc_hearts?moc_id=eq.${id}`);
+    if (existing && existing.length > 0) {
+      await supaFetch(`moc_hearts?moc_id=eq.${id}`, {method:'PATCH', body: JSON.stringify({hearts: _mocHearts[id]})});
+    } else {
+      await supaFetch('moc_hearts', {method:'POST', body: JSON.stringify({moc_id: id, hearts: 1})});
+    }
+  } catch(e) {}
+}
+
+async function openMocComments(id) {
+  _currentMocId = id;
+  const moc = MOCS.find(m => m.id === id);
+  document.getElementById('mocCmTitle').textContent = moc ? moc.name : 'MOC';
+  document.getElementById('mocCmSub').textContent = 'Leave a comment or question about this build';
+  document.getElementById('mocCmList').innerHTML = '<p class="moc-no-comments">Loading comments…</p>';
+  document.getElementById('mocCommentsOv').classList.add('open');
+  try {
+    const comments = await supaFetch(`moc_comments?moc_id=eq.${id}&order=created_at.asc`);
+    renderMocComments(comments);
+  } catch(e) { renderMocComments([]); }
+}
+
+function renderMocComments(comments) {
+  const el = document.getElementById('mocCmList');
+  if (!comments || comments.length === 0) {
+    el.innerHTML = '<p class="moc-no-comments">No comments yet — be the first!</p>';
+    return;
+  }
+  el.innerHTML = comments.map(c => `
+    <div class="moc-comment">
+      <div class="moc-comment-author">${c.author}</div>
+      <div class="moc-comment-text">${c.message}</div>
+    </div>`).join('');
+}
+
+async function postMocComment() {
+  const author = document.getElementById('moc-cm-author').value.trim();
+  const message = document.getElementById('moc-cm-message').value.trim();
+  if (!author || !message) { alert('Please enter your name and a comment!'); return; }
+  const btn = document.getElementById('mocCmSubmit');
+  btn.textContent = '⏳ Posting…'; btn.disabled = true;
+  try {
+    await supaFetch('moc_comments', {method:'POST', body: JSON.stringify({moc_id: _currentMocId, author, message})});
+    document.getElementById('moc-cm-author').value = '';
+    document.getElementById('moc-cm-message').value = '';
+    const comments = await supaFetch(`moc_comments?moc_id=eq.${_currentMocId}&order=created_at.asc`);
+    renderMocComments(comments);
+  } catch(e) { alert('Could not post comment. Please try again!'); }
+  btn.textContent = '💬 Post Comment'; btn.disabled = false;
+}
+
+async function loadMocHearts() {
+  try {
+    const data = await supaFetch('moc_hearts?select=moc_id,hearts');
+    if (data) data.forEach(r => { _mocHearts[r.moc_id] = r.hearts; });
+    localStorage.setItem('bb_moc_hearts', JSON.stringify(_mocHearts));
+  } catch(e) {}
+}
+
 let _lbMocId = null, _lbIdx = 0;
 
 function openMocLightbox(id, idx) {
@@ -2737,6 +2866,8 @@ function mocCardHTML(m){
   const gallery=m.gallery||(m.images||[]).map(src=>({type:'image',src}));
   const total=gallery.length,idx=mocIdx[m.id]||0,slide=gallery[idx]||{type:'image',src:''},multi=total>1;
   const isVid=slide.type==='video';
+  const liked=_likedMocs.includes(m.id);
+  const hearts=_mocHearts[m.id]||0;
   const mediaHTML=isVid
     ?`<video id="moc-vid-${m.id}" src="${slide.src}" controls playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`
     :`<img id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
@@ -2752,6 +2883,10 @@ function mocCardHTML(m){
     <div class="moc-info">
       <span class="moc-cat-pill" style="background:${m.accent}20;color:${m.accent}">${m.emoji} ${m.tag.charAt(0).toUpperCase()+m.tag.slice(1)}</span>
       <div class="moc-name">${m.name}</div>
+      <div class="moc-actions">
+        <button class="moc-heart-btn${liked?' liked':''}" id="moc-hbtn-${m.id}" onclick="heartMoc('${m.id}')">❤️ ${hearts}</button>
+        <button class="moc-comment-btn" onclick="openMocComments('${m.id}')">💬 Comments</button>
+      </div>
     </div>
   </div>`;
 }
@@ -2785,6 +2920,21 @@ function mocNav(id,dir){
 }
 </script>
 
+<!-- ══ MOC COMMENTS MODAL ══ -->
+<div class="moc-comments-ov" id="mocCommentsOv" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="moc-comments-modal">
+    <button class="moc-comments-close" onclick="document.getElementById('mocCommentsOv').classList.remove('open')">✕</button>
+    <div class="moc-comments-title" id="mocCmTitle"></div>
+    <div class="moc-comments-sub" id="mocCmSub"></div>
+    <div id="mocCmList"></div>
+    <div class="moc-comment-form">
+      <input type="text" id="moc-cm-author" placeholder="Your name or @handle" />
+      <textarea id="moc-cm-message" placeholder="Leave a comment or question..."></textarea>
+      <button class="moc-comment-submit" id="mocCmSubmit" onclick="postMocComment()">💬 Post Comment</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ MOC LIGHTBOX ══ -->
 <div class="moc-lightbox-ov" id="mocLightboxOv" onclick="closeMocLightbox(event)">
   <button class="moc-lightbox-close" onclick="closeMocLightbox({type:'click'})">✕</button>
@@ -2793,6 +2943,31 @@ function mocNav(id,dir){
   <div id="mocLbMedia" onclick="event.stopPropagation()"></div>
   <button class="moc-lightbox-arr moc-lightbox-arr-r" id="mocLbNext" onclick="event.stopPropagation();lbNav(1)">&#8250;</button>
   <div class="moc-lightbox-count" id="mocLbCount"></div>
+</div>
+
+<!-- ══ MOC DETAIL MODAL ══ -->
+<div class="moc-detail-ov" id="mocDetailOv" onclick="closeMocDetail(event)">
+  <div class="moc-detail" id="mocDetailInner">
+    <button class="moc-detail-close" onclick="document.getElementById('mocDetailOv').classList.remove('open')">✕</button>
+    <div class="moc-detail-body">
+      <div class="moc-detail-title" id="mdTitle"></div>
+      <span class="moc-detail-tag" id="mdTag"></span>
+      <div class="moc-detail-desc" id="mdDesc"></div>
+      <div class="moc-detail-hearts">
+        <button class="moc-detail-heart-btn" id="mdHeartBtn" onclick="heartMoc()">❤️ Heart this MOC</button>
+        <span class="moc-detail-heart-count" id="mdHeartCount">0 hearts</span>
+      </div>
+      <div class="moc-detail-comments">
+        <h4>💬 Comments</h4>
+        <div id="mdComments"></div>
+        <div class="moc-detail-comment-form">
+          <input type="text" id="mc-author" placeholder="Your name or @handle" />
+          <textarea id="mc-message" placeholder="Leave a comment about this MOC..."></textarea>
+          <button class="moc-detail-comment-submit" onclick="postMocComment()">💬 Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ══ LEGO HISTORY FULL PAGE ══ -->
@@ -8054,7 +8229,7 @@ function initBrickRunner() {
             <span style="font-size:12px;color:#666;font-weight:700">Submissions reviewed before going live</span>
           </div>
         </div>
-        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Thanks! Your build has been submitted for review. We'll be in touch!</div>
+        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Your build is live! Check your email for a confirmation. Keep building! 🧱</div>
       </div>
       <div class="gallery-tabs" id="galleryTabs"></div>
       <div class="gallery-grid" id="galleryGrid"></div>
@@ -8465,6 +8640,33 @@ async function submitGalleryBuild() {
     // Add to local list and refresh gallery
     if (newBuild && newBuild[0]) _liveBuilds.unshift(newBuild[0]);
     renderGallery();
+
+    // Send confirmation email to submitter if they provided an email
+    if (email) {
+      try {
+        const emailFd = new FormData();
+        emailFd.append('access_key', '002d6404-f313-4293-b23c-d97ceed7466b');
+        emailFd.append('subject', '🧱 Your build is live on Bricktastic Builds!');
+        emailFd.append('from_name', 'Bricktastic Builds');
+        emailFd.append('replyto', 'bricktasticbuilds01@gmail.com');
+        emailFd.append('email', email);
+        emailFd.append('message',
+          `Hi ${name}! 🎉\n\n` +
+          `Your build "${build}" is now live on the Bricktastic Builds Community Gallery!\n\n` +
+          `Check it out here: https://www.bricktasticbuilds.co.za\n\n` +
+          (desc ? `Your description: "${desc}"\n\n` : '') +
+          `Thanks for being part of the Bricktastic Builds community! Keep building! 🧱\n\n` +
+          `— Tristan\n` +
+          `Bricktastic Builds\n` +
+          `https://www.bricktasticbuilds.co.za\n` +
+          `YouTube: @BricktasticBuilds`
+        );
+        await fetch('https://api.web3forms.com/submit', { method: 'POST', body: emailFd });
+      } catch(e) {
+        // Email failure is silent — build is already saved
+        console.warn('Confirmation email failed:', e);
+      }
+    }
 
     // Show thanks
     document.getElementById('galleryForm').style.display = 'none';

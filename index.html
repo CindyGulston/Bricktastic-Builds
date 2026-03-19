@@ -3233,7 +3233,7 @@ function showRelatedVideos(cat) {
 // Simple card for home page video grid
 function buildHomeVidCard(v, i) {
   const thumb = v.thumbnail || 'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg';
-  const title = v.title || '';
+  const title = cleanTitle(v.title || '');
   const ytLink = v.isShort ? 'https://www.youtube.com/shorts/' + v.id : 'https://www.youtube.com/watch?v=' + v.id;
   return `
     <a class="vc reveal" href="${ytLink}" target="_blank" rel="noopener noreferrer">

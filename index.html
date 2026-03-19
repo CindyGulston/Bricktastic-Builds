@@ -2352,9 +2352,13 @@ async function fetchYouTubeVideos() {
       const id = vid.resourceId.videoId;
       const detail = detailMap[id];
       const duration = detail ? detail.contentDetails.duration : '';
-      // Detect shorts: duration <= 60 seconds
+      // Detect shorts: only use title keywords - duration data from API is unreliable
       const secs = duration ? parseDuration(duration) : 999;
-      const isShort = secs <= 60;
+      const titleLower = vid.title.toLowerCase();
+      // Only classify as Short if the title explicitly says so
+      // Never override a tutorial/instruction/showcase/etc with shorts
+      const hasContentKeyword = /tutorial|instruction|booklet|showcase|review|history|ranked|moc|how to|lego news|joke|quiz|short film/.test(titleLower);
+      const isShort = !hasContentKeyword && (titleLower.includes('#shorts') || titleLower.includes('#short') || /\bshort\b/.test(titleLower));
       const cat = isShort ? 'shorts' : detectCategory(vid.title, vid.description || '');
       return {
         id: id,
@@ -2422,10 +2426,12 @@ async function loadVideosWithCache() {
     if (cached) {
       const parsed = JSON.parse(cached);
       // Re-apply categories in case cache is stale
-      VIDEOS = parsed.map(v => ({
-        ...v,
-        cat: v.isShort ? 'shorts' : detectCategory(v.title, v.description || '')
-      }));
+      VIDEOS = parsed.map(v => {
+        const t = (v.title || '').toLowerCase();
+        const hasContentKeyword = /tutorial|instruction|booklet|showcase|review|history|ranked|moc|how to|lego news|joke|quiz/.test(t);
+        const isShort = !hasContentKeyword && (t.includes('#shorts') || /\bshort\b/.test(t));
+        return { ...v, isShort, cat: isShort ? 'shorts' : detectCategory(v.title, v.description || '') };
+      });
       console.log('Loaded from cache:', VIDEOS.length, 'videos');
       const cats = {};
       VIDEOS.forEach(v => { cats[v.cat] = (cats[v.cat]||0)+1; });

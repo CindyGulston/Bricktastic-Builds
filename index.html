@@ -2019,7 +2019,15 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 // Category options: builds | instructions | showcase |lego news | jokes
 // Add as many entries as you like — the page handles them all
 // ══════════════════════════════════════════════════════════
-const VIDEOS = [
+// ══════════════════════════════════════
+// YOUTUBE AUTO-FEED (no API key needed)
+// Videos load automatically from your channel — no manual updates required!
+// ══════════════════════════════════════
+const YT_CHANNEL_ID = 'UCqm_5GiesZWfnCkZLBzUgSA';
+const YT_API_KEY = 'AIzaSyAl7wnPEcOVS-DSFkLe6iLiZqzu2kMQ0rk';
+const YT_API_BASE = 'https://www.googleapis.com/youtube/v3';
+
+let VIDEOS = [
   { id: 'SmiX7S_pLTs', title: 'Knuckle Buster Tutorial', cat: 'builds' },
    { id: '1N7bRty5AHI', title: 'LEGO Desk Accessory Tutorial', cat: 'builds' },
   { id: 'jbrvZUi1Ak8', title: '1958 Lego Small Store (Set 210-2) Small House (Set 211-2) Tutorial', cat: 'builds' },
@@ -2300,34 +2308,117 @@ const VIDEOS = [
   // To add more: copy a line, paste it, change the id, title, and cat
 ];
 
+// Fetch ALL videos from YouTube Data API v3 (handles pagination automatically)
+async function fetchYouTubeVideos() {
+  try {
+    // Step 1: get uploads playlist ID for the channel
+    const chanRes = await fetch(`${YT_API_BASE}/channels?part=contentDetails&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`);
+    const chanData = await chanRes.json();
+    if (!chanData.items || !chanData.items.length) return;
+    const uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
+
+    // Step 2: fetch all videos from uploads playlist (paginated)
+    let allItems = [];
+    let pageToken = '';
+    do {
+      const url = `${YT_API_BASE}/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50&key=${YT_API_KEY}${pageToken ? '&pageToken=' + pageToken : ''}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.items) allItems = allItems.concat(data.items);
+      pageToken = data.nextPageToken || '';
+    } while (pageToken);
+
+    if (!allItems.length) return;
+
+    // Step 3: get video details in batches of 50 (descriptions, view counts, duration)
+    const ids = allItems.map(item => item.snippet.resourceId.videoId);
+    let detailMap = {};
+    for (let i = 0; i < ids.length; i += 50) {
+      const batch = ids.slice(i, i + 50).join(',');
+      const detRes = await fetch(`${YT_API_BASE}/videos?part=snippet,statistics,contentDetails&id=${batch}&key=${YT_API_KEY}`);
+      const detData = await detRes.json();
+      if (detData.items) {
+        detData.items.forEach(v => { detailMap[v.id] = v; });
+      }
+    }
+
+    // Step 4: build VIDEOS array with full details
+    const fetched = allItems.map(item => {
+      const vid = item.snippet;
+      const id = vid.resourceId.videoId;
+      const detail = detailMap[id];
+      const duration = detail ? detail.contentDetails.duration : '';
+      // Detect shorts: duration <= 60 seconds
+      const secs = duration ? parseDuration(duration) : 999;
+      const isShort = secs <= 60;
+      return {
+        id: id,
+        title: vid.title,
+        description: vid.description || '',
+        thumbnail: (vid.thumbnails.high || vid.thumbnails.medium || vid.thumbnails.default || {}).url || '',
+        publishedAt: vid.publishedAt,
+        viewCount: detail ? (detail.statistics.viewCount || '0') : '0',
+        cat: isShort ? 'shorts' : 'builds',
+        isShort: isShort,
+        duration: duration
+      };
+    }).filter(v => v.id && v.title !== 'Deleted video' && v.title !== 'Private video');
+
+    if (fetched.length > 0) {
+      VIDEOS = fetched;
+      // Cache in sessionStorage so we don't re-fetch on page tab switches
+      try { sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS)); } catch(e) {}
+    }
+  } catch(e) {
+    console.warn('YouTube API fetch failed, using local video list:', e);
+  }
+}
+
+// Parse ISO 8601 duration to seconds (e.g. PT1M30S = 90)
+function parseDuration(d) {
+  const m = d.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return 999;
+  return (parseInt(m[1]||0)*3600) + (parseInt(m[2]||0)*60) + parseInt(m[3]||0);
+}
+
+// Load from session cache if available, otherwise fetch fresh
+async function loadVideosWithCache() {
+  try {
+    const cached = sessionStorage.getItem('yt_videos');
+    if (cached) { VIDEOS = JSON.parse(cached); return; }
+  } catch(e) {}
+  await fetchYouTubeVideos();
+}
+
 function loadRSSFeed() {
   const grid = document.getElementById('videoGrid');
   if (!grid) return;
   grid.className = 'vgrid';
+  showSkeletons();
 
-  // Home page shows only first 9 videos
-  const homeVideos = VIDEOS.slice(0, 9);
-
-  grid.innerHTML = homeVideos.map((v, i) => `
-    <a class="vc reveal" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">
-      <div class="vt">
-        <img
-          src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg"
-          alt="${v.title}"
-          loading="${i < 3 ? 'eager' : 'lazy'}"
-          onerror="this.src='https://img.youtube.com/vi/${v.id}/mqdefault.jpg';this.onerror=null"
-        >
-        <div class="vrank-badge">#${i + 1}</div>
-        ${i === 0 ? '<div class="vnew-badge">NEW</div>' : ''}
-        <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="vi">
-        <div class="vtitle">${v.title}</div>
-        <div class="vmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</span></div>
-      </div>
-    </a>`).join('');
-
-  setTimeout(initReveal, 50);
+  loadVideosWithCache().then(() => {
+    const homeVideos = VIDEOS.slice(0, 9);
+    grid.className = 'vgrid';
+    grid.innerHTML = homeVideos.map((v, i) => `
+      <a class="vc reveal" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">
+        <div class="vt">
+          <img
+            src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg"
+            alt="${v.title}"
+            loading="${i < 3 ? 'eager' : 'lazy'}"
+            onerror="this.src='https://img.youtube.com/vi/${v.id}/mqdefault.jpg';this.onerror=null"
+          >
+          <div class="vrank-badge">#${i + 1}</div>
+          ${i === 0 ? '<div class="vnew-badge">NEW</div>' : ''}
+          <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="vi">
+          <div class="vtitle">${v.title}</div>
+          <div class="vmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</span></div>
+        </div>
+      </a>`).join('');
+    setTimeout(initReveal, 50);
+  });
 }
 
 // ══════════════════════════════════════
@@ -2340,6 +2431,7 @@ const VID_PAGE_SIZE = 30;
 
 const VID_CAT_LABELS = {
   'builds': { label: '🏗️ Builds', accent: '#E3000B' },
+  'shorts': { label: '⚡ Shorts', accent: '#FF6B00' },
   'reviews': { label: '📦 Reviews', accent: '#006CB7' },
   'challenges': { label: '🏆 Challenges', accent: '#b89a00' },
   'deep-dives': { label: '🔍 Deep Dives', accent: '#7B2FBE' },
@@ -2405,25 +2497,38 @@ function renderVidPage(append) {
   setTimeout(initReveal, 50);
 }
 
+function formatViews(n) {
+  const num = parseInt(n) || 0;
+  if (num >= 1000000) return (num/1000000).toFixed(1) + 'M views';
+  if (num >= 1000) return (num/1000).toFixed(1) + 'K views';
+  return num + ' views';
+}
+
 function buildVidCard(v, i) {
   const cat = VID_CAT_LABELS[v.cat] || { label: v.cat, accent: '#888' };
+  const thumb = v.thumbnail || `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
+  const shortDesc = v.description ? v.description.slice(0, 100).trim() + (v.description.length > 100 ? '…' : '') : '';
+  const views = v.viewCount ? formatViews(v.viewCount) : '';
+  const ytLink = v.isShort ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
   return `
-    <a class="vic reveal" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">
+    <a class="vic reveal" href="${ytLink}" target="_blank" rel="noopener noreferrer">
       <div class="vt" style="aspect-ratio:16/9;position:relative;overflow:hidden;background:#111">
         <img
-          src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg"
+          src="${thumb}"
           alt="${v.title}"
           loading="lazy"
-          onerror="this.src='https://img.youtube.com/vi/${v.id}/mqdefault.jpg';this.onerror=null"
+          onerror="this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg';this.onerror=null"
           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s"
         >
         <div class="pbtn"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M8 5v14l11-7z"/></svg></div>
         <span class="vid-cat-badge" style="background:${cat.accent}">${cat.label}</span>
         ${i === 0 && _vidPage === 0 ? '<div class="vnew-badge">NEW</div>' : ''}
+        ${views ? `<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.75);color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:4px">${views}</span>` : ''}
       </div>
       <div class="vi">
         <div class="vtitle">${v.title}</div>
-        <div class="vmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</span></div>
+        ${shortDesc ? `<div class="vdesc" style="font-size:12px;color:#666;margin-top:4px;line-height:1.4">${shortDesc}</div>` : ''}
+        <div class="vmeta" style="margin-top:6px"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</span></div>
       </div>
     </a>`;
 }
@@ -2440,7 +2545,8 @@ function buildVideoIndex() {
   const searchEl = document.getElementById('vidSearch');
   if (searchEl) searchEl.value = '';
   document.querySelectorAll('.vid-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
-  renderVidPage();
+  // Fetch fresh from YouTube then render
+  loadVideosWithCache().then(() => renderVidPage());
   // Init stud bar
   const sv = document.getElementById('s-vid');
   if (sv && !sv.children.length) {

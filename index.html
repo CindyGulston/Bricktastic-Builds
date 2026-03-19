@@ -1132,7 +1132,7 @@ window.addEventListener('load', function() {
           </a>
         </div>
         <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.1)" id="startHereThumb">
-          <img id="startHereImg" src="https://img.youtube.com/vi/gwg_wieg76Y/maxresdefault.jpg" alt="Naruto Kunai & Shuriken LEGO® Build" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover" onerror="this.src='https://img.youtube.com/vi/gwg_wieg76Y/hqdefault.jpg'">
+          <img id="startHereImg" src="https://img.youtube.com/vi/gwg_wieg76Y/maxresdefault.jpg" alt="Naruto Kunai &amp; Shuriken LEGO® Build" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover" onerror="this.src='https://img.youtube.com/vi/gwg_wieg76Y/hqdefault.jpg'">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
             <a href="https://www.youtube.com/watch?v=gwg_wieg76Y" target="_blank" style="width:72px;height:72px;background:rgba(227,0,11,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5);transition:transform .2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
               <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg>
@@ -1693,20 +1693,6 @@ window.addEventListener('load', function() {
   </section>
 
   <!-- SOCIAL -->
-  <!-- NEWSLETTER BANNER -->
-  <section style="background:var(--yellow);padding:48px 0">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
-      <div>
-        <div style="font-family:'Boogaloo',cursive;font-size:36px;color:var(--black);line-height:1">📧 Never Miss a Build!</div>
-        <p style="font-size:15px;font-weight:700;color:rgba(0,0,0,.65);margin-top:6px">Get notified when new MOC instructions drop & new videos go live.</p>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <input type="email" placeholder="your@email.com" style="padding:12px 18px;border:3px solid var(--black);border-radius:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;min-width:240px;outline:none" id="newsletterEmail">
-        <button onclick="subscribeNewsletter()" style="background:var(--black);color:var(--yellow);border:none;padding:12px 24px;border-radius:8px;font-weight:900;font-size:14px;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 4px 0 rgba(0,0,0,.3);transition:all .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">Subscribe Free →</button>
-      </div>
-    </div>
-  </section>
-
   <section id="social">
     <div class="container">
       <div class="soci">
@@ -1723,7 +1709,6 @@ window.addEventListener('load', function() {
     </div>
   </section>
 
-  <!-- NEWSLETTER BAR -->
   <!-- FAN TESTIMONIALS -->
   <section style="background:var(--bg);padding:64px 0">
     <div class="container">
@@ -1756,21 +1741,6 @@ window.addEventListener('load', function() {
   </section>
   <style>@media(max-width:700px){.testimonial-grid{grid-template-columns:1fr!important}}</style>
 
-  <div class="newsletter-bar">
-    <div class="container">
-      <div class="newsletter-inner">
-        <div>
-          <h3>🧱 Join the Bricktastic Newsletter</h3>
-          <p>New videos, MOC drops & exclusive offers — straight to your inbox</p>
-        </div>
-        <div class="newsletter-form">
-          <input class="newsletter-input" type="email" id="newsletterEmail" placeholder="Your email address…">
-          <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe 🎉</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds® · @BricktasticBuilds · PDF instructions = instant digital download</div>
@@ -1785,7 +1755,21 @@ window.addEventListener('load', function() {
       <a href="https://www.tiktok.com/@bricktasticbuilds" target="_blank">TikTok</a>
       <a href="https://www.facebook.com/profile.php?id=61575146147730" target="_blank">Facebook</a>
     </div>
-  </footer>
+</footer>
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h3>📬 Join the Bricktastic Newsletter</h3>
+          <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
+        </div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ══ MOCs PAGE ══ -->
@@ -1851,7 +1835,21 @@ window.addEventListener('load', function() {
       <a onclick="showPage('shop')">Shop</a>
       <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
     </div>
-  </footer>
+</footer>
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h3>📬 Join the Bricktastic Newsletter</h3>
+          <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
+        </div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ══ SHOP PAGE ══ -->
@@ -1972,7 +1970,21 @@ window.addEventListener('load', function() {
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · PDF instructions = digital download · MOCs ship worldwide</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
-  </footer>
+</footer>
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h3>📬 Join the Bricktastic Newsletter</h3>
+          <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
+        </div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- CART DRAWER -->
@@ -2064,7 +2076,21 @@ window.addEventListener('load', function() {
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
-  </footer>
+</footer>
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h3>📬 Join the Bricktastic Newsletter</h3>
+          <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
+        </div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- TOAST -->
@@ -2370,15 +2396,20 @@ function updateStartHere() {
   }
 }
 
-function subscribeNewsletter() {
-  const email = document.getElementById('newsletterEmail').value.trim();
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address!'); return; }
-  // Opens mailto — replace with your email service (Mailchimp, etc.) later
-  const btn = document.querySelector('.newsletter-btn');
-  btn.textContent = '🎉 Subscribed!';
-  btn.style.background = 'var(--green)';
-  document.getElementById('newsletterEmail').value = '';
-  setTimeout(() => { btn.textContent = 'Subscribe 🎉'; btn.style.background = ''; }, 3000);
+function subscribeNewsletter(inputId) {
+  const id = inputId || 'newsletterEmail';
+  const input = document.getElementById(id);
+  if (!input) return;
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) {
+    input.style.borderColor = 'var(--red)';
+    setTimeout(() => input.style.borderColor = '', 2000);
+    return;
+  }
+  input.value = '✅ Subscribed!';
+  input.disabled = true;
+  input.style.borderColor = 'var(--green)';
+  setTimeout(() => { input.value = ''; input.disabled = false; input.style.borderColor = ''; }, 4000);
 }
 
 // ══════════════════════════════════════
@@ -2989,7 +3020,8 @@ async function fetchYouTubeVideos() {
         isShort: isShort,
         duration: duration
       };
-    }).filter(v => v.id && v.title !== 'Deleted video' && v.title !== 'Private video');
+    }).filter(v => v.id && v.title !== 'Deleted video' && v.title !== 'Private video')
+      .map(sanitiseVideo);
 
     if (fetched.length > 0) {
       VIDEOS = fetched;
@@ -3032,8 +3064,22 @@ function detectCategory(title, desc) {
   // Tutorials — word "Tutorial" anywhere in title, or "How to Build", or "MOC"
   if (/tutorial|how to build|how to make|moc|speed build/.test(t)) return 'tutorials';
 
-  // Default
+  // Default — everything else is a tutorial
   return 'tutorials';
+}
+
+// Ensure a video has all required fields
+function sanitiseVideo(v) {
+  return {
+    id: v.id || '',
+    title: v.title || 'Untitled',
+    description: v.description || '',
+    thumbnail: v.thumbnail || (v.id ? `https://img.youtube.com/vi/${v.id}/hqdefault.jpg` : ''),
+    viewCount: v.viewCount || '0',
+    publishedAt: v.publishedAt || '',
+    isShort: v.isShort || false,
+    cat: v.cat || detectCategory(v.title || '', v.description || '')
+  };
 }
 
 // Parse ISO 8601 duration to seconds (e.g. PT1M30S = 90)
@@ -3157,6 +3203,7 @@ function filterVideos() {
 
 function getFilteredVideos() {
   return VIDEOS.filter(v => {
+    if (!v || !v.id || !v.title) return false;
     const catMatch = _vidCat === 'all' || v.cat === _vidCat;
     const searchMatch = !_vidSearch || v.title.toLowerCase().includes(_vidSearch);
     return catMatch && searchMatch;
@@ -3241,9 +3288,9 @@ function formatViews(n) {
 }
 
 function buildVidCard(v, i) {
-  const cat = VID_CAT_LABELS[v.cat] || { label: v.cat, accent: '#888' };
+  const cat = VID_CAT_LABELS[v.cat] || { label: '🧱 Video', accent: '#E3000B' };
   const thumb = v.thumbnail || `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
-  const shortDesc = v.description ? v.description.slice(0, 160).trim() + (v.description.length > 160 ? '…' : '') : '';
+  const shortDesc = v.description ? v.description.slice(0, 120).trim() + (v.description.length > 120 ? '…' : '') : '';
   const views = v.viewCount ? formatViews(v.viewCount) : '';
   const ytLink = v.isShort ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
   return `
@@ -3263,13 +3310,10 @@ function buildVidCard(v, i) {
       </div>
       <div class="vi">
         <div class="vtitle">${v.title}</div>
-        ${shortDesc ? `<div class="vdesc" style="font-size:12px;color:#666;margin-top:4px;line-height:1.4">${shortDesc}</div>` : ''}
+        ${shortDesc ? `<div class="vdesc" style="font-size:12px;color:#777;margin-top:5px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;font-style:italic">${shortDesc}</div>` : ''}
         <div class="vmeta" style="margin-top:6px"><span>Bricktastic Builds</span></div>
-        <div class="share-bar" onclick="event.preventDefault();event.stopPropagation()">
-          <a class="share-btn share-wa" href="https://wa.me/?text=${encodeURIComponent(v.title+' '+ytLink)}" target="_blank">📲 WhatsApp</a>
-          <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ytLink)}" target="_blank">📘 Facebook</a>
-          <a class="share-btn" style="background:#000;color:#fff" href="https://x.com/intent/tweet?text=${encodeURIComponent(v.title)}&url=${encodeURIComponent(ytLink)}" target="_blank">𝕏 Twitter</a>
-          <button class="share-btn share-cp" onclick="navigator.clipboard.writeText('${ytLink}');this.textContent='✅ Copied!'">🔗 Copy</button>
+        <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap" onclick="event.preventDefault();event.stopPropagation()">
+          <button onclick="navigator.clipboard.writeText('${ytLink}');this.textContent='✅ Copied!';setTimeout(()=>this.textContent='🔗 Share',2000)" style="background:rgba(0,0,0,.07);border:none;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:800;cursor:pointer;color:#555;font-family:'Nunito',sans-serif">🔗 Share</button>
         </div>
       </div>
     </a>`;
@@ -9033,7 +9077,21 @@ function initBrickRunner() {
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
-  </footer>
+</footer>
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h3>📬 Join the Bricktastic Newsletter</h3>
+          <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
+        </div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ══ FAN GALLERY PAGE ══ -->
@@ -9093,7 +9151,21 @@ function initBrickRunner() {
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
-  </footer>
+</footer>
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h3>📬 Join the Bricktastic Newsletter</h3>
+          <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
+        </div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Blog post modal -->

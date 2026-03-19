@@ -2381,18 +2381,12 @@ window.addEventListener('scroll', () => {
 // ══════════════════════════════════════
 // Update Start Here section with most recent video once API loads
 function updateStartHere() {
-  if (!VIDEOS || !VIDEOS.length) return;
-  const latest = VIDEOS[0];
-  if (!latest) return;
+  // Always show the pinned "Start Here" video — never replace with latest upload
+  const PINNED_ID = 'gwg_wieg76Y';
   const img = document.getElementById('startHereImg');
-  const thumb = document.querySelector('#startHereThumb a');
   if (img) {
-    img.src = latest.thumbnail || `https://img.youtube.com/vi/${latest.id}/maxresdefault.jpg`;
-    img.onerror = function() { this.src = `https://img.youtube.com/vi/${latest.id}/hqdefault.jpg`; };
-  }
-  if (thumb) {
-    const ytLink = latest.isShort ? `https://www.youtube.com/shorts/${latest.id}` : `https://www.youtube.com/watch?v=${latest.id}`;
-    thumb.href = ytLink;
+    img.src = `https://img.youtube.com/vi/${PINNED_ID}/maxresdefault.jpg`;
+    img.onerror = function() { this.src = `https://img.youtube.com/vi/${PINNED_ID}/hqdefault.jpg`; };
   }
 }
 

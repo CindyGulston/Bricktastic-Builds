@@ -2316,7 +2316,9 @@ async function fetchYouTubeVideos() {
     // Step 1: get uploads playlist ID for the channel
     const chanRes = await fetch(`${YT_API_BASE}/channels?part=contentDetails&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`);
     const chanData = await chanRes.json();
-    if (!chanData.items || !chanData.items.length) return;
+    console.log('YT API channel response:', JSON.stringify(chanData).slice(0, 300));
+    if (chanData.error) { console.error('YT API error:', chanData.error.message, chanData.error.code); return; }
+    if (!chanData.items || !chanData.items.length) { console.warn('No channel items returned'); return; }
     const uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
 
     // Step 2: fetch all videos from uploads playlist (paginated)
@@ -2369,6 +2371,9 @@ async function fetchYouTubeVideos() {
 
     if (fetched.length > 0) {
       VIDEOS = fetched;
+      const cats = {};
+      VIDEOS.forEach(v => { cats[v.cat] = (cats[v.cat]||0)+1; });
+      console.log('API fetch success:', VIDEOS.length, 'videos. Categories:', JSON.stringify(cats));
       // Cache in sessionStorage so we don't re-fetch on page tab switches
       try { sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS)); } catch(e) {}
     }
@@ -2414,7 +2419,19 @@ function parseDuration(d) {
 async function loadVideosWithCache() {
   try {
     const cached = sessionStorage.getItem('yt_videos');
-    if (cached) { VIDEOS = JSON.parse(cached); return; }
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      // Re-apply categories in case cache is stale
+      VIDEOS = parsed.map(v => ({
+        ...v,
+        cat: v.isShort ? 'shorts' : detectCategory(v.title, v.description || '')
+      }));
+      console.log('Loaded from cache:', VIDEOS.length, 'videos');
+      const cats = {};
+      VIDEOS.forEach(v => { cats[v.cat] = (cats[v.cat]||0)+1; });
+      console.log('Categories:', JSON.stringify(cats));
+      return;
+    }
   } catch(e) {}
   await fetchYouTubeVideos();
 }
@@ -2423,8 +2440,12 @@ function loadRSSFeed() {
   const grid = document.getElementById('videoGrid');
   if (!grid) return;
   grid.className = 'vgrid';
-  showSkeletons();
 
+  // Render local videos immediately
+  const homeVideos = VIDEOS.slice(0, 9);
+  grid.innerHTML = homeVideos.map((v, i) => buildHomeVidCard(v, i)).join('');
+
+  // Then fetch from API and refresh
   loadVideosWithCache().then(() => {
     const homeVideos = VIDEOS.slice(0, 9);
     grid.className = 'vgrid';
@@ -2527,6 +2548,28 @@ function renderVidPage(append) {
   setTimeout(initReveal, 50);
 }
 
+// Simple card for home page video grid
+function buildHomeVidCard(v, i) {
+  return `
+    <a class="vc reveal" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">
+      <div class="vt">
+        <img
+          src="${v.thumbnail || 'https://img.youtube.com/vi/'+v.id+'/hqdefault.jpg'}"
+          alt="${v.title}"
+          loading="${i < 3 ? 'eager' : 'lazy'}"
+          onerror="this.src='https://img.youtube.com/vi/${v.id}/mqdefault.jpg';this.onerror=null"
+        >
+        <div class="vrank-badge">#${i + 1}</div>
+        ${i === 0 ? '<div class="vnew-badge">NEW</div>' : ''}
+        <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="vi">
+        <div class="vtitle">${v.title}</div>
+        <div class="vmeta"><span>Bricktastic Builds</span></div>
+      </div>
+    </a>`;
+}
+
 function formatViews(n) {
   const num = parseInt(n) || 0;
   if (num >= 1000000) return (num/1000000).toFixed(1) + 'M views';
@@ -2575,8 +2618,13 @@ function buildVideoIndex() {
   const searchEl = document.getElementById('vidSearch');
   if (searchEl) searchEl.value = '';
   document.querySelectorAll('.vid-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
-  // Fetch fresh from YouTube then render
+
+  // Render local videos immediately so something always shows
+  renderVidPage();
+
+  // Then fetch from YouTube API and refresh if successful
   loadVideosWithCache().then(() => renderVidPage());
+
   // Init stud bar
   const sv = document.getElementById('s-vid');
   if (sv && !sv.children.length) {

@@ -16,6 +16,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bricktastic Builds">
 <meta name="twitter:description" content="Epic LEGO® builds, MOC showcases, reviews and a shop full of instructions and bundles.">
+<meta name="twitter:image" content="https://www.bricktasticbuilds.co.za/favicon.png">
+<meta property="og:image" content="https://www.bricktasticbuilds.co.za/favicon.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,6 +206,24 @@ body.dark .search-input{background:#222;color:#fff}
 body.dark .search-input-wrap{border-color:#333}
 body.dark .search-result-item:hover{background:#333}
 body.dark .search-result-title{color:#fff}
+body.dark .wishlist-panel{background:#1a1a1a}
+body.dark .wishlist-item{border-color:#333}
+body.dark .wishlist-item-name{color:#fff}
+body.dark .wishlist-item-remove{border-color:#444;color:#aaa}
+body.dark .pc{background:#1a1a1a;border-color:#333}
+body.dark .pname{color:#fff}
+body.dark .shop-tab{background:#222;color:#aaa;border-color:#444}
+body.dark .shop-tab.active{background:#fafaf5;color:#1a1a1a}
+body.dark .vid-tab{background:#222;color:#aaa}
+body.dark .vid-tab.active{background:#fafaf5;color:#1a1a1a}
+body.dark .vc{background:#1a1a1a}
+body.dark .vtitle{color:#fff}
+body.dark .vic{background:#1a1a1a}
+body.dark .gallery-card{background:#1a1a1a;border-color:#333}
+body.dark .gallery-card-name{color:#fff}
+body.dark footer{background:#0a0a0a}
+body.dark .bundle-card{background:rgba(255,255,255,.04)}
+body.dark input,body.dark textarea{background:#222;color:#fff;border-color:#444}
 .dark-toggle{background:none;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px;color:#fff;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;transition:all .15s}
 .dark-toggle:hover{background:rgba(255,255,255,.1)}
 
@@ -226,6 +248,26 @@ body.dark .search-result-title{color:#fff}
 .wishlist-btn{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;z-index:3}
 .wishlist-btn:hover{background:var(--red);transform:scale(1.1)}
 .wishlist-btn.wishlisted{background:var(--red)}
+.wishlist-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:#fff;z-index:500;box-shadow:-8px 0 32px rgba(0,0,0,.2);transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
+.wishlist-panel.open{right:0}
+.wishlist-panel-header{background:var(--black);padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.wishlist-panel-header h3{font-family:'Boogaloo',cursive;font-size:24px;color:var(--yellow)}
+.wishlist-panel-close{background:none;border:2px solid rgba(255,255,255,.3);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
+.wishlist-panel-body{flex:1;overflow-y:auto;padding:20px}
+.wishlist-empty{text-align:center;padding:60px 20px;color:#888}
+.wishlist-empty div{font-size:48px;margin-bottom:12px}
+.wishlist-item{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:2px solid #f0ede6}
+.wishlist-item:last-child{border-bottom:none}
+.wishlist-item-thumb{width:70px;height:50px;border-radius:6px;object-fit:cover;background:#f0ede6;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.wishlist-item-info{flex:1}
+.wishlist-item-name{font-weight:800;font-size:14px;color:var(--black);line-height:1.3;margin-bottom:4px}
+.wishlist-item-price{font-weight:900;color:var(--red);font-size:16px}
+.wishlist-item-actions{display:flex;gap:8px;margin-top:8px}
+.wishlist-item-buy{background:var(--red);color:#fff;border:none;padding:6px 14px;border-radius:6px;font-weight:900;font-size:12px;cursor:pointer;font-family:'Nunito',sans-serif}
+.wishlist-item-remove{background:none;border:2px solid #ddd;color:#888;padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer}
+.wishlist-nav-btn{background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:22px;padding:4px 8px;transition:color .15s}
+.wishlist-nav-btn:hover{color:var(--yellow)}
+.wishlist-count-badge{background:var(--red);color:#fff;font-size:10px;font-weight:900;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-4px;right:-4px}
 
 /* NEWSLETTER */
 .newsletter-bar{background:var(--black);padding:40px 0;border-top:4px solid var(--yellow)}
@@ -483,6 +525,7 @@ section{padding:80px 0}
 .vid-load-more{display:flex;justify-content:center;margin-top:40px}
 .vid-cat-badge{position:absolute;bottom:9px;left:11px;z-index:2;background:var(--red);color:#fff;border-radius:20px;padding:2px 9px;font-size:11px;font-weight:900}
 @media(max-width:600px){.vid-index-grid{grid-template-columns:1fr}.vid-filter-tabs{width:100%}.vid-tab{flex:1;text-align:center}}
+@media(max-width:768px){#testimonials-grid{grid-template-columns:1fr!important}}
 
 /* SUBSCRIBE */
 #subscribe{background:var(--red);padding:60px 0;position:relative;overflow:hidden}
@@ -940,6 +983,26 @@ ml('account', '2189778');
 </head>
 <body>
 
+<!-- PAGE LOADER -->
+<div id="pageLoader" style="position:fixed;inset:0;background:var(--black);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .4s ease">
+  <div style="font-family:'Boogaloo',cursive;font-size:42px;color:var(--yellow);letter-spacing:2px;margin-bottom:16px">Bricktastic Builds</div>
+  <div style="display:flex;gap:8px">
+    <div style="width:14px;height:14px;background:var(--red);border-radius:3px;animation:loaderBrick .8s ease-in-out infinite"></div>
+    <div style="width:14px;height:14px;background:var(--yellow);border-radius:3px;animation:loaderBrick .8s .15s ease-in-out infinite"></div>
+    <div style="width:14px;height:14px;background:var(--blue);border-radius:3px;animation:loaderBrick .8s .3s ease-in-out infinite"></div>
+    <div style="width:14px;height:14px;background:var(--green);border-radius:3px;animation:loaderBrick .8s .45s ease-in-out infinite"></div>
+  </div>
+</div>
+<style>
+@keyframes loaderBrick{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+</style>
+<script>
+window.addEventListener('load', function() {
+  const loader = document.getElementById('pageLoader');
+  if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 400); }
+});
+</script>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo" onclick="showPage('home')">
@@ -965,6 +1028,7 @@ ml('account', '2189778');
       Search
     </button>
     <button class="dark-toggle" onclick="toggleDark()" id="darkBtn">🌙 Dark</button>
+    <button onclick="toggleWishlistPanel()" title="Wishlist" style="background:none;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px;color:#fff;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;position:relative;transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.background='none'">❤️ Wishlist <span id="wishlistNavCount" style="display:none;background:var(--red);color:#fff;font-size:10px;font-weight:900;padding:1px 6px;border-radius:10px;margin-left:4px">0</span></button>
     <div class="cart-btn" onclick="toggleCart()">
       🛒 Cart
       <span class="cart-count" id="cartCount">0</span>
@@ -1001,6 +1065,18 @@ ml('account', '2189778');
   </div>
 </div>
 
+<!-- WISHLIST PANEL -->
+<div class="wishlist-panel" id="wishlistPanel">
+  <div class="wishlist-panel-header">
+    <h3>❤️ My Wishlist</h3>
+    <button class="wishlist-panel-close" onclick="toggleWishlistPanel()">✕</button>
+  </div>
+  <div class="wishlist-panel-body" id="wishlistPanelBody">
+    <div class="wishlist-empty"><div>🤍</div><p>No saved items yet.<br>Click ❤️ on any product to save it!</p></div>
+  </div>
+</div>
+<div id="wishlistOverlay" onclick="toggleWishlistPanel()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:499"></div>
+
 <!-- BACK TO TOP -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
@@ -1027,17 +1103,46 @@ ml('account', '2189778');
       </div>
     </div>
     <div class="hero-right" id="heroR">
-      <div class="hcb">
-        <div class="big-brick">
-          <div class="bs" style="left:16px"></div><div class="bs" style="left:78px"></div>
-          <div class="bs" style="left:140px"></div><div class="bs" style="left:202px"></div>
+      <div style="position:relative;z-index:2;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6);border:4px solid rgba(255,215,0,.4);transform:rotate(-2deg);transition:transform .3s" onmouseover="this.style.transform='rotate(0deg) scale(1.02)'" onmouseout="this.style.transform='rotate(-2deg)'">
+          <img src="hero-build.jpg" alt="Custom LEGO® Build by Bricktastic Builds" style="width:100%;max-width:480px;display:block;aspect-ratio:4/3;object-fit:cover">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:20px 16px 14px">
+            <div style="font-family:'Boogaloo',cursive;font-size:18px;color:#FFD700">Custom LEGO® MOC Build 🧱</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:700">Bricktastic Builds · South Africa</div>
+          </div>
         </div>
-        <div class="ch-tag">@BricktasticBuilds</div>
+        <div style="position:absolute;bottom:24px;right:24px;background:var(--yellow);color:var(--black);font-weight:900;font-size:12px;padding:6px 14px;border-radius:20px;box-shadow:0 4px 0 rgba(0,0,0,.3)">@BricktasticBuilds</div>
       </div>
     </div>
   </div>
 
   <div class="stud-bar" style="background:#FFD700"><div class="inner" id="s1"></div></div>
+
+  <!-- START HERE -->
+  <section style="background:var(--black);padding:56px 0">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:6px 16px;border-radius:6px;margin-bottom:20px;box-shadow:0 4px 0 #8b0000">👋 New Here? Start Here</div>
+          <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4vw,52px);line-height:1;color:#fff;margin-bottom:16px">Watch My <span style="color:var(--yellow)">Most Popular</span> Build</h2>
+          <p style="font-size:15px;color:rgba(255,255,255,.65);font-weight:700;line-height:1.7;margin-bottom:28px">New here? This is the perfect place to start — Naruto's Kunai & Shuriken built entirely from LEGO®. Creative, detailed, and exactly what this channel is about.</p>
+          <a href="https://www.youtube.com/watch?v=gwg_wieg76Y" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-weight:900;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;box-shadow:0 6px 0 #8b0000;transition:all .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            Watch Now →
+          </a>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.1)" id="startHereThumb">
+          <img id="startHereImg" src="https://img.youtube.com/vi/gwg_wieg76Y/maxresdefault.jpg" alt="Naruto Kunai & Shuriken LEGO® Build" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover" onerror="this.src='https://img.youtube.com/vi/gwg_wieg76Y/hqdefault.jpg'">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+            <a href="https://www.youtube.com/watch?v=gwg_wieg76Y" target="_blank" style="width:72px;height:72px;background:rgba(227,0,11,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5);transition:transform .2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>@media(max-width:700px){#startHereThumb{display:none}}</style>
 
   <!-- VIDEOS -->
   <section id="videos">
@@ -1055,6 +1160,71 @@ ml('account', '2189778');
   </section>
 
   <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s2" style="background:var(--yellow)"></div></div>
+
+  <!-- STORY HOOK -->
+  <section style="background:var(--red);padding:48px 0;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,.5) 20px,rgba(255,255,255,.5) 22px)"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div style="font-family:'Boogaloo',cursive;font-size:clamp(28px,5vw,56px);color:#fff;line-height:1.1">
+        300 videos. Built from scratch.<br><span style="color:var(--yellow)">South Africa. 🇿🇦</span>
+      </div>
+      <p style="font-size:16px;color:rgba(255,255,255,.8);font-weight:700;margin-top:16px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.7">Started in November 2024 with zero subscribers and a camera phone. Every build uploaded before the algorithm noticed. This is what consistency looks like.</p>
+      <a onclick="showPage('videos')" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--red);font-weight:900;font-size:14px;padding:12px 28px;border-radius:10px;text-decoration:none;margin-top:24px;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.2);transition:all .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🎬 Watch All 300 Videos →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background:var(--bg);padding:72px 0">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px">
+        <span class="lbl lbl-b reveal" style="margin-bottom:16px;display:inline-block">⭐ From the Community</span>
+        <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4vw,52px);line-height:1;color:var(--black)">What Fans Are Saying</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
+          <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">This is honestly one of the best LEGO® tutorials I've seen. The detail on this build is insane — I built it myself and it came out perfect!</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px">🧱</div>
+            <div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@LegoFan_ZA</div>
+              <div style="font-size:11px;color:#888;font-weight:700">YouTube Comment</div>
+            </div>
+            <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
+          </div>
+        </div>
+
+        <div style="background:var(--black);border:3px solid var(--yellow);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.2);position:relative">
+          <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
+          <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px">Bro your MOCs are on another level 🔥 Been following since the start. Keep going, you're going to blow up!</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px">🚗</div>
+            <div>
+              <div style="font-weight:900;font-size:13px;color:#fff">@BrickBuilder101</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700">YouTube Comment</div>
+            </div>
+            <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
+          <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">Just bought the PDF instructions — so clear and easy to follow. My son and I built it together in one afternoon. Worth every cent!</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px">👨‍👦</div>
+            <div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@MOCdad_SA</div>
+              <div style="font-size:11px;color:#888;font-weight:700">Shop Customer</div>
+            </div>
+            <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
+          </div>
+        </div>
+
+      </div>
+      <p style="text-align:center;margin-top:28px;font-size:13px;color:#aaa;font-weight:700">⚠️ Placeholder quotes — replace with real YouTube comments when ready</p>
+    </div>
+  </section>
 
   <!-- ABOUT -->
   <style>
@@ -1112,6 +1282,15 @@ ml('account', '2189778');
     /* floating brick bg pieces */
     @keyframes atcFloat{0%{transform:translateY(0) rotate(var(--r0))}100%{transform:translateY(-120px) rotate(var(--r1))}}
   </style>
+
+  <!-- MILESTONE STRIP -->
+  <div style="background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow));padding:16px 0;overflow:hidden;white-space:nowrap">
+    <div style="display:inline-flex;gap:48px;animation:scrollStrip 20s linear infinite;font-family:'Boogaloo',cursive;font-size:18px;color:var(--black);font-weight:900">
+      <span>🧱 300+ VIDEOS</span><span>⭐ SOUTH AFRICA'S LEGO® CHANNEL</span><span>📦 PDF INSTRUCTIONS AVAILABLE</span><span>🎮 PLAY THE LEGO® GAME</span><span>🔔 NEW VIDEO EVERY SATURDAY</span><span>🏗️ ORIGINAL MOC DESIGNS</span>
+      <span>🧱 300+ VIDEOS</span><span>⭐ SOUTH AFRICA'S LEGO® CHANNEL</span><span>📦 PDF INSTRUCTIONS AVAILABLE</span><span>🎮 PLAY THE LEGO® GAME</span><span>🔔 NEW VIDEO EVERY SATURDAY</span><span>🏗️ ORIGINAL MOC DESIGNS</span>
+    </div>
+  </div>
+  <style>@keyframes scrollStrip{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
 
   <section id="about">
     <div class="atc-floats" id="atcFloats"></div>
@@ -1545,6 +1724,38 @@ ml('account', '2189778');
   </section>
 
   <!-- NEWSLETTER BAR -->
+  <!-- FAN TESTIMONIALS -->
+  <section style="background:var(--bg);padding:64px 0">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px">
+        <span class="lbl lbl-r reveal">Community Love</span>
+        <h2 class="sec-title reveal">What Fans Are Saying</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" class="testimonial-grid">
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 var(--black);position:relative">
+          <div style="font-size:32px;margin-bottom:12px">⭐⭐⭐⭐⭐</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:16px">"The best LEGO® tutorial channel I've found. The instructions are clear, detailed, and actually buildable. My kids love following along!"</p>
+          <div style="font-weight:900;font-size:13px;color:var(--red)">— YouTube Subscriber</div>
+          <div style="position:absolute;top:-3px;right:20px;background:var(--yellow);color:var(--black);font-size:10px;font-weight:900;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:1px">YOUTUBE</div>
+        </div>
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 var(--black);position:relative">
+          <div style="font-size:32px;margin-bottom:12px">⭐⭐⭐⭐⭐</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:16px">"Bought the Starter Pack and it was worth every cent. The PDF instructions are so well laid out. Already ordered the City Core bundle!"</p>
+          <div style="font-weight:900;font-size:13px;color:var(--red)">— Gumroad Customer</div>
+          <div style="position:absolute;top:-3px;right:20px;background:var(--orange);color:#fff;font-size:10px;font-weight:900;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:1px">SHOP</div>
+        </div>
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 var(--black);position:relative">
+          <div style="font-size:32px;margin-bottom:12px">⭐⭐⭐⭐⭐</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:16px">"From South Africa and putting out content that rivals channels with 100x the subscribers. Subscribed after the first video I watched!"</p>
+          <div style="font-weight:900;font-size:13px;color:var(--red)">— Community Member</div>
+          <div style="position:absolute;top:-3px;right:20px;background:var(--green);color:#fff;font-size:10px;font-weight:900;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:1px">COMMENT</div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:24px;font-size:13px;color:#999;font-weight:700">Replace these with real comments from your YouTube videos! 😊</p>
+    </div>
+  </section>
+  <style>@media(max-width:700px){.testimonial-grid{grid-template-columns:1fr!important}}</style>
+
   <div class="newsletter-bar">
     <div class="container">
       <div class="newsletter-inner">
@@ -2142,6 +2353,23 @@ window.addEventListener('scroll', () => {
 // ══════════════════════════════════════
 // NEWSLETTER
 // ══════════════════════════════════════
+// Update Start Here section with most recent video once API loads
+function updateStartHere() {
+  if (!VIDEOS || !VIDEOS.length) return;
+  const latest = VIDEOS[0];
+  if (!latest) return;
+  const img = document.getElementById('startHereImg');
+  const thumb = document.querySelector('#startHereThumb a');
+  if (img) {
+    img.src = latest.thumbnail || `https://img.youtube.com/vi/${latest.id}/maxresdefault.jpg`;
+    img.onerror = function() { this.src = `https://img.youtube.com/vi/${latest.id}/hqdefault.jpg`; };
+  }
+  if (thumb) {
+    const ytLink = latest.isShort ? `https://www.youtube.com/shorts/${latest.id}` : `https://www.youtube.com/watch?v=${latest.id}`;
+    thumb.href = ytLink;
+  }
+}
+
 function subscribeNewsletter() {
   const email = document.getElementById('newsletterEmail').value.trim();
   if (!email || !email.includes('@')) { alert('Please enter a valid email address!'); return; }
@@ -2158,11 +2386,76 @@ function subscribeNewsletter() {
 // ══════════════════════════════════════
 let wishlist = [];
 try { wishlist = JSON.parse(localStorage.getItem('bb_wishlist') || '[]'); } catch(e) {}
+
+function toggleWishlistPanel() {
+  const panel = document.getElementById('wishlistPanel');
+  const overlay = document.getElementById('wishlistOverlay');
+  const isOpen = panel.classList.contains('open');
+  if (!isOpen) {
+    renderWishlistPanel();
+    panel.classList.add('open');
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  } else {
+    panel.classList.remove('open');
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+function renderWishlistPanel() {
+  const body = document.getElementById('wishlistPanelBody');
+  if (!body) return;
+  if (!wishlist.length) {
+    body.innerHTML = '<div class="wishlist-empty"><div>🤍</div><p>No saved items yet.<br>Click ❤️ on any product to save it!</p></div>';
+    return;
+  }
+  // Find product details from PRODUCTS array
+  const items = wishlist.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+  if (!items.length) {
+    body.innerHTML = '<div class="wishlist-empty"><div>🤍</div><p>No saved items yet.</p></div>';
+    return;
+  }
+  body.innerHTML = items.map(p => `
+    <div class="wishlist-item">
+      <div class="wishlist-item-thumb">${p.emoji || '📦'}</div>
+      <div class="wishlist-item-info">
+        <div class="wishlist-item-name">${p.name}</div>
+        <div class="wishlist-item-price">$${p.price}</div>
+        <div class="wishlist-item-actions">
+          <button class="wishlist-item-buy" onclick="openBuyUrl(${p.id});toggleWishlistPanel()">🛒 Buy Now</button>
+          <button class="wishlist-item-remove" onclick="removeFromWishlist(${p.id})">✕ Remove</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function removeFromWishlist(id) {
+  wishlist = wishlist.filter(w => w !== id);
+  try { localStorage.setItem('bb_wishlist', JSON.stringify(wishlist)); } catch(e) {}
+  // Update heart button if visible
+  const btn = document.querySelector(`.wishlist-btn[onclick*="toggleWish(${id}"]`);
+  if (btn) { btn.classList.remove('wishlisted'); btn.textContent = '🤍'; }
+  updateWishlistCount();
+  renderWishlistPanel();
+}
+
+function updateWishlistCount() {
+  const badge = document.getElementById('wishlistNavCount');
+  if (!badge) return;
+  if (wishlist.length > 0) {
+    badge.style.display = 'inline';
+    badge.textContent = wishlist.length;
+  } else {
+    badge.style.display = 'none';
+  }
+}
 function toggleWishlist(id, name, btn) {
   const idx = wishlist.indexOf(id);
   if (idx === -1) { wishlist.push(id); btn.classList.add('wishlisted'); btn.textContent = '❤️'; }
   else { wishlist.splice(idx, 1); btn.classList.remove('wishlisted'); btn.textContent = '🤍'; }
   try { localStorage.setItem('bb_wishlist', JSON.stringify(wishlist)); } catch(e) {}
+  updateWishlistCount();
 }
 
 function toggleMobileMenu(){
@@ -2810,6 +3103,7 @@ function loadRSSFeed() {
           <div class="vmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</span></div>
         </div>
       </a>`).join('');
+    updateStartHere();
     setTimeout(initReveal, 50);
   });
 }
@@ -2839,6 +3133,20 @@ function setVidCat(cat, btn) {
   document.querySelectorAll('.vid-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   renderVidPage();
+  // Show related from other categories when a specific tab is selected
+  if (cat !== 'all') {
+    const otherCats = Object.keys(VID_CAT_LABELS).filter(c => c !== cat);
+    const related = VIDEOS.filter(v => otherCats.includes(v.cat)).sort(() => Math.random() - 0.5).slice(0, 6);
+    const section = document.getElementById('relatedSection');
+    const grid = document.getElementById('relatedGrid');
+    if (section && grid && related.length > 2) {
+      section.style.display = 'block';
+      grid.innerHTML = related.map((v, i) => buildHomeVidCard(v, i)).join('');
+    }
+  } else {
+    const section = document.getElementById('relatedSection');
+    if (section) section.style.display = 'none';
+  }
 }
 
 function filterVideos() {
@@ -2935,7 +3243,7 @@ function formatViews(n) {
 function buildVidCard(v, i) {
   const cat = VID_CAT_LABELS[v.cat] || { label: v.cat, accent: '#888' };
   const thumb = v.thumbnail || `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
-  const shortDesc = v.description ? v.description.slice(0, 100).trim() + (v.description.length > 100 ? '…' : '') : '';
+  const shortDesc = v.description ? v.description.slice(0, 160).trim() + (v.description.length > 160 ? '…' : '') : '';
   const views = v.viewCount ? formatViews(v.viewCount) : '';
   const ytLink = v.isShort ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
   return `
@@ -3118,6 +3426,7 @@ function atOpen(idx){
 
 document.addEventListener('DOMContentLoaded',()=>{
   initStuds();initHeroBg();initFloats();loadRSSFeed();setTimeout(initReveal,200);
+  updateWishlistCount();
   initAbout();
   // Populate category panel preview grids (show first 4 articles as cards)
   const panelCats = [

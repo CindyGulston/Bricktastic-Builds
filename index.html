@@ -3108,39 +3108,21 @@ async function loadVideosWithCache() {
   await fetchYouTubeVideos();
 }
 
-function loadRSSFeed() {
+function renderHomeGrid() {
   const grid = document.getElementById('videoGrid');
   if (!grid) return;
+  const homeVideos = VIDEOS.filter(v => v && v.id && v.title).slice(0, 9);
+  if (!homeVideos.length) return;
   grid.className = 'vgrid';
-
-  // Render local videos immediately
-  const homeVideos = VIDEOS.slice(0, 9);
   grid.innerHTML = homeVideos.map((v, i) => buildHomeVidCard(v, i)).join('');
+  setTimeout(initReveal, 50);
+}
 
-  // Then fetch from API and refresh
+function loadRSSFeed() {
+  renderHomeGrid();
   loadVideosWithCache().then(() => {
-    const homeVideos = VIDEOS.slice(0, 9);
-    grid.className = 'vgrid';
-    grid.innerHTML = homeVideos.map((v, i) => `
-      <a class="vc reveal" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">
-        <div class="vt">
-          <img
-            src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg"
-            alt="${v.title}"
-            loading="${i < 3 ? 'eager' : 'lazy'}"
-            onerror="this.src='https://img.youtube.com/vi/${v.id}/mqdefault.jpg';this.onerror=null"
-          >
-          <div class="vrank-badge">#${i + 1}</div>
-          ${i === 0 ? '<div class="vnew-badge">NEW</div>' : ''}
-          <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="vi">
-          <div class="vtitle">${title}</div>
-          <div class="vmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</span></div>
-        </div>
-      </a>`).join('');
+    renderHomeGrid();
     updateStartHere();
-    setTimeout(initReveal, 50);
   });
 }
 
@@ -3250,12 +3232,15 @@ function showRelatedVideos(cat) {
 
 // Simple card for home page video grid
 function buildHomeVidCard(v, i) {
+  const thumb = v.thumbnail || 'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg';
+  const title = v.title || '';
+  const ytLink = v.isShort ? 'https://www.youtube.com/shorts/' + v.id : 'https://www.youtube.com/watch?v=' + v.id;
   return `
-    <a class="vc reveal" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">
+    <a class="vc reveal" href="${ytLink}" target="_blank" rel="noopener noreferrer">
       <div class="vt">
         <img
-          src="${v.thumbnail || 'https://img.youtube.com/vi/'+v.id+'/hqdefault.jpg'}"
-          alt="${v.title}"
+          src="${thumb}"
+          alt="${title}"
           loading="${i < 3 ? 'eager' : 'lazy'}"
           onerror="this.src='https://img.youtube.com/vi/${v.id}/mqdefault.jpg';this.onerror=null"
         >

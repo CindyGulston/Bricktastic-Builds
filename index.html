@@ -51,8 +51,8 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .nav-about-a{background:var(--yellow)!important;color:var(--black)!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
 .nav-blog-a{background:#006CB7!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
 .nav-blog-a:hover{background:#005a9a!important;color:#fff!important}
-.nav-gallery-a{background:#7B2FBE!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
-.nav-gallery-a:hover{background:#6322a0!important;color:#fff!important}
+.nav-gallery-a{background:#00B5AD!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
+.nav-gallery-a:hover{background:#009990!important;color:#fff!important}
 .nav-about-a:hover{background:#e6bb00!important;color:var(--black)!important}
 /* BLOG PAGE */
 .blog-hero{background:var(--black);padding:52px 0 44px;margin-top:66px;position:relative;overflow:hidden}
@@ -88,7 +88,7 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .blog-post-content p{margin-bottom:16px}
 .blog-post-content h3{font-family:'Boogaloo',cursive;font-size:22px;margin:28px 0 10px;color:var(--black)}
 /* GALLERY PAGE */
-.gallery-hero{background:linear-gradient(135deg,#7B2FBE,#E3000B);padding:52px 0 44px;margin-top:66px;position:relative;overflow:hidden}
+.gallery-hero{background:linear-gradient(135deg,#00B5AD,#E3000B);padding:52px 0 44px;margin-top:66px;position:relative;overflow:hidden}
 .gallery-hero::before{content:'';position:absolute;inset:0;opacity:.08;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,.4) 20px,rgba(255,255,255,.4) 22px)}
 .gallery-hero-inner{position:relative;z-index:2;color:#fff}
 .gallery-hero-inner h1{font-family:'Boogaloo',cursive;font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:10px}
@@ -868,10 +868,10 @@ ml('account', '2189778');
     
     <li><a onclick="showPage('home')" class="nav-home-a">🏠 Home</a></li>
     <li><a onclick="showPage('videos')" class="nav-videos-a">🎬 Videos</a></li>
-    <li><a onclick="showPage('mocs')" class="nav-mocs-a">🏗️ MOCs</a></li>
+    <li><a onclick="showPage('mocs')" class="nav-mocs-a">🏗️ MOC Gallery</a></li>
     <li><a onclick="showPage('shop')" class="nav-shop-a">🛒 Shop</a></li>
     <li><a onclick="showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
-    <li><a onclick="showPage('gallery')" class="nav-gallery-a">🌟 Gallery</a></li>
+    <li><a onclick="showPage('gallery')" class="nav-gallery-a">👥 Community</a></li>
     <li><a onclick="showPage('about')" class="nav-about-a">👤 About</a></li>
     <li><a onclick="showPage('game')" class="nav-game-a">🎮 Game</a></li>
   </ul>
@@ -1429,7 +1429,7 @@ ml('account', '2189778');
     <div class="hero-bg" id="heroBgM"></div>
     <div class="hero-left">
       <span class="hero-badge">🏗️ Original LEGO Creations</span>
-      <h1><span class="y">My</span><br><span class="r">MOCs.</span></h1>
+      <h1><span class="y">MOC</span><br><span class="r">Gallery.</span></h1>
       <p class="hero-sub">Every original build I've designed — scroll through the photos.</p>
       <div class="hero-ctas">
         <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">
@@ -1455,7 +1455,7 @@ ml('account', '2189778');
   <section style="background:var(--bg);padding:60px 0 80px">
     <div class="container">
       <span class="lbl reveal" style="background:#7B2FBE;color:#fff">Original Builds</span>
-      <h2 class="sec-title reveal">Browse All MOCs</h2>
+      <h2 class="sec-title reveal">Browse MOC Gallery</h2>
       <div class="moc-filter-bar reveal">
         <input class="moc-search" id="mocSearch" type="text" placeholder="🔍 Search MOCs…" oninput="filterMOCs()">
         <button class="moc-tag-btn active" onclick="setMocTag('all',this)">All</button>
@@ -1640,6 +1640,7 @@ ml('account', '2189778');
         <div class="vid-filter-tabs" id="vidTabs">
           <button class="vid-tab active" onclick="setVidCat('all',this)">All</button>
           <button class="vid-tab" onclick="setVidCat('tutorials',this)">🎓 Tutorials</button>
+          <button class="vid-tab" onclick="setVidCat('timelapse',this)">⏱️ Timelapse</button>
           <button class="vid-tab" onclick="setVidCat('instructions',this)">📦 Instructions</button>
           <button class="vid-tab" onclick="setVidCat('showcase',this)">🌟 Showcase</button>
           <button class="vid-tab" onclick="setVidCat('shorts',this)">⚡ Shorts</button>
@@ -2407,8 +2408,11 @@ function detectCategory(title, desc) {
   // LEGO News / reviews / history
   if (/lego news|review|history|ranked|ranking|explained|deep dive|origins|story|timeline/.test(t)) return 'lego-news';
 
+  // Timelapse — must come before tutorials so it doesn't get swallowed
+  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
+
   // Tutorials — word "Tutorial" anywhere in title, or "How to Build", or "MOC"
-  if (/tutorial|how to build|how to make|moc|timelapse|time.lapse|speed build/.test(t)) return 'tutorials';
+  if (/tutorial|how to build|how to make|moc|speed build/.test(t)) return 'tutorials';
 
   // Default
   return 'tutorials';
@@ -2489,12 +2493,13 @@ const VID_PAGE_SIZE = 30;
 
 const VID_CAT_LABELS = {
   'tutorials':    { label: '🎓 Tutorials',    accent: '#E3000B' },
+  'timelapse':    { label: '⏱️ Timelapse',    accent: '#16A085' },
   'instructions': { label: '📦 Instructions', accent: '#006CB7' },
   'showcase':     { label: '🌟 Showcase',     accent: '#7B2FBE' },
   'shorts':       { label: '⚡ Shorts',       accent: '#FF6B00' },
   'lego-news':    { label: '📰 LEGO News',    accent: '#00A650' },
   'jokes':        { label: '😂 Jokes',        accent: '#b89a00' },
-  'quiz':         { label: '🧩 Quiz',         accent: '#006CB7' },
+  'quiz':         { label: '🧩 Quiz',         accent: '#9B59B6' },
 };
 
 function setVidCat(cat, btn) {

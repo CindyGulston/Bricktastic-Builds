@@ -35,13 +35,13 @@ html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;background:var(--black);border-bottom:5px solid var(--yellow);box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--black);border-bottom:5px solid var(--yellow);box-shadow:0 4px 24px rgba(0,0,0,0.4)}
 .nav-logo{font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);text-decoration:none;letter-spacing:1px;display:flex;align-items:center;gap:10px;cursor:pointer}
 .lego-brick-icon{display:inline-block;vertical-align:middle;width:1.3em;height:.9em;position:relative;top:-.05em}
 .logo-b{width:34px;height:22px;background:var(--red);border-radius:4px;position:relative;transform:rotate(-6deg);box-shadow:0 3px 0 #8b0000;flex-shrink:0}
 .logo-b::before,.logo-b::after{content:'';position:absolute;top:-7px;width:11px;height:8px;background:var(--red);border-radius:50% 50% 0 0/80% 80% 0 0;filter:brightness(1.2)}
 .logo-b::before{left:4px}.logo-b::after{left:19px}
-nav ul{list-style:none;display:flex;gap:4px}
+nav ul{list-style:none;display:flex;gap:0;flex:1;justify-content:center}
 nav ul li a{font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:#ddd;text-decoration:none;padding:6px 14px;border-radius:6px;border:2px solid transparent;transition:all .15s;cursor:pointer}
 nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
 .nav-videos-a{background:var(--red)!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
@@ -1048,30 +1048,13 @@ window.addEventListener('load', function() {
       <span></span><span></span><span></span>
     </button>
     <div class="nav-right">
-    <button class="search-btn" onclick="openSearch()" title="Search">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-      Search
-    </button>
-    <button class="dark-toggle" onclick="toggleDark()" id="darkBtn">🌙 Dark</button>
-
     <div class="cart-btn" onclick="toggleCart()">
       🛒 Cart
       <span class="cart-count" id="cartCount">0</span>
     </div>
-    <div class="nav-socials">
-      <a href="https://www.tiktok.com/@bricktasticbuilds" target="_blank" class="nav-social-icon" title="TikTok">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=61575146147730" target="_blank" class="nav-social-icon" title="Facebook">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/bricktasticbuilds" target="_blank" class="nav-social-icon" title="Instagram">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      </a>
-    </div>
-    <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="nav-social-icon" title="YouTube" style="background:var(--red);border-color:var(--red)">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-    </a>
+    <button class="search-btn" onclick="openSearch()" title="Search" style="margin-left:4px">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </nav>
 

@@ -243,6 +243,12 @@ body.dark input,body.dark textarea{background:#222;color:#fff;border-color:#444}
 .flinks a{color:#ccc}
 .flinks a:hover{color:var(--yellow)}
 .fc{color:#888}
+/* Hero text always white (hero is always dark bg) */
+.hero-left h1,.hero-left .hero-sub,.hero-left .hero-badge,.hero-left .sn,.hero-left .sl{color:#fff!important}
+.hero-left .sn{color:var(--yellow)!important}
+/* Stat numbers always visible */
+.sn{font-family:'Boogaloo',cursive;font-size:clamp(28px,4vw,44px);color:var(--yellow);display:block;line-height:1}
+.sl{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.6);display:block}
 .dark-toggle{background:none;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px;color:#fff;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;transition:all .15s}
 .dark-toggle:hover{background:rgba(255,255,255,.1)}
 
@@ -1047,7 +1053,7 @@ window.addEventListener('load', function() {
       Search
     </button>
     <button class="dark-toggle" onclick="toggleDark()" id="darkBtn">🌙 Dark</button>
-    <button onclick="toggleWishlistPanel()" title="Wishlist" style="background:none;border:2px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px;color:#fff;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;position:relative;transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.background='none'">❤️ Wishlist <span id="wishlistNavCount" style="display:none;background:var(--red);color:#fff;font-size:10px;font-weight:900;padding:1px 6px;border-radius:10px;margin-left:4px">0</span></button>
+
     <div class="cart-btn" onclick="toggleCart()">
       🛒 Cart
       <span class="cart-count" id="cartCount">0</span>
@@ -1128,7 +1134,7 @@ window.addEventListener('load', function() {
           <div class="bs" style="left:140px;background:var(--red)"></div>
           <div class="bs" style="left:202px;background:var(--red)"></div>
         </div>
-        <div class="ch-tag" id="statVideos4">300 Videos</div>
+        <div class="ch-tag">@BricktasticBuilds</div>
       </div>
     </div>
   </div>
@@ -1751,37 +1757,7 @@ window.addEventListener('load', function() {
     </div>
   </section>
 
-  <!-- FAN TESTIMONIALS -->
-  <section style="background:var(--bg);padding:64px 0">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:40px">
-        <span class="lbl lbl-r reveal">Community Love</span>
-        <h2 class="sec-title reveal">What Fans Are Saying</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" class="testimonial-grid">
-        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 var(--black);position:relative">
-          <div style="font-size:32px;margin-bottom:12px">⭐⭐⭐⭐⭐</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:16px">"The best LEGO® tutorial channel I've found. The instructions are clear, detailed, and actually buildable. My kids love following along!"</p>
-          <div style="font-weight:900;font-size:13px;color:var(--red)">— YouTube Subscriber</div>
-          <div style="position:absolute;top:-3px;right:20px;background:var(--yellow);color:var(--black);font-size:10px;font-weight:900;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:1px">YOUTUBE</div>
-        </div>
-        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 var(--black);position:relative">
-          <div style="font-size:32px;margin-bottom:12px">⭐⭐⭐⭐⭐</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:16px">"Bought the Starter Pack and it was worth every cent. The PDF instructions are so well laid out. Already ordered the City Core bundle!"</p>
-          <div style="font-weight:900;font-size:13px;color:var(--red)">— Gumroad Customer</div>
-          <div style="position:absolute;top:-3px;right:20px;background:var(--orange);color:#fff;font-size:10px;font-weight:900;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:1px">SHOP</div>
-        </div>
-        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 var(--black);position:relative">
-          <div style="font-size:32px;margin-bottom:12px">⭐⭐⭐⭐⭐</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:16px">"From South Africa and putting out content that rivals channels with 100x the subscribers. Subscribed after the first video I watched!"</p>
-          <div style="font-weight:900;font-size:13px;color:var(--red)">— Community Member</div>
-          <div style="position:absolute;top:-3px;right:20px;background:var(--green);color:#fff;font-size:10px;font-weight:900;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:1px">COMMENT</div>
-        </div>
-      </div>
-      <p style="text-align:center;margin-top:24px;font-size:13px;color:#999;font-weight:700">Replace these with real comments from your YouTube videos! 😊</p>
-    </div>
-  </section>
-  <style>@media(max-width:700px){.testimonial-grid{grid-template-columns:1fr!important}}</style>
+
 
   <!-- NEWSLETTER BAR -->
   <div class="newsletter-bar">
@@ -1902,7 +1878,7 @@ window.addEventListener('load', function() {
       <p class="hero-sub">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download.</p>
       <div class="hero-ctas">
         <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">📐 Browse Instructions</a>
-        <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">Watch on YouTube</a>
+        <button class="btn btn-red" onclick="toggleWishlistPanel()">❤️ My Wishlist <span id="wishlistShopCount" style="display:none;background:rgba(255,255,255,.3);color:#fff;font-size:11px;font-weight:900;padding:1px 7px;border-radius:10px;margin-left:4px">0</span></button>
       </div>
     </div>
     <div class="hero-right" id="heroR-shop">
@@ -2504,14 +2480,16 @@ function removeFromWishlist(id) {
 }
 
 function updateWishlistCount() {
-  const badge = document.getElementById('wishlistNavCount');
-  if (!badge) return;
-  if (wishlist.length > 0) {
-    badge.style.display = 'inline';
-    badge.textContent = wishlist.length;
-  } else {
-    badge.style.display = 'none';
-  }
+  ['wishlistNavCount', 'wishlistShopCount'].forEach(id => {
+    const badge = document.getElementById(id);
+    if (!badge) return;
+    if (wishlist.length > 0) {
+      badge.style.display = 'inline';
+      badge.textContent = wishlist.length;
+    } else {
+      badge.style.display = 'none';
+    }
+  });
 }
 function toggleWishlist(id, name, btn) {
   const idx = wishlist.indexOf(id);

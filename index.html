@@ -7323,7 +7323,7 @@ loadQ();
 #lego-collecting-body .tier-tab:hover{border-color:var(--gold-l);color:var(--gold-l)}
 #lego-collecting-body .tier-tab.on{background:var(--gold-l);color:var(--ink);border-color:var(--gold-l);font-weight:700}
 #lego-collecting-body .tier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-#lego-collecting-body .tier-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:26px;cursor:pointer;transition:background .2s,transform .2s,border-color .2s;position:relative;overflow:hidden}
+#lego-collecting-body .tier-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:26px;transition:background .2s,transform .2s,border-color .2s;position:relative;overflow:hidden}
 #lego-collecting-body .tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transition:transform .25s;transform-origin:left}
 #lego-collecting-body .tier-card:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);border-color:rgba(255,255,255,.2)}
 #lego-collecting-body .tier-card:hover::before{transform:scaleX(1)}
@@ -7472,7 +7472,7 @@ loadQ();
 #lego-collecting-body .rfbtn:hover{border-color:var(--gold);color:var(--gold)}
 #lego-collecting-body .rfbtn.active{background:var(--ink);color:var(--gold);border-color:var(--ink)}
 #lego-collecting-body .rarity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-#lego-collecting-body .rarity-card{background:#fff;border:1px solid rgba(14,14,14,.1);border-radius:6px;padding:24px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+#lego-collecting-body .rarity-card{background:#fff;border:1px solid rgba(14,14,14,.1);border-radius:6px;padding:24px;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
 #lego-collecting-body .rarity-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.12);border-color:var(--gold)}
 #lego-collecting-body .rc-tier{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;padding:3px 8px;display:inline-block;border-radius:2px}
 #lego-collecting-body .rc-tier.legendary{background:rgba(201,168,76,.15);color:var(--gold)}
@@ -7932,7 +7932,6 @@ function renderTiers(filter){
     c.className='tier-card';c.dataset.tier=t.tier;
     c.style.animation='mIn .4s ease '+(i*.05)+'s both';
     c.innerHTML='<div class="tc-tier" style="color:'+tc[t.tier]+'">'+t.tier.toUpperCase()+'</div><span class="tc-icon">'+t.icon+'</span><div class="tc-name">'+t.name+'</div><div class="tc-desc">'+t.sub+'</div><div class="tc-value">'+t.value+' <span>est. BrickLink range</span></div>';
-    c.onclick=()=>openTM(t);
     grid.appendChild(c);
   });
 }
@@ -8117,7 +8116,6 @@ function renderRarity(filter){
       +'<div class="rc-desc">'+p.desc+'</div>'
       +'<div class="rc-value">'+p.value+'</div>'
       +'<div class="rc-tags">'+p.tags.map(t=>'<span class="rc-tag">'+t+'</span>').join('')+'</div>';
-    card.onclick=()=>openPartModal(p);
     grid.appendChild(card);
   });
 }

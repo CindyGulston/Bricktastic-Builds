@@ -1214,6 +1214,7 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
 /* ── Article hero parallax wrapper ── */
 .article-hero-inner {
   position:relative;z-index:2;
+  will-change:transform;
   transition:transform .08s linear;
 }
 
@@ -1795,7 +1796,7 @@ window.addEventListener('load', function() {
       <div class="cgrid">
 
         <!-- HISTORY OF LEGO® -->
-        <div class="deep-dives-section" style="--cat-color:#7B2FBE;cursor:pointer" onclick="showPage('lego-history')">
+        <div class="deep-dives-section reveal" style="--cat-color:#7B2FBE;cursor:pointer" onclick="showPage('lego-history')">
           <div class="dd-shine"></div>
           <div class="dd-header" style="background:#7B2FBE;cursor:pointer">
             <div class="dd-header-left">
@@ -1953,7 +1954,7 @@ window.addEventListener('load', function() {
 
 
         <!-- BIGGEST SETS -->
-        <div class="deep-dives-section" style="--cat-color:#E3000B;cursor:pointer" onclick="showPage('biggest-sets')">
+        <div class="deep-dives-section reveal" style="--cat-color:#E3000B;cursor:pointer" onclick="showPage('biggest-sets')">
           <div class="dd-shine"></div>
           <div class="dd-header" style="background:#E3000B;cursor:pointer">
             <div class="dd-header-left">
@@ -1971,7 +1972,7 @@ window.addEventListener('load', function() {
         </div>
 
         <!-- LEGO® CHALLENGES -->
-        <div class="deep-dives-section" style="--cat-color:#b89a00;cursor:pointer" onclick="showPage('lego-challenges')">
+        <div class="deep-dives-section reveal" style="--cat-color:#b89a00;cursor:pointer" onclick="showPage('lego-challenges')">
           <div class="dd-shine"></div>
           <div class="dd-header" style="background:#b89a00;cursor:pointer">
             <div class="dd-header-left">
@@ -1985,7 +1986,7 @@ window.addEventListener('load', function() {
           <div class="dd-body" style="display:none!important"></div>
         </div>
         <!-- LEGO® COLLECTING -->
-        <div class="deep-dives-section" style="--cat-color:#c9a84c;cursor:pointer" onclick="showPage('lego-collecting')">
+        <div class="deep-dives-section reveal" style="--cat-color:#c9a84c;cursor:pointer" onclick="showPage('lego-collecting')">
           <div class="dd-shine"></div>
           <div class="dd-header" style="background:#c9a84c;cursor:pointer">
             <div class="dd-header-left">
@@ -2003,7 +2004,7 @@ window.addEventListener('load', function() {
         </div>
 
         <!-- TIPS & TRICKS -->
-        <div class="deep-dives-section" style="--cat-color:#00A650;cursor:pointer" onclick="showPage('tips-tricks')">
+        <div class="deep-dives-section reveal" style="--cat-color:#00A650;cursor:pointer" onclick="showPage('tips-tricks')">
           <div class="dd-shine"></div>
           <div class="dd-header" style="background:#00A650;cursor:pointer">
             <div class="dd-header-left">
@@ -2362,19 +2363,19 @@ window.addEventListener('load', function() {
           </div>
         </div>
         <!-- INSTRUCTIONS -->
-        <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#003d6b,#006CB7)"><span class="te">🏙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-m">Intermediate</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">City Corner Café — Building Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 340 pcs</span><span>📄 48 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>8</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(1)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="2" onclick="openMod(2)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">🌲</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">PDF Instructions</div><div class="pname">Jungle Waterfall Vignette — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 180 pcs</span><span>📄 28 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>5</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(2)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="3" onclick="openMod(3)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#7B2FBE,#E3000B)"><span class="te">🏯</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">PDF Instructions</div><div class="pname">Japanese Ramen Street Scene — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 920 pcs</span><span>📄 96 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>14</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(3)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="moc" data-id="4" onclick="openMod(4)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#3d2200)"><span class="te">🚂</span><div class="rib rib-moc">🏗️ Physical MOC</div><div class="db db-x">Collector</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">Physical MOC</div><div class="pname">Victorian Train Station — Custom MOC</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> ~3,200 pcs</span><span>📏 32×48 studs</span><span>🚚 Ships worldwide</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>129</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(4)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="5" onclick="openMod(5)"><div class="pthumb" style="background:linear-gradient(135deg,#b89a00,#FFD700)"><span class="te">⚙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-x">Expert</div></div><div class="pinfo"><div class="ptyp" style="color:#b89a00">PDF Instructions</div><div class="pname">Working Technic Engine Display — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 480 pcs</span><span>📄 64 pages</span><span>⚙️ Fully kinetic</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>12</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(5)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="bun" data-id="6" onclick="openMod(6)"><div class="pthumb" style="background:linear-gradient(135deg,#8b3a00,#FF6B00)"><span class="te">📦</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">Bundle — Save 40%</div><div class="pname">Starter Pack — 5 Instructions for Beginners</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 5 builds</span><span>📄 200+ pages</span><span>💰 Save 40%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>19</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(6)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="7" onclick="openMod(7)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#00838F)"><span class="te">🌉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Suspension Bridge Micro-Scale — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 620 pcs</span><span>📄 52 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>10</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(7)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="9" onclick="openMod(9)"><div class="pthumb" style="background:linear-gradient(135deg,#0a0a2e,#006CB7)"><span class="te">🚀</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Space Station Micro Build — Instructions</div><div class="pmeta"><span>220 pcs</span><span>📄 32 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>7</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(9)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="10" onclick="openMod(10)"><div class="pthumb" style="background:linear-gradient(135deg,#1a0800,#8b3a00)"><span class="te">🐉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">PDF Instructions</div><div class="pname">Dragon Lair Diorama — Instructions</div><div class="pmeta"><span>780 pcs</span><span>📄 68 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>11</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(10)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="11" onclick="openMod(11)"><div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FFD700)"><span class="te">🖼️</span><div class="rib rib-ins" style="background:var(--yellow);color:var(--black)">🖼️ Wallpapers</div></div><div class="pinfo"><div class="ptyp" style="color:var(--red)">Digital Wallpapers</div><div class="pname">Bricktastic Wallpaper Pack — 10 Designs</div><div class="pmeta"><span>10 wallpapers</span><span>🖥️ 4K res</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>3</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(11)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="12" onclick="openMod(12)"><div class="pthumb" style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">📋</span><div class="rib rib-ins" style="background:var(--green)">📋 BrickLink XML</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">BrickLink XML</div><div class="pname">Speed Champions XML Parts Pack — 8 MOCs</div><div class="pmeta"><span>8 MOCs</span><span>📄 XML files</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>4</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(12)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="bun" data-id="13" onclick="openMod(13)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#7B2FBE)"><span class="te">🏙️</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Bundle — Save 35%</div><div class="pname">Modular City Core — 4 Build Mega Bundle</div><div class="pmeta"><span>4 PDFs</span><span>💰 Save 35%</span><span>🏙️ City connects</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>29</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(13)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="bun" data-id="8" onclick="openMod(8)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#7B2FBE)"><span class="te">👑</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Ultimate Bundle — Save 60%</div><div class="pname">Complete Bricktastic Collection — All Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> All builds</span><span>📄 All PDFs</span><span>💰 Save 60%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>39</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(8)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#003d6b,#006CB7)"><span class="te">🏙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-m">Intermediate</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">City Corner Café — Building Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 340 pcs</span><span>📄 48 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>8</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(1)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="2" onclick="openMod(2)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">🌲</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">PDF Instructions</div><div class="pname">Jungle Waterfall Vignette — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 180 pcs</span><span>📄 28 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>5</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(2)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="3" onclick="openMod(3)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#7B2FBE,#E3000B)"><span class="te">🏯</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">PDF Instructions</div><div class="pname">Japanese Ramen Street Scene — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 920 pcs</span><span>📄 96 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>14</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(3)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="moc" data-id="4" onclick="openMod(4)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#3d2200)"><span class="te">🚂</span><div class="rib rib-moc">🏗️ Physical MOC</div><div class="db db-x">Collector</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">Physical MOC</div><div class="pname">Victorian Train Station — Custom MOC</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> ~3,200 pcs</span><span>📏 32×48 studs</span><span>🚚 Ships worldwide</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>129</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(4)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="5" onclick="openMod(5)"><div class="pthumb" style="background:linear-gradient(135deg,#b89a00,#FFD700)"><span class="te">⚙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-x">Expert</div></div><div class="pinfo"><div class="ptyp" style="color:#b89a00">PDF Instructions</div><div class="pname">Working Technic Engine Display — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 480 pcs</span><span>📄 64 pages</span><span>⚙️ Fully kinetic</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>12</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(5)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="6" onclick="openMod(6)"><div class="pthumb" style="background:linear-gradient(135deg,#8b3a00,#FF6B00)"><span class="te">📦</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">Bundle — Save 40%</div><div class="pname">Starter Pack — 5 Instructions for Beginners</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 5 builds</span><span>📄 200+ pages</span><span>💰 Save 40%</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>19</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(6)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="7" onclick="openMod(7)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#00838F)"><span class="te">🌉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Suspension Bridge Micro-Scale — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 620 pcs</span><span>📄 52 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>10</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(7)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="9" onclick="openMod(9)"><div class="pthumb" style="background:linear-gradient(135deg,#0a0a2e,#006CB7)"><span class="te">🚀</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Space Station Micro Build — Instructions</div><div class="pmeta"><span>220 pcs</span><span>📄 32 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>7</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(9)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="10" onclick="openMod(10)"><div class="pthumb" style="background:linear-gradient(135deg,#1a0800,#8b3a00)"><span class="te">🐉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">PDF Instructions</div><div class="pname">Dragon Lair Diorama — Instructions</div><div class="pmeta"><span>780 pcs</span><span>📄 68 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>11</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(10)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="11" onclick="openMod(11)"><div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FFD700)"><span class="te">🖼️</span><div class="rib rib-ins" style="background:var(--yellow);color:var(--black)">🖼️ Wallpapers</div></div><div class="pinfo"><div class="ptyp" style="color:var(--red)">Digital Wallpapers</div><div class="pname">Bricktastic Wallpaper Pack — 10 Designs</div><div class="pmeta"><span>10 wallpapers</span><span>🖥️ 4K res</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>3</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(11)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="12" onclick="openMod(12)"><div class="pthumb" style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">📋</span><div class="rib rib-ins" style="background:var(--green)">📋 BrickLink XML</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">BrickLink XML</div><div class="pname">Speed Champions XML Parts Pack — 8 MOCs</div><div class="pmeta"><span>8 MOCs</span><span>📄 XML files</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>4</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(12)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="13" onclick="openMod(13)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#7B2FBE)"><span class="te">🏙️</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Bundle — Save 35%</div><div class="pname">Modular City Core — 4 Build Mega Bundle</div><div class="pmeta"><span>4 PDFs</span><span>💰 Save 35%</span><span>🏙️ City connects</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>29</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(13)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="8" onclick="openMod(8)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#7B2FBE)"><span class="te">👑</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Ultimate Bundle — Save 60%</div><div class="pname">Complete Bricktastic Collection — All Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> All builds</span><span>📄 All PDFs</span><span>💰 Save 60%</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>39</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(8)">🛒 Add</button></div></div></div>
       </div>
 
       <!-- TRUST BADGES -->
@@ -2866,7 +2867,7 @@ function renderWishlistPanel() {
       <div class="wishlist-item-thumb">${p.emoji || '📦'}</div>
       <div class="wishlist-item-info">
         <div class="wishlist-item-name">${p.name}</div>
-        <div class="wishlist-item-price">R${p.price}</div>
+        <div class="wishlist-item-price">$${p.price}</div>
         <div class="wishlist-item-actions">
           <button class="wishlist-item-buy" onclick="openBuyUrl(${p.id});toggleWishlistPanel()">🛒 Buy Now</button>
           <button class="wishlist-item-remove" onclick="removeFromWishlist(${p.id})">✕ Remove</button>
@@ -2926,10 +2927,15 @@ function showPage(id){
     if(ham) ham.classList.remove('ham-open');
     window.scrollTo({top:0,behavior:'instant'});
     if(id==='lego-history') initLegoHistoryPage();
-    if(id==='biggest-sets') initBiggestSetsPage();
+    if(id==='biggest-sets') {
+      setTimeout(()=>{
+        document.querySelectorAll('#biggest-sets-body .reveal').forEach(el=>el.classList.add('visible'));
+        document.querySelectorAll('#biggest-sets-body .theme-bar-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
+      }, 50);
+    }
     if(id==='lego-challenges') initLegoChallengesPage();
-    if(id==='lego-collecting') initLegoCollectingPage();
-    if(id==='tips-tricks') { initTipsTricksPage(); renderTech('all'); }
+    if(id==='lego-collecting') { lcPageInited=false; initLegoCollectingPage(); if(typeof renderTiers==='function') renderTiers('all'); if(typeof renderRarity==='function') renderRarity('all'); }
+    if(id==='tips-tricks') { if(window.ttPageInited!==undefined) window.ttPageInited=false; if(typeof window.initTipsTricksPage==='function') window.initTipsTricksPage(); if(typeof window.renderTech==='function') window.renderTech('all'); else if(typeof renderTech==='function') renderTech('all'); }
     if(id==='videos') buildVideoIndex();
     if(id==='mocs') initMOCPage();
     if(id==='about') initAboutPage();
@@ -3391,114 +3397,104 @@ function updateChannelStats(subs, vids) {
 }
 
 async function fetchYouTubeVideos() {
+  // ── Strategy: RSS feed first (no quota, no key needed, always works)
+  // Then try YouTube Data API for full stats if available
   let rssSuccess = false;
 
-  // ── STEP 1: RSS feed with multiple CORS proxy fallbacks
-  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
-  const PROXIES = [
-    `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`,
-    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`,
-    `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`,
-    `https://thingproxy.freeboard.io/fetch/${rssUrl}`,
-  ];
+  // ── STEP 1: RSS feed via allorigins CORS proxy (free, reliable)
+  try {
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
+    const proxy  = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
+    const res    = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+    const json   = await res.json();
+    const parser = new DOMParser();
+    const xml    = parser.parseFromString(json.contents, 'text/xml');
+    const entries = Array.from(xml.querySelectorAll('entry'));
 
-  for (const proxy of PROXIES) {
-    if (rssSuccess) break;
-    try {
-      const res  = await fetch(proxy, { signal: AbortSignal.timeout(7000) });
-      if (!res.ok) continue;
-      // allorigins wraps in JSON; others return raw XML
-      let xmlText;
-      const ct = res.headers.get('content-type') || '';
-      if (ct.includes('json')) {
-        const json = await res.json();
-        xmlText = json.contents || json.body || '';
-      } else {
-        xmlText = await res.text();
-      }
-      if (!xmlText || !xmlText.includes('<entry>')) continue;
-
-      const parser  = new DOMParser();
-      const xml     = parser.parseFromString(xmlText, 'text/xml');
-      const entries = Array.from(xml.querySelectorAll('entry'));
-      if (!entries.length) continue;
-
+    if (entries.length) {
       const fetched = entries.map(e => {
-        const idRaw = e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '';
-        const id    = idRaw.replace('yt:video:','');
+        const id    = (e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '').replace('yt:video:','');
         const title = e.querySelector('title')?.textContent || '';
         const published = e.querySelector('published')?.textContent || '';
         const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
         const views = e.querySelector('statistics')?.getAttribute('views') || '0';
-        return { id, title, description:'', thumbnail:thumb, publishedAt:published, viewCount:views, isShort:false, cat:detectCategory(title,'') };
+        return { id, title, description: '', thumbnail: thumb, publishedAt: published, viewCount: views, isShort: false, cat: detectCategory(title, '') };
       }).filter(v => v.id && v.title).map(sanitiseVideo);
 
       if (fetched.length) {
         VIDEOS = fetched;
         rssSuccess = true;
-        console.log('RSS success via', proxy.split('?')[0], '—', VIDEOS.length, 'videos');
+        console.log('RSS feed success:', VIDEOS.length, 'videos');
         try {
           sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS));
           sessionStorage.setItem('yt_videos_time', Date.now().toString());
         } catch(e) {}
-        // Re-render immediately with fresh data
-        renderHomeGrid();
-        if (typeof buildVideoIndex === 'function') buildVideoIndex();
       }
-    } catch(e) {
-      console.warn('Proxy failed:', proxy.split('?')[0], e.message);
     }
+  } catch(e) {
+    console.warn('RSS fetch failed:', e.message);
   }
 
-  if (!rssSuccess) console.warn('All RSS proxies failed — showing local video list');
-
-  // ── STEP 2: YouTube Data API for live subscriber/video counts
+  // ── STEP 2: YouTube Data API for subscriber count + richer video data
+  // Only attempt if we have a key and are on a real domain (not localhost)
+  const isLiveDomain = location.hostname !== 'localhost' && location.hostname !== '127.0.0.1' && location.hostname !== '';
   if (!YT_API_KEY || YT_API_KEY === 'YOUR_API_KEY') return;
+
   try {
-    const chanRes  = await fetch(`${YT_API_BASE}/channels?part=contentDetails,statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(8000) });
+    const chanRes = await fetch(`${YT_API_BASE}/channels?part=contentDetails,statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(8000) });
     const chanData = await chanRes.json();
-    if (chanData.error) { console.warn('YT API:', chanData.error.message); return; }
+    if (chanData.error) {
+      console.warn('YT API error:', chanData.error.message, '(code', chanData.error.code + ')');
+      // Common causes: key restricted to domain, quota exceeded, key invalid
+      // RSS videos still loaded above — just stats won't update
+      return;
+    }
     if (!chanData.items?.length) return;
+
+    // Update live subscriber + video counts
     const stats = chanData.items[0].statistics;
     if (stats) updateChannelStats(stats.subscriberCount, stats.videoCount);
-    console.log('YT stats live — subs:', stats?.subscriberCount, 'videos:', stats?.videoCount);
+    console.log('YT API stats live: subs=', stats?.subscriberCount, 'videos=', stats?.videoCount);
 
-    // Full API video fetch only if RSS failed
+    // If RSS already loaded videos, skip the heavy playlist fetch
     if (rssSuccess) return;
+
+    // Fallback: full API video fetch if RSS failed
     const uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
     let allItems = [], pageToken = '';
     do {
-      const url = `${YT_API_BASE}/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50&key=${YT_API_KEY}${pageToken?'&pageToken='+pageToken:''}`;
+      const url = `${YT_API_BASE}/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50&key=${YT_API_KEY}${pageToken ? '&pageToken=' + pageToken : ''}`;
       const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
       const d = await r.json();
       if (d.items) allItems = allItems.concat(d.items);
       pageToken = d.nextPageToken || '';
     } while (pageToken);
+
     if (!allItems.length) return;
     const ids = allItems.map(i => i.snippet.resourceId.videoId);
     let detailMap = {};
     for (let i = 0; i < ids.length; i += 50) {
-      const batch = ids.slice(i,i+50).join(',');
+      const batch = ids.slice(i, i+50).join(',');
       const dr = await fetch(`${YT_API_BASE}/videos?part=snippet,statistics,contentDetails&id=${batch}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(8000) });
       const dd = await dr.json();
       if (dd.items) dd.items.forEach(v => { detailMap[v.id] = v; });
     }
     const fetched = allItems.map(item => {
       const vid = item.snippet, id = vid.resourceId.videoId, detail = detailMap[id];
+      const duration = detail?.contentDetails?.duration || '';
       const titleLower = vid.title.toLowerCase();
       const hasContentKeyword = /tutorial|instruction|booklet|showcase|review|history|ranked|moc|how to|lego news|joke|quiz|short film/.test(titleLower);
       const isShort = !hasContentKeyword && (titleLower.includes('#shorts') || titleLower.includes('#short') || /\bshort\b/.test(titleLower));
-      return { id, title:vid.title, description:vid.description||'', thumbnail:(vid.thumbnails.high||vid.thumbnails.medium||vid.thumbnails.default||{}).url||'', publishedAt:vid.publishedAt, viewCount:detail?.statistics?.viewCount||'0', isShort, cat:isShort?'shorts':detectCategory(vid.title,vid.description||''), duration:detail?.contentDetails?.duration||'' };
+      return { id, title: vid.title, description: vid.description || '', thumbnail: (vid.thumbnails.high || vid.thumbnails.medium || vid.thumbnails.default || {}).url || '', publishedAt: vid.publishedAt, viewCount: detail?.statistics?.viewCount || '0', isShort, cat: isShort ? 'shorts' : detectCategory(vid.title, vid.description || ''), duration };
     }).filter(v => v.id && v.title !== 'Deleted video' && v.title !== 'Private video').map(sanitiseVideo);
+
     if (fetched.length) {
       VIDEOS = fetched;
       try { sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS)); sessionStorage.setItem('yt_videos_time', Date.now().toString()); } catch(e) {}
-      renderHomeGrid();
-      if (typeof buildVideoIndex === 'function') buildVideoIndex();
-      console.log('API full fetch:', VIDEOS.length, 'videos');
+      console.log('API full fetch success:', VIDEOS.length, 'videos');
     }
   } catch(e) {
-    console.warn('YT API failed:', e.message);
+    console.warn('YouTube API fetch failed:', e.message);
   }
 }
 
@@ -3553,8 +3549,9 @@ function parseDuration(d) {
   return (parseInt(m[1]||0)*3600) + (parseInt(m[2]||0)*60) + parseInt(m[3]||0);
 }
 
-// Cache expires after 15 minutes so new uploads appear quickly
-const YT_CACHE_TTL = 15 * 60 * 1000;
+// Load from session cache if available, otherwise fetch fresh
+// Cache expires after 30 minutes so new YouTube uploads appear automatically
+const YT_CACHE_TTL = 30 * 60 * 1000;
 
 async function loadVideosWithCache() {
   try {
@@ -5641,7 +5638,7 @@ function mocNav(id,dir){
   #lego-challenges-body .overlay.open{display:flex;}
   #lego-challenges-body .modal{background:var(--dark);border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:740px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:mIn .3s ease both;}
   @keyframes mIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  #lego-challenges-body .modal-close{position:absolute;top:16px;right:18px;float:none;margin:0;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:1.1rem;cursor:pointer!important;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:99999;pointer-events:all!important;}
+  #lego-challenges-body .modal-close{position:sticky;top:16px;float:right;margin:16px 20px 0 0;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5;}
   #lego-challenges-body .modal-close:hover{background:rgba(255,255,255,.1);color:#fff;}
   #lego-challenges-body .modal-inner{padding:32px 36px 40px;clear:both;}
   @media(max-width:500px){#lego-challenges-body .modal-inner{padding:24px 20px 32px;}}
@@ -6452,7 +6449,7 @@ function mocNav(id,dir){
 #tips-tricks-body .overlay.open{display:flex;}
 #tips-tricks-body .modal{background:var(--dark);border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:740px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:tt_mIn .3s ease both;}
   @keyframes tt_mIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  .modal-close{position:absolute;top:16px;right:18px;float:none;margin:0;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:1.1rem;cursor:pointer!important;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:99999;pointer-events:all!important;}
+  .modal-close{position:sticky;top:16px;float:right;margin:16px 20px 0 0;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5;}
 #tips-tricks-body .modal-close:hover{background:rgba(255,255,255,.1);color:#fff;}
 #tips-tricks-body .modal-inner{padding:32px 36px 40px;clear:both;}
   @media(max-width:500px){.modal-inner{padding:24px 20px 32px;}}
@@ -6832,6 +6829,7 @@ function mocNav(id,dir){
     </div>
   </div>
 </div>
+</div>
 
 <script>
 
@@ -6855,18 +6853,11 @@ function initTipsTricksPage() {
   ttBody.querySelectorAll('.reveal').forEach(el => ttRO.observe(el));
 } // end initTipsTricksPage
 
-// ── Reading bar
-window.addEventListener('scroll',()=>{
-  const h=document.documentElement.scrollHeight-window.innerHeight;
-  const bar = document.getElementById('readingBar');
-  if(bar) bar.style.width=(scrollY/h*100)+'%';
-});
-
-// ── Scroll reveal
-const ro=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});
+// ── Scroll reveal (global, scoped to tips-tricks script)
+const ttScrollRo=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ttScrollRo.unobserve(e.target);}});
 },{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+document.querySelectorAll('#page-tips-tricks .reveal').forEach(el=>ttScrollRo.observe(el));
 
 // ══════════════════════════════════════════════════════════════════
 // TECHNIQUE DATA
@@ -7048,10 +7039,6 @@ function renderTech(cat){
   });
 }
 renderTech('all');
-// Re-render when page becomes active (clears stale animation state)
-document.addEventListener('tt-page-active', () => renderTech(
-  document.querySelector('#tips-tricks-body .fbtn.active')?.dataset?.cat || 'all'
-));
 
 // ── Modal
 function openModal(t){
@@ -7080,17 +7067,9 @@ function openModal(t){
   document.body.style.overflow='hidden';
   document.getElementById('tt-modal').scrollTop=0;
 }
-window.closeTtOverlay = function(e) {
-  if (!e || e.target === document.getElementById('tt-overlay')) {
-    document.getElementById('tt-overlay').classList.remove('open');
-    document.body.style.overflow='';
-  }
-};
-window.closeTtOverlayDirect = function() {
-  document.getElementById('tt-overlay').classList.remove('open');
-  document.body.style.overflow='';
-};
-document.addEventListener('keydown',e=>{if(e.key==='Escape') window.closeTtOverlayDirect();});
+window.closeTtOverlay=function(e){if(!e||e.target===document.getElementById('tt-overlay')){document.getElementById('tt-overlay').classList.remove('open');document.body.style.overflow='';}}
+window.closeTtOverlayDirect=function(){document.getElementById('tt-overlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeTtOverlayDirect();});
 
 // ══════════════════════════════════════════════════════════════════
 // COLOUR PALETTE TOOL
@@ -7261,7 +7240,10 @@ function restartQuiz(){
 }
 
 loadQ();
-}
+
+window.initTipsTricksPage = initTipsTricksPage;
+window.renderTech = renderTech;
+window.ttPageInited = false;
 
 </script>
 </div>
@@ -7345,7 +7327,7 @@ loadQ();
 #lego-collecting-body .tier-tab:hover{border-color:var(--gold-l);color:var(--gold-l)}
 #lego-collecting-body .tier-tab.on{background:var(--gold-l);color:var(--ink);border-color:var(--gold-l);font-weight:700}
 #lego-collecting-body .tier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-#lego-collecting-body .tier-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:26px;transition:background .2s,transform .2s,border-color .2s;position:relative;overflow:hidden}
+#lego-collecting-body .tier-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:26px;cursor:pointer;transition:background .2s,transform .2s,border-color .2s;position:relative;overflow:hidden}
 #lego-collecting-body .tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transition:transform .25s;transform-origin:left}
 #lego-collecting-body .tier-card:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);border-color:rgba(255,255,255,.2)}
 #lego-collecting-body .tier-card:hover::before{transform:scaleX(1)}
@@ -7361,12 +7343,12 @@ loadQ();
 #lego-collecting-body .tc-value span{color:rgba(255,255,255,.35);font-size:.65rem}
 
 /* MODAL */
-#lego-collecting-body .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99990;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px);isolation:isolate}
+#lego-collecting-body .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
 #lego-collecting-body .modal-overlay.open{display:flex}
 #lego-collecting-body .modal{background:var(--ink2);border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:mIn .3s ease both}
 @keyframes mIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:absolute;top:16px;right:18px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:1rem;cursor:pointer!important;border-radius:4px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:99999;pointer-events:all!important}
-#lego-collecting-body .modal-close:hover{background:rgba(255,255,255,.25);color:#fff}
+.modal-close{position:absolute;top:16px;right:18px;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);font-size:1rem;cursor:pointer;border-radius:4px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:100}
+#lego-collecting-body .modal-close:hover{background:rgba(255,255,255,.1);color:#fff}
 #lego-collecting-body .modal-top{padding:30px 32px 24px;border-bottom:1px solid rgba(255,255,255,.08)}
 #lego-collecting-body .modal-icon{font-size:2.4rem;margin-bottom:10px;display:block}
 #lego-collecting-body .modal-tier{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px}
@@ -7494,7 +7476,7 @@ loadQ();
 #lego-collecting-body .rfbtn:hover{border-color:var(--gold);color:var(--gold)}
 #lego-collecting-body .rfbtn.active{background:var(--ink);color:var(--gold);border-color:var(--ink)}
 #lego-collecting-body .rarity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-#lego-collecting-body .rarity-card{background:#fff;border:1px solid rgba(14,14,14,.1);border-radius:6px;padding:24px;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+#lego-collecting-body .rarity-card{background:#fff;border:1px solid rgba(14,14,14,.1);border-radius:6px;padding:24px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
 #lego-collecting-body .rarity-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.12);border-color:var(--gold)}
 #lego-collecting-body .rc-tier{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;padding:3px 8px;display:inline-block;border-radius:2px}
 #lego-collecting-body .rc-tier.legendary{background:rgba(201,168,76,.15);color:var(--gold)}
@@ -7508,11 +7490,11 @@ loadQ();
 @keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 /* RARITY MODAL (light theme) */
-#lego-collecting-body .rarity-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99991;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);isolation:isolate}
+#lego-collecting-body .rarity-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1100;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
 #lego-collecting-body .rarity-overlay.open{display:flex}
 #lego-collecting-body .rarity-modal{background:#fff;border-radius:8px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:mIn .3s ease both}
-#lego-collecting-body .rarity-modal .modal-close{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:#fff;z-index:99999;pointer-events:all!important}
-#lego-collecting-body .rarity-modal .modal-close:hover{background:rgba(255,255,255,.3);color:#fff}
+#lego-collecting-body .rarity-modal .modal-close{border-color:rgba(0,0,0,.2);color:#555;z-index:100;background:rgba(255,255,255,.9)}
+#lego-collecting-body .rarity-modal .modal-close:hover{background:#fff;color:var(--ink)}
 #lego-collecting-body .rarity-modal .modal-top{border-bottom-color:rgba(0,0,0,.08)}
 #lego-collecting-body .rarity-modal .modal-title{color:var(--ink)}
 #lego-collecting-body .rarity-modal .modal-sub{color:#666}
@@ -7868,7 +7850,32 @@ loadQ();
   <p>A collector's guide to rare LEGO® pieces and their value. LEGO®&reg; is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this content. Values are estimates based on secondary market data.</p>
 </footer>
 
-<!-- TIER MODAL and RARITY MODAL moved to body level below -->
+<!-- TIER MODAL -->
+<div class="modal-overlay" id="mOv" onclick="closeTierMod(event)">
+  <div class="modal" id="mModal">
+    <button class="modal-close" onclick="closeTierModDirect()">&#10005;</button>
+    <div class="modal-top">
+      <span class="modal-icon" id="mIcon"></span>
+      <div class="modal-tier" id="mTier"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-sub" id="mSub"></div>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<!-- RARITY MODAL -->
+<div class="rarity-overlay" id="colModalOverlay" onclick="closeRarityMod(event)">
+  <div class="rarity-modal modal" id="colModal">
+    <button class="modal-close" onclick="closeRarityModDirect()">&#10005;</button>
+    <div class="modal-top">
+      <div class="modal-tier" id="mTier2"></div>
+      <div class="modal-title" id="mName"></div>
+      <div class="modal-vals" id="mVals"></div>
+    </div>
+    <div class="modal-body" id="mBody2"></div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -7885,18 +7892,19 @@ function initLegoCollectingPage() {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); lcRO.unobserve(e.target); } });
   }, {threshold: .08});
   lcBody.querySelectorAll('.reveal').forEach(el => lcRO.observe(el));
+} // end initLegoCollectingPage
 
 // ─── Reading bar ───
 window.addEventListener('scroll',()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('rbar').style.width=(scrollY/h*100)+'%';
+  const rbar=document.getElementById('rbar'); if(rbar) rbar.style.width=(scrollY/h*100)+'%';
 });
 
 // ─── Scroll reveal ───
 const revObs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*55);revObs.unobserve(e.target);}});
 },{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+document.querySelectorAll('#lego-collecting-body .reveal').forEach(el=>revObs.observe(el));
 
 // ─── TIER DATA ───
 const TIERS=[
@@ -7954,6 +7962,7 @@ function renderTiers(filter){
     c.className='tier-card';c.dataset.tier=t.tier;
     c.style.animation='mIn .4s ease '+(i*.05)+'s both';
     c.innerHTML='<div class="tc-tier" style="color:'+tc[t.tier]+'">'+t.tier.toUpperCase()+'</div><span class="tc-icon">'+t.icon+'</span><div class="tc-name">'+t.name+'</div><div class="tc-desc">'+t.sub+'</div><div class="tc-value">'+t.value+' <span>est. BrickLink range</span></div>';
+    c.onclick=()=>openTM(t);
     grid.appendChild(c);
   });
 }
@@ -7978,13 +7987,12 @@ function openTM(t){
   if(prev){const b=document.createElement('button');b.className='mnav-btn';b.innerHTML='\u2190 '+prev.icon+' '+prev.name;b.onclick=()=>openTM(prev);nav.appendChild(b);}
   if(next){const b=document.createElement('button');b.className='mnav-btn';b.innerHTML=next.icon+' '+next.name+' \u2192';b.onclick=()=>openTM(next);nav.appendChild(b);}
   body.appendChild(nav);
-  document.getElementById('mOv').style.display='flex';
+  document.getElementById('mOv').classList.add('open');
   document.body.style.overflow='hidden';
   document.getElementById('mModal').scrollTop=0;
 }
 function closeTierMod(e){if(e.target===document.getElementById('mOv'))closeTierModDirect();}
-function closeTierModDirect(){document.getElementById('mOv').style.display='none';document.body.style.overflow='';}
-
+function closeTierModDirect(){document.getElementById('mOv').classList.remove('open');document.body.style.overflow='';}
 
 // ─── Calculator ───
 const CBASE={common:8,uncommon:25,rare:80,legendary:400};
@@ -8138,6 +8146,7 @@ function renderRarity(filter){
       +'<div class="rc-desc">'+p.desc+'</div>'
       +'<div class="rc-value">'+p.value+'</div>'
       +'<div class="rc-tags">'+p.tags.map(t=>'<span class="rc-tag">'+t+'</span>').join('')+'</div>';
+    card.onclick=()=>openPartModal(p);
     grid.appendChild(card);
   });
 }
@@ -8160,12 +8169,12 @@ function openPartModal(p){
   if(prev){const b=document.createElement('button');b.className='modal-nav-btn';b.textContent='\u2190 '+prev.name;b.onclick=()=>openPartModal(prev);nav.appendChild(b);}
   if(next){const b=document.createElement('button');b.className='modal-nav-btn';b.textContent=next.name+' \u2192';b.onclick=()=>openPartModal(next);nav.appendChild(b);}
   body.appendChild(nav);
-  document.getElementById('colModalOverlay').style.display='flex';
+  document.getElementById('colModalOverlay').classList.add('open');
   document.body.style.overflow='hidden';
   document.getElementById('colModal').scrollTop=0;
 }
 function closeRarityMod(e){if(e.target===document.getElementById('colModalOverlay'))closeRarityModDirect();}
-function closeRarityModDirect(){document.getElementById('colModalOverlay').style.display='none';document.body.style.overflow='';}
+function closeRarityModDirect(){document.getElementById('colModalOverlay').classList.remove('open');document.body.style.overflow='';}
 
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeTierModDirect();closeRarityModDirect();}
@@ -8219,9 +8228,8 @@ function toggleAcc(head){
 
 // ─── Re-observe new reveals (for dynamically added elements) ───
 setTimeout(()=>{
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('#lego-collecting-body .reveal:not(.visible)').forEach(el=>revObs.observe(el));
 },200);
-}
 
 </script>
 </div>
@@ -8333,7 +8341,7 @@ setTimeout(()=>{
 #biggest-sets-body .modal-overlay.open{display:flex}
 #biggest-sets-body .modal{background:var(--ink2);border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:bs_mIn .3s ease both}
 @keyframes bs_mIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:absolute;top:16px;right:16px;float:none;margin:0;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:1rem;cursor:pointer!important;border-radius:4px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:99999;pointer-events:all!important}
+.modal-close{position:sticky;top:16px;float:right;margin:16px 16px 0 0;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);font-size:1rem;cursor:pointer;border-radius:4px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5}
 #biggest-sets-body .modal-close:hover{background:rgba(255,255,255,.1);color:#fff}
 #biggest-sets-body .modal-hero{width:100%;height:220px;background:var(--ink);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;clear:both}
 #biggest-sets-body .modal-hero img{height:100%;width:100%;object-fit:contain;padding:16px}
@@ -8440,7 +8448,7 @@ setTimeout(()=>{
 <button id="biggest-sets-back" onclick="showPage('home')">← Back</button>
 
 <div id="biggest-sets-body">
-<div class="rbar" id="rbar"></div>
+<div class="rbar" id="bs-rbar"></div>
 
 <!-- ═══ HERO ═══ -->
 <header class="hero">
@@ -8568,7 +8576,7 @@ setTimeout(()=>{
     <div class="sec-label">Before You Buy</div>
     <h2>8 Things to Know</h2>
     <div class="rule"></div>
-    <div class="tips-grid" id="tipsGrid"></div>
+    <div class="tips-grid" id="bs-tipsGrid"></div>
   </div>
 </section>
 
@@ -8596,24 +8604,23 @@ setTimeout(()=>{
 </footer>
 
 <!-- ═══ MODAL ═══ -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeMod(event)">
-  <div class="modal" id="modal">
+<div class="modal-overlay" id="bs-modalOverlay" onclick="closeMod(event)">
+  <div class="modal" id="bs-modal">
     <button class="modal-close" onclick="closeModBtn()">✕</button>
     <div class="modal-hero">
-      <img id="mImg" src="" alt="" loading="lazy">
-      <div class="modal-hero-rank" id="mRank"></div>
+      <img id="bs-mImg" src="" alt="" loading="lazy">
+      <div class="modal-hero-rank" id="bs-mRank"></div>
     </div>
     <div class="modal-body-wrap">
-      <div class="modal-theme" id="mTheme"></div>
-      <div class="modal-title" id="mTitle"></div>
-      <div class="modal-pills" id="mPills"></div>
+      <div class="modal-theme" id="bs-mTheme"></div>
+      <div class="modal-title" id="bs-mTitle"></div>
+      <div class="modal-pills" id="bs-mPills"></div>
       <div class="modal-divider"></div>
-      <div class="modal-body" id="mBody"></div>
-      <div class="modal-specs" id="mSpecs"></div>
-      <div class="modal-nav" id="mNav"></div>
+      <div class="modal-body" id="bs-mBody"></div>
+      <div class="modal-specs" id="bs-mSpecs"></div>
+      <div class="modal-nav" id="bs-mNav"></div>
     </div>
   </div>
-</div>
 </div>
 
 <script>
@@ -8622,10 +8629,20 @@ let bsPageInited = false;
 function initBiggestSetsPage() {
   if (bsPageInited) return;
   bsPageInited = true;
+  const bsBody = document.getElementById('biggest-sets-body');
+  if (!bsBody) return;
+  const bsRO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); bsRO.unobserve(e.target); } });
+  }, {threshold:.08});
+  bsBody.querySelectorAll('.reveal').forEach(el => bsRO.observe(el));
+} // end initBiggestSetsPage
+window.initBiggestSetsPage = initBiggestSetsPage;
+window.bsPageInited_ref = function(v){ bsPageInited = v; };
+
 // ─── Reading bar ───
 window.addEventListener('scroll',()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('rbar').style.width=(scrollY/h*100)+'%';
+  const rbar=document.getElementById('bs-rbar')||document.getElementById('rbar'); if(rbar) rbar.style.width=(scrollY/h*100)+'%';
 });
 
 // ─── DATA ───
@@ -8899,6 +8916,7 @@ const TIPS=[
 
 // ─── Render set list ───
 const setList=document.getElementById('setList');
+if(!setList){console.warn('setList not found');}
 SETS.forEach((s,i)=>{
   const el=document.createElement('div');
   el.className='set-entry reveal';
@@ -8965,7 +8983,7 @@ FACTS.forEach(f=>{
 });
 
 // ─── Render tips ───
-const tipsGrid=document.getElementById('tipsGrid');
+const tipsGrid=document.getElementById('bs-tipsGrid');
 TIPS.forEach(t=>{
   const el=document.createElement('div');
   el.className='tip-card reveal';
@@ -8978,39 +8996,39 @@ let curIdx=0;
 function openMod(i){
   curIdx=i;
   const s=SETS[i];
-  document.getElementById('mImg').src=s.img;
-  document.getElementById('mImg').alt=s.name;
-  document.getElementById('mRank').textContent='#'+s.rank;
-  document.getElementById('mTheme').textContent=s.theme;
-  document.getElementById('mTitle').textContent=s.name;
-  document.getElementById('mPills').innerHTML=s.pills.map(p=>`<span class="mpill${p.includes('pieces')?' hi':''}">${p}</span>`).join('');
-  document.getElementById('mBody').innerHTML=s.body;
-  document.getElementById('mSpecs').innerHTML=`
+  document.getElementById('bs-mImg').src=s.img;
+  document.getElementById('bs-mImg').alt=s.name;
+  document.getElementById('bs-mRank').textContent='#'+s.rank;
+  document.getElementById('bs-mTheme').textContent=s.theme;
+  document.getElementById('bs-mTitle').textContent=s.name;
+  document.getElementById('bs-mPills').innerHTML=s.pills.map(p=>`<span class="mpill${p.includes('pieces')?' hi':''}">${p}</span>`).join('');
+  document.getElementById('bs-mBody').innerHTML=s.body;
+  document.getElementById('bs-mSpecs').innerHTML=`
     <div class="spec-cell"><div class="spec-val">${s.pieces}</div><div class="spec-lbl">Pieces</div></div>
     <div class="spec-cell"><div class="spec-val">${s.year}</div><div class="spec-lbl">Released</div></div>
     <div class="spec-cell"><div class="spec-val">${s.price}</div><div class="spec-lbl">RRP</div></div>
     <div class="spec-cell"><div class="spec-val" style="font-size:1rem;padding-top:4px">${s.status}</div><div class="spec-lbl">Status</div></div>
     <div class="spec-cell" style="grid-column:1/-1"><div class="spec-val" style="font-size:1rem;padding-top:4px">${s.dims}</div><div class="spec-lbl">Dimensions</div></div>`;
-  document.getElementById('mNav').innerHTML=`
+  document.getElementById('bs-mNav').innerHTML=`
     ${i>0?`<button class="mnav-btn" onclick="openMod(${i-1})">← #${SETS[i-1].rank} ${SETS[i-1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}
     ${i<SETS.length-1?`<button class="mnav-btn" onclick="openMod(${i+1})">→ #${SETS[i+1].rank} ${SETS[i+1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}`;
-  document.getElementById('modalOverlay').classList.add('open');
-  document.getElementById('modal').scrollTop=0;
+  document.getElementById('bs-modalOverlay').classList.add('open');
+  document.getElementById('bs-modal').scrollTop=0;
   document.body.style.overflow='hidden';
 }
-function closeMod(e){if(e.target===document.getElementById('modalOverlay'))closeModBtn();}
+function closeMod(e){if(e.target===document.getElementById('bs-modalOverlay'))closeModBtn();}
 function closeModBtn(){
-  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('bs-modalOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')closeModBtn();
-  if(e.key==='ArrowRight'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.min(curIdx+1,SETS.length-1));
-  if(e.key==='ArrowLeft'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.max(curIdx-1,0));
+  if(e.key==='ArrowRight'&&document.getElementById('bs-modalOverlay').classList.contains('open'))openMod(Math.min(curIdx+1,SETS.length-1));
+  if(e.key==='ArrowLeft'&&document.getElementById('bs-modalOverlay').classList.contains('open'))openMod(Math.max(curIdx-1,0));
 });
 
-// ─── Scroll reveal ───
-setTimeout(()=>{
+// ─── Scroll reveal (scoped to biggest-sets) ───
+function bsInitReveal(){
   const ro=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -9023,9 +9041,10 @@ setTimeout(()=>{
       }
     });
   },{threshold:.08});
-  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-},200);
+  document.querySelectorAll('#biggest-sets-body .reveal').forEach(el=>ro.observe(el));
 }
+window.bsInitReveal = bsInitReveal;
+setTimeout(bsInitReveal, 200);
 
 </script>
 </div><!-- end page-biggest-sets -->
@@ -10697,32 +10716,6 @@ async function submitGalleryBuild() {
   }
 }
 </script>
-
-<!-- ══ COLLECTING PAGE MODALS — body level, outside all transforms ══ -->
-<div class="modal-overlay" id="mOv" onclick="closeTierMod(event)" style="position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99990;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)">
-  <div class="modal" id="mModal" style="background:#1c1c1c;border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative">
-    <button onclick="closeTierModDirect()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.35);color:#fff;font-size:16px;cursor:pointer;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;z-index:99999;pointer-events:all">&#10005;</button>
-    <div class="modal-top" id="mModalTop">
-      <span class="modal-icon" id="mIcon"></span>
-      <div class="modal-tier" id="mTier"></div>
-      <div class="modal-title" id="mTitle"></div>
-      <div class="modal-sub" id="mSub"></div>
-    </div>
-    <div class="modal-body" id="mBody"></div>
-  </div>
-</div>
-
-<div class="rarity-overlay" id="colModalOverlay" onclick="closeRarityMod(event)" style="position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:99991;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)">
-  <div class="rarity-modal modal" id="colModal" style="background:#fff;border-radius:8px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative">
-    <button onclick="closeRarityModDirect()" style="position:absolute;top:14px;right:14px;background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);color:#111;font-size:16px;cursor:pointer;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;z-index:99999;pointer-events:all">&#10005;</button>
-    <div class="modal-top" id="colModalTop">
-      <div class="modal-tier" id="mTier2"></div>
-      <div class="modal-title" id="mName"></div>
-      <div class="modal-vals" id="mVals"></div>
-    </div>
-    <div class="modal-body" id="mBody2"></div>
-  </div>
-</div>
 
 </body>
 </html>

@@ -7846,32 +7846,7 @@ loadQ();
   <p>A collector's guide to rare LEGO® pieces and their value. LEGO®&reg; is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this content. Values are estimates based on secondary market data.</p>
 </footer>
 
-<!-- TIER MODAL -->
-<div class="modal-overlay" id="mOv" onclick="closeTierMod(event)">
-  <div class="modal" id="mModal">
-    <button class="modal-close" onclick="closeTierModDirect()">&#10005;</button>
-    <div class="modal-top">
-      <span class="modal-icon" id="mIcon"></span>
-      <div class="modal-tier" id="mTier"></div>
-      <div class="modal-title" id="mTitle"></div>
-      <div class="modal-sub" id="mSub"></div>
-    </div>
-    <div class="modal-body" id="mBody"></div>
-  </div>
-</div>
-
-<!-- RARITY MODAL -->
-<div class="rarity-overlay" id="colModalOverlay" onclick="closeRarityMod(event)">
-  <div class="rarity-modal modal" id="colModal">
-    <button class="modal-close" onclick="closeRarityModDirect()">&#10005;</button>
-    <div class="modal-top">
-      <div class="modal-tier" id="mTier2"></div>
-      <div class="modal-title" id="mName"></div>
-      <div class="modal-vals" id="mVals"></div>
-    </div>
-    <div class="modal-body" id="mBody2"></div>
-  </div>
-</div>
+<!-- TIER MODAL and RARITY MODAL moved to body level below -->
 </div>
 
 <script>
@@ -7982,12 +7957,13 @@ function openTM(t){
   if(prev){const b=document.createElement('button');b.className='mnav-btn';b.innerHTML='\u2190 '+prev.icon+' '+prev.name;b.onclick=()=>openTM(prev);nav.appendChild(b);}
   if(next){const b=document.createElement('button');b.className='mnav-btn';b.innerHTML=next.icon+' '+next.name+' \u2192';b.onclick=()=>openTM(next);nav.appendChild(b);}
   body.appendChild(nav);
-  document.getElementById('mOv').classList.add('open');
+  document.getElementById('mOv').style.display='flex';
   document.body.style.overflow='hidden';
   document.getElementById('mModal').scrollTop=0;
 }
 function closeTierMod(e){if(e.target===document.getElementById('mOv'))closeTierModDirect();}
-function closeTierModDirect(){document.getElementById('mOv').classList.remove('open');document.body.style.overflow='';}
+function closeTierModDirect(){document.getElementById('mOv').style.display='none';document.body.style.overflow='';}
+
 
 // ─── Calculator ───
 const CBASE={common:8,uncommon:25,rare:80,legendary:400};
@@ -8164,12 +8140,12 @@ function openPartModal(p){
   if(prev){const b=document.createElement('button');b.className='modal-nav-btn';b.textContent='\u2190 '+prev.name;b.onclick=()=>openPartModal(prev);nav.appendChild(b);}
   if(next){const b=document.createElement('button');b.className='modal-nav-btn';b.textContent=next.name+' \u2192';b.onclick=()=>openPartModal(next);nav.appendChild(b);}
   body.appendChild(nav);
-  document.getElementById('colModalOverlay').classList.add('open');
+  document.getElementById('colModalOverlay').style.display='flex';
   document.body.style.overflow='hidden';
   document.getElementById('colModal').scrollTop=0;
 }
 function closeRarityMod(e){if(e.target===document.getElementById('colModalOverlay'))closeRarityModDirect();}
-function closeRarityModDirect(){document.getElementById('colModalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeRarityModDirect(){document.getElementById('colModalOverlay').style.display='none';document.body.style.overflow='';}
 
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeTierModDirect();closeRarityModDirect();}
@@ -10701,6 +10677,32 @@ async function submitGalleryBuild() {
   }
 }
 </script>
+
+<!-- ══ COLLECTING PAGE MODALS — body level, outside all transforms ══ -->
+<div class="modal-overlay" id="mOv" onclick="closeTierMod(event)" style="position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99990;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)">
+  <div class="modal" id="mModal" style="background:#1c1c1c;border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative">
+    <button onclick="closeTierModDirect()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.35);color:#fff;font-size:16px;cursor:pointer;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;z-index:99999;pointer-events:all">&#10005;</button>
+    <div class="modal-top" id="mModalTop">
+      <span class="modal-icon" id="mIcon"></span>
+      <div class="modal-tier" id="mTier"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-sub" id="mSub"></div>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<div class="rarity-overlay" id="colModalOverlay" onclick="closeRarityMod(event)" style="position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:99991;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)">
+  <div class="rarity-modal modal" id="colModal" style="background:#fff;border-radius:8px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative">
+    <button onclick="closeRarityModDirect()" style="position:absolute;top:14px;right:14px;background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);color:#111;font-size:16px;cursor:pointer;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;z-index:99999;pointer-events:all">&#10005;</button>
+    <div class="modal-top" id="colModalTop">
+      <div class="modal-tier" id="mTier2"></div>
+      <div class="modal-title" id="mName"></div>
+      <div class="modal-vals" id="mVals"></div>
+    </div>
+    <div class="modal-body" id="mBody2"></div>
+  </div>
+</div>
 
 </body>
 </html>

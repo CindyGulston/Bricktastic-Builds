@@ -6808,18 +6808,18 @@ function mocNav(id,dir){
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ MODAL -->
-<div class="overlay" id="overlay" onclick="closeOv(event)">
-  <div class="modal" id="modal">
+<div class="overlay" id="tt-overlay" onclick="closeOv(event)">
+  <div class="modal" id="tt-modal">
     <button class="modal-close" onclick="closeOvDirect()">✕</button>
     <div class="modal-inner">
-      <span class="m-icon" id="mIcon"></span>
-      <div class="m-eyebrow" id="mEyebrow"></div>
-      <div class="m-title" id="mTitle"></div>
-      <div class="m-sub" id="mSub"></div>
-      <div class="m-pills" id="mPills"></div>
+      <span class="m-icon" id="tt-mIcon"></span>
+      <div class="m-eyebrow" id="tt-mEyebrow"></div>
+      <div class="m-title" id="tt-mTitle"></div>
+      <div class="m-sub" id="tt-mSub"></div>
+      <div class="m-pills" id="tt-mPills"></div>
       <div class="m-divider"></div>
-      <div class="m-body" id="mBody"></div>
-      <div class="m-nav" id="mNav"></div>
+      <div class="m-body" id="tt-mBody"></div>
+      <div class="m-nav" id="tt-mNav"></div>
     </div>
   </div>
 </div>
@@ -7042,32 +7042,32 @@ renderTech('all');
 // ── Modal
 function openModal(t){
   const idx=TECHS.indexOf(t);
-  document.getElementById('mIcon').textContent=t.icon;
-  document.getElementById('mEyebrow').textContent=`${t.cat.toUpperCase()} · ${LEVEL_LABEL[t.level]}`;
-  document.getElementById('mTitle').textContent=t.title;
-  document.getElementById('mSub').textContent=t.sub;
+  document.getElementById('tt-mIcon').textContent=t.icon;
+  document.getElementById('tt-mEyebrow').textContent=`${t.cat.toUpperCase()} · ${LEVEL_LABEL[t.level]}`;
+  document.getElementById('tt-mTitle').textContent=t.title;
+  document.getElementById('tt-mSub').textContent=t.sub;
   const dots=[1,2,3,4,5].map(n=>n<=t.level?'●':'○').join(' ');
-  document.getElementById('mPills').innerHTML=`
+  document.getElementById('tt-mPills').innerHTML=`
     <span class="mpill hi">${LEVEL_LABEL[t.level]}</span>
     <span class="mpill">${t.cat}</span>
     <span class="mpill">${dots}</span>`;
   const stepsHTML=t.how.map(s=>`<li>${s}</li>`).join('');
-  document.getElementById('mBody').innerHTML=`
+  document.getElementById('tt-mBody').innerHTML=`
     <div class="steps-box"><div class="steps-title">📋 How to Apply It</div><ul>${stepsHTML}</ul></div>
     <h2>Pro Tip</h2><p>${t.tip}</p>
     <div class="fact-box"><strong>Watch Out For</strong>${t.watch}</div>
     <h2>Why It Matters</h2><p>${t.why}</p>`;
   const prev=TECHS[idx-1],next=TECHS[idx+1];
-  const nav=document.getElementById('mNav');
+  const nav=document.getElementById('tt-mNav');
   nav.innerHTML='';
   if(prev){const b=document.createElement('button');b.className='mnav-btn';b.textContent=`← ${prev.icon} ${prev.title}`;b.onclick=()=>openModal(prev);nav.appendChild(b);}
   if(next){const b=document.createElement('button');b.className='mnav-btn';b.textContent=`${next.icon} ${next.title} →`;b.onclick=()=>openModal(next);nav.appendChild(b);}
-  document.getElementById('overlay').classList.add('open');
+  document.getElementById('tt-overlay').classList.add('open');
   document.body.style.overflow='hidden';
-  document.getElementById('modal').scrollTop=0;
+  document.getElementById('tt-modal').scrollTop=0;
 }
-function closeOv(e){if(e.target===document.getElementById('overlay'))closeOvDirect();}
-function closeOvDirect(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+function closeOv(e){if(e.target===document.getElementById('tt-overlay'))closeOvDirect();}
+function closeOvDirect(){document.getElementById('tt-overlay').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOvDirect();});
 
 // ══════════════════════════════════════════════════════════════════

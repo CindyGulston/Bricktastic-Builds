@@ -2929,7 +2929,7 @@ function showPage(id){
     if(id==='biggest-sets') initBiggestSetsPage();
     if(id==='lego-challenges') initLegoChallengesPage();
     if(id==='lego-collecting') initLegoCollectingPage();
-    if(id==='tips-tricks') initTipsTricksPage();
+    if(id==='tips-tricks') { initTipsTricksPage(); renderTech('all'); }
     if(id==='videos') buildVideoIndex();
     if(id==='mocs') initMOCPage();
     if(id==='about') initAboutPage();
@@ -3391,104 +3391,114 @@ function updateChannelStats(subs, vids) {
 }
 
 async function fetchYouTubeVideos() {
-  // ── Strategy: RSS feed first (no quota, no key needed, always works)
-  // Then try YouTube Data API for full stats if available
   let rssSuccess = false;
 
-  // ── STEP 1: RSS feed via allorigins CORS proxy (free, reliable)
-  try {
-    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
-    const proxy  = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-    const res    = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
-    const json   = await res.json();
-    const parser = new DOMParser();
-    const xml    = parser.parseFromString(json.contents, 'text/xml');
-    const entries = Array.from(xml.querySelectorAll('entry'));
+  // ── STEP 1: RSS feed with multiple CORS proxy fallbacks
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
+  const PROXIES = [
+    `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`,
+    `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`,
+    `https://thingproxy.freeboard.io/fetch/${rssUrl}`,
+  ];
 
-    if (entries.length) {
+  for (const proxy of PROXIES) {
+    if (rssSuccess) break;
+    try {
+      const res  = await fetch(proxy, { signal: AbortSignal.timeout(7000) });
+      if (!res.ok) continue;
+      // allorigins wraps in JSON; others return raw XML
+      let xmlText;
+      const ct = res.headers.get('content-type') || '';
+      if (ct.includes('json')) {
+        const json = await res.json();
+        xmlText = json.contents || json.body || '';
+      } else {
+        xmlText = await res.text();
+      }
+      if (!xmlText || !xmlText.includes('<entry>')) continue;
+
+      const parser  = new DOMParser();
+      const xml     = parser.parseFromString(xmlText, 'text/xml');
+      const entries = Array.from(xml.querySelectorAll('entry'));
+      if (!entries.length) continue;
+
       const fetched = entries.map(e => {
-        const id    = (e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '').replace('yt:video:','');
+        const idRaw = e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '';
+        const id    = idRaw.replace('yt:video:','');
         const title = e.querySelector('title')?.textContent || '';
         const published = e.querySelector('published')?.textContent || '';
         const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
         const views = e.querySelector('statistics')?.getAttribute('views') || '0';
-        return { id, title, description: '', thumbnail: thumb, publishedAt: published, viewCount: views, isShort: false, cat: detectCategory(title, '') };
+        return { id, title, description:'', thumbnail:thumb, publishedAt:published, viewCount:views, isShort:false, cat:detectCategory(title,'') };
       }).filter(v => v.id && v.title).map(sanitiseVideo);
 
       if (fetched.length) {
         VIDEOS = fetched;
         rssSuccess = true;
-        console.log('RSS feed success:', VIDEOS.length, 'videos');
+        console.log('RSS success via', proxy.split('?')[0], '—', VIDEOS.length, 'videos');
         try {
           sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS));
           sessionStorage.setItem('yt_videos_time', Date.now().toString());
         } catch(e) {}
+        // Re-render immediately with fresh data
+        renderHomeGrid();
+        if (typeof buildVideoIndex === 'function') buildVideoIndex();
       }
+    } catch(e) {
+      console.warn('Proxy failed:', proxy.split('?')[0], e.message);
     }
-  } catch(e) {
-    console.warn('RSS fetch failed:', e.message);
   }
 
-  // ── STEP 2: YouTube Data API for subscriber count + richer video data
-  // Only attempt if we have a key and are on a real domain (not localhost)
-  const isLiveDomain = location.hostname !== 'localhost' && location.hostname !== '127.0.0.1' && location.hostname !== '';
+  if (!rssSuccess) console.warn('All RSS proxies failed — showing local video list');
+
+  // ── STEP 2: YouTube Data API for live subscriber/video counts
   if (!YT_API_KEY || YT_API_KEY === 'YOUR_API_KEY') return;
-
   try {
-    const chanRes = await fetch(`${YT_API_BASE}/channels?part=contentDetails,statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(8000) });
+    const chanRes  = await fetch(`${YT_API_BASE}/channels?part=contentDetails,statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(8000) });
     const chanData = await chanRes.json();
-    if (chanData.error) {
-      console.warn('YT API error:', chanData.error.message, '(code', chanData.error.code + ')');
-      // Common causes: key restricted to domain, quota exceeded, key invalid
-      // RSS videos still loaded above — just stats won't update
-      return;
-    }
+    if (chanData.error) { console.warn('YT API:', chanData.error.message); return; }
     if (!chanData.items?.length) return;
-
-    // Update live subscriber + video counts
     const stats = chanData.items[0].statistics;
     if (stats) updateChannelStats(stats.subscriberCount, stats.videoCount);
-    console.log('YT API stats live: subs=', stats?.subscriberCount, 'videos=', stats?.videoCount);
+    console.log('YT stats live — subs:', stats?.subscriberCount, 'videos:', stats?.videoCount);
 
-    // If RSS already loaded videos, skip the heavy playlist fetch
+    // Full API video fetch only if RSS failed
     if (rssSuccess) return;
-
-    // Fallback: full API video fetch if RSS failed
     const uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
     let allItems = [], pageToken = '';
     do {
-      const url = `${YT_API_BASE}/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50&key=${YT_API_KEY}${pageToken ? '&pageToken=' + pageToken : ''}`;
+      const url = `${YT_API_BASE}/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50&key=${YT_API_KEY}${pageToken?'&pageToken='+pageToken:''}`;
       const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
       const d = await r.json();
       if (d.items) allItems = allItems.concat(d.items);
       pageToken = d.nextPageToken || '';
     } while (pageToken);
-
     if (!allItems.length) return;
     const ids = allItems.map(i => i.snippet.resourceId.videoId);
     let detailMap = {};
     for (let i = 0; i < ids.length; i += 50) {
-      const batch = ids.slice(i, i+50).join(',');
+      const batch = ids.slice(i,i+50).join(',');
       const dr = await fetch(`${YT_API_BASE}/videos?part=snippet,statistics,contentDetails&id=${batch}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(8000) });
       const dd = await dr.json();
       if (dd.items) dd.items.forEach(v => { detailMap[v.id] = v; });
     }
     const fetched = allItems.map(item => {
       const vid = item.snippet, id = vid.resourceId.videoId, detail = detailMap[id];
-      const duration = detail?.contentDetails?.duration || '';
       const titleLower = vid.title.toLowerCase();
       const hasContentKeyword = /tutorial|instruction|booklet|showcase|review|history|ranked|moc|how to|lego news|joke|quiz|short film/.test(titleLower);
       const isShort = !hasContentKeyword && (titleLower.includes('#shorts') || titleLower.includes('#short') || /\bshort\b/.test(titleLower));
-      return { id, title: vid.title, description: vid.description || '', thumbnail: (vid.thumbnails.high || vid.thumbnails.medium || vid.thumbnails.default || {}).url || '', publishedAt: vid.publishedAt, viewCount: detail?.statistics?.viewCount || '0', isShort, cat: isShort ? 'shorts' : detectCategory(vid.title, vid.description || ''), duration };
+      return { id, title:vid.title, description:vid.description||'', thumbnail:(vid.thumbnails.high||vid.thumbnails.medium||vid.thumbnails.default||{}).url||'', publishedAt:vid.publishedAt, viewCount:detail?.statistics?.viewCount||'0', isShort, cat:isShort?'shorts':detectCategory(vid.title,vid.description||''), duration:detail?.contentDetails?.duration||'' };
     }).filter(v => v.id && v.title !== 'Deleted video' && v.title !== 'Private video').map(sanitiseVideo);
-
     if (fetched.length) {
       VIDEOS = fetched;
       try { sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS)); sessionStorage.setItem('yt_videos_time', Date.now().toString()); } catch(e) {}
-      console.log('API full fetch success:', VIDEOS.length, 'videos');
+      renderHomeGrid();
+      if (typeof buildVideoIndex === 'function') buildVideoIndex();
+      console.log('API full fetch:', VIDEOS.length, 'videos');
     }
   } catch(e) {
-    console.warn('YouTube API fetch failed:', e.message);
+    console.warn('YT API failed:', e.message);
   }
 }
 
@@ -3543,9 +3553,8 @@ function parseDuration(d) {
   return (parseInt(m[1]||0)*3600) + (parseInt(m[2]||0)*60) + parseInt(m[3]||0);
 }
 
-// Load from session cache if available, otherwise fetch fresh
-// Cache expires after 30 minutes so new YouTube uploads appear automatically
-const YT_CACHE_TTL = 30 * 60 * 1000;
+// Cache expires after 15 minutes so new uploads appear quickly
+const YT_CACHE_TTL = 15 * 60 * 1000;
 
 async function loadVideosWithCache() {
   try {
@@ -6575,7 +6584,7 @@ function mocNav(id,dir){
 
 </style>
 
-<button id="tips-tricks-back" onclick="showPage('home')">← Back</button>
+<button id="tips-tricks-back" onclick="showPage('tips-tricks')">← Back</button>
 
 <div id="tips-tricks-body">
 <div class="reading-bar" id="readingBar"></div>
@@ -6808,9 +6817,9 @@ function mocNav(id,dir){
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ MODAL -->
-<div class="overlay" id="tt-overlay" onclick="closeOv(event)">
+<div class="overlay" id="tt-overlay" onclick="closeTtOverlay(event)">
   <div class="modal" id="tt-modal">
-    <button class="modal-close" onclick="closeOvDirect()">✕</button>
+    <button class="modal-close" onclick="closeTtOverlayDirect()">✕</button>
     <div class="modal-inner">
       <span class="m-icon" id="tt-mIcon"></span>
       <div class="m-eyebrow" id="tt-mEyebrow"></div>
@@ -6845,11 +6854,13 @@ function initTipsTricksPage() {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ttRO.unobserve(e.target); } });
   }, {threshold: .08});
   ttBody.querySelectorAll('.reveal').forEach(el => ttRO.observe(el));
+} // end initTipsTricksPage
 
 // ── Reading bar
 window.addEventListener('scroll',()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('readingBar').style.width=(scrollY/h*100)+'%';
+  const bar = document.getElementById('readingBar');
+  if(bar) bar.style.width=(scrollY/h*100)+'%';
 });
 
 // ── Scroll reveal
@@ -7038,11 +7049,15 @@ function renderTech(cat){
   });
 }
 renderTech('all');
+// Re-render when page becomes active (clears stale animation state)
+document.addEventListener('tt-page-active', () => renderTech(
+  document.querySelector('#tips-tricks-body .fbtn.active')?.dataset?.cat || 'all'
+));
 
 // ── Modal
 function openModal(t){
   const idx=TECHS.indexOf(t);
-  document.getElementById('tt-mIcon').textContent=t.icon;
+  document.getElementById('tt-mIcon').innerHTML=t.icon;
   document.getElementById('tt-mEyebrow').textContent=`${t.cat.toUpperCase()} · ${LEVEL_LABEL[t.level]}`;
   document.getElementById('tt-mTitle').textContent=t.title;
   document.getElementById('tt-mSub').textContent=t.sub;
@@ -7066,9 +7081,17 @@ function openModal(t){
   document.body.style.overflow='hidden';
   document.getElementById('tt-modal').scrollTop=0;
 }
-function closeOv(e){if(e.target===document.getElementById('tt-overlay'))closeOvDirect();}
-function closeOvDirect(){document.getElementById('tt-overlay').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOvDirect();});
+window.closeTtOverlay = function(e) {
+  if (!e || e.target === document.getElementById('tt-overlay')) {
+    document.getElementById('tt-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+};
+window.closeTtOverlayDirect = function() {
+  document.getElementById('tt-overlay').classList.remove('open');
+  document.body.style.overflow='';
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape') window.closeTtOverlayDirect();});
 
 // ══════════════════════════════════════════════════════════════════
 // COLOUR PALETTE TOOL

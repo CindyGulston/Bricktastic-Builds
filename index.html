@@ -1409,7 +1409,7 @@ window.addEventListener('load', function() {
       <h1><span class="y" id="typewriter-line1"></span><br><span class="r" id="typewriter-line2"></span><span class="typewriter-cursor" id="typewriter-cursor"></span></h1>
       <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
-        <div><span class="sn" id="statSubscribers">257+</span><span class="sl">Subscribers</span></div>
+        <div><span class="sn" id="statSubscribers">260+</span><span class="sl">Subscribers</span></div>
         <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
         <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
       </div>
@@ -3256,12 +3256,13 @@ function formatCount(n) {
 
 // Update subscriber/video count displays across the page
 function updateChannelStats(subs, vids) {
-  const subNum = parseInt(subs) || 0;
-  const vidNum = parseInt(vids) || 0;
+  // subs or vids may be null if YouTube is hiding them
+  const subNum = (subs !== null && subs !== undefined) ? (parseInt(subs) || 0) : null;
+  const vidNum = (vids !== null && vids !== undefined) ? (parseInt(vids) || 0) : null;
 
-  // Animate the hero stat counters with live numbers
+  // Animate a stat counter smoothly from its current value to the new target
   function animateStat(el, target, suffix) {
-    if (!el) return;
+    if (!el || target === null) return;
     const start = parseInt(el.textContent.replace(/\D/g,'')) || 0;
     const duration = 1200;
     const startTime = performance.now();
@@ -3276,8 +3277,11 @@ function updateChannelStats(subs, vids) {
     requestAnimationFrame(step);
   }
 
-  animateStat(document.getElementById('statSubscribers'), subNum, '+');
-  animateStat(document.getElementById('statVideos'), vidNum, '');
+  // Only update if we actually have a real number (not null/hidden)
+  // If hidden by YouTube, keep the hardcoded 260+ displayed
+  if (subNum !== null) animateStat(document.getElementById('statSubscribers'), subNum, '+');
+  else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('260')) el.textContent = '260+'; }
+  if (vidNum !== null) animateStat(document.getElementById('statVideos'), vidNum, '');
 
   // Notify the counter animation system that live data is ready
   if (typeof window._onLiveStatsReady === 'function') {
@@ -3321,8 +3325,15 @@ async function fetchYouTubeVideos() {
 
     // Update live subscriber + video counts
     const stats = chanData.items[0].statistics;
-    if (stats) updateChannelStats(stats.subscriberCount, stats.videoCount);
-    console.log('YT API: subs=', stats?.subscriberCount, 'videos=', stats?.videoCount);
+    // Update live subscriber + video counts
+    // YouTube hides exact subscriber count for smaller channels (hiddenSubscriberCount: true)
+    // In that case subscriberCount is undefined — keep the hardcoded value, still update video count
+    if (stats) {
+      const subCount = stats.hiddenSubscriberCount ? null : (parseInt(stats.subscriberCount) || null);
+      const vidCount = parseInt(stats.videoCount) || null;
+      updateChannelStats(subCount, vidCount);
+      console.log('YT API: subs=', subCount ?? '(hidden by YouTube)', 'videos=', vidCount);
+    }
 
     // ── STEP 2: Fetch ALL uploads from the playlist (paginated)
     const uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
@@ -10234,13 +10245,17 @@ function handleGalleryFile(input) {
 
   // Called by updateChannelStats once API data arrives
   window._onLiveStatsReady = function(subs, vids) {
-    liveSubVal = subs; liveVidVal = vids; liveReady = true;
+    if (subs !== null) liveSubVal = subs;
+    if (vids !== null) liveVidVal = vids;
+    liveReady = true;
     if (fired) {
-      // Stats section already visible — animate immediately with live values
-      animateCount(document.getElementById('statSubscribers'), subs, '+', 1200);
-      animateCount(document.getElementById('statVideos'), vids, '', 1000);
-      const vid2 = document.getElementById('statVideos2');
-      if(vid2) vid2.textContent = vids.toLocaleString() + '+';
+      // Stats section already visible — animate to live values
+      if (subs !== null) animateCount(document.getElementById('statSubscribers'), subs, '+', 1200);
+      if (vids !== null) {
+        animateCount(document.getElementById('statVideos'), vids, '', 1000);
+        const vid2 = document.getElementById('statVideos2');
+        if(vid2) vid2.textContent = vids.toLocaleString() + '+';
+      }
     }
   };
 
@@ -10255,7 +10270,7 @@ function handleGalleryFile(input) {
         if(vid2) animateCount(vid2, liveVidVal, '+', 1400);
       } else {
         // API still loading — show placeholder animation, live update will follow
-        animateCount(document.getElementById('statSubscribers'), 257, '+', 1800);
+        animateCount(document.getElementById('statSubscribers'), 260, '+', 1800);
         animateCount(document.getElementById('statVideos'), 296, '', 1400);
       }
     }

@@ -3256,20 +3256,45 @@ function formatCount(n) {
 
 // Update subscriber/video count displays across the page
 function updateChannelStats(subs, vids) {
-  const subStr = formatCount(subs) + '+';
-  const vidStr = formatCount(vids);
-  const els = {
-    statSubscribers: subStr,
-    statVideos: vidStr,
-    statVideos2: vidStr,
-    statVideos3: vidStr,
-  };
-  Object.entries(els).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val;
-  });
+  const subNum = parseInt(subs) || 0;
+  const vidNum = parseInt(vids) || 0;
+
+  // Animate the hero stat counters with live numbers
+  function animateStat(el, target, suffix) {
+    if (!el) return;
+    const start = parseInt(el.textContent.replace(/\D/g,'')) || 0;
+    const duration = 1200;
+    const startTime = performance.now();
+    function step(now) {
+      const p = Math.min((now - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(start + (target - start) * ease);
+      el.textContent = val.toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString() + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  animateStat(document.getElementById('statSubscribers'), subNum, '+');
+  animateStat(document.getElementById('statVideos'), vidNum, '');
+
+  // Notify the counter animation system that live data is ready
+  if (typeof window._onLiveStatsReady === 'function') {
+    window._onLiveStatsReady(subNum, vidNum);
+  }
+
+  // Plain text updates for other instances
+  const vid2 = document.getElementById('statVideos2');
+  if (vid2) vid2.textContent = vidNum.toLocaleString() + '+';
+  const vid3 = document.getElementById('statVideos3');
+  if (vid3) vid3.textContent = formatCount(vidNum);
   const tag = document.getElementById('statVideos4');
-  if (tag) tag.textContent = vidStr + ' Videos';
+  if (tag) tag.textContent = vidNum.toLocaleString() + ' Videos';
+
+  // Update the videos page hero subtitle too
+  const vidSub = document.querySelector('#page-videos .hero-sub');
+  if (vidSub) vidSub.textContent = `${vidNum.toLocaleString()}+ LEGO\u00ae builds, instructions, showcases & more. Click any video to watch on YouTube.`;
 }
 
 async function fetchYouTubeVideos() {
@@ -10201,22 +10226,38 @@ function handleGalleryFile(input) {
     }
     requestAnimationFrame(step);
   }
-  // Trigger when stats are visible
+  // Trigger when stats are visible — but wait for live API data first
   const statsEl = document.querySelector('.hero-stats');
   if(!statsEl) return;
   let fired = false;
+  let liveSubVal = 0, liveVidVal = 0, liveReady = false;
+
+  // Called by updateChannelStats once API data arrives
+  window._onLiveStatsReady = function(subs, vids) {
+    liveSubVal = subs; liveVidVal = vids; liveReady = true;
+    if (fired) {
+      // Stats section already visible — animate immediately with live values
+      animateCount(document.getElementById('statSubscribers'), subs, '+', 1200);
+      animateCount(document.getElementById('statVideos'), vids, '', 1000);
+      const vid2 = document.getElementById('statVideos2');
+      if(vid2) vid2.textContent = vids.toLocaleString() + '+';
+    }
+  };
+
   const io = new IntersectionObserver(entries=>{
     if(entries[0].isIntersecting && !fired){
       fired = true;
-      // Try to get actual values from existing text, fall back to defaults
-      const subEl = document.getElementById('statSubscribers');
-      const vidEl = document.getElementById('statVideos');
-      const subVal = subEl ? parseInt(subEl.textContent.replace(/\D/g,''))||257 : 257;
-      const vidVal = vidEl ? parseInt(vidEl.textContent.replace(/\D/g,''))||296 : 296;
-      animateCount(subEl, subVal, '+', 1800);
-      animateCount(vidEl, vidVal, '', 1400);
-      const vid2 = document.getElementById('statVideos2');
-      if(vid2) animateCount(vid2, vidVal, '+', 1400);
+      if (liveReady) {
+        // Live data already here — animate straight to real numbers
+        animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1800);
+        animateCount(document.getElementById('statVideos'), liveVidVal, '', 1400);
+        const vid2 = document.getElementById('statVideos2');
+        if(vid2) animateCount(vid2, liveVidVal, '+', 1400);
+      } else {
+        // API still loading — show placeholder animation, live update will follow
+        animateCount(document.getElementById('statSubscribers'), 257, '+', 1800);
+        animateCount(document.getElementById('statVideos'), 296, '', 1400);
+      }
     }
   },{threshold:.4});
   io.observe(statsEl);

@@ -1161,124 +1161,6 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
   transform:scale(1.3) rotate(-6deg);
 }
 
-/* ── ANIMATED GRADIENT MESH HERO BG ── */
-.hero-gradient-mesh{
-  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-}
-.hero-gradient-mesh::before{
-  content:'';position:absolute;inset:-40%;
-  background:
-    radial-gradient(ellipse 55% 45% at 15% 60%, rgba(227,0,11,.22) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 55% at 85% 30%, rgba(0,108,183,.18) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 50% 90%, rgba(255,215,0,.12) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 70% 70%, rgba(123,47,190,.14) 0%, transparent 60%);
-  animation:meshShift 12s ease-in-out infinite alternate;
-  filter:blur(32px);
-}
-.hero-gradient-mesh::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,215,0,.04) 0%, transparent 70%);
-  animation:meshPulse 6s ease-in-out infinite alternate;
-}
-@keyframes meshShift{
-  0%{transform:translate(0,0) scale(1);}
-  33%{transform:translate(-3%,2%) scale(1.04);}
-  66%{transform:translate(2%,-3%) scale(.97);}
-  100%{transform:translate(-1%,1%) scale(1.02);}
-}
-@keyframes meshPulse{from{opacity:.5}to{opacity:1}}
-
-/* ══════════════════════════════════════════
-   ARTICLE PAGES — 3D IMMERSIVE SYSTEM
-══════════════════════════════════════════ */
-
-/* ── Gradient mesh on ALL article heroes ── */
-#lego-history-body .hero,
-#lego-challenges-body .hero,
-#tips-tricks-body .hero,
-#lego-collecting-body .hero,
-#biggest-sets-body .hero {
-  overflow:hidden;
-}
-.article-mesh {
-  position:absolute;inset:-40%;z-index:0;pointer-events:none;
-  animation:meshShift 14s ease-in-out infinite alternate;
-  filter:blur(40px);
-}
-#lego-history-body   .article-mesh { background: radial-gradient(ellipse 55% 50% at 20% 60%, rgba(123,47,190,.35) 0%, transparent 60%), radial-gradient(ellipse 45% 55% at 80% 30%, rgba(209,16,18,.25) 0%, transparent 58%), radial-gradient(ellipse 40% 45% at 55% 85%, rgba(245,197,24,.2) 0%, transparent 55%); }
-#lego-challenges-body .article-mesh { background: radial-gradient(ellipse 55% 50% at 20% 60%, rgba(184,154,0,.4) 0%, transparent 60%), radial-gradient(ellipse 45% 55% at 80% 30%, rgba(245,197,24,.25) 0%, transparent 58%), radial-gradient(ellipse 40% 45% at 55% 85%, rgba(26,26,26,.3) 0%, transparent 55%); }
-#tips-tricks-body     .article-mesh { background: radial-gradient(ellipse 55% 50% at 20% 60%, rgba(0,166,80,.35) 0%, transparent 60%), radial-gradient(ellipse 45% 55% at 80% 30%, rgba(184,154,0,.22) 0%, transparent 58%), radial-gradient(ellipse 40% 45% at 55% 85%, rgba(0,108,183,.18) 0%, transparent 55%); }
-#lego-collecting-body .article-mesh { background: radial-gradient(ellipse 55% 50% at 20% 60%, rgba(201,168,76,.38) 0%, transparent 60%), radial-gradient(ellipse 45% 55% at 80% 30%, rgba(14,14,14,.5) 0%, transparent 58%), radial-gradient(ellipse 40% 45% at 55% 85%, rgba(201,168,76,.2) 0%, transparent 55%); }
-#biggest-sets-body    .article-mesh { background: radial-gradient(ellipse 55% 50% at 20% 60%, rgba(227,0,11,.32) 0%, transparent 60%), radial-gradient(ellipse 45% 55% at 80% 30%, rgba(0,0,0,.4) 0%, transparent 58%), radial-gradient(ellipse 40% 45% at 55% 85%, rgba(255,215,0,.2) 0%, transparent 55%); }
-
-/* ── Article hero parallax wrapper ── */
-.article-hero-inner {
-  position:relative;z-index:2;
-  will-change:transform;
-  transition:transform .08s linear;
-}
-
-/* ── 3D reveal for ALL article .reveal elements ── */
-#lego-history-body .reveal,
-#lego-challenges-body .reveal,
-#tips-tricks-body .reveal,
-#lego-collecting-body .reveal,
-#biggest-sets-body .reveal {
-  opacity:0;
-  transform:perspective(800px) rotateX(16deg) translateY(50px);
-  transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
-}
-#lego-history-body .reveal.visible,
-#lego-challenges-body .reveal.visible,
-#tips-tricks-body .reveal.visible,
-#lego-collecting-body .reveal.visible,
-#biggest-sets-body .reveal.visible {
-  opacity:1;
-  transform:perspective(800px) rotateX(0deg) translateY(0);
-}
-
-/* ── 3D tilt on article cards ── */
-#lego-history-body .brick-spec,
-#lego-history-body .crisis-stat,
-#lego-challenges-body .ch-card,
-#lego-challenges-body .diff-cell,
-#tips-tricks-body .tips-list li,
-#tips-tricks-body .level-cell,
-#lego-collecting-body .rarity-card,
-#lego-collecting-body .tip-card,
-#biggest-sets-body .set-entry,
-#biggest-sets-body .fact-card,
-#biggest-sets-body .tip-card,
-#biggest-sets-body .theme-card {
-  transform-style:preserve-3d;
-  transition:transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s ease !important;
-  will-change:transform;
-  position:relative;
-}
-/* Shared shine layer */
-.art-card-shine {
-  position:absolute;inset:0;pointer-events:none;z-index:5;
-  border-radius:inherit;opacity:0;
-  transition:opacity .2s ease;
-}
-
-/* ── Pull quotes float in from side ── */
-#lego-history-body .pull-quote,
-#lego-challenges-body .pull-quote,
-#tips-tricks-body .pull-quote,
-#lego-collecting-body .pull-quote {
-  transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .6s ease;
-}
-
-/* ── Section labels animate in ── */
-#lego-history-body .section-label,
-#lego-challenges-body .section-label,
-#tips-tricks-body .section-label,
-#lego-collecting-body .sec-label,
-#biggest-sets-body .sec-label {
-  transition:letter-spacing .4s ease, opacity .4s ease;
-}
-
 /* ── CUSTOM LEGO STUD CURSOR ── */
 body.custom-cursor-active,
 body.custom-cursor-active *{cursor:none!important;}
@@ -1521,7 +1403,6 @@ window.addEventListener('load', function() {
 <div id="page-home" class="page active">
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-gradient-mesh"></div>
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-left">
       <span class="hero-badge"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> LEGO® YouTube Channel + Shop</span>
@@ -1854,15 +1735,15 @@ window.addEventListener('load', function() {
                 </div>
                 <div style="background:rgba(255,255,255,.06);border-left:3px solid var(--yellow);padding:14px 16px;border-radius:0 8px 8px 0">
                   <strong style="color:var(--yellow);font-family:'Boogaloo',cursive;font-size:17px;display:block;margin-bottom:4px">2000s — Near Bankruptcy &amp; Rebirth</strong>
-                  <p style="font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.6">By 2003, LEGO® was losing R1M per day — eleven days from insolvency. In 2004, Jørgen Vig Knudstorp became CEO at 35. He cut the parts catalogue by 50%, sold LEGO®LAND parks, and refocused entirely on the brick. LEGO® listened to its AFOL fan community. By 2008: profitable again.</p>
+                  <p style="font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.6">By 2003, LEGO® was losing $1M per day — eleven days from insolvency. In 2004, Jørgen Vig Knudstorp became CEO at 35. He cut the parts catalogue by 50%, sold LEGO®LAND parks, and refocused entirely on the brick. LEGO® listened to its AFOL fan community. By 2008: profitable again.</p>
                 </div>
                 <div style="background:rgba(255,255,255,.06);border-left:3px solid var(--yellow);padding:14px 16px;border-radius:0 8px 8px 0">
                   <strong style="color:var(--yellow);font-family:'Boogaloo',cursive;font-size:17px;display:block;margin-bottom:4px">2010s — The LEGO® Movie &amp; World Domination</strong>
-                  <p style="font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.6">In 2012, LEGO® overtook Mattel and Hasbro to become the world's largest toy company by profit. The LEGO® Movie (2014) grossed R469M. The adult market was publicly embraced — 18+ sets, Creator Icons, Modular Buildings. The Millennium Falcon (2017) had 7,541 pieces and cost R650. It sold out immediately.</p>
+                  <p style="font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.6">In 2012, LEGO® overtook Mattel and Hasbro to become the world's largest toy company by profit. The LEGO® Movie (2014) grossed $469M. The adult market was publicly embraced — 18+ sets, Creator Icons, Modular Buildings. The Millennium Falcon (2017) had 7,541 pieces and cost £650. It sold out immediately.</p>
                 </div>
                 <div style="background:rgba(255,255,255,.06);border-left:3px solid var(--yellow);padding:14px 16px;border-radius:0 8px 8px 0">
                   <strong style="color:var(--yellow);font-family:'Boogaloo',cursive;font-size:17px;display:block;margin-bottom:4px">2020s — Pandemic Boom &amp; What's Next</strong>
-                  <p style="font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.6">COVID-19 was one of the strangest windfalls in toy history — adults stuck at home rediscovered building. LEGO® Art launched (mosaic wall sets). A commitment to 100% sustainable materials by 2030. In 2023, LEGO® reported its highest-ever revenue: R9.5B USD.</p>
+                  <p style="font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.6">COVID-19 was one of the strangest windfalls in toy history — adults stuck at home rediscovered building. LEGO® Art launched (mosaic wall sets). A commitment to 100% sustainable materials by 2030. In 2023, LEGO® reported its highest-ever revenue: $9.5B USD.</p>
                 </div>
               </div>
             </div>
@@ -1900,7 +1781,7 @@ window.addEventListener('load', function() {
               <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.6">This is the part of the LEGO® story most people don't know. By 2003, the world's favourite toy company was eleven days from insolvency.</p>
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:18px">
                 <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:14px;text-align:center">
-                  <div style="font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow)">R1M</div>
+                  <div style="font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow)">$1M</div>
                   <div style="font-size:11px;color:rgba(255,255,255,.6);font-weight:700;text-transform:uppercase;letter-spacing:.5px">Lost per day</div>
                 </div>
                 <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:14px;text-align:center">
@@ -1932,7 +1813,7 @@ window.addEventListener('load', function() {
                 <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">06 — The Tyre Problem.</strong> <span style="font-size:13px;color:#555">LEGO® is the world's largest tyre manufacturer by unit volume — approximately 381 million tiny rubber tyres per year. Michelin doesn't come close.</span></div>
                 <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">07 — Minifigures Outnumber Humans.</strong> <span style="font-size:13px;color:#555">Approximately 8 billion minifigures have been produced — roughly matching the human world population. And production is still running.</span></div>
                 <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">08 — The Certified Professional.</strong> <span style="font-size:13px;color:#555">LEGO® has a formal Certified Professional programme. There are fewer than 30 in the world. It is genuinely difficult to qualify.</span></div>
-                <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">09 — Investment Grade.</strong> <span style="font-size:13px;color:#555">The 2007 Millennium Falcon sold for R342 at retail. In mint sealed condition it now trades above R5,000. That's a 1,300%+ return.</span></div>
+                <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">09 — Investment Grade.</strong> <span style="font-size:13px;color:#555">The 2007 Millennium Falcon sold for £342 at retail. In mint sealed condition it now trades above £5,000. That's a 1,300%+ return.</span></div>
                 <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">10 — The Name Means Nothing in German.</strong> <span style="font-size:13px;color:#555">In German, "lego" roughly translates as "I lay down" — from Latin. Ole Kirk chose it purely for the Danish <em>leg godt</em>. The coincidence pleased him.</span></div>
                 <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">11 — Height Without Width.</strong> <span style="font-size:13px;color:#555">The stud-to-stud distance is 8mm. Brick height is 9.6mm. Width-to-height ratio is 5:6. Every SNOT builder lives with this.</span></div>
                 <div style="background:#fff;border:2px solid #e8e4da;border-radius:10px;padding:12px 14px;border-left:4px solid var(--yellow)"><strong style="font-size:13px">12 — The Ole Kirk Test Still Runs.</strong> <span style="font-size:13px;color:#555">"Only the best is good enough." Ole's personal motto, written on a sign in his original workshop, is still LEGO®'s official quality philosophy today.</span></div>
@@ -2313,21 +2194,21 @@ window.addEventListener('load', function() {
             <span class="bundle-card-emoji">📦</span>
             <div class="bundle-card-name">Starter Pack</div>
             <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">5 Builds for Beginners</div>
-            <div class="bundle-card-price">R19</div>
+            <div class="bundle-card-price">$19</div>
             <div class="bundle-card-save">Save 40%</div>
           </div>
           <div class="bundle-card" onclick="showPage('shop');setTimeout(()=>filterShop('bun',document.querySelector('.shop-tab:last-child')),100)">
             <span class="bundle-card-emoji">🏙️</span>
             <div class="bundle-card-name">City Core Bundle</div>
             <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">4 Modular Builds</div>
-            <div class="bundle-card-price">R29</div>
+            <div class="bundle-card-price">$29</div>
             <div class="bundle-card-save">Save 35%</div>
           </div>
           <div class="bundle-card" onclick="showPage('shop');setTimeout(()=>filterShop('bun',document.querySelector('.shop-tab:last-child')),100)" style="border-color:var(--yellow)">
             <span class="bundle-card-emoji">👑</span>
             <div class="bundle-card-name">Complete Collection</div>
             <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">Everything — All PDFs</div>
-            <div class="bundle-card-price">R39</div>
+            <div class="bundle-card-price">$39</div>
             <div class="bundle-card-save">Save 60% ⭐ Best Value</div>
           </div>
         </div>
@@ -2359,23 +2240,23 @@ window.addEventListener('load', function() {
             <div class="pname">The Grand Medieval Castle — Full MOC</div>
             <div class="pdesc">The centrepiece of my 31-day build series. Four towers, working portcullis, great hall, stables, smithy, and market square. Hand-built and shipped worldwide. As seen on the channel.</div>
             <div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> ~16,800 pcs</span><span>📏 48×48 studs</span><span>🚚 Ships worldwide</span></div>
-            <div class="pfooter"><div class="price"><span class="cur">R</span>349</div><button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(0)">🛒 Add to Cart</button></div>
+            <div class="pfooter"><div class="price"><span class="cur">$</span>349</div><button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(0)">🛒 Add to Cart</button></div>
           </div>
         </div>
         <!-- INSTRUCTIONS -->
-        <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#003d6b,#006CB7)"><span class="te">🏙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-m">Intermediate</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">City Corner Café — Building Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 340 pcs</span><span>📄 48 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>8</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(1)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="2" onclick="openMod(2)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">🌲</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">PDF Instructions</div><div class="pname">Jungle Waterfall Vignette — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 180 pcs</span><span>📄 28 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>5</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(2)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="3" onclick="openMod(3)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#7B2FBE,#E3000B)"><span class="te">🏯</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">PDF Instructions</div><div class="pname">Japanese Ramen Street Scene — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 920 pcs</span><span>📄 96 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>14</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(3)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="moc" data-id="4" onclick="openMod(4)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#3d2200)"><span class="te">🚂</span><div class="rib rib-moc">🏗️ Physical MOC</div><div class="db db-x">Collector</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">Physical MOC</div><div class="pname">Victorian Train Station — Custom MOC</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> ~3,200 pcs</span><span>📏 32×48 studs</span><span>🚚 Ships worldwide</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>129</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(4)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="5" onclick="openMod(5)"><div class="pthumb" style="background:linear-gradient(135deg,#b89a00,#FFD700)"><span class="te">⚙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-x">Expert</div></div><div class="pinfo"><div class="ptyp" style="color:#b89a00">PDF Instructions</div><div class="pname">Working Technic Engine Display — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 480 pcs</span><span>📄 64 pages</span><span>⚙️ Fully kinetic</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>12</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(5)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="bun" data-id="6" onclick="openMod(6)"><div class="pthumb" style="background:linear-gradient(135deg,#8b3a00,#FF6B00)"><span class="te">📦</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">Bundle — Save 40%</div><div class="pname">Starter Pack — 5 Instructions for Beginners</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 5 builds</span><span>📄 200+ pages</span><span>💰 Save 40%</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>19</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(6)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="7" onclick="openMod(7)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#00838F)"><span class="te">🌉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Suspension Bridge Micro-Scale — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 620 pcs</span><span>📄 52 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>10</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(7)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="9" onclick="openMod(9)"><div class="pthumb" style="background:linear-gradient(135deg,#0a0a2e,#006CB7)"><span class="te">🚀</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Space Station Micro Build — Instructions</div><div class="pmeta"><span>220 pcs</span><span>📄 32 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>7</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(9)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="10" onclick="openMod(10)"><div class="pthumb" style="background:linear-gradient(135deg,#1a0800,#8b3a00)"><span class="te">🐉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">PDF Instructions</div><div class="pname">Dragon Lair Diorama — Instructions</div><div class="pmeta"><span>780 pcs</span><span>📄 68 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>11</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(10)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="11" onclick="openMod(11)"><div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FFD700)"><span class="te">🖼️</span><div class="rib rib-ins" style="background:var(--yellow);color:var(--black)">🖼️ Wallpapers</div></div><div class="pinfo"><div class="ptyp" style="color:var(--red)">Digital Wallpapers</div><div class="pname">Bricktastic Wallpaper Pack — 10 Designs</div><div class="pmeta"><span>10 wallpapers</span><span>🖥️ 4K res</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>3</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(11)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="ins" data-id="12" onclick="openMod(12)"><div class="pthumb" style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">📋</span><div class="rib rib-ins" style="background:var(--green)">📋 BrickLink XML</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">BrickLink XML</div><div class="pname">Speed Champions XML Parts Pack — 8 MOCs</div><div class="pmeta"><span>8 MOCs</span><span>📄 XML files</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>4</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(12)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="bun" data-id="13" onclick="openMod(13)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#7B2FBE)"><span class="te">🏙️</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Bundle — Save 35%</div><div class="pname">Modular City Core — 4 Build Mega Bundle</div><div class="pmeta"><span>4 PDFs</span><span>💰 Save 35%</span><span>🏙️ City connects</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>29</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(13)">🛒 Add</button></div></div></div>
-        <div class="pc" data-cat="bun" data-id="8" onclick="openMod(8)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#7B2FBE)"><span class="te">👑</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Ultimate Bundle — Save 60%</div><div class="pname">Complete Bricktastic Collection — All Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> All builds</span><span>📄 All PDFs</span><span>💰 Save 60%</span></div><div class="pfooter"><div class="price"><span class="cur">R</span>39</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(8)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#003d6b,#006CB7)"><span class="te">🏙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-m">Intermediate</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">City Corner Café — Building Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 340 pcs</span><span>📄 48 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>8</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(1)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="2" onclick="openMod(2)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">🌲</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">PDF Instructions</div><div class="pname">Jungle Waterfall Vignette — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 180 pcs</span><span>📄 28 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>5</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(2)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="3" onclick="openMod(3)"><div class="pthumb" style="position:relative"><span class="new-badge" style="position:absolute;top:8px;right:8px;z-index:4">NEW</span style="background:linear-gradient(135deg,#7B2FBE,#E3000B)"><span class="te">🏯</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">PDF Instructions</div><div class="pname">Japanese Ramen Street Scene — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 920 pcs</span><span>📄 96 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>14</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(3)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="moc" data-id="4" onclick="openMod(4)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#3d2200)"><span class="te">🚂</span><div class="rib rib-moc">🏗️ Physical MOC</div><div class="db db-x">Collector</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">Physical MOC</div><div class="pname">Victorian Train Station — Custom MOC</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> ~3,200 pcs</span><span>📏 32×48 studs</span><span>🚚 Ships worldwide</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>129</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(4)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="5" onclick="openMod(5)"><div class="pthumb" style="background:linear-gradient(135deg,#b89a00,#FFD700)"><span class="te">⚙️</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-x">Expert</div></div><div class="pinfo"><div class="ptyp" style="color:#b89a00">PDF Instructions</div><div class="pname">Working Technic Engine Display — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 480 pcs</span><span>📄 64 pages</span><span>⚙️ Fully kinetic</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>12</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(5)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="6" onclick="openMod(6)"><div class="pthumb" style="background:linear-gradient(135deg,#8b3a00,#FF6B00)"><span class="te">📦</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">Bundle — Save 40%</div><div class="pname">Starter Pack — 5 Instructions for Beginners</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 5 builds</span><span>📄 200+ pages</span><span>💰 Save 40%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>19</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(6)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="7" onclick="openMod(7)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#00838F)"><span class="te">🌉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Suspension Bridge Micro-Scale — Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> 620 pcs</span><span>📄 52 pages</span><span>🔢 BrickLink list</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>10</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(7)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="9" onclick="openMod(9)"><div class="pthumb" style="background:linear-gradient(135deg,#0a0a2e,#006CB7)"><span class="te">🚀</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-e">Beginner</div></div><div class="pinfo"><div class="ptyp" style="color:var(--blue)">PDF Instructions</div><div class="pname">Space Station Micro Build — Instructions</div><div class="pmeta"><span>220 pcs</span><span>📄 32 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>7</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(9)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="10" onclick="openMod(10)"><div class="pthumb" style="background:linear-gradient(135deg,#1a0800,#8b3a00)"><span class="te">🐉</span><div class="rib rib-ins">📐 Instructions</div><div class="db db-h">Advanced</div></div><div class="pinfo"><div class="ptyp" style="color:var(--orange)">PDF Instructions</div><div class="pname">Dragon Lair Diorama — Instructions</div><div class="pmeta"><span>780 pcs</span><span>📄 68 pages</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>11</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(10)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="11" onclick="openMod(11)"><div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FFD700)"><span class="te">🖼️</span><div class="rib rib-ins" style="background:var(--yellow);color:var(--black)">🖼️ Wallpapers</div></div><div class="pinfo"><div class="ptyp" style="color:var(--red)">Digital Wallpapers</div><div class="pname">Bricktastic Wallpaper Pack — 10 Designs</div><div class="pmeta"><span>10 wallpapers</span><span>🖥️ 4K res</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>3</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(11)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="ins" data-id="12" onclick="openMod(12)"><div class="pthumb" style="background:linear-gradient(135deg,#004d25,#00A650)"><span class="te">📋</span><div class="rib rib-ins" style="background:var(--green)">📋 BrickLink XML</div></div><div class="pinfo"><div class="ptyp" style="color:var(--green)">BrickLink XML</div><div class="pname">Speed Champions XML Parts Pack — 8 MOCs</div><div class="pmeta"><span>8 MOCs</span><span>📄 XML files</span><span>📥 Instant DL</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>4</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(12)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="13" onclick="openMod(13)"><div class="pthumb" style="background:linear-gradient(135deg,#003d6b,#7B2FBE)"><span class="te">🏙️</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Bundle — Save 35%</div><div class="pname">Modular City Core — 4 Build Mega Bundle</div><div class="pmeta"><span>4 PDFs</span><span>💰 Save 35%</span><span>🏙️ City connects</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>29</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(13)">🛒 Add</button></div></div></div>
+        <div class="pc" data-cat="bun" data-id="8" onclick="openMod(8)"><div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#7B2FBE)"><span class="te">👑</span><div class="rib rib-bun">📦 Bundle</div></div><div class="pinfo"><div class="ptyp" style="color:#7B2FBE">Ultimate Bundle — Save 60%</div><div class="pname">Complete Bricktastic Collection — All Instructions</div><div class="pmeta"><span><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> All builds</span><span>📄 All PDFs</span><span>💰 Save 60%</span></div><div class="pfooter"><div class="price"><span class="cur">$</span>39</div><button class="acb" onclick="event.stopPropagation();openBuyUrl(8)">🛒 Add</button></div></div></div>
       </div>
 
       <!-- TRUST BADGES -->
@@ -2415,7 +2296,7 @@ window.addEventListener('load', function() {
   <div class="cart-hd"><h3>🛒 Your Cart</h3><button class="cart-x" onclick="toggleCart()">✕</button></div>
   <div class="cart-its" id="cartIts"><div class="cart-emp"><span class="cei"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg></span><p>Your cart is empty!<br>Add some builds to get started.</p></div></div>
   <div class="cart-ft" id="cartFt" style="display:none">
-    <div class="cart-tot"><span class="cart-tot-l">Total</span><span class="cart-tot-p" id="cartTot">R0</span></div>
+    <div class="cart-tot"><span class="cart-tot-l">Total</span><span class="cart-tot-p" id="cartTot">$0</span></div>
     <button class="co-btn" onclick="checkout()">🔒 Proceed to Checkout</button>
     <p class="cart-note">Instant PDF delivery · Secure payment · Worldwide shipping for MOCs</p>
   </div>
@@ -2523,7 +2404,7 @@ const P=[
   {id:0,name:"The Grand Medieval Castle — Full MOC",type:"Physical MOC",price:349,emoji:"🏰",bg:"linear-gradient(135deg,#1A1A1A,#3a1a00)",tc:"var(--orange)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Order: Grand Medieval Castle MOC",buyLabel:"📧 Order via Email",desc:"The centrepiece of my 31-day build series. Four towers, working portcullis, great hall with interior details, stables, smithy, and market square. Hand-built and shipped worldwide. Comes with certificate of authenticity.",specs:[["~16,800","Pieces"],["48×48","Stud Base"],["40+ hrs","Build Time"]],inc:["Fully assembled MOC","Certificate of authenticity","Protective packaging","Minifigures included","Signed build card"]},
   {id:1,name:"City Corner Café — Building Instructions",type:"PDF Instructions",price:8,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/cafe-instructions",emoji:"🏙️",bg:"linear-gradient(135deg,#003d6b,#006CB7)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/cafe-instructions",buyLabel:"⬇️ Buy & Download",desc:"A charming corner café with outdoor seating, detailed interior, menu boards, and working awning. 48 full-colour pages with step-by-step instructions and a complete BrickLink shopping list.",specs:[["340","Pieces"],["48 pgs","Instructions"],["PDF","Instant DL"]],inc:["48-page colour PDF","Full BrickLink parts list","Tips & technique guide","Free updates forever"]},
   {id:2,name:"Jungle Waterfall Vignette — Instructions",type:"PDF Instructions",price:5,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/jungle-waterfall",emoji:"🌲",bg:"linear-gradient(135deg,#004d25,#00A650)",tc:"var(--green)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/jungle-waterfall",buyLabel:"⬇️ Buy & Download",desc:"A perfect beginner MOC. 16×16 stud vignette with cascading waterfall, lush jungle foliage, and hidden cave behind the falls. Great first build for learning organic textures and SNOT techniques.",specs:[["180","Pieces"],["28 pgs","Instructions"],["PDF","Instant DL"]],inc:["28-page colour PDF","BrickLink parts list","Beginner-friendly notes"]},
-  {id:3,name:"Japanese Ramen Street Scene — Instructions",type:"PDF Instructions",price:14,emoji:"🏯",bg:"linear-gradient(135deg,#7B2FBE,#E3000B)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/ramen-street",buyLabel:"⬇️ Buy & Download",desc:"Multi-level Japanese street scene as seen in my R1000 LEGO® build video. Ramen shop, apartments above, temple in background, and rain effect throughout. Advanced techniques throughout.",specs:[["920","Pieces"],["96 pgs","Instructions"],["PDF","Instant DL"]],inc:["96-page colour PDF","BrickLink parts list","Advanced technique guide","Rain effect tutorial","Custom tile guide"]},
+  {id:3,name:"Japanese Ramen Street Scene — Instructions",type:"PDF Instructions",price:14,emoji:"🏯",bg:"linear-gradient(135deg,#7B2FBE,#E3000B)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/ramen-street",buyLabel:"⬇️ Buy & Download",desc:"Multi-level Japanese street scene as seen in my $1000 LEGO® build video. Ramen shop, apartments above, temple in background, and rain effect throughout. Advanced techniques throughout.",specs:[["920","Pieces"],["96 pgs","Instructions"],["PDF","Instant DL"]],inc:["96-page colour PDF","BrickLink parts list","Advanced technique guide","Rain effect tutorial","Custom tile guide"]},
   {id:4,name:"Victorian Train Station — Custom MOC",type:"Physical MOC",price:129,emoji:"🚂",bg:"linear-gradient(135deg,#1A1A1A,#3d2200)",tc:"var(--blue)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Order: Victorian Train Station MOC",buyLabel:"📧 Order via Email",desc:"Ornate Victorian-era train station with arched iron roof, detailed ticket hall, platform signage, and working station clock. Dark tan and dark brown colour palette. Ships worldwide fully assembled.",specs:[["~3,200","Pieces"],["32×48","Stud Base"],["Ships","Worldwide"]],inc:["Fully assembled MOC","Protective packaging","Minifigures included","Signed build card"]},
   {id:5,name:"Working Technic Engine Display — Instructions",type:"PDF Instructions",price:12,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",emoji:"⚙️",bg:"linear-gradient(135deg,#b89a00,#FFD700)",tc:"#b89a00",buyUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",buyLabel:"⬇️ Buy & Download",desc:"Fully kinetic 4-cylinder engine display model. Crank it by hand — all four pistons fire in sequence, valves operate, crankshaft turns. As seen in the Technic deep dive video.",specs:[["480","Pieces"],["64 pgs","Instructions"],["Fully","Kinetic"]],inc:["64-page colour PDF","BrickLink parts list","Engineering notes","Gear ratio explainer"]},
   {id:6,name:"Starter Pack — 5 Instructions for Beginners",type:"Bundle",price:19,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",emoji:"📦",bg:"linear-gradient(135deg,#8b3a00,#FF6B00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",buyLabel:"⬇️ Buy & Download",desc:"5 beginner-to-intermediate builds at 40% discount. Corner Café, Waterfall Vignette, Market Stall, Cosy Cottage, and Mini Lighthouse. Perfect for building up your skills fast.",specs:[["5 PDFs","Included"],["40%","Discount"],["Instant","Download"]],inc:["Corner Café PDF","Waterfall Vignette PDF","Market Stall PDF","Cosy Cottage PDF","Mini Lighthouse PDF","All BrickLink lists"]},
@@ -2927,15 +2808,10 @@ function showPage(id){
     if(ham) ham.classList.remove('ham-open');
     window.scrollTo({top:0,behavior:'instant'});
     if(id==='lego-history') initLegoHistoryPage();
-    if(id==='biggest-sets') {
-      setTimeout(()=>{
-        document.querySelectorAll('#biggest-sets-body .reveal').forEach(el=>el.classList.add('visible'));
-        document.querySelectorAll('#biggest-sets-body .theme-bar-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
-      }, 50);
-    }
+    if(id==='biggest-sets') initBiggestSetsPage();
     if(id==='lego-challenges') initLegoChallengesPage();
-    if(id==='lego-collecting') { lcPageInited=false; initLegoCollectingPage(); if(typeof renderTiers==='function') renderTiers('all'); if(typeof renderRarity==='function') renderRarity('all'); }
-    if(id==='tips-tricks') { if(window.ttPageInited!==undefined) window.ttPageInited=false; if(typeof window.initTipsTricksPage==='function') window.initTipsTricksPage(); if(typeof window.renderTech==='function') window.renderTech('all'); else if(typeof renderTech==='function') renderTech('all'); }
+    if(id==='lego-collecting') initLegoCollectingPage();
+    if(id==='tips-tricks') initTipsTricksPage();
     if(id==='videos') buildVideoIndex();
     if(id==='mocs') initMOCPage();
     if(id==='about') initAboutPage();
@@ -2995,7 +2871,7 @@ function updateCart(){
   if(!n){its.innerHTML='<div class="cart-emp"><span class="cei"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg></span><p>Your cart is empty!<br>Add some builds to get started.</p></div>';ft.style.display='none';return}
   ft.style.display='block';
   const tot=cart.reduce((s,i)=>s+i.price,0);
-  document.getElementById('cartTot').textContent='R'+tot;
+  document.getElementById('cartTot').textContent='$'+tot;
   const tc={PDF:'var(--green)',Physical:'var(--blue)',Bundle:'var(--orange)',Ultimate:'#7B2FBE'};
   its.innerHTML=cart.map(item=>`<div class="cart-item"><div class="cii" style="background:${(tc[item.type.split(' ')[0]]||'var(--blue)')}22">${item.emoji}</div><div style="flex:1"><div class="cin">${item.name}</div><div class="cit">${item.type}</div><div class="cip">$${item.price}</div></div><button class="cir" onclick="removeItem(${item.cid})">✕</button></div>`).join('');
 }
@@ -3041,7 +2917,7 @@ function openMod(id){
   document.getElementById('modDesc').textContent=p.desc;
   document.getElementById('modSpecs').innerHTML=p.specs.map(([v,k])=>`<div class="spec-box"><span class="sv">${v}</span><span class="sk">${k}</span></div>`).join('');
   document.getElementById('modInc').innerHTML=`<h4>What's Included</h4><div class="inc-list">${p.inc.map(i=>`<span>✓ ${i}</span>`).join('')}</div>`;
-  document.getElementById('modPrice').textContent='R'+p.price;
+  document.getElementById('modPrice').textContent='$'+p.price;
   const ab=document.getElementById('modAbtn');
   ab.innerHTML=p.buyLabel||'🛒 Buy Now';
   ab.style.background='var(--green)';
@@ -3283,7 +3159,7 @@ let VIDEOS = [
   { id: 'Iaw9xM0aVRo', title: 'LEGO® Technic McLaren F1 Car 2024 Review', cat: 'lego-news' },
   { id: '4U_f8vAk2hY', title: 'LEGO® Star Wars Tantive IV Review', cat: 'lego-news' },
   { id: 'mvQFg5A2uCU', title: 'LEGO® Botanical Succulents Review', cat: 'lego-news' },
-  { id: 'K2mmkSqFJ8M', title: 'LEGO® Ideas Grand Piano Review — Worth R350?', cat: 'lego-news' },
+  { id: 'K2mmkSqFJ8M', title: 'LEGO® Ideas Grand Piano Review — Worth $350?', cat: 'lego-news' },
   { id: 'UPW4kHiEyBo', title: 'LEGO® Technic vs Creator — Which Line Is Better?', cat: 'tutorials' },
   { id: 'pqRLvkCxDFo', title: 'Exploring LEGO® DUPLO History — More Than Baby Bricks', cat: 'lego-news' },
   { id: 'w9Kt__tHSgA', title: "LEGO®'s Most Expensive Sets Ever — Worth It?", cat: 'lego-news' },
@@ -5035,7 +4911,6 @@ function mocNav(id,dir){
 
 <!-- ████ HERO ████ -->
 <header class="hero">
-  <div class="article-mesh"></div>
   <div class="hero-eyebrow">Deep Dive · LEGO® History</div>
   <h1 class="hero-title">
     90 Years<br>
@@ -5210,13 +5085,13 @@ function mocNav(id,dir){
         <div class="era-year">2004</div>
         <div class="era-title">Near Bankruptcy & Rebirth</div>
         <div class="era-body">
-          <p>This is LEGO®'s most dramatic decade — and the most important. By 2003, the company was <strong>losing R1 million per day</strong>. The CFO said LEGO® was eleven days from insolvency at one point. Thirteen thousand unique brick moulds. Costs that made no sense. A company that had lost sight of what it was.</p>
+          <p>This is LEGO®'s most dramatic decade — and the most important. By 2003, the company was <strong>losing $1 million per day</strong>. The CFO said LEGO® was eleven days from insolvency at one point. Thirteen thousand unique brick moulds. Costs that made no sense. A company that had lost sight of what it was.</p>
           <p>In 2004, Jørgen Vig Knudstorp became CEO at age 35. What followed was one of the most remarkable corporate turnarounds in history. He cut the parts catalogue by 50%. Sold the LEGO®LAND theme parks. Closed LEGO® retail stores. Focused the company entirely on the brick.</p>
           <p>Then came the pivot that saved everything: LEGO® listened to its adult fan community — the AFOLs who had been ignored. They invited fans to co-design sets. They launched LEGO® Ideas (fan submissions that became real products). By 2008, the company was profitable again. By 2012, it was the world's most profitable toy company.</p>
         </div>
       </div>
       <div class="era-facts">
-        <div class="era-fact"><strong>R300M loss in 2003</strong>The worst year. 1,000 employees laid off. The family considered selling. They did not sell.</div>
+        <div class="era-fact"><strong>$300M loss in 2003</strong>The worst year. 1,000 employees laid off. The family considered selling. They did not sell.</div>
         <div class="era-fact"><strong>Jørgen Vig Knudstorp (2004)</strong>The youngest CEO in LEGO® history. He cut, focused, and rebuilt. One of the best toy industry CEOs ever.</div>
         <div class="era-fact"><strong>13,000 → 6,500 parts</strong>Knudstorp's most brutal call. Halving the parts catalogue to restore supply chain sanity.</div>
         <div class="era-fact"><strong>LEGO® Star Wars: The Video Game (2005)</strong>The first in what became one of gaming's most beloved series. Digital LEGO® found its footing.</div>
@@ -5228,14 +5103,14 @@ function mocNav(id,dir){
         <div class="era-year">2014</div>
         <div class="era-title">The LEGO® Movie & World Domination</div>
         <div class="era-body">
-          <p>The 2010s were LEGO®'s second golden age. In 2012, LEGO® overtook Mattel and Hasbro to become the world's largest toy company by profit. In 2014, <strong>The LEGO® Movie</strong> opened to universal acclaim — a film so good that people forgot it was a feature-length toy advertisement. It grossed R469 million worldwide and is genuinely funny, smart, and surprising.</p>
+          <p>The 2010s were LEGO®'s second golden age. In 2012, LEGO® overtook Mattel and Hasbro to become the world's largest toy company by profit. In 2014, <strong>The LEGO® Movie</strong> opened to universal acclaim — a film so good that people forgot it was a feature-length toy advertisement. It grossed $469 million worldwide and is genuinely funny, smart, and surprising.</p>
           <p>The decade also saw the maturation of the <strong>adult LEGO® market</strong>. The Creator Expert and later Creator Icons range, the Modular Buildings series, the Technic flagship sets — LEGO® was publicly acknowledging that its most passionate customers were not children. The 18+ age designation arrived. The word "AFOL" entered mainstream coverage.</p>
-          <p>Sets grew. Piece counts climbed. The Millennium Falcon (2017) contained 7,541 pieces and cost R650. Collectors pre-ordered it immediately. Investment in retired LEGO® sets became a documented financial phenomenon.</p>
+          <p>Sets grew. Piece counts climbed. The Millennium Falcon (2017) contained 7,541 pieces and cost £650. Collectors pre-ordered it immediately. Investment in retired LEGO® sets became a documented financial phenomenon.</p>
         </div>
       </div>
       <div class="era-facts">
         <div class="era-fact"><strong>World's largest toy company (2012)</strong>By revenue and profit. After nearly going bankrupt in 2003. One of business history's great comebacks.</div>
-        <div class="era-fact"><strong>The LEGO® Movie (2014)</strong>R469M box office. Four sequels and spin-offs. Everything is still, in fact, awesome.</div>
+        <div class="era-fact"><strong>The LEGO® Movie (2014)</strong>$469M box office. Four sequels and spin-offs. Everything is still, in fact, awesome.</div>
         <div class="era-fact"><strong>Modular Buildings</strong>Café Corner launched the series in 2007. By the 2010s it was the most coveted adult LEGO® range — and the most retired-set-valuable.</div>
         <div class="era-fact"><strong>LEGO® Ideas</strong>Fan-submitted designs that become real sets. The Ghostbusters Ecto-1. The Typewriter. The Motorised Lighthouse. Fan creativity, officially licensed.</div>
       </div>
@@ -5248,14 +5123,14 @@ function mocNav(id,dir){
         <div class="era-body">
           <p>COVID-19 was one of the strangest windfalls in toy history. While the world locked down, LEGO® sales exploded. Adults stuck at home rediscovered building. The 18+ range grew aggressively. The <strong>LEGO® Art</strong> series — mosaic sets designed to be displayed as wall art — was a direct acknowledgment that LEGO® had transcended the toy category entirely.</p>
           <p>The decade also brought LEGO®'s most ambitious sustainability commitments: a target of <strong>100% sustainable materials</strong> by 2030, and investments in plant-based plastics. The company that built its empire on ABS plastic was now publicly committed to moving beyond it. Early sustainable-material bricks from sugarcane were trialled. The chemistry is hard. They're still working on it.</p>
-          <p>In 2023, LEGO® reported its highest-ever revenue: <strong>DKK 65.9 billion</strong> (~R9.5 billion). From a carpenter's workshop in Billund to a R9.5 billion business in less than a century. Ole Kirk would have been bewildered. Godtfred would have nodded slowly and gone back to work.</p>
+          <p>In 2023, LEGO® reported its highest-ever revenue: <strong>DKK 65.9 billion</strong> (~$9.5 billion). From a carpenter's workshop in Billund to a $9.5 billion business in less than a century. Ole Kirk would have been bewildered. Godtfred would have nodded slowly and gone back to work.</p>
         </div>
       </div>
       <div class="era-facts">
         <div class="era-fact"><strong>DKK 65.9B revenue (2023)</strong>LEGO®'s best year ever. A privately held, family-owned company worth more than most publicly traded toy conglomerates.</div>
         <div class="era-fact"><strong>LEGO® Art (2020)</strong>Mosaic sets for walls. 11,695-piece World Map. LEGO® as interior design. The adult market fully acknowledged.</div>
         <div class="era-fact"><strong>Sustainable materials target</strong>100% sustainable materials by 2030. The plant-based plastic trials are ongoing. The problem is harder than it looks.</div>
-        <div class="era-fact"><strong>Icons Eiffel Tower (2022)</strong>10,001 pieces. R629. Sold out globally. The secondary market price went up immediately. Standard LEGO® behaviour now.</div>
+        <div class="era-fact"><strong>Icons Eiffel Tower (2022)</strong>10,001 pieces. $629. Sold out globally. The secondary market price went up immediately. Standard LEGO® behaviour now.</div>
       </div>
     </div>
   </div>
@@ -5314,7 +5189,7 @@ function mocNav(id,dir){
 
     <div class="crisis-stats">
       <div class="crisis-stat">
-        <div class="crisis-stat-num">R1M</div>
+        <div class="crisis-stat-num">$1M</div>
         <div class="crisis-stat-label">Lost per day at peak crisis</div>
       </div>
       <div class="crisis-stat">
@@ -5391,7 +5266,7 @@ function mocNav(id,dir){
       <li data-num="06"><strong>The Tyre Problem</strong>LEGO® is the world's largest tyre manufacturer by unit volume. They produce approximately 381 million tiny rubber tyres per year. Michelin doesn't come close.</li>
       <li data-num="07"><strong>Minifigures Outnumber Humans</strong>If LEGO® minifigures were a country, it would be the world's most populous nation. Approximately 8 billion have been produced — roughly matching the human world population. And production is still running.</li>
       <li data-num="08"><strong>The Certified Professional</strong>LEGO® has a formal Certified Professional programme — a small global network of people licensed to build commercially with LEGO® bricks. There are fewer than 30 in the world. It is genuinely difficult to qualify.</li>
-      <li data-num="09"><strong>Investment Grade</strong>Certain retired LEGO® sets have outperformed gold as an investment. The 2007 Millennium Falcon (set 10179) sold for R342 at retail. In mint condition, sealed, it now trades above R5,000. That's a 1,300%+ return.</li>
+      <li data-num="09"><strong>Investment Grade</strong>Certain retired LEGO® sets have outperformed gold as an investment. The 2007 Millennium Falcon (set 10179) sold for £342 at retail. In mint condition, sealed, it now trades above £5,000. That's a 1,300%+ return.</li>
       <li data-num="10"><strong>The Name Means Nothing in German</strong>In German, "lego" roughly translates as "I lay" or "I put down" — from Latin. Ole Kirk didn't know this when he named the company. He chose it purely for the Danish <em>leg godt</em>. The coincidence pleased him.</li>
       <li data-num="11"><strong>Height Without Width</strong>The standard LEGO® stud-to-stud distance is 8mm. The standard brick height is 9.6mm. This non-round number is why LEGO® geometry is complex — the width-to-height ratio is 5:6, not 1:1. Every SNOT builder lives with this.</li>
       <li data-num="12"><strong>The Ole Kirk Test Still Runs</strong>LEGO®'s current quality standard states: "Only the best is good enough." This is Ole's personal motto, verbatim, written on a sign in his original workshop. It's still LEGO®'s official quality philosophy today.</li>
@@ -5434,7 +5309,7 @@ function mocNav(id,dir){
 
       <div class="legacy-card reveal">
         <div class="legacy-card-header"><span class="legacy-card-icon">🏗️</span> Architecture & Art</div>
-        <div class="legacy-card-body">LEGO® Architecture launched in 2008 — licensed recreations of famous buildings designed with an adult aesthetic. It legitimised LEGO® as a design object, not just a toy. LEGO® Art (2020) went further: pure mosaic wall pieces. The Art World Map is 11,695 pieces and costs R800. <strong>LEGO® is now genuinely displayed in galleries.</strong> Serious artists use it as a medium. Ai Weiwei used it. Nathan Sawaya filled museums with it.</div>
+        <div class="legacy-card-body">LEGO® Architecture launched in 2008 — licensed recreations of famous buildings designed with an adult aesthetic. It legitimised LEGO® as a design object, not just a toy. LEGO® Art (2020) went further: pure mosaic wall pieces. The Art World Map is 11,695 pieces and costs $800. <strong>LEGO® is now genuinely displayed in galleries.</strong> Serious artists use it as a medium. Ai Weiwei used it. Nathan Sawaya filled museums with it.</div>
         <div class="legacy-card-stat">Displayed in galleries worldwide</div>
       </div>
 
@@ -5777,7 +5652,6 @@ function mocNav(id,dir){
 
 <!-- HERO -->
 <header class="hero">
-  <div class="article-mesh"></div>
   <div class="hero-eyebrow">Challenges · Try Them Yourself</div>
   <h1 class="hero-title">
     LEGO®<br>
@@ -6030,12 +5904,12 @@ function mocNav(id,dir){
       variations:'Two-colour version (your chosen colour plus one neutral). Pull a random colour using a dice chart.',
       goodFor:'Solo or group. Excellent for technique exploration, particularly SNOT work and surface texture.' },
     { id:4, icon:'💰', tag:'Budget', type:'budget', diff:2, time:'4 hours per tier', solo:true, group:true,
-      title:'Budget Battle: R10 / R50 / R100',
+      title:'Budget Battle: £10 / £50 / £100',
       desc:'Three builds. Same subject. Hard budget limits.',
       sub:'The middle budget almost always produces the best result per pound spent.',
       rules:['Budget applies to parts only, valued at current BrickLink market price','Same subject for all three builds. Same time limit per tier.','Parts already in your collection count toward the budget at their market value','Document what you spent before each build starts'],
-      tips:'The R10 build is a conceptual exercise — it forces you to work out what\'s actually essential.',
-      variations:'Run just two tiers (R10 vs R100 is the most instructive contrast).',
+      tips:'The £10 build is a conceptual exercise — it forces you to work out what\'s actually essential.',
+      variations:'Run just two tiers (£10 vs £100 is the most instructive contrast).',
       goodFor:'Solo or group. The built-in comparison structure makes this one of the strongest formats for filming.' },
     { id:5, icon:'🙈', tag:'Constraint', type:'constraint', diff:4, time:'2 hours', solo:true, group:true,
       title:'Blindfold Build',
@@ -6159,11 +6033,11 @@ function mocNav(id,dir){
       goodFor:'Solo endurance challenge. Strong for long-form filming.' },
     { id:20, icon:'💸', tag:'Budget', type:'budget', diff:1, time:'2 hours', solo:true, group:true,
       title:'Fiver Challenge',
-      desc:'Your entire build budget is R5. Build something you\'d actually display.',
+      desc:'Your entire build budget is £5. Build something you\'d actually display.',
       sub:'The most valuable discipline challenge on this list.',
-      rules:['Budget: R5 at current BrickLink common price','Parts from your collection count at market value','Subject free choice — pick before you start','Two-hour build time from the clock start'],
+      rules:['Budget: £5 at current BrickLink common price','Parts from your collection count at market value','Subject free choice — pick before you start','Two-hour build time from the clock start'],
       tips:'Five pounds buys roughly 40–60 interesting parts or 200-plus basic bricks.',
-      variations:'R1 challenge. R20 challenge for a more workable palette.',
+      variations:'£1 challenge. £20 challenge for a more workable palette.',
       goodFor:'Accessible to all skill levels. Good for streaming with a live budget tracker.' },
     { id:21, icon:'🔁', tag:'Constraint', type:'constraint', diff:2, time:'3 hours', solo:true, group:false,
       title:'Official Set Rebuild',
@@ -6588,7 +6462,6 @@ function mocNav(id,dir){
 
 <!-- ═══════════════════════════════════════════════════════ HERO -->
 <header class="hero">
-  <div class="article-mesh"></div>
   <div class="hero-eyebrow">Builder's Guide · Level Up Your Builds</div>
   <h1 class="hero-title">
     Tips &amp;<br>
@@ -6814,18 +6687,18 @@ function mocNav(id,dir){
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ MODAL -->
-<div class="overlay" id="tt-overlay" onclick="closeTtOverlay(event)">
-  <div class="modal" id="tt-modal">
-    <button class="modal-close" onclick="closeTtOverlayDirect()">✕</button>
+<div class="overlay" id="overlay" onclick="closeOv(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeOvDirect()">✕</button>
     <div class="modal-inner">
-      <span class="m-icon" id="tt-mIcon"></span>
-      <div class="m-eyebrow" id="tt-mEyebrow"></div>
-      <div class="m-title" id="tt-mTitle"></div>
-      <div class="m-sub" id="tt-mSub"></div>
-      <div class="m-pills" id="tt-mPills"></div>
+      <span class="m-icon" id="mIcon"></span>
+      <div class="m-eyebrow" id="mEyebrow"></div>
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-sub" id="mSub"></div>
+      <div class="m-pills" id="mPills"></div>
       <div class="m-divider"></div>
-      <div class="m-body" id="tt-mBody"></div>
-      <div class="m-nav" id="tt-mNav"></div>
+      <div class="m-body" id="mBody"></div>
+      <div class="m-nav" id="mNav"></div>
     </div>
   </div>
 </div>
@@ -6851,13 +6724,18 @@ function initTipsTricksPage() {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ttRO.unobserve(e.target); } });
   }, {threshold: .08});
   ttBody.querySelectorAll('.reveal').forEach(el => ttRO.observe(el));
-} // end initTipsTricksPage
 
-// ── Scroll reveal (global, scoped to tips-tricks script)
-const ttScrollRo=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ttScrollRo.unobserve(e.target);}});
+// ── Reading bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('readingBar').style.width=(scrollY/h*100)+'%';
+});
+
+// ── Scroll reveal
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});
 },{threshold:.08});
-document.querySelectorAll('#page-tips-tricks .reveal').forEach(el=>ttScrollRo.observe(el));
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 // ══════════════════════════════════════════════════════════════════
 // TECHNIQUE DATA
@@ -7043,33 +6921,33 @@ renderTech('all');
 // ── Modal
 function openModal(t){
   const idx=TECHS.indexOf(t);
-  document.getElementById('tt-mIcon').innerHTML=t.icon;
-  document.getElementById('tt-mEyebrow').textContent=`${t.cat.toUpperCase()} · ${LEVEL_LABEL[t.level]}`;
-  document.getElementById('tt-mTitle').textContent=t.title;
-  document.getElementById('tt-mSub').textContent=t.sub;
+  document.getElementById('mIcon').textContent=t.icon;
+  document.getElementById('mEyebrow').textContent=`${t.cat.toUpperCase()} · ${LEVEL_LABEL[t.level]}`;
+  document.getElementById('mTitle').textContent=t.title;
+  document.getElementById('mSub').textContent=t.sub;
   const dots=[1,2,3,4,5].map(n=>n<=t.level?'●':'○').join(' ');
-  document.getElementById('tt-mPills').innerHTML=`
+  document.getElementById('mPills').innerHTML=`
     <span class="mpill hi">${LEVEL_LABEL[t.level]}</span>
     <span class="mpill">${t.cat}</span>
     <span class="mpill">${dots}</span>`;
   const stepsHTML=t.how.map(s=>`<li>${s}</li>`).join('');
-  document.getElementById('tt-mBody').innerHTML=`
+  document.getElementById('mBody').innerHTML=`
     <div class="steps-box"><div class="steps-title">📋 How to Apply It</div><ul>${stepsHTML}</ul></div>
     <h2>Pro Tip</h2><p>${t.tip}</p>
     <div class="fact-box"><strong>Watch Out For</strong>${t.watch}</div>
     <h2>Why It Matters</h2><p>${t.why}</p>`;
   const prev=TECHS[idx-1],next=TECHS[idx+1];
-  const nav=document.getElementById('tt-mNav');
+  const nav=document.getElementById('mNav');
   nav.innerHTML='';
   if(prev){const b=document.createElement('button');b.className='mnav-btn';b.textContent=`← ${prev.icon} ${prev.title}`;b.onclick=()=>openModal(prev);nav.appendChild(b);}
   if(next){const b=document.createElement('button');b.className='mnav-btn';b.textContent=`${next.icon} ${next.title} →`;b.onclick=()=>openModal(next);nav.appendChild(b);}
-  document.getElementById('tt-overlay').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
   document.body.style.overflow='hidden';
-  document.getElementById('tt-modal').scrollTop=0;
+  document.getElementById('modal').scrollTop=0;
 }
-window.closeTtOverlay=function(e){if(!e||e.target===document.getElementById('tt-overlay')){document.getElementById('tt-overlay').classList.remove('open');document.body.style.overflow='';}}
-window.closeTtOverlayDirect=function(){document.getElementById('tt-overlay').classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeTtOverlayDirect();});
+function closeOv(e){if(e.target===document.getElementById('overlay'))closeOvDirect();}
+function closeOvDirect(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOvDirect();});
 
 // ══════════════════════════════════════════════════════════════════
 // COLOUR PALETTE TOOL
@@ -7240,10 +7118,7 @@ function restartQuiz(){
 }
 
 loadQ();
-
-window.initTipsTricksPage = initTipsTricksPage;
-window.renderTech = renderTech;
-window.ttPageInited = false;
+}
 
 </script>
 </div>
@@ -7347,7 +7222,7 @@ window.ttPageInited = false;
 #lego-collecting-body .modal-overlay.open{display:flex}
 #lego-collecting-body .modal{background:var(--ink2);border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:mIn .3s ease both}
 @keyframes mIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:absolute;top:16px;right:18px;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);font-size:1rem;cursor:pointer;border-radius:4px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:100}
+.modal-close{position:absolute;top:16px;right:18px;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);font-size:1rem;cursor:pointer;border-radius:4px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:all .2s}
 #lego-collecting-body .modal-close:hover{background:rgba(255,255,255,.1);color:#fff}
 #lego-collecting-body .modal-top{padding:30px 32px 24px;border-bottom:1px solid rgba(255,255,255,.08)}
 #lego-collecting-body .modal-icon{font-size:2.4rem;margin-bottom:10px;display:block}
@@ -7493,8 +7368,8 @@ window.ttPageInited = false;
 #lego-collecting-body .rarity-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1100;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
 #lego-collecting-body .rarity-overlay.open{display:flex}
 #lego-collecting-body .rarity-modal{background:#fff;border-radius:8px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:mIn .3s ease both}
-#lego-collecting-body .rarity-modal .modal-close{border-color:rgba(0,0,0,.2);color:#555;z-index:100;background:rgba(255,255,255,.9)}
-#lego-collecting-body .rarity-modal .modal-close:hover{background:#fff;color:var(--ink)}
+#lego-collecting-body .rarity-modal .modal-close{border-color:rgba(0,0,0,.15);color:#888}
+#lego-collecting-body .rarity-modal .modal-close:hover{background:rgba(0,0,0,.06);color:var(--ink)}
 #lego-collecting-body .rarity-modal .modal-top{border-bottom-color:rgba(0,0,0,.08)}
 #lego-collecting-body .rarity-modal .modal-title{color:var(--ink)}
 #lego-collecting-body .rarity-modal .modal-sub{color:#666}
@@ -7582,7 +7457,6 @@ window.ttPageInited = false;
 
 <!-- HERO -->
 <header class="hero">
-  <div class="article-mesh"></div>
   <div class="hero-dots"></div>
   <div class="hero-eyebrow">Deep Dive &middot; Collecting</div>
   <h1 class="hero-title">
@@ -7693,7 +7567,7 @@ window.ttPageInited = false;
       <div class="calc-res">
         <div>
           <div class="calc-res-lbl">Estimated Range</div>
-          <div class="calc-res-val" id="calcResult">R40 &ndash; R120</div>
+          <div class="calc-res-val" id="calcResult">$40 &ndash; $120</div>
           <div class="calc-res-note" id="calcNote">Rare &middot; Used &middot; 10yr &middot; No provenance</div>
         </div>
         <div style="text-align:right">
@@ -7838,7 +7712,7 @@ window.ttPageInited = false;
     <div class="sec-label reveal">Final Word</div>
     <h2 class="reveal">The Rarest Piece Is the One You Understand</h2>
     <div class="rule reveal"></div>
-    <p class="reveal">There is no shortcut in rare-parts collecting. The collectors who consistently find value &mdash; who buy a chrome piece for R40 that others would have passed over, or correctly identify a misprint that a seller listed as common &mdash; got there through accumulated knowledge, not luck or budget.</p>
+    <p class="reveal">There is no shortcut in rare-parts collecting. The collectors who consistently find value &mdash; who buy a chrome piece for $40 that others would have passed over, or correctly identify a misprint that a seller listed as common &mdash; got there through accumulated knowledge, not luck or budget.</p>
     <p class="reveal">Start with one category. Learn it deeply. Develop the ability to recognise genuine examples without assistance. Build relationships in the community &mdash; the most valuable pieces rarely reach open market listings; they change hands in private sales between people who trust each other. That trust is built over years of honest, knowledgeable participation.</p>
     <p class="reveal">The brick itself hasn't changed. <strong>What you know about it is everything.</strong></p>
     <div class="pull reveal"><p>"Every expert collector was once a beginner who asked <em>too many questions.</em>"</p></div>
@@ -7892,62 +7766,61 @@ function initLegoCollectingPage() {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); lcRO.unobserve(e.target); } });
   }, {threshold: .08});
   lcBody.querySelectorAll('.reveal').forEach(el => lcRO.observe(el));
-} // end initLegoCollectingPage
 
 // ─── Reading bar ───
 window.addEventListener('scroll',()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  const rbar=document.getElementById('rbar'); if(rbar) rbar.style.width=(scrollY/h*100)+'%';
+  document.getElementById('rbar').style.width=(scrollY/h*100)+'%';
 });
 
 // ─── Scroll reveal ───
 const revObs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*55);revObs.unobserve(e.target);}});
 },{threshold:.08});
-document.querySelectorAll('#lego-collecting-body .reveal').forEach(el=>revObs.observe(el));
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
 // ─── TIER DATA ───
 const TIERS=[
-  {id:1,tier:'legendary',icon:'&#10024;',name:'Chrome Gold Pieces',value:'R80\u2013R400+',
+  {id:1,tier:'legendary',icon:'&#10024;',name:'Chrome Gold Pieces',value:'$80\u2013$400+',
    sub:'Electroplated gold-finish ABS. The most visually striking and most fragile parts in the LEGO® system.',
-   content:'<h3>What They Are</h3><p>Chrome gold parts are produced by electroplating standard ABS bricks with a thin metallic layer. LEGO® produces chrome gold parts in very limited quantities for specific premium sets and promotional items.</p><h3>Why They Are Valuable</h3><p>Chrome gold parts are rare by production volume, fragile by nature (the metallic layer chips at connection points), and visually irreplaceable. Nothing else in the LEGO® palette replicates the finish. As existing examples chip and deteriorate, the supply of mint-condition pieces only shrinks.</p><div class="modal-fact"><strong>Price Range</strong>Common chrome gold elements (1x1 round plates, trophy pieces): R15\u2013R80. Larger chrome gold elements from premium Castle sets: R100\u2013R400+. A complete chrome gold C-3PO minifigure: R200\u2013R600 depending on condition.</div><h3>Authentication</h3><p>Genuine chrome gold has a specific warmth \u2014 neither too brassy nor too silvery. The plating should be thin and even. Check stud markings \u2014 LEGO® text should be present and correctly formed. Connection feel should be standard LEGO® clutch, not loose or excessively tight.</p>'},
-  {id:2,tier:'legendary',icon:'&#128153;',name:'Chrome Blue Bricks',value:'R150\u2013R800',
+   content:'<h3>What They Are</h3><p>Chrome gold parts are produced by electroplating standard ABS bricks with a thin metallic layer. LEGO® produces chrome gold parts in very limited quantities for specific premium sets and promotional items.</p><h3>Why They Are Valuable</h3><p>Chrome gold parts are rare by production volume, fragile by nature (the metallic layer chips at connection points), and visually irreplaceable. Nothing else in the LEGO® palette replicates the finish. As existing examples chip and deteriorate, the supply of mint-condition pieces only shrinks.</p><div class="modal-fact"><strong>Price Range</strong>Common chrome gold elements (1x1 round plates, trophy pieces): $15\u2013$80. Larger chrome gold elements from premium Castle sets: $100\u2013$400+. A complete chrome gold C-3PO minifigure: $200\u2013$600 depending on condition.</div><h3>Authentication</h3><p>Genuine chrome gold has a specific warmth \u2014 neither too brassy nor too silvery. The plating should be thin and even. Check stud markings \u2014 LEGO® text should be present and correctly formed. Connection feel should be standard LEGO® clutch, not loose or excessively tight.</p>'},
+  {id:2,tier:'legendary',icon:'&#128153;',name:'Chrome Blue Bricks',value:'$150\u2013$800',
    sub:'The rarest chrome colour. Appeared in one significant promotional set. Most collectors have never seen one in person.',
-   content:'<h3>What They Are</h3><p>Chrome blue parts received the same electroplating treatment as chrome gold and silver, but in an electric blue metallic finish. They appeared in extremely limited LEGO® promotional contexts, most notably a 2003 promotional set produced in very small quantities.</p><h3>The Scarcity Problem</h3><p>Chrome blue parts are so rare that most LEGO® collectors \u2014 including experienced ones \u2014 have never handled one. The BrickLink price guide has thin transaction history because sales happen so infrequently. Prices can vary wildly between sales depending on who is buying and who is selling at any given moment.</p><div class="modal-fact"><strong>Price Reality</strong>A single chrome blue 1x4 brick in good condition has sold for R150\u2013R800 in documented transactions. The variance reflects the thin market. If you find one underpriced, buy it immediately.</div>'},
-  {id:3,tier:'legendary',icon:'&#128698;',name:'Maersk Blue Bricks',value:'R5\u2013R25 each',
+   content:'<h3>What They Are</h3><p>Chrome blue parts received the same electroplating treatment as chrome gold and silver, but in an electric blue metallic finish. They appeared in extremely limited LEGO® promotional contexts, most notably a 2003 promotional set produced in very small quantities.</p><h3>The Scarcity Problem</h3><p>Chrome blue parts are so rare that most LEGO® collectors \u2014 including experienced ones \u2014 have never handled one. The BrickLink price guide has thin transaction history because sales happen so infrequently. Prices can vary wildly between sales depending on who is buying and who is selling at any given moment.</p><div class="modal-fact"><strong>Price Reality</strong>A single chrome blue 1x4 brick in good condition has sold for $150\u2013$800 in documented transactions. The variance reflects the thin market. If you find one underpriced, buy it immediately.</div>'},
+  {id:3,tier:'legendary',icon:'&#128698;',name:'Maersk Blue Bricks',value:'$5\u2013$25 each',
    sub:'Standard bricks in a colour produced only for Maersk shipping company promotions. The most famous distribution-scarcity piece.',
-   content:'<h3>The Maersk Relationship</h3><p>LEGO® has had a longstanding promotional relationship with Maersk, the Danish shipping conglomerate. From the 1970s through the 2000s, LEGO® produced sets in a distinctive bright cyan-blue (Maersk Blue) not available in any retail set.</p><h3>Why Standard Bricks Are Valuable</h3><p>The Maersk sets used standard LEGO® bricks in Maersk Blue. These are not unusual moulds \u2014 they are the same 2x4 bricks found in any LEGO® set, just in a colour that LEGO® never made available otherwise. A 2x4 brick in standard red costs less than R0.01 on BrickLink. The same brick in Maersk Blue: R5\u2013R15.</p><div class="modal-fact"><strong>The Full Colour</strong>Maersk Blue was produced in a specific shade slightly different from LEGO®\'s standard Bright Light Blue. The difference is visible side-by-side. Confusing the two is a common seller error that benefits buyers who know the difference.</div>'},
-  {id:4,tier:'legendary',icon:'&#127761;',name:'Solid Gold Boba Fett',value:'R10,000\u2013R20,000',
+   content:'<h3>The Maersk Relationship</h3><p>LEGO® has had a longstanding promotional relationship with Maersk, the Danish shipping conglomerate. From the 1970s through the 2000s, LEGO® produced sets in a distinctive bright cyan-blue (Maersk Blue) not available in any retail set.</p><h3>Why Standard Bricks Are Valuable</h3><p>The Maersk sets used standard LEGO® bricks in Maersk Blue. These are not unusual moulds \u2014 they are the same 2x4 bricks found in any LEGO® set, just in a colour that LEGO® never made available otherwise. A 2x4 brick in standard red costs less than $0.01 on BrickLink. The same brick in Maersk Blue: $5\u2013$15.</p><div class="modal-fact"><strong>The Full Colour</strong>Maersk Blue was produced in a specific shade slightly different from LEGO®\'s standard Bright Light Blue. The difference is visible side-by-side. Confusing the two is a common seller error that benefits buyers who know the difference.</div>'},
+  {id:4,tier:'legendary',icon:'&#127761;',name:'Solid Gold Boba Fett',value:'$10,000\u2013$20,000',
    sub:'Cast in 14-karat gold. Only 2 ever made. The single most valuable individual LEGO® minifigure in existence.',
-   content:'<h3>The Prize</h3><p>In 2009 and 2010, LEGO® ran promotions where entrants could win a solid 14-karat gold Boba Fett minifigure. Only two were ever produced \u2014 one for each promotion. The figures are fully functional LEGO® minifigures in every dimension, cast from solid gold rather than ABS plastic.</p><h3>Why It Is the Holy Grail</h3><p>No other single LEGO® piece combines rarity (2 in existence), material value (14-karat gold), cultural significance (Star Wars\' most iconic bounty hunter), and authentication certainty (provenance completely documented). It is the one piece every serious collector would want regardless of specialty.</p><div class="modal-fact"><strong>Where Are They?</strong>Both are believed to be in private collections in North America. One surfaced briefly on the resale market around 2019 listed at R15,000. Whether it sold at that price is not publicly known.</div>'},
-  {id:5,tier:'rare',icon:'&#128424;',name:'Factory Misprints',value:'R20\u2013R500+',
+   content:'<h3>The Prize</h3><p>In 2009 and 2010, LEGO® ran promotions where entrants could win a solid 14-karat gold Boba Fett minifigure. Only two were ever produced \u2014 one for each promotion. The figures are fully functional LEGO® minifigures in every dimension, cast from solid gold rather than ABS plastic.</p><h3>Why It Is the Holy Grail</h3><p>No other single LEGO® piece combines rarity (2 in existence), material value (14-karat gold), cultural significance (Star Wars\' most iconic bounty hunter), and authentication certainty (provenance completely documented). It is the one piece every serious collector would want regardless of specialty.</p><div class="modal-fact"><strong>Where Are They?</strong>Both are believed to be in private collections in North America. One surfaced briefly on the resale market around 2019 listed at $15,000. Whether it sold at that price is not publicly known.</div>'},
+  {id:5,tier:'rare',icon:'&#128424;',name:'Factory Misprints',value:'$20\u2013$500+',
    sub:'Production errors that passed QC. Double-printed tiles, misaligned minifigure faces, incorrectly coloured parts.',
-   content:'<h3>What Qualifies</h3><p>A genuine factory misprint is a production error that occurred during manufacturing and somehow passed quality control to reach a consumer. Categories include: double-printed elements, misaligned prints, missing print elements, and colour errors.</p><h3>Authentication Challenge</h3><p>Misprints are the most frequently faked category in LEGO® collecting. A genuine factory misprint has specific characteristics: the error is consistent with a mechanical failure in the printing process, the underlying ABS shows no evidence of post-production modification, and the rest of the piece is standard LEGO® quality.</p><div class="modal-fact"><strong>The Value Logic</strong>Misprints are valuable precisely because they should not exist. A minifigure head with the wrong expression, a tile with the design upside down \u2014 these are tangible evidence of a moment where manufacturing produced something unintended. That uniqueness is the value.</div><h3>Where to Look</h3><p>Bulk lot purchases are the best source. Misprints from the 1970s\u20131990s were less likely to be noticed and discarded. Sort bulk lots carefully against standard references. The misprint in a R20 lot can be worth R200.</p>'},
-  {id:6,tier:'rare',icon:'&#129514;',name:'Prototype Colours',value:'R100\u2013R2,000+',
+   content:'<h3>What Qualifies</h3><p>A genuine factory misprint is a production error that occurred during manufacturing and somehow passed quality control to reach a consumer. Categories include: double-printed elements, misaligned prints, missing print elements, and colour errors.</p><h3>Authentication Challenge</h3><p>Misprints are the most frequently faked category in LEGO® collecting. A genuine factory misprint has specific characteristics: the error is consistent with a mechanical failure in the printing process, the underlying ABS shows no evidence of post-production modification, and the rest of the piece is standard LEGO® quality.</p><div class="modal-fact"><strong>The Value Logic</strong>Misprints are valuable precisely because they should not exist. A minifigure head with the wrong expression, a tile with the design upside down \u2014 these are tangible evidence of a moment where manufacturing produced something unintended. That uniqueness is the value.</div><h3>Where to Look</h3><p>Bulk lot purchases are the best source. Misprints from the 1970s\u20131990s were less likely to be noticed and discarded. Sort bulk lots carefully against standard references. The misprint in a $20 lot can be worth $200.</p>'},
+  {id:6,tier:'rare',icon:'&#129514;',name:'Prototype Colours',value:'$100\u2013$2,000+',
    sub:'Test shots in unreleased colours. LEGO® produces sample bricks in potential new colours before committing to production.',
    content:'<h3>How They Escape</h3><p>LEGO®\'s colour development process involves producing small test batches of standard parts in proposed new colours before committing to full production. Some proposed colours are approved; some are rejected. Either way, the test parts exist and occasionally reach the collector market through retired LEGO® employees or disposal channels.</p><h3>Authentication Is Everything</h3><p>Prototype colours are impossible to authenticate without reference to LEGO®\'s internal records. A brick in an unusual colour could be a genuine prototype, a custom-dyed brick, a non-LEGO® brick, or a LEGO® brick from a legitimate source that simply does not appear in any public database.</p><div class="modal-fact"><strong>What to Pay</strong>Because authentication is so difficult, the market for prototype colours is highly speculative. Documented provenance adds enormous value. Undocumented prototype colours should be priced as interesting anomalies rather than verified prototypes.</div>'},
-  {id:7,tier:'rare',icon:'&#127873;',name:'Employee Gift Sets',value:'R200\u2013R1,500',
+  {id:7,tier:'rare',icon:'&#127873;',name:'Employee Gift Sets',value:'$200\u2013$1,500',
    sub:'Sets produced exclusively for LEGO® employees at Christmas. Never sold retail. Beautifully designed and increasingly hard to find.',
-   content:'<h3>The Annual Tradition</h3><p>LEGO® has produced exclusive Christmas gift sets for employees at its Billund headquarters for decades. These sets are typically small (100\u2013400 pieces), beautifully designed, and feature subjects connected to LEGO®\'s culture. They are never sold retail.</p><h3>What Makes Them Special</h3><p>Employee gift sets are often designed by LEGO®\'s most talented in-house designers with no commercial constraints \u2014 they are made to delight colleagues. This creative freedom produces some of LEGO®\'s most refined small-set designs.</p><div class="modal-fact"><strong>Finding Them</strong>Employee sets appear on BrickLink when employees sell them. Prices depend heavily on year and design quality. Expect R200\u2013R800 for most examples; exceptional years can reach R1,500+.</div>'},
-  {id:8,tier:'rare',icon:'&#127758;',name:'Regional Exclusives',value:'R50\u2013R600',
+   content:'<h3>The Annual Tradition</h3><p>LEGO® has produced exclusive Christmas gift sets for employees at its Billund headquarters for decades. These sets are typically small (100\u2013400 pieces), beautifully designed, and feature subjects connected to LEGO®\'s culture. They are never sold retail.</p><h3>What Makes Them Special</h3><p>Employee gift sets are often designed by LEGO®\'s most talented in-house designers with no commercial constraints \u2014 they are made to delight colleagues. This creative freedom produces some of LEGO®\'s most refined small-set designs.</p><div class="modal-fact"><strong>Finding Them</strong>Employee sets appear on BrickLink when employees sell them. Prices depend heavily on year and design quality. Expect $200\u2013$800 for most examples; exceptional years can reach $1,500+.</div>'},
+  {id:8,tier:'rare',icon:'&#127758;',name:'Regional Exclusives',value:'$50\u2013$600',
    sub:'Sets produced for specific national markets, Legoland parks, or regional retail partners. Never available globally.',
    content:'<h3>The Geography of Rarity</h3><p>LEGO® has always operated with regional product variation \u2014 promotional partnerships with local retailers, theme park exclusives for specific Legoland locations, and market-specific sets. The Japanese market has historically received LEGO® promotional sets through retail loyalty programmes unavailable globally.</p><h3>The LEGO® House Factor</h3><p>The LEGO® House in Billund has become a significant source of exclusive products since its opening in 2017. The yellow duck (40516) is the canonical example of a LEGO® House exclusive that became a widely desired collector piece.</p><div class="modal-fact"><strong>Legoland Exclusives</strong>Each Legoland park produces park-exclusive sets. These appear on BrickLink quickly but at premiums of 200\u2013400% over original park price.</div>'},
-  {id:9,tier:'uncommon',icon:'&#129689;',name:'Chrome Silver Parts',value:'R8\u2013R60',
+  {id:9,tier:'uncommon',icon:'&#129689;',name:'Chrome Silver Parts',value:'$8\u2013$60',
    sub:'More common than chrome gold but still significantly scarce. Knight trophy pieces, weapon hilts, architectural elements.',
    content:'<h3>More Available, Still Valuable</h3><p>Chrome silver is the most common chrome finish in the LEGO® system, appearing in Castle sets from the 1990s and 2000s for knight helmets and weapon elements. Star Wars sets have also included chrome silver elements.</p><h3>Condition Issues</h3><p>Chrome silver suffers the same chipping problem as all chrome finishes. A mint chrome silver piece commands a significant premium over a played-with example.</p><div class="modal-fact"><strong>Best Hunting Ground</strong>Pre-owned Castle sets from the 1990s are the best source of chrome silver parts at reasonable prices. Many sellers list the sets without specifically identifying chrome elements.</div>'},
-  {id:10,tier:'uncommon',icon:'&#127917;',name:'Rare Minifigure Variants',value:'R15\u2013R200',
+  {id:10,tier:'uncommon',icon:'&#127917;',name:'Rare Minifigure Variants',value:'$15\u2013$200',
    sub:'Production variants, alternative expressions, early printing styles. The minifigure has evolved over 45 years.',
-   content:'<h3>Variant Categories</h3><p>Minifigure variants include: head mould changes (the classic smiley face was updated multiple times), print generation variations (same character reprinted with improved detail), and regional facial expression variants.</p><h3>CMF Chase Figures</h3><p>Within Collectible Minifigure series, the perceived chase figures consistently command 3\u20135x the price of the most common figures in the same series. Series 10\'s Mr. Gold (5,000 copies worldwide) is the ultimate CMF chase figure with values of R100\u2013R600 for genuine authenticated examples.</p><div class="modal-fact"><strong>The Mr. Gold Problem</strong>Genuine Mr. Gold figures sell for R100\u2013R600. The certificate has been counterfeited. Authentication requires cross-referencing the certificate number against the original LEGO® database, which is no longer publicly accessible.</div>'},
-  {id:11,tier:'uncommon',icon:'&#128208;',name:'Early Production Parts',value:'R5\u2013R80',
+   content:'<h3>Variant Categories</h3><p>Minifigure variants include: head mould changes (the classic smiley face was updated multiple times), print generation variations (same character reprinted with improved detail), and regional facial expression variants.</p><h3>CMF Chase Figures</h3><p>Within Collectible Minifigure series, the perceived chase figures consistently command 3\u20135x the price of the most common figures in the same series. Series 10\'s Mr. Gold (5,000 copies worldwide) is the ultimate CMF chase figure with values of $100\u2013$600 for genuine authenticated examples.</p><div class="modal-fact"><strong>The Mr. Gold Problem</strong>Genuine Mr. Gold figures sell for $100\u2013$600. The certificate has been counterfeited. Authentication requires cross-referencing the certificate number against the original LEGO® database, which is no longer publicly accessible.</div>'},
+  {id:11,tier:'uncommon',icon:'&#128208;',name:'Early Production Parts',value:'$5\u2013$80',
    sub:'Pre-1980 LEGO® parts with different dimensions, plastic chemistry, and construction. Authentically vintage.',
    content:'<h3>The Material Difference</h3><p>LEGO® produced bricks from cellulose acetate before transitioning to ABS plastic around 1963. Pre-ABS bricks are identifiably different: slightly softer, with characteristic yellowing, and dimensionally slightly different from modern parts.</p><h3>Dating Parts</h3><p>The underside markings are the primary dating tool: "LEGO® DENMARK" = pre-1963 or early 1960s transition. "LEGO® SYSTEM" = mid-1960s to early 1970s. "LEGO®" only = post-1974 standardisation.</p><div class="modal-fact"><strong>The ABS Transition</strong>A 1970s red 2x4 brick is a slightly different red from a 2024 red 2x4 brick \u2014 measurably, if not dramatically. For strict vintage reproductions, it matters enormously.</div>'},
-  {id:12,tier:'uncommon',icon:'&#127963;',name:'Discontinued Moulds',value:'R3\u2013R40',
+  {id:12,tier:'uncommon',icon:'&#127963;',name:'Discontinued Moulds',value:'$3\u2013$40',
    sub:'Parts whose production was permanently stopped. Supply can only decrease from here.',
    content:'<h3>Why Moulds Get Discontinued</h3><p>LEGO® discontinues part moulds when the part is no longer used in any current set design, when an improved version supersedes the original, or when the mould reaches the end of its production life.</p><h3>Examples Worth Knowing</h3><p>The original Classic Space astronaut helmet mould, early Homemaker furniture pieces, certain 1980s Technic gear types, and numerous small decorative elements from the 1970s\u20131990s have been discontinued.</p><div class="modal-fact"><strong>The Trend Value</strong>Discontinued moulds grow in value at a rate determined by how often they appear in desirable vintage sets multiplied by how many of those sets are being actively restored.</div>'},
-  {id:13,tier:'common',icon:'&#128997;',name:'Classic Colour Retirements',value:'R1\u2013R15',
+  {id:13,tier:'common',icon:'&#128997;',name:'Classic Colour Retirements',value:'$1\u2013$15',
    sub:'Standard colours that were retired and replaced. Slightly different hue from modern equivalents, valued by purists.',
    content:'<h3>Colour as History</h3><p>LEGO® has revised its colour palette multiple times. The most significant revision in 2004 renamed and reformulated many standard colours. Pre-2004 Red is slightly different from post-2004 Red. Builders attempting colour-accurate reproductions of vintage sets seek pre-revision colours specifically.</p><div class="modal-fact"><strong>The 2004 Colour Revolution</strong>LEGO®\'s 2004 colour standardisation aligned names across all product lines and subtly reformulated many pigments. For strict vintage reproductions, it created a clear before/after distinction visible in any large collection containing parts from both eras.</div>'},
-  {id:14,tier:'common',icon:'&#11088;',name:'Limited Theme Parts',value:'R2\u2013R25',
+  {id:14,tier:'common',icon:'&#11088;',name:'Limited Theme Parts',value:'$2\u2013$25',
    sub:'Parts produced for short-run themes that were discontinued. Unique moulds tied to a theme LEGO® no longer produces.',
    content:'<h3>Theme Scarcity</h3><p>LEGO® themes come and go. When a theme is discontinued, any parts produced exclusively for that theme become scarce. The Aquazone, Adventurers, Life on Mars, and various discontinued themes each produced parts not replicated elsewhere.</p><h3>The Aquazone Premium</h3><p>LEGO®\'s Aquazone (1995\u20132002) produced unique translucent elements and minifigure accessories unavailable in any other context. Aquazone pieces in bulk lots often go unrecognised and are sold as generic used LEGO® \u2014 providing opportunities for informed buyers.</p><div class="modal-fact"><strong>Recognising Theme Parts</strong>Identifying theme-specific parts requires either visual memory developed from studying past sets, or reference to BrickLink\'s Appears In data for any given part.</div>'},
 ];
@@ -8016,18 +7889,18 @@ calcValue();
 
 // ─── Price Table ───
 const PDATA=[
-  {name:'Chrome Gold C-3PO Minifigure',cat:'Chrome',cc:'#c9a84c',val:'R200\u2013R600',trend:'up',rf:'Volume + Material'},
-  {name:'Solid Gold Boba Fett',cat:'One-of-a-Kind',cc:'#e8c96e',val:'R10,000\u2013R20,000',trend:'up',rf:'Volume + Material + Cultural'},
-  {name:'Maersk Blue 2\xd74 Brick',cat:'Distribution',cc:'#1a5276',val:'R5\u2013R18',trend:'st',rf:'Distribution scarcity'},
-  {name:'Chrome Blue 1\xd74 Brick',cat:'Chrome',cc:'#3498db',val:'R150\u2013R800',trend:'up',rf:'Volume (extremely low)'},
-  {name:'CMF Series 10 Mr. Gold',cat:'Minifigure',cc:'#c9a84c',val:'R100\u2013R600',trend:'up',rf:'Volume (5,000 made)'},
-  {name:'1978 Classic Astronaut (Yellow)',cat:'Vintage',cc:'#7f8c8d',val:'R40\u2013R120',trend:'up',rf:'Age + discontinuation'},
-  {name:'Caf\xe9 Corner Sealed (10182)',cat:'Set',cc:'#c0392b',val:'R3,000\u2013R5,500',trend:'up',rf:'Retirement + cultural'},
-  {name:'Pre-2004 Tan 2\xd74 Brick',cat:'Colour',cc:'#b7a27a',val:'R0.80\u2013R3',trend:'st',rf:'Colour retirement'},
-  {name:'LEGO® House Yellow Duck Sealed',cat:'Exclusive',cc:'#6c3483',val:'R80\u2013R140',trend:'up',rf:'GWP / location exclusive'},
-  {name:'Chrome Silver Knight Helmet',cat:'Chrome',cc:'#95a5a6',val:'R12\u2013R45',trend:'st',rf:'Volume + chrome fragility'},
-  {name:'Verified Factory Misprint Tile',cat:'Error',cc:'#e67e22',val:'R25\u2013R300',trend:'up',rf:'Error + authentication'},
-  {name:'Aquazone Exclusive Moulded Piece',cat:'Theme',cc:'#1e8449',val:'R8\u2013R35',trend:'up',rf:'Theme discontinuation'},
+  {name:'Chrome Gold C-3PO Minifigure',cat:'Chrome',cc:'#c9a84c',val:'$200\u2013$600',trend:'up',rf:'Volume + Material'},
+  {name:'Solid Gold Boba Fett',cat:'One-of-a-Kind',cc:'#e8c96e',val:'$10,000\u2013$20,000',trend:'up',rf:'Volume + Material + Cultural'},
+  {name:'Maersk Blue 2\xd74 Brick',cat:'Distribution',cc:'#1a5276',val:'$5\u2013$18',trend:'st',rf:'Distribution scarcity'},
+  {name:'Chrome Blue 1\xd74 Brick',cat:'Chrome',cc:'#3498db',val:'$150\u2013$800',trend:'up',rf:'Volume (extremely low)'},
+  {name:'CMF Series 10 Mr. Gold',cat:'Minifigure',cc:'#c9a84c',val:'$100\u2013$600',trend:'up',rf:'Volume (5,000 made)'},
+  {name:'1978 Classic Astronaut (Yellow)',cat:'Vintage',cc:'#7f8c8d',val:'$40\u2013$120',trend:'up',rf:'Age + discontinuation'},
+  {name:'Caf\xe9 Corner Sealed (10182)',cat:'Set',cc:'#c0392b',val:'$3,000\u2013$5,500',trend:'up',rf:'Retirement + cultural'},
+  {name:'Pre-2004 Tan 2\xd74 Brick',cat:'Colour',cc:'#b7a27a',val:'$0.80\u2013$3',trend:'st',rf:'Colour retirement'},
+  {name:'LEGO® House Yellow Duck Sealed',cat:'Exclusive',cc:'#6c3483',val:'$80\u2013$140',trend:'up',rf:'GWP / location exclusive'},
+  {name:'Chrome Silver Knight Helmet',cat:'Chrome',cc:'#95a5a6',val:'$12\u2013$45',trend:'st',rf:'Volume + chrome fragility'},
+  {name:'Verified Factory Misprint Tile',cat:'Error',cc:'#e67e22',val:'$25\u2013$300',trend:'up',rf:'Error + authentication'},
+  {name:'Aquazone Exclusive Moulded Piece',cat:'Theme',cc:'#1e8449',val:'$8\u2013$35',trend:'up',rf:'Theme discontinuation'},
 ];
 const TI={up:'\u25b2 Rising',dn:'\u25bc Falling',st:'\u2014 Stable'};
 const TC={up:'tup',dn:'tdn',st:'tst'};
@@ -8035,18 +7908,18 @@ document.getElementById('priceTbody').innerHTML=PDATA.map(r=>'<tr><td><div class
 
 // ─── Value Table ───
 const VALUE_DATA=[
-  {name:'Chrome Blue 1x4 Brick',tier:'legendary',colour:'Chrome Blue',value:'R250',pct:100},
-  {name:'Maersk Blue Ship Set (sealed)',tier:'legendary',colour:'Maersk Blue',value:'R800+',pct:95},
-  {name:'Double-Print Minifig Head (rare)',tier:'legendary',colour:'Misprint',value:'R220',pct:88},
-  {name:'Chrome Gold C-3PO Minifigure',tier:'legendary',colour:'Chrome Gold',value:'R400',pct:80},
-  {name:'Chrome Gold Trophy Cup (NM)',tier:'rare',colour:'Chrome Gold',value:'R65',pct:60},
-  {name:'CMF Series 10 Mr. Gold',tier:'rare',colour:'Gold ABS',value:'R350',pct:72},
-  {name:'Chrome Black 1x1 Round Plate',tier:'rare',colour:'Chrome Black',value:'R38',pct:40},
-  {name:'Chrome Silver Skeleton Arm (NM)',tier:'rare',colour:'Chrome Silver',value:'R32',pct:36},
-  {name:'Maersk Blue 2x4 Brick',tier:'rare',colour:'Maersk Blue',value:'R28',pct:32},
-  {name:'Old Formula GITD 2x4 Brick',tier:'rare',colour:'GITD',value:'R22',pct:28},
-  {name:'Sand Green 1x8 Brick',tier:'uncommon',colour:'Sand Green',value:'R14',pct:22},
-  {name:'Dark Red 1x2 Tile (pre-2018)',tier:'uncommon',colour:'Dark Red',value:'R4',pct:14},
+  {name:'Chrome Blue 1x4 Brick',tier:'legendary',colour:'Chrome Blue',value:'$250',pct:100},
+  {name:'Maersk Blue Ship Set (sealed)',tier:'legendary',colour:'Maersk Blue',value:'$800+',pct:95},
+  {name:'Double-Print Minifig Head (rare)',tier:'legendary',colour:'Misprint',value:'$220',pct:88},
+  {name:'Chrome Gold C-3PO Minifigure',tier:'legendary',colour:'Chrome Gold',value:'$400',pct:80},
+  {name:'Chrome Gold Trophy Cup (NM)',tier:'rare',colour:'Chrome Gold',value:'$65',pct:60},
+  {name:'CMF Series 10 Mr. Gold',tier:'rare',colour:'Gold ABS',value:'$350',pct:72},
+  {name:'Chrome Black 1x1 Round Plate',tier:'rare',colour:'Chrome Black',value:'$38',pct:40},
+  {name:'Chrome Silver Skeleton Arm (NM)',tier:'rare',colour:'Chrome Silver',value:'$32',pct:36},
+  {name:'Maersk Blue 2x4 Brick',tier:'rare',colour:'Maersk Blue',value:'$28',pct:32},
+  {name:'Old Formula GITD 2x4 Brick',tier:'rare',colour:'GITD',value:'$22',pct:28},
+  {name:'Sand Green 1x8 Brick',tier:'uncommon',colour:'Sand Green',value:'$14',pct:22},
+  {name:'Dark Red 1x2 Tile (pre-2018)',tier:'uncommon',colour:'Dark Red',value:'$4',pct:14},
 ];
 document.getElementById('valueTableBody').innerHTML=VALUE_DATA.map(r=>'<tr><td><span class="vt-name">'+r.name+'</span></td><td><span class="vt-tier '+r.tier+'">'+r.tier+'</span></td><td style="font-size:.85rem;color:rgba(255,255,255,.5)">'+r.colour+'</td><td class="vt-value">'+r.value+'</td><td><div class="vt-bar-track"><div class="vt-bar-fill" data-pct="'+r.pct+'"></div></div></td></tr>').join('');
 
@@ -8113,25 +7986,25 @@ function toggleCheck(el){
 
 // ─── Rarity Parts Explorer ───
 const PARTS=[
-  {id:1,tier:'legendary',type:'chrome',name:'Chrome Blue 1x4 Brick',desc:'The rarest chrome colour. Appeared in one 2003 promotional release globally.',value:'R180\u2013R320',volume:'<5,000 produced',year:'2003',tags:['Chrome','Blue','2003'],
+  {id:1,tier:'legendary',type:'chrome',name:'Chrome Blue 1x4 Brick',desc:'The rarest chrome colour. Appeared in one 2003 promotional release globally.',value:'$180\u2013$320',volume:'<5,000 produced',year:'2003',tags:['Chrome','Blue','2003'],
     content:'<h3>Provenance</h3><p>Chrome blue parts were produced for a single promotional set at a LEGO® corporate event in 2003. Community census estimates place the production run below 5,000 units globally. Many have since been separated from their original sets, lost, or degraded.</p><h3>The Chrome Process</h3><p>LEGO® chrome parts are produced by electroplating standard ABS bricks with a metallic layer \u2014 significantly higher cost than standard injection moulding. The chrome covers only external surfaces; the interior of the brick remains unplated ABS.</p><div class="modal-insight"><strong>Authentication</strong>Genuine chrome blue has a distinctive blue-silver appearance under natural light. The connection point interior should show unplated ABS \u2014 the chrome covers external surfaces only. Imitations typically use painted or anodised finishes rather than true electroplating.</div><h3>Acquisition Strategy</h3><p>Chrome blue parts appear on BrickLink fewer than 20 times per year globally. Set a price alert at 120% of guide and respond immediately. Condition is paramount: chrome flaking drops value by 60\u201380% relative to NM examples.</p>'},
-  {id:2,tier:'legendary',type:'colour',name:'Maersk Blue 2x4 Brick',desc:'Regional corporate exclusive from the 1980s\u201390s. The defining colour of serious LEGO® collecting.',value:'R15\u2013R40',volume:'Promotional only',year:'1980s\u20131990s',tags:['Maersk Blue','Corporate','Regional'],
-    content:'<h3>The Maersk Relationship</h3><p>From the 1980s through the 1990s, LEGO® produced a series of sets for the Maersk shipping company \u2014 large-scale models used as promotional items for employees and corporate partners. These sets were never available through standard retail channels in any market.</p><h3>The Colour</h3><p>Maersk Blue is a specific mid-tone blue produced exclusively for these sets, matching Maersk corporate colours. It was never used in any standard retail LEGO® set. It sits between Medium Blue and Dark Azure \u2014 similar to neither, distinctive on its own.</p><div class="modal-insight"><strong>Colour Identification</strong>Genuine Maersk Blue has a slightly grey undertone distinguishing it from standard Medium Blue (warmer) and Dark Azure (darker). Photography often fails to capture the distinction \u2014 in-person comparison with reference parts is the only reliable method.</div><h3>Current Market</h3><p>Common Maersk Blue parts (1x2 and 2x4 bricks) trade for R5\u2013R15 each. Less common elements (slopes, unusual plates) can reach R25\u2013R60. The Maersk Blue large ship sets sealed are among the most sought-after collector items in the entire LEGO® secondary market.</p>'},
-  {id:3,tier:'legendary',type:'misprint',name:'Double-Printed Minifigure Head',desc:'Factory error: print cycle ran twice, offset by 2\u20133mm. Each example unique. Extremely rare.',value:'R80\u2013R400',volume:'Unknown \u2014 error parts',year:'Various',tags:['Misprint','Minifigure','Error'],
-    content:'<h3>What Causes Misprints</h3><p>LEGO® minifigure heads are decorated using pad printing \u2014 a silicone pad transfers ink from an etched plate to the curved head surface. Double prints occur when a head passes through the printer twice without being cleared, producing a ghost image offset from the original.</p><h3>Authentication</h3><p>The misprint market has a significant forgery problem. Genuine factory misprints have specific characteristics: the offset direction and distance are consistent with production-line movement speed; the ink chemistry matches the base print exactly; and the head shows no handling marks between the two print layers.</p><div class="modal-insight"><strong>UV Testing</strong>Under UV light, genuine LEGO® factory inks fluoresce in a specific way that differs from aftermarket inks. A UV flashlight is the standard authentication tool. No other method reliably distinguishes factory from post-factory double prints.</div><h3>Value Range</h3><p>Value depends on the specific head and misprint nature. A double-print of a rare themed minifigure face can reach R400+ with authentication. Common city-worker faces in average condition fetch around R80. The rarity of the base part multiplies the misprint premium.</p>'},
-  {id:4,tier:'rare',type:'chrome',name:'Chrome Gold Trophy Cup',desc:'Classic Pirates/Castle tournament piece. First chrome piece many collectors acquire.',value:'R25\u2013R75',volume:'Low \u2014 set-specific',year:'1990s\u20132000s',tags:['Chrome','Gold','Trophy'],
+  {id:2,tier:'legendary',type:'colour',name:'Maersk Blue 2x4 Brick',desc:'Regional corporate exclusive from the 1980s\u201390s. The defining colour of serious LEGO® collecting.',value:'$15\u2013$40',volume:'Promotional only',year:'1980s\u20131990s',tags:['Maersk Blue','Corporate','Regional'],
+    content:'<h3>The Maersk Relationship</h3><p>From the 1980s through the 1990s, LEGO® produced a series of sets for the Maersk shipping company \u2014 large-scale models used as promotional items for employees and corporate partners. These sets were never available through standard retail channels in any market.</p><h3>The Colour</h3><p>Maersk Blue is a specific mid-tone blue produced exclusively for these sets, matching Maersk corporate colours. It was never used in any standard retail LEGO® set. It sits between Medium Blue and Dark Azure \u2014 similar to neither, distinctive on its own.</p><div class="modal-insight"><strong>Colour Identification</strong>Genuine Maersk Blue has a slightly grey undertone distinguishing it from standard Medium Blue (warmer) and Dark Azure (darker). Photography often fails to capture the distinction \u2014 in-person comparison with reference parts is the only reliable method.</div><h3>Current Market</h3><p>Common Maersk Blue parts (1x2 and 2x4 bricks) trade for $5\u2013$15 each. Less common elements (slopes, unusual plates) can reach $25\u2013$60. The Maersk Blue large ship sets sealed are among the most sought-after collector items in the entire LEGO® secondary market.</p>'},
+  {id:3,tier:'legendary',type:'misprint',name:'Double-Printed Minifigure Head',desc:'Factory error: print cycle ran twice, offset by 2\u20133mm. Each example unique. Extremely rare.',value:'$80\u2013$400',volume:'Unknown \u2014 error parts',year:'Various',tags:['Misprint','Minifigure','Error'],
+    content:'<h3>What Causes Misprints</h3><p>LEGO® minifigure heads are decorated using pad printing \u2014 a silicone pad transfers ink from an etched plate to the curved head surface. Double prints occur when a head passes through the printer twice without being cleared, producing a ghost image offset from the original.</p><h3>Authentication</h3><p>The misprint market has a significant forgery problem. Genuine factory misprints have specific characteristics: the offset direction and distance are consistent with production-line movement speed; the ink chemistry matches the base print exactly; and the head shows no handling marks between the two print layers.</p><div class="modal-insight"><strong>UV Testing</strong>Under UV light, genuine LEGO® factory inks fluoresce in a specific way that differs from aftermarket inks. A UV flashlight is the standard authentication tool. No other method reliably distinguishes factory from post-factory double prints.</div><h3>Value Range</h3><p>Value depends on the specific head and misprint nature. A double-print of a rare themed minifigure face can reach $400+ with authentication. Common city-worker faces in average condition fetch around $80. The rarity of the base part multiplies the misprint premium.</p>'},
+  {id:4,tier:'rare',type:'chrome',name:'Chrome Gold Trophy Cup',desc:'Classic Pirates/Castle tournament piece. First chrome piece many collectors acquire.',value:'$25\u2013$75',volume:'Low \u2014 set-specific',year:'1990s\u20132000s',tags:['Chrome','Gold','Trophy'],
     content:'<h3>Background</h3><p>The chrome gold trophy cup appears in a small number of Castle and Pirates sets from the 1990s and early 2000s, typically as a prize element. Packaged one per set in most appearances, and those sets have long been retired.</p><div class="modal-insight"><strong>Entry Point</strong>The chrome gold trophy is the recommended entry point for chrome collecting \u2014 available often enough to find in NM condition at reasonable prices, but rare enough to represent genuine collecting achievement. Most serious parts collectors own at least one example.</div><h3>Condition</h3><p>Chrome gold is more stable than chrome silver or chrome blue \u2014 the gold tone better conceals minor wear. Even so, the interior connection point shows polishing marks on well-used examples, reducing their grade to VG at best.</p>'},
-  {id:5,tier:'rare',type:'colour',name:'Sand Green 1x4 Plate',desc:'Discontinued structural colour, now in high demand. Strong appreciation trajectory.',value:'R3\u2013R12',volume:'Discontinued 2006',year:'Pre-2006',tags:['Sand Green','Discontinued','Plates'],
+  {id:5,tier:'rare',type:'colour',name:'Sand Green 1x4 Plate',desc:'Discontinued structural colour, now in high demand. Strong appreciation trajectory.',value:'$3\u2013$12',volume:'Discontinued 2006',year:'Pre-2006',tags:['Sand Green','Discontinued','Plates'],
     content:'<h3>The Discontinuation</h3><p>Sand Green was produced as a structural colour through the early 2000s, used extensively in Pirates, Western, and Castle themes. In 2006, LEGO® reformulated its colour range and Sand Green was dropped as a standard structural colour \u2014 it has since reappeared in limited plant elements but not standard bricks, plates, and slopes.</p><div class="modal-insight"><strong>Appreciation Rate</strong>Sand Green common parts have appreciated approximately 300\u2013450% since 2010. Less common moulds (1x8 bricks, 2x2 slopes) have seen 600%+ appreciation. The trajectory continues \u2014 supply declines, demand grows.</div><h3>Supply Dynamics</h3><p>The total global supply of Sand Green structural parts is fixed and declining. Parts are lost, damaged, or permanently incorporated into builds. The collector market has grown substantially, driven by MOC builders who need it for nature-themed builds and by collectors pursuing complete colour runs.</p>'},
-  {id:6,tier:'rare',type:'chrome',name:'Chrome Silver Skeleton Arm',desc:'Discontinued chrome accessory. Produced for a single theme period, never reissued.',value:'R12\u2013R35',volume:'Very limited',year:'2000s',tags:['Chrome','Silver','Skeleton'],
+  {id:6,tier:'rare',type:'chrome',name:'Chrome Silver Skeleton Arm',desc:'Discontinued chrome accessory. Produced for a single theme period, never reissued.',value:'$12\u2013$35',volume:'Very limited',year:'2000s',tags:['Chrome','Silver','Skeleton'],
     content:'<h3>Context</h3><p>Chrome silver skeleton arms appeared in a short-run Halloween/Monster-themed product line from the early 2000s. The chrome treatment was applied to the standard skeleton arm mould for a single production period that was never repeated.</p><div class="modal-insight"><strong>Wear Pattern</strong>The chrome silver is particularly vulnerable to flaking at the shoulder connection point, where repeated insertion and removal of the arm from the torso causes friction that strips the thin metallic layer. NM examples with intact shoulder chrome command the highest premiums.</div>'},
-  {id:7,tier:'rare',type:'colour',name:'Old Formula Glow-in-Dark 2x4',desc:'Pre-2000 phosphorescent bricks glow more intensely. Different chemistry. Collector premium over modern equivalents.',value:'R8\u2013R25',volume:'Pre-2000 production',year:'Pre-2000',tags:['Glow','Phosphorescent','Pre-2000'],
+  {id:7,tier:'rare',type:'colour',name:'Old Formula Glow-in-Dark 2x4',desc:'Pre-2000 phosphorescent bricks glow more intensely. Different chemistry. Collector premium over modern equivalents.',value:'$8\u2013$25',volume:'Pre-2000 production',year:'Pre-2000',tags:['Glow','Phosphorescent','Pre-2000'],
     content:'<h3>Era Differences</h3><p>Pre-2000 GITD parts glow noticeably more intensely and for longer than post-2000 equivalents, due to changes in the phosphorescent compounds used. Collectors distinguish old formula from new formula GITD parts, with old formula commanding a 2\u20133x premium.</p><div class="modal-insight"><strong>Display Tip</strong>Expose GITD bricks to bright UV light for 30 seconds before display in darkness \u2014 UV charges them to full brightness significantly faster than visible light. A small UV LED torch is the standard collector display tool for phosphorescent LEGO®.</div><h3>Identification</h3><p>Old formula GITD bricks have a slightly warmer, more yellow-tinted glow compared to the cooler blue-white of modern formulations. The glow duration after a 30-second UV charge is 3\u20134x longer for old formula pieces.</p>'},
-  {id:8,tier:'uncommon',type:'colour',name:'Dark Red 2x2 Slope',desc:'Recent discontinuation creating emerging scarcity. Acquisition window still open.',value:'R1.50\u2013R4',volume:'Declining',year:'Pre-2018',tags:['Dark Red','Slopes','Emerging'],
-    content:'<h3>Why Now</h3><p>Dark Red was a reasonably common structural colour through the mid-2010s, appearing in Castle and Architecture sets. Its use in new sets has declined sharply since 2018. Standard slope and brick forms in Dark Red have begun appreciating.</p><h3>The Entry Window</h3><p>Dark Red structural parts are still obtainable at reasonable prices \u2014 R1\u20134 per common mould. The collector window for buying before significant appreciation is arguably still open for another 3\u20135 years. This is a "buy now, appreciate slowly" part rather than a speculative play.</p>'},
-  {id:9,tier:'uncommon',type:'misprint',name:'Offset-Printed Decorative Tile',desc:'Production misprint on printed tile. Occurs in batches; individually modest value but pattern is collectable.',value:'R5\u2013R20',volume:'Unknown',year:'Various',tags:['Tile','Misprint','Offset'],
+  {id:8,tier:'uncommon',type:'colour',name:'Dark Red 2x2 Slope',desc:'Recent discontinuation creating emerging scarcity. Acquisition window still open.',value:'$1.50\u2013$4',volume:'Declining',year:'Pre-2018',tags:['Dark Red','Slopes','Emerging'],
+    content:'<h3>Why Now</h3><p>Dark Red was a reasonably common structural colour through the mid-2010s, appearing in Castle and Architecture sets. Its use in new sets has declined sharply since 2018. Standard slope and brick forms in Dark Red have begun appreciating.</p><h3>The Entry Window</h3><p>Dark Red structural parts are still obtainable at reasonable prices \u2014 $1\u20134 per common mould. The collector window for buying before significant appreciation is arguably still open for another 3\u20135 years. This is a "buy now, appreciate slowly" part rather than a speculative play.</p>'},
+  {id:9,tier:'uncommon',type:'misprint',name:'Offset-Printed Decorative Tile',desc:'Production misprint on printed tile. Occurs in batches; individually modest value but pattern is collectable.',value:'$5\u2013$20',volume:'Unknown',year:'Various',tags:['Tile','Misprint','Offset'],
     content:'<h3>The Batch Problem</h3><p>Tile printing errors tend to occur in runs \u2014 when a printing pass goes wrong, it affects multiple tiles before detection. This means misprint tiles sometimes appear in small batches of 5\u201320 identical examples, which reduces their individual rarity. The community tracks known misprint types by their specific offset characteristics.</p><h3>Collecting Strategy</h3><p>If you find a tile misprint and can acquire the whole batch, do so \u2014 a documented batch of identical errors is more valuable than individual examples of the same misprint, because it confirms the factory-error nature of the piece.</p>'},
-  {id:10,tier:'uncommon',type:'chrome',name:'Chrome Black 1x1 Round Plate',desc:'Rarest chrome colour by number of moulds produced. Gunmetal appearance. Very limited appearances.',value:'R15\u2013R45',volume:'Extremely limited',year:'2000s\u20132010s',tags:['Chrome','Black','Round'],
+  {id:10,tier:'uncommon',type:'chrome',name:'Chrome Black 1x1 Round Plate',desc:'Rarest chrome colour by number of moulds produced. Gunmetal appearance. Very limited appearances.',value:'$15\u2013$45',volume:'Extremely limited',year:'2000s\u20132010s',tags:['Chrome','Black','Round'],
     content:'<h3>Chrome Black Rarity</h3><p>Chrome black is the most unusual chrome colour because the metallic finish over a black substrate produces a result that reads as dark mirror or gunmetal. LEGO® produced chrome black in very few mould variants \u2014 the 1x1 round plate being among the most common chrome black elements.</p><h3>Use Cases</h3><p>Chrome black elements appear primarily in Star Wars and Space sets, where their gunmetal appearance suits vehicles and machinery. Their relative scarcity in the production record has driven consistent collector demand from both theme collectors and chrome specialists.</p>'},
 ];
 
@@ -8184,7 +8057,7 @@ document.addEventListener('keydown',e=>{
 const TLS=[
   {s:'Stage 01',t:'Choose Your Speciality',b:'Pick one category before spending money. Chrome parts, vintage colour variants, minifigure variants, or regional exclusives \u2014 each requires different knowledge and sourcing strategies. Generalists consistently overpay.',tag:'Foundation'},
   {s:'Stage 02',t:'Build Reference Knowledge',b:'Spend three months on BrickLink, Brickset, and Eurobricks forums before making any significant purchases. Know what a genuine example of your target pieces looks, feels, and weighs like. <strong>Knowledge has no substitute in authentication.</strong>',tag:'Education'},
-  {s:'Stage 03',t:'Start With Mid-Tier Pieces',b:'Your first authentic rare pieces should be uncommon, not legendary. Learn authentication at the R20\u2013R80 level before committing hundreds. The stakes are low enough to absorb a mistake, high enough to practise careful evaluation.',tag:'Practice'},
+  {s:'Stage 03',t:'Start With Mid-Tier Pieces',b:'Your first authentic rare pieces should be uncommon, not legendary. Learn authentication at the $20\u2013$80 level before committing hundreds. The stakes are low enough to absorb a mistake, high enough to practise careful evaluation.',tag:'Practice'},
   {s:'Stage 04',t:'Develop Community Relationships',b:'The best pieces don\'t reach open market listings. Serious collectors sell to people they know. Eurobricks, LUG memberships, and BrickLink seller relationships are the infrastructure through which top-tier pieces change hands.',tag:'Network'},
   {s:'Stage 05',t:'Create a Documentation System',b:'Every significant acquisition needs: purchase price, date, source, condition photos, and current market value estimates. This serves insurance, resale, and estate purposes \u2014 but also forces careful thinking about each acquisition.',tag:'Operations'},
   {s:'Stage 06',t:'Acquire Your First Holy Grail Piece',b:'The piece that defines your collection. This should be bought patiently, at the right price, from a verified source. The wrong holy grail piece at the wrong price is the most expensive mistake in collecting.',tag:'Milestone'},
@@ -8228,8 +8101,9 @@ function toggleAcc(head){
 
 // ─── Re-observe new reveals (for dynamically added elements) ───
 setTimeout(()=>{
-  document.querySelectorAll('#lego-collecting-body .reveal:not(.visible)').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>revObs.observe(el));
 },200);
+}
 
 </script>
 </div>
@@ -8292,7 +8166,7 @@ setTimeout(()=>{
 #biggest-sets-body .callout{margin:44px 0;padding:28px 28px 28px 24px;border-left:4px solid var(--gold);background:rgba(201,168,76,.07);border-radius:0 6px 6px 0}
 #biggest-sets-body .callout strong{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--gold);display:block;margin-bottom:6px}
 #biggest-sets-body .callout p{color:#5a4e44;font-size:.92rem;margin:0}
-#biggest-sets-body .pull{margin:60px 0;padding:48px 0;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+#biggest-sets-body .pull{margin:60px 0;padding:48px 0;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
 #biggest-sets-body .pull p{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3.2rem);line-height:1.1;letter-spacing:.02em;color:var(--ink);margin:0}
 #biggest-sets-body .pull em{font-style:normal;color:var(--gold)}
 
@@ -8403,31 +8277,29 @@ setTimeout(()=>{
 #biggest-sets-body .fact-card:hover{background:rgba(255,255,255,.07);transform:translateY(-3px)}
 #biggest-sets-body .fact-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold-l);line-height:1;margin-bottom:6px;letter-spacing:.02em}
 #biggest-sets-body .fact-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.04em;color:#fff;margin-bottom:8px}
-#biggest-sets-body .fact-body{font-size:.92rem;color:rgba(255,255,255,.72);line-height:1.65}
 .fact-
 
 /* ── TIPS BAND ── */
-#biggest-sets-body .tips-band{background:var(--ink2);padding:88px 0}
-#biggest-sets-body .tips-band h2{color:#fff}
-#biggest-sets-body .tips-band .sec-label{color:var(--gold)}
-#biggest-sets-body .tips-band .rule{background:var(--gold)}
+#biggest-sets-body .tips-band{background:var(--gold);padding:88px 0}
+#biggest-sets-body .tips-band h2{color:var(--ink)}
+#biggest-sets-body .tips-band .sec-label{color:rgba(14,14,14,.5)}
+#biggest-sets-body .tips-band .rule{background:var(--ink)}
 #biggest-sets-body .tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px}
-#biggest-sets-body .tip-card{background:var(--ink2);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:26px;transition:transform .2s,box-shadow .2s}
-#biggest-sets-body .tip-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.5);border-color:rgba(201,168,76,.5)}
+#biggest-sets-body .tip-card{background:var(--ink);border-radius:4px;padding:26px;transition:transform .2s,box-shadow .2s}
+#biggest-sets-body .tip-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
 #biggest-sets-body .tip-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--gold-l);line-height:1;margin-bottom:8px}
-#biggest-sets-body .tip-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--gold);margin-bottom:8px}
-#biggest-sets-body .tip-body{font-size:.92rem;color:rgba(255,255,255,.72);line-height:1.65}
+#biggest-sets-body .tip-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:#fff;margin-bottom:8px}
+.tip-
 
 /* ── CLOSE / FOOTER ── */
-#biggest-sets-body .close-sec{background:#0e0e0e !important;padding:88px 0}
-#biggest-sets-body .close-sec h2{color:#fff !important}
-#biggest-sets-body .close-sec .sec-label{color:var(--gold) !important}
-#biggest-sets-body .close-sec .rule{background:var(--gold) !important}
-#biggest-sets-body .close-sec p{color:rgba(255,255,255,.75) !important}
-#biggest-sets-body .close-sec strong{color:var(--gold-l) !important}
-#biggest-sets-body .close-sec .pull{border-color:rgba(255,255,255,.18) !important;margin:60px 0;padding:48px 0}
-#biggest-sets-body .close-sec .pull p{color:#fff !important;font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3.2rem);line-height:1.1;letter-spacing:.02em}
-#biggest-sets-body .close-sec .pull em{color:var(--gold) !important;font-style:normal}
+#biggest-sets-body .close-sec{background:var(--ink);padding:88px 0}
+#biggest-sets-body .close-sec h2{color:#fff}
+#biggest-sets-body .close-sec .sec-label{color:var(--gold)}
+#biggest-sets-body .close-sec .rule{background:var(--gold)}
+#biggest-sets-body .close-sec p{color:rgba(255,255,255,.65)}
+#biggest-sets-body .close-sec strong{color:var(--gold-l)}
+#biggest-sets-body .close-sec .pull{border-color:rgba(255,255,255,.12)}
+#biggest-sets-body .close-sec .pull p{color:#fff}
 #biggest-sets-body footer{background:#080808;padding:56px 6vw;text-align:center;border-top:3px solid var(--gold)}
 #biggest-sets-body .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.18em;color:var(--gold);margin-bottom:14px}
 #biggest-sets-body footer p{color:rgba(255,255,255,.28);font-size:.82rem;margin:0}
@@ -8448,11 +8320,10 @@ setTimeout(()=>{
 <button id="biggest-sets-back" onclick="showPage('home')">← Back</button>
 
 <div id="biggest-sets-body">
-<div class="rbar" id="bs-rbar"></div>
+<div class="rbar" id="rbar"></div>
 
 <!-- ═══ HERO ═══ -->
 <header class="hero">
-  <div class="article-mesh"></div>
   <div class="hero-dots"></div>
   <div class="hero-bricks">
     <div class="hb hb1"></div><div class="hb hb2"></div><div class="hb hb3"></div><div class="hb hb4"></div>
@@ -8576,7 +8447,7 @@ setTimeout(()=>{
     <div class="sec-label">Before You Buy</div>
     <h2>8 Things to Know</h2>
     <div class="rule"></div>
-    <div class="tips-grid" id="bs-tipsGrid"></div>
+    <div class="tips-grid" id="tipsGrid"></div>
   </div>
 </section>
 
@@ -8604,23 +8475,24 @@ setTimeout(()=>{
 </footer>
 
 <!-- ═══ MODAL ═══ -->
-<div class="modal-overlay" id="bs-modalOverlay" onclick="closeMod(event)">
-  <div class="modal" id="bs-modal">
+<div class="modal-overlay" id="modalOverlay" onclick="closeMod(event)">
+  <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModBtn()">✕</button>
     <div class="modal-hero">
-      <img id="bs-mImg" src="" alt="" loading="lazy">
-      <div class="modal-hero-rank" id="bs-mRank"></div>
+      <img id="mImg" src="" alt="" loading="lazy">
+      <div class="modal-hero-rank" id="mRank"></div>
     </div>
     <div class="modal-body-wrap">
-      <div class="modal-theme" id="bs-mTheme"></div>
-      <div class="modal-title" id="bs-mTitle"></div>
-      <div class="modal-pills" id="bs-mPills"></div>
+      <div class="modal-theme" id="mTheme"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-pills" id="mPills"></div>
       <div class="modal-divider"></div>
-      <div class="modal-body" id="bs-mBody"></div>
-      <div class="modal-specs" id="bs-mSpecs"></div>
-      <div class="modal-nav" id="bs-mNav"></div>
+      <div class="modal-body" id="mBody"></div>
+      <div class="modal-specs" id="mSpecs"></div>
+      <div class="modal-nav" id="mNav"></div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -8629,20 +8501,10 @@ let bsPageInited = false;
 function initBiggestSetsPage() {
   if (bsPageInited) return;
   bsPageInited = true;
-  const bsBody = document.getElementById('biggest-sets-body');
-  if (!bsBody) return;
-  const bsRO = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); bsRO.unobserve(e.target); } });
-  }, {threshold:.08});
-  bsBody.querySelectorAll('.reveal').forEach(el => bsRO.observe(el));
-} // end initBiggestSetsPage
-window.initBiggestSetsPage = initBiggestSetsPage;
-window.bsPageInited_ref = function(v){ bsPageInited = v; };
-
 // ─── Reading bar ───
 window.addEventListener('scroll',()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
-  const rbar=document.getElementById('bs-rbar')||document.getElementById('rbar'); if(rbar) rbar.style.width=(scrollY/h*100)+'%';
+  document.getElementById('rbar').style.width=(scrollY/h*100)+'%';
 });
 
 // ─── DATA ───
@@ -8654,7 +8516,7 @@ const SETS=[
     img:'images/World_map-01.png.jpg',
     pieces:'11,695',
     year:'2021',
-    price:'R299.99',
+    price:'$299.99',
     status:'Available',
     dims:'104 × 65 cm',
     pills:['11,695 pieces','Wall Art','18+','Set #31203'],
@@ -8676,7 +8538,7 @@ const SETS=[
     img:'images/Eiffel_Tower-01.jpg.png',
     pieces:'10,001',
     year:'2022',
-    price:'R629.99',
+    price:'$629.99',
     status:'Available',
     dims:'149 cm tall',
     pills:['10,001 pieces','149cm tall','18+','Set #10307'],
@@ -8688,7 +8550,7 @@ const SETS=[
 <h3>The Build Experience</h3>
 <p>This is a genuine engineering challenge. The early stages establish the lattice geometry, and understanding how the angles work is initially confusing. Once it clicks, the build becomes deeply satisfying — you're essentially constructing a structural framework, not just stacking bricks. The repetition of lattice sections is intense but the growing height is visually rewarding.</p>
 <h3>Verdict</h3>
-<p>One of the most impressive displays on this list. At R479.99 / R629.99 it's a significant investment, but the visual impact of a 149cm Eiffel Tower is hard to argue with. A genuine showpiece.</p>`
+<p>One of the most impressive displays on this list. At £479.99 / $629.99 it's a significant investment, but the visual impact of a 149cm Eiffel Tower is hard to argue with. A genuine showpiece.</p>`
   },
   {
     rank:3,
@@ -8697,7 +8559,7 @@ const SETS=[
     img:'images/Titanic-01.png.png',
     pieces:'9,090',
     year:'2021',
-    price:'R679.99',
+    price:'$679.99',
     status:'Available',
     dims:'135 cm long',
     pills:['9,090 pieces','135cm long','18+','Set #10294'],
@@ -8718,7 +8580,7 @@ const SETS=[
     img:'images/Colosseum-01.png.jpg',
     pieces:'9,036',
     year:'2020',
-    price:'R549.99',
+    price:'$549.99',
     status:'Discontinued',
     dims:'27 × 52 × 59 cm',
     pills:['9,036 pieces','Discontinued','18+','Set #10276'],
@@ -8739,14 +8601,14 @@ const SETS=[
     img:'images/Star_Wars_Death_Star-01.png.png',
     pieces:'9,023',
     year:'2016',
-    price:'R999.99',
+    price:'$999.99',
     status:'Discontinued',
     dims:'48 × 48 × 43 cm',
     pills:['9,023 pieces','36 minifigs','Discontinued','Set #75159'],
     desc:'The most minifigure-packed set ever made — 36 characters across a cross-section of the Empire\'s ultimate weapon.',
     body:`<h3>What It Is</h3>
 <p>The 2016 LEGO® Star Wars Death Star is not primarily a display model — it's a <strong>story machine</strong>. The cross-section design reveals room after room of iconic Star Wars scenes: the Emperor's throne room, the trash compactor, the hangar bay, the tractor beam, Darth Vader's chamber. And it comes with <strong>36 minifigures</strong> — the most in any single set.</p>
-<p>Originally priced at R499.99, it has since been retired and its secondary market value reflects that. Complete sealed examples trade well above R1,000.</p>
+<p>Originally priced at $499.99, it has since been retired and its secondary market value reflects that. Complete sealed examples trade well above $1,000.</p>
 <div class="modal-fact"><strong>36 Minifigures</strong>The minifig collection alone — including rare characters like Grand Moff Tarkin, Luke in ceremonial outfit, and R2-D2 with pop-up lightsaber — makes this set extraordinarily difficult to replicate through individual purchases.</div>
 <h3>The Build Experience</h3>
 <p>The interior room construction is varied and constantly changing — no two bags feel the same. This is one of the most entertaining large-scale builds on this list purely from a variety standpoint. The play value is high; the display value is moderate (it's a sphere cut in half).</p>
@@ -8760,7 +8622,7 @@ const SETS=[
     img:'images/Star_Wars_%E2%84%A2Millennium_Falcon%E2%84%A2-01.png.png',
     pieces:'7,541',
     year:'2017',
-    price:'R849.99',
+    price:'$849.99',
     status:'Available',
     dims:'84 × 56 × 21 cm',
     pills:['7,541 pieces','83cm long','18+','Set #75192'],
@@ -8772,7 +8634,7 @@ const SETS=[
 <h3>The Build Experience</h3>
 <p>The Falcon is a masterclass in LEGO® engineering. The octagonal hull geometry requires clever use of angled connections, the greebling surface texture is complex and varied, and the interior fit-out is detailed enough to be its own build. One of the most satisfying large builds in LEGO® history.</p>
 <h3>Verdict</h3>
-<p>The benchmark. If you build one large set in your life, this is the candidate. It has never dropped in cultural relevance and likely never will. At R849.99 it is expensive — but it is worth it.</p>`
+<p>The benchmark. If you build one large set in your life, this is the candidate. It has never dropped in cultural relevance and likely never will. At $849.99 it is expensive — but it is worth it.</p>`
   },
   {
     rank:7,
@@ -8781,7 +8643,7 @@ const SETS=[
     img:'images/Star_Wars%E2%84%A2_AT-AT%E2%84%A2-01.png.jpg',
     pieces:'6,785',
     year:'2021',
-    price:'R849.99',
+    price:'$849.99',
     status:'Discontinued',
     dims:'62 cm tall',
     pills:['6,785 pieces','62cm tall','Discontinued','Set #75313'],
@@ -8802,7 +8664,7 @@ const SETS=[
     img:'images/Star_Wars%E2%84%A2_The%20Razor_Crest%E2%84%A2.01.png.png',
     pieces:'6,187',
     year:'2022',
-    price:'R599.99',
+    price:'$599.99',
     status:'Discontinued',
     dims:'72 cm long',
     pills:['6,187 pieces','72cm long','Discontinued','Set #75331'],
@@ -8823,7 +8685,7 @@ const SETS=[
     img:'images/Icons_Rivendell%E2%84%A2-01.png.png',
     pieces:'6,167',
     year:'2023',
-    price:'R499.99',
+    price:'$499.99',
     status:'Available',
     dims:'68 × 35 × 30 cm',
     pills:['6,167 pieces','15 minifigs','18+','Set #10316'],
@@ -8835,7 +8697,7 @@ const SETS=[
 <h3>The Build Experience</h3>
 <p>The most architecturally varied build on this list. Each section of Rivendell has a different character — the hall is formal and grand, the garden sections are organic and layered, the clifftop elements use interesting terrain techniques. Never repetitive; constantly rewarding.</p>
 <h3>Verdict</h3>
-<p>For Tolkien fans, essential. For general collectors, one of the most beautiful display pieces in this list. At R499.99 the price-to-complexity ratio is reasonable for a set of this quality.</p>`
+<p>For Tolkien fans, essential. For general collectors, one of the most beautiful display pieces in this list. At $499.99 the price-to-complexity ratio is reasonable for a set of this quality.</p>`
   },
   {
     rank:10,
@@ -8844,7 +8706,7 @@ const SETS=[
     img:'images/NINJAGO%C2%AE_City_Markets-01.png.png',
     pieces:'6,163',
     year:'2022',
-    price:'R349.99',
+    price:'$349.99',
     status:'Available',
     dims:'36 × 66 × 52 cm',
     pills:['6,163 pieces','21 minifigs','16+','Set #71799'],
@@ -8854,7 +8716,7 @@ const SETS=[
 <p>The set is designed to connect with the original NINJAGO City (70620) and NINJAGO City Docks (70657), creating an ever-expanding urban layout.</p>
 <div class="modal-fact"><strong>21 Minifigures</strong>The 21-minifigure count makes this the character-richest set in the top 11 after the Death Star. The NPCs — market vendors, customers, city workers — give the model an extraordinary sense of life and activity.</div>
 <h3>The Build Experience</h3>
-<p>A joy from start to finish. The varied room and stall construction means no two sections feel the same, and the sheer density of detail rewards exploration at every level. The best-value large build on this list at R349.99.</p>
+<p>A joy from start to finish. The varied room and stall construction means no two sections feel the same, and the sheer density of detail rewards exploration at every level. The best-value large build on this list at $349.99.</p>
 <h3>Verdict</h3>
 <p>The most playful and detail-rich set in the top 11. Exceptional value at its price point. If you don't own the other NINJAGO City sets, this one might make you buy them too.</p>`
   },
@@ -8865,7 +8727,7 @@ const SETS=[
     img:'images/Harry_Potter%E2%84%A2_Hogwarts%E2%84%A2_Castle-01.png.jpg',
     pieces:'6,020',
     year:'2018',
-    price:'R469.99',
+    price:'$469.99',
     status:'Available',
     dims:'58 × 43 × 27 cm',
     pills:['6,020 pieces','27 micro-figs','16+','Set #71043'],
@@ -8893,7 +8755,7 @@ const FACTS=[
   {num:'2021',title:'When It All Escalated',body:'Five of the top 11 were released in 2021 or 2022. The race to make the biggest sets is a very recent phenomenon — as recently as 2015, nothing had broken 5,000 pieces.'},
   {num:'149cm',title:'Tallest Set Ever',body:'The Eiffel Tower at 149cm is taller than many adult builders. It is the only LEGO® set that, if it fell on you, would actually hurt.'},
   {num:'36',title:'Most Minifigures',body:'The Death Star\'s 36 minifigures is a record that has never been beaten. The sheer variety of Star Wars characters you get in a single box is extraordinary.'},
-  {num:'R1,000+',title:'Death Star Resale',body:'The 2016 Death Star originally retailed for R499.99. Sealed examples now regularly sell above R1,200 — a return better than most stock indices over the same period.'},
+  {num:'$1,000+',title:'Death Star Resale',body:'The 2016 Death Star originally retailed for $499.99. Sealed examples now regularly sell above $1,200 — a return better than most stock indices over the same period.'},
   {num:'2',title:'Han Solo',body:'The Millennium Falcon includes two Han Solo minifigures — young Han from The Force Awakens and classic Han from the original trilogy. Both in the same box.'},
   {num:'3',title:'World Map Boxes',body:'The LEGO® Art World Map ships in three separate boxes, each covering a section of the globe. You can display them individually or combine all three into the full 11,695-piece map.'},
   {num:'1958',title:'Still Compatible',body:'Every brick in every set on this list is fully compatible with a standard LEGO® brick from 1958. 66 years of identical tolerance. No other product in history has this record.'},
@@ -8916,7 +8778,6 @@ const TIPS=[
 
 // ─── Render set list ───
 const setList=document.getElementById('setList');
-if(!setList){console.warn('setList not found');}
 SETS.forEach((s,i)=>{
   const el=document.createElement('div');
   el.className='set-entry reveal';
@@ -8983,7 +8844,7 @@ FACTS.forEach(f=>{
 });
 
 // ─── Render tips ───
-const tipsGrid=document.getElementById('bs-tipsGrid');
+const tipsGrid=document.getElementById('tipsGrid');
 TIPS.forEach(t=>{
   const el=document.createElement('div');
   el.className='tip-card reveal';
@@ -8996,39 +8857,39 @@ let curIdx=0;
 function openMod(i){
   curIdx=i;
   const s=SETS[i];
-  document.getElementById('bs-mImg').src=s.img;
-  document.getElementById('bs-mImg').alt=s.name;
-  document.getElementById('bs-mRank').textContent='#'+s.rank;
-  document.getElementById('bs-mTheme').textContent=s.theme;
-  document.getElementById('bs-mTitle').textContent=s.name;
-  document.getElementById('bs-mPills').innerHTML=s.pills.map(p=>`<span class="mpill${p.includes('pieces')?' hi':''}">${p}</span>`).join('');
-  document.getElementById('bs-mBody').innerHTML=s.body;
-  document.getElementById('bs-mSpecs').innerHTML=`
+  document.getElementById('mImg').src=s.img;
+  document.getElementById('mImg').alt=s.name;
+  document.getElementById('mRank').textContent='#'+s.rank;
+  document.getElementById('mTheme').textContent=s.theme;
+  document.getElementById('mTitle').textContent=s.name;
+  document.getElementById('mPills').innerHTML=s.pills.map(p=>`<span class="mpill${p.includes('pieces')?' hi':''}">${p}</span>`).join('');
+  document.getElementById('mBody').innerHTML=s.body;
+  document.getElementById('mSpecs').innerHTML=`
     <div class="spec-cell"><div class="spec-val">${s.pieces}</div><div class="spec-lbl">Pieces</div></div>
     <div class="spec-cell"><div class="spec-val">${s.year}</div><div class="spec-lbl">Released</div></div>
     <div class="spec-cell"><div class="spec-val">${s.price}</div><div class="spec-lbl">RRP</div></div>
     <div class="spec-cell"><div class="spec-val" style="font-size:1rem;padding-top:4px">${s.status}</div><div class="spec-lbl">Status</div></div>
     <div class="spec-cell" style="grid-column:1/-1"><div class="spec-val" style="font-size:1rem;padding-top:4px">${s.dims}</div><div class="spec-lbl">Dimensions</div></div>`;
-  document.getElementById('bs-mNav').innerHTML=`
+  document.getElementById('mNav').innerHTML=`
     ${i>0?`<button class="mnav-btn" onclick="openMod(${i-1})">← #${SETS[i-1].rank} ${SETS[i-1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}
     ${i<SETS.length-1?`<button class="mnav-btn" onclick="openMod(${i+1})">→ #${SETS[i+1].rank} ${SETS[i+1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}`;
-  document.getElementById('bs-modalOverlay').classList.add('open');
-  document.getElementById('bs-modal').scrollTop=0;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modal').scrollTop=0;
   document.body.style.overflow='hidden';
 }
-function closeMod(e){if(e.target===document.getElementById('bs-modalOverlay'))closeModBtn();}
+function closeMod(e){if(e.target===document.getElementById('modalOverlay'))closeModBtn();}
 function closeModBtn(){
-  document.getElementById('bs-modalOverlay').classList.remove('open');
+  document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')closeModBtn();
-  if(e.key==='ArrowRight'&&document.getElementById('bs-modalOverlay').classList.contains('open'))openMod(Math.min(curIdx+1,SETS.length-1));
-  if(e.key==='ArrowLeft'&&document.getElementById('bs-modalOverlay').classList.contains('open'))openMod(Math.max(curIdx-1,0));
+  if(e.key==='ArrowRight'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.min(curIdx+1,SETS.length-1));
+  if(e.key==='ArrowLeft'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.max(curIdx-1,0));
 });
 
-// ─── Scroll reveal (scoped to biggest-sets) ───
-function bsInitReveal(){
+// ─── Scroll reveal ───
+setTimeout(()=>{
   const ro=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -9041,10 +8902,9 @@ function bsInitReveal(){
       }
     });
   },{threshold:.08});
-  document.querySelectorAll('#biggest-sets-body .reveal').forEach(el=>ro.observe(el));
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+},200);
 }
-window.bsInitReveal = bsInitReveal;
-setTimeout(bsInitReveal, 200);
 
 </script>
 </div><!-- end page-biggest-sets -->
@@ -9683,10 +9543,10 @@ const BLOG_POSTS = [
    excerpt:'One week in and the foundation is done. Here\'s how it\'s going, what went wrong, and what surprised me.',
    content:`<p>One week into the 31-day castle build and I'm already behind schedule — but for a good reason.</p><h3>What I built this week</h3><p>The base plate layout, all four corner tower foundations, and the first section of the curtain wall are complete. That's maybe 15% of the total build.</p><h3>What went wrong</h3><p>I ran out of dark tan 1x2 bricks on day three. Completely miscalculated. If you're planning a big build: always order 30% more of your primary colour than you think you need.</p><h3>The unexpected win</h3><p>The rock texture technique I'm using for the outer walls is turning out way better than expected. I'll do a dedicated tips video on this once the build is done.</p><p>Week 2 starts with the great hall interior. Stay tuned.</p>`},
   {id:3,cat:'review',catLabel:'Set Review',catColor:'#00A650',bg:'linear-gradient(135deg,#004d25,#00A650)',emoji:'🏎️',
-   title:'Speed Champions Ferrari 499P Review — Is It Worth R60?',
+   title:'Speed Champions Ferrari 499P Review — Is It Worth $60?',
    date:'March 8, 2026',read:'5 min read',
    excerpt:'The Ferrari 499P is easily the most detailed Speed Champions car LEGO® has ever made. But does the price match the quality?',
-   content:`<p>Speed Champions sets have crept up in price every year, and the Ferrari 499P sits at R60. So is it worth it?</p><h3>The build</h3><p>Genuinely the most satisfying Speed Champions build I've done. The new body panel system creates much more accurate curves. The livery is almost entirely printed tiles — virtually no stickers, which is a huge win.</p><h3>The verdict</h3><p>R60 is steep, but this is a R60 set that actually feels worth R60. If you're a car person this is a shelf piece. Rating: 9/10.</p>`},
+   content:`<p>Speed Champions sets have crept up in price every year, and the Ferrari 499P sits at $60. So is it worth it?</p><h3>The build</h3><p>Genuinely the most satisfying Speed Champions build I've done. The new body panel system creates much more accurate curves. The livery is almost entirely printed tiles — virtually no stickers, which is a huge win.</p><h3>The verdict</h3><p>$60 is steep, but this is a $60 set that actually feels worth $60. If you're a car person this is a shelf piece. Rating: 9/10.</p>`},
   {id:4,cat:'tips',catLabel:'Build Tips',catColor:'#FF6B00',bg:'linear-gradient(135deg,#8b3a00,#FF6B00)',emoji:'💡',
    title:'5 Techniques I Wish I Knew When I Started MOC Building',
    date:'March 6, 2026',read:'7 min read',
@@ -10053,8 +9913,6 @@ function handleGalleryFile(input) {
 
   function applyTilt(el) {
     if (el.dataset.tiltInit) return;
-    // Never tilt elements inside a modal/overlay
-    if (el.closest('.modal-overlay,.rarity-overlay,.modal,.rarity-modal,.blog-post,.gallery-modal,.moc-detail')) return;
     el.dataset.tiltInit = '1';
     el.style.willChange = 'transform';
     if (!['relative','absolute','fixed'].includes(getComputedStyle(el).position)) {
@@ -10145,216 +10003,6 @@ function handleGalleryFile(input) {
 // ══════════════════════════════════════════════════════
 //  SPECTACULAR BUNDLE — Bricktastic Builds
 // ══════════════════════════════════════════════════════
-
-// ── ARTICLE PAGES — FULL 3D IMMERSIVE SYSTEM ─────────
-(function initArticle3D() {
-
-  // ─ 1. HERO MOUSE PARALLAX for all article pages ─────
-  const ARTICLE_BODIES = [
-    'lego-history-body',
-    'lego-challenges-body',
-    'tips-tricks-body',
-    'lego-collecting-body',
-    'biggest-sets-body'
-  ];
-
-  function setupArticleParallax(bodyId) {
-    const body = document.getElementById(bodyId);
-    if (!body) return;
-    const hero = body.querySelector('.hero');
-    if (!hero || hero._parallaxInit) return;
-    hero._parallaxInit = true;
-
-    // Wrap all direct children (except mesh) in parallax inner div
-    const inner = document.createElement('div');
-    inner.className = 'article-hero-inner';
-    Array.from(hero.children).forEach(child => {
-      if (!child.classList.contains('article-mesh')) inner.appendChild(child);
-    });
-    hero.appendChild(inner);
-
-    let tx = 0, ty = 0, cx = 0, cy = 0;
-    let raf;
-
-    hero.addEventListener('mousemove', e => {
-      const r = hero.getBoundingClientRect();
-      tx = (e.clientX - r.left) / r.width  - 0.5;
-      ty = (e.clientY - r.top)  / r.height - 0.5;
-    });
-    hero.addEventListener('mouseleave', () => { tx = 0; ty = 0; });
-
-    function tick() {
-      raf = requestAnimationFrame(tick);
-      cx += (tx - cx) * 0.06;
-      cy += (ty - cy) * 0.06;
-      inner.style.transform =
-        `perspective(1000px) rotateX(${cy * -8}deg) rotateY(${cx * 10}deg) translateZ(6px)`;
-      const mesh = hero.querySelector('.article-mesh');
-      if (mesh) mesh.style.transform =
-        `translate(${cx * 28}px, ${cy * 18}px) scale(1.06)`;
-    }
-    tick();
-  }
-
-  // ─ 2. 3D CARD TILT for all article cards ─────────────
-  const ARTICLE_CARD_SELECTORS = [
-    '#lego-history-body .brick-spec',
-    '#lego-history-body .crisis-stat',
-    '#lego-history-body .era-event',
-    '#lego-challenges-body .ch-card',
-    '#lego-challenges-body .diff-cell',
-    '#tips-tricks-body .tips-list li',
-    '#tips-tricks-body .level-cell',
-    '#lego-collecting-body .rarity-card',
-    '#lego-collecting-body .tip-card',
-    '#lego-collecting-body .tl-item',
-    '#biggest-sets-body .set-entry',
-    '#biggest-sets-body .fact-card',
-    '#biggest-sets-body .tip-card',
-    '#biggest-sets-body .theme-card',
-    '#biggest-sets-body .stat-cell',
-  ];
-
-  function applyArticleTilt(el) {
-    if (el.dataset.artTilt) return;
-    // Never tilt elements inside a modal/overlay
-    if (el.closest('.modal-overlay,.rarity-overlay,.modal,.rarity-modal')) return;
-    el.dataset.artTilt = '1';
-    el.style.willChange = 'transform';
-    if (!['relative','absolute','fixed'].includes(getComputedStyle(el).position)) {
-      el.style.position = 'relative';
-    }
-    // Add shine overlay
-    const shine = document.createElement('div');
-    shine.className = 'art-card-shine';
-    el.appendChild(shine);
-
-    el.addEventListener('mousemove', function(e) {
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      el.style.transform =
-        `perspective(700px) rotateX(${y * -14}deg) rotateY(${x * 14}deg) translateZ(12px) scale(1.02)`;
-      el.style.boxShadow =
-        `${-x * 14}px ${-y * 14}px 36px rgba(0,0,0,.28), 0 0 0 1px rgba(255,255,255,.08)`;
-      shine.style.background =
-        `radial-gradient(circle at ${50 + x * 44}% ${50 + y * 44}%, rgba(255,255,255,.16) 0%, transparent 62%)`;
-      shine.style.opacity = '1';
-    });
-
-    el.addEventListener('mouseleave', function() {
-      el.style.transform =
-        'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0) scale(1)';
-      el.style.boxShadow = '';
-      shine.style.opacity = '0';
-    });
-  }
-
-  function scanArticleCards() {
-    ARTICLE_CARD_SELECTORS.forEach(sel => {
-      document.querySelectorAll(sel).forEach(applyArticleTilt);
-    });
-  }
-
-  // ─ 3. 3D SCROLL REVEALS for all article .reveal ──────
-  function upgradeArticleReveals(bodyId) {
-    const body = document.getElementById(bodyId);
-    if (!body) return;
-    const els = body.querySelectorAll('.reveal:not([data-3d-reveal])');
-    els.forEach((el, i) => {
-      el.dataset['3dReveal'] = '1';
-      // Alternate left/right entrances for variety
-      const variant = i % 3;
-      if (variant === 1) {
-        el.style.transform = 'perspective(800px) rotateY(18deg) translateX(-40px)';
-      } else if (variant === 2) {
-        el.style.transform = 'perspective(800px) rotateY(-18deg) translateX(40px)';
-      } else {
-        el.style.transform = 'perspective(800px) rotateX(16deg) translateY(50px)';
-      }
-      el.style.opacity = '0';
-      el.style.transition =
-        `opacity .7s cubic-bezier(.22,1,.36,1) ${i * 0.04}s, transform .7s cubic-bezier(.22,1,.36,1) ${i * 0.04}s`;
-    });
-
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateX(0) translateY(0)';
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    els.forEach(el => io.observe(el));
-  }
-
-  // ─ 4. PULL QUOTE PARALLAX SCROLL EFFECT ─────────────
-  function setupPullQuoteParallax(bodyId) {
-    const body = document.getElementById(bodyId);
-    if (!body) return;
-    body.querySelectorAll('.pull-quote').forEach(pq => {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            pq.style.transform = 'none';
-            pq.style.opacity = '1';
-            io.unobserve(pq);
-          }
-        });
-      }, { threshold: 0.2 });
-      pq.style.transform = 'perspective(600px) rotateX(8deg) translateY(30px)';
-      pq.style.opacity = '0';
-      pq.style.transition = 'transform .8s cubic-bezier(.22,1,.36,1), opacity .8s ease';
-      io.observe(pq);
-    });
-  }
-
-  // ─ 5. HOOK INTO initArticlePage CALLS ────────────────
-  // Wrap each init function to also run 3D setup
-  const origInitFns = {};
-  const articleMap = {
-    'lego-history':    'lego-history-body',
-    'lego-challenges': 'lego-challenges-body',
-    'tips-tricks':     'tips-tricks-body',
-    'lego-collecting': 'lego-collecting-body',
-    'biggest-sets':    'biggest-sets-body',
-  };
-
-  function run3DForArticle(bodyId) {
-    setupArticleParallax(bodyId);
-    upgradeArticleReveals(bodyId);
-    setupPullQuoteParallax(bodyId);
-    scanArticleCards();
-  }
-
-  // Patch showPage to trigger 3D after article loads
-  const _origShowPage = window.showPage;
-  if (typeof _origShowPage === 'function') {
-    window.showPage = function(id) {
-      const result = _origShowPage.call(this, id);
-      const bodyId = articleMap[id];
-      if (bodyId) setTimeout(() => run3DForArticle(bodyId), 120);
-      return result;
-    };
-  }
-
-  // Also run on any article that's already active on load
-  setTimeout(() => {
-    Object.values(articleMap).forEach(bodyId => {
-      const body = document.getElementById(bodyId);
-      if (body && body.closest('.page.active')) run3DForArticle(bodyId);
-    });
-    scanArticleCards();
-  }, 200);
-
-  // Watch for dynamically added cards
-  new MutationObserver(scanArticleCards)
-    .observe(document.body, { childList: true, subtree: true });
-
-})();
-
 
 // ── 3D TILT — OBSESSION CARDS ────────────────────────
 (function initObsessionTilt() {

@@ -711,6 +711,132 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
   .perks{grid-template-columns:1fr}.mod-specs{grid-template-columns:1fr 1fr}
   .cart-dr{width:100%}
 }
+
+/* ════════════════════════════════════════════════
+   GLOBAL MOBILE RESPONSIVE — UI layout only
+   ════════════════════════════════════════════════ */
+@media(max-width:768px){
+  /* Container padding */
+  .container{padding:0 16px}
+  section{padding:48px 0}
+
+  /* Section titles */
+  .sec-title{font-size:clamp(26px,6vw,38px)}
+  .sec-sub{font-size:14px;margin-bottom:28px}
+
+  /* Nav YT button — hide text, show icon only */
+  .nav-yt span:not(:first-child){display:none}
+  .cart-btn span:not(.cart-count){display:none}
+  .nav-right{gap:6px}
+
+  /* Hero — single column */
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:44px 20px 40px}
+  .hero h1{font-size:clamp(38px,9vw,56px)}
+  .hero-sub{font-size:14px}
+  .hero-stats{gap:16px;flex-wrap:wrap}
+  .sn{font-size:26px}
+  .hero-ctas{flex-direction:column;gap:10px}
+  .hero-ctas .btn{width:100%;text-align:center;justify-content:center}
+  .hero-right{display:none}
+
+  /* Video grid */
+  .vgrid,.vgrid-loading{grid-template-columns:1fr}
+
+  /* Shop / product grid */
+  .sgrid{grid-template-columns:1fr}
+  .cgrid{grid-template-columns:1fr 1fr}
+
+  /* Game hub page */
+  .gh-hero{padding:36px 0 28px}
+  .gh-hero-inner h1{font-size:clamp(28px,7vw,44px)}
+  .gh-grid{grid-template-columns:1fr;gap:16px}
+  .gh-card-title{font-size:20px}
+  .gh-card-icon{font-size:32px}
+
+  /* Tetris side-panel: stack vertically */
+  #tetris-wrap > div:last-of-type{flex-direction:column;align-items:center}
+  #tetris-wrap > div > div:first-child{/* canvas wrapper */max-width:260px;width:100%}
+  #tetris-wrap > div > div:last-child{flex-direction:row;flex-wrap:wrap;justify-content:center;min-width:unset;width:100%;gap:10px}
+  #tetris-wrap > div > div:last-child > div{min-width:80px;flex:1}
+
+  /* Leaderboard */
+  .gh-leaderboard{padding:24px 16px}
+  .gh-lb-row{padding:10px 12px;gap:10px}
+
+  /* Blog grid */
+  .blog-grid{grid-template-columns:1fr}
+  .blog-hero-inner h1{font-size:clamp(28px,7vw,44px)}
+
+  /* Gallery grid */
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-hero-inner h1{font-size:clamp(28px,7vw,44px)}
+  .gallery-form{grid-template-columns:1fr}
+  .gallery-form .g-full,.gallery-file-label{grid-column:1}
+
+  /* MOC grid */
+  .moc-grid{grid-template-columns:1fr}
+  .moc-filter-bar{flex-direction:column;align-items:stretch}
+  .moc-search{min-width:unset;width:100%}
+  .moc-count{margin-left:0}
+
+  /* Newsletter bar */
+  .newsletter-inner{flex-direction:column;gap:12px;text-align:center}
+  .newsletter-input{width:100%}
+  .newsletter-btn{width:100%}
+
+  /* Footer */
+  footer{flex-direction:column;gap:10px;text-align:center;padding:24px 16px}
+  .flinks{justify-content:center}
+
+  /* Cart drawer */
+  .cart-dr{width:100%;max-width:100%;left:0;right:0}
+
+  /* Modal overlays — full screen on mobile */
+  .blog-post-ov,.gallery-modal-ov,.moc-detail-ov{padding:66px 0 0}
+  .blog-post,.gallery-modal,.moc-detail{border-radius:0;border-left:none;border-right:none;min-height:calc(100vh - 66px)}
+  .blog-post-body{padding:20px 18px 32px}
+  .gallery-modal-body{padding:16px 18px}
+  .moc-detail-body{padding:16px 18px}
+
+  /* About page */
+  .about-wrap .container{padding:0 16px}
+
+  /* Search overlay */
+  .search-box{border-radius:0;border:none}
+  .search-overlay{padding:66px 0 0}
+
+  /* Stud bar */
+  .stud-bar .inner span{min-width:18px}
+
+  /* Game overlays text */
+  #fb-overlay, #td-overlay, #th-overlay{padding:16px}
+  #tetris-wrap{padding:12px 10px 16px}
+  #tilehop-wrap .container,#flappy-wrap .container{padding:0}
+}
+
+@media(max-width:480px){
+  /* Extra small phones */
+  .hero h1{font-size:clamp(32px,10vw,46px)}
+  .cgrid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .gh-card-footer{flex-direction:column;gap:10px;align-items:flex-start}
+  .gh-play-btn{width:100%;text-align:center}
+
+  /* Tetris layout on tiny screens */
+  #td-canvas{max-width:220px}
+  .mod-specs{grid-template-columns:1fr}
+
+  /* Nav logo text truncate */
+  .nav-logo{font-size:20px}
+
+  /* Section labels */
+  .lbl{font-size:10px;padding:4px 10px}
+
+  /* Blog/gallery cards */
+  .blog-card-body{padding:14px}
+  .blog-card-title{font-size:18px}
+}
 /* ══ MOCs PAGE ══ */
 .moc-filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:36px}
 .moc-search{flex:1;min-width:220px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;padding:12px 18px;border-radius:10px;border:3px solid var(--black);outline:none;background:#fff;transition:border-color .2s}
@@ -2409,7 +2535,7 @@ const P=[
   {id:5,name:"Working Technic Engine Display — Instructions",type:"PDF Instructions",price:12,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",emoji:"⚙️",bg:"linear-gradient(135deg,#b89a00,#FFD700)",tc:"#b89a00",buyUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",buyLabel:"⬇️ Buy & Download",desc:"Fully kinetic 4-cylinder engine display model. Crank it by hand — all four pistons fire in sequence, valves operate, crankshaft turns. As seen in the Technic deep dive video.",specs:[["480","Pieces"],["64 pgs","Instructions"],["Fully","Kinetic"]],inc:["64-page colour PDF","BrickLink parts list","Engineering notes","Gear ratio explainer"]},
   {id:6,name:"Starter Pack — 5 Instructions for Beginners",type:"Bundle",price:19,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",emoji:"📦",bg:"linear-gradient(135deg,#8b3a00,#FF6B00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",buyLabel:"⬇️ Buy & Download",desc:"5 beginner-to-intermediate builds at 40% discount. Corner Café, Waterfall Vignette, Market Stall, Cosy Cottage, and Mini Lighthouse. Perfect for building up your skills fast.",specs:[["5 PDFs","Included"],["40%","Discount"],["Instant","Download"]],inc:["Corner Café PDF","Waterfall Vignette PDF","Market Stall PDF","Cosy Cottage PDF","Mini Lighthouse PDF","All BrickLink lists"]},
   {id:7,name:"Suspension Bridge Micro-Scale — Instructions",type:"PDF Instructions",price:10,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/suspension-bridge",emoji:"🌉",bg:"linear-gradient(135deg,#003d6b,#00838F)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/suspension-bridge",buyLabel:"⬇️ Buy & Download",desc:"Technically impressive micro-scale suspension bridge. Uses Technic string and clever Technic-to-system connections for suspension cables. Display-ready centrepiece.",specs:[["620","Pieces"],["52 pgs","Instructions"],["PDF","Instant DL"]],inc:["52-page colour PDF","BrickLink parts list","Cable technique guide"]},
-  {id:8,name:"Complete Bricktastic Collection — All Instructions",type:"Ultimate Bundle",price:39,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",emoji:"👑",bg:"linear-gradient(135deg,#1A1A1A,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",buyLabel:"⬇️ Buy & Download",desc:"Every PDF instruction set bundled at 60% off, plus early access to all future releases at no extra cost. The definitive Bricktastic builder's library.",specs:[["All PDFs","Included"],["60%","Discount"],["+ Future","Releases"]],inc:["ALL current instruction PDFs","ALL BrickLink parts lists","Future releases included","Priority builder support","Exclusive technique guide"]},
+  {id:8,name:"Complete Bricktastic Collection — All Instructions",type:"Ultimate Bundle",price:39,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",emoji:"👑",bg:"linear-gradient(135deg,#1A1A1A,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",buyLabel:"⬇️ Buy & Download",desc:"Every PDF instruction set bundled at 60% off, plus early access to all future releases at no extra cost. The definitive Bricktastic builder library.",specs:[["All PDFs","Included"],["60%","Discount"],["+ Future","Releases"]],inc:["ALL current instruction PDFs","ALL BrickLink parts lists","Future releases included","Priority builder support","Exclusive technique guide"]},
   {id:9,name:"Space Station Micro Build — Instructions",type:"PDF Instructions",price:7,emoji:"🚀",bg:"linear-gradient(135deg,#0a0a2e,#006CB7)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/space-station",buyLabel:"⬇️ Buy & Download",desc:"A sleek micro-scale space station with solar panel arrays, docking ports and rotating habitat rings. Compact 16×16 stud footprint makes it perfect for shelf displays.",specs:[["220","Pieces"],["32 pgs","Instructions"],["PDF","Instant DL"]],inc:["32-page colour PDF","BrickLink parts list","Display stand included","Colour variants guide"]},
   {id:10,name:"Dragon Lair Diorama — Instructions",type:"PDF Instructions",price:11,emoji:"🐉",bg:"linear-gradient(135deg,#1a0800,#8b3a00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/dragon-lair",buyLabel:"⬇️ Buy & Download",desc:"A dramatic fantasy diorama featuring a cave entrance, treasure pile, glowing lava effects and a full-size dragon in dark red and black.",specs:[["780","Pieces"],["68 pgs","Instructions"],["PDF","Instant DL"]],inc:["68-page colour PDF","BrickLink parts list","Lava effect guide","Dragon build tips"]},
   {id:11,name:"Bricktastic Wallpaper Pack — 10 Designs",type:"Digital Wallpapers",price:3,emoji:"🖼️",bg:"linear-gradient(135deg,#E3000B,#FFD700)",tc:"var(--red)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/wallpaper-pack",buyLabel:"⬇️ Buy & Download",desc:"10 high-resolution LEGO®-themed desktop and mobile wallpapers. Instant digital download.",specs:[["10","Wallpapers"],["4K","Resolution"],["Instant","Download"]],inc:["5 desktop wallpapers (4K)","5 mobile wallpapers","JPEG + PNG formats"]},
@@ -2815,7 +2941,7 @@ function showPage(id){
     if(id==='videos') buildVideoIndex();
     if(id==='mocs') initMOCPage();
     if(id==='about') initAboutPage();
-    if(id==='game') initBrickRunner();
+    // game hub inits its own games via openGame()
     if(id==='blog') initBlogPage();
     if(id==='gallery') initGalleryPage();
     setTimeout(()=>{initStuds();initReveal();initFloats();},80);
@@ -3041,7 +3167,7 @@ let VIDEOS = [
   { id: 'Ic9bFYV5MpI', title: 'Castle Theme — Every Era Ranked & Reviewed', cat: 'lego-news' },
   { id: 'RhU9MgvIllo', title: 'LEGO® Ideas: Fan Power — Best Submissions Ever', cat: 'tutorials' },
   { id: '3yMFkgMi7kI', title: 'Legoland Parks — The Full Story', cat: 'lego-news' },
-  { id: 'Mv_vx9HpIcU', title: "LEGO®'s Sustainability Crisis — ABS Replacement", cat: 'lego-news' },
+  { id: 'Mv_vx9HpIcU', title: "LEGO Sustainability Crisis — ABS Replacement", cat: 'lego-news' },
   { id: '9lNZ_Rnr7Jc', title: 'LEGO® Mindstorms — The Complete History', cat: 'lego-news' },
   { id: '1G4isv_Fylg', title: 'LEGO® & Harry Potter — The Licensing Story', cat: 'lego-news' },
   { id: 'Hn-ensF7Oki', title: 'How the LEGO® Movie Was Really Made', cat: 'tutorials' },
@@ -3083,7 +3209,7 @@ let VIDEOS = [
   { id: 'NUsoVlDFqZg', title: 'LEGO® Speed Champions 2024 Lineup — All Reviewed', cat: 'lego-news' },
   { id: 'Ix2KswFblia', title: 'LEGO® DREAMZzz Set Review — Worth the Hype?', cat: 'lego-news' },
   { id: 'HEXWRTEbj1I', title: 'The LEGO® Colour System — Full Explainer', cat: 'tutorials' },
-  { id: 'EYqVtI19uZs', title: "LEGO®'s 100 Best Sets — Ranked by Year", cat: 'lego-news' },
+  { id: 'EYqVtI19uZs', title: "LEGO 100 Best Sets — Ranked by Year", cat: 'lego-news' },
   { id: 'jJrzIdDUfT4', title: 'Pirate Theme History — A Complete Timeline', cat: 'lego-news' },
   { id: 'v_RHlZ5e33g', title: 'LEGO® Collectible Minifigures — All 25 Series Ranked', cat: 'lego-news' },
   { id: 'XCcmkp1CRMs', title: 'How LEGO® Sets Are Designed — Inside the Process', cat: 'tutorials' },
@@ -3162,7 +3288,7 @@ let VIDEOS = [
   { id: 'K2mmkSqFJ8M', title: 'LEGO® Ideas Grand Piano Review — Worth $350?', cat: 'lego-news' },
   { id: 'UPW4kHiEyBo', title: 'LEGO® Technic vs Creator — Which Line Is Better?', cat: 'tutorials' },
   { id: 'pqRLvkCxDFo', title: 'Exploring LEGO® DUPLO History — More Than Baby Bricks', cat: 'lego-news' },
-  { id: 'w9Kt__tHSgA', title: "LEGO®'s Most Expensive Sets Ever — Worth It?", cat: 'lego-news' },
+  { id: 'w9Kt__tHSgA', title: "LEGO Most Expensive Sets Ever — Worth It?", cat: 'lego-news' },
   { id: 'aMf-fD65MZI', title: 'The Legends of Chima — What Went Wrong?', cat: 'tutorials' },
   { id: 'EuZnVhT3a4M', title: 'LEGO® Competitive Building — Contest Culture Explained', cat: 'lego-news' },
   { id: 'x0t9ZAjqruc', title: 'The Secret Life of LEGO® Set Numbers', cat: 'tutorials' },
@@ -3198,7 +3324,7 @@ let VIDEOS = [
   { id: 'zy7fNWZHFpg', title: 'LEGO® Pricing Over the Decades — Value Analysis', cat: 'tutorials' },
   { id: 'LsBqqs9zeqQ', title: "The World's Largest LEGO® Collections — Documented", cat: 'lego-news' },
   { id: '8ZoqEKGnDnw', title: 'LEGO® & Pop Culture — 50 Years of Collaboration', cat: 'tutorials' },
-  { id: 'mHONNcZbsng', title: "LEGO®'s Environmental Roadmap — 2025 Goals Update", cat: 'lego-news' },
+  { id: 'mHONNcZbsng', title: "LEGO Environmental Roadmap — 2025 Goals Update", cat: 'lego-news' },
   { id: 'g9mRJ4K1NWU', title: 'Colour Coding Your Part Storage System', cat: 'tutorials' },
   { id: 'yBgIqBDcRoU', title: 'SNOT at Scale — Applying the Technique to Big MOCs', cat: 'tutorials' },
   { id: 'CxJx8go4_eY', title: 'Designing for Disassembly — Build Smart', cat: 'tutorials' },
@@ -3224,7 +3350,7 @@ let VIDEOS = [
   { id: 'VCTen3-zKlI', title: 'LEGO® Harry Potter Room of Requirement Review', cat: 'lego-news' },
   { id: 'pSt5MUHpAqM', title: 'LEGO® Technic Rough Terrain Crane Review', cat: 'lego-news' },
   { id: 'y4kHlMOjsBE', title: 'LEGO® Icons Cathedral of Learning Review', cat: 'lego-news' },
-  { id: 'E8gmARGgX3c', title: "LEGO®'s Weirdest Licensed Themes — Ranked", cat: 'lego-news' },
+  { id: 'E8gmARGgX3c', title: "LEGO Weirdest Licensed Themes — Ranked", cat: 'lego-news' },
   { id: 'cI0ZzFWDf3I', title: 'LEGO® Board Games — The Forgotten Era', cat: 'tutorials' },
   { id: 'jwJBmTf6M-w', title: 'Fabuland — LEGO®\'s Most Underrated Theme Ever', cat: 'lego-news' },
   { id: 'vy4cMDGh_a8', title: 'LEGO® Music — Every Album & Soundtrack Ranked', cat: 'lego-news' },
@@ -3237,7 +3363,7 @@ let VIDEOS = [
   { id: '8OQ4TDdmEA0', title: 'Clean vs Greebled — When Detail Hurts', cat: 'tutorials' },
   { id: '2HYDeQFYHLo', title: 'Brick by Brick Podcast — Live Build Special', cat: 'tutorials' },
   { id: 'YE7VzlLtp-4', title: 'Christmas Tree Build Challenge — Live on Stream', cat: 'tutorials' },
-  { id: 'gnS_A7KIOYQ', title: "LEGO®'s Most Iconic Build — Can I Beat It?", cat: 'lego-news' },
+  { id: 'gnS_A7KIOYQ', title: "LEGO Most Iconic Build — Can I Beat It?", cat: 'lego-news' },
   { id: 'JKHUHGhKjhU', title: 'Complete City Expansion — Year Review Build', cat: 'lego-news' },
   { id: 'bVWzoJ6ZJHY', title: 'The Final Modular — Grand Arcade MOC Complete', cat: 'tutorials' },
   // 👆 REPLACE these video IDs and titles with your actual YouTube video IDs
@@ -3431,7 +3557,7 @@ async function fetchYouTubeVideosRSS() {
 function detectCategory(title, desc) {
   const t = title.toLowerCase();
 
-  // Quiz — must come before jokes so quiz titles don't get caught there
+  // Quiz — must come before jokes so quiz titles do not get caught there
   if (/quiz|trivia|guess the|can you name|how many|test your|challenge your|lego.*riddle|riddle/.test(t)) return 'quiz';
 
   // Jokes / fun — broad catch for all LEGO® joke/funny content
@@ -3446,7 +3572,7 @@ function detectCategory(title, desc) {
   // LEGO® News / reviews / history
   if (/lego news|review|history|ranked|ranking|explained|deep dive|origins|story|timeline/.test(t)) return 'lego-news';
 
-  // Timelapse — must come before tutorials so it doesn't get swallowed
+  // Timelapse — must come before tutorials so it does not get swallowed
   if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
 
   // Tutorials — word "Tutorial" anywhere in title, or "How to Build", or "MOC"
@@ -8598,14 +8724,14 @@ const SETS=[
     pills:['11,695 pieces','Wall Art','18+','Set #31203'],
     desc:'The largest LEGO® set ever made — a modular wall-art world map built on a grid of baseplates. Designed for display, not play.',
     body:`<h3>What It Is</h3>
-<p>Released in 2021, the LEGO® Art World Map holds the record for the most pieces in a single LEGO® set: <strong>11,695 elements</strong>. It's not a model in the traditional sense — it's a mosaic, built from 1×1 round tiles across a grid of baseplates designed to hang on your wall at approximately 104 × 65 cm.</p>
+<p>Released in 2021, the LEGO® Art World Map holds the record for the most pieces in a single LEGO® set: <strong>11,695 elements</strong>. It's not a model in the traditional sense — it is a mosaic, built from 1×1 round tiles across a grid of baseplates designed to hang on your wall at approximately 104 × 65 cm.</p>
 <p>The set comes in three separate boxes, each covering a section of the globe. You can display them individually or combine all three into the full map. Each section is built around a large rectangular baseplate with LEGO® Studs that accept the 1×1 tile mosaic.</p>
-<div class="modal-fact"><strong>The Scale Problem</strong>At 104cm wide, the World Map requires a substantial wall — most builders underestimate how large it actually is until it's assembled. Measure twice before you buy.</div>
+<div class="modal-fact"><strong>The Scale Problem</strong>At 104cm wide, the World Map requires a substantial wall — most builders underestimate how large it actually is until it is assembled. Measure twice before you buy.</div>
 <h3>The Build Experience</h3>
 <p>This is a meditative, repetitive build. You are placing 1×1 tiles for hours. Some builders love this; others find it tedious by bag 30. The official instructions use a grid coordinate system to guide colour placement, which is well-designed but demands careful attention to avoid getting lost.</p>
 <p>The set includes a soundtrack — Spotify codes for curated playlists to listen to while you build. A genuinely nice touch that suits the session-style build perfectly.</p>
 <h3>Verdict</h3>
-<p>The piece count record is impressive, but this isn't the most impressive build on this list. If you want the biggest number and a striking wall piece, it delivers. If you want a complex 3D construction, look further down the rankings.</p>`
+<p>The piece count record is impressive, but this is not the most impressive build on this list. If you want the biggest number and a striking wall piece, it delivers. If you want a complex 3D construction, look further down the rankings.</p>`
   },
   {
     rank:2,
@@ -8624,9 +8750,9 @@ const SETS=[
 <p>The model captures the lattice structure of the real Eiffel Tower with remarkable accuracy. The base sections feature the characteristic arched legs, and the build includes three observation platforms and a detailed antenna at the top.</p>
 <div class="modal-fact"><strong>Weight Warning</strong>The assembled Eiffel Tower is heavy. The base needs to be set on a firm surface, and transporting the completed model without disassembly is genuinely difficult. Build it where you intend to display it.</div>
 <h3>The Build Experience</h3>
-<p>This is a genuine engineering challenge. The early stages establish the lattice geometry, and understanding how the angles work is initially confusing. Once it clicks, the build becomes deeply satisfying — you're essentially constructing a structural framework, not just stacking bricks. The repetition of lattice sections is intense but the growing height is visually rewarding.</p>
+<p>This is a genuine engineering challenge. The early stages establish the lattice geometry, and understanding how the angles work is initially confusing. Once it clicks, the build becomes deeply satisfying — you are essentially constructing a structural framework, not just stacking bricks. The repetition of lattice sections is intense but the growing height is visually rewarding.</p>
 <h3>Verdict</h3>
-<p>One of the most impressive displays on this list. At £479.99 / $629.99 it's a significant investment, but the visual impact of a 149cm Eiffel Tower is hard to argue with. A genuine showpiece.</p>`
+<p>One of the most impressive displays on this list. At £479.99 / $629.99 it is a significant investment, but the visual impact of a 149cm Eiffel Tower is hard to argue with. A genuine showpiece.</p>`
   },
   {
     rank:3,
@@ -8647,7 +8773,7 @@ const SETS=[
 <h3>The Build Experience</h3>
 <p>The hull construction is methodical and genuinely interesting — the way the curved hull sections are built using stacked and offset plates is clever engineering. The interior fit-out is detailed and varied. One of the most genuinely engaging large builds in this list from start to finish.</p>
 <h3>Verdict</h3>
-<p>If the Titanic means something to you, this is an extraordinary set. Even if it doesn't, the engineering of the hull and the quality of the interior details make this a top-three purchase on any objective assessment.</p>`
+<p>If the Titanic means something to you, this is an extraordinary set. Even if it does not, the engineering of the hull and the quality of the interior details make this a top-three purchase on any objective assessment.</p>`
   },
   {
     rank:4,
@@ -8663,12 +8789,12 @@ const SETS=[
     desc:'A scale replica of Rome\'s greatest arena. Discontinued and increasingly sought-after on the secondary market.',
     body:`<h3>What It Is</h3>
 <p>The LEGO® Icons Colosseum was released in November 2020 and held the piece-count record briefly before being overtaken. At <strong>9,036 pieces</strong> it builds a 27 × 52 × 59 cm model of the Roman amphitheatre, capturing the three tiers of arches that make the Colosseum one of the most recognisable structures in history.</p>
-<p>The set has since been <strong>discontinued</strong> — it's no longer available at retail. Secondary market prices have risen accordingly, with sealed examples trading significantly above original RRP.</p>
-<div class="modal-fact"><strong>Buy It Sealed</strong>The Colosseum is already appreciating in sealed condition. If you find one at or near retail pricing, it's a sound purchase whether you intend to build it or hold it.</div>
+<p>The set has since been <strong>discontinued</strong> — it is no longer available at retail. Secondary market prices have risen accordingly, with sealed examples trading significantly above original RRP.</p>
+<div class="modal-fact"><strong>Buy It Sealed</strong>The Colosseum is already appreciating in sealed condition. If you find one at or near retail pricing, it is a sound purchase whether you intend to build it or hold it.</div>
 <h3>The Build Experience</h3>
-<p>The repetitive arch construction is either satisfying or infuriating depending on your temperament. Each of the three tiers follows a similar pattern with slight variations. The finished model is incredibly dense and solid — it feels permanent in a way that lighter models don't.</p>
+<p>The repetitive arch construction is either satisfying or infuriating depending on your temperament. Each of the three tiers follows a similar pattern with slight variations. The finished model is incredibly dense and solid — it feels permanent in a way that lighter models do not.</p>
 <h3>Verdict</h3>
-<p>An exceptional set that is now genuinely hard to find at a fair price. If you're buying new, expect secondary market premium. If you own one sealed, hold it — this one only goes in one direction.</p>`
+<p>An exceptional set that is now genuinely hard to find at a fair price. If you are buying new, expect secondary market premium. If you own one sealed, hold it — this one only goes in one direction.</p>`
   },
   {
     rank:5,
@@ -8683,13 +8809,13 @@ const SETS=[
     pills:['9,023 pieces','36 minifigs','Discontinued','Set #75159'],
     desc:'The most minifigure-packed set ever made — 36 characters across a cross-section of the Empire\'s ultimate weapon.',
     body:`<h3>What It Is</h3>
-<p>The 2016 LEGO® Star Wars Death Star is not primarily a display model — it's a <strong>story machine</strong>. The cross-section design reveals room after room of iconic Star Wars scenes: the Emperor's throne room, the trash compactor, the hangar bay, the tractor beam, Darth Vader's chamber. And it comes with <strong>36 minifigures</strong> — the most in any single set.</p>
+<p>The 2016 LEGO® Star Wars Death Star is not primarily a display model — it is a <strong>story machine</strong>. The cross-section design reveals room after room of iconic Star Wars scenes: the Emperor's throne room, the trash compactor, the hangar bay, the tractor beam, Darth Vader's chamber. And it comes with <strong>36 minifigures</strong> — the most in any single set.</p>
 <p>Originally priced at $499.99, it has since been retired and its secondary market value reflects that. Complete sealed examples trade well above $1,000.</p>
 <div class="modal-fact"><strong>36 Minifigures</strong>The minifig collection alone — including rare characters like Grand Moff Tarkin, Luke in ceremonial outfit, and R2-D2 with pop-up lightsaber — makes this set extraordinarily difficult to replicate through individual purchases.</div>
 <h3>The Build Experience</h3>
-<p>The interior room construction is varied and constantly changing — no two bags feel the same. This is one of the most entertaining large-scale builds on this list purely from a variety standpoint. The play value is high; the display value is moderate (it's a sphere cut in half).</p>
+<p>The interior room construction is varied and constantly changing — no two bags feel the same. This is one of the most entertaining large-scale builds on this list purely from a variety standpoint. The play value is high; the display value is moderate (it is a sphere cut in half).</p>
 <h3>Verdict</h3>
-<p>An all-time great set. The minifigure collection is irreplaceable. If you can find it at a fair secondary price, buy it. If you own it sealed, it's already paying dividends.</p>`
+<p>An all-time great set. The minifigure collection is irreplaceable. If you can find it at a fair secondary price, buy it. If you own it sealed, it is already paying dividends.</p>`
   },
   {
     rank:6,
@@ -8731,7 +8857,7 @@ const SETS=[
 <h3>The Build Experience</h3>
 <p>The leg construction is the highlight — complex, rewarding, and unlike any other build in this list. The body sections are more standard, and the interior details, while present, are less elaborate than the Death Star. Overall a very satisfying build with a striking finished result.</p>
 <h3>Verdict</h3>
-<p>Discontinued and rising. If you find a sealed example at near-retail pricing, it's both a great build and a sound investment. The display presence of a 62cm walking AT-AT is exceptional.</p>`
+<p>Discontinued and rising. If you find a sealed example at near-retail pricing, it is both a great build and a sound investment. The display presence of a 62cm walking AT-AT is exceptional.</p>`
   },
   {
     rank:8,
@@ -8788,13 +8914,13 @@ const SETS=[
     pills:['6,163 pieces','21 minifigs','16+','Set #71799'],
     desc:'Three levels of market stalls, restaurants, and alleyways — the largest and most detailed entry in the NINJAGO City series.',
     body:`<h3>What It Is</h3>
-<p>NINJAGO City Markets is the third entry in LEGO®'s modular NINJAGO City series, and at <strong>6,163 pieces</strong> the largest. It builds a three-level market complex — street level with food stalls and shops, a mid-level with a noodle restaurant and dojo, and an upper level with apartments and a rooftop garden.</p>
+<p>NINJAGO City Markets is the third entry in LEGO modular NINJAGO City series, and at <strong>6,163 pieces</strong> the largest. It builds a three-level market complex — street level with food stalls and shops, a mid-level with a noodle restaurant and dojo, and an upper level with apartments and a rooftop garden.</p>
 <p>The set is designed to connect with the original NINJAGO City (70620) and NINJAGO City Docks (70657), creating an ever-expanding urban layout.</p>
 <div class="modal-fact"><strong>21 Minifigures</strong>The 21-minifigure count makes this the character-richest set in the top 11 after the Death Star. The NPCs — market vendors, customers, city workers — give the model an extraordinary sense of life and activity.</div>
 <h3>The Build Experience</h3>
 <p>A joy from start to finish. The varied room and stall construction means no two sections feel the same, and the sheer density of detail rewards exploration at every level. The best-value large build on this list at $349.99.</p>
 <h3>Verdict</h3>
-<p>The most playful and detail-rich set in the top 11. Exceptional value at its price point. If you don't own the other NINJAGO City sets, this one might make you buy them too.</p>`
+<p>The most playful and detail-rich set in the top 11. Exceptional value at its price point. If you do not own the other NINJAGO City sets, this one might make you buy them too.</p>`
   },
   {
     rank:11,
@@ -8810,7 +8936,7 @@ const SETS=[
     desc:'The most iconic building in fiction, rendered in LEGO® at micro-scale with 27 micro-figures and extraordinary architectural detail.',
     body:`<h3>What It Is</h3>
 <p>The 2018 Hogwarts Castle holds the #11 spot with <strong>6,020 pieces</strong> forming a 58 × 43 × 27 cm micro-scale recreation of the most famous school in fiction. The scale choice is deliberate — by going micro, LEGO® could include the full castle footprint rather than one wing in detail.</p>
-<p>The set includes 27 micro-figures — tiny versions of the main characters and professors — rather than standard minifigures. This divides opinion, but it's the right call for a model at this scale.</p>
+<p>The set includes 27 micro-figures — tiny versions of the main characters and professors — rather than standard minifigures. This divides opinion, but it is the right call for a model at this scale.</p>
 <div class="modal-fact"><strong>Micro vs Mini</strong>The decision to use micro-figures rather than minifigures was controversial but correct. A full minifigure-scale Hogwarts would need to be the size of a house. The micro approach lets the building be the hero — which, for Hogwarts, is exactly right.</div>
 <h3>The Build Experience</h3>
 <p>The architectural detail is extraordinary for a micro-scale model — towers, courtyards, the Great Hall, the Quidditch pitch, the covered bridge, the boathouse. Each section is built separately and locks together. The stonework textures using jumper plates and cheese slopes are genuinely impressive.</p>
@@ -9115,327 +9241,1849 @@ setTimeout(()=>{
 
 <!-- ═══════════════════════════════════════════════════════ PAGE: GAME -->
 <div id="page-game" class="page">
-  <style>
-    #page-game.active{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
-    #page-game{background:#111;min-height:100vh;padding:90px 16px 60px;font-family:'Boogaloo',cursive}
-    #game-wrap{width:100%;max-width:1000px}
-    #game-wrap .g-header{text-align:center;margin-bottom:24px}
-    #game-wrap .g-header h1{font-size:clamp(32px,6vw,58px);color:var(--yellow);text-shadow:0 5px 0 #7a5800;line-height:1;margin-bottom:6px}
-    #game-wrap .g-header p{font-size:15px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:1px;text-transform:uppercase}
-    #g-hud{display:flex;justify-content:space-between;align-items:center;padding:0 4px 10px;color:var(--yellow)}
-    #g-hud .g-score{font-size:30px;letter-spacing:3px}
-    #g-hud .g-level{font-size:17px;color:#ff6b35}
-    #g-hud .g-best{font-size:17px;color:rgba(255,215,0,.4)}
-    #g-canvas-wrap{position:relative;width:100%;border:3px solid #333;border-radius:12px;overflow:hidden;background:#1a1a2e;line-height:0}
-    #g-canvas-wrap canvas{width:100%;height:auto;display:block;touch-action:none}
-    #g-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,20,.9);border-radius:9px;z-index:10;transition:opacity .2s;padding:20px;gap:0}
-    #g-overlay.hidden{opacity:0;pointer-events:none}
-    .g-ov-title{font-size:clamp(30px,6vw,60px);color:var(--yellow);text-shadow:0 5px 0 #7a5800;line-height:1;margin-bottom:8px;text-align:center}
-    .g-ov-sub{font-size:clamp(11px,2vw,14px);color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;text-align:center;font-family:'Nunito',sans-serif;font-weight:700}
-    #g-score-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,215,0,.2);border-radius:12px;padding:12px 36px;text-align:center;margin-bottom:24px;display:none}
-    #g-score-box .g-sl{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:2px;font-family:'Nunito',sans-serif;font-weight:900}
-    #g-score-box .g-sn{font-size:clamp(30px,5vw,50px);color:#fff;line-height:1}
-    #g-score-box .g-best-msg{font-size:13px;color:var(--yellow);margin-top:4px;font-family:'Nunito',sans-serif;font-weight:700}
-    #g-play-btn{font-family:'Boogaloo',cursive;font-size:clamp(20px,3.5vw,26px);color:#fff;background:var(--red);border:none;border-radius:14px;padding:15px 52px;box-shadow:0 8px 0 #7a0005;cursor:pointer;letter-spacing:2px;position:relative;top:0;transition:top .08s,box-shadow .08s;min-width:180px}
-    #g-play-btn:hover{top:3px;box-shadow:0 5px 0 #7a0005}
-    #g-play-btn:active{top:7px;box-shadow:0 1px 0 #7a0005}
-    .g-ov-hint{margin-top:14px;font-size:clamp(10px,1.5vw,13px);color:rgba(255,255,255,.2);letter-spacing:1px;text-align:center;font-family:'Nunito',sans-serif;font-weight:700}
-    #g-speed-row{display:flex;align-items:center;gap:10px;padding:10px 4px 0}
-    .g-sp-lbl{font-size:10px;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;font-family:'Nunito',sans-serif;font-weight:900}
-    .g-sp-track{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
-    #g-sp-fill{height:100%;width:5%;background:linear-gradient(to right,var(--green),var(--yellow),var(--red));border-radius:3px;transition:width .5s}
-    #game-wrap .back-row{text-align:center;margin-top:28px}
-    #game-wrap .back-row a{font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;color:rgba(255,255,255,.35);cursor:pointer;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color .15s}
-    #game-wrap .back-row a:hover{color:var(--yellow)}
-  </style>
+<style>
+  /* ══ GAME HUB PAGE ══ */
+  #page-game { background:#111; min-height:100vh; font-family:'Nunito',sans-serif; }
+  #page-game.active { display:block; }
 
-  <div id="game-wrap">
-    <div class="g-header">
-      <h1>🎮 BRICK RUNNER</h1>
-      <p>Jump over the obstacles — how far can you go?</p>
-    </div>
+  /* HERO */
+  .gh-hero {
+    background: var(--black);
+    margin-top: 66px;
+    padding: 52px 0 44px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--yellow);
+  }
+  .gh-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: .05;
+    background: repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),
+                repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px);
+  }
+  .gh-hero-inner { position:relative; z-index:2; color:#fff; }
+  .gh-hero-inner h1 { font-family:'Boogaloo',cursive; font-size:clamp(38px,5vw,64px); line-height:1.05; margin-bottom:10px; }
+  .gh-hero-inner p { font-size:16px; font-weight:600; color:#aaa; max-width:540px; }
+  .gh-hero-studs { display:flex; gap:10px; margin-top:20px; }
+  .gh-stud { width:32px; height:32px; border-radius:50%; position:relative; box-shadow:0 4px 0 rgba(0,0,0,.4); }
+  .gh-stud::after { content:''; position:absolute; top:5px; left:5px; right:5px; bottom:5px; border-radius:50%; background:rgba(255,255,255,.25); }
+  .gh-stud-r{background:var(--red)} .gh-stud-y{background:var(--yellow)} .gh-stud-b{background:var(--blue)} .gh-stud-g{background:var(--green)} .gh-stud-o{background:var(--orange)}
 
-    <div id="g-hud">
-      <div class="g-score" id="g-score-el">0</div>
-      <div class="g-level" id="g-level-el">LVL 1</div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <button id="g-mute-btn" title="Mute" style="font-size:20px;background:none;border:none;cursor:pointer;padding:4px;line-height:1;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.6'">🔊</button>
-        <div class="g-best" id="g-best-el">BEST: 0</div>
-      </div>
-    </div>
+  /* GAME CARDS GRID */
+  .gh-section { padding: 56px 0; }
+  .gh-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px; margin-top:32px; }
+  .gh-card {
+    background: #1a1a1a;
+    border: 3px solid #333;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+    position: relative;
+    top: 0;
+    animation: ghCardIn .4s ease both;
+  }
+  @keyframes ghCardIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  #card-runner  { animation-delay: 0s; }
+  #card-quiz    { animation-delay: .1s; }
+  #card-colour  { animation-delay: .2s; }
+  #card-flappy  { animation-delay: .3s; }
+  #card-tetris  { animation-delay: .4s; }
+  #card-tilehop { animation-delay: .5s; }
+  .gh-card:hover { transform:translateY(-6px); border-color: var(--yellow); box-shadow:0 12px 0 rgba(0,0,0,.4); }
+  .gh-card-header { padding:28px 24px 20px; display:flex; align-items:center; gap:14px; }
+  .gh-card-icon { font-size:42px; line-height:1; flex-shrink:0; }
+  .gh-card-title { font-family:'Boogaloo',cursive; font-size:26px; color:#fff; line-height:1.1; margin-bottom:4px; }
+  .gh-card-sub { font-size:12px; font-weight:800; color:#666; text-transform:uppercase; letter-spacing:1px; }
+  .gh-card-desc { padding:0 24px 20px; font-size:14px; color:#888; font-weight:600; line-height:1.6; }
+  .gh-card-footer { padding:14px 24px; background:rgba(255,255,255,.04); border-top:2px solid #222; display:flex; align-items:center; justify-content:space-between; }
+  .gh-badge { font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; padding:4px 10px; border-radius:20px; }
+  .gh-badge-free { background:rgba(0,166,80,.15); color:var(--green); }
+  .gh-badge-new { background:rgba(227,0,11,.15); color:var(--red); }
+  .gh-play-btn { font-family:'Nunito',sans-serif; font-weight:900; font-size:13px; padding:8px 20px; border-radius:8px; border:none; cursor:pointer; transition:all .15s; background:var(--yellow); color:var(--black); box-shadow:0 4px 0 #a07800; position:relative; top:0; }
+  .gh-play-btn:hover { top:2px; box-shadow:0 2px 0 #a07800; }
+  .gh-card.active-game { border-color:var(--yellow); box-shadow:0 0 0 3px rgba(255,215,0,.2); }
 
-    <div id="g-canvas-wrap">
-      <canvas id="g-c" width="1000" height="320"></canvas>
-      <div id="g-overlay">
-        <div class="g-ov-title" id="g-ov-title">BRICK RUNNER</div>
-        <div class="g-ov-sub"   id="g-ov-sub">Jump over LEGO® obstacles!</div>
-        <div id="g-score-box">
-          <div class="g-sl">Score</div>
-          <div class="g-sn" id="g-ov-num">0</div>
-          <div class="g-best-msg" id="g-ov-best"></div>
-        </div>
-        <button id="g-play-btn" onclick="startBrickRunner()">&#9654; PLAY!</button>
-        <div class="g-ov-hint">SPACE &nbsp;·&nbsp; UP ARROW &nbsp;·&nbsp; CLICK &nbsp;·&nbsp; TAP &nbsp;|&nbsp; Double jump!</div>
-      </div>
-    </div>
+  /* GAME AREAS */
+  .gh-game-area { display:none; padding:0 0 56px; }
+  .gh-game-area.open { display:block; }
+  .gh-game-area-inner { background:#1a1a1a; border:3px solid #333; border-radius:16px; overflow:hidden; }
+  .gh-game-title-bar { background:var(--black); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid #333; }
+  .gh-game-title-bar h3 { font-family:'Boogaloo',cursive; font-size:24px; color:var(--yellow); }
+  .gh-close-btn { background:rgba(255,255,255,.08); border:2px solid #444; color:#aaa; border-radius:8px; padding:6px 14px; font-family:'Nunito',sans-serif; font-weight:900; font-size:13px; cursor:pointer; transition:all .15s; }
+  .gh-close-btn:hover { background:var(--red); color:#fff; border-color:var(--red); }
 
-    <div id="g-speed-row">
-      <div class="g-sp-lbl">Speed</div>
-      <div class="g-sp-track"><div id="g-sp-fill"></div></div>
-      <div class="g-sp-lbl" id="g-sp-lbl-r">LVL 1</div>
-    </div>
+  /* BRICK RUNNER (existing) */
+  #game-wrap { width:100%; max-width:100%; padding:0; }
+  #game-wrap .g-header { text-align:center; padding:24px 24px 16px; }
+  #game-wrap .g-header h1 { font-size:clamp(28px,5vw,48px); color:var(--yellow); text-shadow:0 4px 0 #7a5800; line-height:1; margin-bottom:4px; font-family:'Boogaloo',cursive; }
+  #game-wrap .g-header p { font-size:14px; color:rgba(255,255,255,.4); font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+  #g-hud { display:flex; justify-content:space-between; align-items:center; padding:0 24px 10px; color:var(--yellow); }
+  #g-hud .g-score { font-size:28px; letter-spacing:3px; font-family:'Boogaloo',cursive; }
+  #g-hud .g-level { font-size:16px; color:#ff6b35; font-family:'Boogaloo',cursive; }
+  #g-hud .g-best { font-size:15px; color:rgba(255,215,0,.4); font-family:'Boogaloo',cursive; }
+  #g-canvas-wrap { position:relative; width:100%; border-top:3px solid #222; line-height:0; }
+  #g-canvas-wrap canvas { width:100%; height:auto; display:block; touch-action:none; }
+  #g-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(10,10,20,.9); z-index:10; transition:opacity .2s; padding:20px; gap:0; }
+  #g-overlay.hidden { opacity:0; pointer-events:none; }
+  .g-ov-title { font-size:clamp(28px,6vw,56px); color:var(--yellow); text-shadow:0 4px 0 #7a5800; line-height:1; margin-bottom:8px; text-align:center; font-family:'Boogaloo',cursive; }
+  .g-ov-sub { font-size:clamp(11px,2vw,14px); color:rgba(255,255,255,.4); letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; text-align:center; font-weight:700; }
+  #g-score-box { background:rgba(255,255,255,.07); border:1px solid rgba(255,215,0,.2); border-radius:12px; padding:12px 36px; text-align:center; margin-bottom:24px; display:none; }
+  #g-score-box .g-sl { font-size:11px; letter-spacing:3px; color:rgba(255,255,255,.35); text-transform:uppercase; margin-bottom:2px; font-weight:900; }
+  #g-score-box .g-sn { font-size:clamp(28px,5vw,48px); color:#fff; line-height:1; font-family:'Boogaloo',cursive; }
+  #g-score-box .g-best-msg { font-size:13px; color:var(--yellow); margin-top:4px; font-weight:700; }
+  #g-play-btn { font-family:'Boogaloo',cursive; font-size:clamp(18px,3.5vw,26px); color:#fff; background:var(--red); border:none; border-radius:14px; padding:14px 48px; box-shadow:0 8px 0 #7a0005; cursor:pointer; letter-spacing:2px; position:relative; top:0; transition:top .08s,box-shadow .08s; min-width:180px; }
+  #g-play-btn:hover { top:3px; box-shadow:0 5px 0 #7a0005; }
+  .g-ov-hint { margin-top:14px; font-size:clamp(10px,1.5vw,13px); color:rgba(255,255,255,.2); letter-spacing:1px; text-align:center; font-weight:700; }
+  #g-speed-row { display:flex; align-items:center; gap:10px; padding:10px 24px 20px; }
+  .g-sp-lbl { font-size:10px; color:rgba(255,255,255,.25); letter-spacing:2px; text-transform:uppercase; font-weight:900; }
+  .g-sp-track { flex:1; height:5px; background:rgba(255,255,255,.07); border-radius:3px; overflow:hidden; }
+  #g-sp-fill { height:100%; width:5%; background:linear-gradient(to right,var(--green),var(--yellow),var(--red)); border-radius:3px; transition:width .5s; }
 
-    <div class="back-row">
-      <a onclick="showPage('home')">&#8592; Back to site</a>
+  /* ── LEGO QUIZ GAME ── */
+  .quiz-game { padding:24px; }
+  .qg-progress { display:flex; gap:6px; margin-bottom:24px; }
+  .qg-pip { flex:1; height:6px; border-radius:3px; background:#333; transition:background .3s; }
+  .qg-pip.done { background:var(--green); }
+  .qg-pip.active { background:var(--yellow); }
+  .qg-question { font-family:'Boogaloo',cursive; font-size:clamp(20px,3vw,30px); color:#fff; line-height:1.2; margin-bottom:8px; min-height:72px; }
+  .qg-category { font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:2px; color:#666; margin-bottom:20px; }
+  .qg-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+  .qg-opt { background:#222; border:2px solid #333; border-radius:10px; padding:14px 16px; font-family:'Nunito',sans-serif; font-weight:800; font-size:14px; color:#ccc; cursor:pointer; text-align:left; transition:all .15s; line-height:1.3; }
+  .qg-opt:hover:not([disabled]) { border-color:var(--yellow); color:#fff; background:#2a2a2a; }
+  .qg-opt.correct { background:rgba(0,166,80,.15); border-color:var(--green); color:var(--green); }
+  .qg-opt.wrong { background:rgba(227,0,11,.12); border-color:var(--red); color:var(--red); }
+  .qg-feedback { min-height:48px; font-size:13px; font-weight:700; color:#888; line-height:1.6; margin-bottom:16px; padding:12px 16px; background:rgba(255,255,255,.04); border-radius:8px; display:none; }
+  .qg-feedback.show { display:block; }
+  .qg-feedback.correct { color:var(--green); background:rgba(0,166,80,.08); }
+  .qg-feedback.wrong { color:#ff8888; background:rgba(227,0,11,.08); }
+  .qg-footer { display:flex; align-items:center; justify-content:space-between; }
+  .qg-score-lbl { font-size:13px; font-weight:900; color:#555; }
+  .qg-next { font-family:'Nunito',sans-serif; font-weight:900; font-size:14px; padding:10px 24px; border-radius:8px; border:none; background:var(--yellow); color:var(--black); cursor:pointer; box-shadow:0 4px 0 #a07800; position:relative; top:0; transition:all .15s; opacity:0; pointer-events:none; }
+  .qg-next.show { opacity:1; pointer-events:all; }
+  .qg-next:hover { top:2px; box-shadow:0 2px 0 #a07800; }
+  .qg-result { text-align:center; padding:40px 24px; }
+  .qg-result-score { font-family:'Boogaloo',cursive; font-size:80px; color:var(--yellow); line-height:1; }
+  .qg-result-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#555; font-weight:900; margin-bottom:16px; }
+  .qg-result-msg { font-size:15px; color:#888; font-weight:700; max-width:380px; margin:0 auto 28px; line-height:1.6; }
+  .qg-restart { font-family:'Nunito',sans-serif; font-weight:900; font-size:14px; padding:12px 28px; border-radius:10px; border:none; background:var(--red); color:#fff; cursor:pointer; box-shadow:0 5px 0 #8b0000; position:relative; top:0; transition:all .15s; }
+  .qg-restart:hover { top:3px; box-shadow:0 2px 0 #8b0000; }
+
+  /* ── BRICK COLOUR MATCH ── */
+  /* ── COLOUR MATCH — UPGRADED ── */
+  .bc-game { padding:0; }
+
+  /* MODE SELECT */
+  .bc-mode-screen { padding:28px; text-align:center; }
+  .bc-mode-title { font-family:'Boogaloo',cursive; font-size:32px; color:#fff; margin-bottom:6px; }
+  .bc-mode-sub { font-size:13px; font-weight:700; color:#555; letter-spacing:2px; text-transform:uppercase; margin-bottom:28px; }
+  .bc-modes { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .bc-mode-card { background:#222; border:3px solid #333; border-radius:14px; padding:22px 16px; cursor:pointer; transition:all .2s; text-align:center; position:relative; top:0; }
+  .bc-mode-card:hover { border-color:var(--yellow); background:#2a2a2a; top:-4px; box-shadow:0 8px 0 rgba(0,0,0,.4); }
+  .bc-mode-icon { font-size:36px; display:block; margin-bottom:10px; }
+  .bc-mode-name { font-family:'Boogaloo',cursive; font-size:22px; color:#fff; margin-bottom:6px; }
+  .bc-mode-desc { font-size:12px; font-weight:700; color:#666; line-height:1.5; }
+  .bc-mode-badge { position:absolute; top:-10px; right:12px; background:var(--red); color:#fff; font-size:10px; font-weight:900; letter-spacing:1px; padding:3px 10px; border-radius:10px; text-transform:uppercase; }
+
+  /* HUD BAR */
+  .bc-hud { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; padding:16px 20px 12px; background:#151515; border-bottom:2px solid #222; }
+  .bc-hud-score { font-family:'Boogaloo',cursive; font-size:32px; color:var(--yellow); line-height:1; }
+  .bc-hud-score span { display:block; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; color:#444; }
+  .bc-hud-timer-wrap { text-align:center; }
+  .bc-hud-timer-num { font-family:'Boogaloo',cursive; font-size:44px; color:#fff; line-height:1; transition:color .3s; }
+  .bc-hud-timer-num.warn { color:var(--red); animation:bcPulse .4s ease infinite alternate; }
+  @keyframes bcPulse { from{transform:scale(1)} to{transform:scale(1.15)} }
+  .bc-hud-timer-track { height:6px; background:#333; border-radius:3px; overflow:hidden; margin-top:4px; width:80px; }
+  .bc-hud-timer-fill { height:100%; border-radius:3px; transition:width .25s linear, background .5s; }
+  .bc-hud-streak { text-align:right; }
+  .bc-streak-num { font-family:'Boogaloo',cursive; font-size:28px; color:var(--orange); line-height:1; }
+  .bc-streak-num span { display:block; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; color:#444; }
+
+  /* GAME AREA */
+  .bc-play-area { padding:20px 20px 0; }
+
+  /* MODE LABEL */
+  .bc-mode-lbl { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .bc-mode-lbl-text { font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:2px; color:#444; }
+  .bc-lives { display:flex; gap:4px; }
+  .bc-heart { font-size:16px; filter:grayscale(0); transition:filter .2s; }
+  .bc-heart.lost { filter:grayscale(1); opacity:.3; }
+
+  /* QUESTION — two modes */
+  /* Mode A: show colour, pick name */
+  .bc-show-colour { width:100%; height:110px; border-radius:14px; border:4px solid #2a2a2a; position:relative; box-shadow:0 8px 0 rgba(0,0,0,.5); margin-bottom:18px; overflow:hidden; animation:bcSlideIn .25s ease; }
+  .bc-show-colour::before { content:''; position:absolute; top:0; left:0; right:0; height:35%; background:rgba(255,255,255,.15); border-radius:10px 10px 0 0; }
+  .bc-studs { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:14px; }
+  .bc-stud { width:20px; height:20px; border-radius:50%; background:rgba(0,0,0,.2); border:2px solid rgba(0,0,0,.15); position:relative; }
+  .bc-stud::after { content:''; position:absolute; top:3px; left:3px; right:3px; bottom:3px; border-radius:50%; background:rgba(255,255,255,.2); }
+  @keyframes bcSlideIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+
+  /* Mode B: show name, pick colour */
+  .bc-show-name { font-family:'Boogaloo',cursive; font-size:clamp(28px,5vw,44px); color:#fff; text-align:center; padding:24px 16px; letter-spacing:1px; margin-bottom:18px; animation:bcSlideIn .25s ease; background:#1a1a1a; border-radius:14px; border:3px solid #2a2a2a; }
+
+  /* OPTIONS */
+  .bc-opts-names { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+  .bc-opt-name { background:#222; border:2px solid #333; border-radius:10px; padding:14px 12px; font-weight:900; font-size:14px; color:#ccc; cursor:pointer; transition:all .15s; text-align:center; line-height:1.2; }
+  .bc-opt-name:hover:not([disabled]) { border-color:var(--yellow); color:#fff; background:#2a2a2a; transform:translateY(-2px); }
+  .bc-opt-name.correct { background:rgba(0,166,80,.15); border-color:var(--green); color:var(--green); }
+  .bc-opt-name.wrong   { background:rgba(227,0,11,.1); border-color:var(--red); color:var(--red); }
+
+  .bc-opts-colours { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+  .bc-opt-col { height:72px; border-radius:12px; border:3px solid rgba(0,0,0,.3); cursor:pointer; position:relative; transition:all .15s; box-shadow:0 5px 0 rgba(0,0,0,.4); overflow:hidden; }
+  .bc-opt-col::before { content:''; position:absolute; top:0; left:0; right:0; height:35%; background:rgba(255,255,255,.18); border-radius:9px 9px 0 0; }
+  .bc-opt-col::after { content:''; position:absolute; bottom:6px; left:50%; transform:translateX(-50%); width:18px; height:9px; border-radius:50% 50% 0 0 / 80% 80% 0 0; background:rgba(0,0,0,.2); }
+  .bc-opt-col:hover:not([disabled]) { transform:translateY(-5px); border-color:var(--yellow) !important; box-shadow:0 10px 0 rgba(0,0,0,.4); }
+  .bc-opt-col.correct { border-color:var(--green) !important; box-shadow:0 5px 0 #004d25, 0 0 24px rgba(0,166,80,.4); }
+  .bc-opt-col.wrong   { border-color:var(--red) !important; opacity:.5; transform:scale(.95); }
+
+  /* COMBO POPUP */
+  .bc-combo { text-align:center; font-family:'Boogaloo',cursive; font-size:28px; min-height:40px; margin-bottom:8px; }
+  .bc-combo-pop { display:inline-block; animation:bcCombo .5s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes bcCombo { from{opacity:0;transform:scale(.4) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+  /* RESULT */
+  .bc-result { text-align:center; padding:32px 24px; }
+  .bc-result-grade { font-family:'Boogaloo',cursive; font-size:72px; line-height:1; margin-bottom:4px; }
+  .bc-result-score { font-family:'Boogaloo',cursive; font-size:44px; color:var(--yellow); line-height:1; }
+  .bc-result-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#555; font-weight:900; margin-bottom:16px; }
+  .bc-result-stats { display:flex; justify-content:center; gap:28px; margin:16px 0 24px; flex-wrap:wrap; }
+  .bc-result-stat { text-align:center; }
+  .bc-result-stat strong { font-family:'Boogaloo',cursive; font-size:28px; color:#fff; display:block; }
+  .bc-result-stat span { font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; color:#444; }
+  .bc-result-msg { font-size:14px; color:#888; font-weight:700; margin-bottom:24px; line-height:1.6; max-width:320px; margin-left:auto; margin-right:auto; }
+  .bc-result-btns { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .bc-restart { font-family:'Nunito',sans-serif; font-weight:900; font-size:14px; padding:12px 24px; border-radius:10px; border:none; background:var(--green); color:#fff; cursor:pointer; box-shadow:0 5px 0 #004d25; position:relative; top:0; transition:all .15s; }
+  .bc-restart:hover { top:3px; box-shadow:0 2px 0 #004d25; }
+  .bc-change-mode { font-family:'Nunito',sans-serif; font-weight:900; font-size:14px; padding:12px 24px; border-radius:10px; border:3px solid #333; background:transparent; color:#888; cursor:pointer; transition:all .15s; }
+  .bc-change-mode:hover { border-color:var(--yellow); color:#fff; }
+
+  @media(max-width:600px) {
+    .bc-modes { grid-template-columns:1fr; }
+    .bc-opts-colours { grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* LEADERBOARD STRIP */
+  .gh-leaderboard { background:#1a1a1a; border:3px solid #333; border-radius:16px; padding:28px; margin-top:32px; }
+  .gh-leaderboard h3 { font-family:'Boogaloo',cursive; font-size:26px; color:var(--yellow); margin-bottom:18px; }
+  .gh-lb-row { display:flex; align-items:center; gap:14px; padding:10px 0; border-bottom:1px solid #252525; }
+  .gh-lb-row:last-child { border-bottom:none; }
+  .gh-lb-rank { font-family:'Boogaloo',cursive; font-size:22px; color:#555; min-width:32px; }
+  .gh-lb-rank.gold { color:var(--yellow); }
+  .gh-lb-rank.silver { color:#aaa; }
+  .gh-lb-rank.bronze { color:#cd7f32; }
+  .gh-lb-name { font-weight:900; font-size:14px; color:#ccc; flex:1; }
+  .gh-lb-score { font-family:'Boogaloo',cursive; font-size:18px; color:var(--yellow); }
+  .gh-lb-game { font-size:11px; font-weight:800; color:#444; text-transform:uppercase; letter-spacing:1px; }
+  .gh-lb-you { background:rgba(255,215,0,.06); border-radius:8px; padding:10px 12px; border:1px solid rgba(255,215,0,.15); }
+
+  @media(max-width:600px) {
+    .gh-grid { grid-template-columns:1fr; }
+    .qg-options { grid-template-columns:1fr; }
+  }
+</style>
+
+<!-- HERO -->
+<div class="gh-hero">
+  <div class="container gh-hero-inner">
+    <span class="lbl" style="background:var(--green);color:#fff;margin-bottom:12px;display:inline-block">🎮 AFOL Game Zone</span>
+    <h1><span style="color:var(--yellow)">Play.</span> <span style="color:var(--red)">Compete.</span> Build.</h1>
+    <p>Three LEGO® games for true AFOL fans — a runner, a trivia quiz and a colour challenge. How well do you really know your bricks?</p>
+    <div class="gh-hero-studs">
+      <div class="gh-stud gh-stud-r"></div>
+      <div class="gh-stud gh-stud-y"></div>
+      <div class="gh-stud gh-stud-b"></div>
+      <div class="gh-stud gh-stud-g"></div>
+      <div class="gh-stud gh-stud-o"></div>
     </div>
   </div>
+</div>
+
+<!-- GAME CARDS -->
+<section class="gh-section">
+  <div class="container">
+    <span class="lbl lbl-r">Choose Your Game</span>
+    <h2 class="sec-title" style="opacity:1;transform:none">Pick & Play</h2>
+
+    <div class="gh-grid">
+      <!-- Brick Runner -->
+      <div class="gh-card" id="card-runner" onclick="openGame('runner')">
+        <div class="gh-card-header">
+          <div class="gh-card-icon">🏃</div>
+          <div>
+            <div class="gh-card-title">Brick Runner</div>
+            <div class="gh-card-sub">Endless Runner · All Ages</div>
+          </div>
+        </div>
+        <div class="gh-card-desc">Jump and double-jump over LEGO® brick obstacles. Speed increases every level — how far can you go before getting squashed?</div>
+        <div class="gh-card-footer">
+          <span class="gh-badge gh-badge-free">Free</span>
+          <button class="gh-play-btn">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- LEGO Quiz -->
+      <div class="gh-card" id="card-quiz" onclick="openGame('quiz')">
+        <div class="gh-card-header">
+          <div class="gh-card-icon">🧠</div>
+          <div>
+            <div class="gh-card-title">AFOL Trivia</div>
+            <div class="gh-card-sub">Quiz · 10 Questions</div>
+          </div>
+        </div>
+        <div class="gh-card-desc">Think you know LEGO®? Test your knowledge on sets, history, pieces, and techniques. Only true AFOLs score 10/10.</div>
+        <div class="gh-card-footer">
+          <span class="gh-badge gh-badge-new">New</span>
+          <button class="gh-play-btn">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- Colour Match -->
+      <div class="gh-card" id="card-colour" onclick="openGame('colour')">
+        <div class="gh-card-header">
+          <div class="gh-card-icon">🎨</div>
+          <div>
+            <div class="gh-card-title">Colour Match</div>
+            <div class="gh-card-sub">Speed Game · 30 Seconds</div>
+          </div>
+        </div>
+        <div class="gh-card-desc">Can you identify LEGO® colours by name? Match the colour name to the correct brick shade before the timer runs out!</div>
+        <div class="gh-card-footer">
+          <span class="gh-badge gh-badge-new">New</span>
+          <button class="gh-play-btn">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- Flappy Brick -->
+      <div class="gh-card" id="card-flappy" onclick="openGame('flappy')">
+        <div class="gh-card-header">
+          <div class="gh-card-icon">🧱</div>
+          <div>
+            <div class="gh-card-title">Flappy Brick</div>
+            <div class="gh-card-sub">Arcade · All Ages</div>
+          </div>
+        </div>
+        <div class="gh-card-desc">Guide a winged LEGO® brick through LEGO® stud pipes! Tap or click to flap and survive as long as possible.</div>
+        <div class="gh-card-footer">
+          <span class="gh-badge gh-badge-new">New</span>
+          <button class="gh-play-btn">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- LEGO Tetris -->
+      <div class="gh-card" id="card-tetris" onclick="openGame('tetris')">
+        <div class="gh-card-header">
+          <div class="gh-card-icon">🏗️</div>
+          <div>
+            <div class="gh-card-title">Brick Drop</div>
+            <div class="gh-card-sub">Puzzle · Classic Tetris</div>
+          </div>
+        </div>
+        <div class="gh-card-desc">Stack falling LEGO® bricks to complete rows! Classic Tetris gameplay with a LEGO® twist — every piece is a colourful brick.</div>
+        <div class="gh-card-footer">
+          <span class="gh-badge gh-badge-new">New</span>
+          <button class="gh-play-btn">▶ Play Now</button>
+        </div>
+      </div>
+
+      <!-- Tile Hop -->
+      <div class="gh-card" id="card-tilehop" onclick="openGame('tilehop')">
+        <div class="gh-card-header">
+          <div class="gh-card-icon">🎵</div>
+          <div>
+            <div class="gh-card-title">Tile Hop</div>
+            <div class="gh-card-sub">Rhythm · Music Game</div>
+          </div>
+        </div>
+        <div class="gh-card-desc">Hop your LEGO® minifig across falling musical tiles in time with the beat. Miss a tile and it's game over!</div>
+        <div class="gh-card-footer">
+          <span class="gh-badge gh-badge-new">New</span>
+          <button class="gh-play-btn">▶ Play Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BRICK RUNNER AREA ── -->
+    <div class="gh-game-area" id="area-runner">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🏃 Brick Runner</h3>
+          <div style="display:flex;align-items:center;gap:10px">
+            <button id="g-mute-btn" style="font-size:18px;background:none;border:none;cursor:pointer;opacity:.6;transition:opacity .15s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.6'">🔊</button>
+            <button class="gh-close-btn" onclick="closeGame('runner')">✕ Close</button>
+          </div>
+        </div>
+        <div id="game-wrap">
+          <div class="g-header">
+            <h1>🎮 BRICK RUNNER</h1>
+            <p>Jump over the obstacles — how far can you go?</p>
+          </div>
+          <div id="g-hud">
+            <div class="g-score" id="g-score-el">0</div>
+            <div class="g-level" id="g-level-el">LVL 1</div>
+            <div class="g-best" id="g-best-el">BEST: 0</div>
+          </div>
+          <div id="g-canvas-wrap">
+            <canvas id="g-c" width="1000" height="320"></canvas>
+            <div id="g-overlay">
+              <div class="g-ov-title" id="g-ov-title">BRICK RUNNER</div>
+              <div class="g-ov-sub" id="g-ov-sub">Jump over LEGO® obstacles!</div>
+              <div id="g-score-box">
+                <div class="g-sl">Score</div>
+                <div class="g-sn" id="g-ov-num">0</div>
+                <div class="g-best-msg" id="g-ov-best"></div>
+              </div>
+              <button id="g-play-btn" onclick="startBrickRunner()">&#9654; PLAY!</button>
+              <div class="g-ov-hint">SPACE &nbsp;·&nbsp; UP ARROW &nbsp;·&nbsp; CLICK &nbsp;·&nbsp; TAP &nbsp;|&nbsp; Double jump!</div>
+            </div>
+          </div>
+          <div id="g-speed-row">
+            <div class="g-sp-lbl">Speed</div>
+            <div class="g-sp-track"><div id="g-sp-fill"></div></div>
+            <div class="g-sp-lbl" id="g-sp-lbl-r">LVL 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AFOL TRIVIA AREA ── -->
+    <div class="gh-game-area" id="area-quiz">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🧠 AFOL Trivia</h3>
+          <button class="gh-close-btn" onclick="closeGame('quiz')">✕ Close</button>
+        </div>
+        <div class="quiz-game" id="quiz-game-wrap">
+          <!-- filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLOUR MATCH AREA ── -->
+    <div class="gh-game-area" id="area-colour">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🎨 Colour Match</h3>
+          <button class="gh-close-btn" onclick="closeGame('colour')">✕ Close</button>
+        </div>
+        <div class="bc-game" id="colour-game-wrap">
+          <!-- filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FLAPPY BRICK AREA ── -->
+    <div class="gh-game-area" id="area-flappy">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🧱 Flappy Brick</h3>
+          <div style="display:flex;align-items:center;gap:10px">
+            <button id="fb-mute-btn" style="font-size:18px;background:none;border:none;cursor:pointer;opacity:.6;transition:opacity .15s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.6'">🔊</button>
+            <button class="gh-close-btn" onclick="closeGame('flappy')">✕ Close</button>
+          </div>
+        </div>
+        <div id="flappy-wrap">
+          <div style="text-align:center;padding:16px 24px 8px">
+            <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(24px,4vw,40px);color:var(--yellow);text-shadow:0 3px 0 #7a5800;margin-bottom:4px">🧱 FLAPPY BRICK</h2>
+            <p style="font-size:13px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:1px;text-transform:uppercase">Tap · Click · Space to flap!</p>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0 24px 8px;color:var(--yellow)">
+            <span style="font-family:'Boogaloo',cursive;font-size:26px" id="fb-score-el">0</span>
+            <span style="font-family:'Boogaloo',cursive;font-size:16px;color:rgba(255,215,0,.4)" id="fb-best-el">BEST: 0</span>
+          </div>
+          <div style="position:relative;width:100%;border-top:3px solid #222;line-height:0">
+            <canvas id="fb-canvas" width="800" height="400" style="width:100%;height:auto;display:block;touch-action:none"></canvas>
+            <div id="fb-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,20,.9);z-index:10;padding:20px;gap:0;transition:opacity .2s">
+              <div style="font-family:'Boogaloo',cursive;font-size:clamp(28px,5vw,52px);color:var(--yellow);text-shadow:0 4px 0 #7a5800;margin-bottom:8px;text-align:center" id="fb-ov-title">FLAPPY BRICK</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-weight:700" id="fb-ov-sub">Guide the winged brick through the pipes!</div>
+              <div id="fb-score-box" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,215,0,.2);border-radius:12px;padding:12px 36px;text-align:center;margin-bottom:24px;display:none">
+                <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;font-weight:900">Score</div>
+                <div style="font-family:'Boogaloo',cursive;font-size:clamp(28px,5vw,48px);color:#fff" id="fb-ov-num">0</div>
+              </div>
+              <button id="fb-play-btn" onclick="startFlappyBrick()" style="font-family:'Boogaloo',cursive;font-size:clamp(18px,3vw,26px);color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 48px;box-shadow:0 8px 0 #7a0005;cursor:pointer;letter-spacing:2px;position:relative;top:0;transition:top .08s,box-shadow .08s;min-width:180px">▶ PLAY!</button>
+              <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.2);letter-spacing:1px;font-weight:700">SPACE · CLICK · TAP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BRICK DROP (TETRIS) AREA ── -->
+    <div class="gh-game-area" id="area-tetris">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🏗️ Brick Drop</h3>
+          <div style="display:flex;align-items:center;gap:10px">
+            <button id="td-mute-btn" style="font-size:18px;background:none;border:none;cursor:pointer;opacity:.6;transition:opacity .15s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.6'">🔊</button>
+            <button class="gh-close-btn" onclick="closeGame('tetris')">✕ Close</button>
+          </div>
+        </div>
+        <div id="tetris-wrap" style="padding:16px 24px 24px">
+          <div style="text-align:center;margin-bottom:12px">
+            <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(22px,3vw,36px);color:var(--yellow);text-shadow:0 3px 0 #7a5800;margin-bottom:4px">🏗️ BRICK DROP</h2>
+            <p style="font-size:12px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:1px;text-transform:uppercase">← → to move · ↑ to rotate · ↓ to drop fast</p>
+          </div>
+          <div style="display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
+            <div style="position:relative;line-height:0;border:3px solid #333;border-radius:4px">
+              <canvas id="td-canvas" width="300" height="600" style="display:block;background:#0a0a0a"></canvas>
+              <div id="td-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,20,.92);z-index:10;padding:20px;gap:0;transition:opacity .2s">
+                <div style="font-family:'Boogaloo',cursive;font-size:clamp(26px,4vw,44px);color:var(--yellow);text-shadow:0 4px 0 #7a5800;margin-bottom:8px;text-align:center" id="td-ov-title">BRICK DROP</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-weight:700">Stack LEGO® bricks, clear rows!</div>
+                <div id="td-score-box" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,215,0,.2);border-radius:12px;padding:12px 36px;text-align:center;margin-bottom:24px;display:none">
+                  <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;font-weight:900">Score</div>
+                  <div style="font-family:'Boogaloo',cursive;font-size:clamp(24px,4vw,40px);color:#fff" id="td-ov-num">0</div>
+                </div>
+                <button id="td-play-btn" onclick="startBrickDrop()" style="font-family:'Boogaloo',cursive;font-size:clamp(16px,2.5vw,24px);color:#fff;background:var(--red);border:none;border-radius:14px;padding:12px 40px;box-shadow:0 8px 0 #7a0005;cursor:pointer;letter-spacing:2px">▶ PLAY!</button>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;min-width:120px">
+              <div style="background:#1a1a1a;border:2px solid #333;border-radius:10px;padding:16px;text-align:center">
+                <div style="font-size:10px;color:#555;letter-spacing:2px;font-weight:900;text-transform:uppercase;margin-bottom:4px">Score</div>
+                <div style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--yellow)" id="td-score-el">0</div>
+              </div>
+              <div style="background:#1a1a1a;border:2px solid #333;border-radius:10px;padding:16px;text-align:center">
+                <div style="font-size:10px;color:#555;letter-spacing:2px;font-weight:900;text-transform:uppercase;margin-bottom:4px">Level</div>
+                <div style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--orange)" id="td-level-el">1</div>
+              </div>
+              <div style="background:#1a1a1a;border:2px solid #333;border-radius:10px;padding:16px;text-align:center">
+                <div style="font-size:10px;color:#555;letter-spacing:2px;font-weight:900;text-transform:uppercase;margin-bottom:4px">Lines</div>
+                <div style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--green)" id="td-lines-el">0</div>
+              </div>
+              <div style="background:#1a1a1a;border:2px solid #333;border-radius:10px;padding:14px;text-align:center">
+                <div style="font-size:10px;color:#555;letter-spacing:2px;font-weight:900;text-transform:uppercase;margin-bottom:8px">Next</div>
+                <canvas id="td-next-canvas" width="120" height="80" style="display:block;margin:0 auto;background:#0a0a0a;border-radius:4px"></canvas>
+              </div>
+              <div style="background:#1a1a1a;border:2px solid #333;border-radius:10px;padding:12px;font-size:11px;color:#444;font-weight:700;line-height:1.8;text-align:center">
+                ← → Move<br>↑ Rotate<br>↓ Fast drop<br>Space: Hard drop
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TILE HOP AREA ── -->
+    <div class="gh-game-area" id="area-tilehop">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🎵 Tile Hop</h3>
+          <div style="display:flex;align-items:center;gap:10px">
+            <button id="th-mute-btn" style="font-size:18px;background:none;border:none;cursor:pointer;opacity:.6;transition:opacity .15s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.6'">🔊</button>
+            <button class="gh-close-btn" onclick="closeGame('tilehop')">✕ Close</button>
+          </div>
+        </div>
+        <div id="tilehop-wrap">
+          <div style="text-align:center;padding:16px 24px 8px">
+            <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(24px,4vw,40px);color:var(--yellow);text-shadow:0 3px 0 #7a5800;margin-bottom:4px">🎵 TILE HOP</h2>
+            <p style="font-size:13px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:1px;text-transform:uppercase">Tap the tiles to the beat!</p>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0 24px 8px;color:var(--yellow)">
+            <span style="font-family:'Boogaloo',cursive;font-size:26px" id="th-score-el">0</span>
+            <span style="font-family:'Boogaloo',cursive;font-size:16px;color:rgba(255,215,0,.4)" id="th-combo-el"></span>
+          </div>
+          <div style="position:relative;width:100%;border-top:3px solid #222;line-height:0">
+            <canvas id="th-canvas" width="600" height="500" style="width:100%;height:auto;display:block;touch-action:none"></canvas>
+            <div id="th-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,20,.9);z-index:10;padding:20px;gap:0;transition:opacity .2s">
+              <div style="font-family:'Boogaloo',cursive;font-size:clamp(28px,5vw,52px);color:var(--yellow);text-shadow:0 4px 0 #7a5800;margin-bottom:8px;text-align:center" id="th-ov-title">TILE HOP</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-weight:700">Tap the dark tiles — don't miss!</div>
+              <div id="th-score-box" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,215,0,.2);border-radius:12px;padding:12px 36px;text-align:center;margin-bottom:24px;display:none">
+                <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;font-weight:900">Score</div>
+                <div style="font-family:'Boogaloo',cursive;font-size:clamp(28px,5vw,48px);color:#fff" id="th-ov-num">0</div>
+              </div>
+              <button id="th-play-btn" onclick="startTileHop()" style="font-family:'Boogaloo',cursive;font-size:clamp(18px,3vw,26px);color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 48px;box-shadow:0 8px 0 #7a0005;cursor:pointer;letter-spacing:2px;position:relative;top:0;transition:top .08s,box-shadow .08s;min-width:180px">▶ PLAY!</button>
+              <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.2);letter-spacing:1px;font-weight:700">CLICK or TAP the dark tiles</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOCAL LEADERBOARD -->
+    <div class="gh-leaderboard" id="gh-lb">
+      <h3>🏆 Your Best Scores</h3>
+      <div id="gh-lb-list">
+        <div style="color:#444;font-weight:700;font-size:13px">Play a game to set your first score!</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="newsletter-bar">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div><h3>📬 Join the Bricktastic Newsletter</h3><p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p></div>
+      <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlGameFooter">
+      <button class="newsletter-btn" onclick="subscribeNewsletter('nlGameFooter')">Subscribe 🎉</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="fl">Bricktastic Builds</div>
+  <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
+  <div class="flinks">
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('shop')">Shop</a>
+    <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
+  </div>
+</footer>
+
 </div><!-- end page-game -->
 
 <script>
-// ═══════════════════════ BRICK RUNNER GAME ═══════════════════════
+// ═══════════════════════ GAME HUB ═══════════════════════
+
+function openGame(id) {
+  // Close all areas first
+  document.querySelectorAll('.gh-game-area').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.gh-card').forEach(c => c.classList.remove('active-game'));
+  // Open chosen area
+  const area = document.getElementById('area-' + id);
+  const card = document.getElementById('card-' + id);
+  if (area) {
+    area.classList.add('open');
+    setTimeout(() => area.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+  }
+  if (card) card.classList.add('active-game');
+  // Init individual games
+  if (id === 'runner')  initBrickRunner();
+  if (id === 'quiz')    initQuizGame();
+  if (id === 'colour')  initColourGame();
+  if (id === 'flappy')  initFlappyBrick();
+  if (id === 'tetris')  initBrickDrop();
+  if (id === 'tilehop') initTileHop();
+}
+
+function closeGame(id) {
+  document.getElementById('area-' + id)?.classList.remove('open');
+  document.getElementById('card-' + id)?.classList.remove('active-game');
+  document.querySelector('.gh-grid')?.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── LOCAL SCORES ──────────────────────────────────────
+let _ghScores = JSON.parse(localStorage.getItem('bb_game_scores') || '[]');
+function saveScore(game, score) {
+  _ghScores.push({game, score, date: new Date().toLocaleDateString()});
+  _ghScores.sort((a,b) => b.score - a.score);
+  _ghScores = _ghScores.slice(0, 10);
+  try { localStorage.setItem('bb_game_scores', JSON.stringify(_ghScores)); } catch(e) {}
+  renderLeaderboard();
+}
+function renderLeaderboard() {
+  const el = document.getElementById('gh-lb-list');
+  if (!el || !_ghScores.length) return;
+  const ranks = ['gold','silver','bronze'];
+  const icons = {runner:'🏃', quiz:'🧠', colour:'🎨', flappy:'🧱', tetris:'🏗️', tilehop:'🎵'};
+  el.innerHTML = _ghScores.slice(0,5).map((s,i) => `
+    <div class="gh-lb-row ${i===0?'gh-lb-you':''}">
+      <div class="gh-lb-rank ${ranks[i]||''}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div>
+      <div class="gh-lb-name">${icons[s.game]||'🎮'} ${s.game.charAt(0).toUpperCase()+s.game.slice(1)}</div>
+      <div class="gh-lb-game">${s.date}</div>
+      <div class="gh-lb-score">${s.score}</div>
+    </div>`).join('');
+}
+renderLeaderboard();
+
+// ═══════════════════════ BRICK RUNNER ═══════════════════════
 let _brInited = false;
 function initBrickRunner() {
   if (_brInited) return;
   _brInited = true;
 
-  // ── AUDIO ENGINE (Web Audio API — no files needed) ──────────────
   let audioCtx = null, muted = false;
   function getAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
-
   function playTone(freq, type, duration, vol, freqEnd){
     if(muted) return;
     try {
       const ac = getAudio();
-      const osc = ac.createOscillator();
-      const gain = ac.createGain();
+      const osc = ac.createOscillator(), gain = ac.createGain();
       osc.connect(gain); gain.connect(ac.destination);
       osc.type = type;
       osc.frequency.setValueAtTime(freq, ac.currentTime);
-      if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, ac.currentTime + duration);
+      if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, ac.currentTime+duration);
       gain.gain.setValueAtTime(vol, ac.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + duration);
-      osc.start(ac.currentTime);
-      osc.stop(ac.currentTime + duration);
+      gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime+duration);
+      osc.start(ac.currentTime); osc.stop(ac.currentTime+duration);
     } catch(e){}
   }
+  function sndJump(d){ playTone(d?520:320,'square',.12,.18,d?900:640); if(d) setTimeout(()=>playTone(900,'square',.08,.1,1100),60); }
+  function sndDeath(){ playTone(400,'sawtooth',.08,.22,200); setTimeout(()=>playTone(200,'sawtooth',.1,.18,80),80); setTimeout(()=>playTone(120,'square',.18,.15,60),170); }
+  function sndMilestone(){ [523,659,784,1047].forEach((f,i)=>setTimeout(()=>playTone(f,'square',.1,.12),i*70)); }
+  function sndStep(){ playTone(180,'square',.03,.04); }
 
-  function sndJump(isDouble){
-    // first jump: rising bleep; double jump: higher rising bleep
-    playTone(isDouble ? 520 : 320, 'square', 0.12, 0.18, isDouble ? 900 : 640);
-    if(isDouble) setTimeout(()=>playTone(900, 'square', 0.08, 0.1, 1100), 60);
-  }
-  function sndDeath(){
-    // descending crash
-    playTone(400, 'sawtooth', 0.08, 0.22, 200);
-    setTimeout(()=>playTone(200, 'sawtooth', 0.1, 0.18, 80), 80);
-    setTimeout(()=>playTone(120, 'square', 0.18, 0.15, 60), 170);
-  }
-  function sndMilestone(){
-    // cheerful little arpeggio
-    [523, 659, 784, 1047].forEach((f,i)=>setTimeout(()=>playTone(f,'square',0.1,0.12),i*70));
-  }
-  function sndStep(){
-    // subtle click on footstep (every ~20 frames while running)
-    playTone(180, 'square', 0.03, 0.04);
-  }
-
-  // Mute button — wire after game initialises
   const muteBtn = document.getElementById('g-mute-btn');
-  if(muteBtn) muteBtn.addEventListener('click', ()=>{
-    muted = !muted;
-    muteBtn.textContent = muted ? '🔇' : '🔊';
-    muteBtn.title = muted ? 'Unmute' : 'Mute';
-  });
+  if(muteBtn) muteBtn.addEventListener('click',()=>{ muted=!muted; muteBtn.textContent=muted?'🔇':'🔊'; });
 
-  const cv  = document.getElementById('g-c');
-
+  const cv = document.getElementById('g-c');
   const ctx = cv.getContext('2d');
-  const CW  = 1000, CH = 320;
-  cv.width  = CW; cv.height = CH;
+  const CW=1000, CH=320;
+  cv.width=CW; cv.height=CH;
+  const FLOOR_Y=CH-60, PLAYER_GY=FLOOR_Y-72;
+  const LCOLS=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#9B59B6','#FFFFFF','#2ECC71'];
+  const dkc=c=>{const r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);return `rgb(${r*.42|0},${g*.42|0},${b*.42|0})`;};
+  let running=false,raf=null,score=0,bestScore=0,spd=5,fn=0;
+  let pts=[],obs=[],gt=[],cl=[],nextO=0;
+  const P={x:110,y:PLAYER_GY,w:36,h:68,vy:0,jc:0,og:true,dead:false,wc:0,reset(){this.y=PLAYER_GY;this.vy=0;this.jc=0;this.og=true;this.dead=false;this.wc=0;}};
 
-  const FLOOR_Y   = CH - 60;
-  const PLAYER_GY = FLOOR_Y - 72;
+  function doJump(){
+    if(!running||P.dead) return;
+    if(P.jc<2){P.vy=P.jc===0?-16:-12.5;sndJump(P.jc===1);P.jc++;P.og=false;for(let i=0;i<8;i++) pts.push({x:P.x+18,y:P.y+P.h,vx:(Math.random()-.5)*6,vy:-(Math.random()*5+2),l:1,d:.045,c:LCOLS[Math.floor(Math.random()*LCOLS.length)],r:Math.random()*4+2});}
+  }
+  function boom(){sndDeath();for(let i=0;i<28;i++) pts.push({x:P.x+18,y:P.y+P.h*.5,vx:(Math.random()-.5)*14,vy:(Math.random()-.5)*12-3,l:1,d:.028,c:LCOLS[Math.floor(Math.random()*LCOLS.length)],r:Math.random()*7+3});}
+  function mkO(){const t=Math.random()<.45?'s':Math.random()<.55?'d':'w';const c=LCOLS[Math.floor(Math.random()*6)],c2=LCOLS[Math.floor(Math.random()*6)],bh=28;if(t==='s') return{x:CW+20,y:PLAYER_GY+P.h-bh,w:48,h:bh,type:t,c,c2,n:2};if(t==='d') return{x:CW+20,y:PLAYER_GY+P.h-bh*2,w:44,h:bh*2,type:t,c,c2,n:2,bh};return{x:CW+20,y:PLAYER_GY+P.h-24,w:88,h:24,type:t,c,c2,n:5};}
+  function initGT(){gt=[];let x=0;while(x<CW+70){gt.push({x,c:LCOLS[Math.floor(Math.random()*5)],w:58});x+=58;}}
+  function initCL(){cl=[];for(let i=0;i<6;i++) cl.push({x:Math.random()*CW,y:20+Math.random()*70,w:55+Math.random()*80,h:18+Math.random()*10,sp:.35+Math.random()*.35,a:.04+Math.random()*.055});}
+  function dBrick(x,y,w,h,col,n){const dc=dkc(col);ctx.fillStyle=col;ctx.beginPath();ctx.roundRect(x,y,w,h,4);ctx.fill();ctx.fillStyle='rgba(255,255,255,.22)';ctx.beginPath();ctx.roundRect(x+1,y+1,w-2,h*.32,[4,4,0,0]);ctx.fill();ctx.fillStyle='rgba(255,255,255,.14)';ctx.fillRect(x+2,y+3,3,h-6);ctx.fillStyle=dc;ctx.beginPath();ctx.roundRect(x,y+h*.76,w,h*.24,[0,0,4,4]);ctx.fill();ctx.strokeStyle=dc;ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(x+.5,y+.5,w-1,h-1,4);ctx.stroke();const gap=w/(n+1);for(let i=0;i<n;i++){const sx=x+gap*(i+1),sy=y-6;ctx.fillStyle=col;ctx.beginPath();ctx.ellipse(sx,sy+3,6,4.5,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,255,255,.32)';ctx.beginPath();ctx.ellipse(sx,sy+1.5,6,2.5,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=dc;ctx.beginPath();ctx.ellipse(sx,sy+5,6,1.5,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle=dc;ctx.lineWidth=.8;ctx.beginPath();ctx.ellipse(sx,sy+3,6,4.5,0,0,Math.PI*2);ctx.stroke();}}
+  function dFig(x,y,dead){const wc=P.wc,bob=P.og?Math.sin(wc*2)*1.8:0,by=y+bob,ls=Math.sin(wc)*13;ctx.save();if(dead){ctx.translate(x+P.w/2,by+P.h*.5);ctx.rotate(Math.PI*.5);ctx.translate(-P.w/2,-P.h*.5);dParts(0,0,0);}else dParts(x,by,ls);ctx.restore();}
+  function dParts(x,y,ls){ctx.fillStyle='rgba(0,0,0,.22)';ctx.beginPath();ctx.ellipse(x+P.w/2,PLAYER_GY+P.h+3,20,5,0,0,Math.PI*2);ctx.fill();ctx.save();ctx.translate(x+10,y+46);ctx.rotate(ls*Math.PI/180);ctx.fillStyle='#1a1a2e';ctx.fillRect(-6,0,12,14);ctx.fillStyle='#141424';ctx.fillRect(-5,13,11,10);ctx.fillStyle='#0a0a12';ctx.beginPath();ctx.roundRect(-7,21,14,7,3);ctx.fill();ctx.restore();ctx.save();ctx.translate(x+26,y+46);ctx.rotate(-ls*Math.PI/180);ctx.fillStyle='#1a1a2e';ctx.fillRect(-6,0,12,14);ctx.fillStyle='#141424';ctx.fillRect(-5,13,11,10);ctx.fillStyle='#0a0a12';ctx.beginPath();ctx.roundRect(-7,21,14,7,3);ctx.fill();ctx.restore();ctx.fillStyle='#0f0f22';ctx.beginPath();ctx.roundRect(x+3,y+44,30,7,3);ctx.fill();ctx.fillStyle='#E3000B';ctx.beginPath();ctx.roundRect(x+3,y+22,30,24,4);ctx.fill();ctx.fillStyle='rgba(255,255,255,.22)';ctx.beginPath();ctx.roundRect(x+3,y+22,30,7,[4,4,0,0]);ctx.fill();ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(x+4,y+24,4,18);ctx.fillStyle=dkc('#E3000B');ctx.beginPath();ctx.roundRect(x+3,y+40,30,6,[0,0,4,4]);ctx.fill();ctx.fillStyle='#FFD700';ctx.beginPath();ctx.roundRect(x+10,y+28,16,5,3);ctx.fill();ctx.fillStyle='#E3000B';ctx.beginPath();ctx.arc(x+18,y+30.5,2.5,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,255,255,.18)';ctx.beginPath();ctx.arc(x+8,y+25,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+28,y+25,2,0,Math.PI*2);ctx.fill();ctx.save();ctx.translate(x+3,y+25);ctx.rotate((-36+ls*.5)*Math.PI/180);ctx.fillStyle='#E3000B';ctx.beginPath();ctx.roundRect(-8,0,8,18,4);ctx.fill();ctx.restore();ctx.save();ctx.translate(x+33,y+25);ctx.rotate((36-ls*.5)*Math.PI/180);ctx.fillStyle='#E3000B';ctx.beginPath();ctx.roundRect(0,0,8,18,4);ctx.fill();ctx.restore();ctx.save();ctx.translate(x+3,y+25);ctx.rotate((-36+ls*.5)*Math.PI/180);ctx.fillStyle='#F0C030';ctx.beginPath();ctx.arc(-4,20,6,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,255,255,.3)';ctx.beginPath();ctx.arc(-6,18,3,0,Math.PI*2);ctx.fill();ctx.restore();ctx.save();ctx.translate(x+33,y+25);ctx.rotate((36-ls*.5)*Math.PI/180);ctx.fillStyle='#F0C030';ctx.beginPath();ctx.arc(4,20,6,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,255,255,.3)';ctx.beginPath();ctx.arc(2,18,3,0,Math.PI*2);ctx.fill();ctx.restore();ctx.fillStyle='#F0C030';ctx.beginPath();ctx.roundRect(x+14,y+18,8,6,2);ctx.fill();ctx.fillStyle='#F0C030';ctx.beginPath();ctx.roundRect(x+6,y+4,24,16,5);ctx.fill();ctx.fillStyle='rgba(255,255,255,.28)';ctx.beginPath();ctx.roundRect(x+6,y+4,24,5,[5,5,0,0]);ctx.fill();ctx.fillStyle='rgba(255,255,255,.18)';ctx.fillRect(x+7,y+6,4,11);ctx.fillStyle=dkc('#F0C030');ctx.beginPath();ctx.roundRect(x+6,y+16,24,4,[0,0,5,5]);ctx.fill();ctx.fillStyle='#1a1a1a';ctx.beginPath();ctx.arc(x+13,y+11,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+23,y+11,3,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x+14,y+9.5,1.2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+24,y+9.5,1.2,0,Math.PI*2);ctx.fill();ctx.strokeStyle=dkc('#F0C030');ctx.lineWidth=2;ctx.lineCap='round';ctx.beginPath();ctx.arc(x+18,y+14,5,.2,Math.PI-.2);ctx.stroke();ctx.fillStyle='#F0C030';ctx.beginPath();ctx.ellipse(x+18,y+3,6.5,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,255,255,.38)';ctx.beginPath();ctx.ellipse(x+17,y+2,4,2,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle=dkc('#F0C030');ctx.lineWidth=.8;ctx.beginPath();ctx.ellipse(x+18,y+3,6.5,4,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#FFD700';ctx.beginPath();ctx.roundRect(x+5,y-4,26,10,5);ctx.fill();ctx.fillStyle='rgba(255,255,255,.28)';ctx.beginPath();ctx.roundRect(x+5,y-4,26,4,[5,5,0,0]);ctx.fill();ctx.fillStyle=dkc('#FFD700');ctx.beginPath();ctx.roundRect(x+5,y+4,26,2,0);ctx.fill();ctx.fillStyle='#d4aa00';ctx.beginPath();ctx.moveTo(x+3,y+6);ctx.lineTo(x+33,y+6);ctx.lineTo(x+31,y+10);ctx.lineTo(x+5,y+10);ctx.closePath();ctx.fill();ctx.fillStyle='#FFD700';ctx.beginPath();ctx.ellipse(x+18,y-5,6.5,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,255,255,.38)';ctx.beginPath();ctx.ellipse(x+17,y-6,4,2,0,0,Math.PI*2);ctx.fill();}
+  function dObs(o){if(o.type==='d'){dBrick(o.x,o.y+o.bh,o.w,o.bh,o.c2,2);dBrick(o.x+3,o.y,o.w-6,o.bh,o.c,2);}else dBrick(o.x,o.y,o.w,o.h,o.c,o.n);}
+  function dGround(){const gy=FLOOR_Y;ctx.fillStyle='#1e1e1e';ctx.fillRect(0,gy,CW,CH-gy);ctx.fillStyle='#2a2a2a';ctx.fillRect(0,gy,CW,4);gt.forEach(t=>dBrick(t.x,gy+4,t.w-3,22,t.c,2));}
+  function dClouds(){cl.forEach(c=>{ctx.fillStyle=`rgba(255,255,255,${c.a})`;ctx.beginPath();ctx.roundRect(c.x,c.y,c.w,c.h,c.h/2);ctx.fill();ctx.beginPath();ctx.roundRect(c.x+10,c.y-c.h*.6,c.w*.6,c.h*.9,c.h*.45);ctx.fill();});}
+  function hitTest(o){const p=8;return(P.x+p<o.x+o.w)&&(P.x+P.w-p>o.x)&&(P.y+p<o.y+o.h)&&(P.y+P.h-p>o.y);}
+  function upHUD(){document.getElementById('g-score-el').textContent=Math.floor(score);document.getElementById('g-best-el').textContent='BEST: '+Math.floor(bestScore);const lv=Math.max(1,Math.floor((spd-5)/1.5)+1);document.getElementById('g-level-el').textContent='LVL '+lv;document.getElementById('g-sp-fill').style.width=Math.min(100,((spd-5)/10)*100)+'%';document.getElementById('g-sp-lbl-r').textContent='LVL '+lv;}
+  let lastMilestone=0,stepFrame=0;
+  function loop(){if(!running)return;raf=requestAnimationFrame(loop);fn++;spd=Math.min(18,5+(fn/700)*1.5);ctx.fillStyle='#1a1a2e';ctx.fillRect(0,0,CW,CH);ctx.fillStyle='rgba(255,255,255,.035)';for(let i=0;i<10;i++){ctx.beginPath();ctx.arc((i*157+fn*.15)%CW,(i*83+10)%(FLOOR_Y-20),1,0,Math.PI*2);ctx.fill();}dClouds();cl.forEach(c=>{c.x-=c.sp;if(c.x+c.w<0)c.x=CW+5;});dGround();gt.forEach(t=>{t.x-=spd*.48;if(t.x+t.w<0){const l=gt.reduce((a,b)=>b.x>a.x?b:a);t.x=l.x+t.w;t.c=LCOLS[Math.floor(Math.random()*5)];}});nextO-=spd;if(nextO<=0){obs.push(mkO());nextO=Math.max(210,400-spd*12)+Math.random()*180;}obs.forEach(o=>{o.x-=spd;dObs(o);});obs=obs.filter(o=>o.x+o.w>-20);if(!P.dead){P.vy+=.72;P.y+=P.vy;if(P.y>=PLAYER_GY){P.y=PLAYER_GY;P.vy=0;P.jc=0;P.og=true;}else P.og=false;if(P.og)P.wc+=spd*.042;}else{P.vy+=.4;P.y+=P.vy;}dFig(P.x,P.y,P.dead);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.18;p.l-=p.d;ctx.globalAlpha=Math.max(0,p.l);ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;pts=pts.filter(p=>p.l>0);if(!P.dead){for(const o of obs){if(hitTest(o)){P.dead=true;P.vy=-9;running=false;boom();setTimeout(showGO,900);break;}}score+=spd*.024;if(score>bestScore)bestScore=score;const ms=Math.floor(score/100);if(ms>lastMilestone){lastMilestone=ms;sndMilestone();}if(P.og){stepFrame++;if(stepFrame%18===0)sndStep();}}upHUD();}
+  window.startBrickRunner=function(){score=0;fn=0;spd=5;obs=[];pts=[];nextO=460;lastMilestone=0;stepFrame=0;P.reset();initGT();initCL();document.getElementById('g-overlay').classList.add('hidden');running=true;if(raf)cancelAnimationFrame(raf);requestAnimationFrame(loop);};
+  function showGO(){const s=Math.floor(score);document.getElementById('g-ov-title').textContent='GAME OVER';document.getElementById('g-ov-sub').textContent='Squashed by a brick!';document.getElementById('g-score-box').style.display='block';document.getElementById('g-ov-num').textContent=s;document.getElementById('g-ov-best').textContent=score>=bestScore-1?'🏆 New best score!':'Best: '+Math.floor(bestScore);document.getElementById('g-play-btn').textContent='▶ PLAY AGAIN';document.getElementById('g-overlay').classList.remove('hidden');saveScore('runner',s);}
+  document.addEventListener('keydown',e=>{if(document.getElementById('page-game').classList.contains('active'))if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();doJump();}});
+  cv.addEventListener('click',()=>doJump());
+  cv.addEventListener('touchstart',e=>{e.preventDefault();doJump();},{passive:false});
+  ctx.fillStyle='#1a1a2e';ctx.fillRect(0,0,CW,CH);initGT();initCL();dGround();dClouds();P.y=PLAYER_GY;dFig(P.x,P.y,false);
+}
 
-  const LCOLS = ['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#9B59B6','#FFFFFF','#2ECC71'];
-  const dkc = c => { const r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16); return `rgb(${r*.42|0},${g*.42|0},${b*.42|0})`; };
+// ═══════════════════════ AFOL TRIVIA QUIZ ═══════════════════════
+const QUIZ_QS = [
+  {q:'What year was the modern LEGO® brick patent filed?', cat:'History', opts:['1949','1954','1958','1963'], ans:2, exp:'January 28, 1958 — the hollow underside tube system that gives LEGO® its clutch power was patented on this date.'},
+  {q:'What does SNOT stand for in LEGO® building?', cat:'Techniques', opts:['Smooth Non-Orthogonal Tile','Studs Not On Top','Sideways Notch Offset Technique','Standard No-Obstacle Tile'], ans:1, exp:'Studs Not On Top — any technique where bricks are oriented sideways or downward instead of the standard upward position.'},
+  {q:'How many ways can you combine 6 standard 2×4 LEGO® bricks?', cat:'Facts', opts:['Over 50 million','Over 100 million','Over 500 million','Over 900 million'], ans:3, exp:'915,103,765 combinations — yes, someone actually calculated this. The number is staggeringly large.'},
+  {q:'What does AFOL stand for?', cat:'Community', opts:['Advanced Fan Of LEGO®','Adult Fan Of LEGO®','Avid Fan Of LEGO®','Artistic Fan Of LEGO®'], ans:1, exp:'Adult Fan Of LEGO® — the term used to describe grown-up LEGO® enthusiasts who collect, build, and create MOCs.'},
+  {q:'What is a MOC in LEGO® terms?', cat:'Community', opts:['My Official Creation','My Own Creation','Made On Computer','Modular Official Component'], ans:1, exp:'My Own Creation — any original LEGO® build designed from scratch by the builder, not from official instructions.'},
+  {q:'Which LEGO® theme introduced the minifigure in 1978?', cat:'History', opts:['Castle only','Space only','Town only','Town, Castle and Space simultaneously'], ans:3, exp:'All three themes launched together in 1978 with the new minifigure — Town, Castle, and Space all hit shelves at the same time.'},
+  {q:'What is the tolerance of a LEGO® brick — how precisely is it manufactured?', cat:'Engineering', opts:['±0.2mm','±0.02mm','±0.002mm','±0.0002mm'], ans:2, exp:'±0.002mm — tighter than many aerospace components. This precision is why a brick from 1958 still fits a brick made today.'},
+  {q:'What colour are LEGO® minifigure faces traditionally?', cat:'Trivia', opts:['Cream','White','Light Nougat','Yellow'], ans:3, exp:'Yellow — the original and still default minifigure face colour since 1978. Flesh-tone (Light Nougat) faces came later for licensed themes.'},
+  {q:'What is "illegal" in LEGO® building terms?', cat:'Techniques', opts:['Using non-LEGO® parts','Building without instructions','Connections that stress parts beyond their design','Building with sets you did not buy'], ans:2, exp:'Techniques that stress parts beyond design — technically valid but officially discouraged by LEGO.'},
+  {q:'Which LEGO® theme has been their best-selling of all time?', cat:'History', opts:['Harry Potter','Technic','Ninjago','Star Wars'], ans:3, exp:'Star Wars — launched in 1999, it remains LEGO best-selling theme ever and shows no signs of slowing down.'},
+];
 
-  let running=false, raf=null, score=0, bestScore=0, spd=5, fn=0;
-  let pts=[], obs=[], gt=[], cl=[], nextO=0;
+let _qzInited = false, _qzIdx = 0, _qzScore = 0, _qzAnswered = false;
 
-  const P = {
-    x:110, y:PLAYER_GY, w:36, h:68, vy:0, jc:0, og:true, dead:false, wc:0,
-    reset(){ this.y=PLAYER_GY;this.vy=0;this.jc=0;this.og=true;this.dead=false;this.wc=0; }
-  };
+function initQuizGame() {
+  _qzIdx = 0; _qzScore = 0; _qzAnswered = false; _qzInited = true;
+  renderQuizQuestion();
+}
 
-  function doJump() {
-    if (!running || P.dead) return;
-    if (P.jc < 2) {
-      P.vy = P.jc===0 ? -16 : -12.5;
-      sndJump(P.jc === 1);
-      P.jc++; P.og = false;
-      for(let i=0;i<8;i++) pts.push({x:P.x+18,y:P.y+P.h,vx:(Math.random()-.5)*6,vy:-(Math.random()*5+2),l:1,d:.045,c:LCOLS[Math.floor(Math.random()*LCOLS.length)],r:Math.random()*4+2});
+function renderQuizQuestion() {
+  const wrap = document.getElementById('quiz-game-wrap');
+  if (!wrap) return;
+  if (_qzIdx >= QUIZ_QS.length) { renderQuizResult(); return; }
+  const q = QUIZ_QS[_qzIdx];
+  const pips = QUIZ_QS.map((_,i) => `<div class="qg-pip ${i<_qzIdx?'done':i===_qzIdx?'active':''}"></div>`).join('');
+  wrap.innerHTML = `
+    <div class="qg-progress">${pips}</div>
+    <div class="qg-category">📂 ${q.cat} · Question ${_qzIdx+1} of ${QUIZ_QS.length}</div>
+    <div class="qg-question">${q.q}</div>
+    <div class="qg-options">
+      ${q.opts.map((o,i) => `<button class="qg-opt" onclick="answerQuiz(${i})" id="qopt-${i}">${o}</button>`).join('')}
+    </div>
+    <div class="qg-feedback" id="qg-fb"></div>
+    <div class="qg-footer">
+      <div class="qg-score-lbl">Score: ${_qzScore} / ${QUIZ_QS.length}</div>
+      <button class="qg-next" id="qg-next" onclick="nextQuizQ()">Next →</button>
+    </div>`;
+}
+
+function answerQuiz(chosen) {
+  if (_qzAnswered) return;
+  _qzAnswered = true;
+  const q = QUIZ_QS[_qzIdx];
+  const correct = chosen === q.ans;
+  if (correct) _qzScore++;
+  document.querySelectorAll('.qg-opt').forEach(b => b.disabled = true);
+  document.getElementById('qopt-' + chosen).classList.add(correct ? 'correct' : 'wrong');
+  if (!correct) document.getElementById('qopt-' + q.ans).classList.add('correct');
+  const fb = document.getElementById('qg-fb');
+  fb.textContent = (correct ? '✅ Correct! ' : '❌ Not quite. ') + q.exp;
+  fb.className = 'qg-feedback show ' + (correct ? 'correct' : 'wrong');
+  document.getElementById('qg-next').classList.add('show');
+}
+
+function nextQuizQ() {
+  _qzIdx++;
+  _qzAnswered = false;
+  renderQuizQuestion();
+}
+
+function renderQuizResult() {
+  const wrap = document.getElementById('quiz-game-wrap');
+  const pct = Math.round(_qzScore / QUIZ_QS.length * 100);
+  const msgs = [
+    'Keep building those LEGO skills! Every expert started somewhere.',
+    'Not bad! A few more deep dives — keep going!',
+    'Solid AFOL knowledge! You clearly love your bricks.',
+    'Impressive! You know your LEGO history and techniques.',
+    'Perfect score! You are a true AFOL master. 🏆'
+  ];
+  const msg = msgs[Math.floor(_qzScore / QUIZ_QS.length * (msgs.length - 0.01))];
+  wrap.innerHTML = `
+    <div class="qg-result">
+      <div class="qg-result-score">${_qzScore}</div>
+      <div class="qg-result-label">out of ${QUIZ_QS.length} correct · ${pct}%</div>
+      <div class="qg-result-msg">${msg}</div>
+      <button class="qg-restart" onclick="initQuizGame()">🔄 Play Again</button>
+    </div>`;
+  saveScore('quiz', _qzScore * 10);
+}
+
+// ═══════════════════════ COLOUR MATCH GAME ═══════════════════════
+const LEGO_COLOURS = [
+  {name:'Bright Red',        hex:'#E3000B', dark:'#8b0000'},
+  {name:'Bright Yellow',     hex:'#FFD700', dark:'#a07800'},
+  {name:'Bright Blue',       hex:'#006CB7', dark:'#003d6b'},
+  {name:'Bright Green',      hex:'#00A650', dark:'#004d25'},
+  {name:'Bright Orange',     hex:'#FF6B00', dark:'#8b3a00'},
+  {name:'Black',             hex:'#1A1A1A', dark:'#000'},
+  {name:'White',             hex:'#F5F5F0', dark:'#ccc'},
+  {name:'Dark Red',          hex:'#8B0000', dark:'#4a0000'},
+  {name:'Dark Blue',         hex:'#003580', dark:'#001a40'},
+  {name:'Dark Green',        hex:'#004B27', dark:'#002010'},
+  {name:'Medium Blue',       hex:'#5A93C5', dark:'#2a5a8a'},
+  {name:'Tan',               hex:'#D4B896', dark:'#9a7a5a'},
+  {name:'Dark Tan',          hex:'#9C8151', dark:'#5a4a2a'},
+  {name:'Light Bluish Gray', hex:'#A0B0BC', dark:'#606e78'},
+  {name:'Dark Bluish Gray',  hex:'#646E6E', dark:'#333c3c'},
+  {name:'Sand Green',        hex:'#708E7C', dark:'#3a5040'},
+  {name:'Dark Purple',       hex:'#441A91', dark:'#220d48'},
+  {name:'Lavender',          hex:'#C9C4E7', dark:'#7a70b0'},
+  {name:'Magenta',           hex:'#C4006A', dark:'#7a0040'},
+  {name:'Lime Green',        hex:'#A5CA18', dark:'#5a7000'},
+  {name:'Bright Pink',       hex:'#FF9ECD', dark:'#c05080'},
+  {name:'Aqua',              hex:'#ADC3C0', dark:'#5a8080'},
+  {name:'Reddish Brown',     hex:'#82422A', dark:'#4a2010'},
+  {name:'Dark Orange',       hex:'#A05B10', dark:'#503000'},
+];
+
+// ── STATE ──
+let _bcTimer = null, _bcScore = 0, _bcTimeLeft = 45, _bcAnswered = false;
+let _bcTarget = null, _bcStreak = 0, _bcBestStreak = 0, _bcLives = 3;
+let _bcMode = null;         // 'nameIt' | 'matchIt'
+let _bcDuration = 45;
+let _bcCorrect = 0, _bcWrong = 0, _bcTotal = 0;
+
+// ── MODE SELECT ──
+function initColourGame() {
+  if (_bcTimer) clearInterval(_bcTimer);
+  const wrap = document.getElementById('colour-game-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = `
+    <div class="bc-mode-screen">
+      <div class="bc-mode-title">🎨 Colour Match</div>
+      <div class="bc-mode-sub">Choose your challenge</div>
+      <div class="bc-modes">
+        <div class="bc-mode-card" onclick="startColourMode('nameIt')">
+          <span class="bc-mode-icon">🟥</span>
+          <div class="bc-mode-name">Name It!</div>
+          <div class="bc-mode-desc">See a colour brick — pick the correct LEGO® name from 4 options. 45 seconds. 3 lives.</div>
+        </div>
+        <div class="bc-mode-card" onclick="startColourMode('matchIt')">
+          <div class="bc-mode-badge">Hard</div>
+          <span class="bc-mode-icon">🔤</span>
+          <div class="bc-mode-name">Match It!</div>
+          <div class="bc-mode-desc">See the colour name — pick the correct brick from 4 colour options. 45 seconds. 3 lives.</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function startColourMode(mode) {
+  _bcMode = mode;
+  _bcScore = 0; _bcTimeLeft = _bcDuration; _bcAnswered = false;
+  _bcStreak = 0; _bcBestStreak = 0; _bcLives = 3;
+  _bcCorrect = 0; _bcWrong = 0; _bcTotal = 0;
+  renderColourRound();
+  startColourTimer();
+}
+
+// ── TIMER ──
+function startColourTimer() {
+  if (_bcTimer) clearInterval(_bcTimer);
+  _bcTimer = setInterval(() => {
+    _bcTimeLeft--;
+    const fill  = document.getElementById('bc-tf');
+    const num   = document.getElementById('bc-tn');
+    if (!fill || !num) return;
+    const pct = _bcTimeLeft / _bcDuration * 100;
+    fill.style.width = pct + '%';
+    fill.style.background = pct > 50 ? '#00A650' : pct > 25 ? '#FFD700' : '#E3000B';
+    num.textContent = _bcTimeLeft;
+    num.className = 'bc-hud-timer-num' + (_bcTimeLeft <= 10 ? ' warn' : '');
+    if (_bcTimeLeft <= 0) { clearInterval(_bcTimer); renderColourResult(); }
+  }, 1000);
+}
+
+// ── RENDER ROUND ──
+function renderColourRound() {
+  const wrap = document.getElementById('colour-game-wrap');
+  if (!wrap) return;
+
+  // Pick target + 3 distractors (ensure all 4 are unique)
+  const pool = [...LEGO_COLOURS].sort(() => Math.random() - 0.5);
+  _bcTarget = pool[0];
+  const opts = pool.slice(0, 4).sort(() => Math.random() - 0.5);
+
+  const livesHtml = [0,1,2].map(i => `<span class="bc-heart${i >= _bcLives ? ' lost' : ''}">❤️</span>`).join('');
+  const streakDisplay = _bcStreak >= 3 ? `🔥 ${_bcStreak}x` : _bcStreak >= 1 ? `⚡ ${_bcStreak}x` : '';
+
+  // HUD
+  const hud = `
+    <div class="bc-hud">
+      <div class="bc-hud-score">${_bcScore}<span>Score</span></div>
+      <div class="bc-hud-timer-wrap">
+        <div class="bc-hud-timer-num" id="bc-tn">${_bcTimeLeft}</div>
+        <div class="bc-hud-timer-track"><div class="bc-hud-timer-fill" id="bc-tf" style="width:${_bcTimeLeft/_bcDuration*100}%;background:#00A650"></div></div>
+      </div>
+      <div class="bc-hud-streak">${streakDisplay ? `<div class="bc-streak-num">${streakDisplay}<span>Streak</span></div>` : `<div class="bc-lives">${livesHtml}</div>`}</div>
+    </div>`;
+
+  if (_bcMode === 'nameIt') {
+    // Show colour → pick name
+    wrap.innerHTML = hud + `
+      <div class="bc-play-area">
+        <div class="bc-mode-lbl">
+          <span class="bc-mode-lbl-text">🟥 Name It — what colour is this?</span>
+          <div class="bc-lives">${livesHtml}</div>
+        </div>
+        <div class="bc-show-colour" style="background:${_bcTarget.hex}">
+          <div class="bc-studs"><div class="bc-stud"></div><div class="bc-stud"></div><div class="bc-stud"></div><div class="bc-stud"></div></div>
+        </div>
+        <div class="bc-opts-names">
+          ${opts.map(c => `<button class="bc-opt-name" onclick="answerColour('${c.name}',this)">${c.name}</button>`).join('')}
+        </div>
+        <div class="bc-combo" id="bc-combo"></div>
+      </div>`;
+  } else {
+    // Show name → pick colour brick
+    wrap.innerHTML = hud + `
+      <div class="bc-play-area">
+        <div class="bc-mode-lbl">
+          <span class="bc-mode-lbl-text">🔤 Match It — find this colour</span>
+          <div class="bc-lives">${livesHtml}</div>
+        </div>
+        <div class="bc-show-name">${_bcTarget.name}</div>
+        <div class="bc-opts-colours">
+          ${opts.map(c => `<div class="bc-opt-col" style="background:${c.hex};border-bottom:5px solid ${c.dark}" onclick="answerColour('${c.name}',this)" data-name="${c.name}"></div>`).join('')}
+        </div>
+        <div class="bc-combo" id="bc-combo"></div>
+      </div>`;
+  }
+  _bcAnswered = false;
+}
+
+// ── ANSWER ──
+function answerColour(name, el) {
+  if (_bcAnswered || _bcTimeLeft <= 0) return;
+  _bcAnswered = true;
+  _bcTotal++;
+
+  const correct = name === _bcTarget.name;
+  const optSel  = _bcMode === 'nameIt' ? '.bc-opt-name' : '.bc-opt-col';
+  document.querySelectorAll(optSel).forEach(o => o.disabled = true);
+
+  if (correct) {
+    _bcCorrect++;
+    _bcStreak++;
+    if (_bcStreak > _bcBestStreak) _bcBestStreak = _bcStreak;
+    // Bonus points for streaks
+    const bonus = _bcStreak >= 5 ? 3 : _bcStreak >= 3 ? 2 : 1;
+    _bcScore += bonus;
+    el.classList.add('correct');
+    // Combo popup
+    const combo = document.getElementById('bc-combo');
+    if (combo) {
+      const msg = _bcStreak >= 8 ? `🔥 UNSTOPPABLE! +${bonus}` :
+                  _bcStreak >= 5 ? `⚡ ON FIRE! +${bonus}` :
+                  _bcStreak >= 3 ? `✨ COMBO x${_bcStreak}! +${bonus}` : `✅ +${bonus}`;
+      combo.innerHTML = `<span class="bc-combo-pop" style="color:${_bcStreak>=5?'#FF6B00':_bcStreak>=3?'#FFD700':'#00A650'}">${msg}</span>`;
+    }
+    // Play audio success
+    bcPlayTone(880, 0.08, 0.06);
+    setTimeout(() => bcPlayTone(1047, 0.06, 0.08), 60);
+  } else {
+    _bcWrong++;
+    _bcStreak = 0;
+    _bcLives--;
+    el.classList.add('wrong');
+    // Highlight correct answer
+    document.querySelectorAll(optSel).forEach(o => {
+      const n = o.textContent?.trim() || o.dataset.name;
+      if (n === _bcTarget.name) o.classList.add('correct');
+    });
+    const combo = document.getElementById('bc-combo');
+    if (combo) combo.innerHTML = `<span class="bc-combo-pop" style="color:var(--red)">❌ ${_bcTarget.name}</span>`;
+    bcPlayTone(200, 0.15, 0.12);
+    if (_bcLives <= 0) {
+      clearInterval(_bcTimer);
+      setTimeout(renderColourResult, 800);
+      return;
     }
   }
-  function boom() {
-    sndDeath();
-    for(let i=0;i<28;i++) pts.push({x:P.x+18,y:P.y+P.h*.5,vx:(Math.random()-.5)*14,vy:(Math.random()-.5)*12-3,l:1,d:.028,c:LCOLS[Math.floor(Math.random()*LCOLS.length)],r:Math.random()*7+3});
+
+  const delay = correct ? 650 : 1000;
+  setTimeout(() => { if (_bcTimeLeft > 0) renderColourRound(); }, delay);
+}
+
+// ── TINY AUDIO ──
+let _bcAudio = null;
+function bcPlayTone(freq, vol, dur) {
+  try {
+    if (!_bcAudio) _bcAudio = new (window.AudioContext || window.webkitAudioContext)();
+    const o = _bcAudio.createOscillator(), g = _bcAudio.createGain();
+    o.connect(g); g.connect(_bcAudio.destination);
+    o.type = 'square'; o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, _bcAudio.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, _bcAudio.currentTime + dur);
+    o.start(); o.stop(_bcAudio.currentTime + dur);
+  } catch(e) {}
+}
+
+// ── RESULT ──
+function renderColourResult() {
+  if (_bcTimer) clearInterval(_bcTimer);
+  const wrap = document.getElementById('colour-game-wrap');
+  const acc   = _bcTotal > 0 ? Math.round(_bcCorrect / _bcTotal * 100) : 0;
+  const grade = acc >= 90 ? '🏆' : acc >= 70 ? '⭐' : acc >= 50 ? '👍' : '💪';
+  const msgs  = [
+    'Keep practising — you\'ll know every colour soon!',
+    'Getting there! Study up on those greys and browns.',
+    'Solid colour knowledge for an AFOL!',
+    'Impressive! You really know your brick palette.',
+    'Perfect colour mastery. Are you a LEGO® designer?!'
+  ];
+  const msg = msgs[Math.min(Math.floor(acc / 25), msgs.length - 1)];
+  wrap.innerHTML = `
+    <div class="bc-result">
+      <div class="bc-result-grade">${grade}</div>
+      <div class="bc-result-score">${_bcScore} pts</div>
+      <div class="bc-result-label">${_bcMode === 'nameIt' ? '🟥 Name It' : '🔤 Match It'} · ${acc}% accuracy</div>
+      <div class="bc-result-stats">
+        <div class="bc-result-stat"><strong>${_bcCorrect}</strong><span>Correct</span></div>
+        <div class="bc-result-stat"><strong>${_bcWrong}</strong><span>Wrong</span></div>
+        <div class="bc-result-stat"><strong>${_bcBestStreak}x</strong><span>Best streak</span></div>
+      </div>
+      <div class="bc-result-msg">${msg}</div>
+      <div class="bc-result-btns">
+        <button class="bc-restart" onclick="startColourMode('${_bcMode}')">🔄 Play Again</button>
+        <button class="bc-change-mode" onclick="initColourGame()">← Change Mode</button>
+      </div>
+    </div>`;
+  saveScore('colour', _bcScore);
+}
+
+function renderColourResult() {
+  if (_bcTimer) clearInterval(_bcTimer);
+  const wrap = document.getElementById('colour-game-wrap');
+  const msgs = [
+    'Keep studying those colour charts!', 'Not bad — you know your basics!',
+    'Solid colour knowledge!', 'Impressive — a true brick colourist!', 'Perfect! You are a LEGO colour scientist!'
+  ];
+  const msg = msgs[Math.min(Math.floor(_bcScore / 5), msgs.length-1)];
+  wrap.innerHTML = `
+    <div class="bc-result">
+      <div class="bc-result-score">${_bcScore}</div>
+      <div class="bc-result-label">colours matched in 30 seconds</div>
+      <div class="bc-result-msg">${msg}</div>
+      <button class="bc-restart" onclick="initColourGame()">🔄 Play Again</button>
+    </div>`;
+  saveScore('colour', _bcScore * 10);
+}
+
+// ═══════════════════════ FLAPPY BRICK ═══════════════════════
+let _fbInited = false;
+function initFlappyBrick() {
+  if (_fbInited) return;
+  _fbInited = true;
+
+  const canvas = document.getElementById('fb-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = 800, H = 400;
+  let running = false, started = false;
+  let brick = { x:140, y:H/2, vy:0 };
+  let pipes = [], score = 0, best = 0, frameId = null;
+  let fbMuted = false;
+  let audioCtx2 = null;
+  function getAC(){ if(!audioCtx2) audioCtx2 = new(window.AudioContext||window.webkitAudioContext)(); return audioCtx2; }
+  function playNote(freq,dur,vol=0.15,type='square'){
+    if(fbMuted) return;
+    try{const ac=getAC(),o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);o.start();o.stop(ac.currentTime+dur);}catch(e){}
   }
+  document.getElementById('fb-mute-btn').onclick = ()=>{ fbMuted=!fbMuted; document.getElementById('fb-mute-btn').textContent=fbMuted?'🔇':'🔊'; };
 
-  function mkO() {
-    const t=Math.random()<.45?'s':Math.random()<.55?'d':'w';
-    const c=LCOLS[Math.floor(Math.random()*6)], c2=LCOLS[Math.floor(Math.random()*6)], bh=28;
-    if(t==='s') return{x:CW+20,y:PLAYER_GY+P.h-bh,  w:48,h:bh,   type:t,c,c2,n:2};
-    if(t==='d') return{x:CW+20,y:PLAYER_GY+P.h-bh*2,w:44,h:bh*2, type:t,c,c2,n:2,bh};
-    return              {x:CW+20,y:PLAYER_GY+P.h-24, w:88,h:24,   type:t,c,c2,n:5};
-  }
+  const GRAVITY = 0.45, FLAP = -8.5, PIPE_W = 60, GAP = 130, PIPE_SPEED = 3;
+  const COLORS = ['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];
 
-  function initGT(){ gt=[];let x=0;while(x<CW+70){gt.push({x,c:LCOLS[Math.floor(Math.random()*5)],w:58});x+=58;} }
-  function initCL(){ cl=[];for(let i=0;i<6;i++)cl.push({x:Math.random()*CW,y:20+Math.random()*70,w:55+Math.random()*80,h:18+Math.random()*10,sp:.35+Math.random()*.35,a:.04+Math.random()*.055}); }
+  let flapAnim = 0; // wing flap animation counter
 
-  function dBrick(x,y,w,h,col,n) {
-    const dc=dkc(col);
-    ctx.fillStyle=col; ctx.beginPath(); ctx.roundRect(x,y,w,h,4); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.22)'; ctx.beginPath(); ctx.roundRect(x+1,y+1,w-2,h*.32,[4,4,0,0]); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.14)'; ctx.fillRect(x+2,y+3,3,h-6);
-    ctx.fillStyle=dc; ctx.beginPath(); ctx.roundRect(x,y+h*.76,w,h*.24,[0,0,4,4]); ctx.fill();
-    ctx.strokeStyle=dc; ctx.lineWidth=1; ctx.beginPath(); ctx.roundRect(x+.5,y+.5,w-1,h-1,4); ctx.stroke();
-    const gap=w/(n+1);
-    for(let i=0;i<n;i++){
-      const sx=x+gap*(i+1),sy=y-6;
-      ctx.fillStyle=col; ctx.beginPath(); ctx.ellipse(sx,sy+3,6,4.5,0,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='rgba(255,255,255,.32)'; ctx.beginPath(); ctx.ellipse(sx,sy+1.5,6,2.5,0,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle=dc; ctx.beginPath(); ctx.ellipse(sx,sy+5,6,1.5,0,0,Math.PI*2); ctx.fill();
-      ctx.strokeStyle=dc; ctx.lineWidth=.8; ctx.beginPath(); ctx.ellipse(sx,sy+3,6,4.5,0,0,Math.PI*2); ctx.stroke();
-    }
-  }
+  function drawBrick(x, y, angle) {
+    flapAnim += 0.22;
+    const flapOffset = Math.sin(flapAnim) * 10; // wing beat amplitude
 
-  function dFig(x,y,dead) {
-    const wc=P.wc, bob=P.og?Math.sin(wc*2)*1.8:0, by=y+bob, ls=Math.sin(wc)*13;
     ctx.save();
-    if(dead){ ctx.translate(x+P.w/2,by+P.h*.5); ctx.rotate(Math.PI*.5); ctx.translate(-P.w/2,-P.h*.5); dParts(0,0,0); }
-    else dParts(x,by,ls);
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+
+    // ── LEFT WING (behind brick) ──
+    ctx.save();
+    ctx.translate(-22, 2);
+    // Wing root to tip with feathered LEGO-plate look
+    const lWingAngle = -0.3 + Math.sin(flapAnim) * 0.55;
+    ctx.rotate(lWingAngle);
+    // Outer wing panel (lightest yellow)
+    ctx.fillStyle = '#FFE566';
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(-28, -18, -42, -6, -36, 14);
+    ctx.bezierCurveTo(-28, 22, -8, 16, 0, 8);
+    ctx.closePath();
+    ctx.fill();
+    // Mid wing panel
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    ctx.moveTo(0, 2);
+    ctx.bezierCurveTo(-18, -8, -30, 0, -26, 12);
+    ctx.bezierCurveTo(-20, 20, -6, 14, 0, 8);
+    ctx.closePath();
+    ctx.fill();
+    // Inner wing panel (darker)
+    ctx.fillStyle = '#F0C030';
+    ctx.beginPath();
+    ctx.moveTo(0, 4);
+    ctx.bezierCurveTo(-8, 0, -16, 6, -14, 12);
+    ctx.bezierCurveTo(-10, 16, -2, 12, 0, 8);
+    ctx.closePath();
+    ctx.fill();
+    // Wing feather lines
+    ctx.strokeStyle = '#b89a00'; ctx.lineWidth = 1.2; ctx.lineCap = 'round';
+    [[-5,-10,-30,2],[-4,-4,-26,10],[-3,2,-20,14]].forEach(([x1,y1,x2,y2])=>{
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    });
+    // LEGO stud on wing (detail)
+    ctx.fillStyle = '#FFE566';
+    ctx.beginPath(); ctx.ellipse(-18, 2, 5, 3.5, -0.3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.beginPath(); ctx.ellipse(-19, 1, 2.5, 1.5, -0.3, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+
+    // ── RIGHT WING (behind brick) ──
+    ctx.save();
+    ctx.translate(22, 2);
+    const rWingAngle = 0.3 - Math.sin(flapAnim) * 0.55;
+    ctx.rotate(rWingAngle);
+    ctx.fillStyle = '#FFE566';
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(28, -18, 42, -6, 36, 14);
+    ctx.bezierCurveTo(28, 22, 8, 16, 0, 8);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    ctx.moveTo(0, 2);
+    ctx.bezierCurveTo(18, -8, 30, 0, 26, 12);
+    ctx.bezierCurveTo(20, 20, 6, 14, 0, 8);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#F0C030';
+    ctx.beginPath();
+    ctx.moveTo(0, 4);
+    ctx.bezierCurveTo(8, 0, 16, 6, 14, 12);
+    ctx.bezierCurveTo(10, 16, 2, 12, 0, 8);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#b89a00'; ctx.lineWidth = 1.2; ctx.lineCap = 'round';
+    [[5,-10,30,2],[4,-4,26,10],[3,2,20,14]].forEach(([x1,y1,x2,y2])=>{
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    });
+    ctx.fillStyle = '#FFE566';
+    ctx.beginPath(); ctx.ellipse(18, 2, 5, 3.5, 0.3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.beginPath(); ctx.ellipse(17, 1, 2.5, 1.5, 0.3, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+
+    // ── BRICK BODY ──
+    // Shadow under brick
+    ctx.fillStyle = 'rgba(0,0,0,0.18)';
+    ctx.beginPath(); ctx.ellipse(0, 16, 22, 5, 0, 0, Math.PI*2); ctx.fill();
+
+    // Main body
+    ctx.fillStyle = '#E3000B';
+    ctx.beginPath(); ctx.roundRect(-20, -8, 40, 22, 4); ctx.fill();
+    // Top highlight
+    ctx.fillStyle = 'rgba(255,255,255,0.22)';
+    ctx.beginPath(); ctx.roundRect(-20, -8, 40, 7, [4,4,0,0]); ctx.fill();
+    // Left highlight strip
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    ctx.fillRect(-19, -7, 4, 20);
+    // Bottom shadow strip
+    ctx.fillStyle = 'rgba(0,0,0,0.22)';
+    ctx.beginPath(); ctx.roundRect(-20, 10, 40, 4, [0,0,4,4]); ctx.fill();
+
+    // ── STUDS (3 on top) ──
+    [-12, 0, 12].forEach(sx => {
+      // Stud cylinder
+      ctx.fillStyle = '#cc0008';
+      ctx.beginPath(); ctx.ellipse(sx, -8, 8, 5.5, 0, 0, Math.PI*2); ctx.fill();
+      // Stud side
+      ctx.fillStyle = '#a80006';
+      ctx.fillRect(sx-8, -8, 16, 5);
+      ctx.fillStyle = '#cc0008';
+      ctx.beginPath(); ctx.ellipse(sx, -3, 8, 5.5, 0, 0, Math.PI*2); ctx.fill();
+      // Stud top shine
+      ctx.fillStyle = 'rgba(255,255,255,0.3)';
+      ctx.beginPath(); ctx.ellipse(sx-3, -9, 3.5, 2, 0, 0, Math.PI*2); ctx.fill();
+    });
+
+    // ── FACE (cute eyes on front) ──
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.ellipse(-7, 2, 4, 4.5, 0, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(7, 2, 4, 4.5, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#1a1a1a';
+    ctx.beginPath(); ctx.ellipse(-7, 3, 2.5, 3, 0, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(7, 3, 2.5, 3, 0, 0, Math.PI*2); ctx.fill();
+    // Eye shine
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.ellipse(-8, 1.5, 1, 1.2, 0, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(6, 1.5, 1, 1.2, 0, 0, Math.PI*2); ctx.fill();
+    // Smile
+    ctx.strokeStyle = '#8b0000'; ctx.lineWidth = 1.5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.arc(0, 4, 5, 0.2, Math.PI - 0.2); ctx.stroke();
+
     ctx.restore();
   }
 
-  function dParts(x,y,ls) {
-    ctx.fillStyle='rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(x+P.w/2,PLAYER_GY+P.h+3,20,5,0,0,Math.PI*2); ctx.fill();
-    ctx.save(); ctx.translate(x+10,y+46); ctx.rotate(ls*Math.PI/180);
-    ctx.fillStyle='#1a1a2e'; ctx.fillRect(-6,0,12,14); ctx.fillStyle='#141424'; ctx.fillRect(-5,13,11,10);
-    ctx.fillStyle='#0a0a12'; ctx.beginPath(); ctx.roundRect(-7,21,14,7,3); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.translate(x+26,y+46); ctx.rotate(-ls*Math.PI/180);
-    ctx.fillStyle='#1a1a2e'; ctx.fillRect(-6,0,12,14); ctx.fillStyle='#141424'; ctx.fillRect(-5,13,11,10);
-    ctx.fillStyle='#0a0a12'; ctx.beginPath(); ctx.roundRect(-7,21,14,7,3); ctx.fill(); ctx.restore();
-    ctx.fillStyle='#0f0f22'; ctx.beginPath(); ctx.roundRect(x+3,y+44,30,7,3); ctx.fill();
-    ctx.fillStyle='#E3000B'; ctx.beginPath(); ctx.roundRect(x+3,y+22,30,24,4); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.22)'; ctx.beginPath(); ctx.roundRect(x+3,y+22,30,7,[4,4,0,0]); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.12)'; ctx.fillRect(x+4,y+24,4,18);
-    ctx.fillStyle=dkc('#E3000B'); ctx.beginPath(); ctx.roundRect(x+3,y+40,30,6,[0,0,4,4]); ctx.fill();
-    ctx.fillStyle='#FFD700'; ctx.beginPath(); ctx.roundRect(x+10,y+28,16,5,3); ctx.fill();
-    ctx.fillStyle='#E3000B'; ctx.beginPath(); ctx.arc(x+18,y+30.5,2.5,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.18)'; ctx.beginPath(); ctx.arc(x+8,y+25,2,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(x+28,y+25,2,0,Math.PI*2); ctx.fill();
-    ctx.save(); ctx.translate(x+3,y+25); ctx.rotate((-36+ls*.5)*Math.PI/180);
-    ctx.fillStyle='#E3000B'; ctx.beginPath(); ctx.roundRect(-8,0,8,18,4); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.translate(x+33,y+25); ctx.rotate((36-ls*.5)*Math.PI/180);
-    ctx.fillStyle='#E3000B'; ctx.beginPath(); ctx.roundRect(0,0,8,18,4); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.translate(x+3,y+25); ctx.rotate((-36+ls*.5)*Math.PI/180);
-    ctx.fillStyle='#F0C030'; ctx.beginPath(); ctx.arc(-4,20,6,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.3)'; ctx.beginPath(); ctx.arc(-6,18,3,0,Math.PI*2); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.translate(x+33,y+25); ctx.rotate((36-ls*.5)*Math.PI/180);
-    ctx.fillStyle='#F0C030'; ctx.beginPath(); ctx.arc(4,20,6,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.3)'; ctx.beginPath(); ctx.arc(2,18,3,0,Math.PI*2); ctx.fill(); ctx.restore();
-    ctx.fillStyle='#F0C030'; ctx.beginPath(); ctx.roundRect(x+14,y+18,8,6,2); ctx.fill();
-    ctx.fillStyle='#F0C030'; ctx.beginPath(); ctx.roundRect(x+6,y+4,24,16,5); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.28)'; ctx.beginPath(); ctx.roundRect(x+6,y+4,24,5,[5,5,0,0]); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.18)'; ctx.fillRect(x+7,y+6,4,11);
-    ctx.fillStyle=dkc('#F0C030'); ctx.beginPath(); ctx.roundRect(x+6,y+16,24,4,[0,0,5,5]); ctx.fill();
-    ctx.fillStyle='#1a1a1a'; ctx.beginPath(); ctx.arc(x+13,y+11,3,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(x+23,y+11,3,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(x+14,y+9.5,1.2,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(x+24,y+9.5,1.2,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle=dkc('#F0C030'); ctx.lineWidth=2; ctx.lineCap='round'; ctx.beginPath(); ctx.arc(x+18,y+14,5,.2,Math.PI-.2); ctx.stroke();
-    ctx.fillStyle='#F0C030'; ctx.beginPath(); ctx.ellipse(x+18,y+3,6.5,4,0,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.38)'; ctx.beginPath(); ctx.ellipse(x+17,y+2,4,2,0,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle=dkc('#F0C030'); ctx.lineWidth=.8; ctx.beginPath(); ctx.ellipse(x+18,y+3,6.5,4,0,0,Math.PI*2); ctx.stroke();
-    ctx.fillStyle='#FFD700'; ctx.beginPath(); ctx.roundRect(x+5,y-4,26,10,5); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.28)'; ctx.beginPath(); ctx.roundRect(x+5,y-4,26,4,[5,5,0,0]); ctx.fill();
-    ctx.fillStyle=dkc('#FFD700'); ctx.beginPath(); ctx.roundRect(x+5,y+4,26,2,0); ctx.fill();
-    ctx.fillStyle='#d4aa00'; ctx.beginPath(); ctx.moveTo(x+3,y+6); ctx.lineTo(x+33,y+6); ctx.lineTo(x+31,y+10); ctx.lineTo(x+5,y+10); ctx.closePath(); ctx.fill();
-    ctx.fillStyle='#FFD700'; ctx.beginPath(); ctx.ellipse(x+18,y-5,6.5,4,0,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,.38)'; ctx.beginPath(); ctx.ellipse(x+17,y-6,4,2,0,0,Math.PI*2); ctx.fill();
-  }
+  // LEGO background elements (drawn once, scrolled)
+  let bgOffset = 0;
+  const BG_STUDS = [];
+  for(let i=0;i<30;i++) BG_STUDS.push({
+    x: Math.random()*W, y: Math.random()*H,
+    r: 6+Math.random()*12, col: ['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'][Math.floor(Math.random()*6)],
+    speed: 0.3+Math.random()*0.5
+  });
+  const CLOUDS = [
+    {x:100,y:60,w:90,h:28},
+    {x:340,y:40,w:70,h:22},
+    {x:580,y:80,w:110,h:32},
+    {x:720,y:55,w:80,h:24},
+  ];
+  let cloudOffset = 0;
 
-  function dObs(o) {
-    if(o.type==='d'){ dBrick(o.x,o.y+o.bh,o.w,o.bh,o.c2,2); dBrick(o.x+3,o.y,o.w-6,o.bh,o.c,2); }
-    else dBrick(o.x,o.y,o.w,o.h,o.c,o.n);
-  }
-  function dGround(){ const gy=FLOOR_Y; ctx.fillStyle='#1e1e1e'; ctx.fillRect(0,gy,CW,CH-gy); ctx.fillStyle='#2a2a2a'; ctx.fillRect(0,gy,CW,4); gt.forEach(t=>dBrick(t.x,gy+4,t.w-3,22,t.c,2)); }
-  function dClouds(){ cl.forEach(c=>{ ctx.fillStyle=`rgba(255,255,255,${c.a})`; ctx.beginPath(); ctx.roundRect(c.x,c.y,c.w,c.h,c.h/2); ctx.fill(); ctx.beginPath(); ctx.roundRect(c.x+10,c.y-c.h*.6,c.w*.6,c.h*.9,c.h*.45); ctx.fill(); }); }
-  function hitTest(o){ const p=8; return(P.x+p<o.x+o.w)&&(P.x+P.w-p>o.x)&&(P.y+p<o.y+o.h)&&(P.y+P.h-p>o.y); }
+  function drawLegoBackground() {
+    // Sky gradient
+    const grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0,'#0a1a3a');
+    grad.addColorStop(0.6,'#1a2d5a');
+    grad.addColorStop(1,'#0d1f3a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,W,H);
 
-  function upHUD() {
-    document.getElementById('g-score-el').textContent = Math.floor(score);
-    document.getElementById('g-best-el').textContent  = 'BEST: '+Math.floor(bestScore);
-    const lv = Math.max(1,Math.floor((spd-5)/1.5)+1);
-    document.getElementById('g-level-el').textContent  = 'LVL '+lv;
-    document.getElementById('g-sp-fill').style.width   = Math.min(100,((spd-5)/10)*100)+'%';
-    document.getElementById('g-sp-lbl-r').textContent  = 'LVL '+lv;
-  }
+    // Stars (tiny studs in sky)
+    BG_STUDS.forEach(s=>{
+      s.x -= s.speed;
+      if(s.x < -s.r*2) s.x = W + s.r;
+      ctx.globalAlpha = 0.12;
+      ctx.fillStyle = s.col;
+      ctx.beginPath(); ctx.ellipse(s.x, s.y, s.r, s.r*0.65, 0, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.25)';
+      ctx.beginPath(); ctx.ellipse(s.x-s.r*0.3, s.y-s.r*0.25, s.r*0.4, s.r*0.28, 0, 0, Math.PI*2); ctx.fill();
+      ctx.globalAlpha = 1;
+    });
 
-  let lastMilestone = 0, stepFrame = 0;
-
-  function loop() {
-    if(!running) return;
-    raf = requestAnimationFrame(loop); fn++;
-    spd = Math.min(18, 5+(fn/700)*1.5);
-    ctx.fillStyle='#1a1a2e'; ctx.fillRect(0,0,CW,CH);
-    ctx.fillStyle='rgba(255,255,255,.035)';
-    for(let i=0;i<10;i++){ ctx.beginPath(); ctx.arc((i*157+fn*.15)%CW,(i*83+10)%(FLOOR_Y-20),1,0,Math.PI*2); ctx.fill(); }
-    dClouds(); cl.forEach(c=>{ c.x-=c.sp; if(c.x+c.w<0) c.x=CW+5; });
-    dGround(); gt.forEach(t=>{ t.x-=spd*.48; if(t.x+t.w<0){const l=gt.reduce((a,b)=>b.x>a.x?b:a); t.x=l.x+t.w; t.c=LCOLS[Math.floor(Math.random()*5)];} });
-    nextO-=spd; if(nextO<=0){ obs.push(mkO()); nextO=Math.max(210,400-spd*12)+Math.random()*180; }
-    obs.forEach(o=>{ o.x-=spd; dObs(o); }); obs=obs.filter(o=>o.x+o.w>-20);
-    if(!P.dead){ P.vy+=.72; P.y+=P.vy; if(P.y>=PLAYER_GY){P.y=PLAYER_GY;P.vy=0;P.jc=0;P.og=true;}else P.og=false; if(P.og)P.wc+=spd*.042; }
-    else { P.vy+=.4; P.y+=P.vy; }
-    dFig(P.x,P.y,P.dead);
-    pts.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.vy+=.18; p.l-=p.d; ctx.globalAlpha=Math.max(0,p.l); ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
-    ctx.globalAlpha=1; pts=pts.filter(p=>p.l>0);
-    if(!P.dead){ for(const o of obs){ if(hitTest(o)){P.dead=true;P.vy=-9;running=false;boom();setTimeout(showGO,900);break;} } score+=spd*.024; if(score>bestScore)bestScore=score;
-      // milestone every 100 points
-      const ms = Math.floor(score/100);
-      if(ms > lastMilestone){ lastMilestone=ms; sndMilestone(); }
-      // footstep click
-      if(P.og){ stepFrame++; if(stepFrame%18===0) sndStep(); }
+    // LEGO baseplate mid-distance
+    ctx.globalAlpha = 0.07;
+    ctx.fillStyle = '#00A650';
+    ctx.fillRect(0, H*0.45, W, H*0.1);
+    for(let gx=0;gx<W;gx+=32){
+      for(let gy=0;gy<H*0.1;gy+=20){
+        ctx.fillStyle='rgba(0,0,0,0.5)';
+        ctx.beginPath(); ctx.ellipse(gx+8, H*0.45+gy+8, 5, 3.5, 0, 0, Math.PI*2); ctx.fill();
+      }
     }
-    upHUD();
+    ctx.globalAlpha = 1;
+
+    // LEGO brick clouds
+    cloudOffset -= 0.6;
+    CLOUDS.forEach(c=>{
+      const cx = (c.x + cloudOffset % W + W) % W;
+      ctx.globalAlpha = 0.13;
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.roundRect(cx, c.y, c.w, c.h, c.h/2); ctx.fill();
+      // Studs on cloud (LEGO detail)
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      for(let s=0;s<Math.floor(c.w/22);s++){
+        ctx.beginPath(); ctx.ellipse(cx+12+s*22, c.y, 8, 5, 0, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    });
+
+    // Ground — green LEGO baseplate
+    const gY = H - 36;
+    ctx.fillStyle = '#1a7a2a';
+    ctx.fillRect(0, gY, W, 36);
+    ctx.fillStyle = '#1d8a30';
+    ctx.fillRect(0, gY, W, 6);
+    // Stud row on ground
+    ctx.fillStyle = '#1a7a2a';
+    for(let gx=0;gx<W;gx+=32){
+      ctx.beginPath(); ctx.ellipse(gx+16, gY, 11, 7, 0, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      ctx.beginPath(); ctx.ellipse(gx+13, gY-2, 4, 2.5, 0, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = '#1a7a2a';
+    }
   }
 
-  window.startBrickRunner = function() {
-    score=0; fn=0; spd=5; obs=[];pts=[];nextO=460; lastMilestone=0; stepFrame=0;
-    P.reset(); initGT(); initCL();
-    document.getElementById('g-overlay').classList.add('hidden');
-    running=true; if(raf)cancelAnimationFrame(raf);
-    requestAnimationFrame(loop);
+  function drawStudPipe(x, y, w, h, isTop) {
+    const col = COLORS[Math.floor(x/80)%COLORS.length];
+    ctx.fillStyle = col;
+    ctx.fillRect(x, y, w, h);
+    // Darker edge
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+    ctx.fillRect(x+w-6, y, 6, h);
+    ctx.fillRect(x, y, 6, h);
+    // Studs on end face
+    const studY = isTop ? y+h-18 : y+4;
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.roundRect(x-4, studY, w+8, 20, 3); ctx.fill();
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    ctx.fillRect(x-4, studY+14, w+8, 6);
+    const studCount = Math.floor(w/28);
+    for(let i=0;i<studCount;i++){
+      const sx = x + 14 + i*(w/studCount);
+      const sy = studY;
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.ellipse(sx, sy, 10, 7, 0, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.2)';
+      ctx.beginPath(); ctx.ellipse(sx-3, sy-2, 4, 3, 0, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  function spawnPipe() {
+    const gapY = 80 + Math.random() * (H - GAP - 160);
+    pipes.push({ x:W+10, gapY, scored:false, col: COLORS[Math.floor(Math.random()*COLORS.length)] });
+  }
+
+  function reset() {
+    brick = { x:140, y:H/2, vy:0 };
+    pipes = []; score = 0;
+    spawnPipe();
+    document.getElementById('fb-score-el').textContent = '0';
+  }
+
+  function flap() {
+    if(!running) return;
+    brick.vy = FLAP;
+    playNote(440,0.1,0.12,'square');
+  }
+
+  canvas.addEventListener('click', flap);
+  canvas.addEventListener('touchstart', e=>{ e.preventDefault(); flap(); }, {passive:false});
+  document.addEventListener('keydown', e=>{ if((e.code==='Space'||e.code==='ArrowUp')&&document.getElementById('area-flappy').classList.contains('open')) flap(); });
+
+  function gameLoop() {
+    if(!running) return;
+
+    // LEGO themed background
+    drawLegoBackground();
+
+    // Pipes
+    for(const p of pipes) {
+      p.x -= PIPE_SPEED;
+      drawStudPipe(p.x, 0, PIPE_W, p.gapY, true);
+      drawStudPipe(p.x, p.gapY+GAP, PIPE_W, H-p.gapY-GAP-36, false);
+      if(!p.scored && p.x+PIPE_W < brick.x) {
+        p.scored = true; score++;
+        document.getElementById('fb-score-el').textContent = score;
+        playNote(523,0.08,0.12,'square');
+        playNote(659,0.08,0.12,'square');
+      }
+    }
+    if(pipes.length===0 || pipes[pipes.length-1].x < W-260) spawnPipe();
+    pipes = pipes.filter(p=>p.x>-PIPE_W-10);
+
+    // Physics
+    brick.vy += GRAVITY;
+    brick.y += brick.vy;
+    const angle = Math.min(Math.max(brick.vy * 0.06, -0.4), 0.7);
+
+    drawBrick(brick.x, brick.y, angle);
+
+    // Collision
+    const bx=brick.x, by=brick.y;
+    if(by+14 >= H-36 || by-14 <= 0) { endFlappy(); return; }
+    for(const p of pipes){
+      if(bx+18>p.x && bx-18<p.x+PIPE_W){
+        if(by-12<p.gapY || by+12>p.gapY+GAP){ endFlappy(); return; }
+      }
+    }
+
+    // Score display
+    ctx.font = 'bold 32px Boogaloo, cursive';
+    ctx.fillStyle = 'rgba(255,215,0,0.9)';
+    ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+    ctx.lineWidth = 3;
+    ctx.textAlign = 'center';
+    ctx.strokeText(score, W/2, 44);
+    ctx.fillText(score, W/2, 44);
+    ctx.textAlign = 'left';
+
+    frameId = requestAnimationFrame(gameLoop);
+  }
+
+  function endFlappy() {
+    running = false;
+    if(score > best) best = score;
+    document.getElementById('fb-best-el').textContent = 'BEST: ' + best;
+    playNote(220,0.3,0.2,'sawtooth');
+    setTimeout(()=>playNote(180,0.4,0.2,'sawtooth'),150);
+    const box = document.getElementById('fb-score-box');
+    box.style.display = 'block';
+    document.getElementById('fb-ov-num').textContent = score;
+    document.getElementById('fb-ov-title').textContent = score===0 ? 'OUCH!' : score < 5 ? 'NOT BAD!' : score < 15 ? 'NICE!' : '🔥 AMAZING!';
+    document.getElementById('fb-ov-sub').textContent = 'Score: ' + score + (score > 0 ? ' pipes cleared!' : '');
+    document.getElementById('fb-play-btn').textContent = '🔄 PLAY AGAIN';
+    document.getElementById('fb-overlay').style.opacity = '1';
+    document.getElementById('fb-overlay').style.pointerEvents = 'all';
+    saveScore('flappy', score);
+  }
+
+  window.startFlappyBrick = function() {
+    document.getElementById('fb-overlay').style.opacity = '0';
+    document.getElementById('fb-overlay').style.pointerEvents = 'none';
+    if(frameId) cancelAnimationFrame(frameId);
+    reset();
+    running = true;
+    gameLoop();
   };
 
-  function showGO() {
-    document.getElementById('g-ov-title').textContent = 'GAME OVER';
-    document.getElementById('g-ov-sub').textContent   = 'Squashed by a brick!';
-    document.getElementById('g-score-box').style.display = 'block';
-    document.getElementById('g-ov-num').textContent   = Math.floor(score);
-    document.getElementById('g-ov-best').textContent  = score>=bestScore-1 ? '🏆 New best score!' : 'Best: '+Math.floor(bestScore);
-    document.getElementById('g-play-btn').textContent = '▶ PLAY AGAIN';
-    document.getElementById('g-overlay').classList.remove('hidden');
+  // Draw idle state
+  ctx.fillStyle = '#0a1628';
+  ctx.fillRect(0,0,W,H);
+  drawBrick(140, H/2, -0.2);
+}
+
+// ═══════════════════════ BRICK DROP (TETRIS) ═══════════════════════
+let _tdInited = false;
+function initBrickDrop() {
+  if(_tdInited) return;
+  _tdInited = true;
+
+  const canvas = document.getElementById('td-canvas');
+  const ctx = canvas.getContext('2d');
+  const nextCanvas = document.getElementById('td-next-canvas');
+  const nCtx = nextCanvas.getContext('2d');
+  const COLS=10, ROWS=20, BS=30;
+  let grid, piece, nextPiece, score, level, lines, running=false, tdMuted=false, dropTimer=0, dropInterval=700, frameId2=null;
+
+  let tdAC = null;
+  function getTDAC(){ if(!tdAC) tdAC=new(window.AudioContext||window.webkitAudioContext)(); return tdAC; }
+  function tdNote(freq,dur,vol=0.1,type='square'){
+    if(tdMuted) return;
+    try{const ac=getTDAC(),o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);o.start();o.stop(ac.currentTime+dur);}catch(e){}
   }
 
-  // input
-  document.addEventListener('keydown', e => {
-    if(document.getElementById('page-game').classList.contains('active'))
-      if(e.code==='Space'||e.code==='ArrowUp'){ e.preventDefault(); doJump(); }
-  });
-  cv.addEventListener('click', ()=>doJump());
-  cv.addEventListener('touchstart', e=>{ e.preventDefault(); doJump(); }, {passive:false});
+  document.getElementById('td-mute-btn').onclick=()=>{ tdMuted=!tdMuted; document.getElementById('td-mute-btn').textContent=tdMuted?'🔇':'🔊'; };
 
-  // initial draw
-  ctx.fillStyle='#1a1a2e'; ctx.fillRect(0,0,CW,CH);
-  initGT(); initCL(); dGround(); dClouds(); P.y=PLAYER_GY; dFig(P.x,P.y,false);
+  const PIECES = [
+    { shape:[[1,1,1,1]], color:'#00B4D8' },           // I
+    { shape:[[1,1],[1,1]], color:'#FFD700' },           // O
+    { shape:[[0,1,0],[1,1,1]], color:'#7B2FBE' },      // T
+    { shape:[[1,0,0],[1,1,1]], color:'#FF6B00' },      // L
+    { shape:[[0,0,1],[1,1,1]], color:'#006CB7' },      // J
+    { shape:[[0,1,1],[1,1,0]], color:'#00A650' },      // S
+    { shape:[[1,1,0],[0,1,1]], color:'#E3000B' },      // Z
+  ];
+
+  function makeGrid(){ return Array.from({length:ROWS},()=>Array(COLS).fill(null)); }
+  function randPiece(){ const p=PIECES[Math.floor(Math.random()*PIECES.length)]; return {shape:p.shape.map(r=>[...r]),color:p.color,x:Math.floor(COLS/2)-Math.floor(p.shape[0].length/2),y:0}; }
+
+  function rotate(shape){ return shape[0].map((_,i)=>shape.map(r=>r[i]).reverse()); }
+  function valid(s,gx,gy,g){
+    for(let r=0;r<s.length;r++) for(let c=0;c<s[r].length;c++){
+      if(!s[r][c]) continue;
+      const nx=gx+c, ny=gy+r;
+      if(nx<0||nx>=COLS||ny>=ROWS) return false;
+      if(ny>=0 && g[ny][nx]) return false;
+    }
+    return true;
+  }
+  function place(p,g){ p.shape.forEach((r,ry)=>r.forEach((v,cx)=>{ if(v&&p.y+ry>=0) g[p.y+ry][p.x+cx]=p.color; })); }
+  function clearLines(g){ let c=0; for(let r=ROWS-1;r>=0;r--){ if(g[r].every(v=>v)){ g.splice(r,1);g.unshift(Array(COLS).fill(null));c++;r++; } } return c; }
+
+  function drawCell(c, x, y, size, cx2=ctx) {
+    if(!c) return;
+    cx2.fillStyle = c;
+    cx2.fillRect(x+1, y+1, size-2, size-2);
+    // Highlight
+    cx2.fillStyle = 'rgba(255,255,255,0.25)';
+    cx2.fillRect(x+1, y+1, size-2, 4);
+    cx2.fillRect(x+1, y+1, 4, size-2);
+    // Shadow
+    cx2.fillStyle = 'rgba(0,0,0,0.3)';
+    cx2.fillRect(x+1, y+size-5, size-2, 4);
+    // Stud
+    cx2.fillStyle = c;
+    const sx=x+size/2-5, sy=y+size/2-5;
+    cx2.beginPath(); cx2.ellipse(x+size/2, y+size/2-3, 5, 3.5, 0, 0, Math.PI*2); cx2.fill();
+    cx2.fillStyle='rgba(255,255,255,0.3)';
+    cx2.beginPath(); cx2.ellipse(x+size/2-1, y+size/2-4, 2, 1.5, 0, 0, Math.PI*2); cx2.fill();
+  }
+
+  function drawGrid() {
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0,0,COLS*BS,ROWS*BS);
+    // Grid lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth=1;
+    for(let c=0;c<=COLS;c++){ ctx.beginPath();ctx.moveTo(c*BS,0);ctx.lineTo(c*BS,ROWS*BS);ctx.stroke(); }
+    for(let r=0;r<=ROWS;r++){ ctx.beginPath();ctx.moveTo(0,r*BS);ctx.lineTo(COLS*BS,r*BS);ctx.stroke(); }
+    // Cells
+    grid.forEach((row,ry)=>row.forEach((cell,cx)=>drawCell(cell,cx*BS,ry*BS,BS)));
+    // Ghost piece
+    if(piece){
+      let ghostY=piece.y;
+      while(valid(piece.shape,piece.x,ghostY+1,grid)) ghostY++;
+      if(ghostY!==piece.y){
+        ctx.globalAlpha=0.2;
+        piece.shape.forEach((r,ry)=>r.forEach((v,cx)=>{ if(v) drawCell(piece.color,(piece.x+cx)*BS,(ghostY+ry)*BS,BS); }));
+        ctx.globalAlpha=1;
+      }
+      piece.shape.forEach((r,ry)=>r.forEach((v,cx)=>{ if(v) drawCell(piece.color,(piece.x+cx)*BS,(piece.y+ry)*BS,BS); }));
+    }
+  }
+
+  function drawNext() {
+    nCtx.fillStyle='#0a0a0a'; nCtx.fillRect(0,0,120,80);
+    if(!nextPiece) return;
+    const s=18, ox=(120-nextPiece.shape[0].length*s)/2, oy=(80-nextPiece.shape.length*s)/2;
+    nextPiece.shape.forEach((r,ry)=>r.forEach((v,cx)=>{ if(v) drawCell(nextPiece.color,ox+cx*s,oy+ry*s,s,nCtx); }));
+  }
+
+  function updateHUD(){
+    document.getElementById('td-score-el').textContent=score;
+    document.getElementById('td-level-el').textContent=level;
+    document.getElementById('td-lines-el').textContent=lines;
+  }
+
+  function spawnPiece(){
+    piece=nextPiece||randPiece();
+    nextPiece=randPiece();
+    if(!valid(piece.shape,piece.x,piece.y,grid)){ gameOver(); return false; }
+    drawNext();
+    return true;
+  }
+
+  function gameOver(){
+    running=false;
+    tdNote(300,0.3,0.2,'sawtooth');
+    setTimeout(()=>tdNote(220,0.5,0.2,'sawtooth'),200);
+    document.getElementById('td-score-box').style.display='block';
+    document.getElementById('td-ov-num').textContent=score;
+    document.getElementById('td-ov-title').textContent= score<100?'GAME OVER':score<500?'NICE BUILD!':'🔥 MASTER BUILDER!';
+    document.getElementById('td-play-btn').textContent='🔄 PLAY AGAIN';
+    document.getElementById('td-overlay').style.opacity='1';
+    document.getElementById('td-overlay').style.pointerEvents='all';
+    saveScore('tetris',score);
+  }
+
+  let lastTime2=0;
+  function tdLoop(ts){
+    if(!running) return;
+    const dt=ts-lastTime2; lastTime2=ts;
+    dropTimer+=dt;
+    if(dropTimer>=dropInterval){
+      dropTimer=0;
+      if(valid(piece.shape,piece.x,piece.y+1,grid)){
+        piece.y++;
+      } else {
+        place(piece,grid);
+        const cleared=clearLines(grid);
+        if(cleared){
+          lines+=cleared;
+          const pts=[0,100,300,500,800][cleared]||800;
+          score+=pts*level;
+          level=Math.floor(lines/10)+1;
+          dropInterval=Math.max(100,700-level*60);
+          tdNote(523,0.1); setTimeout(()=>tdNote(659,0.1),80); setTimeout(()=>tdNote(784,0.15),160);
+          updateHUD();
+        }
+        if(!spawnPiece()) return;
+      }
+    }
+    drawGrid();
+    frameId2=requestAnimationFrame(tdLoop);
+  }
+
+  // Key controls
+  document.addEventListener('keydown', e=>{
+    if(!running||!document.getElementById('area-tetris').classList.contains('open')) return;
+    if(e.code==='ArrowLeft'||e.key==='ArrowLeft'){ if(valid(piece.shape,piece.x-1,piece.y,grid)){piece.x--;tdNote(220,0.05);} }
+    if(e.code==='ArrowRight'||e.key==='ArrowRight'){ if(valid(piece.shape,piece.x+1,piece.y,grid)){piece.x++;tdNote(220,0.05);} }
+    if(e.code==='ArrowDown'||e.key==='ArrowDown'){ if(valid(piece.shape,piece.x,piece.y+1,grid)){piece.y++;score+=1;dropTimer=0;} }
+    if(e.code==='ArrowUp'||e.key==='ArrowUp'){
+      const rot=rotate(piece.shape);
+      if(valid(rot,piece.x,piece.y,grid)){piece.shape=rot;tdNote(330,0.06);}
+    }
+    if(e.code==='Space'){
+      let dy=0; while(valid(piece.shape,piece.x,piece.y+dy+1,grid)) dy++;
+      score+=dy*2; piece.y+=dy; dropTimer=dropInterval;
+    }
+    e.preventDefault && (e.code==='ArrowUp'||e.code==='ArrowDown'||e.code==='Space') && e.preventDefault();
+  });
+
+  // Touch/swipe controls
+  let tdTouchX=0, tdTouchY=0;
+  canvas.addEventListener('touchstart', e=>{ tdTouchX=e.touches[0].clientX; tdTouchY=e.touches[0].clientY; },{passive:true});
+  canvas.addEventListener('touchend', e=>{
+    if(!running) return;
+    const dx=e.changedTouches[0].clientX-tdTouchX, dy=e.changedTouches[0].clientY-tdTouchY;
+    if(Math.abs(dx)>Math.abs(dy)){
+      if(dx<-20&&valid(piece.shape,piece.x-1,piece.y,grid)) piece.x--;
+      if(dx>20&&valid(piece.shape,piece.x+1,piece.y,grid)) piece.x++;
+    } else {
+      if(dy>20&&valid(piece.shape,piece.x,piece.y+1,grid)){ piece.y++; dropTimer=0; }
+      if(dy<-20){ const rot=rotate(piece.shape); if(valid(rot,piece.x,piece.y,grid)) piece.shape=rot; }
+    }
+  },{passive:true});
+
+  window.startBrickDrop = function(){
+    document.getElementById('td-overlay').style.opacity='0';
+    document.getElementById('td-overlay').style.pointerEvents='none';
+    if(frameId2) cancelAnimationFrame(frameId2);
+    grid=makeGrid(); score=0; level=1; lines=0; dropTimer=0; dropInterval=700;
+    nextPiece=randPiece(); spawnPiece(); running=true; updateHUD();
+    lastTime2=performance.now();
+    frameId2=requestAnimationFrame(tdLoop);
+  };
+}
+
+// ═══════════════════════ TILE HOP ═══════════════════════
+let _thInited = false;
+function initTileHop() {
+  if(_thInited) return;
+  _thInited = true;
+
+  const canvas = document.getElementById('th-canvas');
+  const ctx = canvas.getContext('2d');
+  const W=600, H=500, COLS=4;
+  const TW=W/COLS, TH=80;
+  let tiles=[], score=0, combo=0, running=false, speed=2.5, thMuted=false, frameId3=null;
+  let thAC=null;
+  function getTHAC(){ if(!thAC) thAC=new(window.AudioContext||window.webkitAudioContext)(); return thAC; }
+
+  // Music notes for tile hop
+  const SCALE=[261,294,329,349,392,440,494,523,587,659,698,784];
+  let noteIdx=0;
+  function tileSound(miss=false){
+    if(thMuted) return;
+    try{
+      const ac=getTHAC(),o=ac.createOscillator(),g=ac.createGain();
+      o.connect(g);g.connect(ac.destination);
+      if(miss){ o.type='sawtooth';o.frequency.value=180;g.gain.setValueAtTime(0.2,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.3); }
+      else { o.type='sine';o.frequency.value=SCALE[noteIdx%SCALE.length];noteIdx++;g.gain.setValueAtTime(0.18,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.25); }
+      o.start();o.stop(ac.currentTime+0.3);
+    }catch(e){}
+  }
+
+  document.getElementById('th-mute-btn').onclick=()=>{ thMuted=!thMuted; document.getElementById('th-mute-btn').textContent=thMuted?'🔇':'🔊'; };
+
+  const TILE_COLORS = ['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];
+  const MINIFIG_COLOR = '#E3000B';
+
+  function spawnRow(){
+    // One or two dark tiles per row
+    const count = Math.random()<0.3 ? 2 : 1;
+    const cols = [];
+    while(cols.length<count){ const c=Math.floor(Math.random()*COLS); if(!cols.includes(c)) cols.push(c); }
+    for(let c=0;c<COLS;c++){
+      tiles.push({ col:c, y:-TH, w:TW, h:TH, dark:cols.includes(c), hit:false, missed:false, flash:0 });
+    }
+  }
+
+  function drawMinifig(x, y) {
+    const h = 36;
+    // Legs
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(x-8, y+20, 7, 14);
+    ctx.fillRect(x+1, y+20, 7, 14);
+    // Body
+    ctx.fillStyle = MINIFIG_COLOR;
+    ctx.fillRect(x-10, y+8, 20, 16);
+    // Head
+    ctx.fillStyle = '#FFD95A';
+    ctx.beginPath(); ctx.ellipse(x, y+2, 9, 10, 0, 0, Math.PI*2); ctx.fill();
+    // Smile
+    ctx.strokeStyle = '#8B6914';
+    ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.arc(x, y+4, 5, 0.2, Math.PI-0.2); ctx.stroke();
+    // Eyes
+    ctx.fillStyle='#1a1a1a';
+    ctx.beginPath(); ctx.arc(x-3.5,y+1,1.5,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(x+3.5,y+1,1.5,0,Math.PI*2); ctx.fill();
+    // Arms
+    ctx.fillStyle=MINIFIG_COLOR;
+    ctx.fillRect(x-18,y+8,8,12); ctx.fillRect(x+10,y+8,8,12);
+    // Stud on head (LEGO detail)
+    ctx.fillStyle='#FFD95A';
+    ctx.beginPath(); ctx.ellipse(x,y-8,4,3,0,0,Math.PI*2); ctx.fill();
+  }
+
+  let minifigX = W/2, targetX = W/2, minifigBounce = 0, bounceDir=1;
+  let hitFlash = 0;
+
+  function thLoop() {
+    if(!running) return;
+    ctx.fillStyle = '#111827';
+    ctx.fillRect(0,0,W,H);
+
+    // Background studs
+    ctx.fillStyle = 'rgba(255,255,255,0.02)';
+    for(let i=0;i<W;i+=40) for(let j=0;j<H;j+=40){ ctx.beginPath();ctx.arc(i,j,8,0,Math.PI*2);ctx.fill(); }
+
+    // Move tiles
+    for(const t of tiles){
+      t.y += speed;
+      if(t.flash>0) t.flash--;
+    }
+
+    // Remove old tiles
+    const missedDark = tiles.filter(t=>t.dark&&!t.hit&&t.y>H+10);
+    if(missedDark.length>0){
+      endTileHop(); return;
+    }
+    tiles = tiles.filter(t=>t.y<H+20);
+
+    // Spawn new rows
+    const lastTile = tiles.length>0 ? Math.max(...tiles.map(t=>t.y)) : -TH;
+    if(lastTile < H - TH*1.5) spawnRow();
+
+    // Draw tiles
+    for(const t of tiles){
+      if(t.dark){
+        if(t.hit){
+          ctx.fillStyle = t.flash>0 ? '#00ff88' : '#1a6b3a';
+        } else {
+          ctx.fillStyle = '#1a1a2e';
+        }
+      } else {
+        const c = TILE_COLORS[t.col%TILE_COLORS.length];
+        ctx.fillStyle = t.hit ? c : '#2a2a3a';
+      }
+      ctx.fillRect(t.col*TW+2, t.y+2, TW-4, TH-4);
+      // Stud rows on tiles
+      if(t.dark&&!t.hit){
+        ctx.fillStyle = 'rgba(255,255,255,0.07)';
+        for(let s=0;s<3;s++) ctx.fillRect(t.col*TW+10+s*18, t.y+TH/2-4, 12, 8);
+      }
+      // Highlight on tiles
+      ctx.fillStyle='rgba(255,255,255,0.04)';
+      ctx.fillRect(t.col*TW+2,t.y+2,TW-4,6);
+    }
+
+    // Hit zone indicator
+    const HIT_Y = H-100;
+    ctx.strokeStyle='rgba(255,215,0,0.2)';
+    ctx.lineWidth=2;
+    ctx.setLineDash([8,8]);
+    ctx.beginPath(); ctx.moveTo(0,HIT_Y); ctx.lineTo(W,HIT_Y); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Minifig
+    minifigBounce += 0.12*bounceDir;
+    if(Math.abs(minifigBounce)>3) bounceDir*=-1;
+    minifigX += (targetX - minifigX)*0.18;
+    if(hitFlash>0){ ctx.globalAlpha=0.3+Math.random()*0.2; hitFlash--; }
+    drawMinifig(minifigX, HIT_Y - 40 + minifigBounce);
+    ctx.globalAlpha=1;
+
+    // Score display
+    ctx.font='bold 22px Boogaloo, cursive';
+    ctx.fillStyle='rgba(255,215,0,0.8)';
+    ctx.textAlign='center';
+    ctx.fillText(score, W/2, 36);
+    if(combo>2){
+      ctx.font='bold 16px Boogaloo, cursive';
+      ctx.fillStyle='#ff6b00';
+      ctx.fillText('COMBO x'+combo+'!', W/2, 60);
+    }
+    ctx.textAlign='left';
+
+    frameId3 = requestAnimationFrame(thLoop);
+  }
+
+  function handleHit(col) {
+    if(!running) return;
+    const HIT_Y = H-100;
+    // Check if a dark tile in this column is near the hit zone
+    const darkTiles = tiles.filter(t=>t.dark&&!t.hit&&t.col===col&&t.y>HIT_Y-TH*1.5&&t.y<HIT_Y+TH);
+    if(darkTiles.length>0){
+      darkTiles[0].hit=true; darkTiles[0].flash=8;
+      score++; combo++;
+      speed = 2.5 + score*0.04;
+      document.getElementById('th-score-el').textContent=score;
+      document.getElementById('th-combo-el').textContent=combo>2?'COMBO x'+combo:'';
+      targetX = col*TW + TW/2;
+      hitFlash=3;
+      tileSound(false);
+    } else {
+      // Tapping empty = no penalty, but tapping wrong tile
+      const wrongLight = tiles.filter(t=>!t.dark&&!t.hit&&t.col===col&&t.y>HIT_Y-TH&&t.y<HIT_Y+TH);
+      if(wrongLight.length>0){ endTileHop(); }
+    }
+  }
+
+  canvas.addEventListener('click', e=>{
+    if(!running) return;
+    const rect=canvas.getBoundingClientRect();
+    const scaleX=W/rect.width;
+    const cx=Math.floor((e.clientX-rect.left)*scaleX/TW);
+    handleHit(cx);
+  });
+  canvas.addEventListener('touchstart', e=>{
+    e.preventDefault();
+    if(!running) return;
+    const rect=canvas.getBoundingClientRect();
+    const scaleX=W/rect.width;
+    const cx=Math.floor((e.touches[0].clientX-rect.left)*scaleX/TW);
+    handleHit(cx);
+  },{passive:false});
+
+  function endTileHop(){
+    running=false;
+    tileSound(true);
+    document.getElementById('th-score-box').style.display='block';
+    document.getElementById('th-ov-num').textContent=score;
+    document.getElementById('th-ov-title').textContent=score===0?'MISSED IT!':score<10?'KEEP GOING!':score<30?'NICE MOVES!':'🎵 RHYTHM MASTER!';
+    document.getElementById('th-play-btn').textContent='🔄 PLAY AGAIN';
+    document.getElementById('th-overlay').style.opacity='1';
+    document.getElementById('th-overlay').style.pointerEvents='all';
+    saveScore('tilehop',score);
+  }
+
+  window.startTileHop = function(){
+    document.getElementById('th-overlay').style.opacity='0';
+    document.getElementById('th-overlay').style.pointerEvents='none';
+    if(frameId3) cancelAnimationFrame(frameId3);
+    tiles=[]; score=0; combo=0; speed=2.5; noteIdx=0;
+    minifigX=W/2; targetX=W/2;
+    spawnRow(); spawnRow(); spawnRow();
+    running=true;
+    document.getElementById('th-score-el').textContent='0';
+    document.getElementById('th-combo-el').textContent='';
+    frameId3=requestAnimationFrame(thLoop);
+  };
+
+  // Idle draw
+  ctx.fillStyle='#111827'; ctx.fillRect(0,0,W,H);
+  drawMinifig(W/2, H/2);
 }
 </script>
 
@@ -9612,27 +11260,27 @@ const BLOG_POSTS = [
    title:'LEGO® Announces 2025 Icons Lineup — Here\'s What Stands Out',
    date:'March 12, 2026',read:'4 min read',
    excerpt:'The new Icons wave has some absolute bangers. Here\'s my honest first take on each set and whether they\'re worth the price.',
-   content:`<p>LEGO®'s Icons wave for 2025 has officially been revealed and honestly, there's a lot to unpack.</p><h3>The standouts</h3><p>The new Botanical Collection additions are stunning — the colour work is exceptional. The modular building entry this year is a theatre, which feels long overdue.</p><h3>The ones I'm skipping</h3><p>A few of the licensed sets feel like filler. The piece counts don't justify the price, and the builds look like they were designed around the IP rather than interesting building techniques.</p><h3>The wildcard</h3><p>There's one set nobody's really talking about yet — a Technic/System hybrid that could be genuinely revolutionary if the engineering holds up. Watch for my review when it drops.</p><p>Overall: a solid wave with a few must-haves and a few easy passes. I'll be doing full reviews on the top picks — subscribe to stay notified.</p>`},
+   content:`<p>LEGO Icons wave for 2025 has officially been revealed and honestly, there is a lot to unpack.</p><h3>The standouts</h3><p>The new Botanical Collection additions are stunning — the colour work is exceptional. The modular building entry this year is a theatre, which feels long overdue.</p><h3>The ones I am skipping</h3><p>A few of the licensed sets feel like filler. The piece counts do not justify the price, and the builds look like they were designed around the IP rather than interesting building techniques.</p><h3>The wildcard</h3><p>There's one set nobody's really talking about yet — a Technic/System hybrid that could be genuinely revolutionary if the engineering holds up. Watch for my review when it drops.</p><p>Overall: a solid wave with a few must-haves and a few easy passes. I will be doing full reviews on the top picks — subscribe to stay notified.</p>`},
   {id:2,cat:'build',catLabel:'Build Update',catColor:'#E3000B',bg:'linear-gradient(135deg,#8b0000,#E3000B)',emoji:'🏰',
    title:'31-Day Castle Build: Week One Recap',
    date:'March 10, 2026',read:'6 min read',
    excerpt:'One week in and the foundation is done. Here\'s how it\'s going, what went wrong, and what surprised me.',
-   content:`<p>One week into the 31-day castle build and I'm already behind schedule — but for a good reason.</p><h3>What I built this week</h3><p>The base plate layout, all four corner tower foundations, and the first section of the curtain wall are complete. That's maybe 15% of the total build.</p><h3>What went wrong</h3><p>I ran out of dark tan 1x2 bricks on day three. Completely miscalculated. If you're planning a big build: always order 30% more of your primary colour than you think you need.</p><h3>The unexpected win</h3><p>The rock texture technique I'm using for the outer walls is turning out way better than expected. I'll do a dedicated tips video on this once the build is done.</p><p>Week 2 starts with the great hall interior. Stay tuned.</p>`},
+   content:`<p>One week into the 31-day castle build and I am already behind schedule — but for a good reason.</p><h3>What I built this week</h3><p>The base plate layout, all four corner tower foundations, and the first section of the curtain wall are complete. That's maybe 15% of the total build.</p><h3>What went wrong</h3><p>I ran out of dark tan 1x2 bricks on day three. Completely miscalculated. If you are planning a big build: always order 30% more of your primary colour than you think you need.</p><h3>The unexpected win</h3><p>The rock texture technique I am using for the outer walls is turning out way better than expected. I will do a dedicated tips video on this once the build is done.</p><p>Week 2 starts with the great hall interior. Stay tuned.</p>`},
   {id:3,cat:'review',catLabel:'Set Review',catColor:'#00A650',bg:'linear-gradient(135deg,#004d25,#00A650)',emoji:'🏎️',
    title:'Speed Champions Ferrari 499P Review — Is It Worth $60?',
    date:'March 8, 2026',read:'5 min read',
    excerpt:'The Ferrari 499P is easily the most detailed Speed Champions car LEGO® has ever made. But does the price match the quality?',
-   content:`<p>Speed Champions sets have crept up in price every year, and the Ferrari 499P sits at $60. So is it worth it?</p><h3>The build</h3><p>Genuinely the most satisfying Speed Champions build I've done. The new body panel system creates much more accurate curves. The livery is almost entirely printed tiles — virtually no stickers, which is a huge win.</p><h3>The verdict</h3><p>$60 is steep, but this is a $60 set that actually feels worth $60. If you're a car person this is a shelf piece. Rating: 9/10.</p>`},
+   content:`<p>Speed Champions sets have crept up in price every year, and the Ferrari 499P sits at $60. So is it worth it?</p><h3>The build</h3><p>Genuinely the most satisfying Speed Champions build I have done. The new body panel system creates much more accurate curves. The livery is almost entirely printed tiles — virtually no stickers, which is a huge win.</p><h3>The verdict</h3><p>$60 is steep, but this is a $60 set that actually feels worth $60. If you are a car person this is a shelf piece. Rating: 9/10.</p>`},
   {id:4,cat:'tips',catLabel:'Build Tips',catColor:'#FF6B00',bg:'linear-gradient(135deg,#8b3a00,#FF6B00)',emoji:'💡',
    title:'5 Techniques I Wish I Knew When I Started MOC Building',
    date:'March 6, 2026',read:'7 min read',
    excerpt:'From SNOT basics to forced perspective — the five techniques that completely changed how I build.',
-   content:`<p>When I started building MOCs I made every beginner mistake. These five techniques would have saved me months of frustration.</p><h3>1. SNOT isn't complicated</h3><p>Studs Not On Top just means turning bricks sideways. Once you start using SNOT for wall textures and curved surfaces, you won't stop.</p><h3>2. Forced perspective is free detail</h3><p>Smaller parts at the back of a scene, larger at the front. Medieval streets look amazing with this technique.</p><h3>3. Always build a colour palette first</h3><p>Pick 3-4 colours maximum before you start. Decide this before placing a single brick.</p><h3>4. Plate layering beats brick stacking</h3><p>Three 1x4 plates give you far more connection options than one 1x4 brick.</p><h3>5. Reference real architecture</h3><p>Google images of real buildings. LEGO® builders who look at references produce dramatically better work.</p>`},
+   content:`<p>When I started building MOCs I made every beginner mistake. These five techniques would have saved me months of frustration.</p><h3>1. SNOT is not complicated</h3><p>Studs Not On Top just means turning bricks sideways. Once you start using SNOT for wall textures and curved surfaces, you will not stop.</p><h3>2. Forced perspective is free detail</h3><p>Smaller parts at the back of a scene, larger at the front. Medieval streets look amazing with this technique.</p><h3>3. Always build a colour palette first</h3><p>Pick 3-4 colours maximum before you start. Decide this before placing a single brick.</p><h3>4. Plate layering beats brick stacking</h3><p>Three 1x4 plates give you far more connection options than one 1x4 brick.</p><h3>5. Reference real architecture</h3><p>Google images of real buildings. LEGO® builders who look at references produce dramatically better work.</p>`},
   {id:5,cat:'news',catLabel:'LEGO® News',catColor:'#006CB7',bg:'linear-gradient(135deg,#1A1A1A,#006CB7)',emoji:'📰',
    title:'LEGO® Retiring 47 Sets in 2026 — Full List &amp; Last Chance Picks',
    date:'March 4, 2026',read:'3 min read',
    excerpt:'47 sets are being retired this year. Here\'s the full confirmed list and which ones are worth grabbing before they\'re gone.',
-   content:`<p>LEGO® retires sets every year and 2026 is no different — 47 confirmed retirements, with more likely coming mid-year.</p><h3>The must-grab before they're gone</h3><p>The Eiffel Tower (10307) is on the list. At 10,000+ pieces it's genuinely one of the best LEGO® has ever made. If you've been sitting on the fence, stop sitting.</p><h3>Surprising retirements</h3><p>A few sets on the list are less than two years old, which is unusual. LEGO® may be accelerating their replacement cycle.</p><p>I'll be doing a dedicated video on the top 10 retirements worth buying before they're gone.</p>`},
+   content:`<p>LEGO® retires sets every year and 2026 is no different — 47 confirmed retirements, with more likely coming mid-year.</p><h3>The must-grab before they're gone</h3><p>The Eiffel Tower (10307) is on the list. At 10,000+ pieces it is genuinely one of the best LEGO® has ever made. If you have been sitting on the fence, stop sitting.</p><h3>Surprising retirements</h3><p>A few sets on the list are less than two years old, which is unusual. LEGO® may be accelerating their replacement cycle.</p><p>I will be doing a dedicated video on the top 10 retirements worth buying before they're gone.</p>`},
   {id:6,cat:'build',catLabel:'Build Update',catColor:'#E3000B',bg:'linear-gradient(135deg,#1A1A1A,#E3000B)',emoji:'🌊',
    title:'New Build Announced: Japanese Fishing Village MOC',
    date:'March 1, 2026',read:'2 min read',
@@ -9769,7 +11417,7 @@ function renderGallery() {
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px">
       <div style="font-size:64px;margin-bottom:16px">🏗️</div>
       <div style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--black);margin-bottom:8px">Be the first to submit!</div>
-      <p style="color:#888;font-weight:700;font-size:14px;max-width:400px;margin:0 auto">No builds here yet. Fill in the form above and show the community what you've built!</p>
+      <p style="color:#888;font-weight:700;font-size:14px;max-width:400px;margin:0 auto">No builds here yet. Fill in the form above and show the community what you have built!</p>
     </div>`;
     return;
   }
@@ -10301,7 +11949,7 @@ function launchConfetti(triggerEl){
       animation-delay:${Math.random()*.15}s;
       transform:translate(-50%,-50%);
     `;
-    // Override end position via CSS vars isn't available with @keyframes to, so we animate via JS
+    // Override end position via CSS vars is not available with @keyframes to, so we animate via JS
     document.body.appendChild(el);
     const tx = Math.cos(angle)*speed;
     const ty = Math.sin(angle)*speed - 80;

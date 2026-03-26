@@ -10831,7 +10831,10 @@ function fbDie(){
 // ═══════════════════════ TILES HOP ═══════════════════════
 let _thCanvas,_thCtx,_thRunning=false,_thRAF;
 let _thBrick,_thTiles,_thScore,_thSpeed,_thBeat,_thBestScore=0;
-const TH_COLS=4,TH_TILE_W=100,TH_TILE_H=120;
+const TH_COLS=4,TH_TILE_W=100,TH_TILE_H=130;
+// Arrow key mapping: col 0=Left, col 1=Down, col 2=Up, col 3=Right
+const TH_KEY_LABELS=['←','↓','↑','→'];
+const TH_KEY_COLS={'ArrowLeft':0,'ArrowDown':1,'ArrowUp':2,'ArrowRight':3};
 
 function initTilesHop(){
   const wrap=document.getElementById('tiles-wrap');
@@ -10841,7 +10844,13 @@ function initTilesHop(){
     <div id="th-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,20,.9);gap:12px">
       <div style="font-family:'Boogaloo',cursive;font-size:clamp(32px,6vw,52px);color:var(--yellow);text-shadow:0 0 30px rgba(255,215,0,.5)">TILES HOP</div>
       <div style="font-size:40px">🎵🧱</div>
-      <div style="font-size:13px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:2px;text-align:center">Tap the glowing tiles<br>Don't miss the beat!</div>
+      <div style="font-size:13px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:2px;text-align:center">Tap tiles — or use arrow keys!<br><span style="color:#666;font-size:11px">← ↓ ↑ → = columns 1 2 3 4</span></div>
+      <div style="display:flex;gap:8px;margin-top:4px">
+        <div style="background:#1a1a3a;border:2px solid #7B2FBE;border-radius:8px;padding:6px 12px;font-family:'Boogaloo',cursive;font-size:18px;color:#fff">←</div>
+        <div style="background:#1a1a3a;border:2px solid #7B2FBE;border-radius:8px;padding:6px 12px;font-family:'Boogaloo',cursive;font-size:18px;color:#fff">↓</div>
+        <div style="background:#1a1a3a;border:2px solid #7B2FBE;border-radius:8px;padding:6px 12px;font-family:'Boogaloo',cursive;font-size:18px;color:#fff">↑</div>
+        <div style="background:#1a1a3a;border:2px solid #7B2FBE;border-radius:8px;padding:6px 12px;font-family:'Boogaloo',cursive;font-size:18px;color:#fff">→</div>
+      </div>
       <button onclick="thStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 48px;box-shadow:0 8px 0 #7a0005;cursor:pointer;margin-top:8px">▶ PLAY!</button>
       <div id="th-best-disp" style="font-size:13px;font-weight:800;color:#444"></div>
     </div>
@@ -10851,6 +10860,8 @@ function initTilesHop(){
   _thCtx=_thCanvas.getContext('2d');
   _thBestScore=parseInt(localStorage.getItem('bb_tiles_best')||'0');
   thReset(); thLoop();
+
+  // Mouse / touch click
   _thCanvas.addEventListener('click',e=>{
     const rect=_thCanvas.getBoundingClientRect();
     const scaleX=_thCanvas.width/rect.width, scaleY=_thCanvas.height/rect.height;
@@ -10863,16 +10874,29 @@ function initTilesHop(){
     for(const t of e.touches)
       thTap(Math.floor((t.clientX-rect.left)*scaleX/TH_TILE_W),(t.clientY-rect.top)*scaleY);
   },{passive:false});
+
+  // Arrow key controls
+  document.addEventListener('keydown', thKeyDown);
+}
+
+function thKeyDown(e){
+  const area=document.getElementById('area-tiles');
+  if(!area||!area.classList.contains('open')) return;
+  const col=TH_KEY_COLS[e.code];
+  if(col===undefined) return;
+  e.preventDefault();
+  // Tap the bottom-most active tile in that column
+  thTap(col, _thCanvas.height - 50);
 }
 
 function thReset(){
-  _thScore=0; _thSpeed=2.5; _thBeat=0; _thRunning=false;
+  _thScore=0; _thSpeed=1.4; _thBeat=0; _thRunning=false;
   _thBrick={col:Math.floor(TH_COLS/2),y:500,vy:0,onTile:false};
   _thTiles=[];
-  // Generate starting tiles
+  // Generate starting tiles with WIDE spacing so player has time to react
   for(let i=0;i<8;i++){
     const col=Math.floor(Math.random()*TH_COLS);
-    _thTiles.push({col,y:400-i*140,active:i===0,hit:false,flash:0});
+    _thTiles.push({col,y:520-i*180,active:i===0,hit:false,flash:0});
   }
   _thTiles[0].active=true;
 }
@@ -10884,26 +10908,23 @@ function thStart(){
 
 function thTap(col,tapY){
   if(!_thRunning){thStart();return;}
-  // Find lowest active tile near tap
-  let best=null,bestDist=Infinity;
+  // Find the lowest active unhit tile in this column
+  let best=null,bestY=-Infinity;
   for(const t of _thTiles){
-    if(t.active&&!t.hit){
-      const tCX=(t.col+.5)*TH_TILE_W, ty=t.y+TH_TILE_H/2;
-      const dist=Math.abs(tapY-ty);
-      if(t.col===col&&dist<bestDist){bestDist=dist;best=t;}
+    if(t.active&&!t.hit&&t.col===col){
+      if(t.y>bestY){bestY=t.y;best=t;}
     }
   }
   if(best){
     best.hit=true; best.flash=1; _thScore++;
-    _thSpeed=2.5+_thScore*.04;
-    // jump brick
+    // Speed increases slowly — much gentler ramp
+    _thSpeed=1.4+_thScore*.025;
+    // Jump brick to that tile
     _thBrick.col=best.col; _thBrick.y=best.y-30; _thBrick.vy=-6; _thBrick.onTile=false;
-    // activate next
+    // Activate next tile
     const idx=_thTiles.indexOf(best);
     if(idx+1<_thTiles.length) _thTiles[idx+1].active=true;
-    if(document.getElementById('th-score-disp')) document.getElementById('th-score-disp').textContent=_thScore;
   } else {
-    // missed
     thDie();
   }
 }
@@ -10915,20 +10936,17 @@ function thLoop(){
 
 function thUpdate(){
   if(!_thRunning) return;
-  // Scroll tiles down
   for(const t of _thTiles){ t.y+=_thSpeed; if(t.flash>0) t.flash=Math.max(0,t.flash-.05); }
-  // Remove tiles that fell off bottom; add new ones at top
   _thTiles=_thTiles.filter(t=>t.y<_thCanvas.height+20);
   while(_thTiles.length<10){
     const last=_thTiles.reduce((a,b)=>a.y<b.y?a:b,{y:99999});
     const col=Math.floor(Math.random()*TH_COLS);
-    _thTiles.push({col,y:last.y-140,active:false,hit:false,flash:0});
+    // Wide gap between tiles so player has more time
+    _thTiles.push({col,y:last.y-180,active:false,hit:false,flash:0});
   }
-  // Check if a non-hit active tile scrolled past bottom
   for(const t of _thTiles){
     if(t.active&&!t.hit&&t.y>_thCanvas.height+10) thDie();
   }
-  // Brick physics
   const b=_thBrick;
   b.vy+=0.4; b.y+=b.vy+_thSpeed;
   if(b.y>_thCanvas.height+60) thDie();
@@ -10936,17 +10954,15 @@ function thUpdate(){
 
 function thDraw(){
   const ctx=_thCtx,W=_thCanvas.width,H=_thCanvas.height;
-  // Background
   const bg=ctx.createLinearGradient(0,0,0,H);
   bg.addColorStop(0,'#0d0010'); bg.addColorStop(1,'#1a0033');
   ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-  // Grid lines
   ctx.strokeStyle='rgba(123,47,190,.15)'; ctx.lineWidth=1;
   for(let x=0;x<=TH_COLS;x++){ctx.beginPath();ctx.moveTo(x*TH_TILE_W,0);ctx.lineTo(x*TH_TILE_W,H);ctx.stroke();}
-  // Perspective lines
   ctx.strokeStyle='rgba(255,0,255,.06)';
   for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-  // Tiles
+
+  // Draw tiles
   for(const t of _thTiles){
     if(t.hit){
       ctx.fillStyle=`rgba(255,215,0,${t.flash*.6})`;
@@ -10961,33 +10977,50 @@ function thDraw(){
       ctx.strokeStyle=`rgba(255,0,255,${glow})`;
       ctx.lineWidth=2; ctx.beginPath();
       ctx.roundRect(t.col*TH_TILE_W+3,t.y+3,TH_TILE_W-6,TH_TILE_H-6,8); ctx.stroke();
-      // Glow effect
       ctx.shadowColor='rgba(255,0,255,.8)'; ctx.shadowBlur=20;
       ctx.strokeStyle=`rgba(255,0,255,.4)`; ctx.lineWidth=4;
       ctx.beginPath(); ctx.roundRect(t.col*TH_TILE_W+3,t.y+3,TH_TILE_W-6,TH_TILE_H-6,8); ctx.stroke();
       ctx.shadowBlur=0;
-      // Music note
       ctx.fillStyle=`rgba(255,255,255,${glow*.8})`; ctx.font='24px serif';
       ctx.textAlign='center'; ctx.fillText('♪',t.col*TH_TILE_W+TH_TILE_W/2,t.y+TH_TILE_H/2+8);
     }
+    // Always show arrow key label on every tile
+    ctx.font='bold 20px Boogaloo,cursive';
+    ctx.textAlign='center';
+    ctx.fillStyle=t.active?`rgba(255,255,255,${glow*.9})`:'rgba(255,255,255,.2)';
+    ctx.shadowColor=t.active?'rgba(255,0,255,.6)':'transparent';
+    ctx.shadowBlur=t.active?8:0;
+    ctx.fillText(TH_KEY_LABELS[t.col],t.col*TH_TILE_W+TH_TILE_W/2,t.y+TH_TILE_H-14);
+    ctx.shadowBlur=0;
   }
+
   // Brick player
   const b=_thBrick;
   const bx=b.col*TH_TILE_W+(TH_TILE_W-36)/2, by=b.y;
   ctx.shadowColor='rgba(255,215,0,.6)'; ctx.shadowBlur=16;
   tDrawBrick(ctx,bx,by,'#FFD700',36);
   ctx.shadowBlur=0;
+
   // Score HUD
   ctx.fillStyle='rgba(0,0,0,.5)'; ctx.fillRect(0,0,W,44);
   ctx.font='bold 24px Boogaloo,cursive'; ctx.fillStyle='#fff';
   ctx.textAlign='left'; ctx.fillText(`Score: ${_thScore}`,14,30);
   ctx.textAlign='right'; ctx.fillStyle='rgba(255,255,255,.4)';
   ctx.fillText(`Best: ${_thBestScore}`,W-14,30);
+
+  // Bottom key hint bar
+  ctx.fillStyle='rgba(0,0,0,.6)'; ctx.fillRect(0,H-34,W,34);
+  for(let c=0;c<TH_COLS;c++){
+    ctx.font='bold 16px Boogaloo,cursive'; ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.textAlign='center';
+    ctx.fillText(TH_KEY_LABELS[c],c*TH_TILE_W+TH_TILE_W/2,H-12);
+  }
 }
 
 function thDie(){
   if(!_thRunning) return;
   _thRunning=false;
+  // Remove arrow key listener
   if(_thScore>_thBestScore){_thBestScore=_thScore;localStorage.setItem('bb_tiles_best',_thBestScore);}
   saveScore('tiles',_thScore*30);
   setTimeout(()=>{

@@ -9234,62 +9234,176 @@ setTimeout(()=>{
   #page-game { background:#111; min-height:100vh; font-family:'Nunito',sans-serif; }
   #page-game.active { display:block; }
 
-  /* HERO */
+  /* ══ CINEMATIC HERO SLIDER ══ */
   .gh-hero {
-    background: var(--black);
     margin-top: 66px;
-    padding: 52px 0 44px;
     position: relative;
     overflow: hidden;
-    border-bottom: 4px solid var(--yellow);
+    height: clamp(280px, 42vw, 520px);
+    background: #000;
+    user-select: none;
   }
-  .gh-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: .05;
-    background: repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),
-                repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px);
+  .gh-slides { display:flex; height:100%; transition:transform .55s cubic-bezier(.4,0,.2,1); will-change:transform; }
+  .gh-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
   }
-  .gh-hero-inner { position:relative; z-index:2; color:#fff; }
-  .gh-hero-inner h1 { font-family:'Boogaloo',cursive; font-size:clamp(38px,5vw,64px); line-height:1.05; margin-bottom:10px; }
-  .gh-hero-inner p { font-size:16px; font-weight:600; color:#aaa; max-width:540px; }
-  .gh-hero-studs { display:flex; gap:10px; margin-top:20px; }
-  .gh-stud { width:32px; height:32px; border-radius:50%; position:relative; box-shadow:0 4px 0 rgba(0,0,0,.4); }
-  .gh-stud::after { content:''; position:absolute; top:5px; left:5px; right:5px; bottom:5px; border-radius:50%; background:rgba(255,255,255,.25); }
-  .gh-stud-r{background:var(--red)} .gh-stud-y{background:var(--yellow)} .gh-stud-b{background:var(--blue)} .gh-stud-g{background:var(--green)} .gh-stud-o{background:var(--orange)}
+  .gh-slide-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transform: scale(1.06);
+    transition: transform 6s ease;
+    filter: brightness(.55);
+  }
+  .gh-slide.active .gh-slide-bg { transform: scale(1); }
+  .gh-slide-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
+  }
+  .gh-slide-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: clamp(24px,4vw,52px);
+    z-index: 2;
+  }
+  .gh-slide-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 12px;
+    background: var(--yellow); color: var(--black);
+  }
+  .gh-slide-title {
+    font-family: 'Boogaloo', cursive;
+    font-size: clamp(32px, 5.5vw, 72px);
+    color: #fff; line-height: 1;
+    text-shadow: 0 4px 24px rgba(0,0,0,.6);
+    margin-bottom: 16px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .5s .2s, transform .5s .2s;
+  }
+  .gh-slide.active .gh-slide-title { opacity:1; transform:translateY(0); }
+  .gh-slide-cta {
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(13px,1.5vw,16px);
+    padding: 12px 32px; border-radius: 30px; border: none; cursor: pointer;
+    background: var(--yellow); color: var(--black);
+    box-shadow: 0 6px 0 #a07800;
+    transition: all .15s; position: relative; top: 0;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity .5s .35s, transform .5s .35s, top .15s, box-shadow .15s;
+  }
+  .gh-slide.active .gh-slide-cta { opacity:1; transform:translateY(0); }
+  .gh-slide-cta:hover { top:3px; box-shadow:0 3px 0 #a07800; }
 
-  /* GAME CARDS GRID */
-  .gh-section { padding: 56px 0; }
-  .gh-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px; margin-top:32px; }
+  /* Slider arrows */
+  .gh-arr {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 10; width: 52px; height: 72px;
+    background: rgba(0,0,0,.45); border: none; color: #fff;
+    font-size: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; transition: background .15s; backdrop-filter: blur(4px);
+  }
+  .gh-arr:hover { background: var(--blue); }
+  .gh-arr-l { left: 12px; }
+  .gh-arr-r { right: 12px; }
+
+  /* Slider dots */
+  .gh-dots {
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 10;
+  }
+  .gh-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,.35); border: none; cursor: pointer;
+    transition: all .2s; padding: 0;
+  }
+  .gh-dot.active { background: var(--yellow); width: 24px; border-radius: 4px; }
+
+  /* ══ PILL CATEGORY NAV ══ */
+  .gh-cat-nav {
+    background: #0d0d0d;
+    padding: 0 0 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 3px solid #1a1a1a;
+  }
+  .gh-cat-nav::-webkit-scrollbar { display: none; }
+  .gh-cat-inner {
+    display: flex; gap: 10px; padding: 16px 24px;
+    min-width: max-content;
+  }
+  .gh-cat-pill {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: #1a1a1a; border: 2px solid #2a2a2a;
+    border-radius: 16px; padding: 10px 18px; cursor: pointer;
+    transition: all .2s; min-width: 80px;
+    font-family: 'Nunito', sans-serif;
+  }
+  .gh-cat-pill:hover { border-color: var(--yellow); background: #222; }
+  .gh-cat-pill.active { background: var(--yellow); border-color: var(--yellow); }
+  .gh-cat-pill-icon { font-size: 22px; line-height: 1; }
+  .gh-cat-pill-label { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; color: #aaa; white-space: nowrap; }
+  .gh-cat-pill.active .gh-cat-pill-label { color: var(--black); }
+
+  /* ══ GAME CARDS ══ */
+  .gh-section { padding: 36px 0 56px; }
+  .gh-section-label { font-family:'Boogaloo',cursive; font-size:28px; color:#fff; margin-bottom:24px; display:flex; align-items:center; gap:10px; }
+  .gh-section-label span { font-size:13px; font-weight:800; color:#444; text-transform:uppercase; letter-spacing:1px; margin-left:auto; }
+  .gh-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
   .gh-card {
-    background: #1a1a1a;
-    border: 3px solid #333;
-    border-radius: 16px;
+    background: #111;
+    border: 2px solid #222;
+    border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     transition: transform .2s, border-color .2s, box-shadow .2s;
     position: relative;
-    top: 0;
     animation: ghCardIn .4s ease both;
   }
   @keyframes ghCardIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
   #card-runner { animation-delay: 0s; }
   #card-quiz   { animation-delay: .1s; }
   #card-colour { animation-delay: .2s; }
-  .gh-card:hover { transform:translateY(-6px); border-color: var(--yellow); box-shadow:0 12px 0 rgba(0,0,0,.4); }
-  .gh-card-header { padding:28px 24px 20px; display:flex; align-items:center; gap:14px; }
-  .gh-card-icon { font-size:42px; line-height:1; flex-shrink:0; }
-  .gh-card-title { font-family:'Boogaloo',cursive; font-size:26px; color:#fff; line-height:1.1; margin-bottom:4px; }
-  .gh-card-sub { font-size:12px; font-weight:800; color:#666; text-transform:uppercase; letter-spacing:1px; }
-  .gh-card-desc { padding:0 24px 20px; font-size:14px; color:#888; font-weight:600; line-height:1.6; }
-  .gh-card-footer { padding:14px 24px; background:rgba(255,255,255,.04); border-top:2px solid #222; display:flex; align-items:center; justify-content:space-between; }
-  .gh-badge { font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:1px; padding:4px 10px; border-radius:20px; }
-  .gh-badge-free { background:rgba(0,166,80,.15); color:var(--green); }
-  .gh-badge-new { background:rgba(227,0,11,.15); color:var(--red); }
-  .gh-play-btn { font-family:'Nunito',sans-serif; font-weight:900; font-size:13px; padding:8px 20px; border-radius:8px; border:none; cursor:pointer; transition:all .15s; background:var(--yellow); color:var(--black); box-shadow:0 4px 0 #a07800; position:relative; top:0; }
-  .gh-play-btn:hover { top:2px; box-shadow:0 2px 0 #a07800; }
+  .gh-card:hover { transform:translateY(-6px); border-color:var(--yellow); box-shadow:0 16px 40px rgba(0,0,0,.5); }
   .gh-card.active-game { border-color:var(--yellow); box-shadow:0 0 0 3px rgba(255,215,0,.2); }
+
+  /* Card artwork banner */
+  .gh-card-art {
+    height: 160px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gh-card-art-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform .4s ease;
+    filter: brightness(.7);
+  }
+  .gh-card:hover .gh-card-art-bg { transform: scale(1.08); filter: brightness(.85); }
+  .gh-card-art-icon { position:relative; z-index:2; font-size:64px; filter:drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+  .gh-card-art-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 3;
+    font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;
+    padding: 4px 12px; border-radius: 20px;
+  }
+  .gh-badge-free { background: var(--green); color: #fff; }
+  .gh-badge-new  { background: var(--red);   color: #fff; }
+
+  /* Card body */
+  .gh-card-body { padding: 20px 20px 16px; }
+  .gh-card-title { font-family:'Boogaloo',cursive; font-size:24px; color:#fff; line-height:1.1; margin-bottom:4px; }
+  .gh-card-sub { font-size:11px; font-weight:800; color:#555; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+  .gh-card-desc { font-size:13px; color:#777; font-weight:600; line-height:1.6; margin-bottom:16px; }
+  .gh-card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid #1e1e1e; }
+  .gh-card-players { font-size:12px; font-weight:800; color:#444; }
+  .gh-play-btn {
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:13px;
+    padding:9px 22px; border-radius:30px; border:none; cursor:pointer;
+    background:var(--yellow); color:var(--black);
+    box-shadow:0 4px 0 #a07800; position:relative; top:0;
+    transition: top .1s, box-shadow .1s;
+  }
+  .gh-play-btn:hover { top:2px; box-shadow:0 2px 0 #a07800; }
 
   /* GAME AREAS */
   .gh-game-area { display:none; padding:0 0 56px; }
@@ -9469,18 +9583,123 @@ setTimeout(()=>{
   }
 </style>
 
-<!-- HERO -->
-<div class="gh-hero">
-  <div class="container gh-hero-inner">
-    <span class="lbl" style="background:var(--green);color:#fff;margin-bottom:12px;display:inline-block">🎮 AFOL Game Zone</span>
-    <h1><span style="color:var(--yellow)">Play.</span> <span style="color:var(--red)">Compete.</span> Build.</h1>
-    <p>Three LEGO® games for true AFOL fans — a runner, a trivia quiz and a colour challenge. How well do you really know your bricks?</p>
-    <div class="gh-hero-studs">
-      <div class="gh-stud gh-stud-r"></div>
-      <div class="gh-stud gh-stud-y"></div>
-      <div class="gh-stud gh-stud-b"></div>
-      <div class="gh-stud gh-stud-g"></div>
-      <div class="gh-stud gh-stud-o"></div>
+<!-- ══ CINEMATIC HERO SLIDER ══ -->
+<div class="gh-hero" id="ghHero">
+  <div class="gh-slides" id="ghSlides">
+
+    <!-- Slide 1: Brick Runner -->
+    <div class="gh-slide active" data-game="runner">
+      <div class="gh-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1400&q=80')"></div>
+      <div class="gh-slide-overlay"></div>
+      <div class="gh-slide-content">
+        <div class="gh-slide-tag">🏃 Endless Runner</div>
+        <div class="gh-slide-title">Brick Runner</div>
+        <button class="gh-slide-cta" onclick="openGame('runner')">▶ GO EXPLORE →</button>
+      </div>
+    </div>
+
+    <!-- Slide 2: AFOL Trivia -->
+    <div class="gh-slide" data-game="quiz">
+      <div class="gh-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1606503153255-59d5e417b369?w=1400&q=80')"></div>
+      <div class="gh-slide-overlay"></div>
+      <div class="gh-slide-content">
+        <div class="gh-slide-tag">🧠 Trivia Quiz</div>
+        <div class="gh-slide-title">AFOL Trivia</div>
+        <button class="gh-slide-cta" onclick="openGame('quiz')">▶ GO EXPLORE →</button>
+      </div>
+    </div>
+
+    <!-- Slide 3: LEGO Tetris -->
+    <div class="gh-slide" data-game="tetris">
+      <div class="gh-slide-bg" style="background:linear-gradient(135deg,#0a0a1a 0%,#1a0a2e 50%,#0a1a0a 100%)"></div>
+      <div class="gh-slide-overlay"></div>
+      <div class="gh-slide-content">
+        <div class="gh-slide-tag">🧱 Puzzle</div>
+        <div class="gh-slide-title">LEGO® Tetris</div>
+        <button class="gh-slide-cta" onclick="openGame('tetris')">▶ GO PLAY →</button>
+      </div>
+    </div>
+
+    <!-- Slide 4: Flappy Brick -->
+    <div class="gh-slide" data-game="flappy">
+      <div class="gh-slide-bg" style="background:linear-gradient(135deg,#003366 0%,#006CB7 60%,#00a8e8 100%)"></div>
+      <div class="gh-slide-overlay"></div>
+      <div class="gh-slide-content">
+        <div class="gh-slide-tag">🪁 Arcade</div>
+        <div class="gh-slide-title">Flappy Brick</div>
+        <button class="gh-slide-cta" onclick="openGame('flappy')">▶ GO PLAY →</button>
+      </div>
+    </div>
+
+    <!-- Slide 5: Tiles Hop -->
+    <div class="gh-slide" data-game="tiles">
+      <div class="gh-slide-bg" style="background:linear-gradient(135deg,#1a0033 0%,#7B2FBE 50%,#ff00cc 100%)"></div>
+      <div class="gh-slide-overlay"></div>
+      <div class="gh-slide-content">
+        <div class="gh-slide-tag">🎵 Rhythm</div>
+        <div class="gh-slide-title">Tiles Hop</div>
+        <button class="gh-slide-cta" onclick="openGame('tiles')">▶ GO PLAY →</button>
+      </div>
+    </div>
+
+    <!-- Slide 6: Brick Breaker -->
+    <div class="gh-slide" data-game="breaker">
+      <div class="gh-slide-bg" style="background:linear-gradient(135deg,#E3000B 0%,#8b0000 50%,#3d0000 100%)"></div>
+      <div class="gh-slide-overlay"></div>
+      <div class="gh-slide-content">
+        <div class="gh-slide-tag">💥 Arcade</div>
+        <div class="gh-slide-title">Brick Breaker</div>
+        <button class="gh-slide-cta" onclick="openGame('breaker')">▶ GO PLAY →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Arrows -->
+  <button class="gh-arr gh-arr-l" onclick="ghSlide(-1)">&#8249;</button>
+  <button class="gh-arr gh-arr-r" onclick="ghSlide(1)">&#8250;</button>
+
+  <!-- Dots -->
+  <div class="gh-dots" id="ghDots">
+    <button class="gh-dot active" onclick="ghGoTo(0)"></button>
+    <button class="gh-dot" onclick="ghGoTo(1)"></button>
+    <button class="gh-dot" onclick="ghGoTo(2)"></button>
+    <button class="gh-dot" onclick="ghGoTo(3)"></button>
+    <button class="gh-dot" onclick="ghGoTo(4)"></button>
+    <button class="gh-dot" onclick="ghGoTo(5)"></button>
+  </div>
+</div>
+
+<!-- ══ PILL CATEGORY NAV ══ -->
+<div class="gh-cat-nav">
+  <div class="gh-cat-inner">
+    <div class="gh-cat-pill active" onclick="ghSetCat('all',this)">
+      <span class="gh-cat-pill-icon">🎮</span>
+      <span class="gh-cat-pill-label">All Games</span>
+    </div>
+    <div class="gh-cat-pill" onclick="ghSetCat('runner',this)">
+      <span class="gh-cat-pill-icon">🏃</span>
+      <span class="gh-cat-pill-label">Runner</span>
+    </div>
+    <div class="gh-cat-pill" onclick="ghSetCat('quiz',this)">
+      <span class="gh-cat-pill-icon">🧠</span>
+      <span class="gh-cat-pill-label">Trivia</span>
+    </div>
+    <div class="gh-cat-pill" onclick="ghSetCat('tetris',this)">
+      <span class="gh-cat-pill-icon">🧱</span>
+      <span class="gh-cat-pill-label">Tetris</span>
+    </div>
+    <div class="gh-cat-pill" onclick="ghSetCat('flappy',this)">
+      <span class="gh-cat-pill-icon">🪁</span>
+      <span class="gh-cat-pill-label">Flappy</span>
+    </div>
+    <div class="gh-cat-pill" onclick="ghSetCat('tiles',this)">
+      <span class="gh-cat-pill-icon">🎵</span>
+      <span class="gh-cat-pill-label">Tiles Hop</span>
+    </div>
+    <div class="gh-cat-pill" onclick="ghSetCat('breaker',this)">
+      <span class="gh-cat-pill-icon">💥</span>
+      <span class="gh-cat-pill-label">Breaker</span>
     </div>
   </div>
 </div>
@@ -9488,57 +9707,118 @@ setTimeout(()=>{
 <!-- GAME CARDS -->
 <section class="gh-section">
   <div class="container">
-    <span class="lbl lbl-r">Choose Your Game</span>
-    <h2 class="sec-title" style="opacity:1;transform:none">Pick & Play</h2>
+    <div class="gh-section-label">Pick &amp; Play <span id="ghCatLabel">All Games</span></div>
 
-    <div class="gh-grid">
+    <div class="gh-grid" id="ghGrid">
+
       <!-- Brick Runner -->
-      <div class="gh-card" id="card-runner" onclick="openGame('runner')">
-        <div class="gh-card-header">
-          <div class="gh-card-icon">🏃</div>
-          <div>
-            <div class="gh-card-title">Brick Runner</div>
-            <div class="gh-card-sub">Endless Runner · All Ages</div>
-          </div>
+      <div class="gh-card" id="card-runner" data-cat="runner" onclick="openGame('runner')">
+        <div class="gh-card-art">
+          <div class="gh-card-art-bg" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80')"></div>
+          <span class="gh-card-art-badge gh-badge-free">Free</span>
+          <span class="gh-card-art-icon">🏃</span>
         </div>
-        <div class="gh-card-desc">Jump and double-jump over LEGO® brick obstacles. Speed increases every level — how far can you go before getting squashed?</div>
-        <div class="gh-card-footer">
-          <span class="gh-badge gh-badge-free">Free</span>
-          <button class="gh-play-btn">▶ Play Now</button>
+        <div class="gh-card-body">
+          <div class="gh-card-title">Brick Runner</div>
+          <div class="gh-card-sub">Endless Runner · All Ages</div>
+          <div class="gh-card-desc">Jump and double-jump over LEGO® brick obstacles. Speed increases every level — how far can you go?</div>
+          <div class="gh-card-footer">
+            <span class="gh-card-players">👥 Solo</span>
+            <button class="gh-play-btn">▶ Play Now</button>
+          </div>
         </div>
       </div>
 
-      <!-- LEGO Quiz -->
-      <div class="gh-card" id="card-quiz" onclick="openGame('quiz')">
-        <div class="gh-card-header">
-          <div class="gh-card-icon">🧠</div>
-          <div>
-            <div class="gh-card-title">AFOL Trivia</div>
-            <div class="gh-card-sub">Quiz · 10 Questions</div>
-          </div>
+      <!-- AFOL Trivia -->
+      <div class="gh-card" id="card-quiz" data-cat="quiz" onclick="openGame('quiz')">
+        <div class="gh-card-art">
+          <div class="gh-card-art-bg" style="background-image:url('https://images.unsplash.com/photo-1606503153255-59d5e417b369?w=800&q=80')"></div>
+          <span class="gh-card-art-badge gh-badge-new">New</span>
+          <span class="gh-card-art-icon">🧠</span>
         </div>
-        <div class="gh-card-desc">Think you know LEGO®? Test your knowledge on sets, history, pieces, and techniques. Only true AFOLs score 10/10.</div>
-        <div class="gh-card-footer">
-          <span class="gh-badge gh-badge-new">New</span>
-          <button class="gh-play-btn">▶ Play Now</button>
+        <div class="gh-card-body">
+          <div class="gh-card-title">AFOL Trivia</div>
+          <div class="gh-card-sub">Quiz · 10 Questions</div>
+          <div class="gh-card-desc">Think you know LEGO®? Test your knowledge on sets, history, pieces, and techniques. Only true AFOLs score 10/10.</div>
+          <div class="gh-card-footer">
+            <span class="gh-card-players">👥 Solo</span>
+            <button class="gh-play-btn">▶ Play Now</button>
+          </div>
         </div>
       </div>
 
-      <!-- Colour Match -->
-      <div class="gh-card" id="card-colour" onclick="openGame('colour')">
-        <div class="gh-card-header">
-          <div class="gh-card-icon">🎨</div>
-          <div>
-            <div class="gh-card-title">Colour Match</div>
-            <div class="gh-card-sub">Speed Game · 30 Seconds</div>
+      <!-- LEGO Tetris -->
+      <div class="gh-card" id="card-tetris" data-cat="tetris" onclick="openGame('tetris')">
+        <div class="gh-card-art">
+          <div class="gh-card-art-bg" style="background:linear-gradient(135deg,#0a0a1a 0%,#1a0a2e 50%,#0a1a0a 100%)"></div>
+          <span class="gh-card-art-badge gh-badge-new">New</span>
+          <span class="gh-card-art-icon">🧱</span>
+        </div>
+        <div class="gh-card-body">
+          <div class="gh-card-title">LEGO® Tetris</div>
+          <div class="gh-card-sub">Puzzle · Stack &amp; Clear</div>
+          <div class="gh-card-desc">Classic Tetris reimagined with 3D-styled LEGO® bricks. Stack them high, clear the lines, beat your score!</div>
+          <div class="gh-card-footer">
+            <span class="gh-card-players">👥 Solo</span>
+            <button class="gh-play-btn">▶ Play Now</button>
           </div>
         </div>
-        <div class="gh-card-desc">Can you identify LEGO® colours by name? Match the colour name to the correct brick shade before the timer runs out!</div>
-        <div class="gh-card-footer">
-          <span class="gh-badge gh-badge-new">New</span>
-          <button class="gh-play-btn">▶ Play Now</button>
+      </div>
+
+      <!-- Flappy Brick -->
+      <div class="gh-card" id="card-flappy" data-cat="flappy" onclick="openGame('flappy')">
+        <div class="gh-card-art">
+          <div class="gh-card-art-bg" style="background:linear-gradient(135deg,#003366 0%,#006CB7 50%,#00a8e8 100%)"></div>
+          <span class="gh-card-art-badge gh-badge-new">New</span>
+          <span class="gh-card-art-icon">🪁</span>
+        </div>
+        <div class="gh-card-body">
+          <div class="gh-card-title">Flappy Brick</div>
+          <div class="gh-card-sub">Arcade · Tap to Fly</div>
+          <div class="gh-card-desc">A LEGO® brick with wings! Tap to flap through LEGO® pipe gaps — one touch is all it takes… and all it takes to die.</div>
+          <div class="gh-card-footer">
+            <span class="gh-card-players">👥 Solo</span>
+            <button class="gh-play-btn">▶ Play Now</button>
+          </div>
         </div>
       </div>
+
+      <!-- Tiles Hop -->
+      <div class="gh-card" id="card-tiles" data-cat="tiles" onclick="openGame('tiles')">
+        <div class="gh-card-art">
+          <div class="gh-card-art-bg" style="background:linear-gradient(135deg,#1a0033 0%,#7B2FBE 50%,#ff00cc 100%)"></div>
+          <span class="gh-card-art-badge gh-badge-new">New</span>
+          <span class="gh-card-art-icon">🎵</span>
+        </div>
+        <div class="gh-card-body">
+          <div class="gh-card-title">Tiles Hop</div>
+          <div class="gh-card-sub">Rhythm · Don't Miss a Beat</div>
+          <div class="gh-card-desc">A LEGO® brick bounces to the beat! Tap the glowing tiles in time — miss one and it's game over. How far can you go?</div>
+          <div class="gh-card-footer">
+            <span class="gh-card-players">👥 Solo</span>
+            <button class="gh-play-btn">▶ Play Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brick Breaker -->
+      <div class="gh-card" id="card-breaker" data-cat="breaker" onclick="openGame('breaker')">
+        <div class="gh-card-art">
+          <div class="gh-card-art-bg" style="background:linear-gradient(135deg,#E3000B 0%,#8b0000 50%,#3d0000 100%)"></div>
+          <span class="gh-card-art-badge gh-badge-new">New</span>
+          <span class="gh-card-art-icon">💥</span>
+        </div>
+        <div class="gh-card-body">
+          <div class="gh-card-title">Brick Breaker</div>
+          <div class="gh-card-sub">Arcade · Smash &amp; Score</div>
+          <div class="gh-card-desc">Classic breakout reimagined with LEGO® bricks! Smash every coloured brick off the board — don't let the ball drop!</div>
+          <div class="gh-card-footer">
+            <span class="gh-card-players">👥 Solo</span>
+            <button class="gh-play-btn">▶ Play Now</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ── BRICK RUNNER AREA ── -->
@@ -9597,16 +9877,47 @@ setTimeout(()=>{
       </div>
     </div>
 
-    <!-- ── COLOUR MATCH AREA ── -->
-    <div class="gh-game-area" id="area-colour">
+    <!-- ── LEGO TETRIS AREA ── -->
+    <div class="gh-game-area" id="area-tetris">
       <div class="gh-game-area-inner">
         <div class="gh-game-title-bar">
-          <h3>🎨 Colour Match</h3>
-          <button class="gh-close-btn" onclick="closeGame('colour')">✕ Close</button>
+          <h3>🧱 LEGO® Tetris</h3>
+          <button class="gh-close-btn" onclick="closeGame('tetris')">✕ Close</button>
         </div>
-        <div class="bc-game" id="colour-game-wrap">
-          <!-- filled by JS -->
+        <div id="tetris-wrap"></div>
+      </div>
+    </div>
+
+    <!-- ── FLAPPY BRICK AREA ── -->
+    <div class="gh-game-area" id="area-flappy">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🪁 Flappy Brick</h3>
+          <button class="gh-close-btn" onclick="closeGame('flappy')">✕ Close</button>
         </div>
+        <div id="flappy-wrap"></div>
+      </div>
+    </div>
+
+    <!-- ── TILES HOP AREA ── -->
+    <div class="gh-game-area" id="area-tiles">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>🎵 Tiles Hop</h3>
+          <button class="gh-close-btn" onclick="closeGame('tiles')">✕ Close</button>
+        </div>
+        <div id="tiles-wrap"></div>
+      </div>
+    </div>
+
+    <!-- ── BRICK BREAKER AREA ── -->
+    <div class="gh-game-area" id="area-breaker">
+      <div class="gh-game-area-inner">
+        <div class="gh-game-title-bar">
+          <h3>💥 Brick Breaker</h3>
+          <button class="gh-close-btn" onclick="closeGame('breaker')">✕ Close</button>
+        </div>
+        <div id="breaker-wrap"></div>
       </div>
     </div>
 
@@ -9644,6 +9955,45 @@ setTimeout(()=>{
 </div><!-- end page-game -->
 
 <script>
+// ═══════════════════════ HERO SLIDER ═══════════════════════
+(function(){
+  let ghCur = 0;
+  const slides = document.querySelectorAll('.gh-slide');
+  const dots   = document.querySelectorAll('.gh-dot');
+  let ghTimer  = null;
+
+  function ghGoTo(n) {
+    slides[ghCur].classList.remove('active');
+    dots[ghCur].classList.remove('active');
+    ghCur = (n + slides.length) % slides.length;
+    slides[ghCur].classList.add('active');
+    dots[ghCur].classList.add('active');
+    document.getElementById('ghSlides').style.transform = `translateX(-${ghCur*100}%)`;
+    ghRestart();
+  }
+  window.ghGoTo = ghGoTo;
+  window.ghSlide = (d) => ghGoTo(ghCur + d);
+
+  function ghRestart() {
+    clearInterval(ghTimer);
+    ghTimer = setInterval(() => ghGoTo(ghCur + 1), 5000);
+  }
+  ghRestart();
+})();
+
+// ═══════════════════════ CATEGORY FILTER ═══════════════════════
+function ghSetCat(cat, btn) {
+  document.querySelectorAll('.gh-cat-pill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const label = btn ? btn.querySelector('.gh-cat-pill-label').textContent : 'All Games';
+  const el = document.getElementById('ghCatLabel');
+  if (el) el.textContent = label;
+  document.querySelectorAll('#ghGrid .gh-card').forEach(c => {
+    const show = cat === 'all' || c.dataset.cat === cat;
+    c.style.display = show ? '' : 'none';
+  });
+}
+
 // ═══════════════════════ GAME HUB ═══════════════════════
 
 function openGame(id) {
@@ -9661,7 +10011,10 @@ function openGame(id) {
   // Init individual games
   if (id === 'runner') initBrickRunner();
   if (id === 'quiz')   initQuizGame();
-  if (id === 'colour') initColourGame();
+  if (id === 'tetris')  initLegoTetris();
+  if (id === 'flappy')  initFlappyBrick();
+  if (id === 'tiles')   initTilesHop();
+  if (id === 'breaker') initBrickBreaker();
 }
 
 function closeGame(id) {
@@ -10105,6 +10458,727 @@ function renderColourResult() {
     </div>`;
   saveScore('colour', _bcScore * 10);
 }
+
+// ═══════════════════════ LEGO TETRIS ═══════════════════════
+const TETRIS_COLORS = {
+  I:'#00B5D8', O:'#FFD700', T:'#7B2FBE', S:'#00A650',
+  Z:'#E3000B', J:'#006CB7', L:'#FF6B00'
+};
+const TETRIS_PIECES = {
+  I:[[1,1,1,1]],
+  O:[[1,1],[1,1]],
+  T:[[0,1,0],[1,1,1]],
+  S:[[0,1,1],[1,1,0]],
+  Z:[[1,1,0],[0,1,1]],
+  J:[[1,0,0],[1,1,1]],
+  L:[[0,0,1],[1,1,1]]
+};
+const TW=10,TH=20,TS=30;
+let _tBoard,_tPiece,_tNext,_tScore,_tLevel,_tLines,_tRunning=false,_tRAF,_tInterval,_tCanvas,_tCtx,_tNextCanvas,_tNextCtx;
+
+function initLegoTetris(){
+  const wrap=document.getElementById('tetris-wrap');
+  wrap.innerHTML=`
+  <div style="background:#0a0a0a;padding:20px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;align-items:flex-start">
+    <div>
+      <canvas id="t-canvas" width="${TW*TS}" height="${TH*TS}" style="border:3px solid #333;border-radius:8px;display:block;background:#111"></canvas>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:140px">
+      <div style="background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:4px">Score</div>
+        <div style="font-family:'Boogaloo',cursive;font-size:32px;color:var(--yellow)" id="t-score">0</div>
+      </div>
+      <div style="background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:4px">Level</div>
+        <div style="font-family:'Boogaloo',cursive;font-size:32px;color:var(--red)" id="t-level">1</div>
+      </div>
+      <div style="background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:4px">Lines</div>
+        <div style="font-family:'Boogaloo',cursive;font-size:32px;color:var(--green)" id="t-lines">0</div>
+      </div>
+      <div style="background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:16px">
+        <div style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:6px">Next</div>
+        <canvas id="t-next" width="120" height="80" style="display:block"></canvas>
+      </div>
+      <button onclick="tStart()" id="t-startbtn" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;padding:12px;border-radius:10px;border:none;background:var(--yellow);color:var(--black);cursor:pointer;box-shadow:0 4px 0 #a07800">▶ Start</button>
+      <div style="font-size:11px;font-weight:800;color:#444;text-align:center;line-height:1.6">← → Move<br>↑ Rotate<br>↓ Soft Drop<br>Space Hard Drop</div>
+    </div>
+  </div>
+  <div id="t-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.88);border-radius:8px;gap:12px">
+    <div style="font-family:'Boogaloo',cursive;font-size:52px;color:var(--yellow);text-shadow:0 4px 0 #7a5800">LEGO® TETRIS</div>
+    <div style="font-size:13px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:2px">Stack the bricks. Clear the lines.</div>
+    <button onclick="tStart()" style="font-family:'Boogaloo',cursive;font-size:24px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 48px;box-shadow:0 8px 0 #7a0005;cursor:pointer;margin-top:8px">▶ PLAY!</button>
+  </div>`;
+  // make relative for overlay
+  wrap.style.position='relative';
+  _tCanvas=document.getElementById('t-canvas');
+  _tCtx=_tCanvas.getContext('2d');
+  _tNextCanvas=document.getElementById('t-next');
+  _tNextCtx=_tNextCanvas.getContext('2d');
+  tReset(); tDraw();
+}
+
+function tReset(){
+  _tBoard=Array.from({length:TH},()=>Array(TW).fill(null));
+  _tScore=0;_tLevel=1;_tLines=0;_tRunning=false;
+  if(_tRAF) cancelAnimationFrame(_tRAF);
+  clearInterval(_tInterval);
+  _tNext=tRandPiece(); _tPiece=tNewPiece();
+}
+
+function tRandPiece(){
+  const keys=Object.keys(TETRIS_PIECES);
+  return keys[Math.floor(Math.random()*keys.length)];
+}
+
+function tNewPiece(){
+  const type=_tNext; _tNext=tRandPiece();
+  const shape=TETRIS_PIECES[type].map(r=>[...r]);
+  return {type,shape,x:Math.floor(TW/2)-Math.ceil(shape[0].length/2),y:0};
+}
+
+function tStart(){
+  const ov=document.getElementById('t-overlay');
+  if(ov) ov.style.display='none';
+  tReset(); _tRunning=true;
+  tSchedule(); tLoop();
+}
+
+function tSchedule(){
+  clearInterval(_tInterval);
+  const speed=Math.max(100,600-(_tLevel-1)*50);
+  _tInterval=setInterval(()=>{ if(_tRunning) tDrop(); },speed);
+}
+
+function tLoop(){
+  if(!_tRunning) return;
+  tDraw();
+  _tRAF=requestAnimationFrame(tLoop);
+}
+
+function tDrop(){
+  _tPiece.y++;
+  if(tCollides(_tPiece)){
+    _tPiece.y--;
+    tLock();
+    tClearLines();
+    _tPiece=tNewPiece();
+    if(tCollides(_tPiece)){ tGameOver(); }
+  }
+}
+
+function tCollides(p){
+  for(let r=0;r<p.shape.length;r++)
+    for(let c=0;c<p.shape[r].length;c++)
+      if(p.shape[r][c]){
+        const nx=p.x+c,ny=p.y+r;
+        if(nx<0||nx>=TW||ny>=TH) return true;
+        if(ny>=0&&_tBoard[ny][nx]) return true;
+      }
+  return false;
+}
+
+function tLock(){
+  for(let r=0;r<_tPiece.shape.length;r++)
+    for(let c=0;c<_tPiece.shape[r].length;c++)
+      if(_tPiece.shape[r][c]&&_tPiece.y+r>=0)
+        _tBoard[_tPiece.y+r][_tPiece.x+c]=_tPiece.type;
+}
+
+function tClearLines(){
+  let cleared=0;
+  for(let r=TH-1;r>=0;r--){
+    if(_tBoard[r].every(c=>c)){
+      _tBoard.splice(r,1);
+      _tBoard.unshift(Array(TW).fill(null));
+      cleared++; r++;
+    }
+  }
+  if(cleared){
+    const pts=[0,100,300,500,800];
+    _tScore+=pts[cleared]*_tLevel;
+    _tLines+=cleared;
+    _tLevel=Math.floor(_tLines/10)+1;
+    tSchedule();
+    if(document.getElementById('t-score')) document.getElementById('t-score').textContent=_tScore;
+    if(document.getElementById('t-level')) document.getElementById('t-level').textContent=_tLevel;
+    if(document.getElementById('t-lines')) document.getElementById('t-lines').textContent=_tLines;
+  }
+}
+
+function tRotate(p){
+  const rows=p.shape.length,cols=p.shape[0].length;
+  const rot=Array.from({length:cols},(_,c)=>Array.from({length:rows},(_,r)=>p.shape[rows-1-r][c]));
+  return {...p,shape:rot};
+}
+
+function tDraw(){
+  if(!_tCtx) return;
+  const ctx=_tCtx;
+  ctx.fillStyle='#111'; ctx.fillRect(0,0,TW*TS,TH*TS);
+  // Grid
+  ctx.strokeStyle='rgba(255,255,255,.04)'; ctx.lineWidth=1;
+  for(let x=0;x<=TW;x++){ctx.beginPath();ctx.moveTo(x*TS,0);ctx.lineTo(x*TS,TH*TS);ctx.stroke();}
+  for(let y=0;y<=TH;y++){ctx.beginPath();ctx.moveTo(0,y*TS);ctx.lineTo(TW*TS,y*TS);ctx.stroke();}
+  // Locked bricks
+  for(let r=0;r<TH;r++) for(let c=0;c<TW;c++) if(_tBoard[r][c]) tDrawBrick(ctx,c*TS,r*TS,TETRIS_COLORS[_tBoard[r][c]],TS);
+  // Ghost piece
+  if(_tPiece&&_tRunning){
+    const ghost={..._tPiece,shape:_tPiece.shape.map(r=>[...r])};
+    while(!tCollides({...ghost,y:ghost.y+1})) ghost.y++;
+    ctx.globalAlpha=0.2;
+    for(let r=0;r<ghost.shape.length;r++) for(let c=0;c<ghost.shape[r].length;c++)
+      if(ghost.shape[r][c]) tDrawBrick(ctx,(ghost.x+c)*TS,(ghost.y+r)*TS,TETRIS_COLORS[_tPiece.type],TS);
+    ctx.globalAlpha=1;
+    // Active piece
+    for(let r=0;r<_tPiece.shape.length;r++) for(let c=0;c<_tPiece.shape[r].length;c++)
+      if(_tPiece.shape[r][c]) tDrawBrick(ctx,(_tPiece.x+c)*TS,(_tPiece.y+r)*TS,TETRIS_COLORS[_tPiece.type],TS);
+  }
+  // Next piece preview
+  if(_tNextCtx&&_tNext){
+    const nc=_tNextCtx; nc.fillStyle='#1a1a1a'; nc.fillRect(0,0,120,80);
+    const sh=TETRIS_PIECES[_tNext]; const ps=20;
+    const ox=(120-sh[0].length*ps)/2, oy=(80-sh.length*ps)/2;
+    for(let r=0;r<sh.length;r++) for(let c=0;c<sh[r].length;c++)
+      if(sh[r][c]) tDrawBrick(nc,ox+c*ps,oy+r*ps,TETRIS_COLORS[_tNext],ps);
+  }
+}
+
+function tDrawBrick(ctx,x,y,color,size){
+  const p=2;
+  ctx.fillStyle=color; ctx.beginPath(); ctx.roundRect(x+p,y+p,size-p*2,size-p*2,3); ctx.fill();
+  // Highlight top
+  ctx.fillStyle='rgba(255,255,255,.35)'; ctx.fillRect(x+p+2,y+p+2,size-p*2-4,4);
+  // Stud
+  ctx.fillStyle=color; ctx.beginPath(); ctx.arc(x+size/2,y+p,size*.18,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,.2)'; ctx.beginPath(); ctx.arc(x+size/2,y+p,size*.12,0,Math.PI*2); ctx.fill();
+  // Shadow
+  ctx.fillStyle='rgba(0,0,0,.25)'; ctx.fillRect(x+p,y+size-p-3,size-p*2,3);
+}
+
+function tGameOver(){
+  _tRunning=false; cancelAnimationFrame(_tRAF); clearInterval(_tInterval);
+  saveScore('tetris',_tScore);
+  const ov=document.getElementById('t-overlay');
+  if(ov){
+    ov.style.display='flex';
+    ov.innerHTML=`
+      <div style="font-family:'Boogaloo',cursive;font-size:52px;color:var(--red)">GAME OVER</div>
+      <div style="font-family:'Boogaloo',cursive;font-size:36px;color:var(--yellow)">${_tScore} pts</div>
+      <div style="font-size:12px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:2px">Level ${_tLevel} · ${_tLines} Lines</div>
+      <button onclick="tStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:12px 40px;box-shadow:0 6px 0 #7a0005;cursor:pointer;margin-top:12px">🔄 Play Again</button>`;
+  }
+}
+
+// Keyboard controls
+document.addEventListener('keydown',e=>{
+  if(!_tRunning||!_tPiece) return;
+  const page=document.getElementById('page-game');
+  if(!page||!page.classList.contains('active')) return;
+  const area=document.getElementById('area-tetris');
+  if(!area||!area.classList.contains('open')) return;
+  if(e.code==='ArrowLeft'){e.preventDefault();const t={..._tPiece,x:_tPiece.x-1};if(!tCollides(t))_tPiece.x--;}
+  if(e.code==='ArrowRight'){e.preventDefault();const t={..._tPiece,x:_tPiece.x+1};if(!tCollides(t))_tPiece.x++;}
+  if(e.code==='ArrowDown'){e.preventDefault();tDrop();}
+  if(e.code==='ArrowUp'){e.preventDefault();const rot=tRotate(_tPiece);if(!tCollides(rot))_tPiece.shape=rot.shape;}
+  if(e.code==='Space'){e.preventDefault();while(!tCollides({..._tPiece,y:_tPiece.y+1}))_tPiece.y++;tDrop();}
+});
+
+// ═══════════════════════ FLAPPY BRICK ═══════════════════════
+let _fbCanvas,_fbCtx,_fbRunning=false,_fbRAF;
+let _fbBrick,_fbPipes,_fbScore,_fbBest=0,_fbState;
+const FB_GAP=160,FB_PIPE_W=60,FB_SPEED=3;
+
+function initFlappyBrick(){
+  const wrap=document.getElementById('flappy-wrap');
+  wrap.innerHTML=`
+  <div style="position:relative;line-height:0;background:#003366">
+    <canvas id="fb-canvas" style="width:100%;max-width:480px;display:block;margin:0 auto"></canvas>
+    <div id="fb-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,20,.85);gap:10px">
+      <div style="font-family:'Boogaloo',cursive;font-size:clamp(32px,6vw,56px);color:var(--yellow);text-shadow:0 4px 0 #7a5800">FLAPPY BRICK</div>
+      <div style="font-size:28px">🧱🪁</div>
+      <div style="font-size:13px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:2px">Tap / Click / Space to flap</div>
+      <button onclick="fbStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 48px;box-shadow:0 8px 0 #7a0005;cursor:pointer;margin-top:8px">▶ PLAY!</button>
+      <div id="fb-best-disp" style="font-size:13px;font-weight:800;color:#444"></div>
+    </div>
+  </div>`;
+  _fbCanvas=document.getElementById('fb-canvas');
+  _fbCanvas.width=480; _fbCanvas.height=640;
+  _fbCtx=_fbCanvas.getContext('2d');
+  _fbBest=parseInt(localStorage.getItem('bb_flappy_best')||'0');
+  _fbState='idle'; fbReset(); fbLoop();
+  _fbCanvas.addEventListener('click',fbFlap);
+  _fbCanvas.addEventListener('touchstart',e=>{e.preventDefault();fbFlap();},{passive:false});
+  document.addEventListener('keydown',e=>{
+    if(e.code==='Space'){
+      const area=document.getElementById('area-flappy');
+      if(area&&area.classList.contains('open')){e.preventDefault();fbFlap();}
+    }
+  });
+}
+
+function fbReset(){
+  _fbBrick={x:100,y:280,vy:0,w:40,h:30};
+  _fbPipes=[{x:580,gapY:200+Math.random()*240}];
+  _fbScore=0; _fbRunning=false;
+}
+
+function fbStart(){
+  document.getElementById('fb-overlay').style.display='none';
+  fbReset(); _fbRunning=true; _fbState='playing';
+}
+
+function fbFlap(){
+  if(_fbState==='idle'||_fbState==='dead'){fbStart();return;}
+  if(_fbRunning) _fbBrick.vy=-9;
+}
+
+function fbLoop(){
+  fbUpdate(); fbDraw();
+  requestAnimationFrame(fbLoop);
+}
+
+function fbUpdate(){
+  if(!_fbRunning) return;
+  _fbBrick.vy+=0.5; _fbBrick.y+=_fbBrick.vy;
+  // Pipes
+  for(const p of _fbPipes){
+    p.x-=FB_SPEED;
+    if(p.x+FB_PIPE_W<_fbBrick.x&&!p.scored){p.scored=true;_fbScore++;}
+  }
+  if(_fbPipes[_fbPipes.length-1].x<480-220)
+    _fbPipes.push({x:580,gapY:150+Math.random()*280});
+  _fbPipes=_fbPipes.filter(p=>p.x>-FB_PIPE_W-10);
+  // Collision
+  const b=_fbBrick;
+  if(b.y+b.h>_fbCanvas.height-50||b.y<0) fbDie();
+  for(const p of _fbPipes){
+    const inX=b.x+b.w>p.x+6&&b.x<p.x+FB_PIPE_W-6;
+    const inGap=b.y>p.gapY-FB_GAP/2&&b.y+b.h<p.gapY+FB_GAP/2;
+    if(inX&&!inGap) fbDie();
+  }
+}
+
+function fbDraw(){
+  const ctx=_fbCtx,W=_fbCanvas.width,H=_fbCanvas.height;
+  // Sky gradient
+  const sky=ctx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#0a1628'); sky.addColorStop(1,'#1a3a6e');
+  ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+  // Stars
+  ctx.fillStyle='rgba(255,255,255,.6)';
+  for(let i=0;i<40;i++){ctx.beginPath();ctx.arc((i*137)%W,((i*97)+50)%300,1,0,Math.PI*2);ctx.fill();}
+  // Ground
+  ctx.fillStyle='#1a3a00'; ctx.fillRect(0,H-50,W,50);
+  ctx.fillStyle='#FFD700';
+  for(let x=0;x<W;x+=20){ctx.fillRect(x,H-52,10,4);}
+  // Pipes (LEGO styled)
+  for(const p of _fbPipes){
+    // Top pipe
+    const topH=p.gapY-FB_GAP/2;
+    fbDrawPipe(ctx,p.x,0,FB_PIPE_W,topH,false);
+    // Bottom pipe
+    const botY=p.gapY+FB_GAP/2;
+    fbDrawPipe(ctx,p.x,botY,FB_PIPE_W,H-50-botY,true);
+  }
+  // Brick (player)
+  const b=_fbBrick;
+  ctx.save(); ctx.translate(b.x+b.w/2,b.y+b.h/2);
+  ctx.rotate(Math.min(Math.max(_fbBrick.vy*.04,-.4),.6));
+  tDrawBrick(ctx,-b.w/2,-b.h/2,_fbRunning?'#FFD700':'#aaa',b.w);
+  // Wing
+  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.beginPath(); ctx.ellipse(0,0,14,8,Math.sin(Date.now()*.01)*0.5,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+  // Score
+  ctx.font='bold 36px Boogaloo,cursive'; ctx.fillStyle='#fff';
+  ctx.textAlign='center'; ctx.shadowColor='rgba(0,0,0,.5)'; ctx.shadowBlur=6;
+  ctx.fillText(_fbScore,W/2,60); ctx.shadowBlur=0;
+}
+
+function fbDrawPipe(ctx,x,y,w,h,top){
+  if(h<=0) return;
+  const grad=ctx.createLinearGradient(x,0,x+w,0);
+  grad.addColorStop(0,'#2a6e00'); grad.addColorStop(.3,'#00A650'); grad.addColorStop(1,'#1a4400');
+  ctx.fillStyle=grad; ctx.fillRect(x,y,w,h);
+  // Cap
+  const capH=16, capW=w+10;
+  ctx.fillStyle='#00A650'; ctx.fillRect(x-5,top?y+h-capH:y,capW,capH);
+  ctx.fillStyle='rgba(255,255,255,.2)'; ctx.fillRect(x-5,top?y+h-capH:y,capW,4);
+  // LEGO studs on cap
+  ctx.fillStyle='#007a38';
+  for(let i=0;i<3;i++){ctx.beginPath();ctx.arc(x+10+i*15,top?y+h-capH-6:y+capH+6,5,0,Math.PI*2);ctx.fill();}
+}
+
+function fbDie(){
+  if(!_fbRunning) return;
+  _fbRunning=false; _fbState='dead';
+  if(_fbScore>_fbBest){_fbBest=_fbScore;localStorage.setItem('bb_flappy_best',_fbBest);}
+  saveScore('flappy',_fbScore*50);
+  setTimeout(()=>{
+    const ov=document.getElementById('fb-overlay');
+    if(ov){
+      ov.style.display='flex';
+      ov.innerHTML=`
+        <div style="font-family:'Boogaloo',cursive;font-size:48px;color:var(--red)">SPLAT! 💥</div>
+        <div style="font-family:'Boogaloo',cursive;font-size:36px;color:var(--yellow)">${_fbScore}</div>
+        <div style="font-size:12px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:2px">Best: ${_fbBest}</div>
+        <button onclick="fbStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:12px 40px;box-shadow:0 6px 0 #7a0005;cursor:pointer;margin-top:12px">🔄 Try Again</button>`;
+    }
+  },600);
+}
+
+// ═══════════════════════ TILES HOP ═══════════════════════
+let _thCanvas,_thCtx,_thRunning=false,_thRAF;
+let _thBrick,_thTiles,_thScore,_thSpeed,_thBeat,_thBestScore=0;
+const TH_COLS=4,TH_TILE_W=100,TH_TILE_H=120;
+
+function initTilesHop(){
+  const wrap=document.getElementById('tiles-wrap');
+  wrap.innerHTML=`
+  <div style="position:relative;line-height:0;background:#0d0010;display:flex;justify-content:center">
+    <canvas id="th-canvas" style="display:block;width:100%;max-width:420px"></canvas>
+    <div id="th-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,20,.9);gap:12px">
+      <div style="font-family:'Boogaloo',cursive;font-size:clamp(32px,6vw,52px);color:var(--yellow);text-shadow:0 0 30px rgba(255,215,0,.5)">TILES HOP</div>
+      <div style="font-size:40px">🎵🧱</div>
+      <div style="font-size:13px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:2px;text-align:center">Tap the glowing tiles<br>Don't miss the beat!</div>
+      <button onclick="thStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 48px;box-shadow:0 8px 0 #7a0005;cursor:pointer;margin-top:8px">▶ PLAY!</button>
+      <div id="th-best-disp" style="font-size:13px;font-weight:800;color:#444"></div>
+    </div>
+  </div>`;
+  _thCanvas=document.getElementById('th-canvas');
+  _thCanvas.width=TH_COLS*TH_TILE_W; _thCanvas.height=600;
+  _thCtx=_thCanvas.getContext('2d');
+  _thBestScore=parseInt(localStorage.getItem('bb_tiles_best')||'0');
+  thReset(); thLoop();
+  _thCanvas.addEventListener('click',e=>{
+    const rect=_thCanvas.getBoundingClientRect();
+    const scaleX=_thCanvas.width/rect.width, scaleY=_thCanvas.height/rect.height;
+    thTap(Math.floor((e.clientX-rect.left)*scaleX/TH_TILE_W),(e.clientY-rect.top)*scaleY);
+  });
+  _thCanvas.addEventListener('touchstart',e=>{
+    e.preventDefault();
+    const rect=_thCanvas.getBoundingClientRect();
+    const scaleX=_thCanvas.width/rect.width, scaleY=_thCanvas.height/rect.height;
+    for(const t of e.touches)
+      thTap(Math.floor((t.clientX-rect.left)*scaleX/TH_TILE_W),(t.clientY-rect.top)*scaleY);
+  },{passive:false});
+}
+
+function thReset(){
+  _thScore=0; _thSpeed=2.5; _thBeat=0; _thRunning=false;
+  _thBrick={col:Math.floor(TH_COLS/2),y:500,vy:0,onTile:false};
+  _thTiles=[];
+  // Generate starting tiles
+  for(let i=0;i<8;i++){
+    const col=Math.floor(Math.random()*TH_COLS);
+    _thTiles.push({col,y:400-i*140,active:i===0,hit:false,flash:0});
+  }
+  _thTiles[0].active=true;
+}
+
+function thStart(){
+  document.getElementById('th-overlay').style.display='none';
+  thReset(); _thRunning=true;
+}
+
+function thTap(col,tapY){
+  if(!_thRunning){thStart();return;}
+  // Find lowest active tile near tap
+  let best=null,bestDist=Infinity;
+  for(const t of _thTiles){
+    if(t.active&&!t.hit){
+      const tCX=(t.col+.5)*TH_TILE_W, ty=t.y+TH_TILE_H/2;
+      const dist=Math.abs(tapY-ty);
+      if(t.col===col&&dist<bestDist){bestDist=dist;best=t;}
+    }
+  }
+  if(best){
+    best.hit=true; best.flash=1; _thScore++;
+    _thSpeed=2.5+_thScore*.04;
+    // jump brick
+    _thBrick.col=best.col; _thBrick.y=best.y-30; _thBrick.vy=-6; _thBrick.onTile=false;
+    // activate next
+    const idx=_thTiles.indexOf(best);
+    if(idx+1<_thTiles.length) _thTiles[idx+1].active=true;
+    if(document.getElementById('th-score-disp')) document.getElementById('th-score-disp').textContent=_thScore;
+  } else {
+    // missed
+    thDie();
+  }
+}
+
+function thLoop(){
+  thUpdate(); thDraw();
+  _thRAF=requestAnimationFrame(thLoop);
+}
+
+function thUpdate(){
+  if(!_thRunning) return;
+  // Scroll tiles down
+  for(const t of _thTiles){ t.y+=_thSpeed; if(t.flash>0) t.flash=Math.max(0,t.flash-.05); }
+  // Remove tiles that fell off bottom; add new ones at top
+  _thTiles=_thTiles.filter(t=>t.y<_thCanvas.height+20);
+  while(_thTiles.length<10){
+    const last=_thTiles.reduce((a,b)=>a.y<b.y?a:b,{y:99999});
+    const col=Math.floor(Math.random()*TH_COLS);
+    _thTiles.push({col,y:last.y-140,active:false,hit:false,flash:0});
+  }
+  // Check if a non-hit active tile scrolled past bottom
+  for(const t of _thTiles){
+    if(t.active&&!t.hit&&t.y>_thCanvas.height+10) thDie();
+  }
+  // Brick physics
+  const b=_thBrick;
+  b.vy+=0.4; b.y+=b.vy+_thSpeed;
+  if(b.y>_thCanvas.height+60) thDie();
+}
+
+function thDraw(){
+  const ctx=_thCtx,W=_thCanvas.width,H=_thCanvas.height;
+  // Background
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#0d0010'); bg.addColorStop(1,'#1a0033');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  // Grid lines
+  ctx.strokeStyle='rgba(123,47,190,.15)'; ctx.lineWidth=1;
+  for(let x=0;x<=TH_COLS;x++){ctx.beginPath();ctx.moveTo(x*TH_TILE_W,0);ctx.lineTo(x*TH_TILE_W,H);ctx.stroke();}
+  // Perspective lines
+  ctx.strokeStyle='rgba(255,0,255,.06)';
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // Tiles
+  for(const t of _thTiles){
+    if(t.hit){
+      ctx.fillStyle=`rgba(255,215,0,${t.flash*.6})`;
+      ctx.fillRect(t.col*TH_TILE_W+2,t.y+2,TH_TILE_W-4,TH_TILE_H-4);
+      continue;
+    }
+    const glow=t.active?(0.7+Math.sin(Date.now()*.006)*.3):0.3;
+    const tileColor=t.active?`rgba(123,47,190,${glow})`:'rgba(30,0,60,.8)';
+    ctx.fillStyle=tileColor;
+    ctx.beginPath(); ctx.roundRect(t.col*TH_TILE_W+3,t.y+3,TH_TILE_W-6,TH_TILE_H-6,8); ctx.fill();
+    if(t.active){
+      ctx.strokeStyle=`rgba(255,0,255,${glow})`;
+      ctx.lineWidth=2; ctx.beginPath();
+      ctx.roundRect(t.col*TH_TILE_W+3,t.y+3,TH_TILE_W-6,TH_TILE_H-6,8); ctx.stroke();
+      // Glow effect
+      ctx.shadowColor='rgba(255,0,255,.8)'; ctx.shadowBlur=20;
+      ctx.strokeStyle=`rgba(255,0,255,.4)`; ctx.lineWidth=4;
+      ctx.beginPath(); ctx.roundRect(t.col*TH_TILE_W+3,t.y+3,TH_TILE_W-6,TH_TILE_H-6,8); ctx.stroke();
+      ctx.shadowBlur=0;
+      // Music note
+      ctx.fillStyle=`rgba(255,255,255,${glow*.8})`; ctx.font='24px serif';
+      ctx.textAlign='center'; ctx.fillText('♪',t.col*TH_TILE_W+TH_TILE_W/2,t.y+TH_TILE_H/2+8);
+    }
+  }
+  // Brick player
+  const b=_thBrick;
+  const bx=b.col*TH_TILE_W+(TH_TILE_W-36)/2, by=b.y;
+  ctx.shadowColor='rgba(255,215,0,.6)'; ctx.shadowBlur=16;
+  tDrawBrick(ctx,bx,by,'#FFD700',36);
+  ctx.shadowBlur=0;
+  // Score HUD
+  ctx.fillStyle='rgba(0,0,0,.5)'; ctx.fillRect(0,0,W,44);
+  ctx.font='bold 24px Boogaloo,cursive'; ctx.fillStyle='#fff';
+  ctx.textAlign='left'; ctx.fillText(`Score: ${_thScore}`,14,30);
+  ctx.textAlign='right'; ctx.fillStyle='rgba(255,255,255,.4)';
+  ctx.fillText(`Best: ${_thBestScore}`,W-14,30);
+}
+
+function thDie(){
+  if(!_thRunning) return;
+  _thRunning=false;
+  if(_thScore>_thBestScore){_thBestScore=_thScore;localStorage.setItem('bb_tiles_best',_thBestScore);}
+  saveScore('tiles',_thScore*30);
+  setTimeout(()=>{
+    const ov=document.getElementById('th-overlay');
+    if(ov){
+      ov.style.display='flex';
+      ov.innerHTML=`
+        <div style="font-family:'Boogaloo',cursive;font-size:48px;color:var(--red)">MISSED! 🎵</div>
+        <div style="font-family:'Boogaloo',cursive;font-size:36px;color:var(--yellow)">${_thScore}</div>
+        <div style="font-size:12px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:2px">Best: ${_thBestScore}</div>
+        <button onclick="thStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:12px 40px;box-shadow:0 6px 0 #7a0005;cursor:pointer;margin-top:12px">🔄 Try Again</button>`;
+    }
+  },500);
+}
+
+// ═══════════════════════ BRICK BREAKER ═══════════════════════
+const BB_COLS=10,BB_ROWS=6,BB_BCOLORS=['#E3000B','#FF6B00','#FFD700','#00A650','#006CB7','#7B2FBE'];
+let _bbCanvas,_bbCtx,_bbRunning=false,_bbRAF;
+let _bbBall,_bbPaddle,_bbBricks,_bbScore,_bbLives,_bbLevel;
+
+function initBrickBreaker(){
+  const wrap=document.getElementById('breaker-wrap');
+  wrap.innerHTML=`
+  <div style="background:#0a0a0a">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#151515;border-bottom:2px solid #222">
+      <div style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow)">⭐ <span id="bb-score">0</span></div>
+      <div style="font-family:'Boogaloo',cursive;font-size:18px;color:#fff">Level <span id="bb-level">1</span></div>
+      <div style="font-size:15px" id="bb-lives">❤️❤️❤️</div>
+    </div>
+    <div style="position:relative;line-height:0">
+      <canvas id="bb-canvas" style="width:100%;display:block;background:#0a0a0a;cursor:none;touch-action:none"></canvas>
+      <div id="bb-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.9);gap:10px">
+        <div style="font-family:'Boogaloo',cursive;font-size:clamp(36px,6vw,60px);color:var(--yellow);text-shadow:0 4px 0 #7a5800" id="bb-ov-title">BRICK BREAKER</div>
+        <div style="font-size:13px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:2px" id="bb-ov-sub">Smash every LEGO® brick!</div>
+        <button onclick="bbStart()" style="font-family:'Boogaloo',cursive;font-size:24px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:14px 52px;box-shadow:0 8px 0 #7a0005;cursor:pointer;letter-spacing:2px;margin-top:8px">▶ PLAY!</button>
+        <div style="font-size:11px;font-weight:800;color:#333;text-transform:uppercase;letter-spacing:1px">Mouse · Touch to move paddle</div>
+      </div>
+    </div>
+  </div>`;
+  _bbCanvas=document.getElementById('bb-canvas');
+  _bbCanvas.width=800; _bbCanvas.height=520;
+  _bbCtx=_bbCanvas.getContext('2d');
+  bbReset(false); bbDraw();
+  _bbCanvas.addEventListener('mousemove',e=>{
+    const rect=_bbCanvas.getBoundingClientRect();
+    _bbPaddle.x=(e.clientX-rect.left)*(_bbCanvas.width/rect.width)-_bbPaddle.w/2;
+    _bbPaddle.x=Math.max(0,Math.min(_bbCanvas.width-_bbPaddle.w,_bbPaddle.x));
+  });
+  _bbCanvas.addEventListener('touchmove',e=>{
+    e.preventDefault();
+    const rect=_bbCanvas.getBoundingClientRect();
+    _bbPaddle.x=(e.touches[0].clientX-rect.left)*(_bbCanvas.width/rect.width)-_bbPaddle.w/2;
+    _bbPaddle.x=Math.max(0,Math.min(_bbCanvas.width-_bbPaddle.w,_bbPaddle.x));
+  },{passive:false});
+}
+
+function bbReset(keepLevel){
+  if(!keepLevel){_bbLevel=1;_bbScore=0;}
+  _bbLives=3; _bbRunning=false;
+  if(_bbRAF) cancelAnimationFrame(_bbRAF);
+  const spd=4.8+(_bbLevel-1)*0.7;
+  const angle=(-Math.PI/2)+(Math.random()-.5)*0.8;
+  _bbBall={x:400,y:420,vx:Math.cos(angle)*spd,vy:Math.sin(angle)*spd,r:10};
+  _bbPaddle={x:340,y:480,w:120,h:16};
+  bbMakeBricks(); bbUpdateHUD();
+}
+
+function bbMakeBricks(){
+  const W=_bbCanvas?_bbCanvas.width:800;
+  const bw=Math.floor(W/BB_COLS),bh=28,gap=3;
+  _bbBricks=[];
+  for(let r=0;r<BB_ROWS;r++) for(let c=0;c<BB_COLS;c++){
+    const hp=r<2?2:1;
+    _bbBricks.push({x:c*bw+gap/2,y:55+r*(bh+gap),w:bw-gap,h:bh,
+      color:BB_BCOLORS[(r+c)%BB_BCOLORS.length],hp,maxHp:hp,alive:true});
+  }
+}
+
+function bbUpdateHUD(){
+  if(document.getElementById('bb-score')) document.getElementById('bb-score').textContent=_bbScore;
+  if(document.getElementById('bb-level')) document.getElementById('bb-level').textContent=_bbLevel;
+  if(document.getElementById('bb-lives')) document.getElementById('bb-lives').textContent='❤️'.repeat(Math.max(0,_bbLives))+'🖤'.repeat(Math.max(0,3-_bbLives));
+}
+
+function bbStart(){
+  document.getElementById('bb-overlay').style.display='none';
+  _bbRunning=true; bbLoop();
+}
+
+function bbLoop(){ if(!_bbRunning) return; bbUpdate(); bbDraw(); _bbRAF=requestAnimationFrame(bbLoop); }
+
+function bbUpdate(){
+  const b=_bbBall,p=_bbPaddle,W=_bbCanvas.width,H=_bbCanvas.height;
+  b.x+=b.vx; b.y+=b.vy;
+  if(b.x-b.r<0){b.x=b.r;b.vx=Math.abs(b.vx);}
+  if(b.x+b.r>W){b.x=W-b.r;b.vx=-Math.abs(b.vx);}
+  if(b.y-b.r<0){b.y=b.r;b.vy=Math.abs(b.vy);}
+  if(b.y+b.r>p.y&&b.y-b.r<p.y+p.h&&b.x>p.x&&b.x<p.x+p.w){
+    b.y=p.y-b.r;
+    const rel=(b.x-(p.x+p.w/2))/(p.w/2);
+    const spd=Math.sqrt(b.vx*b.vx+b.vy*b.vy);
+    b.vx=rel*spd*1.1; b.vy=-Math.abs(b.vy);
+  }
+  if(b.y-b.r>H){
+    _bbLives--; bbUpdateHUD();
+    if(_bbLives<=0){bbGameOver();return;}
+    const spd=4.8+(_bbLevel-1)*.7;
+    const angle=(-Math.PI/2)+(Math.random()-.5)*.6;
+    b.x=p.x+p.w/2; b.y=p.y-b.r-2;
+    b.vx=Math.cos(angle)*spd; b.vy=Math.sin(angle)*spd;
+  }
+  for(const bk of _bbBricks){
+    if(!bk.alive) continue;
+    if(b.x+b.r>bk.x&&b.x-b.r<bk.x+bk.w&&b.y+b.r>bk.y&&b.y-b.r<bk.y+bk.h){
+      bk.hp--; if(bk.hp<=0){bk.alive=false;_bbScore+=10*_bbLevel;bbUpdateHUD();}
+      const ol=b.x+b.r-bk.x,or2=bk.x+bk.w-(b.x-b.r),ot=b.y+b.r-bk.y,ob=bk.y+bk.h-(b.y-b.r);
+      if(Math.min(ol,or2)<Math.min(ot,ob)) b.vx=-b.vx; else b.vy=-b.vy;
+      break;
+    }
+  }
+  if(_bbBricks.every(bk=>!bk.alive)){
+    _bbLevel++;_bbScore+=200;_bbRunning=false; cancelAnimationFrame(_bbRAF);
+    bbReset(true);
+    const ov=document.getElementById('bb-overlay');
+    if(ov){ov.style.display='flex';document.getElementById('bb-ov-title').textContent='LEVEL CLEAR! 🎉';document.getElementById('bb-ov-sub').textContent=`Level ${_bbLevel} — faster bricks!`;}
+  }
+}
+
+function bbDraw(){
+  if(!_bbCtx) return;
+  const ctx=_bbCtx,W=_bbCanvas.width,H=_bbCanvas.height;
+  ctx.fillStyle='#0a0a0a'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(255,255,255,.03)'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  for(const bk of (_bbBricks||[])){
+    if(!bk.alive) continue;
+    const a=bk.hp/bk.maxHp;
+    ctx.globalAlpha=0.35+a*.65;
+    ctx.fillStyle=bk.color; ctx.beginPath(); ctx.roundRect(bk.x,bk.y,bk.w,bk.h,4); ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.3)'; ctx.fillRect(bk.x+3,bk.y+3,bk.w-6,6);
+    ctx.fillStyle='rgba(0,0,0,.3)'; ctx.fillRect(bk.x+3,bk.y+bk.h-5,bk.w-6,4);
+    const studs=Math.max(1,Math.floor(bk.w/22));
+    ctx.globalAlpha*=0.8; ctx.fillStyle=bk.color;
+    for(let s=0;s<studs;s++){
+      const sx=bk.x+bk.w/(studs+1)*(s+1);
+      ctx.beginPath(); ctx.ellipse(sx,bk.y-4,6,4,0,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,.25)';
+      ctx.beginPath(); ctx.ellipse(sx,bk.y-5,3.5,2,0,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=bk.color;
+    }
+    ctx.globalAlpha=1;
+  }
+  if(_bbPaddle){
+    const p=_bbPaddle;
+    ctx.fillStyle='#FFD700'; ctx.beginPath(); ctx.roundRect(p.x,p.y,p.w,p.h,8); ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.35)'; ctx.fillRect(p.x+4,p.y+3,p.w-8,5);
+    ctx.fillStyle='rgba(0,0,0,.15)'; ctx.fillRect(p.x+4,p.y+p.h-5,p.w-8,4);
+    ctx.fillStyle='#e6bb00';
+    for(let s=0;s<5;s++){
+      const sx=p.x+p.w/6*(s+.5)+4;
+      ctx.beginPath(); ctx.ellipse(sx,p.y-6,7,5,0,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,.3)';
+      ctx.beginPath(); ctx.ellipse(sx,p.y-7,4,2.5,0,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#e6bb00';
+    }
+  }
+  if(_bbBall){
+    const b=_bbBall;
+    const grad=ctx.createRadialGradient(b.x-3,b.y-3,1,b.x,b.y,b.r);
+    grad.addColorStop(0,'#ff6666'); grad.addColorStop(1,'#8b0000');
+    ctx.fillStyle=grad; ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.4)'; ctx.beginPath();
+    ctx.arc(b.x-3,b.y-3,b.r*.35,0,Math.PI*2); ctx.fill();
+  }
+}
+
+function bbGameOver(){
+  _bbRunning=false; cancelAnimationFrame(_bbRAF);
+  saveScore('breaker',_bbScore);
+  const ov=document.getElementById('bb-overlay');
+  if(ov){
+    ov.style.display='flex';
+    ov.innerHTML=`
+      <div style="font-family:'Boogaloo',cursive;font-size:52px;color:var(--red)">GAME OVER</div>
+      <div style="font-family:'Boogaloo',cursive;font-size:36px;color:var(--yellow)">${_bbScore} pts</div>
+      <div style="font-size:12px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:2px">Level ${_bbLevel}</div>
+      <button onclick="bbReset(false);bbStart()" style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;background:var(--red);border:none;border-radius:14px;padding:12px 44px;box-shadow:0 6px 0 #7a0005;cursor:pointer;margin-top:12px">🔄 Play Again</button>`;
+  }
+}
+
 </script>
 
 <!-- ══ BLOG PAGE ══ -->

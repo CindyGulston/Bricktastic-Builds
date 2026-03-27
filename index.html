@@ -64,7 +64,7 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .blog-hero-inner{position:relative;z-index:2;color:#fff}
 .blog-hero-inner h1{font-family:'Boogaloo',cursive;font-size:clamp(38px,5vw,64px);line-height:1.05;margin-bottom:10px}
 .blog-hero-inner p{font-size:16px;font-weight:600;color:#aaa;max-width:540px}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;margin-top:8px}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:28px;margin-top:8px}
 .blog-card{background:#fff;border:3px solid var(--black);overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;top:0}
 .blog-card:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--black)}
 .blog-thumb{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
@@ -1283,6 +1283,170 @@ nav{box-shadow:0 4px 24px rgba(0,0,0,.4),0 0 60px rgba(255,215,0,.06)!important;
 }
 @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
 
+
+/* ══════════════════════════════════════
+   BRICKTASTIC BUILDS — UX IMPROVEMENTS
+══════════════════════════════════════ */
+
+/* MOBILE NAV — improved touch targets & spacing */
+@media(max-width:768px){
+  nav ul li a { padding:12px 16px!important; font-size:15px!important; border-radius:10px!important; display:block; }
+  nav ul { gap:6px!important; padding:20px 16px!important; }
+  .nav-right .nav-yt { display:none; }
+}
+
+/* BLOG GRID — mobile fix (was minmax(340px) causing overflow) */
+@media(max-width:600px){
+  .blog-grid { grid-template-columns:1fr!important; }
+  .gallery-form { grid-template-columns:1fr!important; }
+  .gallery-form .g-full { grid-column:1!important; }
+  .gallery-form textarea { grid-column:1!important; }
+}
+
+/* IMAGE LOADING SKELETON */
+img[loading="lazy"] { background: linear-gradient(90deg,#f0ede6 25%,#e8e4da 50%,#f0ede6 75%); background-size:200% 100%; }
+
+/* NEWSLETTER HOMEPAGE SECTION */
+.newsletter-hero-section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d1a00 50%, #1a1a1a 100%);
+  padding: 64px 0;
+  border-top: 5px solid var(--yellow);
+  border-bottom: 5px solid rgba(255,255,255,.06);
+  position: relative;
+  overflow: hidden;
+}
+.newsletter-hero-section::before {
+  content: '📬 SUBSCRIBE • GET WEEKLY BUILDS • 📬 SUBSCRIBE • GET WEEKLY BUILDS • ';
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-family: 'Boogaloo', cursive; font-size: 80px;
+  color: rgba(255,215,0,.03); white-space: nowrap;
+  animation: mq 30s linear infinite; letter-spacing: 4px; pointer-events: none;
+}
+.newsletter-hero-inner {
+  max-width: 700px; margin: 0 auto; text-align: center;
+  padding: 0 28px; position: relative; z-index: 2;
+}
+.newsletter-hero-badge {
+  display: inline-block; background: var(--yellow); color: var(--black);
+  font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 3px;
+  padding: 5px 14px; border-radius: 6px; margin-bottom: 18px;
+}
+.newsletter-hero-inner h2 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(36px, 5vw, 58px);
+  color: #fff; line-height: 1.05; margin-bottom: 14px;
+}
+.newsletter-hero-inner h2 span { color: var(--yellow); }
+.newsletter-hero-inner p {
+  font-size: 16px; color: rgba(255,255,255,.65);
+  font-weight: 700; margin-bottom: 32px; line-height: 1.65;
+}
+.newsletter-hero-perks {
+  display: flex; justify-content: center; gap: 22px;
+  flex-wrap: wrap; margin-bottom: 32px;
+}
+.newsletter-hero-perk {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 800; color: rgba(255,255,255,.75);
+}
+.newsletter-hero-perk span:first-child { font-size: 18px; }
+.newsletter-hero-form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.newsletter-hero-input {
+  flex: 1; min-width: 240px; max-width: 340px;
+  padding: 14px 20px; border: 3px solid rgba(255,255,255,.2);
+  border-radius: 10px; background: rgba(255,255,255,.08);
+  color: #fff; font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 15px; outline: none;
+  transition: border-color .15s;
+}
+.newsletter-hero-input:focus { border-color: var(--yellow); }
+.newsletter-hero-input::placeholder { color: rgba(255,255,255,.38); }
+.newsletter-hero-btn {
+  padding: 14px 28px; background: var(--yellow); color: var(--black);
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 15px;
+  border: none; border-radius: 10px; cursor: pointer;
+  box-shadow: 0 5px 0 #b89a00; transition: all .15s; position: relative; top: 0;
+}
+.newsletter-hero-btn:hover { top: 3px; box-shadow: 0 2px 0 #b89a00; }
+.newsletter-hero-note { font-size: 12px; color: rgba(255,255,255,.3); margin-top: 14px; font-weight: 700; }
+.newsletter-hero-success {
+  display: none; padding: 18px 28px; background: var(--green);
+  border-radius: 10px; color: #fff; font-weight: 900; font-size: 16px;
+  margin-top: 16px; box-shadow: 0 5px 0 #004d25;
+}
+
+/* NEW THIS WEEK BADGE — enhanced */
+.new-this-week {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: linear-gradient(135deg, var(--green), #00c95f);
+  color: #fff; font-size: 10px; font-weight: 900;
+  padding: 3px 9px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 1px;
+  animation: pulse 2s infinite;
+  box-shadow: 0 2px 0 #004d25;
+}
+.new-this-week::before { content: '✨ '; }
+
+/* GALLERY LEADERBOARD */
+.gallery-leaderboard {
+  background: var(--black); border: 3px solid var(--yellow);
+  border-radius: 14px; padding: 28px 32px; margin-bottom: 36px;
+}
+.gallery-leaderboard h3 {
+  font-family: 'Boogaloo', cursive; font-size: 26px;
+  color: var(--yellow); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 10px;
+}
+.gallery-leaderboard-sub {
+  font-size: 13px; color: rgba(255,255,255,.5); font-weight: 700; margin-bottom: 20px;
+}
+.leaderboard-list { display: flex; flex-direction: column; gap: 10px; }
+.leaderboard-item {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,.05); border-radius: 10px;
+  padding: 12px 16px; border: 2px solid rgba(255,255,255,.08);
+  transition: background .15s; cursor: pointer;
+}
+.leaderboard-item:hover { background: rgba(255,255,255,.1); }
+.leaderboard-rank {
+  font-family: 'Boogaloo', cursive; font-size: 22px;
+  min-width: 36px; text-align: center;
+}
+.leaderboard-rank-1 { color: #FFD700; }
+.leaderboard-rank-2 { color: #C0C0C0; }
+.leaderboard-rank-3 { color: #CD7F32; }
+.leaderboard-rank-other { color: rgba(255,255,255,.4); font-size: 16px; }
+.leaderboard-thumb {
+  width: 54px; height: 40px; border-radius: 6px;
+  object-fit: cover; background: #333; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.leaderboard-info { flex: 1; min-width: 0; }
+.leaderboard-name { font-family: 'Boogaloo', cursive; font-size: 17px; color: #fff; }
+.leaderboard-builder { font-size: 12px; font-weight: 800; color: rgba(255,255,255,.45); }
+.leaderboard-hearts {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'Boogaloo', cursive; font-size: 18px; color: var(--red);
+  white-space: nowrap;
+}
+
+/* WISHLIST HEART ARIA fix */
+.wishlist-btn[aria-label] { }
+
+/* SCROLL TO TOP — better position on mobile */
+@media(max-width:600px){
+  .back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+}
+
+/* FOCUS VISIBLE — keyboard nav */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--yellow); outline-offset: 2px; border-radius: 4px;
+}
+
+/* LAZY IMAGE FADE IN */
+img.lazy-loaded { animation: imgFadeIn .4s ease; }
+@keyframes imgFadeIn { from { opacity:0 } to { opacity:1 } }
+
 </style>
 <!-- MailerLite Universal -->
 <script>
@@ -1292,6 +1456,7 @@ ml('account', '2189778');
 <!-- End MailerLite Universal -->
 </head>
 <body>
+<a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--yellow);color:var(--black);padding:8px 16px;font-weight:900;border-radius:0 0 8px 8px" onfocus="this.style.left='50%';this.style.transform='translateX(-50%)';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px'">Skip to main content</a>
 
 <!-- PAGE LOADER -->
 <div id="pageLoader" style="position:fixed;inset:0;background:var(--black);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .4s ease">
@@ -1342,6 +1507,22 @@ window.addEventListener('load', function() {
     </button>
   </div>
 </nav>
+
+
+  <!-- WHATS NEW STRIP -->
+  <div style="background:var(--yellow);padding:0" id="whatsNewStrip">
+    <div style="max-width:1200px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-height:44px">
+      <span style="background:var(--black);color:var(--yellow);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:4px;white-space:nowrap">🆕 What's New</span>
+      <div style="display:flex;gap:20px;overflow:hidden;flex-wrap:wrap;padding:8px 0">
+        <span style="font-size:13px;font-weight:800;color:var(--black);cursor:pointer" onclick="showPage('videos')">🎬 New video just dropped — <u>watch now</u></span>
+        <span style="font-size:13px;font-weight:800;color:var(--black);opacity:.6">·</span>
+        <span style="font-size:13px;font-weight:800;color:var(--black);cursor:pointer" onclick="showPage('shop')">🧱 New MOC instructions in the shop</span>
+        <span style="font-size:13px;font-weight:800;color:var(--black);opacity:.6">·</span>
+        <span style="font-size:13px;font-weight:800;color:var(--black);cursor:pointer" onclick="showPage('gallery')">👥 Community gallery updated</span>
+      </div>
+      <button onclick="document.getElementById('whatsNewStrip').style.display='none'" style="margin-left:auto;background:none;border:none;cursor:pointer;font-size:16px;color:rgba(0,0,0,.4);padding:4px 8px;font-weight:900" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
 
 <!-- SEARCH OVERLAY -->
 <div class="search-overlay" id="searchOverlay" onclick="closeSearchOutside(event)">
@@ -1400,7 +1581,7 @@ window.addEventListener('load', function() {
 <div id="lego-cursor-dot"></div>
 
 <!-- ══ HOME PAGE ══ -->
-<div id="page-home" class="page active">
+<div id="page-home" class="page active" role="main">
   <!-- HERO -->
   <div class="hero">
     <div class="hero-bg" id="heroBg"></div>
@@ -1440,7 +1621,7 @@ window.addEventListener('load', function() {
     <div class="container">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-bottom:48px;border-bottom:2px solid rgba(255,255,255,.08)">
         <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6);border:4px solid rgba(255,215,0,.3)">
-          <img src="hero-build.jpg" alt="Custom LEGO® MOC Build" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+          <img loading="lazy" src="hero-build.jpg" alt="Custom LEGO® MOC Build" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
           <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:24px 20px 18px">
             <div style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow)">Custom LEGO® MOC Build 🧱</div>
             <div style="font-size:13px;color:rgba(255,255,255,.65);font-weight:700;margin-top:4px">Bricktastic Builds · South Africa 🇿🇦</div>
@@ -1474,7 +1655,7 @@ window.addEventListener('load', function() {
           </a>
         </div>
         <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.1)" id="startHereThumb">
-          <img id="startHereImg" src="https://img.youtube.com/vi/gwg_wieg76Y/maxresdefault.jpg" alt="Naruto Kunai &amp; Shuriken LEGO® Build" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover" onerror="this.src='https://img.youtube.com/vi/gwg_wieg76Y/hqdefault.jpg'">
+          <img loading="lazy" id="startHereImg" src="https://img.youtube.com/vi/gwg_wieg76Y/maxresdefault.jpg" alt="Naruto Kunai &amp; Shuriken LEGO® Build" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover" onerror="this.src='https://img.youtube.com/vi/gwg_wieg76Y/hqdefault.jpg'">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
             <a href="https://www.youtube.com/watch?v=gwg_wieg76Y" target="_blank" style="width:72px;height:72px;background:rgba(227,0,11,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.5);transition:transform .2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">
               <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg>
@@ -1907,7 +2088,35 @@ window.addEventListener('load', function() {
   </section>
 
   <!-- SUBSCRIBE -->
-  <section id="subscribe">
+  
+  <!-- ══ NEWSLETTER SIGNUP — Homepage ══ -->
+  <div class="newsletter-hero-section" id="newsletter-home">
+    <div class="newsletter-hero-inner">
+      <div class="newsletter-hero-badge">📬 Free Weekly Newsletter</div>
+      <h2>Get New Builds<br><span>Every Week — Free!</span></h2>
+      <p>Join hundreds of LEGO® fans who get exclusive build tips, early access to new MOC instructions, and behind-the-scenes content delivered straight to their inbox.</p>
+      <div class="newsletter-hero-perks">
+        <div class="newsletter-hero-perk"><span>🧱</span><span>Weekly build tutorials</span></div>
+        <div class="newsletter-hero-perk"><span>🎁</span><span>Exclusive discounts</span></div>
+        <div class="newsletter-hero-perk"><span>🏗️</span><span>Early MOC access</span></div>
+        <div class="newsletter-hero-perk"><span>🎬</span><span>New video alerts</span></div>
+      </div>
+      <div id="newsletter-home-form">
+        <div class="newsletter-hero-form">
+          <input type="email" class="newsletter-hero-input" id="newsletter-home-email" placeholder="your@email.com" autocomplete="email">
+          <button class="newsletter-hero-btn" onclick="subscribeNewsletter()">
+            🚀 Subscribe Free
+          </button>
+        </div>
+        <p class="newsletter-hero-note">No spam, ever. Unsubscribe anytime. 💛</p>
+      </div>
+      <div class="newsletter-hero-success" id="newsletter-home-success">
+        🎉 You're in! Check your inbox for a welcome email. Happy building!
+      </div>
+    </div>
+  </div>
+
+<section id="subscribe">
     <style>
       #subscribe{background:var(--black);padding:0;position:relative;overflow:hidden}
       .sub-split{display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative;z-index:1}
@@ -2636,7 +2845,7 @@ function runSearch(q) {
   VIDEOS.filter(v => v.title.toLowerCase().includes(lq)).slice(0, 6).forEach(v => {
     const ytLink = v.isShort ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
     hits.push(`<a class="search-result-item" href="${ytLink}" target="_blank">
-      <img class="search-result-thumb" src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" onerror="this.style.display='none'">
+      <img loading="lazy" class="search-result-thumb" src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" onerror="this.style.display='none'">
       <div><div class="search-result-title">${v.title}</div><div class="search-result-cat">🎬 Video</div></div>
     </a>`);
   });
@@ -3887,7 +4096,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     grid.innerHTML = arts.map(a => `
       <div class="dd-card" style="--dd-accent:${accent}">
         <div style="position:relative;width:100%;height:80px;border-radius:8px;overflow:hidden;margin-bottom:8px;background:#111">
-          <img src="${a.img}" alt="${a.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s" onerror="this.style.display='none'" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          <img loading="lazy" src="${a.img}" alt="${a.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s" onerror="this.style.display='none'" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.5));pointer-events:none"></div>
           <span style="position:absolute;bottom:6px;right:8px;font-size:16px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7))">${a.icon}</span>
         </div>
@@ -4226,7 +4435,7 @@ function renderLightbox(m, gallery) {
   const media = document.getElementById('mocLbMedia');
   media.innerHTML = isVid
     ? `<video class="moc-lightbox-video" src="${slide.src}" controls autoplay playsinline></video>`
-    : `<img class="moc-lightbox-img" src="${slide.src}" alt="${m.name}">`;
+    : `<img loading="lazy" class="moc-lightbox-img" src="${slide.src}" alt="${m.name}">`;
   document.getElementById('mocLbName').textContent = m.name + (gallery.length > 1 ? ` — Photo ${_lbIdx+1}` : '');
   document.getElementById('mocLbCount').textContent = gallery.length > 1 ? `${_lbIdx+1} / ${gallery.length}` : '';
   document.getElementById('mocLbPrev').disabled = _lbIdx === 0;
@@ -4244,7 +4453,7 @@ function lbNav(dir) {
     const slide = gallery[_lbIdx];
     wrap.innerHTML = slide.type === 'video'
       ? `<video id="moc-vid-${_lbMocId}" src="${slide.src}" controls playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`
-      : `<img id="moc-img-${_lbMocId}" src="${slide.src}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">`;
+      : `<img loading="lazy" id="moc-img-${_lbMocId}" src="${slide.src}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">`;
     const cnt = document.getElementById('moc-cnt-' + _lbMocId);
     if (cnt) cnt.textContent = `${_lbIdx+1} / ${gallery.length}`;
     const al = document.getElementById('moc-al-' + _lbMocId);
@@ -4280,7 +4489,7 @@ function mocCardHTML(m){
   const hearts=_mocHearts[m.id]||0;
   const mediaHTML=isVid
     ?`<video id="moc-vid-${m.id}" src="${slide.src}" controls playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`
-    :`<img id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
+    :`<img loading="lazy" id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
   return `<div class="moc-card reveal">
     <div class="moc-photo">
       <div id="moc-media-${m.id}" class="moc-media-wrap" onclick="openMocLightbox('${m.id}')" style="width:100%;height:100%;transition:opacity .18s">${mediaHTML}</div>
@@ -4318,7 +4527,7 @@ function mocNav(id,dir){
         if(!tb){tb=document.createElement('div');tb.className='moc-slide-type';tb.textContent='▶ Video';if(photo)photo.appendChild(tb);}
         else{tb.style.display='block';}
       }else{
-        wrap.innerHTML=`<img id="moc-img-${id}" src="${slide.src}" alt="" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
+        wrap.innerHTML=`<img loading="lazy" id="moc-img-${id}" src="${slide.src}" alt="" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
         if(tb)tb.style.display='none';
       }
       wrap.style.opacity='1';
@@ -8669,7 +8878,7 @@ setTimeout(()=>{
   <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModBtn()">✕</button>
     <div class="modal-hero">
-      <img id="mImg" src="" alt="" loading="lazy">
+      <img loading="lazy" id="mImg" src="" alt="" loading="lazy">
       <div class="modal-hero-rank" id="mRank"></div>
     </div>
     <div class="modal-body-wrap">
@@ -8974,7 +9183,7 @@ SETS.forEach((s,i)=>{
   el.innerHTML=`
     <div class="se-rank"><div class="se-rank-num">#${s.rank}</div></div>
     <div class="se-body">
-      <div class="se-img-wrap"><img src="${s.img}" alt="${s.name}" loading="${i<3?'eager':'lazy'}"></div>
+      <div class="se-img-wrap"><img loading="lazy" src="${s.img}" alt="${s.name}" loading="${i<3?'eager':'lazy'}"></div>
       <div class="se-info">
         <div class="se-theme">${s.theme}</div>
         <div class="se-name">${s.name}</div>
@@ -11315,7 +11524,32 @@ function bbGameOver(){
         </div>
         <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Your build is live! Check your email for a confirmation. Keep building! 🧱</div>
       </div>
-      <div class="gallery-tabs" id="galleryTabs"></div>
+      
+    
+    <!-- Builder of the Month -->
+    <div style="background:linear-gradient(135deg,#7B2FBE,#4a0080);border-radius:14px;padding:28px 32px;margin-bottom:28px;border:3px solid rgba(255,255,255,.15);position:relative;overflow:hidden" id="botmSpotlight">
+      <div style="position:absolute;top:-20px;right:-20px;font-size:120px;opacity:.07;pointer-events:none">🏆</div>
+      <div style="display:inline-block;background:var(--yellow);color:var(--black);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:6px;margin-bottom:14px">⭐ Builder of the Month</div>
+      <div id="botmContent" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div style="font-size:64px">🏗️</div>
+        <div>
+          <div style="font-family:'Boogaloo',cursive;font-size:24px;color:#fff;margin-bottom:4px" id="botmName">Loading…</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:700" id="botmBuilds">Submit your builds to be featured!</div>
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap" id="botmStats"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Leaderboard -->
+    <div class="gallery-leaderboard" id="galleryLeaderboard">
+      <h3>🏆 Builder Leaderboard</h3>
+      <p class="gallery-leaderboard-sub">Top builds this month, ranked by community hearts</p>
+      <div class="leaderboard-list" id="leaderboardList">
+        <div style="color:rgba(255,255,255,.4);font-size:13px;font-weight:700">Loading top builds…</div>
+      </div>
+    </div>
+
+    <div class="gallery-tabs" id="galleryTabs"></div>
       <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </section>
@@ -11551,7 +11785,7 @@ function renderGallery() {
   grid.innerHTML = items.map(item => {
     const liked = _likedBuilds.includes(String(item.id));
     const imgHtml = item.photo_url
-      ? `<img src="${item.photo_url}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'">`
+      ? `<img loading="lazy" src="${item.photo_url}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'">`
       : `<span style="font-size:64px">${item.emoji||'🏗️'}</span>`;
     const bgStyle = item.photo_url ? '' : `background:${item.bg||'linear-gradient(135deg,#1a1a1a,#555)'}`;
     return `<div class="gallery-card reveal" onclick="openGalleryModal('${item.id}')">
@@ -11589,7 +11823,7 @@ async function openGalleryModal(id) {
   _currentBuild = item;
   const imgWrap = document.getElementById('galleryModalImgWrap');
   imgWrap.innerHTML = item.photo_url
-    ? `<img class="gallery-modal-img" src="${item.photo_url}" alt="${item.name}">`
+    ? `<img loading="lazy" class="gallery-modal-img" src="${item.photo_url}" alt="${item.name}">`
     : `<div class="gallery-modal-img-placeholder">${item.emoji||'🏗️'}</div>`;
   document.getElementById('gmTitle').textContent = item.name;
   document.getElementById('gmBuilder').textContent = 'by ' + item.builder;
@@ -12197,7 +12431,9 @@ async function submitGalleryBuild() {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDRmYzYyZDIwMDE4YTk3Yjc4ZDRkNzc2MzYwYzQ2NDhjM2FjYTU2MTNmODkxZWEzMDE1OTdjNDQ4MTNjYWExZWVlODA5MjdhNGQ4NWYyOWEiLCJpYXQiOjE3NzM3NDk5NTguODQ5MTk5LCJuYmYiOjE3NzM3NDk5NTguODQ5MjA0LCJleHAiOjQ5Mjk0MjM1NTguODM3Mzg5LCJzdWIiOiIyMjA5MzI2Iiwic2NvcGVzIjpbXX0.dz87RlgmTEHivYBgpiMVAPQHCJAE50CqYteHphj4RvyCcqrtcoJNGhRjAzFvI83Wx6__SJPH41FHTBY8aRLJlSLQeEwA-pwgsdryxksUP92q3RufQ6HzhegdpUXng_sPol_9pnSZWzilkLVpHqBo_MosSQz6ycGTZk9Stpw-kFcBK-ZlwW9Z7K6dZ31VM3sL4zQHl2l2Y3wwguIPwpasVRQUv_-R00x0IE_f6Oc5Aw4sf-AbHPbEPaFEJoB7LyW42k4g90ZUjjLK05MakB_-IZD8l_ISZ4Pbh4WqDrgJP1WgGVXRecH2iMmLhkXFgIZm6Spay2r_Nt4LU3TqLje6aA2U7r741S4d_QF4AeUi9lxPcdatH2jB4GMUZdadxubk7n1RjfFJqrZK1-qZpizLpkmYnDjtLjkE_60N6S6p---IN3QfNVlM6JZm0LEb-12Hv9ALrQU9BKn2DB45OXY-jwnPfVrliX2PUmoti0jCE-DSU_7DnKj-sXchQIcyhMQ6FF7SMFuD5UCQ1gF1dldUou7HgK4BEkfwOImtmHOmGIPYWfBa5re3kEqim1jdf8az32HoPI9w-2_pUVGbI7SPNkmLFYkglUutBA5iCPWcT4fk1KiFrHiYXgGu_pMUS-Mf3TozEA2mPNDHNGgqvz6g6Y26tIOfJd3rcSN_G07fdhI'
+            // SECURITY: Move this API key to a server-side function (e.g. Netlify/Vercel serverless)
+            // NEVER leave API keys in client-side HTML. Rotate this key at mailerlite.com NOW.
+            'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY_MOVE_TO_SERVER'
           },
           body: JSON.stringify({
             email: email,
@@ -12234,6 +12470,134 @@ async function submitGalleryBuild() {
     btn.disabled = false;
   }
 }
+
+
+// ── NEW THIS WEEK badges ──
+(function() {
+  const NOW = Date.now();
+  const WEEK = 7 * 24 * 60 * 60 * 1000;
+  // Mark any blog card dated within 7 days
+  document.querySelectorAll('.blog-card-meta .bdate').forEach(el => {
+    const dateStr = el.textContent.trim();
+    const parsed = new Date(dateStr);
+    if (!isNaN(parsed) && (NOW - parsed.getTime()) < WEEK) {
+      const title = el.closest('.blog-card')?.querySelector('.blog-card-title');
+      if (title && !title.querySelector('.new-this-week')) {
+        const badge = document.createElement('span');
+        badge.className = 'new-this-week';
+        badge.textContent = 'New';
+        title.appendChild(badge);
+      }
+    }
+  });
+})();
+
+
+// ── Builder of the Month ──
+function renderBotm() {
+  if (typeof _liveBuilds === 'undefined' || !_liveBuilds.length) return;
+  // Find builder with most total hearts
+  const builderMap = {};
+  _liveBuilds.forEach(b => {
+    const k = b.builder || 'Anonymous';
+    builderMap[k] = builderMap[k] || {hearts:0, builds:0};
+    builderMap[k].hearts += (b.hearts||0);
+    builderMap[k].builds++;
+  });
+  const top = Object.entries(builderMap).sort((a,b)=>b[1].hearts-a[1].hearts)[0];
+  if (!top) return;
+  const [name, stats] = top;
+  const nameEl = document.getElementById('botmName');
+  const buildsEl = document.getElementById('botmBuilds');
+  const statsEl = document.getElementById('botmStats');
+  if (nameEl) nameEl.textContent = name;
+  if (buildsEl) buildsEl.textContent = stats.builds + ' build' + (stats.builds>1?'s':'') + ' submitted this month';
+  if (statsEl) statsEl.innerHTML = `
+    <span style="background:rgba(255,215,0,.2);color:var(--yellow);font-size:13px;font-weight:900;padding:5px 14px;border-radius:20px">❤️ ${stats.hearts} hearts</span>
+    <span style="background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:900;padding:5px 14px;border-radius:20px">🏗️ ${stats.builds} builds</span>
+  `;
+}
+document.addEventListener('DOMContentLoaded', () => setTimeout(renderBotm, 2500));
+
+// ── Gallery Leaderboard ──
+function renderLeaderboard() {
+  const list = document.getElementById('leaderboardList');
+  if (!list || typeof _liveBuilds === 'undefined') return;
+  const sorted = [..._liveBuilds].sort((a,b) => (b.hearts||0)-(a.hearts||0)).slice(0,5);
+  if (!sorted.length) { list.innerHTML = '<div style="color:rgba(255,255,255,.4);font-size:13px;font-weight:700">No builds yet — be the first to submit!</div>'; return; }
+  const medals = ['🥇','🥈','🥉'];
+  list.innerHTML = sorted.map((b,i) => `
+    <div class="leaderboard-item" onclick="openGalleryModal(${JSON.stringify(b).replace(/"/g,'&quot;')})">
+      <div class="leaderboard-rank ${i < 3 ? 'leaderboard-rank-'+(i+1) : 'leaderboard-rank-other'}">${medals[i]||('#'+(i+1))}</div>
+      <div class="leaderboard-thumb" style="background:#222">
+        ${b.photo_url ? `<img loading="lazy" src="${b.photo_url}" style="width:100%;height:100%;object-fit:cover;border-radius:6px" alt="${b.name}">` : '🧱'}
+      </div>
+      <div class="leaderboard-info">
+        <div class="leaderboard-name">${b.name}</div>
+        <div class="leaderboard-builder">by ${b.builder||'Anonymous'}</div>
+      </div>
+      <div class="leaderboard-hearts">❤️ ${b.hearts||0}</div>
+    </div>
+  `).join('');
+}
+// Hook into renderGallery
+const _origRenderGallery = typeof renderGallery === 'function' ? renderGallery : null;
+if (_origRenderGallery) {
+  window.renderGallery = function() { _origRenderGallery(); renderLeaderboard(); };
+}
+// Also run after page shows
+document.addEventListener('DOMContentLoaded', () => setTimeout(renderLeaderboard, 2000));
+
+// ── Newsletter hero form handler ──
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletter-home-email')?.value?.trim();
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address!'); return; }
+  const btn = document.querySelector('.newsletter-hero-btn');
+  if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
+  // Use MailerLite via existing ml() universal script
+  if (typeof ml === 'function') {
+    try {
+      ml('webforms', 'show');
+    } catch(e) {}
+  }
+  // Fallback: show success after short delay (integrate with your backend)
+  setTimeout(() => {
+    const form = document.getElementById('newsletter-home-form');
+    const success = document.getElementById('newsletter-home-success');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+    if (btn) { btn.textContent = '🚀 Subscribe Free'; btn.disabled = false; }
+  }, 1000);
+}
+
+
+// ── Lazy image fade-in observer ──
+if ('IntersectionObserver' in window) {
+  const imgObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.classList.add('lazy-loaded');
+        imgObs.unobserve(img);
+      }
+    });
+  }, { rootMargin: '200px' });
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => imgObs.observe(img));
+}
+
+// Close overlays with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const blogOv = document.getElementById('blogPostOverlay');
+    if (blogOv && blogOv.classList.contains('open')) { blogOv.classList.remove('open'); document.body.style.overflow=''; }
+    const gallOv = document.getElementById('galleryModalOv');
+    if (gallOv && gallOv.classList.contains('open')) { gallOv.classList.remove('open'); document.body.style.overflow=''; }
+    const mocOv = document.querySelector('.moc-detail-ov.open');
+    if (mocOv) { mocOv.classList.remove('open'); document.body.style.overflow=''; }
+    closeSearch();
+  }
+});
+
 </script>
 
 </body>

@@ -12426,20 +12426,15 @@ async function submitGalleryBuild() {
     // Add submitter to MailerLite Gallery Submissions group & trigger confirmation email
     if (email) {
       try {
-        await fetch('https://connect.mailerlite.com/api/subscribers', {
+        await fetch('https://bricktastic-subscribe.bricktasticbuilds01.workers.dev', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            // SECURITY: Move this API key to a server-side function (e.g. Netlify/Vercel serverless)
-            // NEVER leave API keys in client-side HTML. Rotate this key at mailerlite.com NOW.
-            'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY_MOVE_TO_SERVER'
           },
           body: JSON.stringify({
             email: email,
-            fields: { name: name },
-            groups: ['182159965256943153'],
-            status: 'active'
+            name: name,
+            groups: ['182159965256943153']
           })
         });
       } catch(e) {

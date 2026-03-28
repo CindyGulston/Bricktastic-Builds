@@ -1098,8 +1098,22 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
 
 /* 3D card tilt — video cards */
 .vc{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .15s ease!important}
+.vic{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .15s ease!important}
 .product-card,.pc,.shop-card{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .15s ease!important}
 .gallery-card,.blog-card,.moc-card,.cc{transform-style:preserve-3d;transition:transform .15s ease,box-shadow .15s ease!important}
+
+/* MOC zoom hint overlay */
+.moc-zoom-hint{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.72));
+  color:#fff;font-size:12px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:18px 12px 10px;
+  opacity:0;transition:opacity .2s;
+  pointer-events:none;z-index:3;cursor:zoom-in;
+  letter-spacing:.5px;text-transform:uppercase
+}
+.moc-photo:hover .moc-zoom-hint{opacity:1;pointer-events:auto}
 
 /* Scroll depth reveal — base state */
 .sd-reveal{opacity:0;transform:perspective(900px) rotateX(18deg) translateY(60px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
@@ -3127,293 +3141,352 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 // Add as many entries as you like — the page handles them all
 // ══════════════════════════════════════════════════════════
 // ══════════════════════════════════════
-// YOUTUBE AUTO-FEED (no API key needed)
-// Videos load automatically from your channel — no manual updates required!
+// YOUTUBE VIDEO LOADER (no API key — RSS + hardcoded catalogue)
 // ══════════════════════════════════════
 const YT_CHANNEL_ID = 'UCqm_5GiesZWfnCkZLBzUgSA';
-const YT_API_KEY = 'AIzaSyAl7wnPEcOVS-DSFkLe6iLiZqzu2kMQ0rk';
-const YT_API_BASE = 'https://www.googleapis.com/youtube/v3';
 
-let VIDEOS = [
-  { id: 'SmiX7S_pLTs', title: 'Knuckle Buster Tutorial', cat: 'tutorials' },
-   { id: '1N7bRty5AHI', title: 'LEGO® Desk Accessory Tutorial', cat: 'tutorials' },
-  { id: 'jbrvZUi1Ak8', title: '1958 Lego Small Store (Set 210-2) Small House (Set 211-2) Tutorial', cat: 'tutorials' },
-  { id: 'qCKKpSuflzI', title: '1956 Lego Automatic Garage Tutorial', cat: 'tutorials' },
-  { id: '4_3vstfzVKM', title: 'Custom Lego Moc Battleship', cat: 'tutorials' },
-  { id: '3Ew51QFc-4Q', title: '1965 Chevrolet C10 Lego Moc Tutorial', cat: 'tutorials' },
-  { id: 'EKLIX0L5fmY', title: 'Lego Mini Pirate Ship in Aquarium Tutorial', cat: 'tutorials' },
-  { id: '-yUkgMw_Jlw', title: 'Lego MOC Cigarette & Box Tutorial', cat: 'tutorials' },
-  { id: 'uKAivUHR8n4', title: 'Mini Lego MOC Go - Kart Tutorial', cat: 'tutorials' },
-  { id: '8gJbIZOPLz8', title: 'Build Your Own LEGO® MOC Lighter Tutorial', cat: 'tutorials' },
-  { id: 'MBFMtcRNkZM', title: 'Build your creativity with this LEGO® MOC pencil and eraser Tutorial', cat: 'tutorials' },
-  { id: 'yHEHqUIx-eQ', title: 'Car Repair Shop Tutorial', cat: 'tutorials' },
-  { id: 'sHLWF2JsyFw', title: 'PlayStation 3, 4 and 5 Tutorial', cat: 'tutorials' },
-  { id: 'kqa8RwwD_Ts', title: 'How to Build Mclaren Senna Tutorial', cat: 'tutorials' },
-  { id: 'Xa9p024YHoo', title: 'How to Build Your Own MINI LEGO® Xbox Setup Tutorial', cat: 'tutorials' },
-  { id: 'hkErMyGO7rs', title: 'Build your Own Minecraft Creeper Frame Part 2 Tutorial', cat: 'tutorials' },
-  { id: '739y2OSFDzY', title: 'Lego Bracelet Tutorial', cat: 'tutorials' },
-  { id: 'PhPs6FTknH8', title: 'Lego Flower Bouquet Tutorial', cat: 'tutorials' },
-  { id: 'xj47zGX1LJs', title: 'Build your own Lego Creeper Face Frame Tutorial', cat: 'tutorials' },
-  { id: 'sdQEYrBh9gc', title: 'How to Build a Pagani Zonda Tutorial', cat: 'tutorials' },
-  { id: 'mgOoo4XdjM8', title: 'Nissan Skyline GT-R Tutorial', cat: 'tutorials' },
-  { id: '4P4f-S2EarY', title: 'LEGO® Minecraft Creeper Face Mosaic Tutorial', cat: 'tutorials' },
-  { id: 'PidBsXcrjbg', title: 'Custom Lego Minecraft Maps MOC Build Tutorial', cat: 'tutorials' },
-  { id: 'oa1msNynlq4', title: 'Custom Lego Nissan Skyline R34/R35 GTR JDM Upgrade Tutorial', cat: 'tutorials' },
-  { id: 'd9M_w_yMppo', title: 'How to Build a Custom LEGO® Ghost Ship MOC Build Tutorial', cat: 'tutorials' },
-  { id: '58SGZZA7780', title: 'How to Build a Custom Mini - LEGO® Batmobile Tutorial', cat: 'tutorials' },
-  { id: '27s6C-PTYdk', title: 'LEGO® Builder Anthem Bricktastic Builds Let`s Unite', cat: 'tutorials' },
-  { id: 'NBVu09tW-mg', title: 'How to Build an Among Us LEGO® Mosaic Tutorial', cat: 'tutorials' },
-  { id: 'w5yc-3wLN58', title: 'LEGO® MOC Waterfall and Wild Forest inspired by Nature', cat: 'tutorials' },
-  { id: 'PtuxFwQluvQ', title: 'How to Build a Sleek Black LEGO® CarTutorial | Step-by-Step Tutorial', cat: 'tutorials' },
-  { id: 'rOiHx7UxhvQ', title: 'How to Build a LEGO® Nissan GT-R R35 the Ultimate JDM Supercar Tutorial', cat: 'tutorials' },
-  { id: 'GTaZdunA_vE', title: 'How to Build a Sleek Red Sports Car LEGO® Tutorial', cat: 'tutorials' },
-  { id: 'yw05CF2As-c', title: 'Building My Custom LEGO® Roblox Logo', cat: 'showcase' },
-  { id: 'gwg_wieg76Y', title: 'Naruto`s Kunai & Shuriken in LEGO® How to Build Tutorial!', cat: 'tutorials' },
-  { id: 'nC0PdTjwWFg', title: 'Skibidi Toilet & Cameraman in Lego How to Build Tutorial', cat: 'tutorials' },
-  { id: '_h3NNkya-Ss', title: 'Nissan R34 Skyline GT-R in Lego How to Build Tutorial', cat: 'tutorials' },
-  { id: 'Y01mI5r9fY8', title: 'Building My Custom LEGO® Dodge Challenger SRT Tutorial', cat: 'tutorials' },
-  { id: 'I0sLg67baTE', title: 'Nissan 180SX in Lego How to Build Tutorial', cat: 'tutorials' },
-  { id: 'ZoO4JUOcis8', title: 'Lego Ninjago Dragons Rising Tutorial', cat: 'tutorials' },
-  { id: 'w-Cu34YQJ_Y', title: 'How to Build Lego Minecraft Steve and Baby Panda Tutorial', cat: 'tutorials' },
-  { id: 'GU97CmZDg3c', title: 'Lego Black Pearl Custom Build', cat: 'tutorials' },
-  { id: 'cpk5XQE31Rw', title: 'Lego Custom Red Car Instructions', cat: 'instructions' },
-  { id: '3DZwTnJtwac', title: 'MOC Lego Batmobile Instructions', cat: 'instructions' },
-  { id: 'UxbkiIOjwZg', title: '1969 Chevrolet Corvette Instruction Booklet', cat: 'instructions' },
-  { id: 'SJ_RZ17tZIY', title: '1970 Ferrari 512 M Instruction Booklet', cat: 'instructions' },
-  { id: '8XhBkGrQWCI', title: 'Porsche 918 Spyder Instruction Book', cat: 'instructions' },
-  { id: 'x2VBCZhPZV4', title: '76912 Fast and Furious 1970 Dodge Charger RT Instruction Booklet', cat: 'instructions' },
-  { id: 'WcdeE4OhNpI', title: 'Lego Toyota GR Supra Instruction Booklet', cat: 'instructions' },
-  { id: 'kAN4PEVql_I', title: 'LEGO® Porsche 911 Turbo 3.0 Instructions Booklet', cat: 'instructions' },
-  { id: '_qQ7AdjZnIM', title: 'LEGO® BrickHeadz Monkey D Luffy Instructions Booklet', cat: 'instructions' },
-  { id: 'oJT0uDkZdu4', title: 'Custom LEGO® Super Mario Game Boy Instruction Booklet', cat: 'instructions' },
-  { id: 'kdUV9TxQ5wY', title: 'Lamborghini Lambo V12 Vision GT Super Car Instruction Booklet', cat: 'instructions' },
-  { id: 'czWzGBdgeBs', title: 'LEGO® Mercedes AMG SL 63 Instruction Booklet', cat: 'instructions' },
-  { id: 'vicPNT78KBQ', title: 'Mercedes AMG G 63 Instruction Booklet', cat: 'instructions' },
-  { id: 'LzFIz16t6O8', title: 'Audi S1 e-tron quattro Instruction Booklet', cat: 'instructions' },
-  { id: 'NjAQPnsIhWs', title: 'Ford Mustang Dark Horse Instruction Booklet', cat: 'instructions' },
-  { id: '0ejN2vUx8sQ', title: 'Lamborghini Revuelto Instruction Booklet', cat: 'instructions' },
-  { id: 'AgHz135_bWo', title: 'Lamborghini Huracán Instruction Booklet', cat: 'instructions' },
-  { id: '0R1o5bINmAs', title: 'Nissan Skyline GT-R R34 Instruction Booklet', cat: 'instructions' },
-  { id: 'J2FOgA9REis', title: 'Dodge Challenger Hellcat Instruction Booklet', cat: 'instructions' },
-  { id: 'v56qHjdIm0s', title: 'Honda S2000 Instruction Booklet', cat: 'instructions' },
-  { id: 'VQj6SbQAStY', title: 'Ferrari F40 Instruction Booklet', cat: 'instructions' },
-  { id: '8g3151tPGYk', title: 'Porsche 911 GT3 RS Instruction Booklet', cat: 'instructions' },
-  { id: 'cjUxi3AVW7o', title: 'Bugatti Centodieci Instruction Booklet', cat: 'instructions' },
-  { id: 'MlMbHEJ6NiU', title: 'How to Build a LEGO® Bouquet of Roses Instruction Booklet', cat: 'instructions' },
-  { id: 'mXNvIwXzR9U', title: 'How To Build Lego Flower Arrangement Instruction Booklet', cat: 'instructions' },
-  { id: 'nbwm7I5YGfU', title: 'Lego Pretty Pink Flower Bouquet Instruction Booklet', cat: 'instructions' },
-  { id: 'DQEPVEx_zzE', title: 'How to Build a LEGO® Petite Sunny Bouquet Instruction Booklet', cat: 'instructions' },
-  { id: 'dvSEvyOnaOE', title: 'My custom build Batmobile', cat: 'showcase' },
-  { id: 'ydamnOKdFf8', title: 'My Custom Black Ship Creation', cat: 'showcase' },
-  { id: 'L-cMbY4NtSI', title: 'Lego Joke', cat: 'jokes' },
-  { id: 'Nfj4xszyg2M', title: 'My custom build LEGO® Red Car', cat: 'showcase' },
-  { id: 'qDuKsiwS5xw', title: 'LEGO® Technic Origins — How It All Started', cat: 'lego-news' },
-  { id: 'Ic9bFYV5MpI', title: 'Castle Theme — Every Era Ranked & Reviewed', cat: 'lego-news' },
-  { id: 'RhU9MgvIllo', title: 'LEGO® Ideas: Fan Power — Best Submissions Ever', cat: 'tutorials' },
-  { id: '3yMFkgMi7kI', title: 'Legoland Parks — The Full Story', cat: 'lego-news' },
-  { id: 'Mv_vx9HpIcU', title: "LEGO Sustainability Crisis — ABS Replacement", cat: 'lego-news' },
-  { id: '9lNZ_Rnr7Jc', title: 'LEGO® Mindstorms — The Complete History', cat: 'lego-news' },
-  { id: '1G4isv_Fylg', title: 'LEGO® & Harry Potter — The Licensing Story', cat: 'lego-news' },
-  { id: 'Hn-ensF7Oki', title: 'How the LEGO® Movie Was Really Made', cat: 'tutorials' },
-  { id: 'x9YwkQi_Aqo', title: 'LEGO® Piece Count Hacks — Build More for Less', cat: 'tutorials' },
-  { id: 'DEjClTJFNrk', title: 'The Perfect LEGO® Workspace Setup', cat: 'tutorials' },
-  { id: 'OPaQPMB3B0A', title: 'How to Sort Your LEGO® Parts — The System That Works', cat: 'tutorials' },
-  { id: 'cGqZ8mCXIws', title: 'LEGO® Landscaping Techniques — Grass, Rock & Foliage', cat: 'tutorials' },
-  { id: 'S5d_-j1CXVQ', title: 'Sticker vs Printed Tile — Which is Better & Why', cat: 'tutorials' },
-  { id: 'LtPmAMpHSBE', title: 'How to Remove Tight LEGO® Pieces Without Breaking Them', cat: 'tutorials' },
-  { id: 'p-fW__oh4Ug', title: 'Building Minifig-Scale Vehicles — Pro Tips', cat: 'tutorials' },
-  { id: '4M7tiUAvstY', title: 'Display vs Play — Designing LEGO® for Both', cat: 'tutorials' },
-  { id: '3m5qkPx57yk', title: 'LEGO® Roof Techniques — Every Style Explained', cat: 'lego-news' },
-  { id: 'fcLZhUKPwSA', title: 'Window & Door Placement — Architectural Accuracy', cat: 'tutorials' },
-  { id: 'yJg-Y5byMMw', title: 'Race Build Challenge — 10 Mins to Build a Car', cat: 'tutorials' },
-  { id: '3nBeW4fFMGk', title: 'One-Colour Challenge — Building with Only Red Bricks', cat: 'tutorials' },
-  { id: 'GQOhFZitHkc', title: 'Partner Build Challenge — We Build Without Talking', cat: 'tutorials' },
-  { id: 'xvFZjo5PgG0', title: 'LEGO® vs Off-Brand Bricks — Build-Off Challenge', cat: 'tutorials' },
-  { id: 'Ct6BUPvE2sQ', title: 'Child vs AFOL Build Challenge', cat: 'tutorials' },
-  { id: 'ulPkLKau7C4', title: '500 Piece Freestyle — No Planning Allowed', cat: 'tutorials' },
-  { id: 'eFTLKFevi1Y', title: 'Copy That Build! — Can I Replicate It From a Photo?', cat: 'tutorials' },
-  { id: 'F7n7l7HnGUs', title: 'Desert Palace MOC — Week-Long Build Timelapse', cat: 'tutorials' },
-  { id: 'jNQXAC9IVRw', title: 'Arctic Research Station Full MOC', cat: 'tutorials' },
-  { id: 'TyhtEL_4mhU', title: 'Wild West Town — 4-Day Build', cat: 'tutorials' },
-  { id: 'BQ0UxCGxqSM', title: 'Floating Sky Island LEGO® MOC', cat: 'tutorials' },
-  { id: 'N_nRFXbM8W8', title: 'LEGO® Volcano Diorama — Full Build & Tutorial', cat: 'tutorials' },
-  { id: 'ZTidn2dBYbY', title: 'Medieval Market Square — The Full Build', cat: 'tutorials' },
-  { id: 'Zrj48TDjAk0', title: 'LEGO® Harbor Scene — Fishing Village MOC', cat: 'tutorials' },
-  { id: 'A3OfXqjOxPc', title: 'Futuristic City Block — Neon Technic MOC', cat: 'tutorials' },
-  { id: 'P-AqeGDhCes', title: 'Modular Building Week — Day 1: Bakery', cat: 'tutorials' },
-  { id: 'q5bj_Es4MnI', title: 'Modular Building Week — Day 2: Bookshop', cat: 'tutorials' },
-  { id: 'vEQ8CXFWLZU', title: 'Modular Building Week — Day 3: Police Station', cat: 'tutorials' },
-  { id: 'HH4KEMhBxQM', title: 'Modular Building Week — Day 4: Fire Station', cat: 'tutorials' },
-  { id: 'iF77Q7jghhI', title: 'Modular Building Week — Day 5: Grand Hotel', cat: 'tutorials' },
-  { id: 'Jqh3MHXW5CQ', title: 'LEGO® Technic Formula E Car Review', cat: 'lego-news' },
-  { id: 'QKaOLA8MbyY', title: 'LEGO® Icons Bouquet Review', cat: 'lego-news' },
-  { id: 'wvBdcWXi8Vc', title: 'LEGO® Star Wars Imperial Star Destroyer Review', cat: 'lego-news' },
-  { id: '1otSx4CuMlY', title: 'LEGO® Creator Deep Sea Creatures — Review', cat: 'lego-news' },
-  { id: 'INiMiXyxXJI', title: 'LEGO® Architecture Taj Mahal Review', cat: 'lego-news' },
-  { id: 'NUsoVlDFqZg', title: 'LEGO® Speed Champions 2024 Lineup — All Reviewed', cat: 'lego-news' },
-  { id: 'Ix2KswFblia', title: 'LEGO® DREAMZzz Set Review — Worth the Hype?', cat: 'lego-news' },
-  { id: 'HEXWRTEbj1I', title: 'The LEGO® Colour System — Full Explainer', cat: 'tutorials' },
-  { id: 'EYqVtI19uZs', title: "LEGO 100 Best Sets — Ranked by Year", cat: 'lego-news' },
-  { id: 'jJrzIdDUfT4', title: 'Pirate Theme History — A Complete Timeline', cat: 'lego-news' },
-  { id: 'v_RHlZ5e33g', title: 'LEGO® Collectible Minifigures — All 25 Series Ranked', cat: 'lego-news' },
-  { id: 'XCcmkp1CRMs', title: 'How LEGO® Sets Are Designed — Inside the Process', cat: 'tutorials' },
-  { id: 'CjuKzRzPDKA', title: 'The LEGO® Brick Tolerance Secret — Engineering Deep Dive', cat: 'tutorials' },
-  { id: 'oWCzUAm9pcc', title: 'LEGO® Dimensions: What Went Wrong?', cat: 'tutorials' },
-  { id: 'MejbOFk7H6c', title: 'Texture & Detail Techniques — Levels 1 to 5', cat: 'tutorials' },
-  { id: 'sC5XjuDr-EA', title: 'BrickLink Buying Guide — How to Get Parts Cheap', cat: 'tutorials' },
-  { id: 'gCYcHz2k5x0', title: 'How to Build a LEGO® GBC Module From Scratch', cat: 'tutorials' },
-  { id: 'kn2bVkJl74c', title: 'Forced Perspective in LEGO® — The Technique Explained', cat: 'lego-news' },
-  { id: 'OGfQWH4Bj7k', title: 'How to Use Technic Inside System Builds', cat: 'tutorials' },
-  { id: 'NhX-WV3kfRA', title: 'Colour Blocking for Impact — LEGO® Composition', cat: 'tutorials' },
-  { id: 'Yit-ts7BCNY', title: 'The Best LEGO® Pieces You Probably Ignore', cat: 'tutorials' },
-  { id: 'IG2jfcAGEFk', title: 'Bridge Engineering in LEGO® — Load Bearing Explained', cat: 'lego-news' },
-  { id: 'nRpV-7p1gSc', title: 'Tournament Challenge — 8 Builders, 1 Winner', cat: 'tutorials' },
-  { id: 'MRmj8MZANik', title: 'Rebuild That Set — Turn Official Into MOC', cat: 'tutorials' },
-  { id: '9_gkpYvt4BA', title: 'Fan Submission Builds — Judging the Best 10', cat: 'tutorials' },
-  { id: 'DgNRn0S5C8k', title: 'Destruction Challenge — Build Then Smash', cat: 'tutorials' },
-  { id: 'rFCfSOat92M', title: 'LEGO® Mini Golf Course — Build & Play Challenge', cat: 'tutorials' },
-  { id: 'Q-Wm5EbW8rI', title: 'Build a Car That Actually Rolls — Engineering Test', cat: 'tutorials' },
-  { id: 'w3KkIxV7md0', title: 'Egg Drop Challenge — LEGO® Protection Test', cat: 'tutorials' },
-  { id: 'KMl20pGPqiE', title: 'Tropical Beach Resort MOC — Full Build', cat: 'tutorials' },
-  { id: 'q1YsNMM7V7k', title: 'Underground Cave System Diorama', cat: 'tutorials' },
-  { id: 'UE4ftnTKMUY', title: 'LEGO® Zoo MOC — The Whole Animal Park', cat: 'tutorials' },
-  { id: 'XHu7XX3XkbQ', title: 'Steampunk Airship MOC Build', cat: 'tutorials' },
-  { id: 'A_Yj1RKFZLA', title: 'Fantasy Tavern Interior MOC', cat: 'tutorials' },
-  { id: 'GkSWXxZlTkA', title: 'Modern Art Gallery Micro Architecture MOC', cat: 'tutorials' },
-  { id: 'wpwgZm9BPBQ', title: 'Egyptian Temple Diorama — Full Build', cat: 'tutorials' },
-  { id: 'vlSgVlGPBFU', title: 'Cyberpunk Alley Scene — Night Build', cat: 'tutorials' },
-  { id: 'Bw6lGSKFtIM', title: 'Minifig Hospital MOC — Interior Detail', cat: 'tutorials' },
-  { id: 'WRVEMdHXPIY', title: 'Airport Terminal Micro MOC', cat: 'tutorials' },
-  { id: 'LqtMqiw-Mzg', title: 'Roman Fort MOC — Historical Accuracy Build', cat: 'tutorials' },
-  { id: 'Y9IiKnGpA3c', title: 'LEGO® Ideas Jazz Quartet Review', cat: 'lego-news' },
-  { id: 'F8N1NqPxjBE', title: 'LEGO® Technic Monster Jam Grave Digger Review', cat: 'lego-news' },
-  { id: '4sS-XcCEkDM', title: 'LEGO® Marvel Avengers Tower Review', cat: 'lego-news' },
-  { id: 'I2l9i5s7oa8', title: 'LEGO® Minecraft The Crafting Box 4.0 Review', cat: 'lego-news' },
-  { id: 'gNMX1VJEkgQ', title: 'LEGO® Jurassic World T-Rex Breakout Review', cat: 'lego-news' },
-  { id: 'bpwBPmRR9Qg', title: 'LEGO® Disney Castle 100th Anniversary Review', cat: 'lego-news' },
-  { id: 'DU_sEMb5d0g', title: 'LEGO® Batman Batmobile Review — Every Version Compared', cat: 'lego-news' },
-  { id: 'Xq0BZDL4SL0', title: 'LEGO® City Space Station Review', cat: 'lego-news' },
-  { id: 'i0sOAYWKJ0o', title: 'Top 10 Rarest LEGO® Parts Ever Made', cat: 'tutorials' },
-  { id: 'GmV_8RBDlxA', title: 'LEGO® Advent Calendar History — Every Year Ranked', cat: 'lego-news' },
-  { id: 'V7YkPCcMqr4', title: 'The AFOLs Who Changed LEGO® Forever', cat: 'tutorials' },
-  { id: 'ry7mZBGMBZs', title: 'How LEGO® Deals With Fakes & Clones', cat: 'tutorials' },
-  { id: 'KKEHsj0GYP8', title: 'LEGO® Architecture Series — A Complete Guide', cat: 'tutorials' },
-  { id: 'Ys25-KbRxvY', title: 'The LEGO® Group Family Tree — Corporate History', cat: 'lego-news' },
-  { id: 'qopcjNPeDD8', title: 'Illegal LEGO® Techniques — Are They Really Illegal?', cat: 'tutorials' },
-  { id: 'GFLnSrXBKFo', title: 'Scale & Proportion in LEGO® Architecture', cat: 'tutorials' },
-  { id: 'tQ0y4PftArs', title: 'Achieving Depth in Flat LEGO® Walls', cat: 'tutorials' },
-  { id: 'aAHnHBZCT3A', title: 'Street-Level Storytelling in LEGO®', cat: 'lego-news' },
-  { id: 'jQYHBQLEVyk', title: 'How to Build Realistic LEGO® Skies & Clouds', cat: 'tutorials' },
-  { id: 'XELm4zvKo7k', title: 'Advanced Interior Design — Beyond the Box Room', cat: 'tutorials' },
-  { id: 'PNwO8Wr6D0I', title: 'LEGO® Display Case & Shelf Setup Guide', cat: 'tutorials' },
-  { id: 'vHd_kCmSO7I', title: 'LEGO® Photography — Advanced Editing Guide', cat: 'tutorials' },
-  { id: 'GsLCRpvREew', title: 'Stop Motion Animation with LEGO® — Getting Started', cat: 'tutorials' },
-  { id: 'QlHT_sZf35o', title: 'Speed Build Relay — 4 Builders, 1 Giant MOC', cat: 'tutorials' },
-  { id: '4J9-kfhb2WQ', title: 'Rebuild My Childhood Set Challenge', cat: 'tutorials' },
-  { id: 'AaEFT6ZsFWs', title: 'The Floor is Lava — LEGO® Challenge Edition', cat: 'tutorials' },
-  { id: 'DpHOSmzWMZg', title: 'Build a Working LEGO® Catapult — Challenge & Test', cat: 'tutorials' },
-  { id: 'J6qXi4miezo', title: 'LEGO® Swap Shop — Trade Parts Build-Off', cat: 'tutorials' },
-  { id: 'h_OEe1lPbGU', title: 'Recreate a Painting in LEGO® — Art Challenge', cat: 'tutorials' },
-  { id: 'uOYplNkXHBQ', title: 'Medieval Siege Weapons — Full MOC Series', cat: 'tutorials' },
-  { id: 'yD3bgTXsimQ', title: 'The Great LEGO® Library — Modular Build', cat: 'tutorials' },
-  { id: 'GYkq9Ej_J8Y', title: 'Volcanic Island Diorama — Build Vlog', cat: 'tutorials' },
-  { id: 'RI0A9fqYRDI', title: 'Grand Prix Pit Lane MOC', cat: 'tutorials' },
-  { id: 'MkiSGS-GLMY', title: 'Forest Ranger Outpost — Hidden Details MOC', cat: 'tutorials' },
-  { id: 'bUorGaf2aUs', title: 'Cathedral of Bricks — Giant Scale MOC', cat: 'tutorials' },
-  { id: 'hZkqV8nSoeU', title: 'Technic Roller Coaster MOC — Full Engineering Build', cat: 'tutorials' },
-  { id: 'C4fzOolFzVc', title: 'Port & Docklands MOC — Modular City Series', cat: 'tutorials' },
-  { id: 'jE7B0U7WJQM', title: 'LEGO® Dinosaur Museum — Interior & Exterior MOC', cat: 'tutorials' },
-  { id: 'ppMRiDFV_Mc', title: 'Sky Fortress LEGO® MOC — Fantasy Build', cat: 'tutorials' },
-  { id: 'VN3AuJV4GQ4', title: 'LEGO® Creator Crocodile Locomotive Review', cat: 'lego-news' },
-  { id: 'WGjx4J9G6Zs', title: 'LEGO® Icons Orient Express Review', cat: 'lego-news' },
-  { id: 'Iaw9xM0aVRo', title: 'LEGO® Technic McLaren F1 Car 2024 Review', cat: 'lego-news' },
-  { id: '4U_f8vAk2hY', title: 'LEGO® Star Wars Tantive IV Review', cat: 'lego-news' },
-  { id: 'mvQFg5A2uCU', title: 'LEGO® Botanical Succulents Review', cat: 'lego-news' },
-  { id: 'K2mmkSqFJ8M', title: 'LEGO® Ideas Grand Piano Review — Worth $350?', cat: 'lego-news' },
-  { id: 'UPW4kHiEyBo', title: 'LEGO® Technic vs Creator — Which Line Is Better?', cat: 'tutorials' },
-  { id: 'pqRLvkCxDFo', title: 'Exploring LEGO® DUPLO History — More Than Baby Bricks', cat: 'lego-news' },
-  { id: 'w9Kt__tHSgA', title: "LEGO Most Expensive Sets Ever — Worth It?", cat: 'lego-news' },
-  { id: 'aMf-fD65MZI', title: 'The Legends of Chima — What Went Wrong?', cat: 'tutorials' },
-  { id: 'EuZnVhT3a4M', title: 'LEGO® Competitive Building — Contest Culture Explained', cat: 'lego-news' },
-  { id: 'x0t9ZAjqruc', title: 'The Secret Life of LEGO® Set Numbers', cat: 'tutorials' },
-  { id: 'KpkexRV5D0k', title: 'Using Hinges for Perfect Angles — Masterclass', cat: 'tutorials' },
-  { id: 'YFgVmLFBhuk', title: 'Studs-Up vs Studs-Out — When to Use Each', cat: 'tutorials' },
-  { id: 'v58oiG7EI7E', title: 'Hollow Wall Techniques — Save Pieces & Weight', cat: 'tutorials' },
-  { id: 'dT3RkMGHmf4', title: 'Townscaping in LEGO® — Realistic Street Design', cat: 'tutorials' },
-  { id: 'VjBqIeVoHus', title: 'Minifig Posing & Storytelling Guide', cat: 'lego-news' },
-  { id: 'dqHIBBbz12A', title: 'How to Use Plates for Greebling Detail', cat: 'tutorials' },
-  { id: 'qEFqbqfbkRc', title: 'Winter MOC Build Challenge — Snow Effects', cat: 'tutorials' },
-  { id: 'Y3LhMMoUmkQ', title: 'LEGO® Logo Mosaic Speed Build', cat: 'tutorials' },
-  { id: 'X-yRj7PFNGI', title: 'First LEGO® Set vs Now — Evolution Challenge', cat: 'tutorials' },
-  { id: 'a1bIBf20T4g', title: 'Studio vs Real Bricks — Same Design, Two Media', cat: 'tutorials' },
-  { id: 'c9CJT2PiLYE', title: 'LEGO® Jenga Tower Build Challenge', cat: 'tutorials' },
-  { id: 'aJOTlE1K90k', title: "Budget Minifigure Customisation — What's Possible?", cat: 'lego-news' },
-  { id: 'GsxIiinG05s', title: 'Clock Tower MOC — Functional LEGO® Clockwork', cat: 'tutorials' },
-  { id: 'peTSzs-VIDA', title: 'LEGO® Aquarium Scene — Full Underwater MOC', cat: 'tutorials' },
-  { id: 'B0t7CccBHAw', title: 'Swiss Alpine Village MOC — Winter Edition', cat: 'tutorials' },
-  { id: 'kTt0YPZS0q0', title: 'Greek Temple Ruins Diorama', cat: 'tutorials' },
-  { id: 'TcUNQgMQn0E', title: 'Space Nebula Display — LEGO® Light Painting Build', cat: 'tutorials' },
-  { id: 'wBzDiig0e44', title: 'LEGO® Wrestling Ring Full Arena MOC', cat: 'tutorials' },
-  { id: 'cMg8KiFpBPU', title: 'Grand Theatre MOC — Interior Stage & Seats', cat: 'tutorials' },
-  { id: 'qN7Ure6yjRc', title: 'Post-Apocalyptic City Ruins MOC', cat: 'tutorials' },
-  { id: 'ACj7bFXEeEw', title: 'Zen Garden Micro-Scale Diorama', cat: 'tutorials' },
-  { id: 'EjcVm0nE-CE', title: 'Double-Decker Bus City Scene MOC', cat: 'tutorials' },
-  { id: 'OI4p2H0FMEA', title: 'LEGO® Hogwarts Express Review — Latest Version', cat: 'lego-news' },
-  { id: 'XRH21rNFSig', title: 'LEGO® Technic Airbus H175 Helicopter Review', cat: 'lego-news' },
-  { id: 'zNqnTZYA3bM', title: 'LEGO® Icons Concorde Review', cat: 'lego-news' },
-  { id: 'JDlAOVqiHV4', title: 'LEGO® Creator Exotic Parrot Review', cat: 'lego-news' },
-  { id: 'DwHN_HA5KSI', title: 'LEGO® Ninjago Dragon Stone Shrine Review', cat: 'lego-news' },
-  { id: 'eXGjBsTWpHs', title: 'LEGO® Dots & Crafts — Full Range Review', cat: 'lego-news' },
-  { id: 'Jq3eRLekZDQ', title: 'Forgotten LEGO® Themes — A Tribute', cat: 'tutorials' },
-  { id: 'zy7fNWZHFpg', title: 'LEGO® Pricing Over the Decades — Value Analysis', cat: 'tutorials' },
-  { id: 'LsBqqs9zeqQ', title: "The World's Largest LEGO® Collections — Documented", cat: 'lego-news' },
-  { id: '8ZoqEKGnDnw', title: 'LEGO® & Pop Culture — 50 Years of Collaboration', cat: 'tutorials' },
-  { id: 'mHONNcZbsng', title: "LEGO Environmental Roadmap — 2025 Goals Update", cat: 'lego-news' },
-  { id: 'g9mRJ4K1NWU', title: 'Colour Coding Your Part Storage System', cat: 'tutorials' },
-  { id: 'yBgIqBDcRoU', title: 'SNOT at Scale — Applying the Technique to Big MOCs', cat: 'tutorials' },
-  { id: 'CxJx8go4_eY', title: 'Designing for Disassembly — Build Smart', cat: 'tutorials' },
-  { id: 'h3yeCXMnYKI', title: 'The Hidden Stud — Advanced Connection Techniques', cat: 'tutorials' },
-  { id: 'oFCsGfKlJUQ', title: 'LEGO® Mosaic Art — Pixel Techniques Guide', cat: 'tutorials' },
-  { id: 'i3Ngrpc3Epc', title: 'Gravity-Defying LEGO® — Suspended Build Techniques', cat: 'tutorials' },
-  { id: 'TwFSMjrLrSw', title: 'Last Brick Standing — Structural Stress Test', cat: 'tutorials' },
-  { id: 'N-YrFJypl9c', title: 'Blind Build Battle — Same Parts, Different Styles', cat: 'tutorials' },
-  { id: 'LzCDQ7j7xzU', title: 'Celebrity LEGO® Challenge — Fan Request Build', cat: 'tutorials' },
-  { id: 'pJ09AiMM2Kg', title: 'Worst LEGO® Colour Challenge — Grey, Olive, Macaroni', cat: 'tutorials' },
-  { id: 'FbqFUqg8hgI', title: 'LEGO® Escape Room Build & Play Challenge', cat: 'tutorials' },
-  { id: 'KFhSIhFFkLs', title: '3-Part MOC Series — Episode 1: The City Walls', cat: 'tutorials' },
-  { id: 'fMN8r_uA6UA', title: '3-Part MOC Series — Episode 2: The Castle Keep', cat: 'tutorials' },
-  { id: 'j6mfOstg0o0', title: '3-Part MOC Series — Episode 3: The Town Below', cat: 'tutorials' },
-  { id: 'J28c3znuPH8', title: 'Micro World Series — The Forest Floor', cat: 'tutorials' },
-  { id: 'lCHHe31YDBU', title: 'Micro World Series — The Ocean Trench', cat: 'tutorials' },
-  { id: '1CfZtL_gBXk', title: 'Micro World Series — The Mountain Peak', cat: 'tutorials' },
-  { id: 'j9n3qj1TXOU', title: 'LEGO® Moon Base MOC — NASA Inspiration', cat: 'tutorials' },
-  { id: 'Tl5V4yFDq-c', title: 'Fully Furnished Dollhouse Style MOC', cat: 'tutorials' },
-  { id: 'Dj9sqjQTe4k', title: 'LEGO® Ideas Wildflower Bouquet Review', cat: 'lego-news' },
-  { id: 'OqxiuSFfNdQ', title: 'LEGO® Star Wars Venator-Class Star Destroyer Review', cat: 'lego-news' },
-  { id: 'N-10_j3B-FI', title: 'LEGO® City Police Pursuit Review — 2024 Wave', cat: 'lego-news' },
-  { id: 'VCTen3-zKlI', title: 'LEGO® Harry Potter Room of Requirement Review', cat: 'lego-news' },
-  { id: 'pSt5MUHpAqM', title: 'LEGO® Technic Rough Terrain Crane Review', cat: 'lego-news' },
-  { id: 'y4kHlMOjsBE', title: 'LEGO® Icons Cathedral of Learning Review', cat: 'lego-news' },
-  { id: 'E8gmARGgX3c', title: "LEGO Weirdest Licensed Themes — Ranked", cat: 'lego-news' },
-  { id: 'cI0ZzFWDf3I', title: 'LEGO® Board Games — The Forgotten Era', cat: 'tutorials' },
-  { id: 'jwJBmTf6M-w', title: 'Fabuland — LEGO®\'s Most Underrated Theme Ever', cat: 'lego-news' },
-  { id: 'vy4cMDGh_a8', title: 'LEGO® Music — Every Album & Soundtrack Ranked', cat: 'lego-news' },
-  { id: 'ZIqW4VkWGzc', title: 'How LEGO® Names Their Colours — A Deep Dive', cat: 'tutorials' },
-  { id: 'kqbpAJLvHng', title: 'LEGO® Club Magazine — Nostalgia Deep Dive', cat: 'tutorials' },
-  { id: 'OE2vlWoH5jE', title: 'Brick Separator — Hidden Tool Deep Dive', cat: 'tutorials' },
-  { id: 'cVJRLIqfExM', title: 'One Part, 10 Uses — LEGO® Creativity Exercise', cat: 'tutorials' },
-  { id: 'xjIIubQkNdk', title: 'Jumper Plate Techniques — Unlock Half-Stud Spacing', cat: 'tutorials' },
-  { id: 'v-DZ9KnW5Ag', title: 'The Headlight Brick — What It Is and Why You Need It', cat: 'tutorials' },
-  { id: '8OQ4TDdmEA0', title: 'Clean vs Greebled — When Detail Hurts', cat: 'tutorials' },
-  { id: '2HYDeQFYHLo', title: 'Brick by Brick Podcast — Live Build Special', cat: 'tutorials' },
-  { id: 'YE7VzlLtp-4', title: 'Christmas Tree Build Challenge — Live on Stream', cat: 'tutorials' },
-  { id: 'gnS_A7KIOYQ', title: "LEGO Most Iconic Build — Can I Beat It?", cat: 'lego-news' },
-  { id: 'JKHUHGhKjhU', title: 'Complete City Expansion — Year Review Build', cat: 'lego-news' },
-  { id: 'bVWzoJ6ZJHY', title: 'The Final Modular — Grand Arcade MOC Complete', cat: 'tutorials' },
-  // 👆 REPLACE these video IDs and titles with your actual YouTube video IDs
-  // Get the ID from the URL: youtube.com/watch?v=THIS_PART_HERE
-  // To add more: copy a line, paste it, change the id, title, and cat
+// ── Full back-catalogue (exported from YouTube Studio) ──
+// Videos are auto-categorised by detectCategory() at runtime.
+// Shorts are identified by isShort:true and link to youtube.com/shorts/ID
+const CATALOGUE_VIDEOS = [
+  { id: 'RwnJHsmjugk', title: 'Lego Honda NSX 2000 MOC Tutorial', isShort: false },
+  { id: 'ppYo3P7Z9CI', title: 'PC Gaming Setup Tutorial', isShort: false },
+  { id: 'nbwm7I5YGfU', title: 'Lego Pretty Pink Flower Bouquet Instruction Booklet', isShort: false },
+  { id: 'UxbkiIOjwZg', title: '1969 Chevrolet Corvette Instruction Booklet', isShort: false },
+  { id: 'SJ_RZ17tZIY', title: '1970 Ferrari 512 M Instruction Booklet', isShort: false },
+  { id: 'SmiX7S_pLTs', title: 'Knuckle Buster Tutorial', isShort: false },
+  { id: '8XhBkGrQWCI', title: 'Porsche 918 Spyder Instruction Book', isShort: false },
+  { id: '1N7bRty5AHI', title: 'LEGO Desk Accessory Tutorial', isShort: false },
+  { id: 'x2VBCZhPZV4', title: '76912 Fast and Furious 1970 Dodge Charger RT Instruction Booklet', isShort: false },
+  { id: 'WcdeE4OhNpI', title: 'Lego Toyota GR Supra Instruction Booklet', isShort: false },
+  { id: 'jbrvZUi1Ak8', title: '1958 Lego Small Store Tutorial', isShort: false },
+  { id: 'kAN4PEVql_I', title: 'LEGO Porsche 911 Turbo 3.0 Instructions', isShort: false },
+  { id: 'qCKKpSuflzI', title: 'Lego Automatic Garage 1956 Tutorial', isShort: false },
+  { id: '4_3vstfzVKM', title: 'Custom Lego Moc Battleship Showcase', isShort: false },
+  { id: '3Ew51QFc-4Q', title: '1965 Chevrolet C10 Lego Moc Tutorial', isShort: false },
+  { id: '_qQ7AdjZnIM', title: 'LEGO BrickHeadz Monkey D Luffy Instructions Booklet', isShort: false },
+  { id: 'EKLIX0L5fmY', title: 'Lego Mini Pirate Ship in Aquarium Tutorial', isShort: false },
+  { id: '-yUkgMw_Jlw', title: 'Lego MOC Cigarette & Box Tutorial', isShort: false },
+  { id: 'oJT0uDkZdu4', title: 'Custom LEGO Super Mario Game Boy Instruction Booklet', isShort: false },
+  { id: 'uKAivUHR8n4', title: 'Mini Lego MOC Go-Kart Tutorial', isShort: false },
+  { id: '8gJbIZOPLz8', title: 'Build Your Own LEGO MOC Lighter', isShort: false },
+  { id: 'kdUV9TxQ5wY', title: 'Lamborghini Lambo V12 Vision GT Instruction Booklet', isShort: false },
+  { id: 'MBFMtcRNkZM', title: 'LEGO MOC Pencil and Eraser Tutorial', isShort: false },
+  { id: 'czWzGBdgeBs', title: 'LEGO Mercedes AMG SL 63 Instruction Booklet', isShort: false },
+  { id: 'vicPNT78KBQ', title: 'Mercedes AMG G 63 Instruction Booklet', isShort: false },
+  { id: 'yHEHqUIx-eQ', title: 'Car Repair Shop Tutorial', isShort: false },
+  { id: 'LzFIz16t6O8', title: 'Audi S1 e-tron quattro Instruction Booklet', isShort: false },
+  { id: 'NjAQPnsIhWs', title: 'Ford Mustang Dark Horse Instruction Booklet', isShort: false },
+  { id: '0ejN2vUx8sQ', title: 'Lamborghini Revuelto Instruction Booklet', isShort: false },
+  { id: 'AgHz135_bWo', title: 'Lamborghini Huracán Instruction Booklet', isShort: false },
+  { id: 'sHLWF2JsyFw', title: 'PlayStation 3, 4 and 5 Tutorial', isShort: false },
+  { id: '0R1o5bINmAs', title: 'Nissan Skyline GT-R R34 Instruction Booklet', isShort: false },
+  { id: 'J2FOgA9REis', title: 'Dodge Challenger Hellcat Instruction Booklet', isShort: false },
+  { id: 'v56qHjdIm0s', title: 'Honda S2000 Instruction Booklet', isShort: false },
+  { id: 'VQj6SbQAStY', title: 'Ferrari F40 Instruction Booklet', isShort: false },
+  { id: '8g3151tPGYk', title: 'Porsche 911 GT3 RS Instruction Booklet', isShort: false },
+  { id: 'cjUxi3AVW7o', title: 'Bugatti Centodieci Instruction Booklet', isShort: false },
+  { id: 'Ag-Ul_JlNhQ', title: 'Build Your Own Lego Car Repair Shop Tutorial', isShort: false },
+  { id: 'kqa8RwwD_Ts', title: 'How to Build Mclaren Senna Tutorial', isShort: false },
+  { id: 'Xa9p024YHoo', title: 'MINI LEGO Xbox Setup Tutorial', isShort: false },
+  { id: 'hkErMyGO7rs', title: 'Minecraft Creeper Frame Part 2 Tutorial', isShort: false },
+  { id: '739y2OSFDzY', title: 'Lego Bracelet Tutorial', isShort: false },
+  { id: 'PhPs6FTknH8', title: 'Lego Flower Bouquet Tutorial', isShort: false },
+  { id: 'xj47zGX1LJs', title: 'Lego Creeper Face Frame Tutorial', isShort: false },
+  { id: 'sdQEYrBh9gc', title: 'Pagani Zonda Tutorial', isShort: false },
+  { id: 'EGZgpYkwrPY', title: 'Speed Championships Honda S2000 Lego News', isShort: false },
+  { id: 'mgOoo4XdjM8', title: 'Nissan Skyline GT-R Tutorial', isShort: false },
+  { id: 'HPiaIVB1xn0', title: '10 Life-Size Lego F1 Cars Lego News', isShort: false },
+  { id: '4P4f-S2EarY', title: 'LEGO Minecraft Creeper Face Mosaic Showcase', isShort: false },
+  { id: 'YlHyT_B847M', title: "It's MY Birthday! Let's Celebrate?", isShort: false },
+  { id: 'PidBsXcrjbg', title: 'Lego Minecraft Maps MOC Build Showcase', isShort: false },
+  { id: 'cjIikJoEglk', title: 'Speed Champions Collection Lego News', isShort: false },
+  { id: 'oa1msNynlq4', title: 'Lego Nissan Skyline R34/R35 GTR JDM Upgrade Tutorial', isShort: false },
+  { id: 'MlMbHEJ6NiU', title: 'LEGO Bouquet of Roses 10328 Instruction Booklet', isShort: false },
+  { id: 'mXNvIwXzR9U', title: 'Lego Flower Arrangement Instruction Booklet', isShort: false },
+  { id: 'DQEPVEx_zzE', title: 'LEGO Petite Sunny Bouquet Instruction Booklet', isShort: false },
+  { id: '-e9chKeWKuI', title: 'Lego Botanical Collection Lego News', isShort: false },
+  { id: 'd9M_w_yMppo', title: 'LEGO Ghost Ship MOC Build Showcase', isShort: false },
+  { id: '58SGZZA7780', title: 'Mini LEGO Batmobile MOC Tutorial', isShort: false },
+  { id: 'NBVu09tW-mg', title: 'How to Build an Among Us LEGO Mosaic Tutorial', isShort: false },
+  { id: 'bUv9tMMCeEM', title: 'How to Build an Among Us Lego Mosaic Tutorial', isShort: false },
+  { id: 'w5yc-3wLN58', title: 'LEGO MOC Waterfall and Wild Forest Showcase', isShort: false },
+  { id: '27s6C-PTYdk', title: 'LEGO Builder Anthem – Bricktastic Builds', isShort: false },
+  { id: 'PtuxFwQluvQ', title: 'Sleek Black LEGO Car Tutorial', isShort: false },
+  { id: 'rOiHx7UxhvQ', title: 'LEGO Nissan GT-R R35 Tutorial', isShort: false },
+  { id: 'GTaZdunA_vE', title: 'Sleek Red Sports Car LEGO Tutorial', isShort: false },
+  { id: 'yw05CF2As-c', title: 'Custom LEGO Roblox Logo Tutorial', isShort: false },
+  { id: 'owXJ6IDz13I', title: 'LEGO Among Us Red Custom Crewmate Tutorial', isShort: false },
+  { id: 'gwg_wieg76Y', title: "Naruto's Kunai & Shuriken in LEGO Tutorial", isShort: false },
+  { id: 'nC0PdTjwWFg', title: 'Skibidi Toilet & Cameraman in Lego Tutorial', isShort: false },
+  { id: 'YGq9unRzKhY', title: 'Nissan R35 Skyline GTR Showcase', isShort: false },
+  { id: '_h3NNkya-Ss', title: 'Nissan R34 Skyline GT-R Tutorial', isShort: false },
+  { id: 'bWIAqvEXPvI', title: 'Nissan Skyline R34 GT R Tutorial Coming Soon Showcase', isShort: false },
+  { id: 'Y01mI5r9fY8', title: 'Building My Custom LEGO Dodge Challenger SRT Tutorial', isShort: false },
+  { id: '9_JlMJqVAGQ', title: 'Lego American Muscle VS Japan Monster', isShort: false },
+  { id: 'ts5HcWgeQqc', title: 'Dodge Challenger SRT Lego MOC Showcase', isShort: false },
+  { id: 'I0sLg67baTE', title: 'Nissan 180SX Tutorial', isShort: false },
+  { id: 'ZoO4JUOcis8', title: 'Lego Ninjago Dragons Rising New Set Tutorial', isShort: false },
+  { id: 'w-Cu34YQJ_Y', title: 'Lego Minecraft Steve and Baby Panda Tutorial', isShort: false },
+  { id: 'GU97CmZDg3c', title: 'Lego Black Pearl Custom Build Showcase', isShort: false },
+  { id: 'r8popp-LyZU', title: 'Welcome to Bricktastic Builds', isShort: false },
 ];
+
+const CATALOGUE_SHORTS = [
+  { id: 'qq9yFrw04F4', title: 'Lego moc mini Gaming Setup', isShort: true },
+  { id: 'HjC9f01M1qY', title: 'A Lego Moc mini Gaming table', isShort: true },
+  { id: 'yTN4KPne2tQ', title: 'Mini PC MOC Tutorial', isShort: true },
+  { id: 'IMBYSBjHMy0', title: 'Gaming Monitors Mini MOC Tutorial', isShort: true },
+  { id: 'KolwxYJWzzw', title: 'LEGO Quiz', isShort: true },
+  { id: 'xtnbeP6l36k', title: 'Build A Mini Lego Gaming Chair Tutorial', isShort: true },
+  { id: '9BhhQHtFPoA', title: 'LEGO Quiz', isShort: true },
+  { id: 'Z4wYByjNnKg', title: 'Lego Joke', isShort: true },
+  { id: 'wgbXMipd9MY', title: 'Lego Moc Mini PC Gaming Setup Showcase', isShort: true },
+  { id: 'AyietdMedag', title: 'LEGO Quiz', isShort: true },
+  { id: 'OHAAbK32uCc', title: 'BMW G82 M4 Lego Moc Showcase', isShort: true },
+  { id: 'R4UISn32GM4', title: 'Lego News What is Lego KPop Demon Hunters?', isShort: true },
+  { id: 'lTg4ymimxCE', title: 'Lego News New Lego Peanut Set Coming Soon', isShort: true },
+  { id: '2y54KRZEmLg', title: 'Lego News Kpop Demon Hunters coming soon', isShort: true },
+  { id: '6UjNUKg0Y_4', title: 'My Lego Nissan Skylines GTR collection Showcase', isShort: true },
+  { id: 'KT9Gwf1dVnk', title: 'Nissan GTR R34 Mod Tutorial', isShort: true },
+  { id: '4W9HxlfDz-0', title: 'Lego moc Ferrari 812 Showcase', isShort: true },
+  { id: 'QfjWrSYCgVM', title: 'Lego Fortnite Pencil Holder Showcase', isShort: true },
+  { id: '1SmkRr7Yzcg', title: '70 Years of Lego Houses Lego News', isShort: true },
+  { id: 'K5WpbWJ0jKI', title: 'Lego Bakery & Small House Old Sets Showcase', isShort: true },
+  { id: 'e8VLE2IAQG0', title: 'Lego Pens Old & New Lego News', isShort: true },
+  { id: 'Egy9EP3sO0M', title: 'Lego Joke', isShort: true },
+  { id: '4uoqVZXjNbA', title: 'Lego Go-Kart Time-Lapse', isShort: true },
+  { id: 'd_M-ramwfvc', title: 'Lego Joke', isShort: true },
+  { id: 'oSW6FNCe9Ak', title: 'Lego Heart Time-Lapse', isShort: true },
+  { id: 'vkKVqR4A8ko', title: '1965 Chevrolet C10 Moc Build Showcase', isShort: true },
+  { id: 'qSfB_npiPps', title: 'Nissan Skyline GTR R35 MOC Showcase', isShort: true },
+  { id: '6xw6MKgCK-Y', title: 'Lego News Smart Play coming soon', isShort: true },
+  { id: 'Tt6GUaAaVds', title: 'Lego Smart Figurine Lego News', isShort: true },
+  { id: 'txD8fMJ4UEU', title: 'Lego Smart Tags Lego News', isShort: true },
+  { id: 'j49mxOy8YPM', title: 'Lego SMART Brick Lego News', isShort: true },
+  { id: 'cp3mhiDPIfI', title: 'Lego Knuckle Duster Showcase', isShort: true },
+  { id: 'mIhvH8y2v9o', title: 'Lego Fortnite Set Revealed! Lego News', isShort: true },
+  { id: 'l0bMUIAnGm4', title: 'New Speed Champion Set F1 Academy Lego News', isShort: true },
+  { id: '6aQl-SzaP3o', title: 'Ferrari SF90 XX Stradale Lego News', isShort: true },
+  { id: 'x7kUj8CipY0', title: 'Lego McLaren W1 Lego News', isShort: true },
+  { id: 'ax-mwhZB8DA', title: 'Bugatti Vision GT Hyper Sport Lego News', isShort: true },
+  { id: 'Sp4dnPOvD28', title: 'Chrysanthemum Flowers Lego News', isShort: true },
+  { id: 'dwUANQNuH-0', title: 'Orchid Flowers Lego News', isShort: true },
+  { id: 'UIekHVXSl9I', title: 'Roses Flowers Lego News', isShort: true },
+  { id: 's7V5RlLKF1Q', title: 'Plum Blossum Flowers Lego News', isShort: true },
+  { id: 'LVvh-c4ZzpM', title: 'Lego Botanicals 4 Elegant New Sets Lego News', isShort: true },
+  { id: 'KtDXchhCaVk', title: 'LEGO Star Trek USS Enterprise Lego News', isShort: true },
+  { id: 'w5YbRwOjtK8', title: 'Lego Succulents Lego News', isShort: true },
+  { id: 'dH1AWZUaUXI', title: 'Bamboo Plants Lego News', isShort: true },
+  { id: 'xzCpk81fEWg', title: 'Lego Botanical Collection Lego News', isShort: true },
+  { id: 'r_OdSAD2bRo', title: 'Lego MOC Cigarette Box Showcase', isShort: true },
+  { id: 'lpzsc_Lcow4', title: 'Lego MOC Mini Pirate-Ship Aquarium Showcase', isShort: true },
+  { id: 'L5Pxunsx7eM', title: 'Lego Moc Indonesian Flag Tutorial', isShort: true },
+  { id: 'dtBeVh40yE4', title: 'Lego Icons Shelby Cobra 427 Lego News', isShort: true },
+  { id: 'R4fc7cXqYbE', title: 'The Lego Delorean Back to the Future', isShort: true },
+  { id: 'KGjwDtAM14U', title: 'Lego Go-Karts MOC Showcase', isShort: true },
+  { id: 'FZnTl0XtUgs', title: 'Lego Cigarette & Box MOC Showcase', isShort: true },
+  { id: 'czeA2WnjOSU', title: 'Mini Lego MOC PlayStation 3 time-lapse', isShort: true },
+  { id: 'i91PGdhTUL4', title: 'Lego Lighter MOC Showcase', isShort: true },
+  { id: 'UMNBzoGGrgM', title: 'Lego Benny Mosaic Lego Movie', isShort: true },
+  { id: 'Lve7KnTk8r4', title: 'Lego Moc Pencil & Rubber', isShort: true },
+  { id: 'uf5sDAaQzkU', title: 'Lego Head Mosaic', isShort: true },
+  { id: 'oeKEVRubv_E', title: 'Captain Jack Sparrows Pirate Ship', isShort: true },
+  { id: 'qW-S41bWX1A', title: 'Building an Xbox Series X out of LEGO Time-lapse', isShort: true },
+  { id: 'p7TUcA4fESc', title: 'Building an Xbox Series S LEGO Time-lapse', isShort: true },
+  { id: '2k7ZkFjNlzY', title: 'Lego MOC Jeep Wrangler Showcase', isShort: true },
+  { id: 'HHnE3nkQ9ds', title: 'Lego Dodge Challenger 1970 Showcase', isShort: true },
+  { id: '9jeXqu47VF8', title: 'Building an Xbox One S out of LEGO Time-Lapse', isShort: true },
+  { id: 'nB4xe9yVsTo', title: 'Lego Moc PlayStation Collection', isShort: true },
+  { id: 'V6Qtng4CviQ', title: 'Lego MOC Playstation5 Showcase', isShort: true },
+  { id: 'GMGhnOB-SXw', title: 'Mini Lego PlayStation 4', isShort: true },
+  { id: 'KoC1AVPsk9M', title: 'Mini Lego PlayStation 3', isShort: true },
+  { id: 'yTfJPxT-a00', title: 'Lego Nissan Skyline R32', isShort: true },
+  { id: 'IEKonUXgAqo', title: 'Lego Moc Auto Repair Shop', isShort: true },
+  { id: 'TIMUw_9vZvc', title: 'New Lego Nike Sets', isShort: true },
+  { id: 'uuz6F8B8pIo', title: 'Lego MOC Bugatti', isShort: true },
+  { id: 'R22BzblAbw8', title: 'Lego MOC Mclaren Senna', isShort: true },
+  { id: 'o20gHJIhLuw', title: 'Lego MOC Tow Truck', isShort: true },
+  { id: 'pbDE7mJkWdE', title: 'Lego Moc Bugatti', isShort: true },
+  { id: 'eGx2i0CvkI8', title: 'Lego MOC Bugatti Chiron', isShort: true },
+  { id: 'bSHI-QAgTQk', title: 'Mini Lego Xbox One S, Series S, Series X', isShort: true },
+  { id: 'ehHDsMwcZIw', title: 'Mini Lego Xbox Collection', isShort: true },
+  { id: '3nz1Tj8nLD4', title: 'Mini Lego Xbox Series X', isShort: true },
+  { id: 'L67gHZKgl8E', title: 'Mini Lego Xbox Series S', isShort: true },
+  { id: 'LWv-2zL5s08', title: 'Mini Lego Xbox One S', isShort: true },
+  { id: 'gIQgNPLTmCI', title: 'Minecraft Creeper Frame Part 2', isShort: true },
+  { id: 'FHQh9OIDLJo', title: 'Lego MOC Ferrari 488', isShort: true },
+  { id: 'VAuvLQbeZaY', title: 'Lego Moc Ferrari 488 Pista', isShort: true },
+  { id: 'IYQjcJVzeA4', title: 'Lego better than Bitcoin?', isShort: true },
+  { id: 'CFJF-cOZGYw', title: 'Lego Tree Spring Vibes', isShort: true },
+  { id: 'BxuOOtM2O0w', title: 'Lego Mclaren Senna', isShort: true },
+  { id: 'Z6JHIaGusVQ', title: 'Lego Minecraft Creeper Face', isShort: true },
+  { id: 'rDB_leigWg8', title: 'Lego News One Piece Set The Going Merry', isShort: true },
+  { id: '62Xtf98u9Fg', title: 'Lego News Porsche 911 GT3 RS', isShort: true },
+  { id: 'mYwAgGA1QCo', title: 'Lego News Speed Champion Dodge Challenger SRT Hellcat', isShort: true },
+  { id: 'PBUM83nf9SM', title: 'Lego News Speed Champions Lamborghini Revuelto & Huracán STO', isShort: true },
+  { id: 'ZZMWrzNCAzI', title: 'Lego News Speed Champions Honda S2000', isShort: true },
+  { id: 'ag6Ro_deJjE', title: 'Nissan Skyline GT-R R34', isShort: true },
+  { id: 'NDU4ZJWyB1w', title: 'Pagani Zonda Cinque', isShort: true },
+  { id: '8ZamMPAo0QI', title: 'Lego Joke', isShort: true },
+  { id: 'pzbp-7JdNUg', title: 'Lego Joke / Pun', isShort: true },
+  { id: 'i7Qcpx4jo1o', title: 'Lego Joke / Pun', isShort: true },
+  { id: 'cS3G-B7soms', title: 'Lego Joke / Pun', isShort: true },
+  { id: 'fO0tHpU4Yhk', title: 'Lego Joke', isShort: true },
+  { id: 'x5PNGacV_8s', title: 'Lego Joke Pun', isShort: true },
+  { id: 'YRZZU9mRLfg', title: 'Lego Joke / Pun', isShort: true },
+  { id: '3EaFl4aTet8', title: 'Lego Therapy / Pun', isShort: true },
+  { id: 'o8ARfmHDUAQ', title: 'Lego Joke', isShort: true },
+  { id: 'uTtsZdx3T1g', title: 'Lego Joke', isShort: true },
+  { id: 'ZxNvMuxQonk', title: 'Lego Joke', isShort: true },
+  { id: 'cbYIMZNFu6U', title: 'Lego Joke', isShort: true },
+  { id: '-LEr4PJ1r8k', title: 'LEGO Builder Anthem – Bricktastic Builds', isShort: true },
+  { id: 'qr5L2CLttWA', title: 'Lego Motivation', isShort: true },
+  { id: 'zeyW-gxhTf4', title: 'Lego Joke/Pun', isShort: true },
+  { id: 'HzdvlJ_dB7I', title: 'Lego Joke', isShort: true },
+  { id: 'dC0m6k_0J0Y', title: 'Katana and Saya Lego Moc', isShort: true },
+  { id: 'CDK61CF8pN8', title: 'Among Us Lego Mosaic Tutorial', isShort: true },
+  { id: 'T5rbL2DYNhE', title: 'Lego Tutorial - Roblox Logo Mosaic', isShort: true },
+  { id: '18VrLy_6aVE', title: 'Kids Say the Darndest Things', isShort: true },
+  { id: 'p9u0OpaZ3nA', title: 'Kids Say the Darndest', isShort: true },
+  { id: '6YfJ99oObXw', title: 'Naruto LEGO MOC Kunai & Shuriken', isShort: true },
+  { id: '0jQfeMknnV8', title: 'Lego Joke', isShort: true },
+  { id: 'iebTkZw3WjI', title: 'Skibidi Toilet Stop Motion', isShort: true },
+  { id: 'IDk6a2GZyQo', title: 'Skibidi Toilet Lego Tutorial!', isShort: true },
+  { id: 'WBXnMb2Zn8I', title: 'Nissan Skyline R35 Lego MOC', isShort: true },
+  { id: 'DZV-v_xO_GI', title: 'Lego Joke', isShort: true },
+  { id: 'U96Utkv-NR0', title: 'Nissan R35 Skyline GTR Lego MOC', isShort: true },
+  { id: 'gLwqfW7wBO8', title: 'Nissan R34 Skyline GT-R Lego MOC Tutorial', isShort: true },
+  { id: '6KPcXX1OGUc', title: 'My Custom Lego Mech', isShort: true },
+  { id: '-xwcT_GuA4U', title: 'Lego American Muscle VS Japan Monster', isShort: true },
+  { id: 'FaBw_RTTz24', title: 'My Custom Build Lego Dodge Challenger Moc', isShort: true },
+  { id: 'cLLp0BJkg60', title: 'My Custom Build Lego Yellow Dodge Challenger SRT', isShort: true },
+  { id: 'N7vN_na3yho', title: 'My Custom Build Lego Nissan Skyline R34 GTR', isShort: true },
+  { id: 'qouYs7dCVCk', title: 'Lego Blue Nissan Skyline R34 GT-R MOC', isShort: true },
+  { id: 'BCxhCSCHKCw', title: 'Lego Joke', isShort: true },
+  { id: 'X7jnomAqeys', title: 'Lego Joke', isShort: true },
+  { id: 'Luicg1LImGg', title: 'Lego Joke', isShort: true },
+  { id: 'c668f4j_Ez0', title: 'Yo Mama Joke', isShort: true },
+  { id: 'uGw-juoLjy4', title: 'Lego Joke', isShort: true },
+  { id: 'FG7DaCGK-oc', title: 'Custom Lego Nissan Skyline R34 GT-R', isShort: true },
+  { id: 'CKY-xW9iv-U', title: 'Lego Nissan GTR Skyline R34', isShort: true },
+  { id: 'GcFFWPvhn10', title: 'Lego Joke', isShort: true },
+  { id: 'RrCkZc7yfpY', title: 'Lego Joke', isShort: true },
+  { id: 'N9BC791TApI', title: 'Lego Joke', isShort: true },
+  { id: 'qnMn6h5Agho', title: 'Lego Joke', isShort: true },
+  { id: 'ZuN5X87MqmM', title: 'Lego Custom Modern House MOC', isShort: true },
+  { id: '6wuYlxhqi1M', title: 'Lego 100 Subscribers Thank You', isShort: true },
+  { id: '_kfNcQ67gRs', title: 'Lego Joke', isShort: true },
+  { id: '8o39Amm7wws', title: 'Lego Joke', isShort: true },
+  { id: 'Fqo0-eMNtfM', title: 'Lego Joke', isShort: true },
+  { id: 'HZ9RVxUqveY', title: 'Lego Joke', isShort: true },
+  { id: '9mwpYn0YU8k', title: 'Lego Minecraft', isShort: true },
+  { id: 'pvWXygUkMKQ', title: 'Lego Meme', isShort: true },
+  { id: '4plIO8GNw5A', title: 'Lego Joke', isShort: true },
+  { id: '0E-DrjjiFyw', title: 'Lego Joke', isShort: true },
+  { id: 'jImLOVl1VD4', title: 'Lego Joke', isShort: true },
+  { id: '_a4irFlyF_w', title: 'Lego Botanical MOC', isShort: true },
+  { id: 'a9t56fPds6A', title: 'Lego Botanical MOC', isShort: true },
+  { id: 'z8b_2OHt7HM', title: 'Lego Joke', isShort: true },
+  { id: 'L3WxTXyFnuA', title: 'Ford Mustang GT', isShort: true },
+  { id: 'kBvX9i3whhw', title: 'Lego MOC Ford Mustang GT', isShort: true },
+  { id: 'OsL_Pr8Cu2c', title: 'Lego Joke', isShort: true },
+  { id: 'KFiQihCP8uI', title: 'Ford Mustang GT', isShort: true },
+  { id: '-TvzQk_rueA', title: 'Lego Joke', isShort: true },
+  { id: 'MJe8dpuni68', title: 'Lego MOC Ford Mustang', isShort: true },
+  { id: 'b8OaK14Ya94', title: 'Lego Meme', isShort: true },
+  { id: 'kDxBqyZqDrQ', title: 'Lego Joke', isShort: true },
+  { id: '0EuTfUxZ8hA', title: 'How to become a Lego brick', isShort: true },
+  { id: 'M9PtdNPTF-0', title: 'Lego Joke', isShort: true },
+  { id: 'cR4_lRnKkgA', title: 'Lego Joke', isShort: true },
+  { id: 'XK-aD1cfm1M', title: 'Nissan 350Z Lego MOC', isShort: true },
+  { id: 'proe4PW6FKQ', title: 'Lego Meme', isShort: true },
+  { id: 'BR0UjzWDHro', title: 'Lego Joke', isShort: true },
+  { id: 'jqhBmFO4rLE', title: 'Lego Joke', isShort: true },
+  { id: 'OJACppSfFIY', title: 'Lego Joke', isShort: true },
+  { id: '1Wb8KGQ13VQ', title: 'Lego Jokes', isShort: true },
+  { id: 'xVchQv03-CM', title: 'OiiaOiia Lego Brick', isShort: true },
+  { id: 'F-yP8ivqrfI', title: 'Lego Meme', isShort: true },
+  { id: 'DunDsnlbrPk', title: 'Lego Joke', isShort: true },
+  { id: 'De5n4D1E5Co', title: 'MOC LEGO Chevrolet Camaro Black & Blue', isShort: true },
+  { id: 'uSV3cYRlDYg', title: 'Lego Joke', isShort: true },
+  { id: 'deGUgZcXx8Q', title: 'Lego Joke', isShort: true },
+  { id: 'f7oN5Unb3RE', title: 'Lego Joke', isShort: true },
+  { id: 'hOqFz4Tc9sU', title: 'Lego Joke', isShort: true },
+  { id: 'OLTyIN3k_ko', title: 'Lego Joke', isShort: true },
+  { id: 'zwoAq3lfs28', title: 'MOC Lego Short Stop Motion', isShort: true },
+  { id: 'mzTAPS2EF5E', title: 'Lego Joke', isShort: true },
+  { id: 'B2rQnENqjzo', title: 'Lego Joke', isShort: true },
+  { id: '9-MF5vP888Q', title: 'MOC BMW M3 Competition', isShort: true },
+  { id: 'lW1A9tHUr7Y', title: 'Lego Joke', isShort: true },
+  { id: 'LJEouVHQdPk', title: 'Lego Joke', isShort: true },
+  { id: 'KXLh8pAxsNI', title: 'Lego Jokes', isShort: true },
+  { id: 'CL69MooDyHU', title: 'Merry Christmas Fellow Youtubers and Family', isShort: true },
+  { id: '3F2Z5HfuGw4', title: 'Lego Joke', isShort: true },
+  { id: 'U-ym59vezXA', title: 'MOC LEGO BMW M3 Competition', isShort: true },
+  { id: 't6EdVzxChCM', title: 'Lego Joke', isShort: true },
+  { id: '7rXsEpvBCCI', title: 'MOC Lego Blue Car', isShort: true },
+  { id: 'gEzt1FszmPI', title: 'Lego Joke', isShort: true },
+  { id: 'Tjo0jKyTMxo', title: 'Moc Lego Red Car', isShort: true },
+  { id: 'Jom3kVWLbZ0', title: 'Lego Jokes', isShort: true },
+  { id: 'uDY-0Zpz0CQ', title: 'Lego Jokes', isShort: true },
+  { id: 'RMU_jbxB4L8', title: 'Lego Modern House', isShort: true },
+  { id: 'Ervamy89HgI', title: 'Lego Samurai Katana', isShort: true },
+  { id: 'BXLxWfN5mWE', title: 'MOC Lego Red Car Upgrade', isShort: true },
+  { id: 'xmeLRWnTumE', title: 'MOC Lego Blue Car', isShort: true },
+  { id: 'w72os21gCgE', title: 'My Lego Modern House Showcase', isShort: true },
+  { id: 'oiU-TA4-M7k', title: 'Lego Katana Build Showcase', isShort: true },
+  { id: '30rdqBIN5FY', title: 'Lego Porsche 911 RSR Showcase', isShort: true },
+  { id: 'RV5tySpJ34w', title: 'Custom Build Lego 1964 Cadillac Convertible DeVille', isShort: true },
+  { id: 'knfZffZX5HQ', title: 'First Lego Figurines had no face', isShort: true },
+  { id: 'B-X5jEk0xN0', title: 'MOC LEGO 1964 Cadillac Convertible DeVille Showcase', isShort: true },
+  { id: 'PqaTr9P75Ro', title: 'Lego Custom Build Red Car Showcase', isShort: true },
+  { id: 'yzOQvMR_CKI', title: 'Lego Camera Tutorial', isShort: true },
+  { id: 'e32MNV2JXXg', title: 'Lego is the worlds largest Tyre manufacturer Lego News', isShort: true },
+  { id: 'x7UzUYtap38', title: 'My LEGO Katana', isShort: true },
+  { id: 'PW-cvj--nJ0', title: 'Do you know the Batman LEGO movie? Quiz?', isShort: true },
+  { id: 'YjxEbd7Z658', title: 'My Own LEGO Katana Creation Showcase', isShort: true },
+  { id: '_Vf442E19T8', title: 'Take a Quiz with Bricktastic Builds', isShort: true },
+  { id: 'HfFF2S1mdzw', title: '600 Billion Lego bricks Lego News', isShort: true },
+  { id: 'qj0DeXlnSO4', title: 'Building My Custom LEGO Sleek Black Car Tutorial', isShort: true },
+  { id: '4FjfJx8tTn8', title: 'My Custom Build LEGO Sleek Black Car Showcase', isShort: true },
+  { id: 'A6OJHXXObWM', title: 'New LEGO Sets Released This November 2024 Lego News', isShort: true },
+  { id: 'wE3Lgf6oOqA', title: '5 Best Batman LEGO Sets for November 2024 Lego News', isShort: true },
+  { id: 'hkJyIGPgtJA', title: '5 Best LEGO Sets for 2024 Lego News', isShort: true },
+  { id: 'cpk5XQE31Rw', title: 'Lego Custom Red Car Tutorial', isShort: true },
+  { id: 'Nfj4xszyg2M', title: 'My custom build LEGO Red Car Showcase', isShort: true },
+  { id: 'L-cMbY4NtSI', title: 'Lego Joke', isShort: true },
+  { id: 'ydamnOKdFf8', title: 'My Custom Black Ship Showcase', isShort: true },
+  { id: '3DZwTnJtwac', title: 'MOC Lego Batmobile Tutorial', isShort: true },
+  { id: 'dvSEvyOnaOE', title: 'My custom build Batmobile Showcase', isShort: true },
+];
+
+// Merge and deduplicate catalogue (videos + shorts), auto-categorise
+let VIDEOS = [...CATALOGUE_VIDEOS, ...CATALOGUE_SHORTS]
+  .filter((v, i, arr) => arr.findIndex(x => x.id === v.id) === i) // deduplicate
+  .map(v => ({
+    id: v.id,
+    title: v.title,
+    thumbnail: `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`,
+    viewCount: '0',
+    publishedAt: '',
+    isShort: v.isShort || false,
+    cat: v.isShort ? detectCategoryShort(v.title) : detectCategory(v.title, ''),
+    duration: ''
+  }));
+
+// Detect category for shorts (simpler rules)
+function detectCategoryShort(title) {
+  const t = title.toLowerCase();
+  if (/quiz|trivia/.test(t)) return 'quiz';
+  if (/joke|funny|pun|meme|humor|humour|comedy|yo mama|darndest/.test(t)) return 'jokes';
+  if (/lego news|news|coming soon|new set|new lego|revealed/.test(t)) return 'lego-news';
+  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
+  if (/tutorial|how to|build/.test(t)) return 'tutorials';
+  if (/showcase|collection/.test(t)) return 'showcase';
+  return 'shorts';
+}
+
 
 // Fetch ALL videos from YouTube Data API v3 (handles pagination automatically)
 // Format large numbers nicely e.g. 1200 -> 1.2K
@@ -3451,7 +3524,9 @@ function updateChannelStats(subs, vids) {
   // If hidden by YouTube, keep the hardcoded 260+ displayed
   if (subNum !== null) animateStat(document.getElementById('statSubscribers'), subNum, '+');
   else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('260')) el.textContent = '260+'; }
-  if (vidNum !== null) animateStat(document.getElementById('statVideos'), vidNum, '');
+  // Use VIDEOS.length as the authoritative count (full catalogue)
+  const displayVidCount = vidNum !== null ? vidNum : VIDEOS.length;
+  if (displayVidCount) animateStat(document.getElementById('statVideos'), displayVidCount, '');
 
   // Notify the counter animation system that live data is ready
   if (typeof window._onLiveStatsReady === 'function') {
@@ -3472,100 +3547,11 @@ function updateChannelStats(subs, vids) {
 }
 
 async function fetchYouTubeVideos() {
-  // ── Strategy: YouTube Data API first (full stats + view counts for sorting)
-  // RSS feed is fallback only if API fails or quota is exceeded.
-
-  if (!YT_API_KEY || YT_API_KEY === 'YOUR_API_KEY') {
-    // No API key — fall back to RSS only
-    await fetchYouTubeVideosRSS();
-    return;
-  }
-
-  try {
-    // ── STEP 1: Channel info + subscriber/video counts
-    const chanRes = await fetch(`${YT_API_BASE}/channels?part=contentDetails,statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(10000) });
-    const chanData = await chanRes.json();
-
-    if (chanData.error) {
-      console.warn('YT API error:', chanData.error.message, '— falling back to RSS');
-      await fetchYouTubeVideosRSS();
-      return;
-    }
-    if (!chanData.items?.length) { await fetchYouTubeVideosRSS(); return; }
-
-    // Update live subscriber + video counts
-    const stats = chanData.items[0].statistics;
-    // Update live subscriber + video counts
-    // YouTube hides exact subscriber count for smaller channels (hiddenSubscriberCount: true)
-    // In that case subscriberCount is undefined — keep the hardcoded value, still update video count
-    if (stats) {
-      const subCount = stats.hiddenSubscriberCount ? null : (parseInt(stats.subscriberCount) || null);
-      const vidCount = parseInt(stats.videoCount) || null;
-      updateChannelStats(subCount, vidCount);
-      console.log('YT API: subs=', subCount ?? '(hidden by YouTube)', 'videos=', vidCount);
-    }
-
-    // ── STEP 2: Fetch ALL uploads from the playlist (paginated)
-    const uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
-    let allItems = [], pageToken = '';
-    do {
-      const url = `${YT_API_BASE}/playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50&key=${YT_API_KEY}${pageToken ? '&pageToken=' + pageToken : ''}`;
-      const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
-      const d = await r.json();
-      if (d.error) { console.warn('Playlist fetch error:', d.error.message); break; }
-      if (d.items) allItems = allItems.concat(d.items);
-      pageToken = d.nextPageToken || '';
-    } while (pageToken);
-
-    if (!allItems.length) { await fetchYouTubeVideosRSS(); return; }
-
-    // ── STEP 3: Fetch full stats (viewCount, likes, duration) in batches of 50
-    const ids = allItems.map(i => i.snippet.resourceId.videoId);
-    let detailMap = {};
-    for (let i = 0; i < ids.length; i += 50) {
-      const batch = ids.slice(i, i + 50).join(',');
-      const dr = await fetch(`${YT_API_BASE}/videos?part=snippet,statistics,contentDetails&id=${batch}&key=${YT_API_KEY}`, { signal: AbortSignal.timeout(10000) });
-      const dd = await dr.json();
-      if (dd.items) dd.items.forEach(v => { detailMap[v.id] = v; });
-    }
-
-    // ── STEP 4: Build full VIDEOS array with real view counts
-    const fetched = allItems.map(item => {
-      const vid = item.snippet;
-      const id = vid.resourceId.videoId;
-      const detail = detailMap[id];
-      const titleLower = vid.title.toLowerCase();
-      const hasContentKeyword = /tutorial|instruction|booklet|showcase|review|history|ranked|moc|how to|lego news|joke|quiz|short film/.test(titleLower);
-      const isShort = !hasContentKeyword && (titleLower.includes('#shorts') || titleLower.includes('#short') || /\bshort\b/.test(titleLower));
-      return {
-        id,
-        title: vid.title,
-        description: vid.description || '',
-        thumbnail: (detail?.snippet?.thumbnails?.maxres || detail?.snippet?.thumbnails?.high || vid.thumbnails?.high || vid.thumbnails?.medium || vid.thumbnails?.default || {}).url || `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
-        publishedAt: vid.publishedAt,
-        viewCount: detail?.statistics?.viewCount || '0',
-        likeCount: detail?.statistics?.likeCount || '0',
-        isShort,
-        cat: isShort ? 'shorts' : detectCategory(vid.title, vid.description || ''),
-        duration: detail?.contentDetails?.duration || ''
-      };
-    }).filter(v => v.id && v.title !== 'Deleted video' && v.title !== 'Private video').map(sanitiseVideo);
-
-    if (fetched.length) {
-      VIDEOS = fetched;
-      try {
-        sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS));
-        sessionStorage.setItem('yt_videos_time', Date.now().toString());
-      } catch(e) {}
-      console.log('YT API full fetch success:', VIDEOS.length, 'videos with view counts');
-    }
-  } catch(e) {
-    console.warn('YouTube API fetch failed:', e.message, '— falling back to RSS');
-    await fetchYouTubeVideosRSS();
-  }
+  // No API key — use RSS only for newest videos
+  await fetchYouTubeVideosRSS();
 }
 
-// ── RSS fallback (no view counts, no quota) ──
+// ── RSS: fetches your 15 newest videos and merges them into VIDEOS ──
 async function fetchYouTubeVideosRSS() {
   try {
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
@@ -3576,24 +3562,40 @@ async function fetchYouTubeVideosRSS() {
     const xml    = parser.parseFromString(json.contents, 'text/xml');
     const entries = Array.from(xml.querySelectorAll('entry'));
     if (!entries.length) return;
-    const fetched = entries.map(e => {
-      const id    = (e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '').replace('yt:video:','');
-      const title = e.querySelector('title')?.textContent || '';
+    const newest = entries.map(e => {
+      const id        = (e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '').replace('yt:video:','');
+      const title     = (e.querySelector('title')?.textContent || '').replace(/#\S+/g,'').replace(/\s+/g,' ').trim();
       const published = e.querySelector('published')?.textContent || '';
-      const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-      const views = e.querySelector('statistics')?.getAttribute('views') || '0';
-      return { id, title, description: '', thumbnail: thumb, publishedAt: published, viewCount: views, isShort: false, cat: detectCategory(title, '') };
-    }).filter(v => v.id && v.title).map(sanitiseVideo);
-    if (fetched.length) {
-      VIDEOS = fetched;
-      try {
-        sessionStorage.setItem('yt_videos', JSON.stringify(VIDEOS));
-        sessionStorage.setItem('yt_videos_time', Date.now().toString());
-      } catch(e) {}
-      console.log('RSS fallback success:', VIDEOS.length, 'videos');
+      const views     = e.querySelector('statistics')?.getAttribute('views') || '0';
+      if (!id || !title) return null;
+      // Check if it already exists in catalogue
+      const existing = VIDEOS.find(v => v.id === id);
+      if (existing) {
+        // Update publishedAt and viewCount from RSS
+        existing.publishedAt = published;
+        existing.viewCount   = views;
+        return null; // already in array, just updated
+      }
+      // Brand new video — add it to the front
+      return {
+        id, title,
+        thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+        publishedAt: published,
+        viewCount: views,
+        isShort: false,
+        cat: detectCategory(title, ''),
+        duration: ''
+      };
+    }).filter(Boolean);
+
+    if (newest.length) {
+      VIDEOS = [...newest, ...VIDEOS]; // newest go to the front
+      console.log('RSS merged', newest.length, 'new videos. Total:', VIDEOS.length);
+    } else {
+      console.log('RSS: no new videos beyond catalogue. Total:', VIDEOS.length);
     }
   } catch(e) {
-    console.warn('RSS fallback also failed:', e.message);
+    console.warn('RSS fetch failed:', e.message, '— using catalogue only');
   }
 }
 
@@ -3648,32 +3650,8 @@ function parseDuration(d) {
   return (parseInt(m[1]||0)*3600) + (parseInt(m[2]||0)*60) + parseInt(m[3]||0);
 }
 
-// Load from session cache if available, otherwise fetch fresh
-// Cache expires after 30 minutes so new YouTube uploads appear automatically
-const YT_CACHE_TTL = 30 * 60 * 1000;
-
 async function loadVideosWithCache() {
-  try {
-    const cachedRaw = sessionStorage.getItem('yt_videos');
-    const cachedTime = sessionStorage.getItem('yt_videos_time');
-    const age = cachedTime ? Date.now() - parseInt(cachedTime) : Infinity;
-
-    if (cachedRaw && age < YT_CACHE_TTL) {
-      const parsed = JSON.parse(cachedRaw);
-      VIDEOS = parsed.map(v => ({
-        ...v,
-        cat: v.isShort ? 'shorts' : detectCategory(v.title, v.description || '')
-      }));
-      console.log('Cache hit (' + Math.round(age/60000) + ' mins old):', VIDEOS.length, 'videos');
-      return;
-    }
-    // Cache missing or expired
-    if (cachedRaw) {
-      console.log('Cache expired after 30 mins — fetching fresh from YouTube...');
-      sessionStorage.removeItem('yt_videos');
-      sessionStorage.removeItem('yt_videos_time');
-    }
-  } catch(e) {}
+  // Catalogue is already loaded — just fetch RSS to get newest & update view counts
   await fetchYouTubeVideos();
 }
 
@@ -3710,8 +3688,41 @@ function renderHomeGrid() {
   setTimeout(initReveal, 50);
 }
 
+// ── Live subscriber + video count via Invidious (no API key needed) ──
+// Tries multiple public Invidious instances in case one is down
+async function fetchLiveChannelStats() {
+  const INSTANCES = [
+    'https://inv.nadeko.net',
+    'https://invidious.nerdvpn.de',
+    'https://invidious.privacyredirect.com',
+    'https://yt.drgnz.club',
+  ];
+  for (const base of INSTANCES) {
+    try {
+      const res = await fetch(`${base}/api/v1/channels/${YT_CHANNEL_ID}`, {
+        signal: AbortSignal.timeout(6000)
+      });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const subs = data.subCount || data.subscriberCount || null;
+      const vids = data.videoCount || null;
+      if (subs || vids) {
+        updateChannelStats(subs, vids);
+        console.log(`Live stats from ${base}: subs=${subs}, videos=${vids}`);
+        return; // success — stop trying
+      }
+    } catch(e) {
+      console.warn(`Invidious ${base} failed:`, e.message);
+    }
+  }
+  // All instances failed — use VIDEOS.length as video count fallback
+  updateChannelStats(null, VIDEOS.length);
+  console.warn('All Invidious instances failed — using catalogue count');
+}
+
 function loadRSSFeed() {
   renderHomeGrid();
+  fetchLiveChannelStats(); // fetch subs + video count via Invidious (no API key)
   loadVideosWithCache().then(() => {
     renderHomeGrid();
     updateStartHere();
@@ -3786,7 +3797,12 @@ function renderVidPage(append) {
   const end = (_vidPage + 1) * VID_PAGE_SIZE;
   const visible = filtered.slice(0, end);
 
-  countBar.textContent = `Showing ${Math.min(end, total)} of ${total} videos`;
+  const totalAll = VIDEOS.length;
+  if (_vidCat === 'all' && !_vidSearch) {
+    countBar.textContent = `Showing ${Math.min(end, total)} of ${totalAll} videos`;
+  } else {
+    countBar.textContent = `Showing ${Math.min(end, total)} of ${total} matching · ${totalAll} total`;
+  }
 
   if (!append) {
     grid.innerHTML = visible.map((v, i) => buildVidCard(v, i)).join('');
@@ -4453,7 +4469,8 @@ function mocCardHTML(m){
     :`<img loading="lazy" id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
   return `<div class="moc-card reveal">
     <div class="moc-photo">
-      <div id="moc-media-${m.id}" class="moc-media-wrap" onclick="openMocLightbox('${m.id}')" style="width:100%;height:100%;transition:opacity .18s">${mediaHTML}</div>
+      <div id="moc-media-${m.id}" class="moc-media-wrap" onclick="openMocLightbox('${m.id}')" style="width:100%;height:100%;transition:opacity .18s;cursor:zoom-in">${mediaHTML}</div>
+      <div class="moc-zoom-hint" onclick="openMocLightbox('${m.id}')"><span>🔍</span> Click to enlarge</div>
       ${m.isNew?`<div class="moc-new-badge">NEW</div>`:''}
       ${isVid?`<div class="moc-slide-type">▶ Video</div>`:''}
       ${multi?`<button class="moc-arr moc-arr-l" id="moc-al-${m.id}" onclick="event.stopPropagation();mocNav('${m.id}',-1)" ${idx===0?'disabled':''}>&#8249;</button>
@@ -11967,7 +11984,7 @@ function handleGalleryFile(input) {
 // ── 2. 3D CARD TILT ON HOVER ─────────────────────────
 (function initCardTilt() {
   const SELECTORS = [
-    '.vc', '.product-card', '.pc', '.shop-card',
+    '.vc', '.vic', '.product-card', '.pc', '.shop-card',
     '.gallery-card', '.blog-card', '.cc',
     '.perk', '.astat'
   ];

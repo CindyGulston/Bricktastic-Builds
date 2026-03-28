@@ -543,8 +543,8 @@ section{padding:80px 0}
 .vid-tab:hover:not(.active){background:#f0ede6}
 .vid-count-bar{font-size:13px;font-weight:800;color:#888;margin-bottom:4px}
 .vid-index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:8px;align-items:start}
-.vic{background:transparent;border-radius:8px;overflow:visible;border:none;box-shadow:none;transition:transform .15s ease,box-shadow .15s ease;position:relative;top:0;text-decoration:none;display:block;color:inherit;cursor:pointer;transform-style:preserve-3d}
-.vic:hover{box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.vic{background:transparent;border-radius:0;overflow:visible;border:none;box-shadow:none;transition:all .2s;position:relative;top:0;text-decoration:none;display:block;color:inherit;cursor:pointer}
+.vic:hover{top:0;box-shadow:none}
 .vic .vt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .vic:hover .vt img{transform:scale(1.03)}
 .vid-load-more{display:flex;justify-content:center;margin-top:40px}
@@ -1605,7 +1605,7 @@ window.addEventListener('load', function() {
       <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
         <div><span class="sn" id="statSubscribers">260+</span><span class="sl">Subscribers</span></div>
-        <div><span class="sn" id="statVideos">307/span><span class="sl">Videos</span></div>
+        <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
         <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
       </div>
       <div class="hero-ctas">
@@ -1690,7 +1690,7 @@ window.addEventListener('load', function() {
       <div class="vgrid" id="videoGrid"></div>
       <div style="text-align:center;margin-top:44px" class="reveal">
         <button onclick="showPage('videos')" class="btn btn-red btn-lg">
-          🎬 View All <span id="statVideos2">307+/span> Videos →
+          🎬 View All <span id="statVideos2">257+</span> Videos →
         </button>
       </div>
     </div>
@@ -2508,7 +2508,7 @@ window.addEventListener('load', function() {
     <div class="hero-left">
       <span class="hero-badge">🎬 Videos</span>
       <h1><span class="y">All</span><br><span class="r">Videos.</span></h1>
-      <p class="hero-sub">307+ LEGO® builds, instructions, showcases & more. Click any video to watch on YouTube.</p>
+      <p class="hero-sub">257+ LEGO® builds, instructions, showcases & more. Click any video to watch on YouTube.</p>
       <div class="hero-ctas">
         <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
@@ -2525,7 +2525,7 @@ window.addEventListener('load', function() {
           <div class="bs" style="left:140px;background:var(--red)"></div>
           <div class="bs" style="left:202px;background:var(--red)"></div>
         </div>
-        <div class="ch-tag" id="statVideos4">307+ Videos/div>
+        <div class="ch-tag" id="statVideos4">257+ Videos</div>
       </div>
     </div>
   </div>
@@ -3145,31 +3145,6 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 // ══════════════════════════════════════
 const YT_CHANNEL_ID = 'UCqm_5GiesZWfnCkZLBzUgSA';
 
-// ── Category detection — must be defined BEFORE the VIDEOS array ──
-function detectCategory(title, desc) {
-  const t = (title || '').toLowerCase();
-  if (/quiz|trivia|guess the|can you name|test your|challenge your|riddle/.test(t)) return 'quiz';
-  if (/joke|jokes|funny|lol|meme|prank|humor|humour|laugh|pun|yo mama|darndest|😂|🤣/.test(t)) return 'jokes';
-  if (/instruction|booklet/.test(t)) return 'instructions';
-  if (/lego news|legonews|coming soon|new set|new lego|revealed|review|history|ranked|ranking|explained|deep dive|origins|story|timeline/.test(t)) return 'lego-news';
-  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
-  if (/showcase/.test(t) && !/tutorial|instruction|booklet/.test(t)) return 'showcase';
-  if (/tutorial|how to build|how to make|moc|speed build/.test(t)) return 'tutorials';
-  return 'tutorials';
-}
-
-function detectCategoryShort(title) {
-  const t = (title || '').toLowerCase();
-  if (/quiz|trivia/.test(t)) return 'quiz';
-  if (/joke|funny|pun|meme|humor|humour|comedy|yo mama|darndest|lol/.test(t)) return 'jokes';
-  if (/lego news|legonews|coming soon|new set|new lego|revealed|news/.test(t)) return 'lego-news';
-  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
-  if (/instruction|booklet/.test(t)) return 'instructions';
-  if (/showcase|collection/.test(t) && !/tutorial|how to/.test(t)) return 'showcase';
-  if (/tutorial|how to|build/.test(t)) return 'tutorials';
-  return 'shorts';
-}
-
 // ── Full back-catalogue (exported from YouTube Studio) ──
 // Videos are auto-categorised by detectCategory() at runtime.
 // Shorts are identified by isShort:true and link to youtube.com/shorts/ID
@@ -3500,7 +3475,17 @@ let VIDEOS = [...CATALOGUE_VIDEOS, ...CATALOGUE_SHORTS]
     duration: ''
   }));
 
-// (detectCategoryShort defined above near top)
+// Detect category for shorts (simpler rules)
+function detectCategoryShort(title) {
+  const t = title.toLowerCase();
+  if (/quiz|trivia/.test(t)) return 'quiz';
+  if (/joke|funny|pun|meme|humor|humour|comedy|yo mama|darndest/.test(t)) return 'jokes';
+  if (/lego news|news|coming soon|new set|new lego|revealed/.test(t)) return 'lego-news';
+  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
+  if (/tutorial|how to|build/.test(t)) return 'tutorials';
+  if (/showcase|collection/.test(t)) return 'showcase';
+  return 'shorts';
+}
 
 
 // Fetch ALL videos from YouTube Data API v3 (handles pagination automatically)
@@ -3540,21 +3525,21 @@ function updateChannelStats(subs, vids) {
   if (subNum !== null) animateStat(document.getElementById('statSubscribers'), subNum, '+');
   else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('260')) el.textContent = '260+'; }
   // Use VIDEOS.length as the authoritative count (full catalogue)
-  const displayVidCount = (vidNum !== null && vidNum > 0) ? vidNum : VIDEOS.length;
+  const displayVidCount = vidNum !== null ? vidNum : VIDEOS.length;
   if (displayVidCount) animateStat(document.getElementById('statVideos'), displayVidCount, '');
 
   // Notify the counter animation system that live data is ready
   if (typeof window._onLiveStatsReady === 'function') {
-    window._onLiveStatsReady(subNum, displayVidCount);
+    window._onLiveStatsReady(subNum, vidNum);
   }
 
   // Plain text updates for other instances
   const vid2 = document.getElementById('statVideos2');
-  if (vid2) vid2.textContent = displayVidCount.toLocaleString() + '+';
+  if (vid2) vid2.textContent = vidNum.toLocaleString() + '+';
   const vid3 = document.getElementById('statVideos3');
-  if (vid3) vid3.textContent = formatCount(displayVidCount);
+  if (vid3) vid3.textContent = formatCount(vidNum);
   const tag = document.getElementById('statVideos4');
-  if (tag) tag.textContent = displayVidCount.toLocaleString() + ' Videos';
+  if (tag) tag.textContent = vidNum.toLocaleString() + ' Videos';
 
   // Update the videos page hero subtitle too
   const vidSub = document.querySelector('#page-videos .hero-sub');
@@ -3614,7 +3599,34 @@ async function fetchYouTubeVideosRSS() {
   }
 }
 
+// Auto-detect video category from title keywords
+function detectCategory(title, desc) {
+  const t = title.toLowerCase();
 
+  // Quiz — must come before jokes so quiz titles do not get caught there
+  if (/quiz|trivia|guess the|can you name|how many|test your|challenge your|lego.*riddle|riddle/.test(t)) return 'quiz';
+
+  // Jokes / fun — broad catch for all LEGO® joke/funny content
+  if (/joke|jokes|funny|lol|meme|prank|humor|humour|laugh|what do you call|why did|knock knock|did you know|fun fact|lego.*detective|lego.*pun|😂|🤣/.test(t)) return 'jokes';
+
+  // Showcase — "my custom", "my build", "custom build" without tutorial
+  if (/my custom|my build|my moc|my creation|showcase/.test(t) && !/tutorial|instruction|booklet/.test(t)) return 'showcase';
+
+  // Instructions / booklet — very common in your titles
+  if (/instruction|booklet/.test(t)) return 'instructions';
+
+  // LEGO® News / reviews / history
+  if (/lego news|review|history|ranked|ranking|explained|deep dive|origins|story|timeline/.test(t)) return 'lego-news';
+
+  // Timelapse — must come before tutorials so it does not get swallowed
+  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
+
+  // Tutorials — word "Tutorial" anywhere in title, or "How to Build", or "MOC"
+  if (/tutorial|how to build|how to make|moc|speed build/.test(t)) return 'tutorials';
+
+  // Default — everything else is a tutorial
+  return 'tutorials';
+}
 
 // Ensure a video has all required fields
 function sanitiseVideo(v) {
@@ -12235,14 +12247,17 @@ function handleGalleryFile(input) {
 
   // Called by updateChannelStats once API data arrives
   window._onLiveStatsReady = function(subs, vids) {
-    if (subs !== null && subs > 0) liveSubVal = subs;
-    liveVidVal = (vids !== null && vids > 0) ? vids : VIDEOS.length;
+    if (subs !== null) liveSubVal = subs;
+    if (vids !== null) liveVidVal = vids;
     liveReady = true;
     if (fired) {
-      if (liveSubVal) animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1200);
-      animateCount(document.getElementById('statVideos'), liveVidVal, '', 1000);
-      const vid2 = document.getElementById('statVideos2');
-      if (vid2) vid2.textContent = liveVidVal.toLocaleString() + '+';
+      // Stats section already visible — animate to live values
+      if (subs !== null) animateCount(document.getElementById('statSubscribers'), subs, '+', 1200);
+      if (vids !== null) {
+        animateCount(document.getElementById('statVideos'), vids, '', 1000);
+        const vid2 = document.getElementById('statVideos2');
+        if(vid2) vid2.textContent = vids.toLocaleString() + '+';
+      }
     }
   };
 
@@ -12250,14 +12265,15 @@ function handleGalleryFile(input) {
     if(entries[0].isIntersecting && !fired){
       fired = true;
       if (liveReady) {
-        if (liveSubVal) animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1800);
-        animateCount(document.getElementById('statVideos'), liveVidVal || VIDEOS.length, '', 1400);
+        // Live data already here — animate straight to real numbers
+        animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1800);
+        animateCount(document.getElementById('statVideos'), liveVidVal, '', 1400);
         const vid2 = document.getElementById('statVideos2');
-        if(vid2) animateCount(vid2, liveVidVal || VIDEOS.length, '+', 1400);
+        if(vid2) animateCount(vid2, liveVidVal, '+', 1400);
       } else {
-        // Invidious still loading — show catalogue count, live update follows
+        // API still loading — show placeholder animation, live update will follow
         animateCount(document.getElementById('statSubscribers'), 260, '+', 1800);
-        animateCount(document.getElementById('statVideos'), VIDEOS.length, '', 1400);
+        animateCount(document.getElementById('statVideos'), 296, '', 1400);
       }
     }
   },{threshold:.4});

@@ -3614,16 +3614,7 @@ async function fetchYouTubeVideosRSS() {
   }
 }
 
-// (detectCategory defined above near top)
 
-  // Showcase — "my custom", "my build", "custom build" without tutorial
-  if (/my custom|my build|my moc|my creation|showcase/.test(t) && !/tutorial|instruction|booklet/.test(t)) return 'showcase';
-
-  // Instructions / booklet — very common in your titles
-  if (/instruction|booklet/.test(t)) return 'instructions';
-
-  // LEGO® News / reviews / history
-// (detectCategory defined above near top)
 
 // Ensure a video has all required fields
 function sanitiseVideo(v) {

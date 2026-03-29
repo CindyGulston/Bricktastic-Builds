@@ -1698,6 +1698,67 @@ window.addEventListener('load', function() {
 
   <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s2" style="background:var(--yellow)"></div></div>
 
+  <!-- BRICK STACK ANIMATION -->
+  <section id="brickStackSection" style="background:var(--black);padding:60px 0;overflow:hidden">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap">
+      <div style="flex:1;min-width:260px">
+        <div style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4.5vw,52px);line-height:1.05;color:#fff;margin-bottom:14px">
+          Built brick<br>by <span style="color:var(--yellow)">brick.</span>
+        </div>
+        <p style="font-size:16px;color:rgba(255,255,255,.55);font-weight:700;max-width:380px;line-height:1.7">Every build starts with a single brick. Watch our channel grow the same way — one video, one MOC, one subscriber at a time.</p>
+      </div>
+      <div id="brickTower" style="display:flex;flex-direction:column-reverse;align-items:center;gap:6px;min-width:220px;padding:20px 0"></div>
+    </div>
+  </section>
+
+  <style>
+    .stack-brick{width:120px;height:36px;border-radius:6px;position:relative;opacity:0;transform:translateY(40px) scale(.9);transition:opacity .4s ease,transform .4s ease;box-shadow:0 6px 0 rgba(0,0,0,.35)}
+    .stack-brick.in{opacity:1;transform:translateY(0) scale(1)}
+    .stack-brick::before,.stack-brick::after{content:'';position:absolute;top:-10px;width:28px;height:12px;border-radius:50% 50% 0 0/80% 80% 0 0}
+    .stack-brick::before{left:16px}.stack-brick::after{left:56px}
+    .stack-brick.bc-r{background:#E3000B;box-shadow:0 6px 0 #8b0000}.stack-brick.bc-r::before,.stack-brick.bc-r::after{background:#E3000B}
+    .stack-brick.bc-y{background:#FFD700;box-shadow:0 6px 0 #b89a00}.stack-brick.bc-y::before,.stack-brick.bc-y::after{background:#FFD700}
+    .stack-brick.bc-b{background:#006CB7;box-shadow:0 6px 0 #004d85}.stack-brick.bc-b::before,.stack-brick.bc-b::after{background:#006CB7}
+    .stack-brick.bc-g{background:#00A650;box-shadow:0 6px 0 #006e35}.stack-brick.bc-g::before,.stack-brick.bc-g::after{background:#00A650}
+    .stack-brick.bc-o{background:#FF6B00;box-shadow:0 6px 0 #b84d00}.stack-brick.bc-o::before,.stack-brick.bc-o::after{background:#FF6B00}
+    .stack-brick.bc-p{background:#7B2FBE;box-shadow:0 6px 0 #521f80}.stack-brick.bc-p::before,.stack-brick.bc-p::after{background:#7B2FBE}
+  </style>
+
+  <script>
+  (function(){
+    const colours = ['bc-r','bc-y','bc-b','bc-g','bc-o','bc-p'];
+    const labels = ['First video','First 100 subs','First MOC','First review','First tutorial','Shop launch!'];
+    const tower = document.getElementById('brickTower');
+    const bricks = [];
+    labels.forEach((lbl, i) => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;align-items:center;gap:14px';
+      const brick = document.createElement('div');
+      brick.className = 'stack-brick ' + colours[i % colours.length];
+      const tag = document.createElement('span');
+      tag.style.cssText = 'font-size:12px;font-weight:800;color:rgba(255,255,255,.45);white-space:nowrap;opacity:0;transition:opacity .4s .2s';
+      tag.textContent = lbl;
+      wrap.appendChild(brick);
+      wrap.appendChild(tag);
+      tower.appendChild(wrap);
+      bricks.push({brick, tag});
+    });
+
+    let triggered = false;
+    const obs = new IntersectionObserver(entries => {
+      if (triggered || !entries[0].isIntersecting) return;
+      triggered = true;
+      bricks.forEach(({brick, tag}, i) => {
+        setTimeout(() => {
+          brick.classList.add('in');
+          tag.style.opacity = '1';
+        }, i * 200);
+      });
+      obs.disconnect();
+    }, {threshold: 0.3});
+    obs.observe(document.getElementById('brickStackSection'));
+  })();
+  </script>
 
   <!-- ABOUT -->
   <style>
@@ -2830,6 +2891,7 @@ function subscribeNewsletter(inputId) {
   input.value = '✅ Subscribed!';
   input.disabled = true;
   input.style.borderColor = 'var(--green)';
+  launchConfetti(input);
   setTimeout(() => { input.value = ''; input.disabled = false; input.style.borderColor = ''; }, 4000);
 }
 

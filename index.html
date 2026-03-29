@@ -2387,7 +2387,7 @@ window.addEventListener('load', function() {
       <div class="sgrid" id="shopGrid">
         <!-- COMING SOON -->
         <div class="pc feat" data-cat="moc" data-id="0" onclick="openMod(0)">
-          <div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#E3000B)"><span class="te">🧱</span></div>
+          <div class="pthumb" style="background:#1A1A1A;padding:0"><img src="shop-preview.jpg" alt="MOC Instructions Preview" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1A1A1A,#E3000B)';this.parentElement.innerHTML+='<span style=\'font-size:96px;display:flex;align-items:center;justify-content:center;height:100%\'>🧱</span>'"></div>
           <div class="pinfo">
             <div class="ptyp" style="color:var(--yellow)">Coming Soon</div>
             <div class="pname">Custom MOC Instructions — Coming Soon!</div>
@@ -11626,36 +11626,7 @@ function bbGameOver(){
 <script>
 // ── BLOG DATA ────────────────────────────────────────────────────────────────
 const BLOG_POSTS = [
-  {id:1,cat:'news',catLabel:'LEGO® News',catColor:'#006CB7',bg:'linear-gradient(135deg,#003d6b,#006CB7)',emoji:'🧱',
-   title:'LEGO® Announces 2025 Icons Lineup — Here\'s What Stands Out',
-   date:'March 12, 2026',read:'4 min read',
-   excerpt:'The new Icons wave has some absolute bangers. Here\'s my honest first take on each set and whether they\'re worth the price.',
-   content:`<p>LEGO Icons wave for 2025 has officially been revealed and honestly, there is a lot to unpack.</p><h3>The standouts</h3><p>The new Botanical Collection additions are stunning — the colour work is exceptional. The modular building entry this year is a theatre, which feels long overdue.</p><h3>The ones I am skipping</h3><p>A few of the licensed sets feel like filler. The piece counts do not justify the price, and the builds look like they were designed around the IP rather than interesting building techniques.</p><h3>The wildcard</h3><p>There's one set nobody's really talking about yet — a Technic/System hybrid that could be genuinely revolutionary if the engineering holds up. Watch for my review when it drops.</p><p>Overall: a solid wave with a few must-haves and a few easy passes. I will be doing full reviews on the top picks — subscribe to stay notified.</p>`},
-  {id:2,cat:'build',catLabel:'Build Update',catColor:'#E3000B',bg:'linear-gradient(135deg,#8b0000,#E3000B)',emoji:'🏰',
-   title:'31-Day Castle Build: Week One Recap',
-   date:'March 10, 2026',read:'6 min read',
-   excerpt:'One week in and the foundation is done. Here\'s how it\'s going, what went wrong, and what surprised me.',
-   content:`<p>One week into the 31-day castle build and I am already behind schedule — but for a good reason.</p><h3>What I built this week</h3><p>The base plate layout, all four corner tower foundations, and the first section of the curtain wall are complete. That's maybe 15% of the total build.</p><h3>What went wrong</h3><p>I ran out of dark tan 1x2 bricks on day three. Completely miscalculated. If you are planning a big build: always order 30% more of your primary colour than you think you need.</p><h3>The unexpected win</h3><p>The rock texture technique I am using for the outer walls is turning out way better than expected. I will do a dedicated tips video on this once the build is done.</p><p>Week 2 starts with the great hall interior. Stay tuned.</p>`},
-  {id:3,cat:'review',catLabel:'Set Review',catColor:'#00A650',bg:'linear-gradient(135deg,#004d25,#00A650)',emoji:'🏎️',
-   title:'Speed Champions Ferrari 499P Review — Is It Worth $60?',
-   date:'March 8, 2026',read:'5 min read',
-   excerpt:'The Ferrari 499P is easily the most detailed Speed Champions car LEGO® has ever made. But does the price match the quality?',
-   content:`<p>Speed Champions sets have crept up in price every year, and the Ferrari 499P sits at $60. So is it worth it?</p><h3>The build</h3><p>Genuinely the most satisfying Speed Champions build I have done. The new body panel system creates much more accurate curves. The livery is almost entirely printed tiles — virtually no stickers, which is a huge win.</p><h3>The verdict</h3><p>$60 is steep, but this is a $60 set that actually feels worth $60. If you are a car person this is a shelf piece. Rating: 9/10.</p>`},
-  {id:4,cat:'tips',catLabel:'Build Tips',catColor:'#FF6B00',bg:'linear-gradient(135deg,#8b3a00,#FF6B00)',emoji:'💡',
-   title:'5 Techniques I Wish I Knew When I Started MOC Building',
-   date:'March 6, 2026',read:'7 min read',
-   excerpt:'From SNOT basics to forced perspective — the five techniques that completely changed how I build.',
-   content:`<p>When I started building MOCs I made every beginner mistake. These five techniques would have saved me months of frustration.</p><h3>1. SNOT is not complicated</h3><p>Studs Not On Top just means turning bricks sideways. Once you start using SNOT for wall textures and curved surfaces, you will not stop.</p><h3>2. Forced perspective is free detail</h3><p>Smaller parts at the back of a scene, larger at the front. Medieval streets look amazing with this technique.</p><h3>3. Always build a colour palette first</h3><p>Pick 3-4 colours maximum before you start. Decide this before placing a single brick.</p><h3>4. Plate layering beats brick stacking</h3><p>Three 1x4 plates give you far more connection options than one 1x4 brick.</p><h3>5. Reference real architecture</h3><p>Google images of real buildings. LEGO® builders who look at references produce dramatically better work.</p>`},
-  {id:5,cat:'news',catLabel:'LEGO® News',catColor:'#006CB7',bg:'linear-gradient(135deg,#1A1A1A,#006CB7)',emoji:'📰',
-   title:'LEGO® Retiring 47 Sets in 2026 — Full List &amp; Last Chance Picks',
-   date:'March 4, 2026',read:'3 min read',
-   excerpt:'47 sets are being retired this year. Here\'s the full confirmed list and which ones are worth grabbing before they\'re gone.',
-   content:`<p>LEGO® retires sets every year and 2026 is no different — 47 confirmed retirements, with more likely coming mid-year.</p><h3>The must-grab before they're gone</h3><p>The Eiffel Tower (10307) is on the list. At 10,000+ pieces it is genuinely one of the best LEGO® has ever made. If you have been sitting on the fence, stop sitting.</p><h3>Surprising retirements</h3><p>A few sets on the list are less than two years old, which is unusual. LEGO® may be accelerating their replacement cycle.</p><p>I will be doing a dedicated video on the top 10 retirements worth buying before they're gone.</p>`},
-  {id:6,cat:'build',catLabel:'Build Update',catColor:'#E3000B',bg:'linear-gradient(135deg,#1A1A1A,#E3000B)',emoji:'🌊',
-   title:'New Build Announced: Japanese Fishing Village MOC',
-   date:'March 1, 2026',read:'2 min read',
-   excerpt:'After the castle wraps up, the next big build is a Japanese fishing village — complete with water effects and a harbour scene.',
-   content:`<p>The next big project is officially announced: a Japanese fishing village MOC.</p><h3>Why this build</h3><p>Japanese architecture is some of the most interesting to replicate in LEGO® — curved roofs, wooden textures, lanterns, sliding doors.</p><h3>What to expect</h3><p>The build will include a harbour with water effects, a covered market, a traditional inn with full interior, and a wooden fishing boat. Probably 5,000+ pieces total.</p><p>Build starts in April. This is going to be the biggest build on the channel yet.</p>`}
+  // Add real blog posts here when ready
 ];
 
 let _blogCat = 'all', _blogInited = false;
@@ -11690,6 +11661,10 @@ function renderBlog() {
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
   const posts = _blogCat === 'all' ? BLOG_POSTS : BLOG_POSTS.filter(p => p.cat === _blogCat);
+  if (!posts.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:80px 20px"><div style="font-size:64px;margin-bottom:16px">🧱</div><h3 style="font-family:'Boogaloo',cursive;font-size:28px;margin-bottom:10px">Posts coming soon!</h3><p style="color:#888;font-weight:600;font-size:15px">We're working on articles, build updates and tips. Check back soon!</p></div>`;
+    return;
+  }
   grid.innerHTML = posts.map(p => `<div class="blog-card reveal" onclick="openBlogPost(${p.id})"><div class="blog-thumb" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span><span class="blog-cat-badge" style="background:${p.catColor}">${p.catLabel}</span></div><div class="blog-card-body"><div class="blog-card-title">${p.title}</div><div class="blog-card-excerpt">${p.excerpt}</div><div class="blog-card-meta"><span class="bdate">${p.date}</span><span>${p.read}</span></div></div></div>`).join('');
   setTimeout(()=>initReveal(),80);
 }

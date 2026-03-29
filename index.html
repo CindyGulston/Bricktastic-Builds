@@ -2475,7 +2475,7 @@ window.addEventListener('load', function() {
       <div class="sgrid" id="shopGrid">
         <!-- COMING SOON -->
         <div class="pc feat" data-cat="moc" data-id="0" onclick="openMod(0)">
-          <div class="pthumb" style="background:#1A1A1A;padding:0;display:flex;align-items:center;justify-content:center" id="shopThumb"><img src="shop-preview.jpg" alt="MOC Instructions Preview" style="width:100%;height:100%;object-fit:cover;display:block" onerror="document.getElementById('shopThumb').innerHTML='<span style=&quot;font-size:96px&quot;>🧱</span>';document.getElementById('shopThumb').style.background='linear-gradient(135deg,#1A1A1A,#E3000B)'"></div>
+          <div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#E3000B);padding:0;display:flex;align-items:center;justify-content:center" id="shopThumb"><span style="font-size:96px">🧱</span></div>
           <div class="pinfo">
             <div class="ptyp" style="color:var(--yellow)">Coming Soon</div>
             <div class="pname">Custom MOC Instructions — Coming Soon!</div>
@@ -3725,36 +3725,11 @@ function renderHomeGrid() {
   setTimeout(initReveal, 50);
 }
 
-// ── Live subscriber + video count via Invidious (no API key needed) ──
-// Tries multiple public Invidious instances in case one is down
+// ── Channel stats — use catalogue count only (Invidious instances are unreliable) ──
 async function fetchLiveChannelStats() {
-  const INSTANCES = [
-    'https://inv.nadeko.net',
-    'https://invidious.nerdvpn.de',
-    'https://invidious.privacyredirect.com',
-    'https://yt.drgnz.club',
-  ];
-  for (const base of INSTANCES) {
-    try {
-      const res = await fetch(`${base}/api/v1/channels/${YT_CHANNEL_ID}`, {
-        signal: AbortSignal.timeout(6000)
-      });
-      if (!res.ok) continue;
-      const data = await res.json();
-      const subs = data.subCount || data.subscriberCount || null;
-      const vids = data.videoCount || null;
-      if (subs || vids) {
-        updateChannelStats(subs, vids);
-        console.log(`Live stats from ${base}: subs=${subs}, videos=${vids}`);
-        return; // success — stop trying
-      }
-    } catch(e) {
-      console.warn(`Invidious ${base} failed:`, e.message);
-    }
-  }
-  // All instances failed — use VIDEOS.length as video count fallback
+  // Skip Invidious entirely — all public instances have CORS issues
+  // Just use the video catalogue length as the count
   updateChannelStats(null, VIDEOS.length);
-  console.warn('All Invidious instances failed — using catalogue count');
 }
 
 function loadRSSFeed() {
@@ -12971,7 +12946,7 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
   try {
     // Use Google Gemini API — get your free key at aistudio.google.com/apikey
     const GEMINI_API_KEY = 'AIzaSyDz97mKKNI3Tl5DCEE-WwMK-mDAErYYHKI';
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

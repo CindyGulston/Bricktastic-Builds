@@ -543,8 +543,8 @@ section{padding:80px 0}
 .vid-tab:hover:not(.active){background:#f0ede6}
 .vid-count-bar{font-size:13px;font-weight:800;color:#888;margin-bottom:4px}
 .vid-index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:8px;align-items:start}
-.vic{background:transparent;border-radius:8px;overflow:visible;border:none;box-shadow:none;transition:transform .15s ease,box-shadow .15s ease;position:relative;top:0;text-decoration:none;display:block;color:inherit;cursor:pointer;transform-style:preserve-3d}
-.vic:hover{box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.vic{background:transparent;border-radius:0;overflow:visible;border:none;box-shadow:none;transition:all .2s;position:relative;top:0;text-decoration:none;display:block;color:inherit;cursor:pointer}
+.vic:hover{top:0;box-shadow:none}
 .vic .vt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .vic:hover .vt img{transform:scale(1.03)}
 .vid-load-more{display:flex;justify-content:center;margin-top:40px}
@@ -1605,7 +1605,7 @@ window.addEventListener('load', function() {
       <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
         <div><span class="sn" id="statSubscribers">260+</span><span class="sl">Subscribers</span></div>
-        <div><span class="sn" id="statVideos">307/span><span class="sl">Videos</span></div>
+        <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
         <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
       </div>
       <div class="hero-ctas">
@@ -1690,7 +1690,7 @@ window.addEventListener('load', function() {
       <div class="vgrid" id="videoGrid"></div>
       <div style="text-align:center;margin-top:44px" class="reveal">
         <button onclick="showPage('videos')" class="btn btn-red btn-lg">
-          🎬 View All <span id="statVideos2">307+/span> Videos →
+          🎬 View All <span id="statVideos2">257+</span> Videos →
         </button>
       </div>
     </div>
@@ -2508,7 +2508,7 @@ window.addEventListener('load', function() {
     <div class="hero-left">
       <span class="hero-badge">🎬 Videos</span>
       <h1><span class="y">All</span><br><span class="r">Videos.</span></h1>
-      <p class="hero-sub">307+ LEGO® builds, instructions, showcases & more. Click any video to watch on YouTube.</p>
+      <p class="hero-sub">257+ LEGO® builds, instructions, showcases & more. Click any video to watch on YouTube.</p>
       <div class="hero-ctas">
         <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
@@ -2525,7 +2525,7 @@ window.addEventListener('load', function() {
           <div class="bs" style="left:140px;background:var(--red)"></div>
           <div class="bs" style="left:202px;background:var(--red)"></div>
         </div>
-        <div class="ch-tag" id="statVideos4">307+ Videos/div>
+        <div class="ch-tag" id="statVideos4">257+ Videos</div>
       </div>
     </div>
   </div>
@@ -2585,20 +2585,7 @@ window.addEventListener('load', function() {
 <script>
 // DATA
 const P=[
-  {id:0,name:"The Grand Medieval Castle — Full MOC",type:"Physical MOC",price:349,emoji:"🏰",bg:"linear-gradient(135deg,#1A1A1A,#3a1a00)",tc:"var(--orange)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Order: Grand Medieval Castle MOC",buyLabel:"📧 Order via Email",desc:"The centrepiece of my 31-day build series. Four towers, working portcullis, great hall with interior details, stables, smithy, and market square. Hand-built and shipped worldwide. Comes with certificate of authenticity.",specs:[["~16,800","Pieces"],["48×48","Stud Base"],["40+ hrs","Build Time"]],inc:["Fully assembled MOC","Certificate of authenticity","Protective packaging","Minifigures included","Signed build card"]},
-  {id:1,name:"City Corner Café — Building Instructions",type:"PDF Instructions",price:8,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/cafe-instructions",emoji:"🏙️",bg:"linear-gradient(135deg,#003d6b,#006CB7)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/cafe-instructions",buyLabel:"⬇️ Buy & Download",desc:"A charming corner café with outdoor seating, detailed interior, menu boards, and working awning. 48 full-colour pages with step-by-step instructions and a complete BrickLink shopping list.",specs:[["340","Pieces"],["48 pgs","Instructions"],["PDF","Instant DL"]],inc:["48-page colour PDF","Full BrickLink parts list","Tips & technique guide","Free updates forever"]},
-  {id:2,name:"Jungle Waterfall Vignette — Instructions",type:"PDF Instructions",price:5,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/jungle-waterfall",emoji:"🌲",bg:"linear-gradient(135deg,#004d25,#00A650)",tc:"var(--green)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/jungle-waterfall",buyLabel:"⬇️ Buy & Download",desc:"A perfect beginner MOC. 16×16 stud vignette with cascading waterfall, lush jungle foliage, and hidden cave behind the falls. Great first build for learning organic textures and SNOT techniques.",specs:[["180","Pieces"],["28 pgs","Instructions"],["PDF","Instant DL"]],inc:["28-page colour PDF","BrickLink parts list","Beginner-friendly notes"]},
-  {id:3,name:"Japanese Ramen Street Scene — Instructions",type:"PDF Instructions",price:14,emoji:"🏯",bg:"linear-gradient(135deg,#7B2FBE,#E3000B)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/ramen-street",buyLabel:"⬇️ Buy & Download",desc:"Multi-level Japanese street scene as seen in my $1000 LEGO® build video. Ramen shop, apartments above, temple in background, and rain effect throughout. Advanced techniques throughout.",specs:[["920","Pieces"],["96 pgs","Instructions"],["PDF","Instant DL"]],inc:["96-page colour PDF","BrickLink parts list","Advanced technique guide","Rain effect tutorial","Custom tile guide"]},
-  {id:4,name:"Victorian Train Station — Custom MOC",type:"Physical MOC",price:129,emoji:"🚂",bg:"linear-gradient(135deg,#1A1A1A,#3d2200)",tc:"var(--blue)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Order: Victorian Train Station MOC",buyLabel:"📧 Order via Email",desc:"Ornate Victorian-era train station with arched iron roof, detailed ticket hall, platform signage, and working station clock. Dark tan and dark brown colour palette. Ships worldwide fully assembled.",specs:[["~3,200","Pieces"],["32×48","Stud Base"],["Ships","Worldwide"]],inc:["Fully assembled MOC","Protective packaging","Minifigures included","Signed build card"]},
-  {id:5,name:"Working Technic Engine Display — Instructions",type:"PDF Instructions",price:12,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",emoji:"⚙️",bg:"linear-gradient(135deg,#b89a00,#FFD700)",tc:"#b89a00",buyUrl:"https://bricktasticbuilds.gumroad.com/l/technic-engine",buyLabel:"⬇️ Buy & Download",desc:"Fully kinetic 4-cylinder engine display model. Crank it by hand — all four pistons fire in sequence, valves operate, crankshaft turns. As seen in the Technic deep dive video.",specs:[["480","Pieces"],["64 pgs","Instructions"],["Fully","Kinetic"]],inc:["64-page colour PDF","BrickLink parts list","Engineering notes","Gear ratio explainer"]},
-  {id:6,name:"Starter Pack — 5 Instructions for Beginners",type:"Bundle",price:19,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",emoji:"📦",bg:"linear-gradient(135deg,#8b3a00,#FF6B00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/starter-pack",buyLabel:"⬇️ Buy & Download",desc:"5 beginner-to-intermediate builds at 40% discount. Corner Café, Waterfall Vignette, Market Stall, Cosy Cottage, and Mini Lighthouse. Perfect for building up your skills fast.",specs:[["5 PDFs","Included"],["40%","Discount"],["Instant","Download"]],inc:["Corner Café PDF","Waterfall Vignette PDF","Market Stall PDF","Cosy Cottage PDF","Mini Lighthouse PDF","All BrickLink lists"]},
-  {id:7,name:"Suspension Bridge Micro-Scale — Instructions",type:"PDF Instructions",price:10,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/suspension-bridge",emoji:"🌉",bg:"linear-gradient(135deg,#003d6b,#00838F)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/suspension-bridge",buyLabel:"⬇️ Buy & Download",desc:"Technically impressive micro-scale suspension bridge. Uses Technic string and clever Technic-to-system connections for suspension cables. Display-ready centrepiece.",specs:[["620","Pieces"],["52 pgs","Instructions"],["PDF","Instant DL"]],inc:["52-page colour PDF","BrickLink parts list","Cable technique guide"]},
-  {id:8,name:"Complete Bricktastic Collection — All Instructions",type:"Ultimate Bundle",price:39,gumroadUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",emoji:"👑",bg:"linear-gradient(135deg,#1A1A1A,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/complete-collection",buyLabel:"⬇️ Buy & Download",desc:"Every PDF instruction set bundled at 60% off, plus early access to all future releases at no extra cost. The definitive Bricktastic builder library.",specs:[["All PDFs","Included"],["60%","Discount"],["+ Future","Releases"]],inc:["ALL current instruction PDFs","ALL BrickLink parts lists","Future releases included","Priority builder support","Exclusive technique guide"]},
-  {id:9,name:"Space Station Micro Build — Instructions",type:"PDF Instructions",price:7,emoji:"🚀",bg:"linear-gradient(135deg,#0a0a2e,#006CB7)",tc:"var(--blue)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/space-station",buyLabel:"⬇️ Buy & Download",desc:"A sleek micro-scale space station with solar panel arrays, docking ports and rotating habitat rings. Compact 16×16 stud footprint makes it perfect for shelf displays.",specs:[["220","Pieces"],["32 pgs","Instructions"],["PDF","Instant DL"]],inc:["32-page colour PDF","BrickLink parts list","Display stand included","Colour variants guide"]},
-  {id:10,name:"Dragon Lair Diorama — Instructions",type:"PDF Instructions",price:11,emoji:"🐉",bg:"linear-gradient(135deg,#1a0800,#8b3a00)",tc:"var(--orange)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/dragon-lair",buyLabel:"⬇️ Buy & Download",desc:"A dramatic fantasy diorama featuring a cave entrance, treasure pile, glowing lava effects and a full-size dragon in dark red and black.",specs:[["780","Pieces"],["68 pgs","Instructions"],["PDF","Instant DL"]],inc:["68-page colour PDF","BrickLink parts list","Lava effect guide","Dragon build tips"]},
-  {id:11,name:"Bricktastic Wallpaper Pack — 10 Designs",type:"Digital Wallpapers",price:3,emoji:"🖼️",bg:"linear-gradient(135deg,#E3000B,#FFD700)",tc:"var(--red)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/wallpaper-pack",buyLabel:"⬇️ Buy & Download",desc:"10 high-resolution LEGO®-themed desktop and mobile wallpapers. Instant digital download.",specs:[["10","Wallpapers"],["4K","Resolution"],["Instant","Download"]],inc:["5 desktop wallpapers (4K)","5 mobile wallpapers","JPEG + PNG formats"]},
-  {id:12,name:"Speed Champions XML Parts Pack — 8 MOCs",type:"BrickLink XML",price:4,emoji:"📋",bg:"linear-gradient(135deg,#004d25,#00A650)",tc:"var(--green)",buyUrl:"https://bricktasticbuilds.gumroad.com/l/sc-bricklink-pack",buyLabel:"⬇️ Buy & Download",desc:"Ready-to-import BrickLink XML wanted lists for 8 popular Speed Champions MOC builds. Saves hours of manual entry.",specs:[["8 MOCs","Covered"],["XML","Format"],["Instant","Download"]],inc:["8 BrickLink XML files","Parts count per build","Average cost guide","Import instructions"]},
-  {id:13,name:"Modular City Core — 4 Build Mega Bundle",type:"Bundle",price:29,emoji:"🏙️",bg:"linear-gradient(135deg,#003d6b,#7B2FBE)",tc:"#7B2FBE",buyUrl:"https://bricktasticbuilds.gumroad.com/l/city-core-bundle",buyLabel:"⬇️ Buy & Download",desc:"Four modular city builds — Corner Café, Bookshop, Police Station and Bakery — designed to connect into a full city block. 35% cheaper than buying separately.",specs:[["4 PDFs","Included"],["35%","Discount"],["City","Connects"]],inc:["Corner Café PDF","Bookshop PDF","Police Station PDF","Bakery PDF","All BrickLink lists","City layout guide"]}
+  {id:0,name:"Custom MOC Instructions — Coming Soon!",type:"Coming Soon",price:0,emoji:"🧱",bg:"linear-gradient(135deg,#1A1A1A,#E3000B)",tc:"var(--yellow)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Notify me when instructions are available",buyLabel:"📧 Notify Me When Available",desc:"We're working hard on our first official LEGO® MOC instruction packs — step-by-step build guides for some of our most popular YouTube builds. Drop us an email to be the first to know when they launch!",specs:[["PDF","Format"],["Step-by-Step","Instructions"],["Coming","Soon"]],inc:["Full colour PDF instructions","Complete parts list","Tips & techniques","Be first to know — email us!"]}
 ];
 
 // STATE
@@ -3101,10 +3088,15 @@ function openMod(id){
   document.getElementById('modDesc').textContent=p.desc;
   document.getElementById('modSpecs').innerHTML=p.specs.map(([v,k])=>`<div class="spec-box"><span class="sv">${v}</span><span class="sk">${k}</span></div>`).join('');
   document.getElementById('modInc').innerHTML=`<h4>What's Included</h4><div class="inc-list">${p.inc.map(i=>`<span>✓ ${i}</span>`).join('')}</div>`;
-  document.getElementById('modPrice').textContent='$'+p.price;
+  document.getElementById('modPrice').textContent = p.price === 0 ? '🔜 Coming Soon' : '$'+p.price;
   const ab=document.getElementById('modAbtn');
-  ab.innerHTML=p.buyLabel||'🛒 Buy Now';
-  ab.style.background='var(--green)';
+  if (p.price === 0) {
+    ab.innerHTML = '📧 Notify Me When Available';
+    ab.style.background = 'var(--red)';
+  } else {
+    ab.innerHTML = p.buyLabel||'🛒 Buy Now';
+    ab.style.background = 'var(--green)';
+  }
   ab.dataset.buyUrl=p.buyUrl||'';
   document.getElementById('modOv').classList.add('open');
 }
@@ -3144,31 +3136,6 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 // YOUTUBE VIDEO LOADER (no API key — RSS + hardcoded catalogue)
 // ══════════════════════════════════════
 const YT_CHANNEL_ID = 'UCqm_5GiesZWfnCkZLBzUgSA';
-
-// ── Category detection — must be defined BEFORE the VIDEOS array ──
-function detectCategory(title, desc) {
-  const t = (title || '').toLowerCase();
-  if (/quiz|trivia|guess the|can you name|test your|challenge your|riddle/.test(t)) return 'quiz';
-  if (/joke|jokes|funny|lol|meme|prank|humor|humour|laugh|pun|yo mama|darndest|😂|🤣/.test(t)) return 'jokes';
-  if (/instruction|booklet/.test(t)) return 'instructions';
-  if (/lego news|legonews|coming soon|new set|new lego|revealed|review|history|ranked|ranking|explained|deep dive|origins|story|timeline/.test(t)) return 'lego-news';
-  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
-  if (/showcase/.test(t) && !/tutorial|instruction|booklet/.test(t)) return 'showcase';
-  if (/tutorial|how to build|how to make|moc|speed build/.test(t)) return 'tutorials';
-  return 'tutorials';
-}
-
-function detectCategoryShort(title) {
-  const t = (title || '').toLowerCase();
-  if (/quiz|trivia/.test(t)) return 'quiz';
-  if (/joke|funny|pun|meme|humor|humour|comedy|yo mama|darndest|lol/.test(t)) return 'jokes';
-  if (/lego news|legonews|coming soon|new set|new lego|revealed|news/.test(t)) return 'lego-news';
-  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
-  if (/instruction|booklet/.test(t)) return 'instructions';
-  if (/showcase|collection/.test(t) && !/tutorial|how to/.test(t)) return 'showcase';
-  if (/tutorial|how to|build/.test(t)) return 'tutorials';
-  return 'shorts';
-}
 
 // ── Full back-catalogue (exported from YouTube Studio) ──
 // Videos are auto-categorised by detectCategory() at runtime.
@@ -3500,7 +3467,17 @@ let VIDEOS = [...CATALOGUE_VIDEOS, ...CATALOGUE_SHORTS]
     duration: ''
   }));
 
-// (detectCategoryShort defined above near top)
+// Detect category for shorts (simpler rules)
+function detectCategoryShort(title) {
+  const t = title.toLowerCase();
+  if (/quiz|trivia/.test(t)) return 'quiz';
+  if (/joke|funny|pun|meme|humor|humour|comedy|yo mama|darndest/.test(t)) return 'jokes';
+  if (/lego news|news|coming soon|new set|new lego|revealed/.test(t)) return 'lego-news';
+  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
+  if (/tutorial|how to|build/.test(t)) return 'tutorials';
+  if (/showcase|collection/.test(t)) return 'showcase';
+  return 'shorts';
+}
 
 
 // Fetch ALL videos from YouTube Data API v3 (handles pagination automatically)
@@ -3540,21 +3517,21 @@ function updateChannelStats(subs, vids) {
   if (subNum !== null) animateStat(document.getElementById('statSubscribers'), subNum, '+');
   else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('260')) el.textContent = '260+'; }
   // Use VIDEOS.length as the authoritative count (full catalogue)
-  const displayVidCount = (vidNum !== null && vidNum > 0) ? vidNum : VIDEOS.length;
+  const displayVidCount = vidNum !== null ? vidNum : VIDEOS.length;
   if (displayVidCount) animateStat(document.getElementById('statVideos'), displayVidCount, '');
 
   // Notify the counter animation system that live data is ready
   if (typeof window._onLiveStatsReady === 'function') {
-    window._onLiveStatsReady(subNum, displayVidCount);
+    window._onLiveStatsReady(subNum, vidNum);
   }
 
   // Plain text updates for other instances
   const vid2 = document.getElementById('statVideos2');
-  if (vid2) vid2.textContent = displayVidCount.toLocaleString() + '+';
+  if (vid2) vid2.textContent = vidNum.toLocaleString() + '+';
   const vid3 = document.getElementById('statVideos3');
-  if (vid3) vid3.textContent = formatCount(displayVidCount);
+  if (vid3) vid3.textContent = formatCount(vidNum);
   const tag = document.getElementById('statVideos4');
-  if (tag) tag.textContent = displayVidCount.toLocaleString() + ' Videos';
+  if (tag) tag.textContent = vidNum.toLocaleString() + ' Videos';
 
   // Update the videos page hero subtitle too
   const vidSub = document.querySelector('#page-videos .hero-sub');
@@ -3614,7 +3591,15 @@ async function fetchYouTubeVideosRSS() {
   }
 }
 
-// (detectCategory defined above near top)
+// Auto-detect video category from title keywords
+function detectCategory(title, desc) {
+  const t = title.toLowerCase();
+
+  // Quiz — must come before jokes so quiz titles do not get caught there
+  if (/quiz|trivia|guess the|can you name|how many|test your|challenge your|lego.*riddle|riddle/.test(t)) return 'quiz';
+
+  // Jokes / fun — broad catch for all LEGO® joke/funny content
+  if (/joke|jokes|funny|lol|meme|prank|humor|humour|laugh|what do you call|why did|knock knock|did you know|fun fact|lego.*detective|lego.*pun|😂|🤣/.test(t)) return 'jokes';
 
   // Showcase — "my custom", "my build", "custom build" without tutorial
   if (/my custom|my build|my moc|my creation|showcase/.test(t) && !/tutorial|instruction|booklet/.test(t)) return 'showcase';
@@ -3623,7 +3608,17 @@ async function fetchYouTubeVideosRSS() {
   if (/instruction|booklet/.test(t)) return 'instructions';
 
   // LEGO® News / reviews / history
-// (detectCategory defined above near top)
+  if (/lego news|review|history|ranked|ranking|explained|deep dive|origins|story|timeline/.test(t)) return 'lego-news';
+
+  // Timelapse — must come before tutorials so it does not get swallowed
+  if (/timelapse|time.lapse|time lapse/.test(t)) return 'timelapse';
+
+  // Tutorials — word "Tutorial" anywhere in title, or "How to Build", or "MOC"
+  if (/tutorial|how to build|how to make|moc|speed build/.test(t)) return 'tutorials';
+
+  // Default — everything else is a tutorial
+  return 'tutorials';
+}
 
 // Ensure a video has all required fields
 function sanitiseVideo(v) {
@@ -4089,169 +4084,238 @@ const MOCS = [
   { id:'m1', name:'Mini LEGO® Gaming PC Setup', tag:'gaming', isNew:true, accent:'#E3000B', emoji:'🎮',
     description:'A mini LEGO® gaming PC setup complete with monitor, keyboard, mouse and gaming chair.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711008/Lego_Mini_Gaming_PC_Setup_9_mjladn.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711010/Lego_Mini_Gaming_PC_Setup_uf5nra.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711009/Lego_Mini_Gaming_PC_Setup_3_kfsbxw.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711008/Lego_Mini_Gaming_PC_Setup_5_ewz1bi.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711009/Lego_Mini_Gaming_PC_Setup_4_j7p5bh.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711009/Lego_Mini_Gaming_PC_Setup_6_xfpnne.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711008/Lego_Mini_Gaming_PC_Setup_7_uxqhxx.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711010/Lego_Mini_Gaming_PC_Setup_8_embtxv.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1773711009/Lego_Mini_Gaming_PC_Setup_10_xt7hll.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711008/Lego_Mini_Gaming_PC_Setup_9_mjladn.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711010/Lego_Mini_Gaming_PC_Setup_uf5nra.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711009/Lego_Mini_Gaming_PC_Setup_3_kfsbxw.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711008/Lego_Mini_Gaming_PC_Setup_5_ewz1bi.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711009/Lego_Mini_Gaming_PC_Setup_4_j7p5bh.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711009/Lego_Mini_Gaming_PC_Setup_6_xfpnne.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711008/Lego_Mini_Gaming_PC_Setup_7_uxqhxx.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711010/Lego_Mini_Gaming_PC_Setup_8_embtxv.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1773711009/Lego_Mini_Gaming_PC_Setup_10_xt7hll.jpg' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1773716182/Lego_Mini_Gaming_PC_Setup_Video_tuzzxx.mp4' },
     ]},
   { id:'m2', name:'Dodge Challenger 1979', tag:'vehicle', isNew:true, accent:'#E3000B', emoji:'🚗',
     description:'A classic LEGO® Dodge Challenger 1979 build — muscle car styling with stunning detail.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774477483/Dodge_Challenger_1979_01_ycgvb2.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774477481/Dodge_Challenger_1979_02_yeytdr.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774477493/Dodge_Challenger_1979_03_q1jykg.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774477484/Dodge_Challenger_1979_04_a8cwkh.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774477491/Dodge_Challenger_1979_05_lcjuhm.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774477496/Dodge_Challenger_1979_06_ad3zjf.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774477483/Dodge_Challenger_1979_01_ycgvb2.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774477481/Dodge_Challenger_1979_02_yeytdr.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774477493/Dodge_Challenger_1979_03_q1jykg.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774477484/Dodge_Challenger_1979_04_a8cwkh.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774477491/Dodge_Challenger_1979_05_lcjuhm.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774477496/Dodge_Challenger_1979_06_ad3zjf.jpg' },
     ]},
   { id:'m3', name:'BMW G82 M4', tag:'vehicle', isNew:true, accent:'#006CB7', emoji:'🏎️',
     description:'A stunning LEGO® BMW G82 M4 build capturing the iconic kidney grille and aggressive stance of this modern performance machine.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774478748/BMW_G82_M4_01_z5mkbl.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774478755/BMW_G82_M4_02_y2o2ja.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774478748/BMW_G82_M4_03_lvzui7.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774478758/BMW_G82_M4_04_r002re.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774478745/BMW_G82_M4_05_hzmy2y.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774478748/BMW_G82_M4_01_z5mkbl.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774478755/BMW_G82_M4_02_y2o2ja.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774478748/BMW_G82_M4_03_lvzui7.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774478758/BMW_G82_M4_04_r002re.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774478745/BMW_G82_M4_05_hzmy2y.jpg' },
     ]},
   { id:'m4', name:'Nissan R35 Skyline', tag:'vehicle', isNew:true, accent:'#FF6B00', emoji:'🚘',
     description:'A detailed LEGO® Nissan R35 GT-R Skyline build — legendary Japanese performance car with iconic quad exhaust and bold lines.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774479464/Nissan_R35_Skyline_01_cctaex.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774479439/Nissan_R35_Skyline_02_xqvegk.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774479445/Nissan_R35_Skyline_03_n3rmmy.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774479442/Nissan_R35_Skyline_04_wc9gfg.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774479464/Nissan_R35_Skyline_01_cctaex.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774479439/Nissan_R35_Skyline_02_xqvegk.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774479445/Nissan_R35_Skyline_03_n3rmmy.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774479442/Nissan_R35_Skyline_04_wc9gfg.jpg' },
     ]},
   { id:'m5', name:'Nissan R32 Skyline', tag:'vehicle', isNew:true, accent:'#00A650', emoji:'🏁',
     description:'A classic LEGO® Nissan R32 Skyline GT-R build — the original Godzilla rendered in bricks with incredible accuracy.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480122/Nissan_R32_Skyline_01_srqvpv.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480170/Nissan_R32_Skyline_02_irlzyw.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480159/Nissan_R32_Skyline_03_kznt3i.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480131/Nissan_R32_Skyline_04_ejxlfx.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480172/Nissan_R32_Skyline_05_qx2jmq.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480177/Nissan_R32_Skyline_06_bzhats.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480151/Nissan_R32_Skyline_07_tubicl.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774480174/Nissan_R32_Skyline_08_hiocga.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480122/Nissan_R32_Skyline_01_srqvpv.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480170/Nissan_R32_Skyline_02_irlzyw.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480159/Nissan_R32_Skyline_03_kznt3i.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480131/Nissan_R32_Skyline_04_ejxlfx.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480172/Nissan_R32_Skyline_05_qx2jmq.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480177/Nissan_R32_Skyline_06_bzhats.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480151/Nissan_R32_Skyline_07_tubicl.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774480174/Nissan_R32_Skyline_08_hiocga.jpg' },
     ]},
   { id:'m6', name:'Ferrari 812', tag:'vehicle', isNew:true, accent:'#E3000B', emoji:'🐴',
     description:'A stunning LEGO® Ferrari 812 Superfast build — Italian supercar elegance captured in bricks with sleek lines and bold red.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774481640/Ferrari_812_01_r5uzoh.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774481640/Ferrari_812_02_paiz9g.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774481646/Ferrari_812_03_wg72wh.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774481640/Ferrari_812_01_r5uzoh.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774481640/Ferrari_812_02_paiz9g.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774481646/Ferrari_812_03_wg72wh.jpg' },
     ]},
   { id:'m7', name:'Honda NSX 2000', tag:'vehicle', isNew:true, accent:'#E3000B', emoji:'🏎️',
     description:'A beautiful LEGO® Honda NSX 2000 build — the legendary Japanese supercar with mid-engine layout and timeless styling.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774482574/Honda_NSX_2000_01_pgw03m.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774482616/Honda_NSX_2000_02_wgxvk1.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774482625/Honda_NSX_2000_03_bgru6m.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774482639/Honda_NSX_2000_04_zvv81q.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774482642/Honda_NSX_2000_05_rkx5fe.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774482614/Honda_NSX_2000_06_qkuuyp.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774482574/Honda_NSX_2000_01_pgw03m.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774482616/Honda_NSX_2000_02_wgxvk1.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774482625/Honda_NSX_2000_03_bgru6m.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774482639/Honda_NSX_2000_04_zvv81q.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774482642/Honda_NSX_2000_05_rkx5fe.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774482614/Honda_NSX_2000_06_qkuuyp.jpg' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774482727/Honda_NSX_2000_07_pwawmk.mp4' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774482707/Honda_NSX_2000_08_l6nyv6.mp4' },
     ]},
   { id:'m8', name:'Minecraft Creeper Face Frame', tag:'gaming', isNew:true, accent:'#00A650', emoji:'🎮',
     description:'A pixel-perfect LEGO® Minecraft Creeper face frame — iconic green mosaic art that any gamer would be proud to display.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484813/Minecraft_CreeperFace_Frame_01_p2iy29.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484813/Minecraft_CreeperFace_Frame_02_e27nlf.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484815/Minecraft_CreeperFace_Frame_03_jirse6.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484823/Minecraft_CreeperFace_Frame_04_fzwakz.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484825/Minecraft_CreeperFace_Frame_05_nucgkk.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484834/Minecraft_CreeperFace_Frame_06_dujczs.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774484836/Minecraft_CreeperFace_Frame_07_jdqxun.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484813/Minecraft_CreeperFace_Frame_01_p2iy29.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484813/Minecraft_CreeperFace_Frame_02_e27nlf.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484815/Minecraft_CreeperFace_Frame_03_jirse6.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484823/Minecraft_CreeperFace_Frame_04_fzwakz.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484825/Minecraft_CreeperFace_Frame_05_nucgkk.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484834/Minecraft_CreeperFace_Frame_06_dujczs.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774484836/Minecraft_CreeperFace_Frame_07_jdqxun.jpg' },
     ]},
   { id:'m9', name:'Mini PC', tag:'gaming', isNew:true, accent:'#1A1A1A', emoji:'💻',
     description:'A sleek LEGO® Mini PC build — a compact desktop computer model with impressive detail and realistic proportions.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774485870/Mini_PC_01_vqwjzk.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774485892/Mini_PC_02_lhpqrw.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774485916/Mini_PC_03_xjqsbn.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774485870/Mini_PC_01_vqwjzk.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774485892/Mini_PC_02_lhpqrw.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774485916/Mini_PC_03_xjqsbn.jpg' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774486001/Mini_PC_04_zpulza.mp4' },
     ]},
   { id:'m10', name:'1965 Chevrolet C10', tag:'vehicle', isNew:true, accent:'#FF6B00', emoji:'🛻',
     description:'A classic LEGO® 1965 Chevrolet C10 pickup truck build — old-school American muscle and style captured perfectly in bricks.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774486733/1965_Chevrolet_C10_02_pyixb1.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774486742/1965_Chevrolet_C10_03_ugwmur.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774488895/1965_Chevrolet_C10_04_qhfsdl.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774488902/1965_Chevrolet_C10_05_lp5f8h.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774486733/1965_Chevrolet_C10_02_pyixb1.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774486742/1965_Chevrolet_C10_03_ugwmur.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774488895/1965_Chevrolet_C10_04_qhfsdl.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774488902/1965_Chevrolet_C10_05_lp5f8h.jpg' },
     ]},
   { id:'m11', name:'Knuckle Buster', tag:'vehicle', isNew:true, accent:'#E3000B', emoji:'🔧',
     description:'A gnarly LEGO® Knuckle Buster hot rod build — raw, chopped and slammed with serious garage vibes.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774489965/Knuckle_Buster_01_pnlsyw.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774489966/Knuckle_Buster_02_jiovbd.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774489968/Knuckle_Buster_03_prrnze.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774489965/Knuckle_Buster_01_pnlsyw.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774489966/Knuckle_Buster_02_jiovbd.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774489968/Knuckle_Buster_03_prrnze.jpg' },
     ]},
   { id:'m12', name:'Fortnite Pencil Holder', tag:'gaming', isNew:true, accent:'#7B2FBE', emoji:'✏️',
     description:'A fun LEGO® Fortnite-themed pencil holder build — keep your desk organised with this epic gaming-inspired storage solution.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774490988/Fortnite_Pencil_Holder_01_pu4fbw.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774490990/Fortnite_Pencil_Holder_02_kijn9p.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774491001/Fortnite_Pencil_Holder_03_xpfxot.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774491019/Fortnite_Pencil_Holder_04_jxe0da.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774490988/Fortnite_Pencil_Holder_01_pu4fbw.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774490990/Fortnite_Pencil_Holder_02_kijn9p.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774491001/Fortnite_Pencil_Holder_03_xpfxot.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774491019/Fortnite_Pencil_Holder_04_jxe0da.jpg' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774491062/Fortnite_Pencil_Holder_05_vsdzni.mp4' },
     ]},
   { id:'m13', name:'1958 Small House', tag:'city', isNew:true, accent:'#006CB7', emoji:'🏠',
     description:'A charming LEGO® 1958 Small House build — retro mid-century architecture with classic residential details and nostalgic street scene vibes.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774496694/1958_Small_House_01_hlgp5k.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774496896/1958_Small_House_02_qzpswu.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774496905/1958_Small_House_03_fyywhc.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774496911/1958_Small_House_04_gj6v18.png' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774496694/1958_Small_House_01_hlgp5k.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774496896/1958_Small_House_02_qzpswu.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774496905/1958_Small_House_03_fyywhc.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774496911/1958_Small_House_04_gj6v18.png' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774496967/1958_Small_House_05_fyaiip.mp4' },
     ]},
   { id:'m14', name:'1955 Small Store', tag:'city', isNew:true, accent:'#FF6B00', emoji:'🏪',
     description:'A delightful LEGO® 1955 Small Store build — vintage shopfront charm with period-accurate details straight from the golden age of Main Street.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497776/1955_Small_Store_01_iolplz.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497782/1955_Small_Store_02_l8oakb.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497792/1955_Small_Store_03_ietq7m.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497806/1955_Small_Store_04_tq04c8.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497815/1955_Small_Store_05_bhrfid.png' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497776/1955_Small_Store_01_iolplz.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497782/1955_Small_Store_02_l8oakb.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497792/1955_Small_Store_03_ietq7m.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497806/1955_Small_Store_04_tq04c8.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497815/1955_Small_Store_05_bhrfid.png' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774497904/1955_Small_Store_06_etye3s.mp4' },
     ]},
   { id:'m15', name:'1957 Garage with Automatic Door', tag:'city', isNew:true, accent:'#00838F', emoji:'🚗',
     description:'A fantastic LEGO® 1957 Garage build featuring a working automatic door — classic mid-century workshop with incredible functional detail.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497919/1957_Garage_With_Automatic_Door_01_qlr7hi.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497926/1957_Garage_With_Automatic_Door_02_o92por.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497940/1957_Garage_With_Automatic_Door_03_neqvss.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497973/1957_Garage_With_Automatic_Door_04_yl4qd9.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774497987/1957_Garage_With_Automatic_Door_05_or6at9.png' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497919/1957_Garage_With_Automatic_Door_01_qlr7hi.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497926/1957_Garage_With_Automatic_Door_02_o92por.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497940/1957_Garage_With_Automatic_Door_03_neqvss.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497973/1957_Garage_With_Automatic_Door_04_yl4qd9.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774497987/1957_Garage_With_Automatic_Door_05_or6at9.png' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774498028/1957_Garage_With_Automatic_Door_06_pkgc8c.mp4' },
     ]},
   { id:'m16', name:'Xbox', tag:'gaming', isNew:true, accent:'#00A650', emoji:'🎮',
     description:'A detailed LEGO® Xbox console build — the iconic gaming beast recreated in bricks with controller and all.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774501448/Xbox_01_k4umwe.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774501456/Xbox_02_npwbrx.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774501448/Xbox_01_k4umwe.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774501456/Xbox_02_npwbrx.jpg' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774501490/Xbox_03_e2e0kf.mp4' },
     ]},
   { id:'m17', name:'Nintendo Switch', tag:'gaming', isNew:true, accent:'#E3000B', emoji:'🕹️',
     description:'A fun LEGO® Nintendo Switch build — the beloved hybrid console captured in bricks, Joy-Cons and all.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774502301/Nintendo_Switch_01_bfmmyh.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774502309/Nintendo_Switch_02_ujykej.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774502301/Nintendo_Switch_01_bfmmyh.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774502309/Nintendo_Switch_02_ujykej.jpg' },
       { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774502343/Nintendo_Switch_03_sq52te.mp4' },
     ]},
   { id:'m18', name:'Ninjago Dragon Rising', tag:'gaming', isNew:true, accent:'#7B2FBE', emoji:'🐉',
     description:'An epic LEGO® Ninjago Dragon Rising build — fierce dragon design with incredible detail straight out of the Ninjago universe.',
     gallery:[
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774503017/Ninjago_Dragon_Rising_01_hsh72b.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774503020/Ninjago_Dragon_Rising_02_ma7ik0.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774503029/Ninjago_Dragon_Rising_03_io1cv3.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774503040/Ninjago_Dragon_Rising_04_m3pyu8.jpg' },
-      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1774503051/Ninjago_Dragon_Rising_05_nthh7u.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774503017/Ninjago_Dragon_Rising_01_hsh72b.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774503020/Ninjago_Dragon_Rising_02_ma7ik0.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774503029/Ninjago_Dragon_Rising_03_io1cv3.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774503040/Ninjago_Dragon_Rising_04_m3pyu8.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774503051/Ninjago_Dragon_Rising_05_nthh7u.jpg' },
+    ]},
+  { id:'m19', name:'Mini Black Pearl', tag:'ships', isNew:true, accent:'#1A1A1A', emoji:'⚓',
+    description:'A stunning mini LEGO® Black Pearl — Captain Jack Sparrow\'s legendary pirate ship recreated in incredible detail at a compact scale.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774678044/Mini_Black_Pearl_Ship_01_hxd93k.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774678044/Mini_Black_Pearl_Ship_02_ynckw9.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774678044/Mini_Black_Pearl_ship_03_rbpqgm.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774678044/Mini_Black_Pearl_Ship_04_w77xro.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774678044/Mini_Black_Pearl_Ship_05_draafm.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774678044/Mini_Black_Pearl_Ship_06_rj8veh.jpg' },
+    ]},
+  { id:'m20', name:'Black Sleek Car', tag:'vehicle', isNew:true, accent:'#1A1A1A', emoji:'🚗',
+    description:'A sleek all-black custom LEGO® MOC car — sharp angles, low profile and pure style. Built for speed and looking good doing it.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774681402/Black_Sleek_Car_01_ncrkdj.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774679492/Black_Sleek_Car_02_ezuc44.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774679469/Black_Sleek_Car_03_we57f2.jpg' },
+      { type:'video', src:'https://res.cloudinary.com/dqrowyx0h/video/upload/v1774681655/Black_Sleek_Car_04_qj7zs6.mp4' },
+    ]},
+  { id:'m21', name:'Katana and Stand', tag:'weapons', isNew:true, accent:'#E3000B', emoji:'⚔️',
+    description:'A beautifully crafted LEGO® Katana and display stand — every detail from the blade to the tsuba built brick by brick.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682858/Lego_Ketana_and_Stand_01_cgjrat.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682858/Lego_Ketana_and_Stand_02_tdqdl0.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682847/Lego_Ketana_and_Stand_03_llcckh.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682847/Lego_Ketana_and_Stand_04_iqqcdj.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682847/Lego_Ketana_and_Stand_05_yipt3i.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682846/Lego_Ketana_and_Stand_06_wr7yvi.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774682857/Lego_Ketana_and_Stand_07_ufd0lo.jpg' },
+    ]},
+  { id:'m22', name:'Porsche 911 RSR', tag:'vehicle', isNew:true, accent:'#FF6B00', emoji:'🏎️',
+    description:'The iconic Porsche 911 RSR recreated in LEGO® — race-ready livery, aggressive stance and unmistakable flat-six silhouette.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774685627/Porsche_911_RSR_01_uamjaw.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774685627/Porsche_911_RSR_02_toag2f.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774685627/Porsche_911_RSR_03_yjuk6s.jpg' },
+    ]},
+  { id:'m23', name:'Mini Camera', tag:'mini', isNew:true, accent:'#1A1A1A', emoji:'📷',
+    description:'A tiny LEGO® mini camera MOC — a perfect miniature replica with lens, body and all the details you\'d expect from the real thing.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774686280/Mini_Camera_02_pc0lm2.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774686281/Mini_Camera_01_w822bk.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774686272/Mini_Camera_03_epugur.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774686270/Mini_Camera_04_ngztut.jpg' },
+    ]},
+  { id:'m24', name:'Red Car', tag:'vehicle', isNew:true, accent:'#E3000B', emoji:'🚗',
+    description:'A bold custom LEGO® red car MOC — sleek bodywork, clean lines and that classic red finish that turns heads every time.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774697329/Red_Car_01_bpa62f.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774697329/Red_Car_03_ylhpn0.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774697329/Red_Car_02_syhdlk.jpg' },
+    ]},
+  { id:'m25', name:'1964 Cadillac Convertible', tag:'vehicle', isNew:true, accent:'#FFD700', emoji:'🚘',
+    description:'The legendary 1964 Cadillac Convertible in LEGO® — classic American muscle with those iconic tail fins and drop-top style.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774700507/1964_Cadillac_convertible_01_yfad3l.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774700516/1964_Cadillac_convertible_02_yddttt.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774700507/1964_Cadillac_convertible_03_k8dnc6.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774700507/1964_Cadillac_convertible_04_pax1qn.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774700507/1964_Cadillac_convertible_05_vzpyzb.jpg' },
+    ]},
+  { id:'m26', name:'Katana Sword and Stand', tag:'weapons', isNew:true, accent:'#1A1A1A', emoji:'⚔️',
+    description:'A precision-built LEGO® Katana sword and display stand — clean blade, detailed guard and an elegant stand worthy of a samurai.',
+    gallery:[
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774702597/Katana_Sword_and_Stand_01_jlqgcb.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774702597/Katana_Sword_and_Stand_02_tnkb47.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774702598/Katana_Sword_and_Stand_03_uteekn.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774702597/Katana_Sword_and_Stand_04_ruwtug.jpg' },
+      { type:'image', src:'https://res.cloudinary.com/dqrowyx0h/image/upload/f_auto,q_auto,w_800/v1774702598/Katana_Sword_and_Stand_05_e90tq1.jpg' },
     ]},
   // ── ADD NEW MOCs ABOVE THIS LINE ──────────────────────────────────────────
   // { id:'m8', name:'Your MOC Name', tag:'city', isNew:true, accent:'#006CB7', emoji:'🏗️',
@@ -4263,7 +4327,7 @@ const MOCS = [
   // TAGS: 'gaming' | 'city' | 'vehicle' | 'weapons' | 'mini' | 'nature' | 'mosaic' | 'ships' | 'mechs'
 ];
 
-const MOC_PAGE_SIZE = 20;
+const MOC_PAGE_SIZE = 30;
 let mocActiveTag = 'all', mocFiltered = [], mocShownCount = 0;
 const mocIdx = {};
 
@@ -4298,8 +4362,8 @@ function filterMOCs(){
 function appendMOCs(){
   const grid=document.getElementById('mocGrid');
   if(!grid) return;
-  mocFiltered.slice(mocShownCount,mocShownCount+MOC_PAGE_SIZE).forEach(m=>{
-    const div=document.createElement('div');div.innerHTML=mocCardHTML(m);grid.appendChild(div.firstElementChild);
+  mocFiltered.slice(mocShownCount,mocShownCount+MOC_PAGE_SIZE).forEach((m,i)=>{
+    const div=document.createElement('div');div.innerHTML=mocCardHTML(m, mocShownCount+i);grid.appendChild(div.firstElementChild);
   });
   mocShownCount=Math.min(mocShownCount+MOC_PAGE_SIZE,mocFiltered.length);
   updateLoadMore();setTimeout(initReveal,50);
@@ -4455,15 +4519,16 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMocLightbox({type:'click'});
 });
 
-function mocCardHTML(m){
+function mocCardHTML(m, cardIndex){
   const gallery=m.gallery||(m.images||[]).map(src=>({type:'image',src}));
   const total=gallery.length,idx=mocIdx[m.id]||0,slide=gallery[idx]||{type:'image',src:''},multi=total>1;
   const isVid=slide.type==='video';
   const liked=_likedMocs.includes(m.id);
   const hearts=_mocHearts[m.id]||0;
+  const loadAttr = (cardIndex !== undefined && cardIndex < 6) ? 'eager' : 'lazy';
   const mediaHTML=isVid
     ?`<video id="moc-vid-${m.id}" src="${slide.src}" controls playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`
-    :`<img loading="lazy" id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" loading="lazy" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
+    :`<img loading="${loadAttr}" id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
   return `<div class="moc-card reveal">
     <div class="moc-photo">
       <div id="moc-media-${m.id}" class="moc-media-wrap" onclick="openMocLightbox('${m.id}')" style="width:100%;height:100%;transition:opacity .18s;cursor:zoom-in">${mediaHTML}</div>
@@ -12244,14 +12309,17 @@ function handleGalleryFile(input) {
 
   // Called by updateChannelStats once API data arrives
   window._onLiveStatsReady = function(subs, vids) {
-    if (subs !== null && subs > 0) liveSubVal = subs;
-    liveVidVal = (vids !== null && vids > 0) ? vids : VIDEOS.length;
+    if (subs !== null) liveSubVal = subs;
+    if (vids !== null) liveVidVal = vids;
     liveReady = true;
     if (fired) {
-      if (liveSubVal) animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1200);
-      animateCount(document.getElementById('statVideos'), liveVidVal, '', 1000);
-      const vid2 = document.getElementById('statVideos2');
-      if (vid2) vid2.textContent = liveVidVal.toLocaleString() + '+';
+      // Stats section already visible — animate to live values
+      if (subs !== null) animateCount(document.getElementById('statSubscribers'), subs, '+', 1200);
+      if (vids !== null) {
+        animateCount(document.getElementById('statVideos'), vids, '', 1000);
+        const vid2 = document.getElementById('statVideos2');
+        if(vid2) vid2.textContent = vids.toLocaleString() + '+';
+      }
     }
   };
 
@@ -12259,14 +12327,15 @@ function handleGalleryFile(input) {
     if(entries[0].isIntersecting && !fired){
       fired = true;
       if (liveReady) {
-        if (liveSubVal) animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1800);
-        animateCount(document.getElementById('statVideos'), liveVidVal || VIDEOS.length, '', 1400);
+        // Live data already here — animate straight to real numbers
+        animateCount(document.getElementById('statSubscribers'), liveSubVal, '+', 1800);
+        animateCount(document.getElementById('statVideos'), liveVidVal, '', 1400);
         const vid2 = document.getElementById('statVideos2');
-        if(vid2) animateCount(vid2, liveVidVal || VIDEOS.length, '+', 1400);
+        if(vid2) animateCount(vid2, liveVidVal, '+', 1400);
       } else {
-        // Invidious still loading — show catalogue count, live update follows
+        // API still loading — show placeholder animation, live update will follow
         animateCount(document.getElementById('statSubscribers'), 260, '+', 1800);
-        animateCount(document.getElementById('statVideos'), VIDEOS.length, '', 1400);
+        animateCount(document.getElementById('statVideos'), 296, '', 1400);
       }
     }
   },{threshold:.4});

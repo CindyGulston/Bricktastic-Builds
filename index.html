@@ -3157,6 +3157,7 @@ const YT_CHANNEL_ID = 'UCqm_5GiesZWfnCkZLBzUgSA';
 // Videos are auto-categorised by detectCategory() at runtime.
 // Shorts are identified by isShort:true and link to youtube.com/shorts/ID
 const CATALOGUE_VIDEOS = [
+  { id: '6a0xeHu2NmE', title: 'LEGO® 30455 Batmobile Tutorial – Build It Yourself!', isShort: false, cat: 'tutorials' },
   { id: 'RwnJHsmjugk', title: 'Lego Honda NSX 2000 MOC Tutorial', isShort: false },
   { id: 'ppYo3P7Z9CI', title: 'PC Gaming Setup Tutorial', isShort: false },
   { id: 'nbwm7I5YGfU', title: 'Lego Pretty Pink Flower Bouquet Instruction Booklet', isShort: false },
@@ -11551,9 +11552,9 @@ function bbGameOver(){
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgGallery"></div>
     <div class="hero-left">
-      <span class="hero-badge">🌟 Fan Gallery</span>
+      <span class="hero-badge">👥 Community</span>
       <h1><span class="y">Community</span><br><span class="r">Builds.</span></h1>
-      <p class="hero-sub">Show off your LEGO® creations. Submit your MOC and get featured on the Bricktastic Builds wall of fame.</p>
+      <p class="hero-sub">Your home on Bricktastic Builds. Submit your MOC, climb the leaderboard, and get featured as Builder of the Month.</p>
       <div class="hero-ctas">
         <a class="btn btn-yellow" onclick="document.getElementById('galleryForm').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">🏗️ Submit Your Build</a>
         <a class="btn btn-green" onclick="showPage('mocs')" style="cursor:pointer">Browse MOCs</a>
@@ -11567,14 +11568,43 @@ function bbGameOver(){
           <div class="bs" style="left:140px;background:#7B2FBE"></div>
           <div class="bs" style="left:202px;background:#7B2FBE"></div>
         </div>
-        <div class="ch-tag">Fan Builds</div>
+        <div class="ch-tag">Community</div>
       </div>
     </div>
   </div>
   <div class="stud-bar" style="background:#7B2FBE"><div class="inner" id="s-gallery" style="background:#7B2FBE"></div></div>
   <section style="background:var(--bg);padding:48px 0 80px">
     <div class="container">
-      <div class="gallery-submit-box reveal">
+
+      <!-- Builder of the Month -->
+      <div style="background:linear-gradient(135deg,#7B2FBE,#4a0080);border-radius:14px;padding:28px 32px;margin-bottom:28px;border:3px solid rgba(255,255,255,.15);position:relative;overflow:hidden" id="botmSpotlight">
+        <div style="position:absolute;top:-20px;right:-20px;font-size:120px;opacity:.07;pointer-events:none">🏆</div>
+        <div style="display:inline-block;background:var(--yellow);color:var(--black);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:6px;margin-bottom:14px">⭐ Builder of the Month</div>
+        <div id="botmContent" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <div style="font-size:64px">🏗️</div>
+          <div>
+            <div style="font-family:'Boogaloo',cursive;font-size:24px;color:#fff;margin-bottom:4px" id="botmName">Loading…</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:700" id="botmBuilds">Submit your builds to be featured!</div>
+            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap" id="botmStats"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="gallery-leaderboard" id="galleryLeaderboard">
+        <h3>🏆 Builder Leaderboard</h3>
+        <p class="gallery-leaderboard-sub">Top builds this month, ranked by community hearts</p>
+        <div class="leaderboard-list" id="leaderboardList">
+          <div style="color:rgba(255,255,255,.4);font-size:13px;font-weight:700">Loading top builds…</div>
+        </div>
+      </div>
+
+      <!-- Community Builds Grid -->
+      <div class="gallery-tabs" id="galleryTabs"></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+
+      <!-- Submit Your Build -->
+      <div class="gallery-submit-box reveal" style="margin-top:48px">
         <h3>🏗️ Submit Your Build</h3>
         <p>Share your MOC with the community. Upload a photo or paste a link — we'll review and feature the best builds!</p>
         <div class="gallery-form" id="galleryForm">
@@ -11595,33 +11625,7 @@ function bbGameOver(){
         </div>
         <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Your build is live! Check your email for a confirmation. Keep building! 🧱</div>
       </div>
-      
-    
-    <!-- Builder of the Month -->
-    <div style="background:linear-gradient(135deg,#7B2FBE,#4a0080);border-radius:14px;padding:28px 32px;margin-bottom:28px;border:3px solid rgba(255,255,255,.15);position:relative;overflow:hidden" id="botmSpotlight">
-      <div style="position:absolute;top:-20px;right:-20px;font-size:120px;opacity:.07;pointer-events:none">🏆</div>
-      <div style="display:inline-block;background:var(--yellow);color:var(--black);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:6px;margin-bottom:14px">⭐ Builder of the Month</div>
-      <div id="botmContent" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-        <div style="font-size:64px">🏗️</div>
-        <div>
-          <div style="font-family:'Boogaloo',cursive;font-size:24px;color:#fff;margin-bottom:4px" id="botmName">Loading…</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:700" id="botmBuilds">Submit your builds to be featured!</div>
-          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap" id="botmStats"></div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Gallery Leaderboard -->
-    <div class="gallery-leaderboard" id="galleryLeaderboard">
-      <h3>🏆 Builder Leaderboard</h3>
-      <p class="gallery-leaderboard-sub">Top builds this month, ranked by community hearts</p>
-      <div class="leaderboard-list" id="leaderboardList">
-        <div style="color:rgba(255,255,255,.4);font-size:13px;font-weight:700">Loading top builds…</div>
-      </div>
-    </div>
-
-    <div class="gallery-tabs" id="galleryTabs"></div>
-      <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </section>
   <!-- NEWSLETTER BAR -->

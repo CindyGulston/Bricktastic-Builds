@@ -24,6 +24,7 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" crossorigin="anonymous">
+<script src="https://js.puter.com/v2/"></script>
 <style>
 :root {
   --red:#E3000B; --yellow:#FFD700; --blue:#006CB7; --green:#00A650;
@@ -12956,32 +12957,47 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
 }`;
 
   try {
-    // Use Google Gemini API (free, no proxy needed)
-    const GEMINI_API_KEY = 'AIzaSyBdHOY2XuUJ9A2Vpod3ulIBL8fsX7KObzs';
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [
-            { inline_data: { mime_type: 'image/jpeg', data: _biImageBase64 } },
-            { text: prompt }
+    // Use Puter.js for free AI access — no API key needed
+    const response = await puter.ai.chat(
+      [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'image_url',
+              image_url: { url: `data:image/jpeg;base64,${_biImageBase64}` }
+            },
+            { type: 'text', text: prompt }
           ]
-        }],
-        generationConfig: { maxOutputTokens: 1000 }
-      })
-    });
+        }
+      ],
+      { model: 'gemini-2.0-flash' }
+    );
 
     clearInterval(msgInterval);
-    const data = await response.json();
-    const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
+
+    // Puter returns response.message.content as an array of parts
+    let text = '';
+    if (typeof response === 'string') {
+      text = response;
+    } else if (response?.message?.content) {
+      const c = response.message.content;
+      if (typeof c === 'string') text = c;
+      else if (Array.isArray(c)) text = c.map(p => p.text || '').join('');
+    } else if (response?.content) {
+      const c = response.content;
+      if (typeof c === 'string') text = c;
+      else if (Array.isArray(c)) text = c.map(p => p.text || '').join('');
+    }
+
+    if (!text) throw new Error('Empty response from AI: ' + JSON.stringify(response));
 
     let parsed;
     try {
       const clean = text.replace(/```json|```/g, '').trim();
       parsed = JSON.parse(clean);
     } catch(e) {
-      throw new Error('Could not parse AI response');
+      throw new Error('Could not parse AI response. Raw: ' + text.substring(0, 200));
     }
 
     _biLastIdeas = parsed.ideas || [];
@@ -12991,7 +13007,8 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
     clearInterval(msgInterval);
     document.getElementById('biLoadingState').style.display = 'none';
     document.getElementById('biEmptyState').style.display = 'block';
-    document.getElementById('biEmptyState').innerHTML = `<div style="font-size:48px;margin-bottom:16px">😬</div><h3 style="font-family:'Boogaloo',cursive;font-size:24px;margin-bottom:10px">Something went wrong</h3><p style="color:#888;font-weight:600;font-size:14px">Try a clearer photo with better lighting, or try again in a moment.</p>`;
+    document.getElementById('biEmptyState').innerHTML = `<div style="font-size:48px;margin-bottom:16px">😬</div><h3 style="font-family:'Boogaloo',cursive;font-size:24px;margin-bottom:10px">Something went wrong</h3><p style="color:#888;font-weight:600;font-size:14px;word-break:break-word">${err.message}</p><p style="color:#aaa;font-size:12px;margin-top:8px">Check browser console (F12) for details.</p>`;
+    console.error('analyseBricks error:', err);
     document.getElementById('biAnalyseBtn').disabled = false;
   }
 }

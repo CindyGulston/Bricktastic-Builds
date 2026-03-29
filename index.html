@@ -1470,6 +1470,12 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
 ml('account', '2189778');
 // Suppress all MailerLite popups from auto-showing; only show when explicitly triggered
 (function suppressMLAutoPopup() {
+  window.addEventListener('load', function() {
+    try { if (typeof ml === 'function') ml('hide', 'yMM1A3'); } catch(e) {}
+  });
+})();
+// Suppress all MailerLite popups from auto-showing; only show when explicitly triggered
+(function suppressMLAutoPopup() {
   // Queue a hide after the ML script initialises
   window.addEventListener('load', function() {
     try { if (typeof ml === 'function') ml('hide', 'yMM1A3'); } catch(e) {}
@@ -2250,15 +2256,15 @@ window.addEventListener('load', function() {
         <span class="lbl lbl-b reveal" style="margin-bottom:16px;display:inline-block">⭐ From the Community</span>
         <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4vw,52px);line-height:1;color:var(--black)">What Fans Are Saying</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" id="testimonials-grid">
 
         <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
           <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">This is honestly one of the best LEGO® tutorials I've seen. The detail on this build is insane — I built it myself and it came out perfect!</p>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">wow its realy good</p>
           <div style="display:flex;align-items:center;gap:10px">
             <div style="width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px">🧱</div>
             <div>
-              <div style="font-weight:900;font-size:13px;color:var(--black)">@LegoFan_ZA</div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@ailo-rf5gj</div>
               <div style="font-size:11px;color:#888;font-weight:700">YouTube Comment</div>
             </div>
             <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
@@ -2267,11 +2273,11 @@ window.addEventListener('load', function() {
 
         <div style="background:var(--black);border:3px solid var(--yellow);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.2);position:relative">
           <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
-          <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px">Bro your MOCs are on another level 🔥 Been following since the start. Keep going, you're going to blow up!</p>
+          <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px">Cool can you do also ps2 ❤️ i support small creators on youtube</p>
           <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px">🚗</div>
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px">🎮</div>
             <div>
-              <div style="font-weight:900;font-size:13px;color:#fff">@BrickBuilder101</div>
+              <div style="font-weight:900;font-size:13px;color:#fff">@melonek121</div>
               <div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700">YouTube Comment</div>
             </div>
             <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
@@ -2280,20 +2286,18 @@ window.addEventListener('load', function() {
 
         <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
           <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">Just bought the PDF instructions — so clear and easy to follow. My son and I built it together in one afternoon. Worth every cent!</p>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">really good!! i made the car a little bit wider with some more parts so it looks a little more realistic 🙂</p>
           <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px">👨‍👦</div>
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px">🚗</div>
             <div>
-              <div style="font-weight:900;font-size:13px;color:var(--black)">@MOCdad_SA</div>
-              <div style="font-size:11px;color:#888;font-weight:700">Shop Customer</div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@bobby-k8y</div>
+              <div style="font-size:11px;color:#888;font-weight:700">YouTube Comment</div>
             </div>
             <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
           </div>
         </div>
 
       </div>
-      <p style="text-align:center;margin-top:28px;font-size:13px;color:#aaa;font-weight:700">⚠️ Placeholder quotes — replace with real YouTube comments when ready</p>
-    </div>
   </section>
 
   <!-- SOCIAL -->

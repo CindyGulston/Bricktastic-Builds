@@ -2361,44 +2361,13 @@ window.addEventListener('load', function() {
           <div class="bs" style="left:140px;background:var(--orange)"></div>
           <div class="bs" style="left:202px;background:var(--orange)"></div>
         </div>
-        <div class="ch-tag">14 Products</div>
+        <div class="ch-tag">Coming Soon</div>
       </div>
     </div>
   </div>
   <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s3"></div></div>
 
-  <!-- FEATURED BUNDLES SPOTLIGHT -->
-  <section style="background:var(--black);padding:48px 0 40px">
-    <div class="container">
-      <div class="bundle-spotlight">
-        <h3>💰 Save Big with Bundles</h3>
-        <p>Get multiple instruction sets at a massive discount. Perfect for builders who want more.</p>
-        <div class="bundle-grid">
-          <div class="bundle-card" onclick="showPage('shop');setTimeout(()=>filterShop('bun',document.querySelector('.shop-tab:last-child')),100)">
-            <span class="bundle-card-emoji">📦</span>
-            <div class="bundle-card-name">Starter Pack</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">5 Builds for Beginners</div>
-            <div class="bundle-card-price">$19</div>
-            <div class="bundle-card-save">Save 40%</div>
-          </div>
-          <div class="bundle-card" onclick="showPage('shop');setTimeout(()=>filterShop('bun',document.querySelector('.shop-tab:last-child')),100)">
-            <span class="bundle-card-emoji">🏙️</span>
-            <div class="bundle-card-name">City Core Bundle</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">4 Modular Builds</div>
-            <div class="bundle-card-price">$29</div>
-            <div class="bundle-card-save">Save 35%</div>
-          </div>
-          <div class="bundle-card" onclick="showPage('shop');setTimeout(()=>filterShop('bun',document.querySelector('.shop-tab:last-child')),100)" style="border-color:var(--yellow)">
-            <span class="bundle-card-emoji">👑</span>
-            <div class="bundle-card-name">Complete Collection</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">Everything — All PDFs</div>
-            <div class="bundle-card-price">$39</div>
-            <div class="bundle-card-save">Save 60% ⭐ Best Value</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section style="background:var(--bg);padding-top:56px">
     <div class="container">
@@ -2423,7 +2392,7 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:var(--yellow)">Coming Soon</div>
             <div class="pname">Custom MOC Instructions — Coming Soon!</div>
             <div class="pdesc">We're working hard on our first official LEGO® MOC instruction packs — step-by-step build guides for some of our most popular YouTube builds. Drop us an email to be the first to know when they launch!</div>
-            <div class="pfooter"><div class="price">🔜 Coming Soon</div><a class="acb btn-lg" href="mailto:bricktasticbuilds@gmail.com?subject=Notify me when instructions are available" onclick="event.stopPropagation()">📧 Notify Me When Available</a></div>
+            <div class="pfooter"><div class="price">🔜 Coming Soon</div><button class="acb btn-lg" onclick="event.stopPropagation();notifyMe()" style="background:var(--red)">📧 Notify Me When Available</button></div>
           </div>
         </div>
       </div>
@@ -12584,6 +12553,12 @@ if (_origRenderGallery) {
 document.addEventListener('DOMContentLoaded', () => setTimeout(renderLeaderboard, 2000));
 
 // ── Newsletter hero form handler ──
+function notifyMe() {
+  if (typeof ml === 'function') {
+    try { ml('show', 'yMM1A3', true); } catch(e) {}
+  }
+}
+
 function subscribeNewsletter() {
   const email = document.getElementById('newsletter-home-email')?.value?.trim();
   if (!email || !email.includes('@')) { alert('Please enter a valid email address!'); return; }

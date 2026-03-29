@@ -2387,7 +2387,7 @@ window.addEventListener('load', function() {
       <div class="sgrid" id="shopGrid">
         <!-- COMING SOON -->
         <div class="pc feat" data-cat="moc" data-id="0" onclick="openMod(0)">
-          <div class="pthumb" style="background:#1A1A1A;padding:0"><img src="shop-preview.jpg" alt="MOC Instructions Preview" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1A1A1A,#E3000B)';this.parentElement.innerHTML+='<span style=\'font-size:96px;display:flex;align-items:center;justify-content:center;height:100%\'>🧱</span>'"></div>
+          <div class="pthumb" style="background:#1A1A1A;padding:0;display:flex;align-items:center;justify-content:center" id="shopThumb"><img src="shop-preview.jpg" alt="MOC Instructions Preview" style="width:100%;height:100%;object-fit:cover;display:block" onerror="document.getElementById('shopThumb').innerHTML='<span style=&quot;font-size:96px&quot;>🧱</span>';document.getElementById('shopThumb').style.background='linear-gradient(135deg,#1A1A1A,#E3000B)'"></div>
           <div class="pinfo">
             <div class="ptyp" style="color:var(--yellow)">Coming Soon</div>
             <div class="pname">Custom MOC Instructions — Coming Soon!</div>

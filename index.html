@@ -12971,8 +12971,12 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
 
     let parsed;
     try {
-      const clean = text.replace(/```json|```/g, '').trim();
-      parsed = JSON.parse(clean);
+      // Strip all variations of markdown code fences then find the JSON object
+      let clean = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+      // Extract just the JSON object in case there's text before/after
+      const jsonMatch = clean.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error('No JSON found');
+      parsed = JSON.parse(jsonMatch[0]);
     } catch(e) {
       throw new Error('Could not parse AI response. Raw: ' + text.substring(0, 200));
     }

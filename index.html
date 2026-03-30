@@ -12646,117 +12646,152 @@ function initBrickIdeasPage() {}
 
 <!-- ══ BRICK IDEAS PAGE ══ -->
 <div id="page-brick-ideas" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
-    <div class="hero-bg" id="heroBgBrickIdeas"></div>
-    <div class="hero-left">
-      <span class="hero-badge">🧱 AI Brick Ideas</span>
-      <h1><span class="y">What Can</span><br><span class="r">You Build?</span></h1>
-      <p class="hero-sub">Upload a photo of your LEGO® bricks and our AI will analyse what you have and suggest builds you can make right now.</p>
+
+  <!-- HERO -->
+  <div class="bi-hero-section">
+    <div class="bi-hero-studs"></div>
+    <div class="bi-floating-bricks" aria-hidden="true">
+      <span class="bi-fb bi-fb1">🟥</span>
+      <span class="bi-fb bi-fb2">🟦</span>
+      <span class="bi-fb bi-fb3">🟨</span>
+      <span class="bi-fb bi-fb4">🟩</span>
+      <span class="bi-fb bi-fb5">🟧</span>
+      <span class="bi-fb bi-fb6">🟥</span>
     </div>
-    <div class="hero-right" id="heroR-brickideas">
-      <div class="hcb">
-        <div class="big-brick" style="background:var(--red);box-shadow:0 12px 0 #8b0000,0 18px 40px rgba(0,0,0,.5)">
-          <div class="bs" style="left:16px;background:var(--red)"></div>
-          <div class="bs" style="left:78px;background:var(--red)"></div>
-          <div class="bs" style="left:140px;background:var(--red)"></div>
-          <div class="bs" style="left:202px;background:var(--red)"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <div class="bi-hero-inner">
+        <div class="bi-hero-badge">🤖 AI-Powered</div>
+        <h1 class="bi-hero-title">What Can You<br><span class="bi-hero-highlight">Build Today?</span></h1>
+        <p class="bi-hero-sub">Snap a photo of your LEGO® bricks and our AI analyses them instantly — suggesting creative builds you can make <em>right now</em>.</p>
+        <div class="bi-hero-stats">
+          <div class="bi-stat"><span class="bi-stat-num">4</span><span class="bi-stat-label">Build Ideas</span></div>
+          <div class="bi-stat-div"></div>
+          <div class="bi-stat"><span class="bi-stat-num">AI</span><span class="bi-stat-label">Powered</span></div>
+          <div class="bi-stat-div"></div>
+          <div class="bi-stat"><span class="bi-stat-num">Free</span><span class="bi-stat-label">Always</span></div>
         </div>
-        <div class="ch-tag">AI Powered</div>
       </div>
     </div>
   </div>
-  <div class="stud-bar" style="background:var(--red)"><div class="inner" id="s-brickideas" style="background:var(--red)"></div></div>
 
-  <section style="background:var(--bg);padding:56px 0 80px">
+  <!-- TIP BAR -->
+  <div class="bi-tip-bar">
     <div class="container">
-
-      <!-- Tip bar -->
-      <div style="background:var(--yellow);border-radius:10px;padding:14px 20px;margin-bottom:36px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <span style="font-size:20px">💡</span>
-        <span style="font-weight:800;font-size:14px;color:var(--black)">For best results — spread your bricks out flat on a white surface in good lighting before taking the photo.</span>
+      <div class="bi-tip-inner">
+        <span class="bi-tip-icon">💡</span>
+        <span class="bi-tip-text"><strong>Pro tip:</strong> Spread your bricks on a white surface in good lighting for the best AI analysis!</span>
       </div>
+    </div>
+  </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start" id="brickIdeasLayout">
+  <!-- MAIN SECTION -->
+  <section class="bi-main-section">
+    <div class="container">
+      <div class="bi-layout" id="brickIdeasLayout">
 
-        <!-- LEFT: Upload -->
-        <div>
-          <div style="background:#fff;border:3px solid var(--black);border-radius:14px;overflow:hidden">
-            <div style="background:var(--black);padding:18px 24px">
-              <h3 style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow);margin-bottom:4px">📸 Upload Your Bricks</h3>
-              <p style="font-size:13px;color:#aaa;font-weight:600">Photo, screenshot, or drag & drop</p>
+        <!-- LEFT: Upload Panel -->
+        <div class="bi-upload-panel">
+          <div class="bi-panel-header bi-panel-header-dark">
+            <div class="bi-panel-header-icon">📸</div>
+            <div>
+              <h3 class="bi-panel-title">Upload Your Bricks</h3>
+              <p class="bi-panel-sub">Photo, screenshot, or drag &amp; drop</p>
             </div>
-            <div style="padding:24px">
-              <!-- Drop zone -->
-              <label id="biDropZone" for="biFileInput" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:3px dashed #ddd;border-radius:10px;padding:40px 20px;cursor:pointer;transition:all .2s;text-align:center;min-height:200px;position:relative;overflow:hidden">
-                <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
-                <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
-                  <img id="biPreview" style="width:100%;max-height:280px;object-fit:contain;border-radius:8px;display:block" alt="Your bricks">
-                  <button onclick="clearBrickPhoto(event)" style="position:absolute;top:8px;right:8px;background:var(--black);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900">✕</button>
-                </div>
-                <div id="biPlaceholder">
-                  <div style="font-size:48px;margin-bottom:8px">🧱</div>
-                  <div style="font-weight:900;font-size:15px;color:var(--black)">Drop your photo here</div>
-                  <div style="font-size:13px;color:#888;font-weight:600;margin-top:4px">or click to browse</div>
-                </div>
-              </label>
+          </div>
+          <div class="bi-panel-body">
 
-              <!-- Difficulty filter -->
-              <div style="margin-top:20px">
-                <div style="font-weight:900;font-size:13px;color:var(--black);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">Difficulty Level</div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap" id="biDiffBtns">
-                  <button class="bi-diff active" data-diff="all" onclick="setBiDiff(this)">All Levels</button>
-                  <button class="bi-diff" data-diff="beginner" onclick="setBiDiff(this)">🟢 Beginner</button>
-                  <button class="bi-diff" data-diff="intermediate" onclick="setBiDiff(this)">🟡 Intermediate</button>
-                  <button class="bi-diff" data-diff="advanced" onclick="setBiDiff(this)">🔴 Advanced</button>
-                </div>
+            <!-- Drop zone -->
+            <label id="biDropZone" for="biFileInput" class="bi-dropzone">
+              <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
+              <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
+                <img id="biPreview" class="bi-preview-img" alt="Your bricks">
+                <button onclick="clearBrickPhoto(event)" class="bi-clear-btn">✕</button>
               </div>
+              <div id="biPlaceholder" class="bi-placeholder">
+                <div class="bi-placeholder-icon">🧱</div>
+                <div class="bi-placeholder-title">Drop your photo here</div>
+                <div class="bi-placeholder-sub">or click to browse</div>
+                <div class="bi-placeholder-types">JPG · PNG · WEBP</div>
+              </div>
+            </label>
 
-              <!-- Analyse button -->
-              <button id="biAnalyseBtn" onclick="analyseBricks()" style="width:100%;margin-top:20px;background:var(--red);color:#fff;border:none;border-radius:10px;padding:16px;font-family:'Boogaloo',cursive;font-size:22px;cursor:pointer;box-shadow:0 6px 0 #8b0000;transition:all .15s;position:relative;top:0" disabled>
-                🔍 Analyse My Bricks
-              </button>
+            <!-- Difficulty -->
+            <div class="bi-section-label">Difficulty Level</div>
+            <div class="bi-diff-row" id="biDiffBtns">
+              <button class="bi-diff active" data-diff="all" onclick="setBiDiff(this)">⭐ All</button>
+              <button class="bi-diff" data-diff="beginner" onclick="setBiDiff(this)">🟢 Beginner</button>
+              <button class="bi-diff" data-diff="intermediate" onclick="setBiDiff(this)">🟡 Intermediate</button>
+              <button class="bi-diff" data-diff="advanced" onclick="setBiDiff(this)">🔴 Advanced</button>
+            </div>
+
+            <!-- Analyse button -->
+            <button id="biAnalyseBtn" onclick="analyseBricks()" class="bi-analyse-btn" disabled>
+              <span class="bi-analyse-icon">🔍</span> Analyse My Bricks
+            </button>
+
+            <!-- Features list -->
+            <div class="bi-features">
+              <div class="bi-feature"><span>✅</span> Detects brick colours &amp; types</div>
+              <div class="bi-feature"><span>✅</span> Suggests real builds you can make</div>
+              <div class="bi-feature"><span>✅</span> Step-by-step instructions on demand</div>
+              <div class="bi-feature"><span>✅</span> 100% free — no sign up needed</div>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT: Results -->
+        <!-- RIGHT: Results Panel -->
         <div id="biResultsCol">
+
           <!-- Empty state -->
-          <div id="biEmptyState" style="background:#fff;border:3px solid var(--black);border-radius:14px;padding:48px 24px;text-align:center">
-            <div style="font-size:64px;margin-bottom:16px">🤖</div>
-            <h3 style="font-family:'Boogaloo',cursive;font-size:26px;margin-bottom:10px">Ready to Analyse!</h3>
-            <p style="color:#888;font-weight:600;font-size:14px;line-height:1.6">Upload a photo of your bricks on the left and hit Analyse — the AI will tell you what you can build right now.</p>
-          </div>
-
-          <!-- Loading state (hidden) -->
-          <div id="biLoadingState" style="display:none;background:#fff;border:3px solid var(--black);border-radius:14px;padding:48px 24px;text-align:center">
-            <div style="font-size:48px;margin-bottom:16px" id="biLoadingEmoji">🧱</div>
-            <h3 style="font-family:'Boogaloo',cursive;font-size:24px;margin-bottom:10px" id="biLoadingMsg">Analysing your bricks…</h3>
-            <p style="color:#888;font-weight:600;font-size:13px">The AI is checking colours, sizes and quantities</p>
-            <div style="margin-top:20px;display:flex;justify-content:center;gap:6px" id="biDots">
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--red);display:inline-block;animation:biPulse .8s ease-in-out infinite"></span>
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--yellow);display:inline-block;animation:biPulse .8s .2s ease-in-out infinite"></span>
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--blue);display:inline-block;animation:biPulse .8s .4s ease-in-out infinite"></span>
+          <div id="biEmptyState" class="bi-state-panel">
+            <div class="bi-state-graphic">
+              <div class="bi-robot-face">🤖</div>
+              <div class="bi-state-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <h3 class="bi-state-title">Ready to Analyse!</h3>
+            <p class="bi-state-sub">Upload a photo of your bricks on the left and hit Analyse — the AI will suggest builds you can make right now.</p>
+            <div class="bi-state-examples">
+              <span>🏠 Houses</span>
+              <span>🚗 Vehicles</span>
+              <span>⚔️ Castles</span>
+              <span>🚀 Spaceships</span>
+              <span>🌸 Flowers</span>
             </div>
           </div>
 
-          <!-- Results (hidden) -->
+          <!-- Loading state -->
+          <div id="biLoadingState" style="display:none" class="bi-state-panel bi-loading-panel">
+            <div class="bi-loading-bricks">
+              <div class="bi-lb bi-lb1"></div>
+              <div class="bi-lb bi-lb2"></div>
+              <div class="bi-lb bi-lb3"></div>
+            </div>
+            <div style="font-size:48px;margin-bottom:8px" id="biLoadingEmoji">🧱</div>
+            <h3 class="bi-state-title" id="biLoadingMsg">Analysing your bricks…</h3>
+            <p class="bi-state-sub">The AI is checking colours, sizes and quantities</p>
+            <div class="bi-pulse-dots">
+              <span style="background:var(--red)"></span>
+              <span style="background:var(--yellow)"></span>
+              <span style="background:var(--blue)"></span>
+            </div>
+          </div>
+
+          <!-- Results -->
           <div id="biResultsState" style="display:none">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-              <h3 style="font-family:'Boogaloo',cursive;font-size:24px">✨ Build Ideas</h3>
-              <button onclick="clearBrickPhoto()" style="background:none;border:2px solid var(--black);border-radius:8px;padding:6px 14px;font-weight:900;font-size:12px;cursor:pointer">↩ Try Again</button>
+            <div class="bi-results-header">
+              <h3 class="bi-results-title">✨ Your Build Ideas</h3>
+              <button onclick="clearBrickPhoto()" class="bi-retry-btn">↩ Try Again</button>
             </div>
-            <!-- Brick summary -->
-            <div id="biBrickSummary" style="background:var(--black);color:#fff;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;font-weight:700;line-height:1.6"></div>
-            <!-- Ideas list -->
-            <div id="biIdeasList" style="display:flex;flex-direction:column;gap:16px"></div>
-            <!-- Share -->
-            <button onclick="shareBrickIdeas()" style="width:100%;margin-top:20px;background:var(--yellow);color:var(--black);border:none;border-radius:10px;padding:14px;font-family:'Boogaloo',cursive;font-size:20px;cursor:pointer;box-shadow:0 4px 0 #b89a00;transition:all .15s">
+            <div id="biBrickSummary" class="bi-brick-summary"></div>
+            <div id="biIdeasList" class="bi-ideas-list"></div>
+            <button onclick="shareBrickIdeas()" class="bi-share-btn">
               📤 Share These Ideas
             </button>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>
@@ -12782,24 +12817,167 @@ function initBrickIdeasPage() {}
 </div>
 
 <style>
-.bi-diff{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;padding:7px 14px;border-radius:20px;border:2px solid var(--black);background:#fff;cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.5px}
-.bi-diff.active{background:var(--black);color:var(--yellow)}
-.bi-diff:hover:not(.active){background:#f0ede6}
-.bi-idea-card{background:#fff;border:3px solid var(--black);border-radius:12px;overflow:hidden;transition:transform .15s,box-shadow .15s;cursor:default}
-.bi-idea-card:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--black)}
+/* ══ BRICK IDEAS PAGE STYLES ══ */
+
+/* HERO */
+.bi-hero-section{margin-top:66px;background:linear-gradient(135deg,#1A1A1A 0%,#2d1b4e 50%,#1A1A1A 100%);padding:70px 0 60px;position:relative;overflow:hidden}
+.bi-hero-studs{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,215,0,.15) 2px,transparent 2px);background-size:40px 40px;animation:biStudMove 20s linear infinite}
+@keyframes biStudMove{from{background-position:0 0}to{background-position:40px 40px}}
+.bi-floating-bricks{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bi-fb{position:absolute;font-size:32px;animation:biFbFloat linear infinite;opacity:.3}
+.bi-fb1{left:5%;animation-duration:8s;animation-delay:0s}
+.bi-fb2{left:15%;animation-duration:11s;animation-delay:2s}
+.bi-fb3{left:75%;animation-duration:9s;animation-delay:1s}
+.bi-fb4{left:85%;animation-duration:12s;animation-delay:3s}
+.bi-fb5{left:45%;animation-duration:10s;animation-delay:4s}
+.bi-fb6{left:60%;animation-duration:7s;animation-delay:1.5s}
+@keyframes biFbFloat{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:.3}90%{opacity:.3}100%{transform:translateY(-100px) rotate(360deg);opacity:0}}
+.bi-hero-inner{text-align:center;position:relative;z-index:2}
+.bi-hero-badge{display:inline-block;background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;font-weight:900;font-size:13px;padding:6px 18px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;animation:biPop .5s ease-out}
+.bi-hero-title{font-family:'Boogaloo',cursive;font-size:clamp(44px,7vw,80px);color:#fff;line-height:1.05;margin-bottom:16px;animation:biSlideUp .6s ease-out}
+.bi-hero-highlight{background:linear-gradient(135deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.bi-hero-sub{font-size:17px;color:rgba(255,255,255,.75);font-weight:600;max-width:540px;margin:0 auto 32px;line-height:1.7;animation:biSlideUp .7s ease-out}
+.bi-hero-stats{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;animation:biSlideUp .8s ease-out}
+.bi-stat{text-align:center}
+.bi-stat-num{display:block;font-family:'Boogaloo',cursive;font-size:32px;color:var(--yellow);line-height:1}
+.bi-stat-label{display:block;font-size:11px;font-weight:800;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.bi-stat-div{width:2px;height:40px;background:rgba(255,255,255,.15);border-radius:2px}
+@keyframes biPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes biSlideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* TIP BAR */
+.bi-tip-bar{background:linear-gradient(135deg,var(--yellow),#ffb300);padding:14px 0;border-bottom:3px solid #e6a800}
+.bi-tip-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.bi-tip-icon{font-size:22px;flex-shrink:0}
+.bi-tip-text{font-weight:700;font-size:14px;color:var(--black);text-align:center}
+
+/* MAIN */
+.bi-main-section{background:linear-gradient(180deg,#f8f5ee 0%,#eee8d8 100%);padding:56px 0 80px;min-height:60vh}
+.bi-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+@media(max-width:860px){.bi-layout{grid-template-columns:1fr}}
+
+/* UPLOAD PANEL */
+.bi-upload-panel{background:#fff;border:3px solid var(--black);border-radius:16px;overflow:hidden;box-shadow:0 8px 0 rgba(0,0,0,.12);transition:transform .2s}
+.bi-upload-panel:hover{transform:translateY(-2px)}
+.bi-panel-header{padding:20px 24px;display:flex;align-items:center;gap:16px}
+.bi-panel-header-dark{background:var(--black)}
+.bi-panel-header-icon{font-size:28px;background:rgba(255,255,255,.1);width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bi-panel-title{font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow);margin-bottom:2px}
+.bi-panel-sub{font-size:13px;color:#aaa;font-weight:600}
+.bi-panel-body{padding:24px}
+
+/* DROPZONE */
+.bi-dropzone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:3px dashed #ccc;border-radius:14px;padding:36px 20px;cursor:pointer;transition:all .25s;text-align:center;min-height:200px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fafafa,#f5f5f5)}
+.bi-dropzone:hover{border-color:var(--red);background:linear-gradient(135deg,#fff5f5,#ffecec);transform:scale(1.01)}
+.bi-preview-img{width:100%;max-height:280px;object-fit:contain;border-radius:10px;display:block}
+.bi-clear-btn{position:absolute;top:8px;right:8px;background:var(--black);color:#fff;border:none;border-radius:50%;width:30px;height:30px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900;transition:transform .15s}
+.bi-clear-btn:hover{transform:scale(1.2)}
+.bi-placeholder-icon{font-size:52px;margin-bottom:8px;animation:biBounce 2s ease-in-out infinite}
+@keyframes biBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bi-placeholder-title{font-weight:900;font-size:16px;color:var(--black)}
+.bi-placeholder-sub{font-size:13px;color:#888;font-weight:600;margin-top:4px}
+.bi-placeholder-types{margin-top:8px;font-size:11px;font-weight:800;color:#bbb;text-transform:uppercase;letter-spacing:1px}
+
+/* DIFFICULTY */
+.bi-section-label{font-weight:900;font-size:12px;color:#888;margin:20px 0 10px;text-transform:uppercase;letter-spacing:1px}
+.bi-diff-row{display:flex;gap:8px;flex-wrap:wrap}
+.bi-diff{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;padding:8px 14px;border-radius:20px;border:2px solid var(--black);background:#fff;cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.5px}
+.bi-diff.active{background:var(--black);color:var(--yellow);box-shadow:0 3px 0 #555}
+.bi-diff:hover:not(.active){background:#f0ede6;transform:translateY(-1px)}
+
+/* ANALYSE BUTTON */
+.bi-analyse-btn{width:100%;margin-top:20px;background:linear-gradient(135deg,var(--red),#ff4444);color:#fff;border:none;border-radius:12px;padding:18px;font-family:'Boogaloo',cursive;font-size:24px;cursor:pointer;box-shadow:0 6px 0 #8b0000;transition:all .15s;position:relative;top:0;display:flex;align-items:center;justify-content:center;gap:10px}
+.bi-analyse-btn:hover:not(:disabled){top:3px;box-shadow:0 3px 0 #8b0000;background:linear-gradient(135deg,#c20009,#e63333)}
+.bi-analyse-btn:disabled{background:#ccc;box-shadow:0 4px 0 #aaa;cursor:not-allowed;opacity:.7}
+.bi-analyse-icon{font-size:20px;animation:biSpin 3s linear infinite}
+@keyframes biSpin{0%,80%,100%{transform:rotate(0)}90%{transform:rotate(360deg)}}
+
+/* FEATURES */
+.bi-features{margin-top:20px;padding:16px;background:#f8f5ee;border-radius:10px;display:flex;flex-direction:column;gap:8px}
+.bi-feature{font-size:13px;font-weight:700;color:#555;display:flex;align-items:center;gap:8px}
+
+/* STATES */
+.bi-state-panel{background:#fff;border:3px solid var(--black);border-radius:16px;padding:48px 24px;text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.08)}
+.bi-robot-face{font-size:72px;margin-bottom:12px;animation:biRobotBob 2s ease-in-out infinite}
+@keyframes biRobotBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+.bi-state-dots{display:flex;justify-content:center;gap:6px;margin-bottom:16px}
+.bi-state-dots span{width:8px;height:8px;border-radius:50%;background:#ddd;display:inline-block}
+.bi-state-title{font-family:'Boogaloo',cursive;font-size:28px;margin-bottom:10px;color:var(--black)}
+.bi-state-sub{color:#888;font-weight:600;font-size:14px;line-height:1.7;max-width:320px;margin:0 auto 20px}
+.bi-state-examples{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.bi-state-examples span{background:var(--bg);border:2px solid #ddd;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:800;color:#666}
+
+/* LOADING */
+.bi-loading-panel{background:linear-gradient(135deg,#1A1A1A,#2d1b4e)!important;border-color:#444!important}
+.bi-loading-panel .bi-state-title{color:#fff!important}
+.bi-loading-panel .bi-state-sub{color:rgba(255,255,255,.5)!important}
+.bi-loading-bricks{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
+.bi-lb{width:28px;height:20px;border-radius:4px;animation:biLbPop .6s ease-in-out infinite alternate}
+.bi-lb1{background:var(--red);animation-delay:0s}
+.bi-lb2{background:var(--yellow);animation-delay:.2s}
+.bi-lb3{background:var(--blue);animation-delay:.4s}
+@keyframes biLbPop{from{transform:scaleY(.5);opacity:.4}to{transform:scaleY(1.3);opacity:1}}
+.bi-pulse-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.bi-pulse-dots span{width:12px;height:12px;border-radius:50%;display:inline-block;animation:biPulse .8s ease-in-out infinite}
+.bi-pulse-dots span:nth-child(2){animation-delay:.2s}
+.bi-pulse-dots span:nth-child(3){animation-delay:.4s}
+
+/* RESULTS */
+.bi-results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.bi-results-title{font-family:'Boogaloo',cursive;font-size:26px;color:var(--black)}
+.bi-retry-btn{background:none;border:2px solid var(--black);border-radius:8px;padding:7px 16px;font-weight:900;font-size:12px;cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif}
+.bi-retry-btn:hover{background:var(--black);color:#fff}
+.bi-brick-summary{background:linear-gradient(135deg,var(--black),#333);color:#fff;border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:13px;font-weight:700;line-height:1.7;border-left:4px solid var(--yellow)}
+.bi-ideas-list{display:flex;flex-direction:column;gap:16px}
+.bi-share-btn{width:100%;margin-top:20px;background:linear-gradient(135deg,var(--yellow),#ffb300);color:var(--black);border:none;border-radius:12px;padding:16px;font-family:'Boogaloo',cursive;font-size:22px;cursor:pointer;box-shadow:0 5px 0 #b89a00;transition:all .15s;position:relative;top:0}
+.bi-share-btn:hover{top:3px;box-shadow:0 2px 0 #b89a00}
+
+/* IDEA CARDS */
+.bi-idea-card{background:#fff;border:3px solid var(--black);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:default;animation:biCardIn .4s ease-out both}
+@keyframes biCardIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.bi-idea-card:nth-child(1){animation-delay:.05s}
+.bi-idea-card:nth-child(2){animation-delay:.1s}
+.bi-idea-card:nth-child(3){animation-delay:.15s}
+.bi-idea-card:nth-child(4){animation-delay:.2s}
+.bi-idea-card:hover{transform:translateY(-4px);box-shadow:0 10px 0 var(--black)}
 .bi-idea-header{padding:16px 18px 12px;border-bottom:2px solid #f0ede6;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.bi-idea-title{font-family:'Boogaloo',cursive;font-size:20px;line-height:1.2;color:var(--black)}
-.bi-idea-badge{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
-.bi-badge-beginner{background:#e8f5e9;color:#2e7d32}
-.bi-badge-intermediate{background:#fff8e1;color:#f57f17}
-.bi-badge-advanced{background:#fce4ec;color:#c62828}
+.bi-idea-title{font-family:'Boogaloo',cursive;font-size:21px;line-height:1.2;color:var(--black)}
+.bi-idea-badge{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.bi-badge-beginner{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#2e7d32;border:2px solid #a5d6a7}
+.bi-badge-intermediate{background:linear-gradient(135deg,#fff8e1,#ffecb3);color:#e65100;border:2px solid #ffe082}
+.bi-badge-advanced{background:linear-gradient(135deg,#fce4ec,#f8bbd9);color:#c62828;border:2px solid #f48fb1}
 .bi-idea-body{padding:14px 18px}
 .bi-idea-desc{font-size:13px;color:#555;font-weight:600;line-height:1.6;margin-bottom:12px}
-.bi-idea-meta{display:flex;gap:12px;font-size:12px;font-weight:800;color:#999;margin-bottom:12px;flex-wrap:wrap}
-.bi-idea-yt{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-weight:900;font-size:12px;padding:7px 14px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:all .15s}
-.bi-idea-yt:hover{background:#c20009}
-@keyframes biPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
-@media(max-width:768px){#brickIdeasLayout{grid-template-columns:1fr}}
+.bi-idea-meta{display:flex;gap:10px;font-size:12px;font-weight:800;color:#999;margin-bottom:14px;flex-wrap:wrap}
+.bi-idea-meta span{background:#f5f5f5;padding:4px 10px;border-radius:20px}
+.bi-idea-buttons{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bi-idea-yt{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--red),#ff4444);color:#fff;font-weight:900;font-size:12px;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:all .15s;box-shadow:0 3px 0 #8b0000}
+.bi-idea-yt:hover{transform:translateY(-2px);box-shadow:0 5px 0 #8b0000}
+.bi-idea-instructions-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--blue),#0088e0);color:#fff;font-weight:900;font-size:12px;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:all .15s;font-family:'Nunito',sans-serif;box-shadow:0 3px 0 #004a7a}
+.bi-idea-instructions-btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 #004a7a}
+
+/* INSTRUCTIONS MODAL */
+.bi-instr-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:700;display:none;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto;backdrop-filter:blur(4px)}
+.bi-instr-ov.open{display:flex}
+.bi-instr-modal{background:#fff;max-width:620px;width:100%;border:3px solid var(--black);border-radius:16px;overflow:hidden;position:relative;animation:biModalIn .3s ease-out}
+@keyframes biModalIn{from{transform:translateY(-30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.bi-instr-header{background:linear-gradient(135deg,var(--black),#333);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid var(--yellow)}
+.bi-instr-title{font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow)}
+.bi-instr-close{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);color:#fff;font-size:18px;cursor:pointer;font-weight:900;line-height:1;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.bi-instr-close:hover{background:var(--red);border-color:var(--red)}
+.bi-instr-body{padding:28px 32px}
+.bi-instr-loading{text-align:center;padding:40px 20px}
+.bi-instr-loading-emoji{font-size:52px;display:block;margin-bottom:12px;animation:biRobotBob 1.5s ease-in-out infinite}
+.bi-instr-loading-msg{font-weight:700;color:#888;font-size:14px}
+.bi-instr-content{font-size:14px;line-height:1.85;color:#333;font-weight:600}
+.bi-instr-content h3{font-family:'Boogaloo',cursive;font-size:20px;color:var(--black);margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #f0ede6}
+.bi-instr-content ol{padding-left:20px}
+.bi-instr-content ol li{margin-bottom:12px;padding-left:4px}
+.bi-instr-content ol li::marker{font-weight:900;color:var(--red)}
+.bi-instr-tip{background:linear-gradient(135deg,#fff8e1,#fff3cd);border-left:4px solid var(--yellow);padding:14px 18px;border-radius:0 10px 10px 0;margin-top:16px;font-size:13px;color:#555}
+
+@keyframes biPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.4}}
+@media(max-width:768px){#brickIdeasLayout{grid-template-columns:1fr}.bi-hero-title{font-size:44px}}
 </style>
 
 <script>
@@ -12807,24 +12985,25 @@ function initBrickIdeasPage() {}
 let _biDiff = 'all';
 let _biImageBase64 = null;
 let _biLastIdeas = [];
+let _biLastBrickSummary = '';
 
 // Map of keywords to your YouTube video IDs and titles
 const BI_TUTORIALS = [
-  { keywords: ['car','vehicle','sports car','race car','supercar'], id: 'RwnJHsmjugk', title: 'Lego Honda NSX 2000 MOC Tutorial' },
-  { keywords: ['batmobile','batman','bat'], id: '6a0xeHu2NmE', title: 'LEGO® 30455 Batmobile Tutorial' },
-  { keywords: ['castle','medieval','fort','tower'], id: '4_3vstfzVKM', title: 'Custom Lego Moc Battleship Showcase' },
-  { keywords: ['flower','bouquet','plant','nature'], id: 'nbwm7I5YGfU', title: 'Lego Pretty Pink Flower Bouquet' },
-  { keywords: ['truck','pickup','chevrolet','ford'], id: '3Ew51QFc-4Q', title: '1965 Chevrolet C10 Lego Moc Tutorial' },
-  { keywords: ['porsche','sports','coupe'], id: 'kAN4PEVql_I', title: 'LEGO Porsche 911 Turbo Instructions' },
-  { keywords: ['garage','workshop','mechanic','repair'], id: 'yHEHqUIx-eQ', title: 'Car Repair Shop Tutorial' },
-  { keywords: ['desk','office','accessories','stationery'], id: '1N7bRty5AHI', title: 'LEGO Desk Accessory Tutorial' },
-  { keywords: ['ship','boat','pirate','sea','ocean','water'], id: 'EKLIX0L5fmY', title: 'Lego Mini Pirate Ship in Aquarium Tutorial' },
-  { keywords: ['lighter','fire'], id: '8gJbIZOPLz8', title: 'Build Your Own LEGO MOC Lighter' },
-  { keywords: ['pencil','eraser','school'], id: 'MBFMtcRNkZM', title: 'LEGO MOC Pencil and Eraser Tutorial' },
-  { keywords: ['go-kart','kart','racing'], id: 'uKAivUHR8n4', title: 'Mini Lego MOC Go-Kart Tutorial' },
-  { keywords: ['lamborghini','lambo'], id: 'kdUV9TxQ5wY', title: 'Lamborghini V12 Vision GT' },
-  { keywords: ['mario','game','nintendo','gaming'], id: 'oJT0uDkZdu4', title: 'Custom LEGO Super Mario Game Boy' },
-  { keywords: ['store','shop','building','modular'], id: 'jbrvZUi1Ak8', title: '1958 Lego Small Store Tutorial' },
+  { keywords: ['honda','nsx','sports car','race car','supercar','formula'], id: 'RwnJHsmjugk', title: 'Lego Honda NSX 2000 MOC Tutorial' },
+  { keywords: ['batmobile','batman','bat car'], id: '6a0xeHu2NmE', title: 'LEGO® 30455 Batmobile Tutorial' },
+  { keywords: ['castle','medieval','fort','tower','battleship'], id: '4_3vstfzVKM', title: 'Custom Lego Moc Battleship Showcase' },
+  { keywords: ['flower','bouquet','plant','nature','garden'], id: 'nbwm7I5YGfU', title: 'Lego Pretty Pink Flower Bouquet' },
+  { keywords: ['truck','pickup','chevrolet','ford','fire truck','firetruck'], id: '3Ew51QFc-4Q', title: '1965 Chevrolet C10 Lego Moc Tutorial' },
+  { keywords: ['porsche','911','coupe','sports coupe'], id: 'kAN4PEVql_I', title: 'LEGO Porsche 911 Turbo Instructions' },
+  { keywords: ['garage','workshop','mechanic','repair shop','car repair'], id: 'yHEHqUIx-eQ', title: 'Car Repair Shop Tutorial' },
+  { keywords: ['desk','office','accessories','stationery','pencil holder'], id: '1N7bRty5AHI', title: 'LEGO Desk Accessory Tutorial' },
+  { keywords: ['ship','boat','pirate','sea','ocean','water','aquarium','spaceship','rocket','spacecraft'], id: 'EKLIX0L5fmY', title: 'Lego Mini Pirate Ship in Aquarium Tutorial' },
+  { keywords: ['lighter','zippo','flame'], id: '8gJbIZOPLz8', title: 'Build Your Own LEGO MOC Lighter' },
+  { keywords: ['pencil','eraser','school','pen'], id: 'MBFMtcRNkZM', title: 'LEGO MOC Pencil and Eraser Tutorial' },
+  { keywords: ['go-kart','kart','racing kart','mini car'], id: 'uKAivUHR8n4', title: 'Mini Lego MOC Go-Kart Tutorial' },
+  { keywords: ['lamborghini','lambo','supercar'], id: 'kdUV9TxQ5wY', title: 'Lamborghini V12 Vision GT' },
+  { keywords: ['mario','game boy','nintendo','gaming','controller'], id: 'oJT0uDkZdu4', title: 'Custom LEGO Super Mario Game Boy' },
+  { keywords: ['store','shop front','building','modular','house'], id: 'jbrvZUi1Ak8', title: '1958 Lego Small Store Tutorial' },
 ];
 
 function findTutorial(title, description) {
@@ -12950,6 +13129,7 @@ Fill in the real values based on what you see. ${_biDiff !== 'all' ? `All diffic
     }
 
     _biLastIdeas = parsed.ideas || [];
+    _biLastBrickSummary = parsed.brickSummary || '';
     renderBrickIdeas(parsed.brickSummary, parsed.ideas);
 
   } catch(err) {
@@ -12973,6 +13153,7 @@ function renderBrickIdeas(summary, ideas) {
   list.innerHTML = ideas.map(idea => {
     const tutorial = findTutorial(idea.title, idea.description);
     const ytBtn = tutorial ? `<a class="bi-idea-yt" href="https://youtube.com/watch?v=${tutorial.id}" target="_blank"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Watch Tutorial</a>` : '';
+    const ideaData = encodeURIComponent(JSON.stringify(idea));
     return `<div class="bi-idea-card">
       <div class="bi-idea-header">
         <div class="bi-idea-title">${idea.emoji} ${idea.title}</div>
@@ -12981,12 +13162,84 @@ function renderBrickIdeas(summary, ideas) {
       <div class="bi-idea-body">
         <div class="bi-idea-desc">${idea.description}</div>
         <div class="bi-idea-meta"><span>🧱 ${idea.pieces}</span><span>⏱️ ${idea.time}</span>${idea.tags.map(t=>`<span>#${t}</span>`).join('')}</div>
-        ${ytBtn}
+        <div class="bi-idea-buttons">
+          ${ytBtn}
+          <button class="bi-idea-instructions-btn" onclick="getInstructions(${ideaData})">📋 Get Instructions</button>
+        </div>
       </div>
     </div>`;
   }).join('');
 
   document.getElementById('biAnalyseBtn').disabled = false;
+}
+
+function closeBiInstr() {
+  document.getElementById('biInstrOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+async function getInstructions(idea) {
+  const overlay = document.getElementById('biInstrOverlay');
+  const loading = document.getElementById('biInstrLoading');
+  const content = document.getElementById('biInstrContent');
+  const title = document.getElementById('biInstrTitle');
+
+  title.textContent = `📋 ${idea.emoji} ${idea.title}`;
+  loading.style.display = 'block';
+  content.style.display = 'none';
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  const prompt = `You are a LEGO® building expert. Write simple step-by-step building instructions for a "${idea.title}" (${idea.difficulty} difficulty, approx ${idea.pieces}, ${idea.time}).
+
+The builder has these bricks: ${_biLastBrickSummary || 'a mix of LEGO® bricks'}.
+
+Format your response EXACTLY like this (use these exact headings):
+### What You'll Need
+List the key bricks needed.
+
+### Steps
+1. Step one
+2. Step two
+(etc, max 10 steps, keep each step short and clear)
+
+### Pro Tip
+One helpful building tip.
+
+Keep it friendly, fun and suitable for LEGO® fans. Do not use markdown bold (**).`;
+
+  try {
+    const response = await fetch('https://openrouterproxy.bricktasticbuilds01.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: _biImageBase64, prompt })
+    });
+
+    const data = await response.json();
+    const text = data.text || '';
+    if (!text) throw new Error('No instructions returned');
+
+    // Convert the formatted text to HTML
+    let html = text
+      .replace(/### What You'll Need/g, '<h3>🧱 What You\'ll Need</h3>')
+      .replace(/### Steps/g, '<h3>📋 Steps</h3><ol>')
+      .replace(/### Pro Tip/g, '</ol><h3>💡 Pro Tip</h3><div class="bi-instr-tip">')
+      .replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/<\/div>\s*$/, '</div>')
+      + (text.includes('### Pro Tip') ? '</div>' : '');
+
+    // Wrap if ol wasn't closed
+    if (!html.includes('</ol>') && html.includes('<ol>')) html += '</ol>';
+
+    loading.style.display = 'none';
+    content.style.display = 'block';
+    content.innerHTML = html;
+
+  } catch(err) {
+    loading.style.display = 'none';
+    content.style.display = 'block';
+    content.innerHTML = `<p style="color:#e53935;font-weight:700">Could not generate instructions. Please try again.</p>`;
+  }
 }
 
 function shareBrickIdeas() {
@@ -13010,11 +13263,30 @@ document.addEventListener('keydown', function(e) {
     if (gallOv && gallOv.classList.contains('open')) { gallOv.classList.remove('open'); document.body.style.overflow=''; }
     const mocOv = document.querySelector('.moc-detail-ov.open');
     if (mocOv) { mocOv.classList.remove('open'); document.body.style.overflow=''; }
+    const biInstrOv = document.getElementById('biInstrOverlay');
+    if (biInstrOv && biInstrOv.classList.contains('open')) { closeBiInstr(); }
     closeSearch();
   }
 });
 
 </script>
+
+<!-- Brick Instructions Modal -->
+<div class="bi-instr-ov" id="biInstrOverlay">
+  <div class="bi-instr-modal">
+    <div class="bi-instr-header">
+      <span class="bi-instr-title" id="biInstrTitle">📋 Build Instructions</span>
+      <button class="bi-instr-close" onclick="closeBiInstr()">✕</button>
+    </div>
+    <div class="bi-instr-body">
+      <div class="bi-instr-loading" id="biInstrLoading">
+        <span class="bi-instr-loading-emoji">🤖</span>
+        <div class="bi-instr-loading-msg">Generating your instructions…</div>
+      </div>
+      <div class="bi-instr-content" id="biInstrContent" style="display:none"></div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

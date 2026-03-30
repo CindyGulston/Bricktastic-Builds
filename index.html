@@ -12749,6 +12749,11 @@ function initBrickIdeasPage() {
               <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
               <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
                 <img id="biPreview" class="bi-preview-img" alt="Your bricks">
+                <div class="bi-scan-overlay" id="biScanOverlay" style="display:none">
+                  <div class="bi-scan-overlay-grid"></div>
+                  <div class="bi-scan-overlay-vignette"></div>
+                  <div class="bi-scan-overlay-line" id="biScanLine"></div>
+                </div>
                 <button onclick="clearBrickPhoto(event)" class="bi-clear-btn">✕</button>
               </div>
               <div id="biPlaceholder" class="bi-placeholder">
@@ -12765,11 +12770,12 @@ function initBrickIdeasPage() {
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 Upload Photo
               </label>
-              <label for="biCameraInput" class="bi-upload-choice-btn bi-upload-camera">
-                <input type="file" id="biCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleBrickPhoto(this)">
+              <!-- Hidden native capture fallback for mobile -->
+              <input type="file" id="biCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleBrickPhoto(this)">
+              <button type="button" class="bi-upload-choice-btn bi-upload-camera" onclick="openCameraOrCapture()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
                 Take Photo
-              </label>
+              </button>
             </div>
 
             <!-- Difficulty -->
@@ -13082,7 +13088,74 @@ function initBrickIdeasPage() {
 .bi-missing-chips{display:flex;gap:5px;flex-wrap:wrap}
 .bi-missing-chip{font-size:11px;font-weight:800;color:#666;background:#fff;border:1.5px solid #ddd;border-radius:6px;padding:3px 8px}
 
-/* ── INSPIRATION GALLERY SECTION ── */
+/* ══ BRICKIT CAMERA MODAL ══ */
+.bk-cam-ov{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+.bk-cam-ov.open{display:flex}
+.bk-cam-modal{background:#111;border-radius:24px;overflow:hidden;width:100%;max-width:480px;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:bkModalIn .32s cubic-bezier(.34,1.3,.64,1)}
+@keyframes bkModalIn{from{transform:translateY(40px) scale(.94);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.bk-cam-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:2px solid #222}
+.bk-cam-title{font-family:'Boogaloo',cursive;font-size:20px;color:var(--yellow)}
+.bk-cam-close{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);font-size:16px;cursor:pointer;font-weight:900;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.bk-cam-close:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+/* ── Viewport ── */
+.bk-cam-viewport{position:relative;width:100%;aspect-ratio:4/3;background:#000;overflow:hidden}
+.bk-cam-video{width:100%;height:100%;object-fit:cover;display:block}
+.bk-cam-canvas{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Corner brackets */
+.bk-vf-corner{position:absolute;width:28px;height:28px;z-index:4;pointer-events:none}
+.bk-vf-tl{top:14px;left:14px;border-top:3px solid var(--yellow);border-left:3px solid var(--yellow);border-radius:4px 0 0 0}
+.bk-vf-tr{top:14px;right:14px;border-top:3px solid var(--yellow);border-right:3px solid var(--yellow);border-radius:0 4px 0 0}
+.bk-vf-bl{bottom:14px;left:14px;border-bottom:3px solid var(--yellow);border-left:3px solid var(--yellow);border-radius:0 0 0 4px}
+.bk-vf-br{bottom:14px;right:14px;border-bottom:3px solid var(--yellow);border-right:3px solid var(--yellow);border-radius:0 0 4px 0}
+
+/* Scanning line */
+.bk-scan-line{position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),rgba(255,100,0,.8),var(--red),transparent);box-shadow:0 0 18px 4px rgba(227,0,11,.55),0 0 40px 8px rgba(227,0,11,.2);animation:bkScan 2.2s ease-in-out infinite;z-index:3;top:0;pointer-events:none}
+@keyframes bkScan{0%{top:0%;opacity:.8}50%{top:calc(100% - 3px);opacity:1}100%{top:0%;opacity:.8}}
+.bk-scan-line.frozen{animation:none;display:none}
+.bk-scan-label{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);backdrop-filter:blur(8px);color:rgba(255,255,255,.85);font-size:12px;font-weight:800;padding:7px 16px;border-radius:20px;white-space:nowrap;z-index:4;border:1px solid rgba(255,255,255,.1)}
+
+/* Flash effect on capture */
+.bk-flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:5;pointer-events:none;transition:opacity .08s}
+.bk-flash.bang{opacity:1}
+
+/* Error state */
+.bk-cam-error{text-align:center;padding:40px 24px;color:#fff;display:flex;flex-direction:column;align-items:center;gap:12px}
+.bk-cam-error p{font-weight:700;color:rgba(255,255,255,.65);font-size:14px}
+.bk-cam-fallback-btn{background:var(--yellow);color:var(--black);border:none;border-radius:10px;padding:10px 20px;font-weight:900;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif}
+
+/* ── Footer controls ── */
+.bk-cam-footer{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px 24px;position:relative}
+.bk-shutter-btn{position:relative;width:70px;height:70px;border-radius:50%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .12s;flex-shrink:0}
+.bk-shutter-btn:active{transform:scale(.9)}
+.bk-shutter-ring{position:absolute;inset:0;border-radius:50%;border:4px solid #fff;opacity:.7}
+.bk-shutter-inner{width:54px;height:54px;border-radius:50%;background:#fff;display:block;transition:background .12s}
+.bk-shutter-btn:hover .bk-shutter-inner{background:#eee}
+.bk-shutter-btn:active .bk-shutter-inner{background:var(--red)}
+.bk-cam-flip-btn{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.15);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.bk-cam-flip-btn:hover{background:rgba(255,255,255,.2);transform:rotate(20deg)}
+.bk-cam-retake-btn,.bk-cam-use-btn{border:none;border-radius:10px;padding:10px 18px;font-weight:900;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s}
+.bk-cam-retake-btn{background:rgba(255,255,255,.1);color:#fff}
+.bk-cam-retake-btn:hover{background:rgba(255,255,255,.2)}
+.bk-cam-use-btn{background:var(--green);color:#fff;box-shadow:0 4px 0 #006635}
+.bk-cam-use-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #006635}
+.bk-cam-tip{background:rgba(255,215,0,.07);border-top:1px solid rgba(255,215,0,.15);color:rgba(255,215,0,.7);font-size:11px;font-weight:800;text-align:center;padding:10px 20px;letter-spacing:.3px}
+
+/* ══ ENHANCED RESULT CARDS — colour dots ══ */
+.bi-brick-dots{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+.bi-brick-dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(0,0,0,.12);flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.15);transition:transform .15s}
+.bi-brick-dot:hover{transform:scale(1.3)}
+.bi-dot-label{font-size:10px;font-weight:800;color:#bbb;text-transform:uppercase;letter-spacing:.8px;margin-left:2px}
+
+/* ══ BRICKIT SCAN OVERLAY — on preview image after upload ══ */
+.bi-scan-overlay{position:absolute;inset:0;border-radius:10px;overflow:hidden;pointer-events:none;z-index:2}
+.bi-scan-overlay-line{position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(227,0,11,.9),rgba(255,120,0,.9),rgba(227,0,11,.9),transparent);box-shadow:0 0 16px 4px rgba(227,0,11,.45);top:0;animation:biScanImg 1.6s ease-in-out 3 forwards}
+@keyframes biScanImg{0%{top:0%;opacity:1}50%{top:calc(100% - 3px);opacity:1}100%{top:0%;opacity:0;display:none}}
+.bi-scan-overlay-vignette{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(227,0,11,.06) 0%,transparent 30%,transparent 70%,rgba(227,0,11,.06) 100%)}
+.bi-scan-overlay-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:20px 20px}
+.bi-scan-overlay.done{opacity:0;transition:opacity .5s .2s}
+
 .bi-gallery-section{background:#fff;padding:72px 0 80px;border-top:1px solid #ede9e0}
 .bi-gallery-header{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:48px}
 @media(max-width:700px){.bi-gallery-header{grid-template-columns:1fr;gap:16px}}
@@ -13159,8 +13232,25 @@ function handleBrickPhoto(input) {
     document.getElementById('biPlaceholder').style.display = 'none';
     document.getElementById('biAnalyseBtn').disabled = false;
     document.getElementById('biDropZone').style.borderColor = 'var(--green)';
+    // Brickit-style scan animation
+    showScanOverlay();
   };
   reader.readAsDataURL(file);
+}
+
+function showScanOverlay() {
+  const overlay = document.getElementById('biScanOverlay');
+  const line = document.getElementById('biScanLine');
+  if (!overlay) return;
+  // Reset & show
+  overlay.classList.remove('done');
+  overlay.style.display = 'block';
+  // Clone line to restart animation
+  const newLine = line.cloneNode(true);
+  line.parentNode.replaceChild(newLine, line);
+  // Hide after 3 loops (~4.8s)
+  setTimeout(() => overlay.classList.add('done'), 4900);
+  setTimeout(() => overlay.style.display = 'none', 5500);
 }
 
 function clearBrickPhoto(e) {
@@ -13198,7 +13288,129 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-const BI_LOADING_MSGS = [
+// ══ CAMERA MODAL ══════════════════════════════════════════════════════════════
+let _bkStream = null;
+let _bkFacingMode = 'environment';
+let _bkCapturedDataUrl = null;
+
+function openCameraOrCapture() {
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    openCameraModal();
+  } else {
+    // Fallback: native file picker with capture hint
+    document.getElementById('biCameraInput').click();
+  }
+}
+
+function openCameraModal() {
+  const modal = document.getElementById('biCameraModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  _bkCapturedDataUrl = null;
+  resetToLiveCamera();
+  startCamera();
+}
+
+function closeCameraModal() {
+  stopCamera();
+  document.getElementById('biCameraModal').classList.remove('open');
+  document.body.style.overflow = '';
+  _bkCapturedDataUrl = null;
+}
+
+async function startCamera() {
+  const video = document.getElementById('bkVideo');
+  const errDiv = document.getElementById('bkCamError');
+  const footer = document.getElementById('bkCamFooter');
+  const scanLine = document.getElementById('bkScanLine');
+  errDiv.style.display = 'none';
+  footer.style.display = 'flex';
+  if (scanLine) scanLine.classList.remove('frozen');
+  try {
+    if (_bkStream) { _bkStream.getTracks().forEach(t => t.stop()); _bkStream = null; }
+    const constraints = { video: { facingMode: _bkFacingMode, width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false };
+    _bkStream = await navigator.mediaDevices.getUserMedia(constraints);
+    video.srcObject = _bkStream;
+    video.style.display = 'block';
+    document.getElementById('bkCanvas').style.display = 'none';
+    resetToLiveCamera();
+  } catch(err) {
+    errDiv.style.display = 'flex';
+    footer.style.display = 'none';
+    const msg = document.getElementById('bkCamErrorMsg');
+    if (err.name === 'NotAllowedError') msg.textContent = 'Camera access was denied. Please allow camera access in your browser settings.';
+    else if (err.name === 'NotFoundError') msg.textContent = 'No camera found on this device.';
+    else msg.textContent = 'Could not start camera: ' + err.message;
+  }
+}
+
+function stopCamera() {
+  if (_bkStream) { _bkStream.getTracks().forEach(t => t.stop()); _bkStream = null; }
+  const video = document.getElementById('bkVideo');
+  if (video) video.srcObject = null;
+}
+
+function flipCamera() {
+  _bkFacingMode = _bkFacingMode === 'environment' ? 'user' : 'environment';
+  startCamera();
+}
+
+function capturePhoto() {
+  const video = document.getElementById('bkVideo');
+  const canvas = document.getElementById('bkCanvas');
+  const flash = document.getElementById('bkFlash');
+  const scanLine = document.getElementById('bkScanLine');
+  const scanLabel = document.getElementById('bkScanLabel');
+  flash.classList.add('bang');
+  setTimeout(() => flash.classList.remove('bang'), 140);
+  canvas.width = video.videoWidth || 640;
+  canvas.height = video.videoHeight || 480;
+  const ctx = canvas.getContext('2d');
+  if (_bkFacingMode === 'user') { ctx.translate(canvas.width, 0); ctx.scale(-1, 1); }
+  ctx.drawImage(video, 0, 0);
+  _bkCapturedDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+  video.style.display = 'none';
+  canvas.style.display = 'block';
+  if (scanLine) scanLine.classList.add('frozen');
+  if (scanLabel) scanLabel.textContent = '✅ Looks good! Use this photo or retake.';
+  stopCamera();
+  document.getElementById('bkShutterBtn').style.display = 'none';
+  document.getElementById('bkFlipBtn').style.display = 'none';
+  document.getElementById('bkRetakeBtn').style.display = 'inline-flex';
+  document.getElementById('bkUseBtn').style.display = 'inline-flex';
+}
+
+function retakePhoto() {
+  _bkCapturedDataUrl = null;
+  resetToLiveCamera();
+  startCamera();
+}
+
+function resetToLiveCamera() {
+  document.getElementById('bkShutterBtn').style.display = 'flex';
+  document.getElementById('bkFlipBtn').style.display = 'flex';
+  document.getElementById('bkRetakeBtn').style.display = 'none';
+  document.getElementById('bkUseBtn').style.display = 'none';
+  const sl = document.getElementById('bkScanLabel');
+  if (sl) sl.textContent = '🔍 Scatter your bricks & point the camera';
+  const ln = document.getElementById('bkScanLine');
+  if (ln) ln.classList.remove('frozen');
+}
+
+function useCapturedPhoto() {
+  if (!_bkCapturedDataUrl) return;
+  closeCameraModal();
+  _biImageBase64 = _bkCapturedDataUrl.split(',')[1];
+  document.getElementById('biPreview').src = _bkCapturedDataUrl;
+  document.getElementById('biPreviewWrap').style.display = 'block';
+  document.getElementById('biPlaceholder').style.display = 'none';
+  document.getElementById('biAnalyseBtn').disabled = false;
+  document.getElementById('biDropZone').style.borderColor = 'var(--green)';
+  showScanOverlay();
+}
+// ════════════════════════════════════════════════════════════════════════════
+
+
   { emoji: '🧱', msg: 'Spotting your bricks…' },
   { emoji: '🎨', msg: 'Identifying colours…' },
   { emoji: '📐', msg: 'Counting shapes and sizes…' },
@@ -13269,15 +13481,38 @@ Fill in the real values based on what you see. confidence is a number 1-100 repr
   }
 }
 
+// Colour dot palette — map colour names to hex
+const BRICK_COLOUR_MAP = {
+  red:'#E3000B',orange:'#FF6B00',yellow:'#FFD700',green:'#00A650',
+  lime:'#8BC34A',teal:'#009688',blue:'#006CB7','light blue':'#4FC3F7',
+  'dark blue':'#1A237E',purple:'#7B1FA2',violet:'#9C27B0',pink:'#E91E63',
+  white:'#FAFAFA','light grey':'#CFD8DC','light gray':'#CFD8DC',
+  grey:'#90A4AE',gray:'#90A4AE','dark grey':'#455A64','dark gray':'#455A64',
+  black:'#1A1A1A',brown:'#795548',tan:'#D7BC8D',sand:'#E2D6A0',
+  transparent:'rgba(180,220,255,0.6)',clear:'rgba(180,220,255,0.6)'
+};
+
+function extractColoursFromText(text) {
+  const found = [];
+  const t = text.toLowerCase();
+  for (const [name, hex] of Object.entries(BRICK_COLOUR_MAP)) {
+    if (t.includes(name) && !found.some(f => f.hex === hex)) {
+      found.push({ name, hex });
+    }
+  }
+  return found.slice(0, 8);
+}
+
 function renderBrickIdeas(summary, ideas) {
   document.getElementById('biLoadingState').style.display = 'none';
   document.getElementById('biResultsState').style.display = 'block';
   document.getElementById('biBrickSummary').innerHTML = '🔍 <strong>What the AI saw:</strong> ' + summary;
 
   const badgeClass = { 'Beginner': 'bi-badge-beginner', 'Intermediate': 'bi-badge-intermediate', 'Advanced': 'bi-badge-advanced' };
-  const bannerColors = [
-    '#1a1a2e','#0d2137','#1a2e0d','#2e0d1a',
-  ];
+  const bannerColors = ['#1a1a2e','#0d2137','#1a2e0d','#2e0d1a'];
+
+  // Extract global colours from summary for dot display
+  const globalColours = extractColoursFromText(summary + ' ' + ideas.map(i => i.description).join(' '));
 
   const list = document.getElementById('biIdeasList');
   list.innerHTML = ideas.map((idea, idx) => {
@@ -13289,6 +13524,16 @@ function renderBrickIdeas(summary, ideas) {
     const missingHtml = missing.length > 0
       ? `<div class="bi-missing"><div class="bi-missing-label">You might need</div><div class="bi-missing-chips">${missing.map(m=>`<span class="bi-missing-chip">${m}</span>`).join('')}</div></div>`
       : '';
+    // Colour dots — from idea description + global colours
+    const ideaColours = extractColoursFromText(idea.description + ' ' + (idea.tags||[]).join(' '));
+    const dots = (ideaColours.length ? ideaColours : globalColours).slice(0, 6);
+    const dotsHtml = dots.length ? `<div class="bi-brick-dots">
+      ${dots.map(d=>`<span class="bi-brick-dot" style="background:${d.hex}" title="${d.name}"></span>`).join('')}
+      <span class="bi-dot-label">brick colours</span>
+    </div>` : '';
+    // Match bar colour based on confidence
+    const barColor = conf >= 80 ? 'linear-gradient(90deg,#00c853,#69f0ae)' : conf >= 60 ? 'linear-gradient(90deg,#ff9800,#ffcc02)' : 'linear-gradient(90deg,#e53935,#ef9a9a)';
+    const pctColor = conf >= 80 ? 'var(--green)' : conf >= 60 ? 'var(--orange)' : 'var(--red)';
     return `<div class="bi-idea-card bi-reveal bi-reveal-delay-${(idx%4)+1}">
       <div class="bi-idea-banner" style="background:${bg}">
         <span style="font-size:58px;z-index:1;position:relative">${idea.emoji}</span>
@@ -13297,9 +13542,10 @@ function renderBrickIdeas(summary, ideas) {
       </div>
       <div class="bi-idea-body">
         <div class="bi-idea-title">${idea.title}</div>
+        ${dotsHtml}
         <div class="bi-match-bar-wrap">
-          <div class="bi-match-meta"><span>Brick match</span><span class="bi-match-pct">${conf}%</span></div>
-          <div class="bi-match-bar"><div class="bi-match-fill" data-width="${conf}"></div></div>
+          <div class="bi-match-meta"><span>Brick match</span><span class="bi-match-pct" style="color:${pctColor}">${conf}%</span></div>
+          <div class="bi-match-bar"><div class="bi-match-fill" data-width="${conf}" data-color="${barColor}"></div></div>
         </div>
         <div class="bi-idea-desc">${idea.description}</div>
         ${missingHtml}
@@ -13318,11 +13564,10 @@ function renderBrickIdeas(summary, ideas) {
 
   document.getElementById('biAnalyseBtn').disabled = false;
 
-  // Trigger scroll-reveal for new cards
   setTimeout(() => {
     document.querySelectorAll('#biIdeasList .bi-reveal').forEach(el => el.classList.add('visible'));
-    // Animate match bars
     document.querySelectorAll('.bi-match-fill').forEach(el => {
+      el.style.background = el.dataset.color || 'linear-gradient(90deg,#00c853,#69f0ae)';
       el.style.width = el.dataset.width + '%';
     });
   }, 80);
@@ -13422,11 +13667,60 @@ document.addEventListener('keydown', function(e) {
     if (mocOv) { mocOv.classList.remove('open'); document.body.style.overflow=''; }
     const biInstrOv = document.getElementById('biInstrOverlay');
     if (biInstrOv && biInstrOv.classList.contains('open')) { closeBiInstr(); }
+    const bkCamOv = document.getElementById('biCameraModal');
+    if (bkCamOv && bkCamOv.classList.contains('open')) { closeCameraModal(); }
     closeSearch();
   }
 });
 
 </script>
+
+<!-- ══ BRICKIT-STYLE CAMERA MODAL ══ -->
+<div id="biCameraModal" class="bk-cam-ov">
+  <div class="bk-cam-modal">
+    <!-- Header -->
+    <div class="bk-cam-header">
+      <span class="bk-cam-title">📸 Snap Your Bricks</span>
+      <button class="bk-cam-close" onclick="closeCameraModal()">✕</button>
+    </div>
+    <!-- Video stream / frozen frame -->
+    <div class="bk-cam-viewport" id="bkCamViewport">
+      <video id="bkVideo" class="bk-cam-video" autoplay playsinline muted></video>
+      <canvas id="bkCanvas" class="bk-cam-canvas" style="display:none"></canvas>
+      <!-- Corner brackets (Brickit-style viewfinder) -->
+      <div class="bk-vf-corner bk-vf-tl"></div>
+      <div class="bk-vf-corner bk-vf-tr"></div>
+      <div class="bk-vf-corner bk-vf-bl"></div>
+      <div class="bk-vf-corner bk-vf-br"></div>
+      <!-- Scan line -->
+      <div class="bk-scan-line" id="bkScanLine"></div>
+      <!-- Scanning label -->
+      <div class="bk-scan-label" id="bkScanLabel">🔍 Scatter your bricks &amp; point the camera</div>
+      <!-- Frozen flash -->
+      <div class="bk-flash" id="bkFlash"></div>
+    </div>
+    <!-- Permission / error state -->
+    <div class="bk-cam-error" id="bkCamError" style="display:none">
+      <span style="font-size:42px">📷</span>
+      <p id="bkCamErrorMsg">Camera access was denied.</p>
+      <button class="bk-cam-fallback-btn" onclick="closeCameraModal();document.getElementById('biCameraInput').click()">Upload a photo instead</button>
+    </div>
+    <!-- Footer controls -->
+    <div class="bk-cam-footer" id="bkCamFooter">
+      <button class="bk-cam-flip-btn" id="bkFlipBtn" onclick="flipCamera()" title="Flip camera">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
+      </button>
+      <button class="bk-shutter-btn" id="bkShutterBtn" onclick="capturePhoto()">
+        <span class="bk-shutter-ring"></span>
+        <span class="bk-shutter-inner"></span>
+      </button>
+      <button class="bk-cam-retake-btn" id="bkRetakeBtn" style="display:none" onclick="retakePhoto()">↩ Retake</button>
+      <button class="bk-cam-use-btn" id="bkUseBtn" style="display:none" onclick="useCapturedPhoto()">Use Photo ✓</button>
+    </div>
+    <!-- Tip bar -->
+    <div class="bk-cam-tip">💡 Tip: Spread bricks on a flat bright surface for best results</div>
+  </div>
+</div>
 
 <!-- Brick Instructions Modal -->
 <div class="bi-instr-ov" id="biInstrOverlay">

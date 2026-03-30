@@ -13062,9 +13062,8 @@ function initBrickIdeasPage() {
 
 /* ── CAMERA / UPLOAD BUTTONS ── */
 .bi-upload-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;margin-bottom:14px}
-/* MOC section styles */
 .bi-moc-section{margin-bottom:8px}
-.bi-moc-section-label{font-family:'Boogaloo',cursive;font-size:16px;color:var(--black);padding:10px 14px;background:linear-gradient(135deg,#FFD700,#FF6B00);border-radius:10px;margin-bottom:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.bi-moc-section-label{font-family:'Boogaloo',cursive;font-size:16px;color:var(--black);padding:10px 14px;background:linear-gradient(135deg,#FFD700,#FF6B00);border-radius:10px;margin-bottom:12px;font-weight:700}
 .bi-ai-section-label{font-family:'Boogaloo',cursive;font-size:15px;color:#888;padding:8px 0 10px;border-top:2px dashed #e0ddd5;margin-top:6px;margin-bottom:10px}
 .bi-moc-card{border:2.5px solid var(--yellow)!important;box-shadow:0 4px 0 rgba(255,215,0,0.35)}
 .bi-moc-banner{background:linear-gradient(135deg,#1a1a2e,#2e1a0d)!important}
@@ -13230,11 +13229,11 @@ const MY_BUILDS = [
     description: 'A mini LEGO® gaming PC setup complete with monitor, keyboard, mouse and gaming chair.',
     youtubeId: 'RwnJHsmjugk',
     requiredParts: [
-      { color: 'black',      type: 'brick',  qty: 8 },
-      { color: 'grey',       type: 'plate',  qty: 6 },
-      { color: 'light grey', type: 'brick',  qty: 4 },
-      { color: 'white',      type: 'plate',  qty: 4 },
-      { color: 'blue',       type: 'plate',  qty: 2 },
+      { color: 'black',      type: 'brick', qty: 8 },
+      { color: 'grey',       type: 'plate', qty: 6 },
+      { color: 'light grey', type: 'brick', qty: 4 },
+      { color: 'white',      type: 'plate', qty: 4 },
+      { color: 'blue',       type: 'plate', qty: 2 },
     ]
   },
   {
@@ -13244,13 +13243,13 @@ const MY_BUILDS = [
     pieces: '~120',
     time: '45 mins',
     description: 'A classic LEGO® Dodge Challenger 1979 build — muscle car styling with stunning detail.',
-    youtubeId: 'YOUR_VIDEO_ID', // ← replace with your actual YouTube video ID
+    youtubeId: 'Y01mI5r9fY8',
     requiredParts: [
-      { color: 'black',      type: 'brick',  qty: 20 },
-      { color: 'grey',       type: 'brick',  qty: 10 },
-      { color: 'white',      type: 'plate',  qty: 8 },
-      { color: 'red',        type: 'plate',  qty: 4 },
-      { color: 'black',      type: 'plate',  qty: 8 },
+      { color: 'black', type: 'brick', qty: 20 },
+      { color: 'grey',  type: 'brick', qty: 10 },
+      { color: 'white', type: 'plate', qty: 8  },
+      { color: 'red',   type: 'plate', qty: 4  },
+      { color: 'black', type: 'plate', qty: 8  },
     ]
   },
   // ── ADD MORE MOCS HERE ──────────────────────────────────────────────────
@@ -13270,7 +13269,6 @@ const MY_BUILDS = [
 ];
 
 // Match detected parts against MY_BUILDS library
-// Returns builds sorted by match %, filtered to >= 50% match
 function matchMyBuilds(detectedParts) {
   if (!detectedParts || !detectedParts.length) return [];
   return MY_BUILDS.map(build => {
@@ -13278,7 +13276,6 @@ function matchMyBuilds(detectedParts) {
     const total = build.requiredParts.length;
     const missingParts = [];
     build.requiredParts.forEach(req => {
-      // Fuzzy match: colour partial match + type partial match
       const found = detectedParts.find(p => {
         const colorMatch = p.color && req.color &&
           (p.color.toLowerCase().includes(req.color.toLowerCase()) ||
@@ -13289,11 +13286,8 @@ function matchMyBuilds(detectedParts) {
         const qtyOk = (p.qty || 1) >= req.qty;
         return colorMatch && typeMatch && qtyOk;
       });
-      if (found) {
-        matched++;
-      } else {
-        missingParts.push(`${req.qty}× ${req.color} ${req.type}`);
-      }
+      if (found) matched++;
+      else missingParts.push(`${req.qty}× ${req.color} ${req.type}`);
     });
     const matchPercent = Math.round((matched / total) * 100);
     return { ...build, matchPercent, missingParts: missingParts.slice(0, 3) };
@@ -13607,24 +13601,21 @@ function renderBrickIdeas(summary, ideas, mocMatches) {
 
   const badgeClass = { 'Beginner': 'bi-badge-beginner', 'Intermediate': 'bi-badge-intermediate', 'Advanced': 'bi-badge-advanced' };
   const bannerColors = ['#1a1a2e','#0d2137','#1a2e0d','#2e0d1a'];
-
-  // Extract global colours from summary for dot display
   const globalColours = extractColoursFromText(summary + ' ' + ideas.map(i => i.description).join(' '));
-
   const list = document.getElementById('biIdeasList');
 
-  // ── Render matched MOC builds first ──────────────────────────────────────
+  // ── MOC matches first ─────────────────────────────────────────────────────
   let mocHtml = '';
   if (mocMatches && mocMatches.length) {
     mocHtml = `<div class="bi-moc-section">
       <div class="bi-moc-section-label">🏆 Your Builds — You Can Make These!</div>
       ${mocMatches.map((moc, idx) => {
         const matchColor = moc.matchPercent >= 80 ? 'linear-gradient(90deg,#00c853,#69f0ae)' : 'linear-gradient(90deg,#ff9800,#ffcc02)';
-        const pctColor = moc.matchPercent >= 80 ? 'var(--green)' : 'var(--orange)';
+        const pctColor  = moc.matchPercent >= 80 ? 'var(--green)' : 'var(--orange)';
         const missingHtml = moc.missingParts.length
           ? `<div class="bi-missing"><div class="bi-missing-label">You might need</div><div class="bi-missing-chips">${moc.missingParts.map(m=>`<span class="bi-missing-chip">${m}</span>`).join('')}</div></div>`
           : `<div class="bi-missing-none">✅ You have all the bricks!</div>`;
-        const ytLink = moc.youtubeId && moc.youtubeId !== 'YOUR_VIDEO_ID'
+        const ytLink = moc.youtubeId
           ? `<a class="bi-idea-yt bi-moc-yt" href="https://youtube.com/watch?v=${moc.youtubeId}" target="_blank"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Watch Tutorial</a>`
           : '';
         return `<div class="bi-idea-card bi-moc-card bi-reveal bi-reveal-delay-${(idx%4)+1}">
@@ -13642,10 +13633,7 @@ function renderBrickIdeas(summary, ideas, mocMatches) {
             </div>
             <div class="bi-idea-desc">${moc.description}</div>
             ${missingHtml}
-            <div class="bi-idea-meta">
-              <span>🧱 ${moc.pieces}</span>
-              <span>⏱ ${moc.time}</span>
-            </div>
+            <div class="bi-idea-meta"><span>🧱 ${moc.pieces}</span><span>⏱ ${moc.time}</span></div>
             <div class="bi-idea-buttons">${ytLink}</div>
           </div>
         </div>`;
@@ -13654,7 +13642,7 @@ function renderBrickIdeas(summary, ideas, mocMatches) {
     <div class="bi-ai-section-label">🤖 More AI-Generated Ideas</div>`;
   }
 
-  // ── Render AI ideas ───────────────────────────────────────────────────────
+  // ── AI ideas ──────────────────────────────────────────────────────────────
   const aiHtml = ideas.map((idea, idx) => {
     const tutorial = findTutorial(idea.title, idea.description);
     const ytBtn = tutorial ? `<a class="bi-idea-yt" href="https://youtube.com/watch?v=${tutorial.id}" target="_blank"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Tutorial</a>` : '';
@@ -13664,14 +13652,9 @@ function renderBrickIdeas(summary, ideas, mocMatches) {
     const missingHtml = missing.length > 0
       ? `<div class="bi-missing"><div class="bi-missing-label">You might need</div><div class="bi-missing-chips">${missing.map(m=>`<span class="bi-missing-chip">${m}</span>`).join('')}</div></div>`
       : '';
-    // Colour dots — from idea description + global colours
     const ideaColours = extractColoursFromText(idea.description + ' ' + (idea.tags||[]).join(' '));
     const dots = (ideaColours.length ? ideaColours : globalColours).slice(0, 6);
-    const dotsHtml = dots.length ? `<div class="bi-brick-dots">
-      ${dots.map(d=>`<span class="bi-brick-dot" style="background:${d.hex}" title="${d.name}"></span>`).join('')}
-      <span class="bi-dot-label">brick colours</span>
-    </div>` : '';
-    // Match bar colour based on confidence
+    const dotsHtml = dots.length ? `<div class="bi-brick-dots">${dots.map(d=>`<span class="bi-brick-dot" style="background:${d.hex}" title="${d.name}"></span>`).join('')}<span class="bi-dot-label">brick colours</span></div>` : '';
     const barColor = conf >= 80 ? 'linear-gradient(90deg,#00c853,#69f0ae)' : conf >= 60 ? 'linear-gradient(90deg,#ff9800,#ffcc02)' : 'linear-gradient(90deg,#e53935,#ef9a9a)';
     const pctColor = conf >= 80 ? 'var(--green)' : conf >= 60 ? 'var(--orange)' : 'var(--red)';
     return `<div class="bi-idea-card bi-reveal bi-reveal-delay-${(idx%4)+1}">
@@ -13690,8 +13673,7 @@ function renderBrickIdeas(summary, ideas, mocMatches) {
         <div class="bi-idea-desc">${idea.description}</div>
         ${missingHtml}
         <div class="bi-idea-meta">
-          <span>🧱 ${idea.pieces}</span>
-          <span>⏱ ${idea.time}</span>
+          <span>🧱 ${idea.pieces}</span><span>⏱ ${idea.time}</span>
           ${(idea.tags||[]).map(t=>`<span>#${t}</span>`).join('')}
         </div>
         <div class="bi-idea-buttons">

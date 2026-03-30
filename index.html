@@ -12940,11 +12940,11 @@ Fill in the real values based on what you see. ${_biDiff !== 'all' ? `All diffic
     const data = await response.json();
 
     if (!response.ok || data.error) {
-      throw new Error(data.error || 'Worker error');
+      throw new Error(data.error || 'Worker error: ' + JSON.stringify(data.debug || ''));
     }
 
     const text = data.text || '';
-    if (!text) throw new Error('Empty response from AI');
+    if (!text) throw new Error('Empty response. Debug: ' + JSON.stringify(data.debug || data));
 
     let parsed;
     try {

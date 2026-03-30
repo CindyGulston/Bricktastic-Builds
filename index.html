@@ -12918,30 +12918,13 @@ async function analyseBricks() {
     msgIdx++;
   }, 1200);
 
-  const diffInstruction = _biDiff === 'all' ? 'Include a mix of beginner, intermediate and advanced builds.' :
-    `Only suggest ${_biDiff} difficulty builds.`;
+  
 
-  const prompt = `You are a LEGO® building expert. Analyse this photo of LEGO® bricks.
+  const prompt = `You are a LEGO® expert. Analyse the bricks in this image. Respond ONLY with raw JSON, no markdown, no backticks, no extra text before or after.
 
-First, briefly describe what bricks you can see (colours, approximate quantities, types/sizes) in 1-2 sentences.
+{"brickSummary":"brief one sentence","ideas":[{"title":"Build 1","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"Short description.","tags":["tag1"]},{"title":"Build 2","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"Short description.","tags":["tag1"]},{"title":"Build 3","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"Short description.","tags":["tag1"]},{"title":"Build 4","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"Short description.","tags":["tag1"]}]}
 
-Then suggest exactly 4 builds the person could make with these bricks. ${diffInstruction}
-
-For each build respond in this EXACT JSON format (no markdown, no backticks, just raw JSON):
-{
-  "brickSummary": "Brief description of the bricks visible...",
-  "ideas": [
-    {
-      "title": "Build name",
-      "emoji": "single relevant emoji",
-      "difficulty": "Beginner" or "Intermediate" or "Advanced",
-      "pieces": "approximate number e.g. ~45 pieces",
-      "time": "e.g. 20 mins",
-      "description": "2 sentence description of what to build and a key technique or tip",
-      "tags": ["tag1", "tag2"]
-    }
-  ]
-}`;
+Fill in the real values based on what you see. ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON.`;
 
   try {
     // Use Google Gemini API — get your free key at aistudio.google.com/apikey
@@ -12955,7 +12938,7 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
             { text: prompt }
           ]
         }],
-        generationConfig: { maxOutputTokens: 2048 }
+        generationConfig: { maxOutputTokens: 4096 }
       })
     });
 

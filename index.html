@@ -12930,27 +12930,20 @@ Fill in the real values based on what you see. ${_biDiff !== 'all' ? `All diffic
     const response = await fetch('https://openrouterproxy.bricktasticbuilds01.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        imageBase64: _biImageBase64,
-        prompt: prompt
-      })
+      body: JSON.stringify({ imageBase64: _biImageBase64, prompt: prompt })
     });
 
     clearInterval(msgInterval);
     const data = await response.json();
 
-    if (!response.ok || data.error) {
-      throw new Error(data.error || 'Worker error: ' + JSON.stringify(data.debug || ''));
-    }
-
     const text = data.text || '';
-    if (!text) throw new Error('Empty response. Debug: ' + JSON.stringify(data.debug || data));
+    if (!text) throw new Error('AI error: ' + (data.error || JSON.stringify(data.debug?.error || 'no response')));
 
     let parsed;
     try {
       let clean = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
       const jsonMatch = clean.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) throw new Error('No JSON found');
+      if (!jsonMatch) throw new Error('No JSON found in: ' + text.substring(0, 200));
       parsed = JSON.parse(jsonMatch[0]);
     } catch(e) {
       throw new Error('Could not parse AI response. Raw: ' + text.substring(0, 200));

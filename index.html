@@ -12694,7 +12694,7 @@ function initBrickIdeasPage() {
         <div class="bi-hero-badge"><span class="bi-hero-badge-dot"></span> AI-Powered</div>
         <h1 class="bi-hero-title">What Can You<br><span class="bi-hero-highlight">Build Today?</span></h1>
         <p class="bi-hero-sub">Scatter your bricks, snap a photo. Our AI spots what you've got and suggests creative builds you can make right now.</p>
-        <button class="bi-hero-cta" onclick="document.getElementById('biDropZone').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('biDropZone').click()">
+        <button class="bi-hero-cta" onclick="document.getElementById('biDropZone').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>document.getElementById('biFileInput').click(),400)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           Upload Your Photo
         </button>
@@ -12744,9 +12744,12 @@ function initBrickIdeasPage() {
           </div>
           <div class="bi-panel-body">
 
-            <!-- Drop zone -->
-            <label id="biDropZone" for="biFileInput" class="bi-dropzone">
-              <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
+            <!-- Hidden file inputs -->
+            <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
+            <input type="file" id="biCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleBrickPhoto(this)">
+
+            <!-- Drop zone (div, not label — avoids nested interactive element bugs) -->
+            <div id="biDropZone" class="bi-dropzone">
               <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
                 <img id="biPreview" class="bi-preview-img" alt="Your bricks">
                 <div class="bi-scan-overlay" id="biScanOverlay" style="display:none">
@@ -12762,16 +12765,14 @@ function initBrickIdeasPage() {
                 <div class="bi-placeholder-sub">or use a button below</div>
                 <div class="bi-placeholder-types">JPG · PNG · WEBP</div>
               </div>
-            </label>
+            </div>
 
             <!-- Upload + Camera buttons -->
             <div class="bi-upload-btns">
-              <label for="biFileInput" class="bi-upload-choice-btn bi-upload-gallery">
+              <button type="button" class="bi-upload-choice-btn bi-upload-gallery" onclick="document.getElementById('biFileInput').click()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 Upload Photo
-              </label>
-              <!-- Hidden native capture fallback for mobile -->
-              <input type="file" id="biCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleBrickPhoto(this)">
+              </button>
               <button type="button" class="bi-upload-choice-btn bi-upload-camera" onclick="openCameraOrCapture()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
                 Take Photo
@@ -13271,6 +13272,13 @@ function clearBrickPhoto(e) {
 document.addEventListener('DOMContentLoaded', function() {
   const zone = document.getElementById('biDropZone');
   if (!zone) return;
+  // Don't open file picker when clicking the ✕ clear button
+  zone.addEventListener('click', e => {
+    if (e.target.closest('.bi-clear-btn')) { e.stopPropagation(); return; }
+    // If preview is showing, don't re-open file picker on image click
+    if (document.getElementById('biPreviewWrap').style.display !== 'none' && !e.target.closest('.bi-clear-btn')) return;
+    document.getElementById('biFileInput').click();
+  });
   zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--red)'; zone.style.background = '#fff5f5'; });
   zone.addEventListener('dragleave', () => { zone.style.borderColor = _biImageBase64 ? 'var(--green)' : '#ddd'; zone.style.background = ''; });
   zone.addEventListener('drop', e => {

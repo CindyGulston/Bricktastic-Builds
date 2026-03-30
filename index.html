@@ -12749,7 +12749,7 @@ function initBrickIdeasPage() {
             <input type="file" id="biCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleBrickPhoto(this)">
 
             <!-- Drop zone (div, not label — avoids nested interactive element bugs) -->
-            <div id="biDropZone" class="bi-dropzone">
+            <div id="biDropZone" class="bi-dropzone" onclick="if(!event.target.closest('.bi-clear-btn')&&document.getElementById('biPreviewWrap').style.display==='none'){document.getElementById('biFileInput').click()}">
               <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
                 <img id="biPreview" class="bi-preview-img" alt="Your bricks">
                 <div class="bi-scan-overlay" id="biScanOverlay" style="display:none">
@@ -13272,13 +13272,6 @@ function clearBrickPhoto(e) {
 document.addEventListener('DOMContentLoaded', function() {
   const zone = document.getElementById('biDropZone');
   if (!zone) return;
-  // Don't open file picker when clicking the ✕ clear button
-  zone.addEventListener('click', e => {
-    if (e.target.closest('.bi-clear-btn')) { e.stopPropagation(); return; }
-    // If preview is showing, don't re-open file picker on image click
-    if (document.getElementById('biPreviewWrap').style.display !== 'none' && !e.target.closest('.bi-clear-btn')) return;
-    document.getElementById('biFileInput').click();
-  });
   zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--red)'; zone.style.background = '#fff5f5'; });
   zone.addEventListener('dragleave', () => { zone.style.borderColor = _biImageBase64 ? 'var(--green)' : '#ddd'; zone.style.background = ''; });
   zone.addEventListener('drop', e => {

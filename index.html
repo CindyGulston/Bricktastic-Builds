@@ -13062,6 +13062,15 @@ function initBrickIdeasPage() {
 
 /* ── CAMERA / UPLOAD BUTTONS ── */
 .bi-upload-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;margin-bottom:14px}
+/* MOC section styles */
+.bi-moc-section{margin-bottom:8px}
+.bi-moc-section-label{font-family:'Boogaloo',cursive;font-size:16px;color:var(--black);padding:10px 14px;background:linear-gradient(135deg,#FFD700,#FF6B00);border-radius:10px;margin-bottom:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.bi-ai-section-label{font-family:'Boogaloo',cursive;font-size:15px;color:#888;padding:8px 0 10px;border-top:2px dashed #e0ddd5;margin-top:6px;margin-bottom:10px}
+.bi-moc-card{border:2.5px solid var(--yellow)!important;box-shadow:0 4px 0 rgba(255,215,0,0.35)}
+.bi-moc-banner{background:linear-gradient(135deg,#1a1a2e,#2e1a0d)!important}
+.bi-moc-badge{position:absolute;top:10px;left:10px;background:var(--yellow);color:var(--black);font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;letter-spacing:.5px;z-index:2;font-family:'Nunito',sans-serif}
+.bi-moc-yt{background:var(--red)!important}
+.bi-missing-none{font-size:12px;font-weight:800;color:var(--green);margin-bottom:10px;padding:6px 10px;background:#f0fff4;border-radius:8px;border:1.5px solid #b2dfdb}
 .bi-upload-choice-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.5px;border:2px solid transparent}
 .bi-upload-gallery{background:#f0ede6;color:#555;border-color:#e0ddd5}
 .bi-upload-gallery:hover{background:#e8e4da;border-color:#ccc;color:#222}
@@ -13206,6 +13215,92 @@ const BI_TUTORIALS = [
   { keywords: ['mario','game boy','nintendo','gaming','controller'], id: 'oJT0uDkZdu4', title: 'Custom LEGO Super Mario Game Boy' },
   { keywords: ['store','shop front','building','modular','house'], id: 'jbrvZUi1Ak8', title: '1958 Lego Small Store Tutorial' },
 ];
+
+// ── YOUR MOC LIBRARY ────────────────────────────────────────────────────────
+// Add your own MOC builds here. requiredParts is used to match against
+// whatever bricks the AI detected in the user's photo.
+// TIP: Even 6–10 key bricks is enough for a good match.
+const MY_BUILDS = [
+  {
+    title: 'Mini LEGO® Gaming PC Setup',
+    emoji: '🖥️',
+    difficulty: 'Intermediate',
+    pieces: '~45',
+    time: '25 mins',
+    description: 'A mini LEGO® gaming PC setup complete with monitor, keyboard, mouse and gaming chair.',
+    youtubeId: 'RwnJHsmjugk',
+    requiredParts: [
+      { color: 'black',      type: 'brick',  qty: 8 },
+      { color: 'grey',       type: 'plate',  qty: 6 },
+      { color: 'light grey', type: 'brick',  qty: 4 },
+      { color: 'white',      type: 'plate',  qty: 4 },
+      { color: 'blue',       type: 'plate',  qty: 2 },
+    ]
+  },
+  {
+    title: 'Dodge Challenger 1979',
+    emoji: '🚗',
+    difficulty: 'Advanced',
+    pieces: '~120',
+    time: '45 mins',
+    description: 'A classic LEGO® Dodge Challenger 1979 build — muscle car styling with stunning detail.',
+    youtubeId: 'YOUR_VIDEO_ID', // ← replace with your actual YouTube video ID
+    requiredParts: [
+      { color: 'black',      type: 'brick',  qty: 20 },
+      { color: 'grey',       type: 'brick',  qty: 10 },
+      { color: 'white',      type: 'plate',  qty: 8 },
+      { color: 'red',        type: 'plate',  qty: 4 },
+      { color: 'black',      type: 'plate',  qty: 8 },
+    ]
+  },
+  // ── ADD MORE MOCS HERE ──────────────────────────────────────────────────
+  // {
+  //   title: 'Your Build Name',
+  //   emoji: '🏰',
+  //   difficulty: 'Beginner', // Beginner | Intermediate | Advanced
+  //   pieces: '~30',
+  //   time: '15 mins',
+  //   description: 'Short description of the build.',
+  //   youtubeId: 'YOUR_VIDEO_ID',
+  //   requiredParts: [
+  //     { color: 'red',   type: 'brick', qty: 6 },
+  //     { color: 'white', type: 'plate', qty: 4 },
+  //   ]
+  // },
+];
+
+// Match detected parts against MY_BUILDS library
+// Returns builds sorted by match %, filtered to >= 50% match
+function matchMyBuilds(detectedParts) {
+  if (!detectedParts || !detectedParts.length) return [];
+  return MY_BUILDS.map(build => {
+    let matched = 0;
+    const total = build.requiredParts.length;
+    const missingParts = [];
+    build.requiredParts.forEach(req => {
+      // Fuzzy match: colour partial match + type partial match
+      const found = detectedParts.find(p => {
+        const colorMatch = p.color && req.color &&
+          (p.color.toLowerCase().includes(req.color.toLowerCase()) ||
+           req.color.toLowerCase().includes(p.color.toLowerCase()));
+        const typeMatch = p.type && req.type &&
+          (p.type.toLowerCase().includes(req.type.toLowerCase()) ||
+           req.type.toLowerCase().includes(p.type.toLowerCase()));
+        const qtyOk = (p.qty || 1) >= req.qty;
+        return colorMatch && typeMatch && qtyOk;
+      });
+      if (found) {
+        matched++;
+      } else {
+        missingParts.push(`${req.qty}× ${req.color} ${req.type}`);
+      }
+    });
+    const matchPercent = Math.round((matched / total) * 100);
+    return { ...build, matchPercent, missingParts: missingParts.slice(0, 3) };
+  })
+  .filter(b => b.matchPercent >= 50)
+  .sort((a, b) => b.matchPercent - a.matchPercent);
+}
 
 function findTutorial(title, description) {
   const text = (title + ' ' + description).toLowerCase();
@@ -13441,9 +13536,9 @@ async function analyseBricks() {
 
   const prompt = `You are a LEGO® expert. Analyse the bricks in this image. Respond ONLY with raw JSON, no markdown, no backticks, no extra text before or after.
 
-{"brickSummary":"brief one sentence","ideas":[{"title":"Build 1","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"Short description.","confidence":88,"missing":["1× white 2×4","2× grey 1×2"],"tags":["tag1"]},{"title":"Build 2","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"Short description.","confidence":72,"missing":["1× black 2×2 tile"],"tags":["tag1"]},{"title":"Build 3","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"Short description.","confidence":95,"missing":[],"tags":["tag1"]},{"title":"Build 4","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"Short description.","confidence":61,"missing":["3× blue 1×4","2× grey slope"],"tags":["tag1"]}]}
+{"brickSummary":"brief one sentence","detectedParts":[{"color":"red","type":"brick","qty":4},{"color":"black","type":"plate","qty":6}],"ideas":[{"title":"Build 1","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"Short description.","confidence":88,"missing":["1× white 2×4","2× grey 1×2"],"tags":["tag1"]},{"title":"Build 2","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"Short description.","confidence":72,"missing":["1× black 2×2 tile"],"tags":["tag1"]},{"title":"Build 3","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"Short description.","confidence":95,"missing":[],"tags":["tag1"]},{"title":"Build 4","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"Short description.","confidence":61,"missing":["3× blue 1×4","2× grey slope"],"tags":["tag1"]}]}
 
-Fill in the real values based on what you see. confidence is a number 1-100 representing how well the available bricks match this build. missing is an array of specific brick types the builder would need to get (max 3 items, empty array if they have everything). ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON.`;
+detectedParts: list every distinct brick colour and type you can see, with an estimated quantity. Use simple color names (red, black, white, grey, blue, yellow, green, orange, brown, tan) and simple type names (brick, plate, tile, slope, stud). Fill in the real values based on what you see. confidence is a number 1-100 representing how well the available bricks match this build. missing is an array of specific brick types the builder would need to get (max 3 items, empty array if they have everything). ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON.`;
 
   try {
     const response = await fetch('https://openrouterproxy.bricktasticbuilds01.workers.dev', {
@@ -13470,7 +13565,8 @@ Fill in the real values based on what you see. confidence is a number 1-100 repr
 
     _biLastIdeas = parsed.ideas || [];
     _biLastBrickSummary = parsed.brickSummary || '';
-    renderBrickIdeas(parsed.brickSummary, parsed.ideas);
+    const mocMatches = matchMyBuilds(parsed.detectedParts || []);
+    renderBrickIdeas(parsed.brickSummary, parsed.ideas, mocMatches);
 
   } catch(err) {
     clearInterval(msgInterval);
@@ -13504,7 +13600,7 @@ function extractColoursFromText(text) {
   return found.slice(0, 8);
 }
 
-function renderBrickIdeas(summary, ideas) {
+function renderBrickIdeas(summary, ideas, mocMatches) {
   document.getElementById('biLoadingState').style.display = 'none';
   document.getElementById('biResultsState').style.display = 'block';
   document.getElementById('biBrickSummary').innerHTML = '🔍 <strong>What the AI saw:</strong> ' + summary;
@@ -13516,7 +13612,50 @@ function renderBrickIdeas(summary, ideas) {
   const globalColours = extractColoursFromText(summary + ' ' + ideas.map(i => i.description).join(' '));
 
   const list = document.getElementById('biIdeasList');
-  list.innerHTML = ideas.map((idea, idx) => {
+
+  // ── Render matched MOC builds first ──────────────────────────────────────
+  let mocHtml = '';
+  if (mocMatches && mocMatches.length) {
+    mocHtml = `<div class="bi-moc-section">
+      <div class="bi-moc-section-label">🏆 Your Builds — You Can Make These!</div>
+      ${mocMatches.map((moc, idx) => {
+        const matchColor = moc.matchPercent >= 80 ? 'linear-gradient(90deg,#00c853,#69f0ae)' : 'linear-gradient(90deg,#ff9800,#ffcc02)';
+        const pctColor = moc.matchPercent >= 80 ? 'var(--green)' : 'var(--orange)';
+        const missingHtml = moc.missingParts.length
+          ? `<div class="bi-missing"><div class="bi-missing-label">You might need</div><div class="bi-missing-chips">${moc.missingParts.map(m=>`<span class="bi-missing-chip">${m}</span>`).join('')}</div></div>`
+          : `<div class="bi-missing-none">✅ You have all the bricks!</div>`;
+        const ytLink = moc.youtubeId && moc.youtubeId !== 'YOUR_VIDEO_ID'
+          ? `<a class="bi-idea-yt bi-moc-yt" href="https://youtube.com/watch?v=${moc.youtubeId}" target="_blank"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Watch Tutorial</a>`
+          : '';
+        return `<div class="bi-idea-card bi-moc-card bi-reveal bi-reveal-delay-${(idx%4)+1}">
+          <div class="bi-idea-banner bi-moc-banner">
+            <span style="font-size:58px;z-index:1;position:relative">${moc.emoji}</span>
+            <div class="bi-idea-banner-overlay"></div>
+            <span class="bi-idea-badge ${badgeClass[moc.difficulty]||'bi-badge-beginner'}">${moc.difficulty}</span>
+            <span class="bi-moc-badge">⭐ Your Build</span>
+          </div>
+          <div class="bi-idea-body">
+            <div class="bi-idea-title">${moc.title}</div>
+            <div class="bi-match-bar-wrap">
+              <div class="bi-match-meta"><span>Brick match</span><span class="bi-match-pct" style="color:${pctColor}">${moc.matchPercent}%</span></div>
+              <div class="bi-match-bar"><div class="bi-match-fill" data-width="${moc.matchPercent}" data-color="${matchColor}"></div></div>
+            </div>
+            <div class="bi-idea-desc">${moc.description}</div>
+            ${missingHtml}
+            <div class="bi-idea-meta">
+              <span>🧱 ${moc.pieces}</span>
+              <span>⏱ ${moc.time}</span>
+            </div>
+            <div class="bi-idea-buttons">${ytLink}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="bi-ai-section-label">🤖 More AI-Generated Ideas</div>`;
+  }
+
+  // ── Render AI ideas ───────────────────────────────────────────────────────
+  const aiHtml = ideas.map((idea, idx) => {
     const tutorial = findTutorial(idea.title, idea.description);
     const ytBtn = tutorial ? `<a class="bi-idea-yt" href="https://youtube.com/watch?v=${tutorial.id}" target="_blank"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Tutorial</a>` : '';
     const bg = bannerColors[idx % bannerColors.length];
@@ -13562,6 +13701,8 @@ function renderBrickIdeas(summary, ideas) {
       </div>
     </div>`;
   }).join('');
+
+  list.innerHTML = mocHtml + aiHtml;
 
   document.getElementById('biAnalyseBtn').disabled = false;
 

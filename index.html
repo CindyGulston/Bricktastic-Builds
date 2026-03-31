@@ -13649,11 +13649,12 @@ async function analyseBricks() {
 
   
 
-  const prompt = `You are a LEGO® expert. Analyse the bricks in this image. Respond ONLY with raw JSON, no markdown, no backticks, no extra text before or after.
+  const prompt = `You are a LEGO® expert. Analyse the bricks in this image. Respond ONLY with raw JSON, no markdown, no backticks, no preamble.
 
-{"brickSummary":"brief one sentence","detectedParts":[{"color":"red","type":"brick","qty":4},{"color":"black","type":"plate","qty":6}],"ideas":[{"title":"Build 1","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"Short description.","confidence":88,"missing":["1× white 2×4","2× grey 1×2"],"tags":["tag1"]},{"title":"Build 2","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"Short description.","confidence":72,"missing":["1× black 2×2 tile"],"tags":["tag1"]},{"title":"Build 3","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"Short description.","confidence":95,"missing":[],"tags":["tag1"]},{"title":"Build 4","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"Short description.","confidence":61,"missing":["3× blue 1×4","2× grey slope"],"tags":["tag1"]}]}
+Use this exact structure:
+{"brickSummary":"one sentence","detectedParts":[{"color":"red","type":"brick","qty":4}],"ideas":[{"title":"Name","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"One sentence.","confidence":88,"missing":["1x white 2x4"],"tags":["home"]},{"title":"Name","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"One sentence.","confidence":72,"missing":[],"tags":["vehicle"]},{"title":"Name","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"One sentence.","confidence":95,"missing":[],"tags":["weapon"]},{"title":"Name","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"One sentence.","confidence":61,"missing":["3x blue 1x4"],"tags":["space"]}]}
 
-detectedParts: list every distinct brick colour and type you can see with estimated quantities. Use simple color names (red, black, white, grey, blue, yellow, green, orange, brown, tan) and simple type names (brick, plate, tile, slope, stud). confidence is a number 1-100 representing how well the available bricks match this build. missing is an array of specific brick types the builder would need to get (max 3 items, empty array if they have everything). ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON.`;
+Rules: detectedParts max 6 items. Use simple color names (red, black, white, grey, blue, yellow, green, orange, brown, tan) and type names (brick, plate, tile, slope, stud). description max 8 words. missing max 2 items or empty array. confidence 1-100. ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON, nothing else.`;
 
   try {
     const response = await fetch('https://openrouterproxy.bricktasticbuilds01.workers.dev', {

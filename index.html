@@ -12799,10 +12799,16 @@ function initBrickIdeasPage() {
         <div class="bi-hero-badge"><span class="bi-hero-badge-dot"></span> AI-Powered</div>
         <h1 class="bi-hero-title">What Can You<br><span class="bi-hero-highlight">Build Today?</span></h1>
         <p class="bi-hero-sub">Scatter your bricks, snap a photo. Our AI spots what you've got and suggests creative builds you can make right now.</p>
-        <button class="bi-hero-cta" onclick="document.getElementById('biDropZone').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('biDropZone').click()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Upload Your Photo
-        </button>
+        <div class="bi-hero-btn-row">
+          <button class="bi-hero-cta" onclick="document.getElementById('biDropZone').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('biDropZone').click()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload Your Photo
+          </button>
+          <button class="bi-hero-cta bi-hero-cta-camera" onclick="document.getElementById('biDropZone').scrollIntoView({behavior:'smooth',block:'center'});openCameraOrCapture()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Take Photo
+          </button>
+        </div>
         <div class="bi-hero-chips">
           <span class="bi-hero-chip">📸 Instant scan</span>
           <span class="bi-hero-chip">🤖 AI-generated ideas</span>
@@ -12875,7 +12881,6 @@ function initBrickIdeasPage() {
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 Upload Photo
               </label>
-              <!-- Hidden native capture fallback for mobile -->
               <input type="file" id="biCameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleBrickPhoto(this)">
               <button type="button" class="bi-upload-choice-btn bi-upload-camera" onclick="openCameraOrCapture()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -13009,9 +13014,25 @@ function initBrickIdeasPage() {
 .bi-hero-title{font-family:'Boogaloo',cursive;font-size:clamp(42px,6.5vw,76px);color:#fff;line-height:1.0;margin-bottom:18px;animation:biSlideUp .55s ease-out}
 .bi-hero-highlight{color:var(--yellow)}
 .bi-hero-sub{font-size:16px;color:rgba(255,255,255,.6);font-weight:600;max-width:500px;margin:0 0 28px;line-height:1.75;animation:biSlideUp .7s ease-out}
-.bi-hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;padding:14px 30px;border-radius:14px;border:none;cursor:pointer;box-shadow:0 6px 0 #8b0000;transition:all .15s;position:relative;top:0;margin-bottom:24px;animation:biSlideUp .65s ease-out}
+.bi-hero-upload-box{margin-bottom:24px;animation:biSlideUp .65s ease-out;max-width:480px}
+.bi-hero-dropzone{display:block;border:2px dashed rgba(255,255,255,.25);border-radius:14px;cursor:pointer;transition:all .22s;text-align:center;background:rgba(255,255,255,.06);margin-bottom:14px;min-height:160px;overflow:hidden;position:relative}
+.bi-hero-dropzone:hover{border-color:var(--yellow);background:rgba(255,255,255,.1)}
+#biPlaceholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px 20px;min-height:160px}
+#biPreviewWrap{width:100%;line-height:0}
+.bi-hero-dz-title{font-weight:900;font-size:15px;color:#fff}
+.bi-hero-dz-sub{font-size:12px;color:rgba(255,255,255,.45);font-weight:600;margin-top:2px}
+.bi-hero-dz-types{margin-top:6px;font-size:10px;font-weight:800;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:1.5px;background:rgba(255,255,255,.08);padding:3px 10px;border-radius:20px}
+.bi-hero-btn-row{display:flex;gap:14px;flex-wrap:wrap;align-items:stretch}.bi-hero-btn-row .bi-hero-cta{flex:1;justify-content:center}
+.bi-hero-analyse-row{margin-top:12px}
+.bi-hero-diff-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.bi-diff-chip{background:rgba(255,255,255,.06)!important;border:1.5px solid rgba(255,255,255,.12)!important;color:rgba(255,255,255,.7)!important;font-size:12px!important;padding:6px 14px!important;border-radius:20px!important;font-family:'Nunito',sans-serif!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important}
+.bi-diff-chip.active{background:rgba(255,255,255,.18)!important;border-color:rgba(255,255,255,.35)!important;color:#fff!important}
+.bi-diff-chip:hover:not(.active){background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.25)!important;color:#fff!important}
+.bi-hero-analyse-btn{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--black);font-family:'Boogaloo',cursive;font-size:18px;padding:12px 26px;border-radius:14px;border:none;cursor:pointer;box-shadow:0 5px 0 #b8960a;transition:all .15s;position:relative;top:0;font-weight:900}
+.bi-hero-analyse-btn:hover:not(:disabled){top:3px;box-shadow:0 2px 0 #b8960a}
+.bi-hero-analyse-btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:0 5px 0 #999;background:#ccc}.bi-hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;padding:14px 30px;border-radius:14px;border:none;cursor:pointer;box-shadow:0 6px 0 #8b0000;transition:all .15s;position:relative;top:0}.bi-hero-cta-camera{background:#2a2a2a;color:var(--yellow);box-shadow:0 6px 0 #000;border:2px solid #444;min-width:0}.bi-hero-cta-camera:hover{background:#333;top:3px;box-shadow:0 3px 0 #000}
 .bi-hero-cta:hover{top:3px;box-shadow:0 3px 0 #8b0000;background:#c20009}
-.bi-hero-chips{display:flex;gap:10px;flex-wrap:wrap;animation:biSlideUp .8s ease-out}
+.bi-hero-chips{display:flex;gap:10px;flex-wrap:wrap;animation:biSlideUp .8s ease-out;margin-top:18px}
 .bi-hero-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:12px;font-weight:800;padding:6px 14px;border-radius:20px}
 @keyframes biPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes biSlideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
@@ -13461,7 +13482,7 @@ function clearBrickPhoto(e) {
 document.addEventListener('DOMContentLoaded', function() {
   const zone = document.getElementById('biDropZone');
   if (!zone) return;
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--red)'; zone.style.background = '#fff5f5'; });
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--yellow)'; zone.style.background = '#fff5f5'; });
   zone.addEventListener('dragleave', () => { zone.style.borderColor = _biImageBase64 ? 'var(--green)' : '#ddd'; zone.style.background = ''; });
   zone.addEventListener('drop', e => {
     e.preventDefault();

@@ -12939,11 +12939,15 @@ function initBrickIdeasPage() {
             </div>
             <div style="font-size:44px;margin-bottom:8px" id="biLoadingEmoji">🧱</div>
             <h3 class="bi-state-title" id="biLoadingMsg">Analysing your bricks…</h3>
-            <p class="bi-state-sub">The AI is checking colours, sizes and quantities</p>
-            <div class="bi-pulse-dots">
-              <span style="background:var(--red)"></span>
-              <span style="background:var(--yellow)"></span>
-              <span style="background:var(--blue)"></span>
+            <p class="bi-state-sub" id="biLoadingStep">Compressing image…</p>
+            <div style="width:100%;max-width:280px;margin:14px auto 0">
+              <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:#aaa;margin-bottom:6px">
+                <span id="biProgressLabel">Step 1 of 2</span>
+                <span id="biProgressPct">0%</span>
+              </div>
+              <div style="width:100%;height:10px;background:#eee;border-radius:10px;overflow:hidden;border:2px solid var(--black)">
+                <div id="biProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--yellow),var(--orange));border-radius:10px;transition:width 0.4s ease"></div>
+              </div>
             </div>
           </div>
 
@@ -12955,7 +12959,10 @@ function initBrickIdeasPage() {
             </div>
             <div id="biBrickSummary" class="bi-brick-summary"></div>
             <div id="biIdeasList" class="bi-ideas-list"></div>
-            <button onclick="shareBrickIdeas()" class="bi-share-btn">📤 Share These Ideas</button>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+              <button onclick="shareBrickIdeas()" class="bi-share-btn">📤 Share These Ideas</button>
+              <button onclick="openSavedIdeas()" class="bi-share-btn" style="background:var(--blue)" id="biSavedBtn">💾 Saved Ideas (<span id="biSavedCount">0</span>)</button>
+            </div>
           </div>
 
         </div>
@@ -13497,6 +13504,7 @@ document.addEventListener('DOMContentLoaded', function() {
       handleBrickPhoto(input);
     }
   });
+  updateSavedCount();
 });
 
 // ══ CAMERA MODAL ══════════════════════════════════════════════════════════════
@@ -13629,60 +13637,227 @@ const BI_LOADING_MSGS = [
   { emoji: '✨', msg: 'Almost ready!' },
 ];
 
+// ── Progress bar helpers ─────────────────────────────────────────────────────
+function setProgress(pct, label, step) {
+  document.getElementById('biProgressBar').style.width = pct + '%';
+  document.getElementById('biProgressPct').textContent = pct + '%';
+  if (label) document.getElementById('biProgressLabel').textContent = label;
+  if (step)  document.getElementById('biLoadingStep').textContent = step;
+}
+
+// ── Image compression ────────────────────────────────────────────────────────
+function compressImage(base64, maxPx = 800, quality = 0.82) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxPx / Math.max(img.width, img.height));
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', quality).split(',')[1]);
+    };
+    img.src = 'data:image/jpeg;base64,' + base64;
+  });
+}
+
+// ── Cache helpers ────────────────────────────────────────────────────────────
+function getCacheKey(base64) {
+  // Simple hash from first+last 200 chars + length
+  const s = base64.substring(0, 200) + base64.slice(-200) + base64.length;
+  let h = 0;
+  for (let i = 0; i < s.length; i++) { h = (Math.imul(31, h) + s.charCodeAt(i)) | 0; }
+  return 'bi_cache_' + Math.abs(h);
+}
+function saveToCache(key, data) {
+  try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch(e) {}
+}
+function loadFromCache(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const { ts, data } = JSON.parse(raw);
+    if (Date.now() - ts > 24 * 60 * 60 * 1000) { localStorage.removeItem(key); return null; } // 24h TTL
+    return data;
+  } catch(e) { return null; }
+}
+
+// ── Saved ideas ──────────────────────────────────────────────────────────────
+function getSavedIdeas() {
+  try { return JSON.parse(localStorage.getItem('bi_saved_ideas') || '[]'); } catch(e) { return []; }
+}
+function updateSavedCount() {
+  const count = getSavedIdeas().length;
+  const el = document.getElementById('biSavedCount');
+  if (el) el.textContent = count;
+}
+function saveIdea(idea) {
+  const saved = getSavedIdeas();
+  const key = idea.title + idea.emoji;
+  if (saved.find(i => i.title + i.emoji === key)) {
+    alert('Already saved! 💾');
+    return;
+  }
+  saved.unshift({ ...idea, savedAt: Date.now() });
+  try { localStorage.setItem('bi_saved_ideas', JSON.stringify(saved.slice(0, 50))); } catch(e) {}
+  updateSavedCount();
+  // Flash feedback
+  const btn = document.querySelector(`[data-save-key="${CSS.escape(key)}"]`);
+  if (btn) { btn.textContent = '✅ Saved!'; btn.disabled = true; }
+}
+function removeIdea(key) {
+  let saved = getSavedIdeas().filter(i => i.title + i.emoji !== key);
+  try { localStorage.setItem('bi_saved_ideas', JSON.stringify(saved)); } catch(e) {}
+  updateSavedCount();
+  renderSavedList();
+}
+function openSavedIdeas() {
+  renderSavedList();
+  const m = document.getElementById('biSavedModal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeSavedIdeas() {
+  document.getElementById('biSavedModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function renderSavedList() {
+  const saved = getSavedIdeas();
+  const el = document.getElementById('biSavedList');
+  if (!saved.length) {
+    el.innerHTML = '<p style="text-align:center;color:#aaa;font-weight:700;padding:32px 0">No saved ideas yet.<br>Hit 💾 on any idea card to save it!</p>';
+    return;
+  }
+  el.innerHTML = saved.map(idea => {
+    const key = idea.title + idea.emoji;
+    return `<div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:2px solid #f0ede6">
+      <span style="font-size:36px">${idea.emoji}</span>
+      <div style="flex:1">
+        <div style="font-family:'Boogaloo',cursive;font-size:18px">${idea.title}</div>
+        <div style="font-size:12px;color:#888;font-weight:700">${idea.difficulty} · ${idea.pieces} · ${idea.time}</div>
+        <div style="font-size:13px;color:#555;font-weight:600;margin-top:2px">${idea.description}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <button onclick="shareOneIdea(${JSON.stringify(idea).replace(/"/g,'&quot;')})" style="background:var(--blue);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:900;cursor:pointer">📤 Share</button>
+        <button onclick="removeIdea('${key.replace(/'/g,"\\'")}');this.closest('div[style]').remove()" style="background:#f44336;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:900;cursor:pointer">🗑 Remove</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+function shareOneIdea(idea) {
+  const text = `🧱 Check out this LEGO® build idea!\n\n${idea.emoji} ${idea.title} (${idea.difficulty})\n${idea.description}\n⏱ ${idea.time} · 🧱 ${idea.pieces}\n\nGenerated by Bricktastic Builds 👉 bricktasticbuilds.co.za`;
+  if (navigator.share) {
+    navigator.share({ title: idea.title, text }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard! 🎉'));
+  }
+}
+
+// ── AI call helper ───────────────────────────────────────────────────────────
+async function callAI(imageBase64, prompt) {
+  const response = await fetch('https://openrouterproxy.bricktasticbuilds01.workers.dev', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ imageBase64, prompt })
+  });
+  const data = await response.json();
+  const text = data.text || '';
+  if (!text) throw new Error('AI error: ' + (data.error || 'no response'));
+  return text;
+}
+
 async function analyseBricks() {
   if (!_biImageBase64) return;
 
-  // Show loading
   document.getElementById('biEmptyState').style.display = 'none';
   document.getElementById('biResultsState').style.display = 'none';
   document.getElementById('biLoadingState').style.display = 'block';
   document.getElementById('biAnalyseBtn').disabled = true;
 
-  // Cycle loading messages
+  // Cycle emoji
   let msgIdx = 0;
   const msgInterval = setInterval(() => {
     const m = BI_LOADING_MSGS[msgIdx % BI_LOADING_MSGS.length];
     document.getElementById('biLoadingEmoji').textContent = m.emoji;
     document.getElementById('biLoadingMsg').textContent = m.msg;
     msgIdx++;
-  }, 1200);
-
-  
-
-  const prompt = `You are a LEGO® expert. Analyse the bricks in this image. Respond ONLY with raw JSON, no markdown, no backticks, no preamble.
-
-Use this exact structure:
-{"brickSummary":"one sentence","detectedParts":[{"color":"red","type":"brick","qty":4}],"ideas":[{"title":"Name","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"One sentence.","confidence":88,"missing":["1x white 2x4"],"tags":["home"]},{"title":"Name","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"One sentence.","confidence":72,"missing":[],"tags":["vehicle"]},{"title":"Name","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"One sentence.","confidence":95,"missing":[],"tags":["weapon"]},{"title":"Name","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"One sentence.","confidence":61,"missing":["3x blue 1x4"],"tags":["space"]}]}
-
-Rules: detectedParts max 6 items. Use simple color names (red, black, white, grey, blue, yellow, green, orange, brown, tan) and type names (brick, plate, tile, slope, stud). description max 8 words. missing max 2 items or empty array. confidence 1-100. ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON, nothing else.`;
+  }, 1800);
 
   try {
-    const response = await fetch('https://openrouterproxy.bricktasticbuilds01.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ imageBase64: _biImageBase64, prompt: prompt })
-    });
+    // ── STEP 1: Compress image ───────────────────────────────────────────────
+    setProgress(5, 'Step 1 of 3', 'Compressing image…');
+    const compressed = await compressImage(_biImageBase64);
+    setProgress(15, 'Step 1 of 3', 'Image ready ✓');
 
-    clearInterval(msgInterval);
-    const data = await response.json();
-
-    const text = data.text || '';
-    if (!text) throw new Error('AI error: ' + (data.error || JSON.stringify(data.debug?.error || 'no response')));
-
-    let parsed;
-    try {
-      let clean = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-      const jsonMatch = clean.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) throw new Error('No JSON found in: ' + text.substring(0, 200));
-      parsed = JSON.parse(jsonMatch[0]);
-    } catch(e) {
-      throw new Error('Could not parse AI response. Raw: ' + text.substring(0, 200));
+    // ── Check cache ──────────────────────────────────────────────────────────
+    const cacheKey = getCacheKey(compressed) + (_biDiff !== 'all' ? '_' + _biDiff : '');
+    const cached = loadFromCache(cacheKey);
+    if (cached) {
+      clearInterval(msgInterval);
+      setProgress(100, 'Done!', 'Loaded from cache ⚡');
+      await new Promise(r => setTimeout(r, 400));
+      _biLastIdeas = cached.ideas || [];
+      _biLastBrickSummary = cached.brickSummary || '';
+      const mocMatches = matchMyBuilds(cached.detectedParts || []);
+      renderBrickIdeas(cached.brickSummary, cached.ideas, mocMatches);
+      updateSavedCount();
+      return;
     }
 
-    _biLastIdeas = parsed.ideas || [];
-    _biLastBrickSummary = parsed.brickSummary || '';
-    const mocMatches = matchMyBuilds(parsed.detectedParts || []);
-    renderBrickIdeas(parsed.brickSummary, parsed.ideas, mocMatches);
+    // ── STEP 2: Detect bricks ────────────────────────────────────────────────
+    setProgress(25, 'Step 2 of 3', 'Detecting bricks…');
+    const detectPrompt = `You are a LEGO® expert. Look at this image and list the LEGO® bricks you can see. Respond ONLY with raw JSON, no markdown, no backticks.
+{"brickSummary":"one sentence describing the bricks","detectedParts":[{"color":"red","type":"brick","qty":4}]}
+Rules: max 6 items in detectedParts. Use color names: red,black,white,grey,blue,yellow,green,orange,brown,tan. Use type names: brick,plate,tile,slope,stud. Return ONLY the JSON.`;
+
+    const detectText = await callAI(compressed, detectPrompt);
+    setProgress(55, 'Step 2 of 3', 'Bricks detected ✓');
+
+    let detected;
+    try {
+      const clean = detectText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+      const match = clean.match(/\{[\s\S]*\}/);
+      detected = JSON.parse(match[0]);
+    } catch(e) {
+      throw new Error('Could not parse brick detection. Raw: ' + detectText.substring(0, 150));
+    }
+
+    // ── STEP 3: Generate ideas ───────────────────────────────────────────────
+    setProgress(65, 'Step 3 of 3', 'Generating build ideas…');
+    const ideasPrompt = `You are a LEGO® expert. Based on these available bricks: ${JSON.stringify(detected.detectedParts)}, suggest 4 builds. Respond ONLY with raw JSON, no markdown, no backticks.
+{"ideas":[{"title":"Name","emoji":"🏠","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"One sentence.","confidence":88,"missing":["1x white 2x4"],"tags":["home"]},{"title":"Name","emoji":"🚗","difficulty":"Intermediate","pieces":"~50","time":"25 mins","description":"One sentence.","confidence":72,"missing":[],"tags":["vehicle"]},{"title":"Name","emoji":"⚔️","difficulty":"Beginner","pieces":"~20","time":"10 mins","description":"One sentence.","confidence":95,"missing":[],"tags":["weapon"]},{"title":"Name","emoji":"🚀","difficulty":"Advanced","pieces":"~70","time":"40 mins","description":"One sentence.","confidence":61,"missing":["3x blue 1x4"],"tags":["space"]}]}
+Rules: description max 8 words. missing max 2 items or []. confidence 1-100. ${_biDiff !== 'all' ? `All difficulties must be ${_biDiff}.` : ''} Return ONLY the JSON.`;
+
+    const ideasText = await callAI(compressed, ideasPrompt);
+    setProgress(90, 'Step 3 of 3', 'Ideas ready ✓');
+
+    let ideasParsed;
+    try {
+      const clean = ideasText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+      const match = clean.match(/\{[\s\S]*\}/);
+      ideasParsed = JSON.parse(match[0]);
+    } catch(e) {
+      throw new Error('Could not parse ideas. Raw: ' + ideasText.substring(0, 150));
+    }
+
+    // ── Merge & cache ────────────────────────────────────────────────────────
+    const result = {
+      brickSummary: detected.brickSummary || '',
+      detectedParts: detected.detectedParts || [],
+      ideas: ideasParsed.ideas || []
+    };
+    saveToCache(cacheKey, result);
+
+    clearInterval(msgInterval);
+    setProgress(100, 'Done! 🎉', 'All done!');
+    await new Promise(r => setTimeout(r, 300));
+
+    _biLastIdeas = result.ideas;
+    _biLastBrickSummary = result.brickSummary;
+    const mocMatches = matchMyBuilds(result.detectedParts);
+    renderBrickIdeas(result.brickSummary, result.ideas, mocMatches);
+    updateSavedCount();
 
   } catch(err) {
     clearInterval(msgInterval);
@@ -13801,6 +13976,8 @@ function renderBrickIdeas(summary, ideas, mocMatches) {
         <div class="bi-idea-buttons">
           ${ytBtn}
           <button class="bi-idea-instructions-btn" onclick="getInstructions(${idx})">📋 Instructions</button>
+          <button class="bi-idea-instructions-btn" style="background:var(--blue);color:#fff" data-save-key="${(idea.title+idea.emoji).replace(/"/g,'&quot;')}" onclick="saveIdea(${JSON.stringify(idea).replace(/\\/g,'\\\\').replace(/"/g,'&quot;')})">💾 Save</button>
+          <button class="bi-idea-instructions-btn" style="background:#555;color:#fff" onclick="shareOneIdea(${JSON.stringify(idea).replace(/\\/g,'\\\\').replace(/"/g,'&quot;')})">📤 Share</button>
         </div>
       </div>
     </div>`;
@@ -13914,6 +14091,8 @@ document.addEventListener('keydown', function(e) {
     if (biInstrOv && biInstrOv.classList.contains('open')) { closeBiInstr(); }
     const bkCamOv = document.getElementById('biCameraModal');
     if (bkCamOv && bkCamOv.classList.contains('open')) { closeCameraModal(); }
+    const savedOv = document.getElementById('biSavedModal');
+    if (savedOv && savedOv.style.display === 'flex') { closeSavedIdeas(); }
     closeSearch();
   }
 });
@@ -13981,6 +14160,17 @@ document.addEventListener('keydown', function(e) {
       </div>
       <div class="bi-instr-content" id="biInstrContent" style="display:none"></div>
     </div>
+  </div>
+</div>
+
+<!-- Saved Ideas Modal -->
+<div id="biSavedModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto">
+  <div style="background:#fff;max-width:680px;width:100%;border:3px solid var(--black);position:relative">
+    <div style="background:var(--black);padding:18px 24px;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow)">💾 Saved Build Ideas</span>
+      <button onclick="closeSavedIdeas()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;font-weight:900">✕</button>
+    </div>
+    <div id="biSavedList" style="padding:24px;min-height:120px"></div>
   </div>
 </div>
 

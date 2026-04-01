@@ -46,12 +46,12 @@ nav ul li a{font-weight:800;font-size:13px;text-transform:uppercase;letter-spaci
 nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
 .nav-videos-a{background:var(--red)!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
 .nav-mocs-a{background:#7B2FBE!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
-.nav-shop-a{background:var(--orange)!important;color:#fff!important;border-color:var(--orange)!important}
+.nav-shop-a{background:var(--orange)!important;color:#fff!important;border-color:var(--orange)!important;border-radius:20px!important;padding:6px 16px!important;font-weight:900!important;margin-right:4px!important}
 .nav-shop-a:hover{background:#d45500!important;border-color:#d45500!important}
 .nav-brickideas-a{background:linear-gradient(135deg,#E3000B,#FF6B00)!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
 .nav-brickideas-a:hover{background:linear-gradient(135deg,#c20009,#d45500)!important;color:#fff!important}
-color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
-.nav-game-a:hover{background:#007a3a!important;color:#fff!important}
+.nav-game-a{background:#00C853!important;color:#fff!important;border-radius:20px!important;padding:6px 16px!important;font-weight:900!important;margin-right:4px!important;border:2px solid transparent!important}
+.nav-game-a:hover{background:#00a040!important;color:#fff!important}
 .nav-home-a{background:rgba(255,255,255,.12)!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px;border:2px solid rgba(255,255,255,.25)!important}
 .nav-home-a:hover{background:rgba(255,255,255,.22)!important;color:#fff!important}
 .nav-about-a{background:var(--yellow)!important;color:var(--black)!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
@@ -60,6 +60,64 @@ color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:9
 .nav-gallery-a{background:#00B5AD!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
 .nav-gallery-a:hover{background:#009990!important;color:#fff!important}
 .nav-about-a:hover{background:#e6bb00!important;color:var(--black)!important}
+.nav-toolkit-a{background:#00B5AD!important;color:#fff!important;border-radius:20px!important;padding:6px 16px!important;font-weight:900!important;margin-right:4px!important;border:2px solid transparent!important}
+.nav-toolkit-a:hover{background:#009990!important;color:#fff!important}
+/* ══ TOOLKIT PAGE ══ */
+.tk-hero{background:var(--black);padding:70px 0 56px;position:relative;overflow:hidden}
+.tk-hero::before{content:'';position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px)}
+.tk-hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 40px}
+.tk-badge{display:inline-block;background:var(--orange);color:#fff;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:4px;margin-bottom:18px}
+.tk-hero h1{font-family:'Boogaloo',cursive;font-size:clamp(44px,6vw,78px);line-height:1.0;color:#fff;margin-bottom:12px}
+.tk-hero h1 span{color:var(--yellow)}
+.tk-hero-sub{font-size:17px;color:#bbb;line-height:1.65;max-width:560px;font-weight:600;margin-bottom:32px}
+.tk-disclaimer{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 18px;font-size:13px;font-weight:700;color:#aaa}
+.tk-disclaimer strong{color:var(--yellow)}
+.tk-body{padding:56px 0 80px;background:var(--bg)}
+.tk-container{max-width:1200px;margin:0 auto;padding:0 40px}
+@media(max-width:600px){.tk-container{padding:0 20px}}
+.tk-cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.tk-tab{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;padding:9px 18px;border-radius:20px;border:3px solid var(--black);cursor:pointer;background:#fff;color:#666;text-transform:uppercase;letter-spacing:.5px;transition:all .15s}
+.tk-tab:hover:not(.active){background:#e8e4da}
+.tk-tab.active{color:#fff}
+.tk-tab[data-tcat="all"].active{background:var(--black)}
+.tk-tab[data-tcat="bricks"].active{background:var(--red)}
+.tk-tab[data-tcat="tools"].active{background:var(--blue)}
+.tk-tab[data-tcat="storage"].active{background:var(--green)}
+.tk-tab[data-tcat="lighting"].active{background:var(--orange)}
+.tk-tab[data-tcat="books"].active{background:#7B2FBE}
+.tk-cat-sec{margin-bottom:56px}
+.tk-cat-head{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:4px solid var(--black)}
+.tk-cat-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.tk-cat-title{font-family:'Boogaloo',cursive;font-size:30px;line-height:1}
+.tk-cat-sub{font-size:13px;font-weight:700;color:#888;margin-top:2px}
+.tk-prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:22px}
+.tk-card{background:#fff;border:3px solid var(--black);position:relative;top:0;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
+.tk-card:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--black)}
+.tk-thumb{height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;border-bottom:3px solid var(--black);overflow:hidden;background:#f8f5ee}
+.tk-thumb img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .3s;display:block}
+.tk-card:hover .tk-thumb img{transform:scale(1.05)}
+.tk-thumb .tk-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;pointer-events:none}
+.tk-thumb .tk-fallback .tklbl{font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#bbb;padding:4px 10px;border:2px dashed #ccc;border-radius:6px;background:#fff}
+.tk-badge-pill{position:absolute;top:10px;left:10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:4px 9px;border-radius:4px;color:#fff}
+.tkbp-fave{background:var(--red)}.tkbp-essential{background:var(--green)}.tkbp-upgrade{background:var(--blue)}
+.tk-card-body{padding:18px 18px 14px;flex:1;display:flex;flex-direction:column}
+.tk-card-name{font-family:'Boogaloo',cursive;font-size:20px;line-height:1.15;margin-bottom:6px;color:var(--black)}
+.tk-card-why{font-size:13px;font-weight:600;color:#555;line-height:1.6;margin-bottom:14px;flex:1}
+.tk-card-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tk-tag{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:4px;background:#f0ede6;color:#777;border:2px solid #ddd}
+.tk-amz-btn{display:inline-flex;align-items:center;gap:7px;background:var(--orange);color:#fff;font-weight:900;font-size:13px;padding:9px 18px;border-radius:8px;text-decoration:none;border:3px solid rgba(0,0,0,.18);box-shadow:0 4px 0 #b84e00;transition:all .15s;margin-top:14px;white-space:nowrap}
+.tk-amz-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #b84e00;background:#e05a00}
+.tk-cta-band{background:var(--yellow);padding:48px 0;border-top:5px solid var(--black);border-bottom:5px solid var(--black)}
+.tk-cta-band h2{font-family:'Boogaloo',cursive;font-size:clamp(28px,4vw,44px);margin-bottom:6px}
+.tk-cta-band p{font-size:15px;font-weight:700;color:rgba(0,0,0,.65);max-width:600px}
+.tk-cta-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.tk-yt-btn{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-weight:900;font-size:14px;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 5px 0 #8b0000;transition:all .15s;border:3px solid rgba(255,255,255,.2)}
+.tk-yt-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #8b0000}
+.tk-disclosure{background:var(--black);color:#aaa;padding:32px 0;text-align:center}
+.tk-disclosure p{font-size:13px;font-weight:700;line-height:1.7;max-width:640px;margin:0 auto}
+.tk-disclosure p strong{color:var(--yellow)}
+.tk-disclosure small{font-size:11px;color:#555;display:block;margin-top:10px}
+
 /* BLOG PAGE */
 .blog-hero{background:var(--black);padding:52px 0 44px;margin-top:66px;position:relative;overflow:hidden}
 .blog-hero::before{content:'';position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px)}
@@ -1530,6 +1588,7 @@ window.addEventListener('load', function() {
     <li><a onclick="showPage('home')" class="nav-home-a">🏠 Home</a></li>
     <li><a onclick="showPage('videos')" class="nav-videos-a">🎬 Videos</a></li>
     <li><a onclick="showPage('mocs')" class="nav-mocs-a">🏗️ MOC Gallery</a></li>
+    <li><a onclick="showPage('toolkit')" class="nav-toolkit-a">🧰 Toolkit</a></li>
     <li><a onclick="showPage('shop')" class="nav-shop-a">🛒 Shop</a></li>
     <li><a onclick="showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
     <li><a onclick="showPage('gallery')" class="nav-gallery-a">👥 Community</a></li>
@@ -1674,10 +1733,10 @@ window.addEventListener('load', function() {
         <div>
           <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,.15);color:var(--yellow);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:6px 16px;border-radius:6px;margin-bottom:20px;border:2px solid rgba(255,215,0,.3)">🏗️ Latest MOC</div>
           <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4vw,52px);line-height:1;color:#fff;margin-bottom:16px">Built Brick<br><span style="color:var(--yellow)">By Brick.</span></h2>
-          <p style="font-size:15px;color:rgba(255,255,255,.65);font-weight:700;line-height:1.7;margin-bottom:28px">From official LEGO® set builds and reviews, to custom MOC creations and mods that take sets to the next level — plus non-official brick builds too. Whatever the brick, this channel covers it all.</p>
+          <p style="font-size:15px;color:rgba(255,255,255,.65);font-weight:700;line-height:1.7;margin-bottom:28px">From official LEGO® set builds, to custom MOC creations and mods that take sets to the next level. Before you build, you need the right gear — from brick sorters, lighting kits, and books I actually use when building MOCs, personally tested on real builds. Whatever the brick, this channel covers it all.</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
             <a onclick="showPage('mocs')" style="display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--black);font-weight:900;font-size:15px;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 6px 0 #b89a00;transition:all .15s;cursor:pointer" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🏗️ MOC Gallery →</a>
-            <a onclick="showPage('shop')" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;font-weight:900;font-size:15px;padding:13px 26px;border-radius:10px;text-decoration:none;border:2px solid rgba(255,255,255,.2);transition:all .15s;cursor:pointer" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">📐 Get Instructions →</a>
+            <a onclick="showPage('toolkit')" style="display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-weight:900;font-size:15px;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 6px 0 #b84e00;transition:all .15s;cursor:pointer" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🧰 View Toolkit →</a>
           </div>
         </div>
       </div>
@@ -2428,6 +2487,441 @@ window.addEventListener('load', function() {
 </footer>
 </div>
 
+<!-- ══════════════════════════ TOOLKIT PAGE ══════════════════════════ -->
+<div id="page-toolkit" class="page">
+  <!-- Hero -->
+  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
+    <div class="hero-bg" id="heroBgToolkit"></div>
+    <div class="hero-left">
+      <span class="hero-badge">🧰 MOC Builder Resources</span>
+      <h1><span class="y">Builder's</span><br><span class="r">Toolkit.</span></h1>
+      <p class="hero-sub">Everything I actually use when building MOCs — bulk bricks, storage, lighting, tools, and books. No fluff, just what genuinely helps.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-yellow" onclick="document.getElementById('tkTabs').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">🧱 Browse Gear</a>
+        <a class="btn btn-red" href="https://youtube.com/@BricktasticBuilds" target="_blank">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Watch Builds
+        </a>
+      </div>
+    </div>
+    <div class="hero-right" id="heroR-toolkit">
+      <div class="hcb">
+        <div class="big-brick" style="background:var(--orange);box-shadow:0 12px 0 #8b3a00,0 18px 40px rgba(0,0,0,.5)">
+          <div class="bs" style="left:16px;background:var(--orange)"></div>
+          <div class="bs" style="left:78px;background:var(--orange)"></div>
+          <div class="bs" style="left:140px;background:var(--orange)"></div>
+          <div class="bs" style="left:202px;background:var(--orange)"></div>
+        </div>
+        <div class="ch-tag">🧰 Gear Up</div>
+      </div>
+    </div>
+  </div>
+  <div class="stud-bar" style="background:var(--orange)"><div class="inner" id="sTK1"></div></div>
+  <!-- Affiliate disclaimer -->
+  <div style="background:var(--black);padding:14px 0;border-bottom:2px solid rgba(255,107,0,.25)">
+    <div class="tk-container" style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:18px">🛒</span>
+      <p style="font-size:13px;font-weight:700;color:#888;margin:0"><strong style="color:var(--yellow)">Heads up:</strong> These are Amazon affiliate links. If you buy through them I earn a small commission at no extra cost to you — it helps keep this channel going!</p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="tk-body">
+    <div class="tk-container">
+
+      <!-- Filter tabs -->
+      <div class="tk-cat-tabs" id="tkTabs">
+        <button class="tk-tab active" data-tcat="all">🧱 All</button>
+        <button class="tk-tab" data-tcat="bricks">⬛ Bricks & Parts</button>
+        <button class="tk-tab" data-tcat="tools">🔧 Tools</button>
+        <button class="tk-tab" data-tcat="storage">📦 Storage</button>
+        <button class="tk-tab" data-tcat="lighting">💡 Lighting</button>
+        <button class="tk-tab" data-tcat="books">📚 Books</button>
+      </div>
+
+      <!-- BRICKS & PARTS -->
+      <div class="tk-cat-sec" id="tksec-bricks" data-tcat="bricks">
+        <div class="tk-cat-head">
+          <div class="tk-cat-icon" style="background:var(--black)">⬛</div>
+          <div><div class="tk-cat-title">Bricks & Parts</div><div class="tk-cat-sub">The exact colours and elements I use in vehicles, gaming builds and city MOCs</div></div>
+        </div>
+        <div class="tk-prod-grid">
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Classic Medium Creative Brick Box 10696" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🧱</span><span class="tklbl">Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-fave">⭐ Best for Beginners</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">LEGO Classic Medium Creative Brick Box 10696</div>
+            <div class="tk-card-why">The best starting point if you're new to MOC building. Official LEGO quality guaranteed — third-party bricks vary wildly and this is where I'd tell anyone to start. Great colour variety to get you across vehicles, gaming and city builds from day one. 4.8 stars with 56K+ reviews.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Official LEGO</span><span class="tk-tag">Beginners</span><span class="tk-tag">Colour Variety</span></div>
+            <a class="tk-amz-btn" href="https://amzn.to/4bLbQcB" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="1500 PCS Bulk Building Bricks" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🔲</span><span class="tklbl">Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-upgrade">Best for MOC Volume</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">1500 PCS Bulk Building Bricks</div>
+            <div class="tk-card-why">Once you're past the beginner stage this is what you actually need — large quantities to build with freely without running out mid-MOC. Compatible with LEGO, great value at this price point and 1K+ bought per month means it's trusted. Ideal for stocking up on the colours you burn through fastest.</div>
+            <div class="tk-card-tags"><span class="tk-tag">High Volume</span><span class="tk-tag">MOC Builders</span><span class="tk-tag">Compatible</span></div>
+            <a class="tk-amz-btn" href="https://amzn.to/4v3KJB0" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Bulk Dark Bluish Grey Bricks" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🩶</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Bulk Dark Bluish Grey Bricks</div>
+            <div class="tk-card-why">The second essential neutral for car builds. Dark grey handles engine details, interior floors, wheel wells and any mechanical-looking surface. Pairs perfectly with black for realistic car MOCs.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Vehicles</span><span class="tk-tag">Detail Work</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Bulk Light Bluish Grey & White Tiles" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">⬜</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-essential">Essential</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Bulk Light Bluish Grey & White Tiles</div>
+            <div class="tk-card-why">Smooth tiles are what give car bodies that clean, panel-like finish. White and light grey tiles cover city builds, interiors, and any build that needs a clean modern surface.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Smooth Finish</span><span class="tk-tag">City Builds</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="1×1 & 1×2 Smooth Tiles — Black & Dark Grey" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🔲</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-essential">Essential</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">1×1 & 1×2 Smooth Tiles — Black & Dark Grey</div>
+            <div class="tk-card-why">Tiles with no stud on top are how you get that sleek car hood and roof finish. The difference between a studded surface and a smooth tile surface on a car MOC is massive — these are non-negotiable.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Car Bodywork</span><span class="tk-tag">Smooth Surface</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Tan & Dark Tan Bricks — Bulk Mix" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🟫</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Tan & Dark Tan Bricks — Bulk Mix</div>
+            <div class="tk-card-why">Essential for retro and city builds like my 1950s house, store and garage series. Tan reads as brick, stone and plaster — incredibly versatile for architectural MOCs.</div>
+            <div class="tk-card-tags"><span class="tk-tag">City Builds</span><span class="tk-tag">Architecture</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="bricks">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Technic Axles & Pins — Bulk Pack" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🔩</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">LEGO Technic Axles & Pins — Bulk Pack</div>
+            <div class="tk-card-why">The hidden skeleton of every vehicle MOC. Axles hold wheel assemblies together, pins connect internal frames invisibly. You will always run out of these at the worst possible moment — buy more than you think you need.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Vehicles</span><span class="tk-tag">Structure</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- TOOLS & ACCESSORIES -->
+      <div class="tk-cat-sec" id="tksec-tools" data-tcat="tools">
+        <div class="tk-cat-head">
+          <div class="tk-cat-icon" style="background:var(--blue)">🔧</div>
+          <div><div class="tk-cat-title">Tools & Accessories</div><div class="tk-cat-sub">What makes building faster, more accurate and less frustrating</div></div>
+        </div>
+        <div class="tk-prod-grid">
+        <div class="tk-card" data-tcat="tools">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Brick Separator — Pack of 4" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🔩</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-essential">Essential</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">LEGO Brick Separator — Pack of 4</div>
+            <div class="tk-card-why">Non-negotiable. Buy four minimum. I keep one on each corner of my build table. Trying to pull apart tight tiles and slopes with your fingernails is how you destroy your thumbnails mid-build.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Must Have</span><span class="tk-tag">Official LEGO</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="tools">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Grey Baseplates — 32×32 (Pack of 2)" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">📐</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">LEGO Grey Baseplates — 32×32 (Pack of 2)</div>
+            <div class="tk-card-why">A solid baseplate gives every MOC a clean, stable foundation. I use grey for vehicles and gaming builds — it photographs neutrally and doesn't compete with the colours of the MOC itself.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Foundation</span><span class="tk-tag">Display</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="tools">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Digital Calipers — for Scale Reference" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">📏</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Digital Calipers — for Scale Reference</div>
+            <div class="tk-card-why">Sounds overkill but genuinely useful when you're trying to nail car proportions. I measure real car photos at scale and use calipers to translate that into stud counts. Huge for getting vehicle MOCs looking accurate.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Vehicles</span><span class="tk-tag">Accuracy</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="tools">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Mini Display Stands — Acrylic Risers" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🖥️</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Mini Display Stands — Acrylic Risers</div>
+            <div class="tk-card-why">Once you've built a gaming setup or console MOC, you want to display it properly. Clear acrylic stands elevate smaller builds beautifully and make photography look professional.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Display</span><span class="tk-tag">Gaming Builds</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- STORAGE & SORTING -->
+      <div class="tk-cat-sec" id="tksec-storage" data-tcat="storage">
+        <div class="tk-cat-head">
+          <div class="tk-cat-icon" style="background:var(--green)">📦</div>
+          <div><div class="tk-cat-title">Storage & Sorting</div><div class="tk-cat-sub">The system that keeps your parts sorted and your build speed high</div></div>
+        </div>
+        <div class="tk-prod-grid">
+        <div class="tk-card" data-tcat="storage">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Hardware Drawer Cabinet — 44 Drawer" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🗂️</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-fave">⭐ My System</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Hardware Drawer Cabinet — 44 Drawer</div>
+            <div class="tk-card-why">This is the exact system I use. Sort by colour in the large drawers, then by part type within each colour. Once you have this, finding the right brick mid-build goes from 10 minutes to 10 seconds.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Small Parts</span><span class="tk-tag">Desk Storage</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="storage">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Stackable Open Storage Bins — Large" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🧺</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Stackable Open Storage Bins — Large</div>
+            <div class="tk-card-why">For bulk bricks sorted by colour — black bin, grey bin, white bin, tan bin. The open top means you can grab handfuls fast while building. I have a separate bin for every major colour I use.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Bulk Storage</span><span class="tk-tag">Colour Sorting</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="storage">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Really Useful Boxes — 9L with Dividers" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">📦</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Really Useful Boxes — 9L with Dividers</div>
+            <div class="tk-card-why">For storing completed or in-progress MOCs safely. The 9L size fits most mid-size vehicle builds perfectly. The lids click shut and the dividers stop parts shifting during storage.</div>
+            <div class="tk-card-tags"><span class="tk-tag">MOC Storage</span><span class="tk-tag">Protection</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="storage">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="DYMO Label Maker — LetraTag" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🏷️</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">DYMO Label Maker — LetraTag</div>
+            <div class="tk-card-why">Label every drawer by colour and part type. Sounds tedious, takes one afternoon, saves hours across every future build. The single biggest quality-of-life upgrade for any serious MOC builder.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Organisation</span><span class="tk-tag">Productivity</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- LIGHTING KITS -->
+      <div class="tk-cat-sec" id="tksec-lighting" data-tcat="lighting">
+        <div class="tk-cat-head">
+          <div class="tk-cat-icon" style="background:var(--orange)">💡</div>
+          <div><div class="tk-cat-title">Lighting Kits</div><div class="tk-cat-sub">Make your builds glow — and your thumbnails look pro</div></div>
+        </div>
+        <div class="tk-prod-grid">
+        <div class="tk-card" data-tcat="lighting">
+          <div class="tk-thumb" style="background:#1a1a1a">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Briksmax LED Kit — Warm White Universal" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">✨</span><span class="tklbl" style="border-color:#444;color:#666;background:#1a1a1a">Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-fave">⭐ Channel Pick</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">Briksmax LED Kit — Warm White Universal</div>
+            <div class="tk-card-why">My go-to lighting brand for custom MOCs. These aren't set-specific — the universal kit works on anything you build. The warm white tone photographs beautifully and the connectors are tiny enough to tuck inside builds invisibly. Transformed how my gaming setup and city builds look on camera.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Photography</span><span class="tk-tag">Custom MOCs</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="lighting">
+          <div class="tk-thumb" style="background:#0d0d1a">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="RGB LED Kit — Gaming Setup & Console Builds" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🎮</span><span class="tklbl" style="border-color:#444;color:#666;background:#0d0d1a">Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">RGB LED Kit — Gaming Setup & Console Builds</div>
+            <div class="tk-card-why">For gaming-themed builds like the Xbox, Nintendo Switch and Mini Gaming PC Setup. RGB lets you match the actual glow colours of each console. The effect on camera is incredible and viewers always ask how I did it.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Gaming Builds</span><span class="tk-tag">RGB</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="lighting">
+          <div class="tk-thumb" style="background:#1a1a1a">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="USB LED Strip — Warm White 50cm" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">💡</span><span class="tklbl" style="border-color:#444;color:#666;background:#1a1a1a">Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">USB LED Strip — Warm White 50cm</div>
+            <div class="tk-card-why">For backlighting display shelves behind a row of vehicle builds. Running one strip behind a shelf makes the whole collection look like a professional display. Ridiculously cheap for the effect you get.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Display Shelf</span><span class="tk-tag">Photography</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="lighting">
+          <div class="tk-thumb" style="background:#111">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LED Ring Light — Desktop (for filming)" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">📸</span><span class="tklbl" style="border-color:#444;color:#666;background:#111">Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">LED Ring Light — Desktop (for filming)</div>
+            <div class="tk-card-why">This is what I use when filming builds on my desk. A ring light eliminates the harsh shadows that kill detail photography. Makes every thumbnail look a level up — especially for small-scale gaming and mini builds.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Photography</span><span class="tk-tag">Video</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- BOOKS & GUIDES -->
+      <div class="tk-cat-sec" id="tksec-books" data-tcat="books">
+        <div class="tk-cat-head">
+          <div class="tk-cat-icon" style="background:#7B2FBE">📚</div>
+          <div><div class="tk-cat-title">Books & Guides</div><div class="tk-cat-sub">The references that levelled up my vehicle and city builds</div></div>
+        </div>
+        <div class="tk-prod-grid">
+        <div class="tk-card" data-tcat="books">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The LEGO Technic Idea Book: Simple Machines" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🚗</span><span class="tklbl" >Add image URL</span></div>
+            <span class="tk-badge-pill tkbp-fave">⭐ Must Read</span>
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">The LEGO Technic Idea Book: Simple Machines</div>
+            <div class="tk-card-why">The book that unlocked vehicle builds for me. Covers the geometry of wheels, axle spacing and suspension concepts in a way that directly translates to better car MOCs. If you're building any vehicle, read this.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Vehicles</span><span class="tk-tag">Techniques</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="books">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The Unofficial LEGO Builder's Guide" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🏗️</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">The Unofficial LEGO Builder's Guide</div>
+            <div class="tk-card-why">Deep coverage of structure, geometry and advanced building techniques. Explains WHY builds hold together — critical knowledge for complex car bodies and multi-storey city builds where structural integrity matters.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Advanced</span><span class="tk-tag">Techniques</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="books">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The LEGO Ideas Book — New Edition" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🎮</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">The LEGO Ideas Book — New Edition</div>
+            <div class="tk-card-why">Great for gaming and creative build inspiration. The variety of concepts across different themes is useful when you're trying to figure out how to represent a specific object — like a console, weapon or piece of tech — in brick form.</div>
+            <div class="tk-card-tags"><span class="tk-tag">Inspiration</span><span class="tk-tag">All Themes</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        <div class="tk-card" data-tcat="books">
+          <div class="tk-thumb" style="background:#f8f5ee">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Architecture: The Visual Guide" onerror="this.style.display='none'">
+            <div class="tk-fallback"><span style="font-size:52px">🏙️</span><span class="tklbl" >Add image URL</span></div>
+            
+          </div>
+          <div class="tk-card-body">
+            <div class="tk-card-name">LEGO Architecture: The Visual Guide</div>
+            <div class="tk-card-why">Essential reference for anyone building retro or architectural MOCs. The detail on how to handle windows, facades and rooflines in brick is directly applicable to city builds. My 1950s series wouldn't look the same without this.</div>
+            <div class="tk-card-tags"><span class="tk-tag">City Builds</span><span class="tk-tag">Architecture</span></div>
+            <a class="tk-amz-btn" href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener sponsored"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.23 10.56V10c-1.94 0-3.99.39-3.99 2.67 0 1.15.59 1.93 1.62 1.93.75 0 1.42-.46 1.84-1.22.52-.96.53-1.86.53-2.82zm2.1 5.09c-.14.12-.34.13-.5.05-.7-.58-.82-.85-1.2-1.4-1.15 1.17-1.97 1.52-3.45 1.52-1.76 0-3.14-1.09-3.14-3.26 0-1.7.92-2.86 2.23-3.42 1.13-.5 2.72-.59 3.93-.73v-.27c0-.5.04-1.08-.25-1.5-.26-.38-.74-.53-1.17-.53-.8 0-1.52.4-1.7 1.23-.04.18-.17.36-.36.37l-2-.22c-.17-.03-.36-.17-.31-.43.46-2.42 2.64-3.15 4.6-3.15 1 0 2.32.27 3.11 1.03 1 1 2.12 1.95 2.12 3.94v5.17c0 .88.37 1.27.71 1.74.12.17.15.37-.01.5l-1.62 1.38zm2.86 1.72C16.38 19.05 14.28 20 12 20c-5.19 0-9.38-3.9-9.38-8.7 0-1.39.35-2.7.97-3.86l.79 1.02c-.42.87-.66 1.83-.66 2.85 0 4.09 3.71 7.4 8.28 7.4 1.72 0 3.32-.5 4.65-1.36l.44.02z"/></svg> View on Amazon</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div><!-- /tk-container -->
+  </div><!-- /tk-body -->
+
+
+  <!-- CTA band -->
+  <div class="tk-cta-band">
+    <div class="tk-container">
+      <div class="tk-cta-inner">
+        <div>
+          <h2>🎬 See These In Action</h2>
+          <p>Every product on this page has featured in at least one Bricktastic Builds video. Watch to see how I use them in real MOCs.</p>
+        </div>
+        <a class="tk-yt-btn" href="https://youtube.com/@BricktasticBuilds" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclosure -->
+  <div class="tk-disclosure">
+    <div class="tk-container">
+      <p><strong>Amazon Affiliate Disclosure</strong><br>As an Amazon Associate, I earn from qualifying purchases. When you click a link on this page and buy something on Amazon, I receive a small commission at no extra cost to you. I only list products I genuinely use and recommend.</p>
+      <small>LEGO® is a trademark of the LEGO® Group, which does not sponsor or endorse this website or channel.</small>
+    </div>
+  </div>
+
+</div><!-- /page-toolkit -->
+
+
+</body>
+</html>
+
 <!-- ══ SHOP PAGE ══ -->
 <div id="page-shop" class="page">
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
@@ -3033,6 +3527,7 @@ function showPage(id){
     if(id==='blog') initBlogPage();
     if(id==='gallery') initGalleryPage();
     if(id==='brick-ideas') initBrickIdeasPage();
+    if(id==='toolkit') initToolkitPage();
     setTimeout(()=>{initStuds();initReveal();initFloats();},80);
   }
   if(ov){
@@ -3958,7 +4453,7 @@ function initStuds(){['s1','s2','s3','s-vid'].forEach(id=>{const el=document.get
 // HERO BG
 function initHeroBg(){
   const c=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];
-  ['heroBg','heroBgShop','heroBgVideos','heroBgM','heroBgBlog','heroBgGallery'].forEach(id=>{
+  ['heroBg','heroBgShop','heroBgVideos','heroBgM','heroBgBlog','heroBgGallery','heroBgToolkit'].forEach(id=>{
     const g=document.getElementById(id);
     if(!g||g.children.length)return;
     for(let i=0;i<56;i++){const d=document.createElement('div');d.style.cssText=`background:${c[i%c.length]};border-radius:4px;animation-delay:${(i*.08)%4}s`;g.appendChild(d);}
@@ -3974,6 +4469,7 @@ function initFloats(){
     {id:'heroR-videos', colors:['var(--red)','#8b0000','var(--orange)','#8b3a00','var(--yellow)','#b89a00','var(--blue)','#003d6b']},
     {id:'heroR-blog',   colors:['var(--blue)','#003d6b','var(--green)','#004d25','var(--yellow)','#b89a00','var(--red)','#8b0000']},
     {id:'heroR-gallery',colors:['#7B2FBE','#4a1a7a','var(--red)','#8b0000','var(--blue)','#003d6b','var(--yellow)','#b89a00']},
+    {id:'heroR-toolkit',colors:['var(--orange)','#8b3a00','var(--yellow)','#b89a00','var(--red)','#8b0000','#00B5AD','#007a78']},
   ];
   configs.forEach(cfg=>{
     const r=document.getElementById(cfg.id);
@@ -14092,6 +14588,30 @@ function shareBrickIdeas() {
   }
 }
 
+
+// ══ TOOLKIT PAGE ══
+function initToolkitPage() {
+  // Image fallback
+  document.querySelectorAll('.tk-thumb img').forEach(img => {
+    const fb = img.nextElementSibling;
+    const showFb = () => { img.style.display='none'; if(fb) fb.style.display='flex'; };
+    const hideFb = () => { img.style.display='block'; if(fb) fb.style.display='none'; };
+    if(!img.src || img.src.includes('YOUR_PRODUCT_IMAGE_URL')) { showFb(); }
+    else { img.addEventListener('error', showFb); img.addEventListener('load', hideFb); }
+  });
+  // Category tabs
+  const tabs = document.querySelectorAll('#tkTabs .tk-tab');
+  const secs = document.querySelectorAll('#page-toolkit .tk-cat-sec');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.tcat;
+      secs.forEach(s => { s.style.display = (cat==='all'||s.dataset.tcat===cat) ? '' : 'none'; });
+    });
+  });
+}
+
 // Close overlays with Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
@@ -14186,7 +14706,5 @@ document.addEventListener('keydown', function(e) {
     </div>
     <div id="biSavedList" style="padding:24px;min-height:120px"></div>
   </div>
-</div>
-
 </body>
 </html>

@@ -97,6 +97,7 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .tk-thumb img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .3s;display:block}
 .tk-card:hover .tk-thumb img{transform:scale(1.05)}
 .tk-thumb .tk-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;pointer-events:none}
+.tk-thumb img.loaded + .tk-fallback,.tk-thumb img.loaded ~ .tk-fallback{display:none!important}
 .tk-thumb .tk-fallback .tklbl{font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#bbb;padding:4px 10px;border:2px dashed #ccc;border-radius:6px;background:#fff}
 .tk-badge-pill{position:absolute;top:10px;left:10px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:4px 9px;border-radius:4px;color:#fff}
 .tkbp-fave{background:var(--red)}.tkbp-essential{background:var(--green)}.tkbp-upgrade{background:var(--blue)}
@@ -2548,7 +2549,7 @@ window.addEventListener('load', function() {
         <div class="tk-prod-grid">
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="https://m.media-amazon.com/images/I/8160QjpuoOL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="LEGO Classic Medium Creative Brick Box 10696" onerror="this.style.display='none'">
+            <img src="https://m.media-amazon.com/images/I/8160QjpuoOL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="LEGO Classic Medium Creative Brick Box 10696" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🧱</span><span class="tklbl">Add image URL</span></div>
             <span class="tk-badge-pill tkbp-fave">⭐ Best for Beginners</span>
           </div>
@@ -2561,7 +2562,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="https://m.media-amazon.com/images/I/81XPOKaORKL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="1500 PCS Bulk Building Bricks" onerror="this.style.display='none'">
+            <img src="https://m.media-amazon.com/images/I/81XPOKaORKL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="1500 PCS Bulk Building Bricks" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🔲</span><span class="tklbl">Add image URL</span></div>
             <span class="tk-badge-pill tkbp-upgrade">Best for MOC Volume</span>
           </div>
@@ -2574,7 +2575,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Bulk Dark Bluish Grey Bricks" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Bulk Dark Bluish Grey Bricks" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🩶</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2587,7 +2588,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Bulk Light Bluish Grey & White Tiles" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Bulk Light Bluish Grey & White Tiles" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">⬜</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-essential">Essential</span>
           </div>
@@ -2600,7 +2601,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="1×1 & 1×2 Smooth Tiles — Black & Dark Grey" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="1×1 & 1×2 Smooth Tiles — Black & Dark Grey" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🔲</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-essential">Essential</span>
           </div>
@@ -2613,7 +2614,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Tan & Dark Tan Bricks — Bulk Mix" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Tan & Dark Tan Bricks — Bulk Mix" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🟫</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2626,7 +2627,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="bricks">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Technic Axles & Pins — Bulk Pack" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Technic Axles & Pins — Bulk Pack" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🔩</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
           </div>
@@ -2649,7 +2650,7 @@ window.addEventListener('load', function() {
         <div class="tk-prod-grid">
         <div class="tk-card" data-tcat="tools">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Brick Separator — Pack of 4" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Brick Separator — Pack of 4" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🔩</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-essential">Essential</span>
           </div>
@@ -2662,7 +2663,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="tools">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Grey Baseplates — 32×32 (Pack of 2)" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Grey Baseplates — 32×32 (Pack of 2)" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">📐</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2675,7 +2676,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="tools">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Digital Calipers — for Scale Reference" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Digital Calipers — for Scale Reference" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">📏</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
           </div>
@@ -2688,7 +2689,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="tools">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Mini Display Stands — Acrylic Risers" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Mini Display Stands — Acrylic Risers" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🖥️</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2711,7 +2712,7 @@ window.addEventListener('load', function() {
         <div class="tk-prod-grid">
         <div class="tk-card" data-tcat="storage">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Hardware Drawer Cabinet — 44 Drawer" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Hardware Drawer Cabinet — 44 Drawer" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🗂️</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-fave">⭐ My System</span>
           </div>
@@ -2724,7 +2725,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="storage">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Stackable Open Storage Bins — Large" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Stackable Open Storage Bins — Large" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🧺</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2737,7 +2738,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="storage">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Really Useful Boxes — 9L with Dividers" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Really Useful Boxes — 9L with Dividers" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">📦</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2750,7 +2751,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="storage">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="DYMO Label Maker — LetraTag" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="DYMO Label Maker — LetraTag" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🏷️</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
           </div>
@@ -2773,7 +2774,7 @@ window.addEventListener('load', function() {
         <div class="tk-prod-grid">
         <div class="tk-card" data-tcat="lighting">
           <div class="tk-thumb" style="background:#1a1a1a">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Briksmax LED Kit — Warm White Universal" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="Briksmax LED Kit — Warm White Universal" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">✨</span><span class="tklbl" style="border-color:#444;color:#666;background:#1a1a1a">Add image URL</span></div>
             <span class="tk-badge-pill tkbp-fave">⭐ Channel Pick</span>
           </div>
@@ -2786,7 +2787,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="lighting">
           <div class="tk-thumb" style="background:#0d0d1a">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="RGB LED Kit — Gaming Setup & Console Builds" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="RGB LED Kit — Gaming Setup & Console Builds" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🎮</span><span class="tklbl" style="border-color:#444;color:#666;background:#0d0d1a">Add image URL</span></div>
             
           </div>
@@ -2799,7 +2800,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="lighting">
           <div class="tk-thumb" style="background:#1a1a1a">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="USB LED Strip — Warm White 50cm" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="USB LED Strip — Warm White 50cm" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">💡</span><span class="tklbl" style="border-color:#444;color:#666;background:#1a1a1a">Add image URL</span></div>
             
           </div>
@@ -2812,7 +2813,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="lighting">
           <div class="tk-thumb" style="background:#111">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LED Ring Light — Desktop (for filming)" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LED Ring Light — Desktop (for filming)" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">📸</span><span class="tklbl" style="border-color:#444;color:#666;background:#111">Add image URL</span></div>
             <span class="tk-badge-pill tkbp-upgrade">Upgrade</span>
           </div>
@@ -2835,7 +2836,7 @@ window.addEventListener('load', function() {
         <div class="tk-prod-grid">
         <div class="tk-card" data-tcat="books">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The LEGO Technic Idea Book: Simple Machines" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The LEGO Technic Idea Book: Simple Machines" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🚗</span><span class="tklbl" >Add image URL</span></div>
             <span class="tk-badge-pill tkbp-fave">⭐ Must Read</span>
           </div>
@@ -2848,7 +2849,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="books">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The Unofficial LEGO Builder's Guide" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The Unofficial LEGO Builder's Guide" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🏗️</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2861,7 +2862,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="books">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The LEGO Ideas Book — New Edition" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="The LEGO Ideas Book — New Edition" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🎮</span><span class="tklbl" >Add image URL</span></div>
             
           </div>
@@ -2874,7 +2875,7 @@ window.addEventListener('load', function() {
         </div>
         <div class="tk-card" data-tcat="books">
           <div class="tk-thumb" style="background:#f8f5ee">
-            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Architecture: The Visual Guide" onerror="this.style.display='none'">
+            <img src="YOUR_PRODUCT_IMAGE_URL" alt="LEGO Architecture: The Visual Guide" onload="this.classList.add('loaded')" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')">
             <div class="tk-fallback"><span style="font-size:52px">🏙️</span><span class="tklbl" >Add image URL</span></div>
             
           </div>

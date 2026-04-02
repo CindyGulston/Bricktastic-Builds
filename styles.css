@@ -775,7 +775,11 @@ footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify
 .moc-count{font-weight:800;font-size:13px;color:#888;white-space:nowrap;background:#fff;padding:8px 16px;border-radius:8px;border:2px solid #e0ddd5;margin-left:auto}
 .moc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
 @media(max-width:860px){.moc-grid{grid-template-columns:1fr;gap:28px}}
-.moc-card{background:transparent}
+.moc-card{background:transparent;transform-style:preserve-3d;will-change:transform;transition:transform .1s ease,box-shadow .1s ease}
+.moc-card .moc-photo,.moc-card .moc-info{pointer-events:none}
+.moc-card .moc-photo *,.moc-card .moc-info *{pointer-events:auto}
+.moc-card-tilt-shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.18) 0%,transparent 60%);transition:opacity .2s;z-index:10}
+.moc-card:hover .moc-card-tilt-shine{opacity:1}
 .moc-photo{position:relative;width:100%;aspect-ratio:16/9;background:#fff;overflow:hidden}
 /* MOC Detail Modal */
 .moc-detail-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:650;display:none;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto}

@@ -3820,7 +3820,7 @@ function mocCardHTML(m, cardIndex){
   const mediaHTML=isVid
     ?`<video id="moc-vid-${m.id}" src="${slide.src}" controls playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>`
     :`<img loading="${loadAttr}" id="moc-img-${m.id}" src="${slide.src}" alt="${m.name}" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`;
-  return `<div class="moc-card reveal">
+  return `<div class="moc-card reveal" data-tilt-pending="1">
     <div class="moc-photo">
       <div id="moc-media-${m.id}" class="moc-media-wrap" onclick="openMocLightbox('${m.id}')" style="width:100%;height:100%;transition:opacity .18s;cursor:zoom-in">${mediaHTML}</div>
       <div class="moc-zoom-hint" onclick="openMocLightbox('${m.id}')"><span>🔍</span> Click to enlarge</div>
@@ -3868,6 +3868,60 @@ function mocNav(id,dir){
   const al=document.getElementById('moc-al-'+id);const ar=document.getElementById('moc-ar-'+id);
   if(al)al.disabled=idx===0;if(ar)ar.disabled=idx===total-1;
 }
+
+// ── 3D Tilt Effect for MOC Cards ──────────────────────────────────
+function initMocTilt(){
+  const MAX_TILT = 12; // degrees
+  const SCALE    = 1.03;
+  document.querySelectorAll('#mocGrid .moc-card').forEach(card => {
+    if(card.dataset.tiltInit) return;
+    card.dataset.tiltInit = '1';
+    // Add shine overlay
+    const shine = document.createElement('div');
+    shine.className = 'moc-card-tilt-shine';
+    card.style.position = 'relative';
+    card.appendChild(shine);
+
+    card.addEventListener('mousemove', e => {
+      const r   = card.getBoundingClientRect();
+      const x   = e.clientX - r.left;
+      const y   = e.clientY - r.top;
+      const cx  = r.width  / 2;
+      const cy  = r.height / 2;
+      const rx  =  ((y - cy) / cy) * MAX_TILT;  // tilt around X axis
+      const ry  = -((x - cx) / cx) * MAX_TILT;  // tilt around Y axis
+      card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${SCALE})`;
+      card.style.boxShadow = `${-ry*1.5}px ${rx*1.5}px 30px rgba(0,0,0,0.35)`;
+      // Move shine with cursor
+      shine.style.setProperty('--mx', `${(x/r.width)*100}%`);
+      shine.style.setProperty('--my', `${(y/r.height)*100}%`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
+      card.style.boxShadow = '';
+    });
+  });
+}
+
+// Re-run tilt init whenever MOC grid is re-rendered
+const _origRenderMOCs = window.renderMOCs;
+if(typeof renderMOCs === 'function'){
+  const _orig = renderMOCs;
+  window.renderMOCs = function(...args){
+    const r = _orig.apply(this, args);
+    setTimeout(initMocTilt, 50);
+    return r;
+  };
+}
+// Also init on page show
+document.addEventListener('DOMContentLoaded', () => setTimeout(initMocTilt, 300));
+// Catch nav clicks that reveal the mocs page
+document.addEventListener('click', e => {
+  if(e.target && (e.target.matches('.nav-mocs-a') || e.target.closest('.nav-mocs-a'))){
+    setTimeout(initMocTilt, 200);
+  }
+});
 </script>
 
 <!-- ══ MOC COMMENTS MODAL ══ -->

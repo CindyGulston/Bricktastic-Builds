@@ -3523,7 +3523,7 @@ function updateStartHere() {
   }
 }
 
-function subscribeNewsletter(inputId) {
+async function subscribeNewsletter(inputId) {
   const id = inputId || 'newsletterEmail';
   const input = document.getElementById(id);
   if (!input) return;
@@ -3533,9 +3533,23 @@ function subscribeNewsletter(inputId) {
     setTimeout(() => input.style.borderColor = '', 2000);
     return;
   }
-  input.value = '✅ Subscribed!';
+  const btn = input.closest('.newsletter-form, .newsletter-hero-form, .sub-nl-form')
+    ?.querySelector('button') || input.nextElementSibling;
+  const origText = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
   input.disabled = true;
+  try {
+    await fetch('https://bricktastic-subscribe.bricktasticbuilds01.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+  } catch(e) {
+    console.warn('Newsletter signup failed:', e);
+  }
+  input.value = '✅ Subscribed!';
   input.style.borderColor = 'var(--green)';
+  if (btn) { btn.textContent = origText; btn.disabled = false; }
   launchConfetti(input);
   setTimeout(() => { input.value = ''; input.disabled = false; input.style.borderColor = ''; }, 4000);
 }
@@ -13399,26 +13413,7 @@ function notifyMe() {
   }
 }
 
-function subscribeNewsletter() {
-  const email = document.getElementById('newsletter-home-email')?.value?.trim();
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address!'); return; }
-  const btn = document.querySelector('.newsletter-hero-btn');
-  if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
-  // Use MailerLite via existing ml() universal script
-  if (typeof ml === 'function') {
-    try {
-      ml('webforms', 'show');
-    } catch(e) {}
-  }
-  // Fallback: show success after short delay (integrate with your backend)
-  setTimeout(() => {
-    const form = document.getElementById('newsletter-home-form');
-    const success = document.getElementById('newsletter-home-success');
-    if (form) form.style.display = 'none';
-    if (success) success.style.display = 'block';
-    if (btn) { btn.textContent = '🚀 Subscribe Free'; btn.disabled = false; }
-  }, 1000);
-}
+
 
 
 // ── Lazy image fade-in observer ──

@@ -3561,7 +3561,7 @@ async function subscribeNewsletter(inputId) {
     await fetch('https://bricktastic-subscribe.bricktasticbuilds01.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, groups: ['181903400188773681'] })
     });
   } catch(e) {
     console.warn('Newsletter signup failed:', e);
@@ -13445,7 +13445,7 @@ async function submitNotifyMe() {
     await fetch('https://bricktastic-subscribe.bricktasticbuilds01.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, groups: ['MOC Instructions Waitlist'] })
+      body: JSON.stringify({ email, groups: ['182168987372619423'] })
     });
   } catch(e) {
     console.warn('Notify signup failed:', e);

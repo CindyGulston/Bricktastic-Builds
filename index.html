@@ -99,7 +99,7 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .tk-cat-title{font-family:'Boogaloo',cursive;font-size:30px;line-height:1}
 .tk-cat-sub{font-size:13px;font-weight:700;color:#888;margin-top:2px}
 .tk-prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:22px}
-.tk-card{background:#fff;border:3px solid var(--black);position:relative;top:0;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
+.tk-card{background:#fff;border:3px solid var(--black);position:relative;top:0;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column;transform-style:preserve-3d}
 .tk-card:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--black)}
 .tk-thumb{height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;border-bottom:3px solid var(--black);overflow:hidden;background:#f8f5ee}
 .tk-thumb img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .3s;display:block}
@@ -12894,6 +12894,8 @@ function handleGalleryFile(input) {
     { sel: '.product-card, .pc',       cls: 'sd-reveal' },
     { sel: '#about .about-left > *',   cls: 'sd-reveal-l' },
     { sel: 'section .sec-title',       cls: 'sd-reveal' },
+    { sel: '.tk-prod-grid .tk-card',   cls: 'sd-reveal' },
+    { sel: '.tk-cat-head',             cls: 'sd-reveal' },
   ];
 
   function tagElements() {

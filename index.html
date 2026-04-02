@@ -368,12 +368,20 @@ body.dark input,body.dark textarea{background:#222;color:#fff;border-color:#444}
 .newsletter-inner{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;text-align:center}
 .newsletter-inner h3{font-family:'Boogaloo',cursive;font-size:28px;color:var(--yellow);margin:0}
 .newsletter-inner p{color:rgba(255,255,255,.7);font-size:14px;font-weight:700;margin:0}
-.newsletter-form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.newsletter-input{padding:12px 18px;border:3px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;outline:none;min-width:260px;transition:border-color .15s}
-.newsletter-input:focus{border-color:var(--yellow)}
-.newsletter-input::placeholder{color:rgba(255,255,255,.4)}
-.newsletter-btn{padding:12px 24px;background:var(--yellow);color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 4px 0 #b89a00;transition:all .15s}
-.newsletter-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #b89a00}
+/* Strip MailerLite wrapper in footer bars */
+.newsletter-inner .ml-embedded{width:100%;max-width:480px}
+.newsletter-inner .ml-form-embedWrapper,.newsletter-inner .ml-form-embedBody{background:transparent!important;border:none!important;padding:0!important;box-shadow:none!important;border-radius:0!important}
+.newsletter-inner .ml-form-embedBody h4,.newsletter-inner .ml-form-embedBody p:not(.ml-form-successBody p){display:none!important}
+.newsletter-inner .ml-form-fieldRow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0!important}
+.newsletter-inner .ml-field-group input[type=email],.newsletter-inner .ml-field-group input[type=text]{flex:1;min-width:200px;padding:12px 18px!important;border-radius:8px!important;border:3px solid rgba(255,255,255,.2)!important;background:rgba(255,255,255,.08)!important;color:#fff!important;font-family:'Nunito',sans-serif!important;font-weight:700!important;font-size:14px!important}
+.newsletter-inner .ml-field-group input::placeholder{color:rgba(255,255,255,.4)!important}
+.newsletter-inner .ml-field-group input:focus{border-color:var(--yellow)!important;outline:none!important;box-shadow:none!important}
+.newsletter-inner .ml-form-embedSubmit button{background:var(--yellow)!important;color:var(--black)!important;font-family:'Nunito',sans-serif!important;font-size:14px!important;font-weight:900!important;padding:12px 24px!important;border-radius:8px!important;border:none!important;box-shadow:0 4px 0 #b89a00!important;cursor:pointer!important;white-space:nowrap!important;transition:all .15s!important}
+.newsletter-inner .ml-form-embedWrapper label{display:none!important}
+.newsletter-inner .ml-form-checkboxRow,.newsletter-inner .ml-form-embedPermissions{display:none!important}
+.newsletter-inner .ml-form-successBody{background:rgba(255,255,255,.08)!important;border:2px solid rgba(255,255,255,.2)!important;border-radius:8px!important;padding:16px!important;text-align:center!important}
+.newsletter-inner .ml-form-successBody h4{font-family:'Boogaloo',cursive!important;font-size:1.4rem!important;color:var(--yellow)!important}
+.newsletter-inner .ml-form-successBody p{color:rgba(255,255,255,.7)!important;font-family:'Nunito',sans-serif!important;font-weight:700!important}
 
 /* PAGES */
 .page{display:none}.page.active{display:block}
@@ -2489,7 +2497,8 @@ window.addEventListener('load', function() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter1">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter1')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -3109,7 +3118,13 @@ window.addEventListener('load', function() {
             <div class="pfooter"><div class="price">🔜 Coming Soon</div></div>
             <div class="notify-form-wrap" onclick="event.stopPropagation()">
               <p class="notify-label">📧 Be the first to know when instructions drop:</p>
-              <div class="ml-embedded" data-form="bc2Tvs"></div>
+              <div class="notify-form" id="notifyForm">
+                <input class="notify-input" type="email" id="notifyEmail" placeholder="Your email address…" />
+                <button class="notify-btn" onclick="submitNotifyMe()">Notify Me 🔔</button>
+              </div>
+              <div class="notify-success" id="notifySuccess" style="display:none">
+                ✅ You're on the list! We'll email you the moment they launch.
+              </div>
             </div>
           </div>
         </div>
@@ -3134,7 +3149,8 @@ window.addEventListener('load', function() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter2">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter2')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -3238,7 +3254,8 @@ window.addEventListener('load', function() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter3">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter3')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -10955,7 +10972,8 @@ setTimeout(()=>{
   <div class="container">
     <div class="newsletter-inner">
       <div><h3>📬 Join the Bricktastic Newsletter</h3><p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p></div>
-      <div class="ml-embedded" data-form="koogOd"></div>
+      <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlGameFooter">
+      <button class="newsletter-btn" onclick="subscribeNewsletter('nlGameFooter')">Subscribe 🎉</button>
     </div>
   </div>
 </div>
@@ -12286,7 +12304,8 @@ function bbGameOver(){
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter4">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter4')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -12386,7 +12405,8 @@ function bbGameOver(){
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter5">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter5')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -13709,7 +13729,8 @@ function initBrickIdeasPage() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlBrickIdeas">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlBrickIdeas')">Subscribe 🎉</button>
       </div>
     </div>
   </div>

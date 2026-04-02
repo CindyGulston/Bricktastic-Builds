@@ -10,9 +10,7 @@
   gtag('js', new Date());
   gtag('config', 'G-CR0SWQ3B8S');
 </script>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+<!-- Cache policy handled at server level for better performance -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bricktastic Builds – LEGO® YouTube Channel & Shop</title>
 <meta name="description" content="Bricktastic Builds – the ultimate LEGO® YouTube channel. Watch epic builds, MOC showcases, speed builds and reviews. Shop instructions, MOC PDFs and exclusive bundles.">
@@ -20,14 +18,16 @@
 <meta property="og:title" content="Bricktastic Builds – LEGO® YouTube Channel & Shop">
 <meta property="og:description" content="Epic LEGO® builds, MOC showcases, reviews and a shop full of instructions and bundles.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://bricktasticbuilds.com">
+<meta property="og:url" content="https://www.bricktasticbuilds.co.za">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bricktastic Builds">
 <meta name="twitter:description" content="Epic LEGO® builds, MOC showcases, reviews and a shop full of instructions and bundles.">
-<meta name="twitter:image" content="https://www.bricktasticbuilds.co.za/favicon.png">
-<meta property="og:image" content="https://www.bricktasticbuilds.co.za/favicon.png">
+<!-- NOTE: Replace og-social.jpg with a 1200×630px branded banner for best social sharing previews -->
+<meta name="twitter:image" content="https://www.bricktasticbuilds.co.za/og-social.jpg">
+<meta property="og:image" content="https://www.bricktasticbuilds.co.za/og-social.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<link rel="canonical" href="https://www.bricktasticbuilds.co.za/">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1548,6 +1548,36 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
 @keyframes imgFadeIn { from { opacity:0 } to { opacity:1 } }
 
 </style>
+<!-- Structured Data (JSON-LD) for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Bricktastic Builds",
+  "url": "https://www.bricktasticbuilds.co.za",
+  "description": "The ultimate LEGO® YouTube channel. Watch epic builds, MOC showcases, speed builds and reviews. Shop instructions, MOC PDFs and exclusive bundles.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.bricktasticbuilds.co.za/?s={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bricktastic Builds",
+  "url": "https://www.bricktasticbuilds.co.za",
+  "logo": "https://www.bricktasticbuilds.co.za/favicon.png",
+  "sameAs": [
+    "https://www.youtube.com/@BricktasticBuilds"
+  ]
+}
+</script>
 <!-- MailerLite Universal -->
 <script>
 (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
@@ -14931,5 +14961,6 @@ document.addEventListener('keydown', function(e) {
     </div>
     <div id="biSavedList" style="padding:24px;min-height:120px"></div>
   </div>
+</div>
 </body>
 </html>

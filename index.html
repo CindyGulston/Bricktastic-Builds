@@ -233,7 +233,7 @@ window.addEventListener('load', function() {
       <h1><span class="y" id="typewriter-line1"></span><br><span class="r" id="typewriter-line2"></span><span class="typewriter-cursor" id="typewriter-cursor"></span></h1>
       <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
-        <div><span class="sn" id="statSubscribers">260+</span><span class="sl">Subscribers</span></div>
+        <div><span class="sn" id="statSubscribers">265+</span><span class="sl">Subscribers</span></div>
         <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
         <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
       </div>
@@ -2725,7 +2725,7 @@ function updateChannelStats(subs, vids) {
   // Only update if we actually have a real number (not null/hidden)
   // If hidden by YouTube, keep the hardcoded 260+ displayed
   if (subNum !== null) animateStat(document.getElementById('statSubscribers'), subNum, '+');
-  else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('260')) el.textContent = '260+'; }
+  else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('265')) el.textContent = '265+'; }
   // Use VIDEOS.length as the authoritative count (full catalogue)
   const displayVidCount = vidNum !== null ? vidNum : VIDEOS.length;
   if (displayVidCount) animateStat(document.getElementById('statVideos'), displayVidCount, '');
@@ -2891,10 +2891,23 @@ function renderHomeGrid() {
 }
 
 // ── Channel stats — use catalogue count only (Invidious instances are unreliable) ──
+// ── Channel stats via Cloudflare Worker (YouTube Data API, cached 1 hr) ──
+const YT_WORKER_URL = 'https://noisy-forest-b968.bricktasticbuilds01.workers.dev';
+
 async function fetchLiveChannelStats() {
-  // Skip Invidious entirely — all public instances have CORS issues
-  // Just use the video catalogue length as the count
-  updateChannelStats(null, VIDEOS.length);
+  // Show accurate defaults immediately while we wait for the Worker
+  updateChannelStats(265, 310);
+
+  try {
+    const res = await fetch(YT_WORKER_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Worker returned ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    const subs = data.hiddenSubscriberCount ? null : data.subscriberCount;
+    updateChannelStats(subs, data.videoCount || VIDEOS.length);
+  } catch (err) {
+    console.warn('Could not fetch live channel stats:', err.message);
+  }
 }
 
 function loadRSSFeed() {
@@ -11725,7 +11738,7 @@ function handleGalleryFile(input) {
         if(vid2) animateCount(vid2, liveVidVal, '+', 1400);
       } else {
         // API still loading — show placeholder animation, live update will follow
-        animateCount(document.getElementById('statSubscribers'), 260, '+', 1800);
+        animateCount(document.getElementById('statSubscribers'), 265, '+', 1800);
         animateCount(document.getElementById('statVideos'), 296, '', 1400);
       }
     }

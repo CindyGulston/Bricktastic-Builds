@@ -1633,7 +1633,7 @@ window.addEventListener('load', function() {
       <h1><span class="y" id="typewriter-line1"></span><br><span class="r" id="typewriter-line2"></span><span class="typewriter-cursor" id="typewriter-cursor"></span></h1>
       <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
-        <div><span class="sn" id="statSubscribers">260+</span><span class="sl">Subscribers</span></div>
+        <div><span class="sn" id="statSubscribers">265+</span><span class="sl">Subscribers</span></div>
         <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
         <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
       </div>
@@ -2345,7 +2345,7 @@ window.addEventListener('load', function() {
       <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
       <a href="https://www.tiktok.com/@bricktasticbuilds" target="_blank">TikTok</a>
       <a href="https://www.facebook.com/profile.php?id=61575146147730" target="_blank">Facebook</a>
-    <a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    </div>
 </footer>
 </div>
 
@@ -2424,7 +2424,7 @@ window.addEventListener('load', function() {
       <a onclick="showPage('home')">Home</a>
       <a onclick="showPage('shop')">Shop</a>
       <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
-    <a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    </div>
 </footer>
 </div>
 
@@ -2512,7 +2512,7 @@ window.addEventListener('load', function() {
     <footer>
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · PDF instructions = digital download · MOCs ship worldwide</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
 </footer>
 </div>
 
@@ -2617,7 +2617,7 @@ window.addEventListener('load', function() {
     <footer>
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
 </footer>
 </div>
 
@@ -3560,7 +3560,7 @@ function updateChannelStats(subs, vids) {
   // Only update if we actually have a real number (not null/hidden)
   // If hidden by YouTube, keep the hardcoded 260+ displayed
   if (subNum !== null) animateStat(document.getElementById('statSubscribers'), subNum, '+');
-  else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('260')) el.textContent = '260+'; }
+  else { const el = document.getElementById('statSubscribers'); if (el && !el.textContent.includes('265')) el.textContent = '265+'; }
   // Use VIDEOS.length as the authoritative count (full catalogue)
   const displayVidCount = vidNum !== null ? vidNum : VIDEOS.length;
   if (displayVidCount) animateStat(document.getElementById('statVideos'), displayVidCount, '');
@@ -3570,79 +3570,57 @@ function updateChannelStats(subs, vids) {
     window._onLiveStatsReady(subNum, vidNum);
   }
 
-  // Plain text updates for other instances (guard against null)
-  const safeVid = displayVidCount || VIDEOS.length;
+  // Plain text updates for other instances
   const vid2 = document.getElementById('statVideos2');
-  if (vid2) vid2.textContent = safeVid.toLocaleString() + '+';
+  if (vid2) vid2.textContent = vidNum.toLocaleString() + '+';
   const vid3 = document.getElementById('statVideos3');
-  if (vid3) vid3.textContent = formatCount(safeVid);
+  if (vid3) vid3.textContent = formatCount(vidNum);
   const tag = document.getElementById('statVideos4');
-  if (tag) tag.textContent = safeVid.toLocaleString() + ' Videos';
+  if (tag) tag.textContent = vidNum.toLocaleString() + ' Videos';
 
   // Update the videos page hero subtitle too
   const vidSub = document.querySelector('#page-videos .hero-sub');
-  if (vidSub) vidSub.textContent = `${safeVid.toLocaleString()}+ LEGO\u00ae builds, instructions, showcases & more. Click any video to watch on YouTube.`;
+  if (vidSub) vidSub.textContent = `${vidNum.toLocaleString()}+ LEGO\u00ae builds, instructions, showcases & more. Click any video to watch on YouTube.`;
 }
 
 async function fetchYouTubeVideos() {
-  // No API key — use RSS only for newest videos
-  await fetchYouTubeVideosRSS();
+  await fetchLatestVideosFromWorker();
 }
 
-// ── RSS: fetches your 15 newest videos and merges them into VIDEOS ──
-async function fetchYouTubeVideosRSS() {
+// ── Fetch latest 50 videos from Cloudflare Worker (YouTube Data API, cached 1hr) ──
+async function fetchLatestVideosFromWorker() {
   try {
-    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
-    // Try two proxies in case one is down
-    let json = null;
-    for (const proxy of [
-      `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`,
-      `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`
-    ]) {
-      try {
-        const r = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
-        if (r.ok) { json = await r.json(); break; }
-      } catch(e) { console.warn('RSS proxy failed, trying next:', e.message); }
-    }
-    if (!json) throw new Error('All RSS proxies failed');
-    const parser = new DOMParser();
-    const xml    = parser.parseFromString(json.contents, 'text/xml');
-    const entries = Array.from(xml.querySelectorAll('entry'));
-    if (!entries.length) return;
-    const newest = entries.map(e => {
-      const id        = (e.querySelector('videoId')?.textContent || e.querySelector('id')?.textContent || '').replace('yt:video:','');
-      const title     = (e.querySelector('title')?.textContent || '').replace(/#\S+/g,'').replace(/\s+/g,' ').trim();
-      const published = e.querySelector('published')?.textContent || '';
-      const views     = e.querySelector('statistics')?.getAttribute('views') || '0';
-      if (!id || !title) return null;
-      // Check if it already exists in catalogue
-      const existing = VIDEOS.find(v => v.id === id);
+    const res = await fetch(YT_WORKER_URL + '/videos', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Worker /videos returned ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    const incoming = (data.videos || []).map(v => ({
+      id         : v.id,
+      title      : v.title,
+      thumbnail  : v.thumbnail,
+      publishedAt: v.publishedAt,
+      viewCount  : v.viewCount,
+      likeCount  : v.likeCount || '0',
+      isShort    : v.isShort || false,
+      duration   : v.duration || '',
+      cat        : v.isShort ? detectCategoryShort(v.title) : detectCategory(v.title, ''),
+    }));
+    let newCount = 0;
+    incoming.forEach(v => {
+      const existing = VIDEOS.find(x => x.id === v.id);
       if (existing) {
-        // Update publishedAt and viewCount from RSS
-        existing.publishedAt = published;
-        existing.viewCount   = views;
-        return null; // already in array, just updated
+        existing.publishedAt = v.publishedAt;
+        existing.viewCount   = v.viewCount;
+        existing.thumbnail   = v.thumbnail;
+      } else {
+        VIDEOS.unshift(v);
+        newCount++;
       }
-      // Brand new video — add it to the front
-      return {
-        id, title,
-        thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
-        publishedAt: published,
-        viewCount: views,
-        isShort: false,
-        cat: detectCategory(title, ''),
-        duration: ''
-      };
-    }).filter(Boolean);
-
-    if (newest.length) {
-      VIDEOS = [...newest, ...VIDEOS]; // newest go to the front
-      console.log('RSS merged', newest.length, 'new videos. Total:', VIDEOS.length);
-    } else {
-      console.log('RSS: no new videos beyond catalogue. Total:', VIDEOS.length);
-    }
+    });
+    if (newCount > 0) console.log('Worker: added', newCount, 'new videos. Total:', VIDEOS.length);
+    else console.log('Worker: updated', incoming.length, 'existing videos. Total:', VIDEOS.length);
   } catch(e) {
-    console.warn('RSS fetch failed:', e.message, '— using catalogue only');
+    console.warn('Worker /videos fetch failed:', e.message, '— catalogue still loaded');
   }
 }
 
@@ -3735,62 +3713,29 @@ function renderHomeGrid() {
   setTimeout(initReveal, 50);
 }
 
-// ── Channel stats — fetch live from YouTube (no API key required) ──
+// ── Channel stats via Cloudflare Worker (YouTube Data API, cached 1 hr) ──
+const YT_WORKER_URL = 'https://noisy-forest-b968.bricktasticbuilds01.workers.dev';
+
 async function fetchLiveChannelStats() {
-  // Strategy 1: yt.lemnoslife.com — mirrors the YouTube Data API without a key
+  updateChannelStats(265, 310);
   try {
-    const url = `https://yt.lemnoslife.com/noKey/channels?part=statistics&id=${YT_CHANNEL_ID}`;
-    const res  = await fetch(url, { signal: AbortSignal.timeout(7000) });
-    if (res.ok) {
-      const data  = await res.json();
-      const stats = data?.items?.[0]?.statistics;
-      if (stats) {
-        const subs = stats.hiddenSubscriberCount ? null : (parseInt(stats.subscriberCount) || null);
-        const vids = parseInt(stats.videoCount)  || null;
-        console.log('Live stats (lemnoslife):', subs, vids);
-        updateChannelStats(subs, vids);
-        return;
-      }
-    }
-  } catch(e) { console.warn('lemnoslife failed:', e.message); }
-
-  // Strategy 2: allorigins proxy → YouTube channel page scrape for subscriber count
-  try {
-    const ytUrl  = `https://www.youtube.com/channel/${YT_CHANNEL_ID}/about`;
-    const proxy  = `https://api.allorigins.win/get?url=${encodeURIComponent(ytUrl)}`;
-    const res    = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
-    const json   = await res.json();
-    const html   = json.contents || '';
-    // Subscriber count appears as e.g. "subscriberCountText":{"simpleText":"263"}
-    const subMatch = html.match(/"subscriberCountText":\{"simpleText":"([^"]+)"/);
-    const vidMatch = html.match(/"videoCountText":\{"runs":\[\{"text":"(\d+)"/);
-    const subs = subMatch ? parseInt(subMatch[1].replace(/\D/g,'')) || null : null;
-    const vids = vidMatch ? parseInt(vidMatch[1]) || null : null;
-    if (subs || vids) {
-      console.log('Live stats (scrape):', subs, vids);
-      updateChannelStats(subs, vids);
-      return;
-    }
-  } catch(e) { console.warn('Scrape fallback failed:', e.message); }
-
-  // Strategy 3: Use catalogue length as video count; keep hardcoded sub display
-  console.warn('All stat sources failed — using catalogue count');
-  updateChannelStats(null, VIDEOS.length);
+    const res = await fetch(YT_WORKER_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Worker returned ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    const subs = data.hiddenSubscriberCount ? null : data.subscriberCount;
+    updateChannelStats(subs, data.videoCount || VIDEOS.length);
+  } catch (err) {
+    console.warn('Could not fetch live channel stats:', err.message);
+  }
 }
 
 function loadRSSFeed() {
   renderHomeGrid();
-  // Fetch live channel stats (subscriber + video count)
-  fetchLiveChannelStats();
-  // Fetch newest videos via RSS and re-render when done
+  fetchLiveChannelStats(); // fetch subs + video count via Invidious (no API key)
   loadVideosWithCache().then(() => {
     renderHomeGrid();
     updateStartHere();
-    // Refresh video count display with RSS-merged total
-    const statEl = document.getElementById('statVideos');
-    if (statEl && VIDEOS.length > parseInt(statEl.textContent)) {
-      updateChannelStats(null, VIDEOS.length);
-    }
   });
 }
 
@@ -10271,7 +10216,7 @@ setTimeout(()=>{
     <a onclick="showPage('home')">Home</a>
     <a onclick="showPage('shop')">Shop</a>
     <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
-  <a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+  </div>
 </footer>
 
 </div><!-- end page-game -->
@@ -11599,7 +11544,7 @@ function bbGameOver(){
     <footer>
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
 </footer>
 </div>
 
@@ -11700,7 +11645,7 @@ function bbGameOver(){
     <footer>
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
 </footer>
 </div>
 
@@ -12385,7 +12330,7 @@ function handleGalleryFile(input) {
         if(vid2) animateCount(vid2, liveVidVal, '+', 1400);
       } else {
         // API still loading — show placeholder animation, live update will follow
-        animateCount(document.getElementById('statSubscribers'), 260, '+', 1800);
+        animateCount(document.getElementById('statSubscribers'), 265, '+', 1800);
         animateCount(document.getElementById('statVideos'), 296, '', 1400);
       }
     }
@@ -12830,7 +12775,7 @@ function initBrickIdeasPage() {}
   <footer>
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('brick-ideas')">Brick Ideas</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('brick-ideas')">Brick Ideas</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a></div>
   </footer>
 </div>
 
@@ -13134,7 +13079,7 @@ document.addEventListener('keydown', function(e) {
   <footer>
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('terms')">Terms</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
   </footer>
 </div>
 
@@ -13171,7 +13116,7 @@ document.addEventListener('keydown', function(e) {
   <footer>
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('privacy')">Privacy</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('refunds')">Refunds</a></div>
   </footer>
 </div>
 
@@ -13208,7 +13153,7 @@ document.addEventListener('keydown', function(e) {
   <footer>
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a></div>
   </footer>
 </div>
 
@@ -13274,7 +13219,7 @@ document.addEventListener('keydown', function(e) {
   <footer>
     <div class="fl">Bricktastic Builds</div>
     <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('pricing')">Pricing</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a></div>
   </footer>
 </div>
 

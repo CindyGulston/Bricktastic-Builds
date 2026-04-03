@@ -3570,17 +3570,18 @@ function updateChannelStats(subs, vids) {
     window._onLiveStatsReady(subNum, vidNum);
   }
 
-  // Plain text updates for other instances
+  // Plain text updates for other instances (guard against null)
+  const safeVid = displayVidCount || VIDEOS.length;
   const vid2 = document.getElementById('statVideos2');
-  if (vid2) vid2.textContent = vidNum.toLocaleString() + '+';
+  if (vid2) vid2.textContent = safeVid.toLocaleString() + '+';
   const vid3 = document.getElementById('statVideos3');
-  if (vid3) vid3.textContent = formatCount(vidNum);
+  if (vid3) vid3.textContent = formatCount(safeVid);
   const tag = document.getElementById('statVideos4');
-  if (tag) tag.textContent = vidNum.toLocaleString() + ' Videos';
+  if (tag) tag.textContent = safeVid.toLocaleString() + ' Videos';
 
   // Update the videos page hero subtitle too
   const vidSub = document.querySelector('#page-videos .hero-sub');
-  if (vidSub) vidSub.textContent = `${vidNum.toLocaleString()}+ LEGO\u00ae builds, instructions, showcases & more. Click any video to watch on YouTube.`;
+  if (vidSub) vidSub.textContent = `${safeVid.toLocaleString()}+ LEGO\u00ae builds, instructions, showcases & more. Click any video to watch on YouTube.`;
 }
 
 async function fetchYouTubeVideos() {
@@ -3592,9 +3593,18 @@ async function fetchYouTubeVideos() {
 async function fetchYouTubeVideosRSS() {
   try {
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
-    const proxy  = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-    const res    = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
-    const json   = await res.json();
+    // Try two proxies in case one is down
+    let json = null;
+    for (const proxy of [
+      `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`,
+      `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`
+    ]) {
+      try {
+        const r = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+        if (r.ok) { json = await r.json(); break; }
+      } catch(e) { console.warn('RSS proxy failed, trying next:', e.message); }
+    }
+    if (!json) throw new Error('All RSS proxies failed');
     const parser = new DOMParser();
     const xml    = parser.parseFromString(json.contents, 'text/xml');
     const entries = Array.from(xml.querySelectorAll('entry'));
@@ -3725,19 +3735,62 @@ function renderHomeGrid() {
   setTimeout(initReveal, 50);
 }
 
-// ── Channel stats — use catalogue count only (Invidious instances are unreliable) ──
+// ── Channel stats — fetch live from YouTube (no API key required) ──
 async function fetchLiveChannelStats() {
-  // Skip Invidious entirely — all public instances have CORS issues
-  // Just use the video catalogue length as the count
+  // Strategy 1: yt.lemnoslife.com — mirrors the YouTube Data API without a key
+  try {
+    const url = `https://yt.lemnoslife.com/noKey/channels?part=statistics&id=${YT_CHANNEL_ID}`;
+    const res  = await fetch(url, { signal: AbortSignal.timeout(7000) });
+    if (res.ok) {
+      const data  = await res.json();
+      const stats = data?.items?.[0]?.statistics;
+      if (stats) {
+        const subs = stats.hiddenSubscriberCount ? null : (parseInt(stats.subscriberCount) || null);
+        const vids = parseInt(stats.videoCount)  || null;
+        console.log('Live stats (lemnoslife):', subs, vids);
+        updateChannelStats(subs, vids);
+        return;
+      }
+    }
+  } catch(e) { console.warn('lemnoslife failed:', e.message); }
+
+  // Strategy 2: allorigins proxy → YouTube channel page scrape for subscriber count
+  try {
+    const ytUrl  = `https://www.youtube.com/channel/${YT_CHANNEL_ID}/about`;
+    const proxy  = `https://api.allorigins.win/get?url=${encodeURIComponent(ytUrl)}`;
+    const res    = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+    const json   = await res.json();
+    const html   = json.contents || '';
+    // Subscriber count appears as e.g. "subscriberCountText":{"simpleText":"263"}
+    const subMatch = html.match(/"subscriberCountText":\{"simpleText":"([^"]+)"/);
+    const vidMatch = html.match(/"videoCountText":\{"runs":\[\{"text":"(\d+)"/);
+    const subs = subMatch ? parseInt(subMatch[1].replace(/\D/g,'')) || null : null;
+    const vids = vidMatch ? parseInt(vidMatch[1]) || null : null;
+    if (subs || vids) {
+      console.log('Live stats (scrape):', subs, vids);
+      updateChannelStats(subs, vids);
+      return;
+    }
+  } catch(e) { console.warn('Scrape fallback failed:', e.message); }
+
+  // Strategy 3: Use catalogue length as video count; keep hardcoded sub display
+  console.warn('All stat sources failed — using catalogue count');
   updateChannelStats(null, VIDEOS.length);
 }
 
 function loadRSSFeed() {
   renderHomeGrid();
-  fetchLiveChannelStats(); // fetch subs + video count via Invidious (no API key)
+  // Fetch live channel stats (subscriber + video count)
+  fetchLiveChannelStats();
+  // Fetch newest videos via RSS and re-render when done
   loadVideosWithCache().then(() => {
     renderHomeGrid();
     updateStartHere();
+    // Refresh video count display with RSS-merged total
+    const statEl = document.getElementById('statVideos');
+    if (statEl && VIDEOS.length > parseInt(statEl.textContent)) {
+      updateChannelStats(null, VIDEOS.length);
+    }
   });
 }
 

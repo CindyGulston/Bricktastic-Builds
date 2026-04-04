@@ -1470,6 +1470,56 @@ a:focus-visible, button:focus-visible {
 img.lazy-loaded { animation: imgFadeIn .4s ease; }
 @keyframes imgFadeIn { from { opacity:0 } to { opacity:1 } }
 
+/* ==========================================================================
+   GLOBAL MOBILE-FRIENDLY OVERRIDES
+========================================================================== */
+@media (max-width: 768px) {
+  /* 1. Fix container padding so it doesn't squash content on phones */
+  .container { padding: 0 16px !important; }
+  .hero-left { padding: 40px 20px !important; }
+
+  /* 2. Make category tabs swipeable horizontally instead of wrapping */
+  .vid-filter-tabs, .shop-tabs, .gallery-tabs, .blog-filter-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+    width: 100%;
+  }
+  .vid-filter-tabs::-webkit-scrollbar, .shop-tabs::-webkit-scrollbar,
+  .gallery-tabs::-webkit-scrollbar, .blog-filter-row::-webkit-scrollbar {
+    display: none;
+  }
+  .vid-tab, .shop-tab, .gallery-tab, .blog-ftab {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* 3. Fix Forms (Gallery Submit & Contact Form) to stack cleanly */
+  .gallery-form { grid-template-columns: 1fr !important; }
+  .gallery-submit-box { padding: 24px 20px !important; }
+  #contactFormWrap > div:first-child { grid-template-columns: 1fr !important; }
+  #contactFormWrap { padding: 24px 20px !important; }
+
+  /* 4. Fix Modals for mobile screens */
+  .mod-body, .gallery-modal-body, .moc-detail-body { padding: 20px !important; }
+  .mod-specs { grid-template-columns: 1fr 1fr !important; }
+  .mod-hero { min-height: 160px !important; font-size: 64px !important; }
+
+  /* 5. Fix Navigation Logo to prevent text clipping */
+  .nav-logo { font-size: 22px !important; }
+  nav { padding: 0 16px !important; }
+
+  /* 6. Adjust Typography for smaller screens */
+  .sec-title { font-size: 32px !important; margin-bottom: 10px !important; }
+  .sec-sub { font-size: 14px !important; margin-bottom: 30px !important; }
+  .newsletter-inner h3 { font-size: 22px !important; }
+  .newsletter-input { min-width: 100% !important; }
+  .newsletter-btn { width: 100% !important; }
+}
+
 </style>
 <!-- MailerLite removed — email handled via Cloudflare Workers + Resend API -->
 </head>
@@ -11729,7 +11779,7 @@ function bbGameOver(){
       <div class="gallery-grid" id="galleryGrid"></div>
 
       <!-- Submit Your Build -->
-      <div class="gallery-submit-box reveal" style="margin-top:48px">
+      <div class="gallery-submit-box" style="margin-top:48px">
         <h3>🏗️ Submit Your Build</h3>
         <p>Share your MOC with the community. Upload a photo or paste a link — we'll review and feature the best builds!</p>
         <div class="gallery-form" id="galleryForm">

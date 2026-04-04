@@ -112,6 +112,11 @@ color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:9
 .gallery-card-likes{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-weight:900;padding:4px 10px;border-radius:20px;cursor:pointer;transition:transform .1s;z-index:2}
 .gallery-card-likes:hover{transform:scale(1.15)}
 .gallery-card-likes.liked{background:var(--red)}
+.gallery-admin-del{display:none;position:absolute;top:10px;left:10px;background:rgba(200,0,0,.85);color:#fff;font-size:12px;font-weight:900;padding:4px 10px;border-radius:20px;cursor:pointer;border:none;z-index:3;transition:transform .1s,background .15s}
+.gallery-admin-del:hover{background:#c00;transform:scale(1.1)}
+body.admin-mode .gallery-admin-del{display:block}
+#adminBanner{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#c00;color:#fff;font-weight:900;font-size:13px;padding:10px 24px;border-radius:20px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.4);pointer-events:none;letter-spacing:.5px}
+body.admin-mode #adminBanner{display:block}
 .gallery-submit-box{background:var(--black);border:3px solid var(--yellow);padding:32px 36px;margin-bottom:40px}
 .gallery-submit-box h3{font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);margin-bottom:8px}
 .gallery-submit-box p{font-size:14px;color:#aaa;font-weight:600;margin-bottom:20px}
@@ -12016,6 +12021,7 @@ function renderGallery() {
     return `<div class="gallery-card reveal" onclick="openGalleryModal('${item.id}')">
       <div class="gallery-thumb" style="${bgStyle}">${imgHtml}
         <span class="gallery-card-likes${liked?' liked':''}" onclick="event.stopPropagation();quickHeart('${item.id}',this)">❤️ ${item.hearts||0}</span>
+        ${item.id && !item.emoji ? `<button class="gallery-admin-del" onclick="event.stopPropagation();adminDeleteBuild('${item.id}',this)" title="Delete build">🗑️</button>` : ''}
       </div>
       <div class="gallery-card-body">
         <div class="gallery-card-name">${item.name}</div>
@@ -12763,6 +12769,61 @@ if (_origRenderGallery) {
 }
 // Also run after page shows
 document.addEventListener('DOMContentLoaded', () => setTimeout(renderLeaderboard, 2000));
+
+// ══════════════════════════════════════
+// ADMIN DELETE MODE
+// Secret combo: type "bbadmin" anywhere
+// Password checked once per session
+// Only works on live Supabase builds (not static GALLERY_ITEMS)
+// ══════════════════════════════════════
+(function() {
+  const SECRET   = 'bbadmin';
+  const PASSWORD = 'bricksRule2025';
+  let   buffer   = '';
+  let   unlocked = false; // true after password verified once per session
+
+  document.addEventListener('keydown', e => {
+    // Ignore when typing in inputs/textareas
+    if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+    buffer += e.key.toLowerCase();
+    if (buffer.length > SECRET.length) buffer = buffer.slice(-SECRET.length);
+    if (buffer === SECRET) {
+      buffer = '';
+      if (document.body.classList.contains('admin-mode')) {
+        // Toggle OFF
+        document.body.classList.remove('admin-mode');
+        unlocked = false;
+      } else {
+        // Toggle ON — ask for password
+        const pwd = prompt('🔐 Admin password:');
+        if (pwd === PASSWORD) {
+          unlocked = true;
+          document.body.classList.add('admin-mode');
+        } else {
+          alert('❌ Wrong password.');
+        }
+      }
+    }
+  });
+
+  window.adminDeleteBuild = async function(id, btn) {
+    if (!unlocked) return;
+    if (!confirm('Delete this build permanently? This cannot be undone.')) return;
+    btn.textContent = '⏳';
+    btn.disabled = true;
+    try {
+      await supaFetch(`builds?id=eq.${id}`, { method: 'DELETE' });
+      // Remove from local array and re-render
+      _liveBuilds = _liveBuilds.filter(b => String(b.id) !== String(id));
+      renderGallery();
+      renderBotm();
+    } catch(e) {
+      alert('Delete failed: ' + e.message);
+      btn.textContent = '🗑️';
+      btn.disabled = false;
+    }
+  };
+})();
 
 // ── Newsletter hero form handler ──
 // ── Shop "Notify Me" handler ──
@@ -13549,6 +13610,8 @@ function highlight(id) {
 }
 </script>
 <!-- ══ NOTIFY ME MODAL ══ -->
+<div id="adminBanner">🔴 ADMIN MODE — Click 🗑️ to delete a build</div>
+
 <div id="notifyModal" onclick="if(event.target===this)closeNotifyModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:900;align-items:center;justify-content:center;padding:20px">
   <div style="background:#fff;max-width:440px;width:100%;border:3px solid var(--black);box-shadow:0 12px 0 rgba(0,0,0,.25);position:relative;overflow:hidden">
     <div style="background:var(--black);padding:24px 28px 20px;position:relative">

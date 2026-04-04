@@ -12812,7 +12812,15 @@ document.addEventListener('DOMContentLoaded', () => setTimeout(renderLeaderboard
     btn.textContent = '⏳';
     btn.disabled = true;
     try {
-      await supaFetch(`builds?id=eq.${id}`, { method: 'DELETE' });
+      const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/admin-delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, token: PASSWORD })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Delete failed');
+      }
       // Remove from local array and re-render
       _liveBuilds = _liveBuilds.filter(b => String(b.id) !== String(id));
       renderGallery();

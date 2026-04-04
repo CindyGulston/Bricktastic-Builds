@@ -1466,38 +1466,7 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
 @keyframes imgFadeIn { from { opacity:0 } to { opacity:1 } }
 
 </style>
-<!-- MailerLite Universal -->
-<script>
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '2189778');
-</script>
-<style>
-/* Block MailerLite popup from auto-showing */
-.ml-form-popup, .ml-subscribe-popup, [class*="ml-popup"], [id*="ml-popup"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-</style>
-<script>
-// Aggressively suppress MailerLite popup on load and after any delay
-(function() {
-  function hideMLPopup() {
-    try {
-      document.querySelectorAll('.ml-form-popup, .ml-subscribe-popup, [class*="ml-popup"], [id*="ml-popup"]').forEach(el => {
-        el.style.display = 'none';
-      });
-    } catch(e) {}
-  }
-  window.addEventListener('load', hideMLPopup);
-  document.addEventListener('DOMContentLoaded', hideMLPopup);
-  setTimeout(hideMLPopup, 500);
-  setTimeout(hideMLPopup, 1500);
-  setTimeout(hideMLPopup, 3000);
-})();
-</script>
-<!-- End MailerLite Universal -->
+<!-- MailerLite removed — newsletter uses Cloudflare worker -->
 </head>
 <body>
 <a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--yellow);color:var(--black);padding:8px 16px;font-weight:900;border-radius:0 0 8px 8px" onfocus="this.style.left='50%';this.style.transform='translateX(-50%)';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px'">Skip to main content</a>
@@ -2223,20 +2192,7 @@ window.addEventListener('load', function() {
       .sub-nl-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Boogaloo',cursive;font-size:18px;letter-spacing:.5px;padding:13px 26px;border-radius:10px;border:none;background:var(--black);color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 5px 0 rgba(0,0,0,.35);position:relative;top:0;transition:top .1s,box-shadow .1s}
       .sub-nl-btn:hover{top:3px;box-shadow:0 2px 0 rgba(0,0,0,.35)}
       .nl-thankyou-2025{display:none;background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);border-radius:10px;padding:16px 20px;color:var(--black);font-weight:800;font-size:15px;margin-top:12px;font-family:'Nunito',sans-serif}
-      /* MailerLite embed overrides — yellow panel */
-      .sub-nl .ml-embedded{width:100%}
-      .sub-nl .ml-form-embedWrapper,.sub-nl .ml-form-embedBody{background:transparent!important;border:none!important;padding:0!important;box-shadow:none!important}
-      .sub-nl .ml-form-fieldRow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0!important}
-      .sub-nl .ml-field-group input[type=email],.sub-nl .ml-field-group input[type=text]{flex:1;min-width:200px;padding:13px 18px!important;border-radius:10px!important;border:3px solid rgba(0,0,0,.15)!important;background:#fff!important;color:var(--black)!important;font-family:'Nunito',sans-serif!important;font-weight:700!important;font-size:14px!important}
-      .sub-nl .ml-field-group input::placeholder{color:rgba(0,0,0,.35)!important}
-      .sub-nl .ml-field-group input:focus{border-color:var(--black)!important;outline:none!important;box-shadow:none!important}
-      .sub-nl .ml-form-embedSubmit button{background:var(--black)!important;color:#fff!important;font-family:'Boogaloo',cursive!important;font-size:18px!important;letter-spacing:.5px!important;padding:13px 26px!important;border-radius:10px!important;border:none!important;box-shadow:0 5px 0 rgba(0,0,0,.35)!important;cursor:pointer!important;white-space:nowrap!important}
-      .sub-nl .ml-form-embedWrapper label{display:none!important}
-      .sub-nl .ml-form-checkboxRow,.sub-nl .ml-form-embedPermissions{display:none!important}
-      /* ← Do NOT hide or override .ml-form-successContent — let MailerLite show it */
-      .sub-nl .ml-form-successBody{background:rgba(0,0,0,.1)!important;border:2px solid rgba(0,0,0,.2)!important;border-radius:10px!important;padding:20px!important;text-align:center!important}
-      .sub-nl .ml-form-successBody h4{font-family:'Boogaloo',cursive!important;font-size:1.6rem!important;color:var(--black)!important}
-      .sub-nl .ml-form-successBody p{color:rgba(0,0,0,.65)!important;font-family:'Nunito',sans-serif!important;font-weight:700!important}
+      /* MailerLite styles removed — using Cloudflare worker form */
     </style>
     <div class="sub-split">
 
@@ -2259,7 +2215,16 @@ window.addEventListener('load', function() {
         <div class="sub-nl-badge">📬 Newsletter</div>
         <h2 class="sub-nl-h">New builds. New instructions.<br>First to know.</h2>
         <p class="sub-nl-p">Drop your email and I'll let you know when new MOC instructions drop, new videos go up, or when something special is happening on the channel. No spam — just LEGO®.</p>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <div id="nl-home-form">
+          <div class="sub-nl-row">
+            <input class="sub-nl-input" type="email" id="nl-home-email" placeholder="your@email.com">
+            <button class="sub-nl-btn" onclick="subscribeNewsletterHome()">📬 Subscribe Free</button>
+          </div>
+          <p class="sub-nl-fine">No spam — just LEGO®. Unsubscribe any time.</p>
+        </div>
+        <div class="nl-thankyou-2025" id="nl-home-success">
+          <strong>Thank you!</strong> You have successfully joined our subscriber list.
+        </div>
       </div>
 
     </div>
@@ -12742,26 +12707,35 @@ async function notifyMe() {
 }
 
 // ── Newsletter hero form handler ──
-async function subscribeNewsletterHero() {
-  const email = document.getElementById('newsletter-home-email')?.value?.trim();
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address!'); return; }
-  const btn = document.querySelector('.newsletter-hero-btn');
+async function subscribeNewsletterHome() {
+  const input = document.getElementById('nl-home-email');
+  if (!input) return;
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) {
+    input.style.borderColor = '#E3000B';
+    setTimeout(() => input.style.borderColor = '', 2000);
+    return;
+  }
+  const btn = document.querySelector('#nl-home-form .sub-nl-btn');
   if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
+  input.disabled = true;
   try {
     const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source: 'newsletter-hero' })
+      body: JSON.stringify({ email, source: 'home-newsletter' })
     });
     if (!res.ok) throw new Error('Failed');
-    const form = document.getElementById('newsletter-home-form');
-    const success = document.getElementById('newsletter-home-success');
-    if (form) form.style.display = 'none';
-    if (success) success.style.display = 'block';
+    document.getElementById('nl-home-form').style.display = 'none';
+    document.getElementById('nl-home-success').style.display = 'block';
   } catch(e) {
-    alert('Something went wrong — please try again!');
-  } finally {
-    if (btn) { btn.textContent = '🚀 Subscribe Free'; btn.disabled = false; }
+    input.disabled = false;
+    input.style.borderColor = '#E3000B';
+    if (btn) { btn.textContent = '❌ Try again'; btn.disabled = false; }
+    setTimeout(() => {
+      input.style.borderColor = '';
+      if (btn) btn.textContent = '📬 Subscribe Free';
+    }, 3000);
   }
 }
 

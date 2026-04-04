@@ -1534,7 +1534,7 @@ window.addEventListener('load', function() {
     <li><a onclick="showPage('mocs')" class="nav-mocs-a">🏗️ MOC Gallery</a></li>
     <li><a onclick="showPage('shop')" class="nav-shop-a">🛒 Shop</a></li>
     <li><a onclick="showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
-    <li><a onclick="showPage('gallery')" class="nav-gallery-a">👥 Community</a></li>
+    <li><a onclick="showPage('community')" class="nav-gallery-a">👥 Community</a></li>
     <li><a onclick="showPage('about')" class="nav-about-a">👤 About</a></li>
     <li><a onclick="showPage('contact')" class="nav-contact-a">✉️ Contact</a></li>
     <li><a onclick="showPage('brick-ideas')" class="nav-brickideas-a">🧱 Brick Ideas</a></li>
@@ -1564,7 +1564,7 @@ window.addEventListener('load', function() {
         <span style="font-size:13px;font-weight:800;color:var(--black);opacity:.6">·</span>
         <span style="font-size:13px;font-weight:800;color:var(--black);cursor:pointer" onclick="showPage('shop')">🧱 New MOC instructions in the shop</span>
         <span style="font-size:13px;font-weight:800;color:var(--black);opacity:.6">·</span>
-        <span style="font-size:13px;font-weight:800;color:var(--black);cursor:pointer" onclick="showPage('gallery')">👥 Community gallery updated</span>
+        <span style="font-size:13px;font-weight:800;color:var(--black);cursor:pointer" onclick="showPage('community')">👥 Community gallery updated</span>
       </div>
       <button onclick="document.getElementById('whatsNewStrip').style.display='none'" style="margin-left:auto;background:none;border:none;cursor:pointer;font-size:16px;color:rgba(0,0,0,.4);padding:4px 8px;font-weight:900" aria-label="Dismiss">✕</button>
     </div>
@@ -2342,7 +2342,7 @@ window.addEventListener('load', function() {
       <a onclick="showPage('shop')">Shop</a>
       <a onclick="showPage('videos')">Videos</a>
       <a onclick="showPage('mocs')">MOC Gallery</a>
-      <a onclick="showPage('gallery')">Community</a>
+      <a onclick="showPage('community')">Community</a>
       <a onclick="showPage('about')">About</a>
       <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
       <a href="https://www.tiktok.com/@bricktasticbuilds" target="_blank">TikTok</a>
@@ -3055,7 +3055,7 @@ function showPage(id){
     if(id==='about') initAboutPage();
     // game hub inits its own games via openGame()
     if(id==='blog') initBlogPage();
-    if(id==='gallery') initGalleryPage();
+    if(id==='community') initCommunityPage();
     if(id==='brick-ideas') initBrickIdeasPage();
     setTimeout(()=>{initStuds();initReveal();initFloats();},80);
   }
@@ -3980,7 +3980,7 @@ function initStuds(){['s1','s2','s3','s-vid'].forEach(id=>{const el=document.get
 // HERO BG
 function initHeroBg(){
   const c=['#E3000B','#FFD700','#006CB7','#00A650','#FF6B00','#7B2FBE'];
-  ['heroBg','heroBgShop','heroBgVideos','heroBgM','heroBgBlog','heroBgGallery'].forEach(id=>{
+  ['heroBg','heroBgShop','heroBgVideos','heroBgM','heroBgBlog','heroBgCommunity'].forEach(id=>{
     const g=document.getElementById(id);
     if(!g||g.children.length)return;
     for(let i=0;i<56;i++){const d=document.createElement('div');d.style.cssText=`background:${c[i%c.length]};border-radius:4px;animation-delay:${(i*.08)%4}s`;g.appendChild(d);}
@@ -3995,7 +3995,7 @@ function initFloats(){
     {id:'heroR-shop',   colors:['var(--orange)','#8b3a00','var(--yellow)','#b89a00','var(--red)','#8b0000','var(--green)','#004d25']},
     {id:'heroR-videos', colors:['var(--red)','#8b0000','var(--orange)','#8b3a00','var(--yellow)','#b89a00','var(--blue)','#003d6b']},
     {id:'heroR-blog',   colors:['var(--blue)','#003d6b','var(--green)','#004d25','var(--yellow)','#b89a00','var(--red)','#8b0000']},
-    {id:'heroR-gallery',colors:['#7B2FBE','#4a1a7a','var(--red)','#8b0000','var(--blue)','#003d6b','var(--yellow)','#b89a00']},
+    {id:'heroR-community',colors:['#7B2FBE','#4a1a7a','var(--red)','#8b0000','var(--blue)','#003d6b','var(--yellow)','#b89a00']},
   ];
   configs.forEach(cfg=>{
     const r=document.getElementById(cfg.id);
@@ -11685,9 +11685,9 @@ function bbGameOver(){
 </div>
 
 <!-- ══ FAN GALLERY PAGE ══ -->
-<div id="page-gallery" class="page">
+<div id="page-community" class="page">
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
-    <div class="hero-bg" id="heroBgGallery"></div>
+    <div class="hero-bg" id="heroBgCommunity"></div>
     <div class="hero-left">
       <span class="hero-badge">👥 Community</span>
       <h1><span class="y">Community</span><br><span class="r">Builds.</span></h1>
@@ -11697,7 +11697,7 @@ function bbGameOver(){
         <a class="btn btn-green" onclick="showPage('mocs')" style="cursor:pointer">Browse MOCs</a>
       </div>
     </div>
-    <div class="hero-right" id="heroR-gallery">
+    <div class="hero-right" id="heroR-community">
       <div class="hcb">
         <div class="big-brick" style="background:#7B2FBE;box-shadow:0 12px 0 #4a1a7a,0 18px 40px rgba(0,0,0,.5)">
           <div class="bs" style="left:16px;background:#7B2FBE"></div>
@@ -11923,7 +11923,7 @@ async function supaFetch(path, opts={}) {
   return res.json();
 }
 
-function initGalleryPage() {
+function initCommunityPage() {
   if (_galleryInited) return;
   _galleryInited = true;
   renderGalleryTabs();

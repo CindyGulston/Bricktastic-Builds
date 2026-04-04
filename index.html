@@ -11971,6 +11971,10 @@ function renderGallery() {
         <div class="gallery-card-name">${item.name}</div>
         <div class="gallery-card-builder">${item.builder}</div>
         ${item.description?`<div style="font-size:12px;color:#666;font-weight:600;margin-top:6px;line-height:1.5">${item.description}</div>`:''}
+        <div style="margin-top:14px;padding-top:10px;border-top:2px dashed #f0ede6;display:flex;align-items:center;justify-content:space-between;color:var(--blue)">
+          <span style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px">💬 Click to open comments</span>
+          <span style="font-size:16px;font-weight:900">→</span>
+        </div>
       </div>
     </div>`;
   }).join('');

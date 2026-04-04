@@ -1471,38 +1471,7 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
 @keyframes imgFadeIn { from { opacity:0 } to { opacity:1 } }
 
 </style>
-<!-- MailerLite Universal -->
-<script>
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '2189778');
-</script>
-<style>
-/* Block MailerLite popup from auto-showing */
-.ml-form-popup, .ml-subscribe-popup, [class*="ml-popup"], [id*="ml-popup"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-</style>
-<script>
-// Aggressively suppress MailerLite popup on load and after any delay
-(function() {
-  function hideMLPopup() {
-    try {
-      document.querySelectorAll('.ml-form-popup, .ml-subscribe-popup, [class*="ml-popup"], [id*="ml-popup"]').forEach(el => {
-        el.style.display = 'none';
-      });
-    } catch(e) {}
-  }
-  window.addEventListener('load', hideMLPopup);
-  document.addEventListener('DOMContentLoaded', hideMLPopup);
-  setTimeout(hideMLPopup, 500);
-  setTimeout(hideMLPopup, 1500);
-  setTimeout(hideMLPopup, 3000);
-})();
-</script>
-<!-- End MailerLite Universal -->
+<!-- MailerLite removed — email handled via Cloudflare Workers + Resend API -->
 </head>
 <body>
 <a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--yellow);color:var(--black);padding:8px 16px;font-weight:900;border-radius:0 0 8px 8px" onfocus="this.style.left='50%';this.style.transform='translateX(-50%)';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px'">Skip to main content</a>
@@ -2228,20 +2197,13 @@ window.addEventListener('load', function() {
       .sub-nl-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Boogaloo',cursive;font-size:18px;letter-spacing:.5px;padding:13px 26px;border-radius:10px;border:none;background:var(--black);color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 5px 0 rgba(0,0,0,.35);position:relative;top:0;transition:top .1s,box-shadow .1s}
       .sub-nl-btn:hover{top:3px;box-shadow:0 2px 0 rgba(0,0,0,.35)}
       .nl-thankyou-2025{display:none;background:rgba(0,0,0,.12);border:2px solid rgba(0,0,0,.2);border-radius:10px;padding:16px 20px;color:var(--black);font-weight:800;font-size:15px;margin-top:12px;font-family:'Nunito',sans-serif}
-      /* MailerLite embed overrides — yellow panel */
-      .sub-nl .ml-embedded{width:100%}
-      .sub-nl .ml-form-embedWrapper,.sub-nl .ml-form-embedBody{background:transparent!important;border:none!important;padding:0!important;box-shadow:none!important}
-      .sub-nl .ml-form-fieldRow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0!important}
-      .sub-nl .ml-field-group input[type=email],.sub-nl .ml-field-group input[type=text]{flex:1;min-width:200px;padding:13px 18px!important;border-radius:10px!important;border:3px solid rgba(0,0,0,.15)!important;background:#fff!important;color:var(--black)!important;font-family:'Nunito',sans-serif!important;font-weight:700!important;font-size:14px!important}
-      .sub-nl .ml-field-group input::placeholder{color:rgba(0,0,0,.35)!important}
-      .sub-nl .ml-field-group input:focus{border-color:var(--black)!important;outline:none!important;box-shadow:none!important}
-      .sub-nl .ml-form-embedSubmit button{background:var(--black)!important;color:#fff!important;font-family:'Boogaloo',cursive!important;font-size:18px!important;letter-spacing:.5px!important;padding:13px 26px!important;border-radius:10px!important;border:none!important;box-shadow:0 5px 0 rgba(0,0,0,.35)!important;cursor:pointer!important;white-space:nowrap!important}
-      .sub-nl .ml-form-embedWrapper label{display:none!important}
-      .sub-nl .ml-form-checkboxRow,.sub-nl .ml-form-embedPermissions{display:none!important}
-      /* ← Do NOT hide or override .ml-form-successContent — let MailerLite show it */
-      .sub-nl .ml-form-successBody{background:rgba(0,0,0,.1)!important;border:2px solid rgba(0,0,0,.2)!important;border-radius:10px!important;padding:20px!important;text-align:center!important}
-      .sub-nl .ml-form-successBody h4{font-family:'Boogaloo',cursive!important;font-size:1.6rem!important;color:var(--black)!important}
-      .sub-nl .ml-form-successBody p{color:rgba(0,0,0,.65)!important;font-family:'Nunito',sans-serif!important;font-weight:700!important}
+      /* Hero newsletter custom form */
+      .sub-nl-row{display:flex;gap:10px;flex-wrap:wrap}
+      .sub-nl-input{flex:1;min-width:200px;padding:13px 18px;border-radius:10px;border:3px solid rgba(0,0,0,.15);background:#fff;color:var(--black);font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;outline:none;transition:border-color .2s}
+      .sub-nl-input:focus{border-color:var(--black)}
+      .sub-nl-input::placeholder{color:rgba(0,0,0,.35)}
+      .sub-nl-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Boogaloo',cursive;font-size:18px;letter-spacing:.5px;padding:13px 26px;border-radius:10px;border:none;background:var(--black);color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 5px 0 rgba(0,0,0,.35);position:relative;top:0;transition:top .1s,box-shadow .1s}
+      .sub-nl-btn:hover{top:3px;box-shadow:0 2px 0 rgba(0,0,0,.35)}
     </style>
     <div class="sub-split">
 
@@ -2264,7 +2226,13 @@ window.addEventListener('load', function() {
         <div class="sub-nl-badge">📬 Newsletter</div>
         <h2 class="sub-nl-h">New builds. New instructions.<br>First to know.</h2>
         <p class="sub-nl-p">Drop your email and I'll let you know when new MOC instructions drop, new videos go up, or when something special is happening on the channel. No spam — just LEGO®.</p>
-        <div class="ml-embedded" data-form="koogOd"></div>
+        <div id="hero-nl-form" class="sub-nl-form">
+          <div class="sub-nl-row">
+            <input id="nlHero" class="sub-nl-input" type="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')subscribeNewsletter('nlHero')">
+            <button id="nlHeroBtn" class="sub-nl-btn" onclick="subscribeNewsletter('nlHero')">🚀 Subscribe Free</button>
+          </div>
+          <p class="sub-nl-fine">No spam · Unsubscribe any time · Just LEGO®</p>
+        </div>
       </div>
 
     </div>
@@ -2419,8 +2387,8 @@ window.addEventListener('load', function() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
-        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter-mocs">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter-mocs')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -2516,8 +2484,8 @@ window.addEventListener('load', function() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
-        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter-shop">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter-shop')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -2621,8 +2589,8 @@ window.addEventListener('load', function() {
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
-        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter-videos">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter-videos')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -2927,8 +2895,16 @@ async function subscribeNewsletter(inputId) {
     setTimeout(() => input.style.borderColor = '', 2000);
     return;
   }
+  // Find the sibling button (works for both footer bars and hero form)
+  const btn = input.nextElementSibling && input.nextElementSibling.tagName === 'BUTTON'
+    ? input.nextElementSibling
+    : input.closest('.sub-nl-row, .newsletter-inner')?.querySelector('button') || null;
+  const originalBtnText = btn ? btn.textContent : '';
+
   input.disabled = true;
   input.style.borderColor = 'var(--yellow)';
+  if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
+
   try {
     const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/subscribe', {
       method: 'POST',
@@ -2936,14 +2912,24 @@ async function subscribeNewsletter(inputId) {
       body: JSON.stringify({ email, source: inputId || 'footer' })
     });
     if (!res.ok) throw new Error('Subscribe failed');
-    input.value = '✅ Subscribed!';
     input.style.borderColor = 'var(--green)';
-    launchConfetti(input);
-    setTimeout(() => { input.value = ''; input.disabled = false; input.style.borderColor = ''; }, 4000);
+    if (btn) { btn.textContent = '✅ Subscribed!'; }
+    if (typeof launchConfetti === 'function') launchConfetti(input);
+    setTimeout(() => {
+      input.value = '';
+      input.disabled = false;
+      input.style.borderColor = '';
+      if (btn) { btn.textContent = originalBtnText; btn.disabled = false; }
+    }, 4000);
   } catch(e) {
     input.style.borderColor = 'var(--red)';
-    input.value = '❌ Try again';
-    setTimeout(() => { input.value = ''; input.disabled = false; input.style.borderColor = ''; }, 3000);
+    if (btn) { btn.textContent = '❌ Try again'; }
+    setTimeout(() => {
+      input.value = '';
+      input.disabled = false;
+      input.style.borderColor = '';
+      if (btn) { btn.textContent = originalBtnText; btn.disabled = false; }
+    }, 3000);
   }
 }
 
@@ -11674,8 +11660,8 @@ function bbGameOver(){
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
-        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter-blog">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter-blog')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -11775,8 +11761,8 @@ function bbGameOver(){
           <h3>📬 Join the Bricktastic Newsletter</h3>
           <p>New videos, MOC drops &amp; exclusive offers — straight to your inbox</p>
         </div>
-        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter">
-        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter')">Subscribe 🎉</button>
+        <input class="newsletter-input" type="email" placeholder="Your email address…" id="nlFooter-gallery">
+        <button class="newsletter-btn" onclick="subscribeNewsletter('nlFooter-gallery')">Subscribe 🎉</button>
       </div>
     </div>
   </div>
@@ -12624,13 +12610,13 @@ async function submitGalleryBuild() {
     }
 
     // Show thanks
+    btn.textContent = '🚀 Submit Build';
+    btn.disabled = false;
     document.getElementById('galleryForm').style.display = 'none';
     document.getElementById('galleryThanks').style.display = 'block';
     setTimeout(() => {
       document.getElementById('galleryForm').style.display = 'grid';
       document.getElementById('galleryThanks').style.display = 'none';
-      btn.textContent = '🚀 Submit Build';
-      btn.disabled = false;
       ['g-name','g-build','g-email','g-photo','g-desc'].forEach(id => {
         const el = document.getElementById(id); if (el) el.value = '';
       });
@@ -12757,6 +12743,8 @@ async function submitNotify() {
       body: JSON.stringify({ name, email })
     });
     if (!res.ok) throw new Error('Failed');
+    btn.textContent = '📧 Notify Me!';
+    btn.disabled = false;
     document.getElementById('notifyModalForm').style.display = 'none';
     document.getElementById('notifyModalSuccess').style.display = 'block';
   } catch(e) {

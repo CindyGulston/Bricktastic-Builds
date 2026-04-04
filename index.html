@@ -579,10 +579,15 @@ section{padding:80px 0}
 .sbtn.fb{background:#69C9D0;border-color:#69C9D0;box-shadow:0 5px 0 rgba(0,0,0,.4)} 
 footer{background:#111;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:4px solid var(--yellow)}
 .fl{font-family:'Boogaloo',cursive;font-size:21px;color:var(--yellow)}
-.fc{font-size:12px;color:#555;font-weight:700}
-.flinks{display:flex;gap:18px}
+.fc{font-size:12px;color:#555;font-weight:700;margin-left:auto;text-align:right}
+.flinks{display:flex;gap:18px;flex-wrap:wrap}
 .flinks a{font-size:12px;color:#555;font-weight:700;text-decoration:none;transition:color .15s;cursor:pointer}
 .flinks a:hover{color:var(--yellow)}
+/* Footer layout: logo left, links left, copyright far right */
+footer.footer-split{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+footer.footer-split .fl{margin-right:8px}
+footer.footer-split .flinks{flex:1;min-width:0}
+footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
 
 /* SHOP */
 .shop-hero{background:var(--black);padding:52px 0 44px;position:relative;overflow:hidden;margin-top:66px}
@@ -1536,7 +1541,7 @@ window.addEventListener('load', function() {
     <li><a onclick="showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
     <li><a onclick="showPage('gallery')" class="nav-gallery-a">👥 Community</a></li>
     <li><a onclick="showPage('about')" class="nav-about-a">👤 About</a></li>
-    <li><a onclick="showPage('contact')" class="nav-contact-a">✉️ Contact</a></li>
+
     <li><a onclick="showPage('brick-ideas')" class="nav-brickideas-a">🧱 Brick Ideas</a></li>
     <li><a onclick="showPage('game')" class="nav-game-a">🎮 Game</a></li>
   </ul>
@@ -2335,9 +2340,8 @@ window.addEventListener('load', function() {
 
 
 
-    <footer>
+    <footer class="footer-split">
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
-    <div class="fc">© 2025 Bricktastic Builds® · @BricktasticBuilds · PDF instructions = instant digital download</div>
     <div class="flinks">
       <a onclick="showPage('home')">Home</a>
       <a onclick="showPage('shop')">Shop</a>
@@ -2348,11 +2352,13 @@ window.addEventListener('load', function() {
       <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
       <a href="https://www.tiktok.com/@bricktasticbuilds" target="_blank">TikTok</a>
       <a href="https://www.facebook.com/profile.php?id=61575146147730" target="_blank">Facebook</a>
+      <a onclick="showPage('contact')">Contact</a>
       <a onclick="showPage('terms')">Terms</a>
       <a onclick="showPage('privacy')">Privacy</a>
       <a onclick="showPage('refunds')">Refunds</a>
       <a onclick="showPage('pricing')">Pricing</a>
     </div>
+    <div class="fc">© 2025 Bricktastic Builds® · @BricktasticBuilds · PDF instructions = instant digital download</div>
 </footer>
 </div>
 
@@ -2424,18 +2430,19 @@ window.addEventListener('load', function() {
       </div>
     </div>
   </div>
-    <footer>
+    <footer class="footer-split">
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
-    <div class="fc">© 2025 Bricktastic Builds · Original LEGO® MOC designs</div>
     <div class="flinks">
       <a onclick="showPage('home')">Home</a>
       <a onclick="showPage('shop')">Shop</a>
       <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
+      <a onclick="showPage('contact')">Contact</a>
       <a onclick="showPage('terms')">Terms</a>
       <a onclick="showPage('privacy')">Privacy</a>
       <a onclick="showPage('refunds')">Refunds</a>
       <a onclick="showPage('pricing')">Pricing</a>
     </div>
+    <div class="fc">© 2025 Bricktastic Builds · Original LEGO® MOC designs</div>
 </footer>
 </div>
 
@@ -2520,10 +2527,10 @@ window.addEventListener('load', function() {
       </div>
     </div>
   </div>
-    <footer>
+    <footer class="footer-split">
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
     <div class="fc">© 2025 Bricktastic Builds · PDF instructions = digital download · MOCs ship worldwide</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 </div>
 
@@ -2625,10 +2632,10 @@ window.addEventListener('load', function() {
       </div>
     </div>
   </div>
-    <footer>
+    <footer class="footer-split">
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 </div>
 
@@ -5953,7 +5960,7 @@ function mocNav(id,dir){
 <footer>
   <div class="footer-logo">BRICKTASTIC BUILDS</div>
   <p>A deep dive into LEGO® history. LEGO® is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this article. All historical facts sourced from published accounts of LEGO®'s corporate history.</p>
-  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
   </div>
 
@@ -6418,7 +6425,7 @@ function mocNav(id,dir){
 <footer>
   <div class="footer-logo">BRICKTASTIC BUILDS</div>
   <p>25 LEGO® challenges anyone can try. LEGO® is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this content.</p>
-  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage(\'contact\')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 
 <!-- MODAL -->
@@ -7273,7 +7280,7 @@ function mocNav(id,dir){
 <footer>
   <div class="footer-logo">BRICKTASTIC BUILDS</div>
   <p>Tips, techniques &amp; guides for LEGO® builders at every level. LEGO® is a trademark of the LEGO® Group, which does not sponsor or endorse this content.</p>
-  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage(\'contact\')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ MODAL -->
@@ -8312,7 +8319,7 @@ loadQ();
 <footer>
   <div class="foot-logo">BRICKTASTIC BUILDS</div>
   <p>A collector's guide to rare LEGO® pieces and their value. LEGO®&reg; is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this content. Values are estimates based on secondary market data.</p>
-  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage(\'contact\')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 
 <!-- TIER MODAL -->
@@ -9063,7 +9070,7 @@ setTimeout(()=>{
   <div class="foot-logo">BRICKTASTIC BUILDS</div>
   <p>Epic LEGO® builds, deep dives &amp; original MOC instructions.<br>
   <a href="https://youtube.com/@BricktasticBuilds" target="_blank" style="color:var(--gold);text-decoration:none">YouTube @BricktasticBuilds</a></p>
-  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+  <div class="flinks" style="margin-top:14px;gap:14px"><a onclick="showPage(\'contact\')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 
 <!-- ═══ MODAL ═══ -->
@@ -10344,15 +10351,16 @@ setTimeout(()=>{
     </div>
   </div>
 </div>
-<footer>
+<footer class="footer-split">
   <div class="fl">Bricktastic Builds</div>
-  <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
   <div class="flinks">
     <a onclick="showPage('home')">Home</a>
     <a onclick="showPage('shop')">Shop</a>
     <a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a>
+    <a onclick="showPage('contact')">Contact</a>
     <a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a>
   </div>
+  <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
 </footer>
 
 </div><!-- end page-game -->
@@ -11677,10 +11685,10 @@ function bbGameOver(){
       </div>
     </div>
   </div>
-    <footer>
+    <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 </div>
 
@@ -11778,10 +11786,10 @@ function bbGameOver(){
       </div>
     </div>
   </div>
-    <footer>
+    <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
 </footer>
 </div>
 
@@ -12724,18 +12732,43 @@ document.addEventListener('DOMContentLoaded', () => setTimeout(renderLeaderboard
 
 // ── Newsletter hero form handler ──
 // ── Shop "Notify Me" handler ──
-async function notifyMe() {
-  const email = prompt('Enter your email and we\'ll notify you when the shop opens:');
-  if (!email || !email.includes('@')) return;
+function notifyMe() {
+  document.getElementById('notifyModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('notify-email-input').focus(), 100);
+}
+function closeNotifyModal() {
+  document.getElementById('notifyModal').style.display = 'none';
+  document.getElementById('notifyModalForm').style.display = 'block';
+  document.getElementById('notifyModalSuccess').style.display = 'none';
+  document.getElementById('notify-email-input').value = '';
+  document.getElementById('notify-name-input').value = '';
+}
+async function submitNotify() {
+  const name  = document.getElementById('notify-name-input').value.trim();
+  const email = document.getElementById('notify-email-input').value.trim();
+  if (!email || !email.includes('@')) {
+    const el = document.getElementById('notify-email-input');
+    el.style.borderColor = 'var(--red)';
+    el.focus();
+    setTimeout(() => el.style.borderColor = '#ddd', 2500);
+    return;
+  }
+  const btn = document.getElementById('notifySubmitBtn');
+  btn.textContent = '⏳ Saving…';
+  btn.disabled = true;
   try {
-    await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/notify', {
+    const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/notify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ name, email })
     });
-    alert('✅ You\'re on the list! We\'ll email you when the shop opens.');
+    if (!res.ok) throw new Error('Failed');
+    document.getElementById('notifyModalForm').style.display = 'none';
+    document.getElementById('notifyModalSuccess').style.display = 'block';
   } catch(e) {
-    alert('Something went wrong — please try again.');
+    btn.textContent = '❌ Failed — try again';
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = '📧 Notify Me!'; }, 3000);
   }
 }
 
@@ -12913,10 +12946,10 @@ function initBrickIdeasPage() {}
       </div>
     </div>
   </div>
-  <footer>
+  <footer class="footer-split">
     <div class="fl"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Bricktastic Builds</div>
+    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('brick-ideas')">Brick Ideas</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
     <div class="fc">© 2025 Bricktastic Builds · @BricktasticBuilds</div>
-    <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('brick-ideas')">Brick Ideas</a><a href="https://youtube.com/@BricktasticBuilds" target="_blank">YouTube</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
   </footer>
 </div>
 
@@ -13217,10 +13250,10 @@ document.addEventListener('keydown', function(e) {
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
-    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
   </footer>
 </div>
 
@@ -13254,10 +13287,10 @@ document.addEventListener('keydown', function(e) {
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
-    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
   </footer>
 </div>
 
@@ -13291,10 +13324,10 @@ document.addEventListener('keydown', function(e) {
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
-    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('pricing')">Pricing</a></div>
+    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
   </footer>
 </div>
 
@@ -13357,10 +13390,10 @@ document.addEventListener('keydown', function(e) {
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
-    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a></div>
+    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
   </footer>
 </div>
 <!-- ══ CONTACT PAGE ══ -->
@@ -13407,7 +13440,8 @@ document.addEventListener('keydown', function(e) {
       <div id="contactSuccess" style="display:none;background:#fff;border:3px solid var(--green);padding:48px 36px;box-shadow:0 8px 0 var(--green);text-align:center">
         <div style="font-size:56px;margin-bottom:16px">🎉</div>
         <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:10px">Message Sent!</h2>
-        <p style="font-weight:700;color:#555;margin-bottom:24px">We've got your message and will reply to your email within 24 hours.</p>
+        <p style="font-weight:700;color:#555;margin-bottom:8px">We've got your message and will reply within 24 hours.</p>
+        <p style="font-weight:600;color:#888;font-size:13px;margin-bottom:24px">📬 A confirmation email has been sent to your inbox.</p>
         <button onclick="document.getElementById('contactSuccess').style.display='none';document.getElementById('contactFormWrap').style.display='block';['c-name','c-email','c-order','c-message'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''})" style="background:var(--black);color:var(--yellow);border:none;padding:12px 28px;font-family:'Boogaloo',cursive;font-size:18px;border-radius:8px;cursor:pointer">Send Another</button>
       </div>
 
@@ -13432,10 +13466,10 @@ document.addEventListener('keydown', function(e) {
 
     </div>
   </section>
-  <footer>
+  <footer class="footer-split">
     <div class="fl">Bricktastic Builds</div>
-    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
     <div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('shop')">Shop</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('refunds')">Refunds</a><a onclick="showPage('pricing')">Pricing</a></div>
+    <div class="fc">© 2026 Bricktastic Builds · All rights reserved</div>
   </footer>
 </div>
 
@@ -13478,6 +13512,36 @@ function highlight(id) {
   setTimeout(() => el.style.borderColor = '#ddd', 2500);
 }
 </script>
+<!-- ══ NOTIFY ME MODAL ══ -->
+<div id="notifyModal" onclick="if(event.target===this)closeNotifyModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:900;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;max-width:440px;width:100%;border:3px solid var(--black);box-shadow:0 12px 0 rgba(0,0,0,.25);position:relative;overflow:hidden">
+    <div style="background:var(--black);padding:24px 28px 20px;position:relative">
+      <button onclick="closeNotifyModal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900">✕</button>
+      <div style="font-size:36px;margin-bottom:10px">📧</div>
+      <h2 style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--yellow);margin-bottom:6px">Be First to Know!</h2>
+      <p style="font-size:13px;font-weight:600;color:#aaa">We'll send you an email the moment our MOC instructions go live.</p>
+    </div>
+    <div id="notifyModalForm" style="padding:28px">
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Your Name <span style="color:#aaa;font-weight:600;text-transform:none">(optional)</span></label>
+        <input id="notify-name-input" type="text" placeholder="Brick Builder" style="width:100%;padding:11px 14px;border:3px solid #ddd;border-radius:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='#ddd'">
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="display:block;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Email Address *</label>
+        <input id="notify-email-input" type="email" placeholder="you@example.com" onkeydown="if(event.key==='Enter')submitNotify()" style="width:100%;padding:11px 14px;border:3px solid #ddd;border-radius:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='#ddd'">
+      </div>
+      <button id="notifySubmitBtn" onclick="submitNotify()" style="width:100%;padding:13px;background:var(--red);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 5px 0 #8b0000;position:relative;top:0;transition:top .1s,box-shadow .1s" onmousedown="this.style.top='3px';this.style.boxShadow='0 2px 0 #8b0000'" onmouseup="this.style.top='0';this.style.boxShadow='0 5px 0 #8b0000'">📧 Notify Me!</button>
+      <p style="margin-top:10px;font-size:11px;font-weight:700;color:#aaa;text-align:center">No spam · Unsubscribe any time · We'll confirm by email</p>
+    </div>
+    <div id="notifyModalSuccess" style="display:none;padding:36px 28px;text-align:center">
+      <div style="font-size:52px;margin-bottom:12px">🎉</div>
+      <h3 style="font-family:'Boogaloo',cursive;font-size:28px;margin-bottom:8px;color:var(--black)">You're on the list!</h3>
+      <p style="font-weight:700;color:#555;margin-bottom:6px">We'll email you the moment the shop goes live.</p>
+      <p style="font-size:12px;font-weight:600;color:#aaa;margin-bottom:24px">📬 Check your inbox for a confirmation email.</p>
+      <button onclick="closeNotifyModal()" style="background:var(--black);color:var(--yellow);border:none;padding:11px 26px;font-family:'Boogaloo',cursive;font-size:18px;border-radius:8px;cursor:pointer">Awesome, thanks! 🧱</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

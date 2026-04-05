@@ -13348,27 +13348,10 @@ async function analyseBricks() {
   const diffInstruction = _biDiff === 'all' ? 'Include a mix of beginner, intermediate and advanced builds.' :
     `Only suggest ${_biDiff} difficulty builds.`;
 
-  const prompt = `You are a LEGO® building expert. Analyse this photo of LEGO® bricks.
+  const prompt = `You are a LEGO® building expert. Analyse this photo of LEGO® bricks. ${diffInstruction}
 
-First, briefly describe what bricks you can see (colours, approximate quantities, types/sizes) in 1-2 sentences.
-
-Then suggest exactly 4 builds the person could make with these bricks. ${diffInstruction}
-
-For each build respond in this EXACT JSON format (no markdown, no backticks, just raw JSON):
-{
-  "brickSummary": "Brief description of the bricks visible...",
-  "ideas": [
-    {
-      "title": "Build name",
-      "emoji": "single relevant emoji",
-      "difficulty": "Beginner" or "Intermediate" or "Advanced",
-      "pieces": "approximate number e.g. ~45 pieces",
-      "time": "e.g. 20 mins",
-      "description": "2 sentence description of what to build and a key technique or tip",
-      "tags": ["tag1", "tag2"]
-    }
-  ]
-}`;
+Respond ONLY with this raw JSON (no markdown, no backticks, no extra text):
+{"brickSummary":"One sentence describing the bricks (colours, quantity, types).","ideas":[{"title":"Build name","emoji":"emoji","difficulty":"Beginner","pieces":"~45","time":"20 mins","description":"One sentence on what to build and one key tip.","tags":["tag1","tag2"]},{"title":"Build name","emoji":"emoji","difficulty":"Intermediate","pieces":"~60","time":"30 mins","description":"One sentence on what to build and one key tip.","tags":["tag1","tag2"]},{"title":"Build name","emoji":"emoji","difficulty":"Advanced","pieces":"~80","time":"45 mins","description":"One sentence on what to build and one key tip.","tags":["tag1","tag2"]},{"title":"Build name","emoji":"emoji","difficulty":"Beginner","pieces":"~30","time":"15 mins","description":"One sentence on what to build and one key tip.","tags":["tag1","tag2"]}]}`;
 
   try {
     // Use Google Gemini API — get your free key at aistudio.google.com/apikey

@@ -13210,6 +13210,9 @@ function handleBrickPhoto(input) {
     btn.style.cursor = 'pointer';
     btn.style.boxShadow = '0 5px 0 #8b0000';
     document.getElementById('biDropZone').style.borderColor = 'var(--green)';
+    setTimeout(() => {
+      document.getElementById('biDropZone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
   };
   reader.readAsDataURL(file);
 }
@@ -13261,6 +13264,9 @@ function snapBiCamera() {
     const input = document.getElementById('biFileInput');
     input.files = dt.files;
     handleBrickPhoto(input);
+    setTimeout(() => {
+      document.getElementById('biDropZone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
   }, 'image/jpeg', 0.92);
 }
 
@@ -13366,18 +13372,12 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
 
   try {
     // Use Google Gemini API — get your free key at aistudio.google.com/apikey
-    const GEMINI_API_KEY = 'AIzaSyDGg-JcJoNzkBvTNhHiPUKa-QLyi-AItBA';
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+    const response = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/analyse-bricks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{
-          parts: [
-            { inline_data: { mime_type: 'image/jpeg', data: _biImageBase64 } },
-            { text: prompt }
-          ]
-        }],
-        generationConfig: { maxOutputTokens: 1000 }
+        image: _biImageBase64,
+        prompt: prompt
       })
     });
 
@@ -13385,11 +13385,11 @@ For each build respond in this EXACT JSON format (no markdown, no backticks, jus
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error('Gemini API error: ' + (data.error?.message || response.status));
+      throw new Error('API error: ' + (data.error || response.status));
     }
 
-    const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
-    if (!text) throw new Error('Empty response from Gemini');
+    const text = data.text || '';
+    if (!text) throw new Error('Empty response from API');
 
     let parsed;
     try {

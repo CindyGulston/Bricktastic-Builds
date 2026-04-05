@@ -12923,117 +12923,192 @@ function initBrickIdeasPage() {}
 
 <!-- ══ BRICK IDEAS PAGE ══ -->
 <div id="page-brick-ideas" class="page">
-  <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
-    <div class="hero-bg" id="heroBgBrickIdeas"></div>
-    <div class="hero-left">
-      <span class="hero-badge">🧱 AI Brick Ideas</span>
-      <h1><span class="y">What Can</span><br><span class="r">You Build?</span></h1>
-      <p class="hero-sub">Upload a photo of your LEGO® bricks and our AI will analyse what you have and suggest builds you can make right now.</p>
-    </div>
-    <div class="hero-right" id="heroR-brickideas">
-      <div class="hcb">
-        <div class="big-brick" style="background:var(--red);box-shadow:0 12px 0 #8b0000,0 18px 40px rgba(0,0,0,.5)">
-          <div class="bs" style="left:16px;background:var(--red)"></div>
-          <div class="bs" style="left:78px;background:var(--red)"></div>
-          <div class="bs" style="left:140px;background:var(--red)"></div>
-          <div class="bs" style="left:202px;background:var(--red)"></div>
+
+  <!-- DARK HERO -->
+  <section style="background:#111;padding:90px 0 70px;margin-top:66px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(180,30,30,.22) 0%,transparent 65%);pointer-events:none"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none"></div>
+    <div class="container" style="position:relative;z-index:2;text-align:center">
+      <div style="max-width:640px;margin:0 auto">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.3);color:var(--yellow);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:6px 16px;border-radius:20px;margin-bottom:28px">
+          <span style="width:7px;height:7px;border-radius:50%;background:var(--yellow);display:inline-block"></span> AI-POWERED
         </div>
-        <div class="ch-tag">AI Powered</div>
+        <h1 style="font-family:'Boogaloo',cursive;font-size:clamp(44px,7vw,80px);line-height:1;color:#fff;margin-bottom:20px">What Can You<br><span style="color:var(--yellow)">Build Today?</span></h1>
+        <p style="font-size:16px;font-weight:600;color:rgba(255,255,255,.6);line-height:1.65;margin-bottom:36px;max-width:520px">Scatter your bricks, snap a photo. Our AI spots what you've got and suggests creative builds you can make right now.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+          <button onclick="document.getElementById('biFileInput').click()" style="display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;padding:14px 30px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 5px 0 #8b0000;transition:all .15s">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            Upload Your Photo
+          </button>
+          <button onclick="startBiCamera()" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;padding:14px 30px;border:2px solid rgba(255,255,255,.2);border-radius:12px;cursor:pointer;transition:all .15s">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Take Photo
+          </button>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;justify-content:center">
+          <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);font-size:12px;font-weight:800;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.1)">🧱 Instant scan</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);font-size:12px;font-weight:800;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.1)">🤖 AI-generated ideas</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);font-size:12px;font-weight:800;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.1)">📋 Step-by-step guide</span>
+          <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);font-size:12px;font-weight:800;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.1)">✅ Always free</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS BAR -->
+  <div style="background:var(--yellow);padding:18px 0">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0" id="biStepsBar">
+        <div style="display:flex;align-items:center;gap:16px;padding:0 24px 0 0;border-right:2px solid rgba(0,0,0,.12)">
+          <span style="font-family:'Boogaloo',cursive;font-size:36px;color:rgba(0,0,0,.15);line-height:1">1</span>
+          <div><div style="font-weight:900;font-size:14px;color:var(--black)">Scatter your bricks</div><div style="font-size:12px;font-weight:700;color:rgba(0,0,0,.55)">Spread them on a bright surface</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:2px solid rgba(0,0,0,.12)">
+          <span style="font-family:'Boogaloo',cursive;font-size:36px;color:rgba(0,0,0,.15);line-height:1">2</span>
+          <div><div style="font-weight:900;font-size:14px;color:var(--black)">Upload your photo</div><div style="font-size:12px;font-weight:700;color:rgba(0,0,0,.55)">JPG, PNG or WEBP — any device</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:0 0 0 24px">
+          <span style="font-family:'Boogaloo',cursive;font-size:36px;color:rgba(0,0,0,.15);line-height:1">3</span>
+          <div><div style="font-weight:900;font-size:14px;color:var(--black)">Get build ideas</div><div style="font-size:12px;font-weight:700;color:rgba(0,0,0,.55)">AI picks builds you can make now</div></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="stud-bar" style="background:var(--red)"><div class="inner" id="s-brickideas" style="background:var(--red)"></div></div>
 
-  <section style="background:var(--bg);padding:56px 0 80px">
+  <!-- MAIN TOOL -->
+  <section style="background:#f5f5f0;padding:56px 0 80px">
     <div class="container">
+      <div style="display:grid;grid-template-columns:400px 1fr;gap:28px;align-items:start" id="brickIdeasLayout">
 
-      <!-- Tip bar -->
-      <div style="background:var(--yellow);border-radius:10px;padding:14px 20px;margin-bottom:36px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <span style="font-size:20px">💡</span>
-        <span style="font-weight:800;font-size:14px;color:var(--black)">For best results — spread your bricks out flat on a white surface in good lighting before taking the photo.</span>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start" id="brickIdeasLayout">
-
-        <!-- LEFT: Upload -->
-        <div>
-          <div style="background:#fff;border:3px solid var(--black);border-radius:14px;overflow:hidden">
-            <div style="background:var(--black);padding:18px 24px">
-              <h3 style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow);margin-bottom:4px">📸 Upload Your Bricks</h3>
-              <p style="font-size:13px;color:#aaa;font-weight:600">Photo, screenshot, or drag & drop</p>
+        <!-- LEFT: Upload panel -->
+        <div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08)">
+          <div style="background:#1a1a1a;padding:18px 22px;display:flex;align-items:center;gap:14px">
+            <div style="width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">📸</div>
+            <div>
+              <div style="font-family:'Boogaloo',cursive;font-size:18px;color:var(--yellow)">Upload Your Bricks</div>
+              <div style="font-size:12px;color:rgba(255,255,255,.5);font-weight:700">Photo, screenshot, or drag & drop</div>
             </div>
-            <div style="padding:24px">
-              <!-- Drop zone -->
-              <label id="biDropZone" for="biFileInput" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:3px dashed #ddd;border-radius:10px;padding:40px 20px;cursor:pointer;transition:all .2s;text-align:center;min-height:200px;position:relative;overflow:hidden">
-                <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
-                <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
-                  <img id="biPreview" style="width:100%;max-height:280px;object-fit:contain;border-radius:8px;display:block" alt="Your bricks">
-                  <button onclick="clearBrickPhoto(event)" style="position:absolute;top:8px;right:8px;background:var(--black);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900">✕</button>
-                </div>
-                <div id="biPlaceholder">
-                  <div style="font-size:48px;margin-bottom:8px">🧱</div>
-                  <div style="font-weight:900;font-size:15px;color:var(--black)">Drop your photo here</div>
-                  <div style="font-size:13px;color:#888;font-weight:600;margin-top:4px">or click to browse</div>
-                </div>
-              </label>
-
-              <!-- Difficulty filter -->
-              <div style="margin-top:20px">
-                <div style="font-weight:900;font-size:13px;color:var(--black);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">Difficulty Level</div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap" id="biDiffBtns">
-                  <button class="bi-diff active" data-diff="all" onclick="setBiDiff(this)">All Levels</button>
-                  <button class="bi-diff" data-diff="beginner" onclick="setBiDiff(this)">🟢 Beginner</button>
-                  <button class="bi-diff" data-diff="intermediate" onclick="setBiDiff(this)">🟡 Intermediate</button>
-                  <button class="bi-diff" data-diff="advanced" onclick="setBiDiff(this)">🔴 Advanced</button>
-                </div>
+          </div>
+          <div style="padding:20px">
+            <!-- Drop zone -->
+            <label id="biDropZone" for="biFileInput" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:2px dashed #ddd;border-radius:12px;padding:36px 20px;cursor:pointer;transition:all .2s;text-align:center;min-height:180px;position:relative;overflow:hidden;background:#fafafa">
+              <input type="file" id="biFileInput" accept="image/*" style="display:none" onchange="handleBrickPhoto(this)">
+              <div id="biPreviewWrap" style="display:none;width:100%;position:relative">
+                <img id="biPreview" style="width:100%;max-height:240px;object-fit:contain;border-radius:8px;display:block" alt="Your bricks">
+                <button onclick="clearBrickPhoto(event)" style="position:absolute;top:8px;right:8px;background:var(--black);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900">✕</button>
               </div>
+              <div id="biPlaceholder">
+                <div style="font-size:40px;margin-bottom:6px">🧱</div>
+                <div style="font-weight:900;font-size:14px;color:#333">Drop your photo here</div>
+                <div style="font-size:12px;color:#999;font-weight:600;margin-top:4px">or use a button below</div>
+                <div style="margin-top:10px;background:#f0ede6;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:800;color:#888;letter-spacing:.5px">JPG · PNG · WEBP</div>
+              </div>
+            </label>
 
-              <!-- Analyse button -->
-              <button id="biAnalyseBtn" onclick="analyseBricks()" style="width:100%;margin-top:20px;background:var(--red);color:#fff;border:none;border-radius:10px;padding:16px;font-family:'Boogaloo',cursive;font-size:22px;cursor:pointer;box-shadow:0 6px 0 #8b0000;transition:all .15s;position:relative;top:0" disabled>
-                🔍 Analyse My Bricks
+            <!-- Upload / Camera buttons -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+              <button onclick="document.getElementById('biFileInput').click()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#f0ede6;color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:11px;border:none;border-radius:10px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:background .15s" onmouseover="this.style.background='#e0ddd6'" onmouseout="this.style.background='#f0ede6'">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                UPLOAD PHOTO
               </button>
+              <button onclick="startBiCamera()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--black);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:11px;border:none;border-radius:10px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:background .15s" onmouseover="this.style.background='#333'" onmouseout="this.style.background='var(--black)'">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                TAKE PHOTO
+              </button>
+            </div>
+
+            <!-- Difficulty -->
+            <div style="margin-top:20px">
+              <div style="font-weight:900;font-size:11px;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:1.5px">Difficulty Level</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap" id="biDiffBtns">
+                <button class="bi-diff active" data-diff="all" onclick="setBiDiff(this)">⭐ ALL</button>
+                <button class="bi-diff" data-diff="beginner" onclick="setBiDiff(this)">🟢 EASY</button>
+                <button class="bi-diff" data-diff="intermediate" onclick="setBiDiff(this)">🟡 MEDIUM</button>
+                <button class="bi-diff" data-diff="advanced" onclick="setBiDiff(this)">🔴 HARD</button>
+              </div>
+            </div>
+
+            <!-- Analyse button -->
+            <button id="biAnalyseBtn" onclick="analyseBricks()" style="width:100%;margin-top:20px;background:#ccc;color:#888;border:none;border-radius:10px;padding:15px;font-family:'Boogaloo',cursive;font-size:20px;cursor:not-allowed;transition:all .2s;letter-spacing:.5px" disabled>
+              🔍 Find Build Ideas
+            </button>
+
+            <!-- Feature checklist -->
+            <div style="margin-top:18px;display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:#555"><span style="color:#22c55e;font-size:15px">✅</span> Detects brick colours & types</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:#555"><span style="color:#22c55e;font-size:15px">✅</span> Suggests real builds you can make</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:#555"><span style="color:#22c55e;font-size:15px">✅</span> Step-by-step instructions on demand</div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:#555"><span style="color:#22c55e;font-size:15px">✅</span> 100% free — no sign up needed</div>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT: Results -->
+        <!-- RIGHT: Results panel -->
         <div id="biResultsCol">
           <!-- Empty state -->
-          <div id="biEmptyState" style="background:#fff;border:3px solid var(--black);border-radius:14px;padding:48px 24px;text-align:center">
-            <div style="font-size:64px;margin-bottom:16px">🤖</div>
-            <h3 style="font-family:'Boogaloo',cursive;font-size:26px;margin-bottom:10px">Ready to Analyse!</h3>
-            <p style="color:#888;font-weight:600;font-size:14px;line-height:1.6">Upload a photo of your bricks on the left and hit Analyse — the AI will tell you what you can build right now.</p>
+          <div id="biEmptyState" style="background:#fff;border-radius:16px;padding:60px 32px;text-align:center;box-shadow:0 2px 20px rgba(0,0,0,.08)">
+            <div style="font-size:64px;margin-bottom:12px">🤖</div>
+            <div style="display:flex;justify-content:center;gap:6px;margin-bottom:18px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#ddd;display:inline-block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#ddd;display:inline-block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:#ddd;display:inline-block"></span>
+            </div>
+            <h3 style="font-family:'Boogaloo',cursive;font-size:30px;margin-bottom:10px;color:var(--black)">Ready to Analyse!</h3>
+            <p style="color:#999;font-weight:600;font-size:14px;line-height:1.7;max-width:360px;margin:0 auto 28px">Upload a photo of your bricks and hit "Find Build Ideas" — the AI will suggest what you can build right now.</p>
+            <!-- Category chips -->
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+              <span style="background:#fff;border:2px solid #eee;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:800;color:#555;cursor:default">🏠 Houses</span>
+              <span style="background:#fff;border:2px solid #eee;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:800;color:#555;cursor:default">🚗 Vehicles</span>
+              <span style="background:#fff;border:2px solid #eee;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:800;color:#555;cursor:default">🏰 Castles</span>
+              <span style="background:#fff;border:2px solid #eee;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:800;color:#555;cursor:default">🚀 Spaceships</span>
+              <span style="background:#fff;border:2px solid #eee;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:800;color:#555;cursor:default">🌸 Flowers</span>
+            </div>
           </div>
 
-          <!-- Loading state (hidden) -->
-          <div id="biLoadingState" style="display:none;background:#fff;border:3px solid var(--black);border-radius:14px;padding:48px 24px;text-align:center">
+          <!-- Loading state -->
+          <div id="biLoadingState" style="display:none;background:#fff;border-radius:16px;padding:60px 32px;text-align:center;box-shadow:0 2px 20px rgba(0,0,0,.08)">
             <div style="font-size:48px;margin-bottom:16px" id="biLoadingEmoji">🧱</div>
-            <h3 style="font-family:'Boogaloo',cursive;font-size:24px;margin-bottom:10px" id="biLoadingMsg">Analysing your bricks…</h3>
-            <p style="color:#888;font-weight:600;font-size:13px">The AI is checking colours, sizes and quantities</p>
-            <div style="margin-top:20px;display:flex;justify-content:center;gap:6px" id="biDots">
+            <h3 style="font-family:'Boogaloo',cursive;font-size:26px;margin-bottom:8px" id="biLoadingMsg">Analysing your bricks…</h3>
+            <p style="color:#999;font-weight:600;font-size:13px">The AI is checking colours, sizes and quantities</p>
+            <div style="margin-top:24px;display:flex;justify-content:center;gap:8px" id="biDots">
               <span style="width:10px;height:10px;border-radius:50%;background:var(--red);display:inline-block;animation:biPulse .8s ease-in-out infinite"></span>
               <span style="width:10px;height:10px;border-radius:50%;background:var(--yellow);display:inline-block;animation:biPulse .8s .2s ease-in-out infinite"></span>
               <span style="width:10px;height:10px;border-radius:50%;background:var(--blue);display:inline-block;animation:biPulse .8s .4s ease-in-out infinite"></span>
             </div>
           </div>
 
-          <!-- Results (hidden) -->
+          <!-- Results -->
           <div id="biResultsState" style="display:none">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-              <h3 style="font-family:'Boogaloo',cursive;font-size:24px">✨ Build Ideas</h3>
-              <button onclick="clearBrickPhoto()" style="background:none;border:2px solid var(--black);border-radius:8px;padding:6px 14px;font-weight:900;font-size:12px;cursor:pointer">↩ Try Again</button>
+              <h3 style="font-family:'Boogaloo',cursive;font-size:26px;color:var(--black)">✨ Build Ideas</h3>
+              <button onclick="clearBrickPhoto()" style="background:#fff;border:2px solid #ddd;border-radius:8px;padding:7px 16px;font-weight:900;font-size:12px;cursor:pointer;color:#555;transition:all .15s" onmouseover="this.style.borderColor='var(--black)'" onmouseout="this.style.borderColor='#ddd'">↩ Try Again</button>
             </div>
-            <!-- Brick summary -->
             <div id="biBrickSummary" style="background:var(--black);color:#fff;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;font-weight:700;line-height:1.6"></div>
-            <!-- Ideas list -->
-            <div id="biIdeasList" style="display:flex;flex-direction:column;gap:16px"></div>
-            <!-- Share -->
+            <div id="biIdeasList" style="display:flex;flex-direction:column;gap:14px"></div>
             <button onclick="shareBrickIdeas()" style="width:100%;margin-top:20px;background:var(--yellow);color:var(--black);border:none;border-radius:10px;padding:14px;font-family:'Boogaloo',cursive;font-size:20px;cursor:pointer;box-shadow:0 4px 0 #b89a00;transition:all .15s">
               📤 Share These Ideas
             </button>
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY BUILDS CALLOUT -->
+  <section style="background:#fff;padding:72px 0">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+        <div>
+          <div style="font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:14px">COMMUNITY BUILDS</div>
+          <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4vw,48px);line-height:1.1;color:var(--black);margin-bottom:0">Focus on creativity while AI guides you through the hard parts</h2>
+        </div>
+        <div>
+          <p style="font-size:15px;font-weight:600;color:#666;line-height:1.75;margin-bottom:24px">Our instructions are just the beginning. Choose different colours, swap out bricks, and make up your own rules!</p>
+          <button onclick="showPage('gallery')" style="display:inline-flex;align-items:center;gap:10px;background:var(--black);color:var(--yellow);font-family:'Boogaloo',cursive;font-size:18px;padding:12px 26px;border:none;border-radius:10px;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.3);transition:all .15s">
+            🏗️ View Community Builds
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -13059,12 +13134,12 @@ function initBrickIdeasPage() {}
 </div>
 
 <style>
-.bi-diff{font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;padding:7px 14px;border-radius:20px;border:2px solid var(--black);background:#fff;cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.5px}
-.bi-diff.active{background:var(--black);color:var(--yellow)}
-.bi-diff:hover:not(.active){background:#f0ede6}
-.bi-idea-card{background:#fff;border:3px solid var(--black);border-radius:12px;overflow:hidden;transition:transform .15s,box-shadow .15s;cursor:default}
-.bi-idea-card:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--black)}
-.bi-idea-header{padding:16px 18px 12px;border-bottom:2px solid #f0ede6;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.bi-diff{font-family:'Nunito',sans-serif;font-weight:900;font-size:11px;padding:7px 16px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.8px;color:#555}
+.bi-diff.active{background:var(--black);color:var(--yellow);border-color:var(--black)}
+.bi-diff:hover:not(.active){background:#f5f5f0;border-color:#ccc}
+.bi-idea-card{background:#fff;border-radius:12px;overflow:hidden;transition:transform .15s,box-shadow .15s;cursor:default;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.bi-idea-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.bi-idea-header{padding:16px 18px 12px;border-bottom:1px solid #f0ede6;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .bi-idea-title{font-family:'Boogaloo',cursive;font-size:20px;line-height:1.2;color:var(--black)}
 .bi-idea-badge{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
 .bi-badge-beginner{background:#e8f5e9;color:#2e7d32}
@@ -13076,7 +13151,7 @@ function initBrickIdeasPage() {}
 .bi-idea-yt{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-weight:900;font-size:12px;padding:7px 14px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:all .15s}
 .bi-idea-yt:hover{background:#c20009}
 @keyframes biPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
-@media(max-width:768px){#brickIdeasLayout{grid-template-columns:1fr}}
+@media(max-width:900px){#brickIdeasLayout{grid-template-columns:1fr!important}#biStepsBar{grid-template-columns:1fr!important;gap:12px!important}.bi-step-divider{display:none}}
 </style>
 
 <script>
@@ -13128,10 +13203,74 @@ function handleBrickPhoto(input) {
     document.getElementById('biPreview').src = dataUrl;
     document.getElementById('biPreviewWrap').style.display = 'block';
     document.getElementById('biPlaceholder').style.display = 'none';
-    document.getElementById('biAnalyseBtn').disabled = false;
+    const btn = document.getElementById('biAnalyseBtn');
+    btn.disabled = false;
+    btn.style.background = 'var(--red)';
+    btn.style.color = '#fff';
+    btn.style.cursor = 'pointer';
+    btn.style.boxShadow = '0 5px 0 #8b0000';
     document.getElementById('biDropZone').style.borderColor = 'var(--green)';
   };
   reader.readAsDataURL(file);
+}
+
+function startBiCamera() {
+  // Try getUserMedia first — works on desktop Chrome/Firefox/Edge
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Build a quick camera modal
+    const overlay = document.createElement('div');
+    overlay.id = 'biCamOverlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px';
+    overlay.innerHTML = `
+      <video id="biCamVideo" autoplay playsinline style="max-width:90vw;max-height:60vh;border-radius:12px;border:3px solid var(--yellow)"></video>
+      <div style="display:flex;gap:14px">
+        <button onclick="snapBiCamera()" style="background:var(--red);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;padding:14px 32px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 5px 0 #8b0000">📸 Snap Photo</button>
+        <button onclick="closeBiCamera()" style="background:rgba(255,255,255,.1);color:#fff;font-family:'Boogaloo',cursive;font-size:20px;padding:14px 24px;border:2px solid rgba(255,255,255,.2);border-radius:12px;cursor:pointer">✕ Cancel</button>
+      </div>
+      <canvas id="biCamCanvas" style="display:none"></canvas>
+    `;
+    document.body.appendChild(overlay);
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+      .then(stream => {
+        const video = document.getElementById('biCamVideo');
+        video.srcObject = stream;
+        window._biCamStream = stream;
+      })
+      .catch(() => {
+        // Camera permission denied — fall back to file picker
+        closeBiCamera();
+        document.getElementById('biFileInput').click();
+      });
+  } else {
+    // Older browser — just open file picker
+    document.getElementById('biFileInput').click();
+  }
+}
+
+function snapBiCamera() {
+  const video = document.getElementById('biCamVideo');
+  const canvas = document.getElementById('biCamCanvas');
+  canvas.width  = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  canvas.toBlob(blob => {
+    closeBiCamera();
+    const file = new File([blob], 'camera-photo.jpg', { type: 'image/jpeg' });
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    const input = document.getElementById('biFileInput');
+    input.files = dt.files;
+    handleBrickPhoto(input);
+  }, 'image/jpeg', 0.92);
+}
+
+function closeBiCamera() {
+  if (window._biCamStream) {
+    window._biCamStream.getTracks().forEach(t => t.stop());
+    window._biCamStream = null;
+  }
+  const overlay = document.getElementById('biCamOverlay');
+  if (overlay) overlay.remove();
 }
 
 function clearBrickPhoto(e) {
@@ -13141,7 +13280,12 @@ function clearBrickPhoto(e) {
   document.getElementById('biFileInput').value = '';
   document.getElementById('biPreviewWrap').style.display = 'none';
   document.getElementById('biPlaceholder').style.display = 'block';
-  document.getElementById('biAnalyseBtn').disabled = true;
+  const btn = document.getElementById('biAnalyseBtn');
+  btn.disabled = true;
+  btn.style.background = '#ccc';
+  btn.style.color = '#888';
+  btn.style.cursor = 'not-allowed';
+  btn.style.boxShadow = 'none';
   document.getElementById('biDropZone').style.borderColor = '#ddd';
   document.getElementById('biEmptyState').style.display = 'block';
   document.getElementById('biLoadingState').style.display = 'none';

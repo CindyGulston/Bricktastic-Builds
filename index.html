@@ -13405,7 +13405,7 @@ function renderBrickIdeas(summary, ideas) {
   const list = document.getElementById('biIdeasList');
   list.innerHTML = ideas.map(idea => {
     const tutorial = findTutorial(idea.title, idea.description);
-    const ytBtn = tutorial ? `<a class="bi-idea-yt" href="https://youtube.com/watch?v=${tutorial.id}" target="_blank"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Watch Tutorial</a>` : '';
+    const ytBtn = tutorial ? `<a class="bi-idea-yt" href="https://youtube.com/watch?v=${tutorial.id}" target="_blank" title="A related video from Bricktastic Builds — not a tutorial for this exact build"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg> Related Video <span style="font-size:10px;opacity:.7;font-family:'Nunito',sans-serif;font-weight:700">(similar build)</span></a>` : '';
     return `<div class="bi-idea-card">
       <div class="bi-idea-header">
         <div class="bi-idea-title">${idea.emoji} ${idea.title}</div>
@@ -13414,7 +13414,10 @@ function renderBrickIdeas(summary, ideas) {
       <div class="bi-idea-body">
         <div class="bi-idea-desc">${idea.description}</div>
         <div class="bi-idea-meta"><span>🧱 ${idea.pieces}</span><span>⏱️ ${idea.time}</span>${idea.tags.map(t=>`<span>#${t}</span>`).join('')}</div>
-        ${ytBtn}
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          ${ytBtn}
+          <button onclick='showBuildInstructions(${JSON.stringify(idea)})' style="background:var(--black);color:var(--yellow);border:none;border-radius:8px;padding:7px 14px;font-family:'Boogaloo',cursive;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:opacity .15s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">📋 How to Build</button>
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -13432,6 +13435,81 @@ function shareBrickIdeas() {
   } else {
     navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard! Paste it anywhere to share 🎉'));
   }
+}
+
+// ── Build Instructions Modal ───────────────────────────────────
+async function showBuildInstructions(idea) {
+  const modal = document.getElementById('biInstructModal');
+  const title = document.getElementById('biInstructTitle');
+  const body  = document.getElementById('biInstructBody');
+
+  title.textContent = idea.emoji + ' ' + idea.title;
+  body.innerHTML = `<div style="text-align:center;padding:40px 0">
+    <div style="font-size:36px;margin-bottom:12px">⏳</div>
+    <div style="font-family:'Boogaloo',cursive;font-size:20px;color:var(--black)">Generating build instructions…</div>
+    <div style="font-size:13px;color:#888;margin-top:6px;font-weight:600">This takes about 10 seconds</div>
+  </div>`;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  try {
+    const prompt = `You are a LEGO® building expert. Give clear step-by-step instructions for building: "${idea.title}".
+
+Context: ${idea.description}. Difficulty: ${idea.difficulty}. Approx ${idea.pieces} pieces. Build time: ${idea.time}.
+
+Respond ONLY with this raw JSON (no markdown, no backticks):
+{"steps":[{"step":1,"title":"Step title","instruction":"Clear instruction for this step."},{"step":2,"title":"Step title","instruction":"Clear instruction."}],"tips":["Tip 1","Tip 2","Tip 3"],"partsSuggested":["Part 1","Part 2","Part 3","Part 4"]}
+
+Include 6-10 steps. Keep each instruction to 1-2 sentences. Tips should be practical LEGO® building advice specific to this build.`;
+
+    const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/build-instructions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed');
+
+    const clean = (data.text || '').replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    const stepsHTML = parsed.steps.map(s => `
+      <div style="display:flex;gap:14px;margin-bottom:18px;align-items:flex-start">
+        <div style="min-width:32px;height:32px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Boogaloo',cursive;font-size:16px;flex-shrink:0">${s.step}</div>
+        <div>
+          <div style="font-weight:900;font-size:14px;margin-bottom:3px;color:var(--black)">${s.title}</div>
+          <div style="font-size:14px;color:#555;font-weight:600;line-height:1.6">${s.instruction}</div>
+        </div>
+      </div>`).join('');
+
+    const tipsHTML = parsed.tips.map(t => `<li style="margin-bottom:6px;font-size:13px;color:#555;font-weight:600">${t}</li>`).join('');
+    const partsHTML = parsed.partsSuggested.map(p => `<span style="background:#f0ede6;border:2px solid var(--black);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:800">${p}</span>`).join('');
+
+    body.innerHTML = `
+      <div style="margin-bottom:24px">
+        <div style="font-family:'Boogaloo',cursive;font-size:18px;margin-bottom:14px;color:var(--black)">📋 Steps</div>
+        ${stepsHTML}
+      </div>
+      ${parsed.partsSuggested?.length ? `<div style="margin-bottom:24px">
+        <div style="font-family:'Boogaloo',cursive;font-size:18px;margin-bottom:10px;color:var(--black)">🧱 Suggested Parts</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">${partsHTML}</div>
+      </div>` : ''}
+      ${parsed.tips?.length ? `<div style="background:#fffbea;border:2px solid var(--yellow);border-radius:10px;padding:16px 18px">
+        <div style="font-family:'Boogaloo',cursive;font-size:16px;margin-bottom:8px;color:var(--black)">💡 Pro Tips</div>
+        <ul style="margin:0;padding-left:18px">${tipsHTML}</ul>
+      </div>` : ''}`;
+  } catch(err) {
+    body.innerHTML = `<div style="text-align:center;padding:30px">
+      <div style="font-size:36px;margin-bottom:12px">😬</div>
+      <div style="font-weight:900">Could not load instructions</div>
+      <div style="font-size:13px;color:#888;margin-top:6px">${err.message}</div>
+    </div>`;
+  }
+}
+
+function closeBiInstructModal() {
+  document.getElementById('biInstructModal').style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 // Close overlays with Escape key
@@ -13774,6 +13852,17 @@ function highlight(id) {
       <p style="font-size:12px;font-weight:600;color:#aaa;margin-bottom:24px">📬 Check your inbox for a confirmation email.</p>
       <button onclick="closeNotifyModal()" style="background:var(--black);color:var(--yellow);border:none;padding:11px 26px;font-family:'Boogaloo',cursive;font-size:18px;border-radius:8px;cursor:pointer">Awesome, thanks! 🧱</button>
     </div>
+  </div>
+</div>
+
+<!-- ══ BUILD INSTRUCTIONS MODAL ══ -->
+<div id="biInstructModal" onclick="if(event.target===this)closeBiInstructModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;align-items:center;justify-content:center;padding:80px 20px 40px;overflow-y:auto">
+  <div style="background:#fff;max-width:560px;width:100%;border:3px solid var(--black);box-shadow:0 12px 0 rgba(0,0,0,.2);position:relative;border-radius:14px;overflow:hidden">
+    <div style="background:var(--black);padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+      <div id="biInstructTitle" style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow)"></div>
+      <button onclick="closeBiInstructModal()" style="background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">✕</button>
+    </div>
+    <div id="biInstructBody" style="padding:24px;max-height:65vh;overflow-y:auto"></div>
   </div>
 </div>
 

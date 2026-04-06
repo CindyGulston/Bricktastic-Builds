@@ -392,6 +392,7 @@ section{padding:80px 0}
 .skel-line{height:12px;border-radius:6px;background:linear-gradient(90deg,#f0ede6 25%,#e8e4da 50%,#f0ede6 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin:14px 18px 8px}
 .skel-line.short{width:60%;margin-bottom:18px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
 .rss-note{display:flex;align-items:center;gap:10px;background:#f5f3ee;border:2px solid #e0ddd5;border-radius:10px;padding:12px 18px;margin-bottom:28px;font-size:13px;font-weight:700;color:#666}
 .rss-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 0 3px rgba(0,166,80,.2);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(0,166,80,.2)}50%{box-shadow:0 0 0 6px rgba(0,166,80,.05)}}
@@ -13438,6 +13439,55 @@ function shareBrickIdeas() {
 }
 
 // ── Build Instructions Modal ───────────────────────────────────
+
+const WORKER_URL = 'https://noisy-forest-b968.bricktasticbuilds01.workers.dev';
+
+// Fetch a proxied piece image URL via the worker
+async function fetchPieceImage(pieceName) {
+  try {
+    const res = await fetch(`${WORKER_URL}/piece-image?q=${encodeURIComponent(pieceName)}`, {
+      signal: AbortSignal.timeout(7000)
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.imageUrl || null;
+  } catch { return null; }
+}
+
+// Fetch finished build reference images via the worker
+async function fetchBuildImages(query) {
+  try {
+    const res = await fetch(`${WORKER_URL}/build-images?q=${encodeURIComponent(query)}`, {
+      signal: AbortSignal.timeout(8000)
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.images || [];
+  } catch { return []; }
+}
+
+// Proxy an image URL through the worker to avoid CORS
+function proxyImgUrl(url) {
+  if (!url) return null;
+  return `${WORKER_URL}/proxy-img?url=${encodeURIComponent(url)}`;
+}
+
+// Render a row of piece chips — shows image thumbnail + name
+function renderPieceChips(pieces) {
+  if (!pieces || !pieces.length) return '';
+  return `<div class="bi-piece-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px">
+    ${pieces.map((p, i) => `
+      <div class="bi-piece-chip" id="piece-chip-${p.replace(/\s+/g,'-').replace(/[^a-z0-9-]/gi,'')}-${i}"
+           style="display:inline-flex;align-items:center;gap:6px;background:#f0ede6;border:2px solid var(--black);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;color:var(--black);cursor:default;transition:background .15s"
+           title="${p}">
+        <span class="piece-chip-img-wrap" style="width:28px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font-size:14px">🧱</span>
+        </span>
+        <span>${p}</span>
+      </div>`).join('')}
+  </div>`;
+}
+
 async function showBuildInstructions(idea) {
   const modal = document.getElementById('biInstructModal');
   const title = document.getElementById('biInstructTitle');
@@ -13456,11 +13506,16 @@ async function showBuildInstructions(idea) {
     const prompt = `You are a LEGO® expert. Give step-by-step instructions for building: "${idea.title}". Difficulty: ${idea.difficulty}. Approx ${idea.pieces} pieces.
 
 Respond ONLY with raw JSON, no markdown, no backticks:
-{"steps":[{"step":1,"title":"Short title","instruction":"One sentence."},{"step":2,"title":"Short title","instruction":"One sentence."},{"step":3,"title":"Short title","instruction":"One sentence."},{"step":4,"title":"Short title","instruction":"One sentence."},{"step":5,"title":"Short title","instruction":"One sentence."},{"step":6,"title":"Short title","instruction":"One sentence."}],"tips":["Tip 1","Tip 2","Tip 3"],"partsSuggested":["Part 1","Part 2","Part 3","Part 4"]}
+{"steps":[{"step":1,"title":"Short title","instruction":"One sentence.","piecesNeeded":["2x4 brick","1x2 plate"]},{"step":2,"title":"Short title","instruction":"One sentence.","piecesNeeded":["1x2 slope"]},{"step":3,"title":"Short title","instruction":"One sentence.","piecesNeeded":["2x2 brick","1x1 round plate"]},{"step":4,"title":"Short title","instruction":"One sentence.","piecesNeeded":["1x4 brick"]},{"step":5,"title":"Short title","instruction":"One sentence.","piecesNeeded":["2x2 slope","1x2 tile"]},{"step":6,"title":"Short title","instruction":"One sentence.","piecesNeeded":["1x1 stud","1x2 plate"]}],"tips":["Tip 1","Tip 2","Tip 3"],"partsSuggested":["Part 1","Part 2","Part 3","Part 4"],"finalImageSearch":"LEGO ${idea.title} MOC completed build"}
 
-Fill in all 6 steps with real instructions for ${idea.title}. Keep every instruction to ONE short sentence. Tips must be practical advice for this specific build.`;
+Rules:
+- Fill all 6 steps with real instructions for ${idea.title}.
+- Each step's "piecesNeeded" must list 1-3 specific LEGO piece names used in THAT step only. Use short, searchable names like "2x4 red brick", "1x2 plate", "2x2 slope", "technic pin". Colour is optional but helpful.
+- "finalImageSearch" must be a short search query to find photos of the finished ${idea.title} LEGO build.
+- Keep every instruction to ONE short sentence.
+- Tips must be practical advice for this specific build.`;
 
-    const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/build-instructions', {
+    const res = await fetch(`${WORKER_URL}/build-instructions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
@@ -13471,31 +13526,104 @@ Fill in all 6 steps with real instructions for ${idea.title}. Keep every instruc
     const clean = (data.text || '').replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
 
+    const finalSearchQ = parsed.finalImageSearch || `LEGO ${idea.title} MOC`;
+    const finalImgId   = 'bi-final-' + Date.now();
+
+    // ── Render steps with piece chips (emoji placeholder first) ──
     const stepsHTML = parsed.steps.map(s => `
-      <div style="display:flex;gap:14px;margin-bottom:18px;align-items:flex-start">
+      <div style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start">
         <div style="min-width:32px;height:32px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Boogaloo',cursive;font-size:16px;flex-shrink:0">${s.step}</div>
-        <div>
+        <div style="flex:1">
           <div style="font-weight:900;font-size:14px;margin-bottom:3px;color:var(--black)">${s.title}</div>
           <div style="font-size:14px;color:#555;font-weight:600;line-height:1.6">${s.instruction}</div>
+          ${renderPieceChips(s.piecesNeeded)}
         </div>
       </div>`).join('');
 
-    const tipsHTML = parsed.tips.map(t => `<li style="margin-bottom:6px;font-size:13px;color:#555;font-weight:600">${t}</li>`).join('');
-    const partsHTML = parsed.partsSuggested.map(p => `<span style="background:#f0ede6;border:2px solid var(--black);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:800">${p}</span>`).join('');
+    const tipsHTML  = (parsed.tips || []).map(t => `<li style="margin-bottom:6px;font-size:13px;color:#555;font-weight:600">${t}</li>`).join('');
+    const partsHTML = (parsed.partsSuggested || []).map(p => `<span style="background:#f0ede6;border:2px solid var(--black);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:800">${p}</span>`).join('');
 
     body.innerHTML = `
       <div style="margin-bottom:24px">
         <div style="font-family:'Boogaloo',cursive;font-size:18px;margin-bottom:14px;color:var(--black)">📋 Steps</div>
         ${stepsHTML}
       </div>
-      ${parsed.partsSuggested?.length ? `<div style="margin-bottom:24px">
+      ${partsHTML ? `<div style="margin-bottom:24px">
         <div style="font-family:'Boogaloo',cursive;font-size:18px;margin-bottom:10px;color:var(--black)">🧱 Suggested Parts</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">${partsHTML}</div>
       </div>` : ''}
-      ${parsed.tips?.length ? `<div style="background:#fffbea;border:2px solid var(--yellow);border-radius:10px;padding:16px 18px">
+      ${tipsHTML ? `<div style="background:#fffbea;border:2px solid var(--yellow);border-radius:10px;padding:16px 18px;margin-bottom:24px">
         <div style="font-family:'Boogaloo',cursive;font-size:16px;margin-bottom:8px;color:var(--black)">💡 Pro Tips</div>
         <ul style="margin:0;padding-left:18px">${tipsHTML}</ul>
-      </div>` : ''}`;
+      </div>` : ''}
+      <div style="border:3px solid var(--black);border-radius:12px;overflow:hidden">
+        <div style="background:var(--black);padding:10px 16px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'Boogaloo',cursive;font-size:16px;color:var(--yellow)">🏁 What it should look like</div>
+          <a href="https://rebrickable.com/mocs/?q=${encodeURIComponent(idea.title)}" target="_blank" rel="noopener"
+             style="font-size:11px;font-weight:800;color:rgba(255,255,255,.6);text-decoration:none">More on Rebrickable →</a>
+        </div>
+        <div id="${finalImgId}" style="background:#f5f3ee;min-height:130px;display:flex;align-items:center;justify-content:center;padding:14px;gap:10px;flex-wrap:wrap">
+          <div style="font-size:13px;font-weight:700;color:#aaa;display:flex;align-items:center;gap:8px">
+            <span style="display:inline-block;width:14px;height:14px;border:2px solid #aaa;border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite"></span>
+            Loading reference images…
+          </div>
+        </div>
+      </div>`;
+
+    // ── Async: load piece images into chips ──
+    (async () => {
+      const allPieces = (parsed.steps || []).flatMap(s => s.piecesNeeded || []);
+      const unique = [...new Set(allPieces)];
+      // Fetch up to 8 unique piece images in parallel
+      const results = await Promise.allSettled(
+        unique.slice(0, 8).map(async p => ({ piece: p, url: await fetchPieceImage(p) }))
+      );
+      const imgMap = {};
+      results.forEach(r => { if (r.status === 'fulfilled' && r.value.url) imgMap[r.value.piece] = r.value.url; });
+
+      // Update each chip that has a matching image
+      body.querySelectorAll('.bi-piece-chip').forEach(chip => {
+        const pieceName = chip.querySelector('span:last-child')?.textContent?.trim();
+        if (!pieceName || !imgMap[pieceName]) return;
+        const wrap = chip.querySelector('.piece-chip-img-wrap');
+        if (!wrap) return;
+        const proxied = proxyImgUrl(imgMap[pieceName]);
+        wrap.innerHTML = `<img src="${proxied}" alt="${pieceName}"
+          style="width:28px;height:20px;object-fit:contain;border-radius:2px"
+          onerror="this.parentNode.innerHTML='🧱'">`;
+      });
+    })();
+
+    // ── Async: load finished build images ──
+    (async () => {
+      const container = document.getElementById(finalImgId);
+      if (!container) return;
+      const images = await fetchBuildImages(finalSearchQ);
+
+      if (!images.length) {
+        container.innerHTML = `<div style="text-align:center;width:100%;padding:10px">
+          <div style="font-size:13px;font-weight:700;color:#aaa;margin-bottom:10px">No images found automatically — search manually:</div>
+          <a href="https://rebrickable.com/mocs/?q=${encodeURIComponent(idea.title)}" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;background:#e85d04;color:#fff;border-radius:8px;padding:8px 14px;font-family:'Boogaloo',cursive;font-size:14px;text-decoration:none">
+            🧱 Search Rebrickable MOCs
+          </a>
+        </div>`;
+        return;
+      }
+
+      container.innerHTML = images.map(img => `
+        <a href="${img.link || '#'}" target="_blank" rel="noopener"
+           style="display:block;flex:1;min-width:140px;max-width:200px;border-radius:8px;overflow:hidden;border:2px solid #ddd;text-decoration:none;background:#fff;transition:transform .15s;position:relative"
+           onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="${proxyImgUrl(img.url)}" alt="${img.title || idea.title}"
+               style="width:100%;height:120px;object-fit:cover;display:block"
+               onerror="this.style.display='none'">
+          <div style="padding:5px 7px;font-size:10px;font-weight:800;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"
+               title="${img.title || ''}">${img.title || idea.title}</div>
+          <div style="padding:0 7px 5px;font-size:9px;font-weight:700;color:#aaa">${img.source || ''}</div>
+        </a>`).join('');
+    })();
+
   } catch(err) {
     body.innerHTML = `<div style="text-align:center;padding:30px">
       <div style="font-size:36px;margin-bottom:12px">😬</div>
@@ -13855,7 +13983,7 @@ function highlight(id) {
 
 <!-- ══ BUILD INSTRUCTIONS MODAL ══ -->
 <div id="biInstructModal" onclick="if(event.target===this)closeBiInstructModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;align-items:center;justify-content:center;padding:80px 20px 40px;overflow-y:auto">
-  <div style="background:#fff;max-width:560px;width:100%;border:3px solid var(--black);box-shadow:0 12px 0 rgba(0,0,0,.2);position:relative;border-radius:14px;overflow:hidden">
+  <div style="background:#fff;max-width:700px;width:100%;border:3px solid var(--black);box-shadow:0 12px 0 rgba(0,0,0,.2);position:relative;border-radius:14px;overflow:hidden">
     <div style="background:var(--black);padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
       <div id="biInstructTitle" style="font-family:'Boogaloo',cursive;font-size:22px;color:var(--yellow)"></div>
       <button onclick="closeBiInstructModal()" style="background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0">✕</button>

@@ -2485,7 +2485,7 @@ window.addEventListener('load', function() {
           <div class="bs" style="left:140px;background:var(--orange)"></div>
           <div class="bs" style="left:202px;background:var(--orange)"></div>
         </div>
-        <div class="ch-tag">🎮 Now Live!</div>
+        <div class="ch-tag">Coming Soon</div>
       </div>
     </div>
   </div>
@@ -2509,10 +2509,11 @@ window.addEventListener('load', function() {
       </div>
 
       <div class="sgrid" id="shopGrid">
+        <!-- COMING SOON -->
         <!-- PS5 MOC INSTRUCTIONS -->
         <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)">
-          <div class="pthumb" style="background:linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e);padding:0;display:flex;align-items:center;justify-content:center;position:relative">
-            <span style="font-size:96px;filter:drop-shadow(0 6px 20px rgba(0,212,255,0.5))">🎮</span>
+          <div class="pthumb" style="padding:0;position:relative;overflow:hidden">
+            <img src="https://pe56d.s3.amazonaws.com/o_1jlgpb0rj1pke4g21qk8aqa1op515.jpg" alt="PS5 LEGO MOC Instructions" style="width:100%;height:100%;object-fit:cover;display:block">
             <span style="position:absolute;top:12px;left:12px;background:#00d4ff;color:#0a0a0a;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:4px">📐 Instructions</span>
             <span style="position:absolute;top:12px;right:12px;background:var(--green);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:4px">✅ Available Now</span>
           </div>
@@ -2680,7 +2681,7 @@ window.addEventListener('load', function() {
 <script>
 // DATA
 const P=[
-  {id:1,name:"PS5 LEGO® MOC Instructions – Mini Console Display Build",type:"📐 Instructions",price:2.99,emoji:"🎮",bg:"linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e)",tc:"#00d4ff",buyUrl:"https://payhip.com/b/2mHk6",buyLabel:"🛒 Buy Now — $2.99",desc:"Build a miniature PlayStation 5 from LEGO® bricks! This compact PS5 MOC recreates the iconic curved white panels and sleek black centre strip in micro scale. Perfect as a desk display or shelf piece for any gamer and LEGO® fan. Easy to follow for builders of all ages.",specs:[["~13","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
+  {id:1,name:"PS5 LEGO® MOC Instructions – Mini Console Display Build",type:"📐 Instructions",price:2.99,emoji:"🎮",img:"https://pe56d.s3.amazonaws.com/o_1jlgpb0rj1pke4g21qk8aqa1op515.jpg",bg:"linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e)",tc:"#00d4ff",buyUrl:"https://payhip.com/b/2mHk6",buyLabel:"🛒 Buy Now — $2.99",desc:"Build a miniature PlayStation 5 from LEGO® bricks! This compact PS5 MOC recreates the iconic curved white panels and sleek black centre strip in micro scale. Perfect as a desk display or shelf piece for any gamer and LEGO® fan. Easy to follow for builders of all ages.",specs:[["~13","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
   {id:0,name:"More MOC Instructions — Coming Soon!",type:"Coming Soon",price:0,emoji:"🧱",bg:"linear-gradient(135deg,#1A1A1A,#E3000B)",tc:"var(--yellow)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Notify me when instructions are available",buyLabel:"📧 Notify Me When Available",desc:"We're working hard on more official LEGO® MOC instruction packs — step-by-step build guides for some of our most popular YouTube builds. Drop us an email to be the first to know when they launch!",specs:[["PDF","Format"],["Step-by-Step","Instructions"],["Coming","Soon"]],inc:["Full colour PDF instructions","Complete parts list","Tips & techniques","Be first to know — email us!"]}
 ];
 
@@ -3210,7 +3211,9 @@ function openMod(id){
   curMod=id;const p=P[id];
   const h=document.getElementById('modHero');
   h.style.background=p.bg;
-  h.innerHTML=`<button class="mod-x" onclick="document.getElementById('modOv').classList.remove('open')">✕</button><span style="font-size:88px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.3))">${p.emoji}</span>`;
+  h.innerHTML=p.img
+    ? `<button class="mod-x" onclick="document.getElementById('modOv').classList.remove('open')">✕</button><img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.85">`
+    : `<button class="mod-x" onclick="document.getElementById('modOv').classList.remove('open')">✕</button><span style="font-size:88px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.3))">${p.emoji}</span>`;
   document.getElementById('modTag').textContent=p.type;
   document.getElementById('modTag').style.color=p.tc;
   document.getElementById('modTitle').textContent=p.name;
@@ -3246,6 +3249,8 @@ function addFromMod(){
 function filterShop(cat,btn){
   document.querySelectorAll('.shop-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
   document.querySelectorAll('.pc').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none'});
+  const f=document.querySelector('.pc.feat');
+  if(f){if(cat==='all'||cat==='moc'){f.style.display='';f.style.gridColumn='span 3'}else f.style.display='none'}
 }
 
 // TOAST

@@ -13453,14 +13453,12 @@ async function showBuildInstructions(idea) {
   document.body.style.overflow = 'hidden';
 
   try {
-    const prompt = `You are a LEGO® building expert. Give clear step-by-step instructions for building: "${idea.title}".
+    const prompt = `You are a LEGO® expert. Give step-by-step instructions for building: "${idea.title}". Difficulty: ${idea.difficulty}. Approx ${idea.pieces} pieces.
 
-Context: ${idea.description}. Difficulty: ${idea.difficulty}. Approx ${idea.pieces} pieces. Build time: ${idea.time}.
+Respond ONLY with raw JSON, no markdown, no backticks:
+{"steps":[{"step":1,"title":"Short title","instruction":"One sentence."},{"step":2,"title":"Short title","instruction":"One sentence."},{"step":3,"title":"Short title","instruction":"One sentence."},{"step":4,"title":"Short title","instruction":"One sentence."},{"step":5,"title":"Short title","instruction":"One sentence."},{"step":6,"title":"Short title","instruction":"One sentence."}],"tips":["Tip 1","Tip 2","Tip 3"],"partsSuggested":["Part 1","Part 2","Part 3","Part 4"]}
 
-Respond ONLY with this raw JSON (no markdown, no backticks):
-{"steps":[{"step":1,"title":"Step title","instruction":"Clear instruction for this step."},{"step":2,"title":"Step title","instruction":"Clear instruction."}],"tips":["Tip 1","Tip 2","Tip 3"],"partsSuggested":["Part 1","Part 2","Part 3","Part 4"]}
-
-Include 6-10 steps. Keep each instruction to 1-2 sentences. Tips should be practical LEGO® building advice specific to this build.`;
+Fill in all 6 steps with real instructions for ${idea.title}. Keep every instruction to ONE short sentence. Tips must be practical advice for this specific build.`;
 
     const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/build-instructions', {
       method: 'POST',

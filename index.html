@@ -1527,7 +1527,12 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
 }
 
 </style>
-<!-- MailerLite removed — email handled via Cloudflare Workers + Resend API -->
+<!-- MailerLite Universal -->
+<script>
+(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', '2189778');
+</script>
+<!-- End MailerLite Universal -->
 </head>
 <body>
 <a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--yellow);color:var(--black);padding:8px 16px;font-weight:900;border-radius:0 0 8px 8px" onfocus="this.style.left='50%';this.style.transform='translateX(-50%)';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px'">Skip to main content</a>
@@ -2972,7 +2977,6 @@ async function subscribeNewsletter(inputId) {
     setTimeout(() => input.style.borderColor = '', 2000);
     return;
   }
-  // Find the sibling button (works for both footer bars and hero form)
   const btn = input.nextElementSibling && input.nextElementSibling.tagName === 'BUTTON'
     ? input.nextElementSibling
     : input.closest('.sub-nl-row, .newsletter-inner')?.querySelector('button') || null;
@@ -2983,12 +2987,16 @@ async function subscribeNewsletter(inputId) {
   if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
 
   try {
-    const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/subscribe', {
+    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source: inputId || 'footer' })
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmNhNTA4OTRlMGVmMjBmY2ZlNjE0ZGI0YzY5YjA2NGFmMzI0ZGM1MjZlNzEzNzFlMGJhOGFjNmRlMzJiNTczZjhhY2QwYTBhYTlkMjliNjQiLCJpYXQiOjE3NDYwMTkzMTMuNjQ1MTY2LCJuYmYiOjE3NDYwMTkzMTMuNjQ1MTY5LCJleHAiOjQ5MDE2OTI5MTMuNjM4OTIsInN1YiI6IjEzNzA0MDEiLCJzY29wZXMiOltdfQ.qFlMbTkI0sJluqHlVxCBHRhVHJBYJGM5shnbbYd6K-IFu-WrUNe8y9dTFz2JkXUcS0vhfmVLjlOr_FluHj4Q9_n_VwAMOKxiQxEn7_vQg7sJDMiIwnFkgijxP4mFk2VFvqgkrF6xJYkYf3-bMuXJf3WIELdZFrfSCMxb_7cAR0m81cJLjTKvBNJVSDm8JJmEGvvZSmHWJKWFSniYv30bR0FMkLpDOqfFj4ikYnLFvKxaG6CbZPzT8e4Z7tSmf3Y5ghqlIp5X9GnFGTH_1hJfPgqzIPnEfnvRi8vFM0K3QaLPU9xJmFe8ERsK5a8tKA4j3lFtQy5G1-bBqjC-rZgIPbIAvkD3sWDJnYimYiEFsodH8tYxoZ-H9IFh4hT-_GpZ97s_DGbJFrI-zX12qfY6H5wr1AXRKflG4V2GqPpJEzZ5XhlJoNi_yBUGrGm7qJlPPVFtIE0dkiWC2f5Nt9lqLINP7YpnqRrOdBECXakl1WpRHsYd2TT0NXOQ6hqYQsV5s3iRXpV95c3kxbJiJxhqstjPz1vQG35mLNqBZL6VMUQ5YDgH5F7Y7oTBlzZGJa5EQR_xmKS_7BkZ4z9bfM7X7NIlNbZ7PdGHWNIqlXW6Yz8bQ7YLRQ0lEPuKOJKuHuNi5YiZqFaObwt5A_TP0Iv_iPZHfZ2GNE'
+      },
+      body: JSON.stringify({ email, fields: { source: inputId || 'footer' } })
     });
-    if (!res.ok) throw new Error('Subscribe failed');
+    if (!res.ok && res.status !== 409) throw new Error('Subscribe failed');
     input.style.borderColor = 'var(--green)';
     if (btn) { btn.textContent = '✅ Subscribed!'; }
     if (typeof launchConfetti === 'function') launchConfetti(input);
@@ -12884,12 +12892,16 @@ async function submitNotify() {
   btn.textContent = '⏳ Saving…';
   btn.disabled = true;
   try {
-    const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/notify', {
+    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email })
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmNhNTA4OTRlMGVmMjBmY2ZlNjE0ZGI0YzY5YjA2NGFmMzI0ZGM1MjZlNzEzNzFlMGJhOGFjNmRlMzJiNTczZjhhY2QwYTBhYTlkMjliNjQiLCJpYXQiOjE3NDYwMTkzMTMuNjQ1MTY2LCJuYmYiOjE3NDYwMTkzMTMuNjQ1MTY5LCJleHAiOjQ5MDE2OTI5MTMuNjM4OTIsInN1YiI6IjEzNzA0MDEiLCJzY29wZXMiOltdfQ.qFlMbTkI0sJluqHlVxCBHRhVHJBYJGM5shnbbYd6K-IFu-WrUNe8y9dTFz2JkXUcS0vhfmVLjlOr_FluHj4Q9_n_VwAMOKxiQxEn7_vQg7sJDMiIwnFkgijxP4mFk2VFvqgkrF6xJYkYf3-bMuXJf3WIELdZFrfSCMxb_7cAR0m81cJLjTKvBNJVSDm8JJmEGvvZSmHWJKWFSniYv30bR0FMkLpDOqfFj4ikYnLFvKxaG6CbZPzT8e4Z7tSmf3Y5ghqlIp5X9GnFGTH_1hJfPgqzIPnEfnvRi8vFM0K3QaLPU9xJmFe8ERsK5a8tKA4j3lFtQy5G1-bBqjC-rZgIPbIAvkD3sWDJnYimYiEFsodH8tYxoZ-H9IFh4hT-_GpZ97s_DGbJFrI-zX12qfY6H5wr1AXRKflG4V2GqPpJEzZ5XhlJoNi_yBUGrGm7qJlPPVFtIE0dkiWC2f5Nt9lqLINP7YpnqRrOdBECXakl1WpRHsYd2TT0NXOQ6hqYQsV5s3iRXpV95c3kxbJiJxhqstjPz1vQG35mLNqBZL6VMUQ5YDgH5F7Y7oTBlzZGJa5EQR_xmKS_7BkZ4z9bfM7X7NIlNbZ7PdGHWNIqlXW6Yz8bQ7YLRQ0lEPuKOJKuHuNi5YiZqFaObwt5A_TP0Iv_iPZHfZ2GNE'
+      },
+      body: JSON.stringify({ email, fields: { name: name || '', source: 'shop-notify' } })
     });
-    if (!res.ok) throw new Error('Failed');
+    if (!res.ok && res.status !== 409) throw new Error('Failed');
     btn.textContent = '📧 Notify Me!';
     btn.disabled = false;
     document.getElementById('notifyModalForm').style.display = 'none';
@@ -12908,12 +12920,16 @@ async function subscribeNewsletterHero() {
   const btn = document.querySelector('.newsletter-hero-btn');
   if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
   try {
-    const res = await fetch('https://noisy-forest-b968.bricktasticbuilds01.workers.dev/subscribe', {
+    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source: 'newsletter-hero' })
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmNhNTA4OTRlMGVmMjBmY2ZlNjE0ZGI0YzY5YjA2NGFmMzI0ZGM1MjZlNzEzNzFlMGJhOGFjNmRlMzJiNTczZjhhY2QwYTBhYTlkMjliNjQiLCJpYXQiOjE3NDYwMTkzMTMuNjQ1MTY2LCJuYmYiOjE3NDYwMTkzMTMuNjQ1MTY5LCJleHAiOjQ5MDE2OTI5MTMuNjM4OTIsInN1YiI6IjEzNzA0MDEiLCJzY29wZXMiOltdfQ.qFlMbTkI0sJluqHlVxCBHRhVHJBYJGM5shnbbYd6K-IFu-WrUNe8y9dTFz2JkXUcS0vhfmVLjlOr_FluHj4Q9_n_VwAMOKxiQxEn7_vQg7sJDMiIwnFkgijxP4mFk2VFvqgkrF6xJYkYf3-bMuXJf3WIELdZFrfSCMxb_7cAR0m81cJLjTKvBNJVSDm8JJmEGvvZSmHWJKWFSniYv30bR0FMkLpDOqfFj4ikYnLFvKxaG6CbZPzT8e4Z7tSmf3Y5ghqlIp5X9GnFGTH_1hJfPgqzIPnEfnvRi8vFM0K3QaLPU9xJmFe8ERsK5a8tKA4j3lFtQy5G1-bBqjC-rZgIPbIAvkD3sWDJnYimYiEFsodH8tYxoZ-H9IFh4hT-_GpZ97s_DGbJFrI-zX12qfY6H5wr1AXRKflG4V2GqPpJEzZ5XhlJoNi_yBUGrGm7qJlPPVFtIE0dkiWC2f5Nt9lqLINP7YpnqRrOdBECXakl1WpRHsYd2TT0NXOQ6hqYQsV5s3iRXpV95c3kxbJiJxhqstjPz1vQG35mLNqBZL6VMUQ5YDgH5F7Y7oTBlzZGJa5EQR_xmKS_7BkZ4z9bfM7X7NIlNbZ7PdGHWNIqlXW6Yz8bQ7YLRQ0lEPuKOJKuHuNi5YiZqFaObwt5A_TP0Iv_iPZHfZ2GNE'
+      },
+      body: JSON.stringify({ email, fields: { source: 'newsletter-hero' } })
     });
-    if (!res.ok) throw new Error('Failed');
+    if (!res.ok && res.status !== 409) throw new Error('Failed');
     const form = document.getElementById('newsletter-home-form');
     const success = document.getElementById('newsletter-home-success');
     if (form) form.style.display = 'none';

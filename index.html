@@ -2987,9 +2987,9 @@ async function subscribeNewsletter(inputId) {
   if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
 
   try {
-    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, fields: { source: inputId || 'footer' }, groups: ['184009995739727033'] })
     });
     if (!res.ok && res.status !== 200) throw new Error('Subscribe failed');
@@ -12691,9 +12691,9 @@ async function submitGalleryBuild() {
     // Add to MailerLite gallery group
     try {
       if (isValidEmail(email)) {
-        await fetch('https://connect.mailerlite.com/api/subscribers', {
+        await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, fields: { name: name.split(' ')[0] || name, last_name: name.split(' ').slice(1).join(' ') || '', source: 'gallery-submit', company: build }, groups: ['184077238134638307'] })
         });
       }
@@ -12892,9 +12892,9 @@ async function submitNotify() {
   btn.textContent = '⏳ Saving…';
   btn.disabled = true;
   try {
-    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, fields: { name, source: 'shop-notify' }, groups: ['184055412006323762'] })
     });
     if (!res.ok && res.status !== 200) throw new Error('Failed');
@@ -12916,9 +12916,9 @@ async function subscribeNewsletterHero() {
   const btn = document.querySelector('.newsletter-hero-btn');
   if (btn) { btn.textContent = '⏳ Subscribing…'; btn.disabled = true; }
   try {
-    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, fields: { source: 'newsletter-hero' }, groups: ['184009995739727033'] })
     });
     if (!res.ok && res.status !== 200) throw new Error('Failed');
@@ -13958,9 +13958,9 @@ async function submitContact() {
 
   try {
     const nameParts = name.split(' ');
-    const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer YOUR_MAILERLITE_API_KEY' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: email.toLowerCase(),
         fields: {

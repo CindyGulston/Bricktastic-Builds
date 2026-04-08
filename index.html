@@ -11957,7 +11957,7 @@ function closeBlogPost(e) {
 // ══════════════════════════════════════════════════════
 // GALLERY — Supabase + Cloudinary powered
 // ══════════════════════════════════════════════════════
-const SUPA_URL  = 'https://dueokuazfuvtsreutkya.supabase.co';
+const SUPA_URL  = 'https://dueokvazfuvtsreutkya.supabase.co';
 const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1ZW9rdWF6ZnV2dHNyZXV0a3lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzMDkzMDksImV4cCI6MjA5MDg4NTMwOX0.InpClCh6nj0tOjXxgeOH48VJ74cPIdAnBgjX4x4qEZU';
 const CLOUD_NAME   = 'dqrowyx0h';
 const CLOUD_PRESET = 'bricktastic - gallery';
@@ -11996,7 +11996,7 @@ function initGalleryPage() {
 
 async function loadLiveBuilds() {
   try {
-    _liveBuilds = await supaFetch('builds?order=created_at.desc&select=*');
+    _liveBuilds = await supaFetch('builds?status=eq.approved&order=created_at.desc&select=*');
   } catch(e) {
     _liveBuilds = [];
   }
@@ -12660,23 +12660,19 @@ async function submitGalleryBuild() {
 
     btn.textContent = '⏳ Saving…';
 
-    // Save to Supabase
-    const newBuild = await supaFetch('builds', {
+    // Save to Supabase via worker (sets status=pending) + emails admin
+    const buildRes = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev/build', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: build,
         builder: name,
         email: email || null,
         description: desc || null,
-        photo_url: photoUrl,
-        tag: 'building',
-        hearts: 0
+        photo_url: photoUrl
       })
     });
-
-    // Add to local list and refresh gallery
-    if (newBuild && newBuild[0]) _liveBuilds.unshift(newBuild[0]);
-    renderGallery();
+    if (!buildRes.ok) throw new Error('Submission failed');
 
     // Add to MailerLite gallery group
     try {

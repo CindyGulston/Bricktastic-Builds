@@ -13153,7 +13153,7 @@ async function submitContact() {
 
   try {
     const nameParts = name.split(' ');
-    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev/contact', {
+    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -13162,8 +13162,7 @@ async function submitContact() {
           name: nameParts[0] || name,
           last_name: nameParts.slice(1).join(' ') || '',
           source: 'contact-form',
-          message: message,
-          order: order || ''
+          company: order ? 'Order #' + order : ''
         },
         groups: ['184138598939886744']
       })

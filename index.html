@@ -11822,7 +11822,7 @@ function bbGameOver(){
             <span style="font-size:12px;color:#666;font-weight:700">Submissions reviewed before going live</span>
           </div>
         </div>
-        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Your build is live! Check your email for a confirmation. Keep building! 🧱</div>
+        <div id="galleryThanks" style="display:none;color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;margin-top:12px">🎉 Build submitted! We'll review it and get it live shortly. Keep building! 🧱</div>
       </div>
 
     </div>
@@ -11957,7 +11957,7 @@ function closeBlogPost(e) {
 // ══════════════════════════════════════════════════════
 // GALLERY — Supabase + Cloudinary powered
 // ══════════════════════════════════════════════════════
-const SUPA_URL  = 'https://dueokvazfuvtsreutkya.supabase.co';
+const SUPA_URL  = 'https://dueokuazfuvtsreutkya.supabase.co';
 const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1ZW9rdWF6ZnV2dHNyZXV0a3lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzMDkzMDksImV4cCI6MjA5MDg4NTMwOX0.InpClCh6nj0tOjXxgeOH48VJ74cPIdAnBgjX4x4qEZU';
 const CLOUD_NAME   = 'dqrowyx0h';
 const CLOUD_PRESET = 'bricktastic - gallery';
@@ -11986,12 +11986,13 @@ async function supaFetch(path, opts={}) {
 }
 
 function initGalleryPage() {
-  if (_galleryInited) return;
-  _galleryInited = true;
-  renderGalleryTabs();
+  if (!_galleryInited) {
+    _galleryInited = true;
+    renderGalleryTabs();
+    const sb = document.getElementById('s-gallery');
+    if (sb) { for(let i=0;i<60;i++){const s=document.createElement('span');s.style.background='#7B2FBE';sb.appendChild(s);} }
+  }
   loadLiveBuilds();
-  const sb = document.getElementById('s-gallery');
-  if (sb) { for(let i=0;i<60;i++){const s=document.createElement('span');s.style.background='#7B2FBE';sb.appendChild(s);} }
 }
 
 async function loadLiveBuilds() {

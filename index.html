@@ -11957,10 +11957,10 @@ function closeBlogPost(e) {
 // ══════════════════════════════════════════════════════
 // GALLERY — Supabase + Cloudinary powered
 // ══════════════════════════════════════════════════════
-const SUPA_URL  = 'https://dueokuazfuvtsreutkya.supabase.co';
+const SUPA_URL  = 'https://dueokvazfuvtsreutkya.supabase.co';
 const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1ZW9rdWF6ZnV2dHNyZXV0a3lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzMDkzMDksImV4cCI6MjA5MDg4NTMwOX0.InpClCh6nj0tOjXxgeOH48VJ74cPIdAnBgjX4x4qEZU';
 const CLOUD_NAME   = 'dqrowyx0h';
-const CLOUD_PRESET = 'bricktastic-gallery';
+const CLOUD_PRESET = 'bricktastic - gallery';
 
 const GALLERY_ITEMS = [];
 
@@ -12033,21 +12033,26 @@ function renderGallery() {
   }
   grid.innerHTML = items.map(item => {
     const liked = _likedBuilds.includes(String(item.id));
-    const imgHtml = item.photo_url
-      ? `<img loading="lazy" src="${item.photo_url}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'">`
-      : `<span style="font-size:64px">${item.emoji||'🏗️'}</span>`;
-    const bgStyle = item.photo_url ? '' : `background:${item.bg||'linear-gradient(135deg,#1a1a1a,#555)'}`;
-    return `<div class="gallery-card reveal" onclick="openGalleryModal('${item.id}')">
-      <div class="gallery-thumb" style="${bgStyle}">${imgHtml}
-        <span class="gallery-card-likes${liked?' liked':''}" onclick="event.stopPropagation();quickHeart('${item.id}',this)">❤️ ${item.hearts||0}</span>
+    const tag = item.tag || 'building';
+    const tagLabel = tag.charAt(0).toUpperCase() + tag.slice(1);
+    const tagColors = {building:'#006CB7',vehicle:'#FF6B00',nature:'#00A650',space:'#7B2FBE',city:'#00B5AD',art:'#E3000B'};
+    const accent = tagColors[tag] || '#006CB7';
+    const mediaHtml = item.photo_url
+      ? `<img loading="lazy" src="${item.photo_url}" alt="${item.name}" onerror="this.style.opacity='.08'" style="width:100%;height:100%;object-fit:cover;display:block">`
+      : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:${item.bg||'linear-gradient(135deg,#1a1a1a,#555)'}"><span style="font-size:64px">${item.emoji||'🏗️'}</span></div>`;
+    const isStatic = String(item.id).startsWith('static');
+    return `<div class="moc-card reveal">
+      <div class="moc-photo">
+        <div style="width:100%;height:100%;cursor:pointer" onclick="openGalleryModal('${item.id}')">${mediaHtml}</div>
+        ${item.isNew ? `<div class="moc-new-badge">NEW</div>` : ''}
       </div>
-      <div class="gallery-card-body">
-        <div class="gallery-card-name">${item.name}</div>
-        <div class="gallery-card-builder">${item.builder}</div>
-        ${item.description?`<div style="font-size:12px;color:#666;font-weight:600;margin-top:6px;line-height:1.5">${item.description}</div>`:''}
-        <div style="margin-top:14px;padding-top:10px;border-top:2px dashed #f0ede6;display:flex;align-items:center;justify-content:space-between;color:var(--blue)">
-          <span style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px">💬 Click to open comments</span>
-          <span style="font-size:16px;font-weight:900">→</span>
+      <div class="moc-info">
+        <span class="moc-cat-pill" style="background:${accent}20;color:${accent}">🧱 ${tagLabel}</span>
+        <div class="moc-name">${item.name}</div>
+        ${item.builder ? `<div style="font-size:13px;color:#888;font-weight:700;margin-top:2px">by ${item.builder}</div>` : ''}
+        <div class="moc-actions">
+          <button class="moc-heart-btn${liked?' liked':''}" onclick="event.stopPropagation();quickHeart('${item.id}',this)">❤️ ${item.hearts||0}</button>
+          <button class="moc-comment-btn" onclick="openGalleryModal('${item.id}')">💬 Comments</button>
         </div>
       </div>
     </div>`;
@@ -12060,12 +12065,11 @@ async function quickHeart(id, el) {
   _likedBuilds.push(String(id));
   localStorage.setItem('bb_liked', JSON.stringify(_likedBuilds));
   el.classList.add('liked');
-  // Update live build
   const live = _liveBuilds.find(b => String(b.id) === String(id));
   if (live) {
     live.hearts = (live.hearts||0) + 1;
     el.textContent = '❤️ ' + live.hearts;
-    try { await supaFetch(`builds?id=eq.${id}`, {method:'PATCH', body: JSON.stringify({hearts: live.hearts})}); } catch(e){}
+    try { await supaFetch(`builds?id=eq.${id}`, {method:'PATCH', body: JSON.stringify({hearts: live.hearts})}); } catch(e){ console.error('Heart save failed:', e); }
   }
 }
 

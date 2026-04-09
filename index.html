@@ -2504,7 +2504,10 @@ window.addEventListener('load', function() {
           <button class="shop-tab" onclick="filterShop('ins',this)">📐 Instructions</button>
           <button class="shop-tab" onclick="filterShop('moc',this)">🏗️ Physical MOCs</button>
           <button class="shop-tab" onclick="filterShop('bun',this)">📦 Bundles</button>
-          <button class="shop-tab" onclick="filterShop('lego',this)" style="background:var(--red);color:#fff;border-color:var(--red)">🧱 Shop LEGO®</button>
+          <button class="shop-tab lego-tab" onclick="filterShop('gaming',this)" style="background:#7B2FBE;color:#fff;border-color:#7B2FBE">🎮 Gaming</button>
+          <button class="shop-tab lego-tab" onclick="filterShop('cars',this)" style="background:var(--red);color:#fff;border-color:var(--red)">🏎️ Cars</button>
+          <button class="shop-tab lego-tab" onclick="filterShop('technic',this)" style="background:var(--orange);color:#fff;border-color:var(--orange)">⚙️ Technic</button>
+          <button class="shop-tab lego-tab" onclick="filterShop('icons',this)" style="background:var(--blue);color:#fff;border-color:var(--blue)">🏛️ Icons</button>
         </div>
       </div>
 
@@ -2538,26 +2541,70 @@ window.addEventListener('load', function() {
           </div>
         </div>
 
-        <!-- ══ LEGO AFFILIATE SECTION ══ -->
-        <!-- Affiliate disclosure banner — always shown in lego tab -->
-        <div class="pc" data-cat="lego" style="grid-column:1/-1;background:#fffbea;border:3px solid var(--yellow);padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:default" onclick="">
+        <!-- ══ LEGO AFFILIATE SECTIONS ══ -->
+
+        <!-- AFFILIATE DISCLOSURE — shown in all affiliate tabs -->
+        <div class="pc" data-cat="gaming cars technic icons" style="grid-column:1/-1;background:#fffbea;border:3px solid var(--yellow);padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:default">
           <span style="font-size:28px;flex-shrink:0">🔗</span>
-          <p style="font-size:13px;font-weight:700;color:#555;margin:0"><strong style="color:var(--black)">Affiliate Disclosure:</strong> The links below take you to LEGO.com. I earn a small commission if you buy — at no extra cost to you. LEGO® and the LEGO® logo are trademarks of the LEGO Group.</p>
+          <p style="font-size:13px;font-weight:700;color:#555;margin:0"><strong style="color:var(--black)">Affiliate Disclosure:</strong> Links below go to LEGO.com. I earn a small commission if you buy — at no extra cost to you. LEGO® and the LEGO® logo are trademarks of the LEGO Group.</p>
         </div>
 
-        <!-- Speed Champions -->
-        <div class="pc" data-cat="lego">
-          <div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FFD700);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-            <span style="font-size:72px">🏎️</span>
-            <span style="background:var(--black);color:var(--yellow);font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Speed Champions</span>
+        <!-- ══ GAMING SETS ══ -->
+        <!-- PAC-MAN Arcade -->
+        <div class="pc" data-cat="gaming">
+          <div class="pthumb" style="background:linear-gradient(135deg,#1a1a1a,#FFD700);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🕹️</span>
+            <span style="background:#FFD700;color:#1A1A1A;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">PAC-MAN</span>
           </div>
           <div class="pinfo">
-            <div class="ptyp" style="color:var(--red)">🧱 Official LEGO® Set</div>
-            <div class="pname">LEGO® Speed Champions</div>
-            <div class="pdesc">The sets that inspired my car MOCs! Iconic vehicles scaled perfectly for display and play. Great starting point for any car-loving builder.</div>
+            <div class="ptyp" style="color:#FFD700;text-shadow:0 0 8px rgba(0,0,0,.3)">🎮 LEGO® Icons</div>
+            <div class="pname">LEGO® PAC-MAN Arcade</div>
+            <div class="pdesc">2,651 pieces of pure nostalgia. A working mechanical arcade cabinet with a hidden '80s gaming room inside. The ultimate desk centrepiece for any gamer.</div>
             <div class="pfooter">
-              <div class="price" style="font-size:14px;color:#888;font-weight:700">Shop on LEGO.com →</div>
-              <a href="YOUR_RAKUTEN_SPEED_CHAMPIONS_LINK" target="_blank" rel="nofollow sponsored"
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_PACMAN_LINK" target="_blank" rel="nofollow sponsored"
+                 onclick="event.stopPropagation()"
+                 style="display:inline-flex;align-items:center;gap:6px;background:#1A1A1A;color:#FFD700;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #000;white-space:nowrap">
+                🛒 Buy on LEGO.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game Boy -->
+        <div class="pc" data-cat="gaming">
+          <div class="pthumb" style="background:linear-gradient(135deg,#8B9E6B,#c8d4a8);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🎮</span>
+            <span style="background:#1A1A1A;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Game Boy</span>
+          </div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:#8B9E6B">🎮 LEGO® Icons</div>
+            <div class="pname">LEGO® Nintendo Game Boy</div>
+            <div class="pdesc">421-piece near 1:1 scale Game Boy replica. Includes Super Mario Land and Zelda: Link's Awakening cartridges. Sold out at most retailers — grab it while you can!</div>
+            <div class="pfooter">
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_GAMEBOY_LINK" target="_blank" rel="nofollow sponsored"
+                 onclick="event.stopPropagation()"
+                 style="display:inline-flex;align-items:center;gap:6px;background:#8B9E6B;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #5a6b3a;white-space:nowrap">
+                🛒 Buy on LEGO.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mario Kart -->
+        <div class="pc" data-cat="gaming">
+          <div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#FF6B00);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🏁</span>
+            <span style="background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Mario Kart</span>
+          </div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:var(--red)">🎮 LEGO® Icons</div>
+            <div class="pname">LEGO® Mario Kart</div>
+            <div class="pdesc">1,972-piece buildable Mario and his iconic red kart with a display stand. Poseable head and arms — perfect shelf piece for any Nintendo or gaming fan.</div>
+            <div class="pfooter">
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_MARIOKART_LINK" target="_blank" rel="nofollow sponsored"
                  onclick="event.stopPropagation()"
                  style="display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #8b0000;white-space:nowrap">
                 🛒 Buy on LEGO.com
@@ -2566,19 +2613,105 @@ window.addEventListener('load', function() {
           </div>
         </div>
 
-        <!-- Technic -->
-        <div class="pc" data-cat="lego">
-          <div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#FF6B00);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-            <span style="font-size:72px">⚙️</span>
-            <span style="background:var(--orange);color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Technic</span>
+        <!-- Minecraft Creeper -->
+        <div class="pc" data-cat="gaming">
+          <div class="pthumb" style="background:linear-gradient(135deg,#2d7a2d,#5cb85c);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">💚</span>
+            <span style="background:#2d7a2d;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Minecraft</span>
           </div>
           <div class="pinfo">
-            <div class="ptyp" style="color:var(--orange)">🧱 Official LEGO® Set</div>
-            <div class="pname">LEGO® Technic</div>
-            <div class="pdesc">Advanced builds with real working mechanics — gears, pistons, and suspension. Perfect for serious builders who want engineering in their LEGO.</div>
+            <div class="ptyp" style="color:#2d7a2d">🎮 LEGO® Minecraft</div>
+            <div class="pname">LEGO® Minecraft The Creeper</div>
+            <div class="pdesc">665-piece giant Creeper build with a bonus Pig mob — a nod to Minecraft history. Perfect for fans of the world's most popular game and MOC builders alike.</div>
             <div class="pfooter">
-              <div class="price" style="font-size:14px;color:#888;font-weight:700">Shop on LEGO.com →</div>
-              <a href="YOUR_RAKUTEN_TECHNIC_LINK" target="_blank" rel="nofollow sponsored"
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_CREEPER_LINK" target="_blank" rel="nofollow sponsored"
+                 onclick="event.stopPropagation()"
+                 style="display:inline-flex;align-items:center;gap:6px;background:#2d7a2d;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #1a4d1a;white-space:nowrap">
+                🛒 Buy on LEGO.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ CARS — SPEED CHAMPIONS ══ -->
+        <!-- Ferrari Daytona SP3 -->
+        <div class="pc" data-cat="cars">
+          <div class="pthumb" style="background:linear-gradient(135deg,#E3000B,#8b0000);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🐴</span>
+            <span style="background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Ferrari</span>
+          </div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:var(--red)">🏎️ Speed Champions</div>
+            <div class="pname">LEGO® Ferrari Daytona SP3</div>
+            <div class="pdesc">One of the most beautiful supercars ever made, now in LEGO form. The Ferrari Daytona SP3 is a must-have for any car fan and display builder.</div>
+            <div class="pfooter">
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_FERRARI_LINK" target="_blank" rel="nofollow sponsored"
+                 onclick="event.stopPropagation()"
+                 style="display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #8b0000;white-space:nowrap">
+                🛒 Buy on LEGO.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dodge Challenger -->
+        <div class="pc" data-cat="cars">
+          <div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#444);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">💪</span>
+            <span style="background:#444;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Dodge</span>
+          </div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:#888">🏎️ Speed Champions</div>
+            <div class="pname">LEGO® Dodge Challenger SRT Hellcat</div>
+            <div class="pdesc">Pure American muscle in LEGO form. The Dodge Challenger SRT Hellcat is iconic, aggressive and one of the most satisfying Speed Champions builds available.</div>
+            <div class="pfooter">
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_DODGE_LINK" target="_blank" rel="nofollow sponsored"
+                 onclick="event.stopPropagation()"
+                 style="display:inline-flex;align-items:center;gap:6px;background:#1A1A1A;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #000;white-space:nowrap">
+                🛒 Buy on LEGO.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ TECHNIC ══ -->
+        <!-- Nissan Skyline GT-R R34 -->
+        <div class="pc" data-cat="technic">
+          <div class="pthumb" style="background:linear-gradient(135deg,#1a1a2e,#4169E1);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🇯🇵</span>
+            <span style="background:#4169E1;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Nissan</span>
+          </div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:#4169E1">⚙️ LEGO® Technic</div>
+            <div class="pname">LEGO® Technic Nissan Skyline GT-R R34</div>
+            <div class="pdesc">1,410 pieces. The legendary R34 from 2 Fast 2 Furious — the FIRST EVER LEGO Technic set with a drift function! Hidden NOS bottles, 6-cylinder engine and working suspension.</div>
+            <div class="pfooter">
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_SKYLINE_LINK" target="_blank" rel="nofollow sponsored"
+                 onclick="event.stopPropagation()"
+                 style="display:inline-flex;align-items:center;gap:6px;background:#4169E1;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #2a4db5;white-space:nowrap">
+                🛒 Buy on LEGO.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Porsche 911 GT3 RS -->
+        <div class="pc" data-cat="technic">
+          <div class="pthumb" style="background:linear-gradient(135deg,#1A1A1A,#FF6B00);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🏆</span>
+            <span style="background:var(--orange);color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Porsche</span>
+          </div>
+          <div class="pinfo">
+            <div class="ptyp" style="color:var(--orange)">⚙️ Speed Champions</div>
+            <div class="pname">LEGO® Porsche 911 GT3 RS</div>
+            <div class="pdesc">The iconic Porsche 911 GT3 RS in Speed Champions form. Sleek curves, performance details and a driver minifigure. One of the best looking sets in the lineup.</div>
+            <div class="pfooter">
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_PORSCHE_LINK" target="_blank" rel="nofollow sponsored"
                  onclick="event.stopPropagation()"
                  style="display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #8b3a00;white-space:nowrap">
                 🛒 Buy on LEGO.com
@@ -2587,50 +2720,51 @@ window.addEventListener('load', function() {
           </div>
         </div>
 
-        <!-- Icons / Creator Expert -->
-        <div class="pc" data-cat="lego">
-          <div class="pthumb" style="background:linear-gradient(135deg,#006CB7,#00A650);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-            <span style="font-size:72px">🏛️</span>
-            <span style="background:var(--blue);color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Icons</span>
+        <!-- ══ ICONS ══ -->
+        <!-- McLaren MP4/4 -->
+        <div class="pc" data-cat="icons">
+          <div class="pthumb" style="background:linear-gradient(135deg,#FF6B00,#E3000B);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🏅</span>
+            <span style="background:var(--orange);color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">McLaren</span>
           </div>
           <div class="pinfo">
-            <div class="ptyp" style="color:var(--blue)">🧱 Official LEGO® Set</div>
-            <div class="pname">LEGO® Icons</div>
-            <div class="pdesc">Large, detailed display builds for adult fans. Landmarks, vehicles, and iconic objects — built to impress on any shelf.</div>
+            <div class="ptyp" style="color:var(--orange)">🏛️ LEGO® Icons</div>
+            <div class="pname">LEGO® McLaren MP4/4 & Ayrton Senna</div>
+            <div class="pdesc">Legendary F1 car driven by the greatest of all time. A collector's display piece that celebrates one of motorsport's most iconic moments. Perfect shelf centrepiece.</div>
             <div class="pfooter">
-              <div class="price" style="font-size:14px;color:#888;font-weight:700">Shop on LEGO.com →</div>
-              <a href="YOUR_RAKUTEN_ICONS_LINK" target="_blank" rel="nofollow sponsored"
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_MCLAREN_LINK" target="_blank" rel="nofollow sponsored"
                  onclick="event.stopPropagation()"
-                 style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #004a80;white-space:nowrap">
+                 style="display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #8b3a00;white-space:nowrap">
                 🛒 Buy on LEGO.com
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Star Wars -->
-        <div class="pc" data-cat="lego">
-          <div class="pthumb" style="background:linear-gradient(135deg,#0a0a0a,#1a1a2e);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-            <span style="font-size:72px">🚀</span>
-            <span style="background:#FFD700;color:#1A1A1A;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Star Wars</span>
+        <!-- Tudor Corner -->
+        <div class="pc" data-cat="icons">
+          <div class="pthumb" style="background:linear-gradient(135deg,#5C3317,#8B6914);padding:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <span style="font-size:72px">🏠</span>
+            <span style="background:#5C3317;color:#fff;font-size:11px;font-weight:900;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px">Icons</span>
           </div>
           <div class="pinfo">
-            <div class="ptyp" style="color:var(--yellow)">🧱 Official LEGO® Set</div>
-            <div class="pname">LEGO® Star Wars</div>
-            <div class="pdesc">The most iconic LEGO theme ever. From tiny polybags to massive UCS sets — there's a Star Wars build for every budget and every fan.</div>
+            <div class="ptyp" style="color:#8B6914">🏛️ LEGO® Icons</div>
+            <div class="pname">LEGO® Tudor Corner</div>
+            <div class="pdesc">Voted #1 best LEGO set of 2025 by Brick Fanatics. A stunning modular-style Tudor building packed with detail — the crown jewel of any adult LEGO collection.</div>
             <div class="pfooter">
-              <div class="price" style="font-size:14px;color:#888;font-weight:700">Shop on LEGO.com →</div>
-              <a href="YOUR_RAKUTEN_STARWARS_LINK" target="_blank" rel="nofollow sponsored"
+              <div style="font-size:13px;font-weight:800;color:#888">Check price on LEGO.com →</div>
+              <a href="YOUR_RAKUTEN_TUDOR_LINK" target="_blank" rel="nofollow sponsored"
                  onclick="event.stopPropagation()"
-                 style="display:inline-flex;align-items:center;gap:6px;background:#1A1A1A;color:var(--yellow);font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #000;white-space:nowrap">
+                 style="display:inline-flex;align-items:center;gap:6px;background:#5C3317;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:10px 18px;border-radius:8px;text-decoration:none;box-shadow:0 4px 0 #3a1f0d;white-space:nowrap">
                 🛒 Buy on LEGO.com
               </a>
             </div>
           </div>
         </div>
 
-        <!-- View all banner -->
-        <div class="pc" data-cat="lego" style="grid-column:1/-1;background:linear-gradient(135deg,var(--black),#2a2a2a);border:3px solid var(--yellow);padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;cursor:default">
+        <!-- Browse All banner -->
+        <div class="pc" data-cat="gaming cars technic icons" style="grid-column:1/-1;background:linear-gradient(135deg,var(--black),#2a2a2a);border:3px solid var(--yellow);padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;cursor:default">
           <div>
             <div style="font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);margin-bottom:6px">🧱 Browse All LEGO® Sets</div>
             <p style="font-size:14px;font-weight:700;color:#aaa;margin:0">Thousands of sets across every theme — shop the full LEGO.com range.</p>
@@ -2641,7 +2775,7 @@ window.addEventListener('load', function() {
             Shop LEGO.com →
           </a>
         </div>
-        <!-- ══ END LEGO AFFILIATE SECTION ══ -->
+        <!-- ══ END LEGO AFFILIATE SECTIONS ══ -->
       </div>
 
       <!-- TRUST BADGES -->
@@ -3350,19 +3484,39 @@ function addFromMod(){
 
 // FILTER
 function filterShop(cat,btn){
+  const legoCategories = ['gaming','cars','technic','icons'];
+  // Reset all tabs
   document.querySelectorAll('.shop-tab').forEach(t=>{
     t.classList.remove('active');
-    // restore lego tab's red colour when not active
-    if(t.textContent.includes('LEGO')){t.style.background='var(--red)';t.style.color='#fff';t.style.borderColor='var(--red)'}
+    // Restore lego tab colours when not active
+    if(t.classList.contains('lego-tab')){
+      const orig = t.getAttribute('data-orig-bg');
+      if(orig){t.style.background=orig;t.style.borderColor=orig;}
+    }
   });
   btn.classList.add('active');
-  if(btn.textContent.includes('LEGO')){btn.style.background='var(--black)';btn.style.color='var(--yellow)';btn.style.borderColor='var(--black)'}
+  // When a lego tab is active make it go dark
+  if(btn.classList.contains('lego-tab')){
+    if(!btn.getAttribute('data-orig-bg')) btn.setAttribute('data-orig-bg', btn.style.background);
+    btn.style.background='var(--black)';
+    btn.style.color='var(--yellow)';
+    btn.style.borderColor='var(--black)';
+  }
+  // Show/hide product cards
   document.querySelectorAll('.pc').forEach(c=>{
-    c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
-  });
-  // hide affiliate disclosure banner when not in lego tab
-  document.querySelectorAll('[data-cat="lego"]').forEach(c=>{
-    c.style.display=(cat==='all'||cat==='lego')?'':'none';
+    if(cat==='all'){
+      // In "all" view hide affiliate cards to keep it clean
+      const dc = c.dataset.cat || '';
+      const isAffiliate = legoCategories.some(lc => dc.includes(lc));
+      c.style.display = isAffiliate ? 'none' : '';
+    } else if(legoCategories.includes(cat)){
+      // Show cards whose data-cat contains this category
+      const dc = c.dataset.cat || '';
+      c.style.display = dc.includes(cat) ? '' : 'none';
+    } else {
+      // Standard categories (ins, moc, bun)
+      c.style.display = (c.dataset.cat===cat) ? '' : 'none';
+    }
   });
   const f=document.querySelector('.pc.feat');
   if(f){if(cat==='all'||cat==='moc'){f.style.display='';f.style.gridColumn='span 3'}else f.style.display='none'}

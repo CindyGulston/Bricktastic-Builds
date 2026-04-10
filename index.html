@@ -174,6 +174,18 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .gallery-tab.active{background:#7B2FBE;color:#fff;border-color:#7B2FBE}
 .gallery-tab:hover:not(.active){background:#f0ede6}
 .nav-right{display:flex;align-items:center;gap:10px}
+/* ── LANGUAGE SWITCHER ── */
+.lang-switcher{position:relative;display:flex;align-items:center}
+.lang-btn{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;padding:5px 10px;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.lang-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.35)}
+.lang-btn .lang-arrow{font-size:9px;opacity:.7;transition:transform .2s}
+.lang-switcher.open .lang-arrow{transform:rotate(180deg)}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--black);border:2px solid var(--yellow);border-radius:10px;overflow:hidden;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:999}
+.lang-switcher.open .lang-dropdown{display:block}
+.lang-option{display:flex;align-items:center;gap:10px;padding:10px 14px;color:#ddd;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:background .12s}
+.lang-option:hover{background:rgba(255,215,0,.12);color:var(--yellow)}
+.lang-option.active{background:rgba(255,215,0,.18);color:var(--yellow);font-weight:900}
+.lang-option .lang-flag{font-size:18px;line-height:1}
 @media(max-width:768px){
   nav ul{display:none;position:fixed;top:66px;left:0;right:0;background:var(--black);flex-direction:column;padding:16px;gap:4px;border-bottom:4px solid var(--yellow);z-index:199}
   nav ul.mob-open{display:flex}
@@ -1571,20 +1583,35 @@ window.addEventListener('load', function() {
   </div>
   <ul>
     
-    <li><a onclick="showPage('home')" class="nav-home-a">🏠 Home</a></li>
-    <li><a onclick="showPage('videos')" class="nav-videos-a">🎬 Videos</a></li>
-    <li><a onclick="showPage('mocs')" class="nav-mocs-a">🏗️ MOC Gallery</a></li>
-    <li><a onclick="showPage('shop')" class="nav-shop-a">🛒 Shop</a></li>
-    <li><a onclick="showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
-    <li><a onclick="showPage('gallery')" class="nav-gallery-a">👥 Community</a></li>
-    <li><a onclick="showPage('about')" class="nav-about-a">👤 About</a></li>
-
-    <li><a onclick="showPage('game')" class="nav-game-a">🎮 Game</a></li>
+    <li><a onclick="showPage('home')" class="nav-home-a" data-i18n="nav_home">🏠 Home</a></li>
+    <li><a onclick="showPage('videos')" class="nav-videos-a" data-i18n="nav_videos">🎬 Videos</a></li>
+    <li><a onclick="showPage('mocs')" class="nav-mocs-a" data-i18n="nav_mocs">🏗️ MOC Gallery</a></li>
+    <li><a onclick="showPage('shop')" class="nav-shop-a" data-i18n="nav_shop">🛒 Shop</a></li>
+    <li><a onclick="showPage('blog')" class="nav-blog-a" data-i18n="nav_blog">📰 Blog</a></li>
+    <li><a onclick="showPage('gallery')" class="nav-gallery-a" data-i18n="nav_community">👥 Community</a></li>
+    <li><a onclick="showPage('about')" class="nav-about-a" data-i18n="nav_about">👤 About</a></li>
+    <li><a onclick="showPage('game')" class="nav-game-a" data-i18n="nav_game">🎮 Game</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-right">
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn" onclick="toggleLangDropdown(event)" aria-label="Change language">
+        <span id="langFlag">🌍</span>
+        <span id="langCode">EN</span>
+        <span class="lang-arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option active" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> English</div>
+        <div class="lang-option" onclick="setLang('af')"><span class="lang-flag">🇿🇦</span> Afrikaans</div>
+        <div class="lang-option" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span> Français</div>
+        <div class="lang-option" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span> Deutsch</div>
+        <div class="lang-option" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span> Español</div>
+        <div class="lang-option" onclick="setLang('pt')"><span class="lang-flag">🇧🇷</span> Português</div>
+        <div class="lang-option" onclick="setLang('nl')"><span class="lang-flag">🇳🇱</span> Nederlands</div>
+      </div>
+    </div>
     <a href="https://ko-fi.com/bricktasticbuilds" target="_blank" style="display:flex;align-items:center;gap:6px;background:#FF5E5B;color:#fff;font-weight:900;font-size:12px;padding:6px 13px;border-radius:8px;text-decoration:none;border:2px solid rgba(255,255,255,.25);transition:all .15s;white-space:nowrap" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">☕ Ko-fi</a>
     <div class="cart-btn" onclick="toggleCart()">
       🛒 Cart
@@ -1674,9 +1701,9 @@ window.addEventListener('load', function() {
   <div class="hero">
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-left">
-      <span class="hero-badge"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> LEGO® YouTube Channel + Shop</span>
+      <span class="hero-badge"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> <span data-i18n="home_badge">LEGO® YouTube Channel + Shop</span></span>
       <h1><span class="y" id="typewriter-line1"></span><br><span class="r" id="typewriter-line2"></span><span class="typewriter-cursor" id="typewriter-cursor"></span></h1>
-      <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
+      <p class="hero-sub" data-i18n="home_sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
         <div><span class="sn" id="statSubscribers">265+</span><span class="sl">Subscribers</span></div>
         <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
@@ -1685,9 +1712,9 @@ window.addEventListener('load', function() {
       <div class="hero-ctas">
         <a href="https://www.youtube.com/channel/UCqm_5GiesZWfnCkZLBzUgSA?sub_confirmation=1" target="_blank" class="btn btn-red" onclick="launchConfetti(this)">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-          Subscribe on YouTube
+          <span data-i18n="btn_subscribe_yt">Subscribe on YouTube</span>
         </a>
-        <a class="btn btn-yellow" onclick="showPage('shop')"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> Visit the Shop</a>
+        <a class="btn btn-yellow" onclick="showPage('shop')"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> <span data-i18n="btn_visit_shop">Visit the Shop</span></a>
       </div>
     </div>
     <div class="hero-right" id="heroR">
@@ -2398,9 +2425,9 @@ window.addEventListener('load', function() {
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgM"></div>
     <div class="hero-left">
-      <span class="hero-badge">🏗️ Original LEGO® Creations</span>
+      <span class="hero-badge" data-i18n="moc_badge">🏗️ Original LEGO® Creations</span>
       <h1><span class="y">MOC</span><br><span class="r">Gallery.</span></h1>
-      <p class="hero-sub">Every original build I've designed — scroll through the photos.</p>
+      <p class="hero-sub" data-i18n="moc_sub">Every original build I've designed — scroll through the photos.</p>
       <div class="hero-ctas">
         <a href="https://youtube.com/@BricktasticBuilds" target="_blank" class="btn btn-red">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
@@ -2482,9 +2509,9 @@ window.addEventListener('load', function() {
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgShop"></div>
     <div class="hero-left">
-      <span class="hero-badge">🛒 Bricktastic Shop</span>
+      <span class="hero-badge" data-i18n="shop_badge">🛒 Bricktastic Shop</span>
       <h1><span class="y">Build What</span><br><span class="r">You See.</span></h1>
-      <p class="hero-sub">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download.</p>
+      <p class="hero-sub" data-i18n="shop_sub">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download.</p>
       <div class="hero-ctas">
         <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">📐 Browse Instructions</a>
         <button class="btn btn-red" onclick="toggleWishlistPanel()">❤️ My Wishlist <span id="wishlistShopCount" style="display:none;background:rgba(255,255,255,.3);color:#fff;font-size:11px;font-weight:900;padding:1px 7px;border-radius:10px;margin-left:4px">0</span></button>
@@ -2770,13 +2797,13 @@ window.addEventListener('load', function() {
         <!-- Browse All banner -->
         <div class="pc" data-cat="gaming cars technic icons" style="grid-column:1/-1;background:linear-gradient(135deg,var(--black),#2a2a2a);border:3px solid var(--yellow);padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;cursor:default">
           <div>
-            <div style="font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);margin-bottom:6px">🧱 Browse All LEGO® Sets</div>
-            <p style="font-size:14px;font-weight:700;color:#aaa;margin:0">Thousands of sets across every theme — shop the full LEGO.com range.</p>
+            <div data-i18n="browse_all" style="font-family:'Boogaloo',cursive;font-size:26px;color:var(--yellow);margin-bottom:6px">🧱 Browse All LEGO® Sets</div>
+            <p data-i18n="browse_sub" style="font-size:14px;font-weight:700;color:#aaa;margin:0">Thousands of sets across every theme — shop the full LEGO.com range.</p>
           </div>
           <a href="https://click.linksynergy.com/deeplink?id=ht*zY*RuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com" target="_blank" rel="nofollow sponsored"
              onclick="event.stopPropagation()"
              style="display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--black);font-family:'Boogaloo',cursive;font-size:20px;padding:14px 28px;border-radius:10px;text-decoration:none;box-shadow:0 6px 0 #b89a00;white-space:nowrap">
-            Shop LEGO.com →
+            <span data-i18n="browse_btn">Shop LEGO.com →</span>
           </a>
         </div>
         <!-- ══ END LEGO AFFILIATE SECTIONS ══ -->
@@ -2784,11 +2811,11 @@ window.addEventListener('load', function() {
 
       <!-- TRUST BADGES -->
       <div class="trust reveal">
-        <div class="tb"><div class="ti">📄</div><div class="tv">Instant Download</div><div class="td">PDF delivered immediately to your email</div></div>
-        <div class="tb"><div class="ti">🔢</div><div class="tv">BrickLink List Included</div><div class="td">Every part listed so you can source easily</div></div>
-        <div class="tb"><div class="ti">🚚</div><div class="tv">Ships Worldwide</div><div class="td">Physical MOCs built and shipped with care</div></div>
-        <div class="tb"><div class="ti">💬</div><div class="tv">Builder Support</div><div class="td">Stuck? Ask in the YouTube comments</div></div>
-        <div class="tb"><div class="ti">🔒</div><div class="tv">Secure Checkout</div><div class="td">Powered by your preferred payment processor</div></div>
+        <div class="tb"><div class="ti">📄</div><div class="tv" data-i18n="trust_download">Instant Download</div><div class="td" data-i18n="trust_download_sub">PDF delivered immediately to your email</div></div>
+        <div class="tb"><div class="ti">🔢</div><div class="tv" data-i18n="trust_bricklink">BrickLink List Included</div><div class="td" data-i18n="trust_bricklink_sub">Every part listed so you can source easily</div></div>
+        <div class="tb"><div class="ti">🚚</div><div class="tv" data-i18n="trust_ships">Ships Worldwide</div><div class="td" data-i18n="trust_ships_sub">Physical MOCs built and shipped with care</div></div>
+        <div class="tb"><div class="ti">💬</div><div class="tv" data-i18n="trust_support">Builder Support</div><div class="td" data-i18n="trust_support_sub">Stuck? Ask in the YouTube comments</div></div>
+        <div class="tb"><div class="ti">🔒</div><div class="tv" data-i18n="trust_secure">Secure Checkout</div><div class="td" data-i18n="trust_secure_sub">Powered by your preferred payment processor</div></div>
       </div>
     </div>
   </section>
@@ -2845,7 +2872,7 @@ window.addEventListener('load', function() {
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgVideos"></div>
     <div class="hero-left">
-      <span class="hero-badge">🎬 Videos</span>
+      <span class="hero-badge" data-i18n="nav_videos">🎬 Videos</span>
       <h1><span class="y">All</span><br><span class="r">Videos.</span></h1>
       <p class="hero-sub">257+ LEGO® builds, instructions, showcases & more. Click any video to watch on YouTube.</p>
       <div class="hero-ctas">
@@ -11975,9 +12002,9 @@ function bbGameOver(){
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
     <div class="hero-bg" id="heroBgBlog"></div>
     <div class="hero-left">
-      <span class="hero-badge">📰 Blog</span>
+      <span class="hero-badge" data-i18n="blog_badge">📰 Blog</span>
       <h1><span class="y">News &</span><br><span class="r">Updates.</span></h1>
-      <p class="hero-sub">LEGO® news, build updates, reviews and thoughts. Fresh posts every day.</p>
+      <p class="hero-sub" data-i18n="blog_sub">LEGO® news, build updates, reviews and thoughts. Fresh posts every day.</p>
       <div class="hero-ctas">
         <a class="btn btn-yellow" onclick="showPage('videos')" style="cursor:pointer">🎬 Watch Videos</a>
         <a class="btn btn-red" onclick="showPage('shop')" style="cursor:pointer">🛒 Shop</a>
@@ -13553,6 +13580,421 @@ function highlight(id) {
     </div>
   </div>
 </div>
+
+<!-- ══ LANGUAGE SWITCHER SYSTEM ══ -->
+<script>
+// ── TRANSLATIONS ─────────────────────────────────────────────────────────────
+const I18N = {
+  en: {
+    nav_home:'🏠 Home', nav_videos:'🎬 Videos', nav_mocs:'🏗️ MOC Gallery',
+    nav_shop:'🛒 Shop', nav_blog:'📰 Blog', nav_community:'👥 Community',
+    nav_about:'👤 About', nav_game:'🎮 Game',
+    hero_badge:'LEGO® YouTube Channel + Shop',
+    hero_sub:'Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.',
+    hero_subscribers:'Subscribers', hero_sub_yt:'Subscribe on YouTube',
+    shop_badge:'🛒 Bricktastic Shop', shop_h1a:'Build What', shop_h1b:'You See.',
+    shop_sub:'PDF building instructions for my original MOC designs, plus complete physical builds. Instant download.',
+    shop_tab_all:'All Products', shop_tab_ins:'📐 Instructions',
+    shop_tab_moc:'🏗️ Physical MOCs', shop_tab_bun:'📦 Bundles',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Cars',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Icons',
+    buy_lego:'🛒 Buy on LEGO.com', check_price:'Check price on LEGO.com →',
+    aff_disclosure:'Affiliate Disclosure: Links below go to LEGO.com. I earn a small commission if you buy — at no extra cost to you.',
+    browse_all:'🧱 Browse All LEGO® Sets',
+    browse_sub:'Thousands of sets across every theme — shop the full LEGO.com range.',
+    browse_btn:'Shop LEGO.com →',
+    newsletter_h:'📬 Join the Bricktastic Newsletter',
+    newsletter_p:'New videos, MOC drops & exclusive offers — straight to your inbox',
+    newsletter_btn:'Subscribe 🎉',
+    newsletter_ph:'Your email address…',
+    footer_copy:'© 2026 Bricktastic Builds · All rights reserved',
+    notify_btn:'📧 Notify Me', coming_soon:'🔜 Coming Soon',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Builds,', blog_h1b:'Stories & Tips.',
+    blog_sub:'Deep dives, build guides, LEGO® news and tips from a real fan.',
+    moc_badge:'🏗️ Original LEGO® Creations', moc_h1a:'MOC', moc_h1b:'Gallery.',
+    moc_sub:"Every original build I've designed — scroll through the photos.",
+    about_h2a:'Built by a', about_h2b:'Real', about_h2c:'Fan.',
+    cart_title:'🛒 Your Cart', cart_empty:'Your cart is empty!\nAdd some builds to get started.',
+    cart_checkout:'🔒 Proceed to Checkout',
+    trust_download:'Instant Download', trust_download_sub:'PDF delivered immediately to your email',
+    trust_bricklink:'BrickLink List Included', trust_bricklink_sub:'Every part listed so you can source easily',
+    trust_ships:'Ships Worldwide', trust_ships_sub:'Physical MOCs built and shipped with care',
+    trust_support:'Builder Support', trust_support_sub:'Stuck? Ask in the YouTube comments',
+    trust_secure:'Secure Checkout', trust_secure_sub:'Powered by your preferred payment processor',
+    btn_subscribe_yt:'Subscribe on YouTube', btn_visit_shop:'Visit the Shop',
+  },
+  af: {
+    nav_home:'🏠 Tuis', nav_videos:'🎬 Videos', nav_mocs:'🏗️ MOC Galery',
+    nav_shop:'🛒 Winkel', nav_blog:'📰 Blog', nav_community:'👥 Gemeenskap',
+    nav_about:'👤 Oor Ons', nav_game:'🎮 Speletjie',
+    hero_badge:'LEGO® YouTube Kanaal + Winkel',
+    hero_sub:'Epieuse LEGO® boue, diep duike, wenke & uitdagings — plus oorspronklike MOC instruksies wat jy tuis kan bou.',
+    hero_subscribers:'Intekenaars', hero_sub_yt:'Teken in op YouTube',
+    shop_badge:'🛒 Bricktastic Winkel', shop_h1a:'Bou Wat', shop_h1b:'Jy Sien.',
+    shop_sub:'PDF bouinstruksies vir my oorspronklike MOC-ontwerpe, plus volledige fisiese boue. Onmiddellike aflaai.',
+    shop_tab_all:'Alle Produkte', shop_tab_ins:'📐 Instruksies',
+    shop_tab_moc:'🏗️ Fisiese MOCs', shop_tab_bun:'📦 Bundels',
+    shop_tab_gaming:'🎮 Speletjies', shop_tab_cars:'🏎️ Karre',
+    shop_tab_technic:'⚙️ Tegniese', shop_tab_icons:'🏛️ Ikone',
+    buy_lego:'🛒 Koop op LEGO.com', check_price:'Kyk prys op LEGO.com →',
+    aff_disclosure:'Verwysing Openbaarmaking: Skakels gaan na LEGO.com. Ek verdien \'n klein kommissie as jy koop — sonder ekstra koste vir jou.',
+    browse_all:'🧱 Blaai Alle LEGO® Stelle',
+    browse_sub:'Duisende stelle oor elke tema — koop die volle LEGO.com reeks.',
+    browse_btn:'Koop LEGO.com →',
+    newsletter_h:'📬 Sluit aan by die Bricktastic Nuusbrief',
+    newsletter_p:'Nuwe videos, MOC vrystellings & eksklusiewe aanbiedinge — reg in jou inkassie',
+    newsletter_btn:'Teken in 🎉',
+    newsletter_ph:'Jou e-posadres…',
+    footer_copy:'© 2026 Bricktastic Builds · Alle regte voorbehou',
+    notify_btn:'📧 Stel My In Kennis', coming_soon:'🔜 Kom Binnekort',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Boue,', blog_h1b:'Stories & Wenke.',
+    blog_sub:'Diep duike, bougidse, LEGO® nuus en wenke van \'n regte aanhanger.',
+    moc_badge:'🏗️ Oorspronklike LEGO® Skeppings', moc_h1a:'MOC', moc_h1b:'Galery.',
+    moc_sub:'Elke oorspronklike bou wat ek ontwerp het — blaai deur die foto\'s.',
+    about_h2a:'Gebou deur \'n', about_h2b:'Regte', about_h2c:'Aanhanger.',
+    cart_title:'🛒 Jou Mandjie', cart_empty:'Jou mandjie is leeg!\nVoeg boue by om te begin.',
+    cart_checkout:'🔒 Gaan na Uitklok',
+    trust_download:'Onmiddellike Aflaai', trust_download_sub:'PDF word onmiddellik na jou e-pos gestuur',
+    trust_bricklink:'BrickLink Lys Ingesluit', trust_bricklink_sub:'Elke onderdeel gelys sodat jy maklik kan soek',
+    trust_ships:'Wêreldwyd Gestuur', trust_ships_sub:'Fisiese MOCs gebou en versend met sorg',
+    trust_support:'Bouondersteuning', trust_support_sub:'Vasgevang? Vra in die YouTube-opmerkings',
+    trust_secure:'Veilige Kassa', trust_secure_sub:'Aangedryf deur jou verkose betalingsverwerker',
+    btn_subscribe_yt:'Teken in op YouTube', btn_visit_shop:'Besoek die Winkel',
+  },
+  fr: {
+    nav_home:'🏠 Accueil', nav_videos:'🎬 Vidéos', nav_mocs:'🏗️ Galerie MOC',
+    nav_shop:'🛒 Boutique', nav_blog:'📰 Blog', nav_community:'👥 Communauté',
+    nav_about:'👤 À propos', nav_game:'🎮 Jeu',
+    hero_badge:'Chaîne YouTube LEGO® + Boutique',
+    hero_sub:'Constructions LEGO® épiques, analyses approfondies, conseils & défis — plus des instructions MOC originales à construire chez vous.',
+    hero_subscribers:'Abonnés', hero_sub_yt:'S\'abonner sur YouTube',
+    shop_badge:'🛒 Boutique Bricktastic', shop_h1a:'Construisez Ce', shop_h1b:'Que Vous Voyez.',
+    shop_sub:'Instructions PDF pour mes créations MOC originales, plus des constructions physiques complètes. Téléchargement instantané.',
+    shop_tab_all:'Tous les Produits', shop_tab_ins:'📐 Instructions',
+    shop_tab_moc:'🏗️ MOCs Physiques', shop_tab_bun:'📦 Offres Groupées',
+    shop_tab_gaming:'🎮 Jeux', shop_tab_cars:'🏎️ Voitures',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Icônes',
+    buy_lego:'🛒 Acheter sur LEGO.com', check_price:'Voir le prix sur LEGO.com →',
+    aff_disclosure:'Divulgation d\'affiliation: Les liens mènent à LEGO.com. Je gagne une petite commission si vous achetez — sans frais supplémentaires pour vous.',
+    browse_all:'🧱 Parcourir tous les sets LEGO®',
+    browse_sub:'Des milliers de sets dans tous les thèmes — découvrez toute la gamme LEGO.com.',
+    browse_btn:'Acheter sur LEGO.com →',
+    newsletter_h:'📬 Rejoignez la Newsletter Bricktastic',
+    newsletter_p:'Nouvelles vidéos, sorties MOC & offres exclusives — directement dans votre boîte mail',
+    newsletter_btn:'S\'abonner 🎉',
+    newsletter_ph:'Votre adresse e-mail…',
+    footer_copy:'© 2026 Bricktastic Builds · Tous droits réservés',
+    notify_btn:'📧 Me Notifier', coming_soon:'🔜 Bientôt Disponible',
+    blog_badge:'📰 Blog Bricktastic', blog_h1a:'Constructions,', blog_h1b:'Histoires & Conseils.',
+    blog_sub:'Analyses approfondies, guides de construction, actualités LEGO® et conseils d\'un vrai passionné.',
+    moc_badge:'🏗️ Créations LEGO® Originales', moc_h1a:'Galerie', moc_h1b:'MOC.',
+    moc_sub:'Chaque construction originale que j\'ai conçue — faites défiler les photos.',
+    about_h2a:'Créé par un', about_h2b:'Vrai', about_h2c:'Fan.',
+    cart_title:'🛒 Votre Panier', cart_empty:'Votre panier est vide!\nAjoutez des constructions pour commencer.',
+    cart_checkout:'🔒 Passer à la Caisse',
+    trust_download:'Téléchargement Instantané', trust_download_sub:'PDF livré immédiatement à votre e-mail',
+    trust_bricklink:'Liste BrickLink Incluse', trust_bricklink_sub:'Chaque pièce listée pour sourcer facilement',
+    trust_ships:'Livraison Mondiale', trust_ships_sub:'MOCs physiques construits et expédiés avec soin',
+    trust_support:'Support Constructeur', trust_support_sub:'Bloqué? Demandez dans les commentaires YouTube',
+    trust_secure:'Paiement Sécurisé', trust_secure_sub:'Propulsé par votre processeur de paiement préféré',
+    btn_subscribe_yt:"S'abonner sur YouTube", btn_visit_shop:'Visiter la Boutique',
+  },
+  de: {
+    nav_home:'🏠 Startseite', nav_videos:'🎬 Videos', nav_mocs:'🏗️ MOC Galerie',
+    nav_shop:'🛒 Shop', nav_blog:'📰 Blog', nav_community:'👥 Community',
+    nav_about:'👤 Über uns', nav_game:'🎮 Spiel',
+    hero_badge:'LEGO® YouTube Kanal + Shop',
+    hero_sub:'Epische LEGO® Bauten, Tiefenanalysen, Tipps & Herausforderungen — plus originale MOC Anleitungen zum Selberbauen.',
+    hero_subscribers:'Abonnenten', hero_sub_yt:'Auf YouTube abonnieren',
+    shop_badge:'🛒 Bricktastic Shop', shop_h1a:'Baue Was', shop_h1b:'Du Siehst.',
+    shop_sub:'PDF-Bauanleitungen für meine originalen MOC-Designs, plus vollständige physische Bauten. Sofortiger Download.',
+    shop_tab_all:'Alle Produkte', shop_tab_ins:'📐 Anleitungen',
+    shop_tab_moc:'🏗️ Physische MOCs', shop_tab_bun:'📦 Bundles',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Autos',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Icons',
+    buy_lego:'🛒 Kaufen auf LEGO.com', check_price:'Preis auf LEGO.com prüfen →',
+    aff_disclosure:'Affiliate-Offenlegung: Links führen zu LEGO.com. Ich erhalte eine kleine Provision wenn Sie kaufen — ohne Mehrkosten für Sie.',
+    browse_all:'🧱 Alle LEGO® Sets durchsuchen',
+    browse_sub:'Tausende von Sets in jedem Thema — entdecken Sie die gesamte LEGO.com Auswahl.',
+    browse_btn:'LEGO.com shoppen →',
+    newsletter_h:'📬 Bricktastic Newsletter abonnieren',
+    newsletter_p:'Neue Videos, MOC-Releases & exklusive Angebote — direkt in Ihren Posteingang',
+    newsletter_btn:'Abonnieren 🎉',
+    newsletter_ph:'Ihre E-Mail-Adresse…',
+    footer_copy:'© 2026 Bricktastic Builds · Alle Rechte vorbehalten',
+    notify_btn:'📧 Benachrichtige mich', coming_soon:'🔜 Demnächst',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Bauten,', blog_h1b:'Geschichten & Tipps.',
+    blog_sub:'Tiefenanalysen, Bauanleitungen, LEGO® Neuigkeiten und Tipps von einem echten Fan.',
+    moc_badge:'🏗️ Originale LEGO® Kreationen', moc_h1a:'MOC', moc_h1b:'Galerie.',
+    moc_sub:'Jedes originale Bauwerk das ich entworfen habe — scrolle durch die Fotos.',
+    about_h2a:'Gebaut von einem', about_h2b:'Echten', about_h2c:'Fan.',
+    cart_title:'🛒 Ihr Warenkorb', cart_empty:'Ihr Warenkorb ist leer!\nFügen Sie Bauten hinzu um zu beginnen.',
+    cart_checkout:'🔒 Zur Kasse',
+    trust_download:'Sofort-Download', trust_download_sub:'PDF sofort an Ihre E-Mail geliefert',
+    trust_bricklink:'BrickLink-Liste enthalten', trust_bricklink_sub:'Jedes Teil aufgelistet für einfaches Sourcing',
+    trust_ships:'Weltweiter Versand', trust_ships_sub:'Physische MOCs sorgfältig gebaut und versandt',
+    trust_support:'Bauunterstützung', trust_support_sub:'Stecken Sie fest? Fragen Sie in den YouTube-Kommentaren',
+    trust_secure:'Sicherer Checkout', trust_secure_sub:'Betrieben von Ihrem bevorzugten Zahlungsanbieter',
+    btn_subscribe_yt:'Auf YouTube abonnieren', btn_visit_shop:'Zum Shop',
+  },
+    newsletter_ph:'Ihre E-Mail-Adresse…',
+    footer_copy:'© 2026 Bricktastic Builds · Alle Rechte vorbehalten',
+    notify_btn:'📧 Benachrichtige mich', coming_soon:'🔜 Demnächst',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Bauten,', blog_h1b:'Geschichten & Tipps.',
+    blog_sub:'Tiefenanalysen, Bauanleitungen, LEGO® Neuigkeiten und Tipps von einem echten Fan.',
+    moc_badge:'🏗️ Originale LEGO® Kreationen', moc_h1a:'MOC', moc_h1b:'Galerie.',
+    moc_sub:'Jeder originale Bau den ich entworfen habe — blättere durch die Fotos.',
+    about_h2a:'Gebaut von einem', about_h2b:'Echten', about_h2c:'Fan.',
+    cart_title:'🛒 Ihr Warenkorb', cart_empty:'Ihr Warenkorb ist leer!\nFügen Sie Bauten hinzu um zu beginnen.',
+    cart_checkout:'🔒 Zur Kasse',
+  },
+  es: {
+    nav_home:'🏠 Inicio', nav_videos:'🎬 Vídeos', nav_mocs:'🏗️ Galería MOC',
+    nav_shop:'🛒 Tienda', nav_blog:'📰 Blog', nav_community:'👥 Comunidad',
+    nav_about:'👤 Sobre mí', nav_game:'🎮 Juego',
+    hero_badge:'Canal de YouTube LEGO® + Tienda',
+    hero_sub:'Construcciones LEGO® épicas, análisis profundos, consejos y desafíos — más instrucciones MOC originales para construir en casa.',
+    hero_subscribers:'Suscriptores', hero_sub_yt:'Suscribirse en YouTube',
+    shop_badge:'🛒 Tienda Bricktastic', shop_h1a:'Construye Lo', shop_h1b:'Que Ves.',
+    shop_sub:'Instrucciones PDF para mis diseños MOC originales, más construcciones físicas completas. Descarga instantánea.',
+    shop_tab_all:'Todos los Productos', shop_tab_ins:'📐 Instrucciones',
+    shop_tab_moc:'🏗️ MOCs Físicos', shop_tab_bun:'📦 Paquetes',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Coches',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Iconos',
+    buy_lego:'🛒 Comprar en LEGO.com', check_price:'Ver precio en LEGO.com →',
+    aff_disclosure:'Divulgación de afiliación: Los enlaces van a LEGO.com. Gano una pequeña comisión si compras — sin costo adicional para ti.',
+    browse_all:'🧱 Ver todos los sets LEGO®',
+    browse_sub:'Miles de sets en todos los temas — descubre toda la gama de LEGO.com.',
+    browse_btn:'Comprar LEGO.com →',
+    newsletter_h:'📬 Únete al Newsletter de Bricktastic',
+    newsletter_p:'Nuevos vídeos, lanzamientos MOC y ofertas exclusivas — directo a tu bandeja de entrada',
+    newsletter_btn:'Suscribirse 🎉',
+    newsletter_ph:'Tu dirección de correo…',
+    footer_copy:'© 2026 Bricktastic Builds · Todos los derechos reservados',
+    notify_btn:'📧 Notificarme', coming_soon:'🔜 Próximamente',
+    blog_badge:'📰 Blog Bricktastic', blog_h1a:'Construcciones,', blog_h1b:'Historias & Consejos.',
+    blog_sub:'Análisis profundos, guías de construcción, noticias LEGO® y consejos de un fan real.',
+    moc_badge:'🏗️ Creaciones LEGO® Originales', moc_h1a:'Galería', moc_h1b:'MOC.',
+    moc_sub:'Cada construcción original que he diseñado — desplázate por las fotos.',
+    about_h2a:'Construido por un', about_h2b:'Verdadero', about_h2c:'Fan.',
+    cart_title:'🛒 Tu Carrito', cart_empty:'¡Tu carrito está vacío!\nAgrega construcciones para comenzar.',
+    cart_checkout:'🔒 Proceder al Pago',
+    trust_download:'Descarga Instantánea', trust_download_sub:'PDF entregado inmediatamente a tu correo',
+    trust_bricklink:'Lista BrickLink Incluida', trust_bricklink_sub:'Cada pieza listada para conseguir fácilmente',
+    trust_ships:'Envío Mundial', trust_ships_sub:'MOCs físicos construidos y enviados con cuidado',
+    trust_support:'Soporte al Constructor', trust_support_sub:'¿Atascado? Pregunta en los comentarios de YouTube',
+    trust_secure:'Pago Seguro', trust_secure_sub:'Impulsado por tu procesador de pago preferido',
+    btn_subscribe_yt:'Suscribirse en YouTube', btn_visit_shop:'Visitar la Tienda',
+  },
+  pt: {
+    nav_home:'🏠 Início', nav_videos:'🎬 Vídeos', nav_mocs:'🏗️ Galeria MOC',
+    nav_shop:'🛒 Loja', nav_blog:'📰 Blog', nav_community:'👥 Comunidade',
+    nav_about:'👤 Sobre', nav_game:'🎮 Jogo',
+    hero_badge:'Canal YouTube LEGO® + Loja',
+    hero_sub:'Construções LEGO® épicas, análises profundas, dicas e desafios — mais instruções MOC originais para construir em casa.',
+    hero_subscribers:'Subscritores', hero_sub_yt:'Subscrever no YouTube',
+    shop_badge:'🛒 Loja Bricktastic', shop_h1a:'Construa o', shop_h1b:'Que Vê.',
+    shop_sub:'Instruções PDF para os meus designs MOC originais, mais construções físicas completas. Download instantâneo.',
+    shop_tab_all:'Todos os Produtos', shop_tab_ins:'📐 Instruções',
+    shop_tab_moc:'🏗️ MOCs Físicos', shop_tab_bun:'📦 Pacotes',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Carros',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Ícones',
+    buy_lego:'🛒 Comprar no LEGO.com', check_price:'Ver preço no LEGO.com →',
+    aff_disclosure:'Divulgação de afiliação: Os links vão para LEGO.com. Ganho uma pequena comissão se comprar — sem custo adicional para você.',
+    browse_all:'🧱 Ver todos os sets LEGO®',
+    browse_sub:'Milhares de sets em todos os temas — explore toda a gama LEGO.com.',
+    browse_btn:'Comprar LEGO.com →',
+    newsletter_h:'📬 Junte-se à Newsletter Bricktastic',
+    newsletter_p:'Novos vídeos, lançamentos MOC & ofertas exclusivas — direto para a sua caixa de entrada',
+    newsletter_btn:'Subscrever 🎉',
+    newsletter_ph:'O seu endereço de e-mail…',
+    footer_copy:'© 2026 Bricktastic Builds · Todos os direitos reservados',
+    notify_btn:'📧 Notifique-me', coming_soon:'🔜 Em Breve',
+    blog_badge:'📰 Blog Bricktastic', blog_h1a:'Construções,', blog_h1b:'Histórias & Dicas.',
+    blog_sub:'Análises profundas, guias de construção, notícias LEGO® e dicas de um verdadeiro fã.',
+    moc_badge:'🏗️ Criações LEGO® Originais', moc_h1a:'Galeria', moc_h1b:'MOC.',
+    moc_sub:'Cada construção original que projetei — deslize pelas fotos.',
+    about_h2a:'Construído por um', about_h2b:'Verdadeiro', about_h2c:'Fã.',
+    cart_title:'🛒 O Seu Carrinho', cart_empty:'O seu carrinho está vazio!\nAdicione construções para começar.',
+    cart_checkout:'🔒 Finalizar Compra',
+    trust_download:'Download Instantâneo', trust_download_sub:'PDF entregue imediatamente no seu e-mail',
+    trust_bricklink:'Lista BrickLink Incluída', trust_bricklink_sub:'Cada peça listada para encontrar facilmente',
+    trust_ships:'Envio Mundial', trust_ships_sub:'MOCs físicos construídos e enviados com cuidado',
+    trust_support:'Suporte ao Construtor', trust_support_sub:'Preso? Pergunte nos comentários do YouTube',
+    trust_secure:'Checkout Seguro', trust_secure_sub:'Alimentado pelo seu processador de pagamento preferido',
+    btn_subscribe_yt:'Subscrever no YouTube', btn_visit_shop:'Visitar a Loja',
+  },
+  nl: {
+    nav_home:'🏠 Thuis', nav_videos:'🎬 Video\'s', nav_mocs:'🏗️ MOC Galerij',
+    nav_shop:'🛒 Winkel', nav_blog:'📰 Blog', nav_community:'👥 Gemeenschap',
+    nav_about:'👤 Over ons', nav_game:'🎮 Spel',
+    hero_badge:'LEGO® YouTube Kanaal + Winkel',
+    hero_sub:'Epische LEGO® bouwwerken, diepgaande analyses, tips & uitdagingen — plus originele MOC instructies om thuis te bouwen.',
+    hero_subscribers:'Abonnees', hero_sub_yt:'Abonneren op YouTube',
+    shop_badge:'🛒 Bricktastic Winkel', shop_h1a:'Bouw Wat', shop_h1b:'Je Ziet.',
+    shop_sub:'PDF bouwinstructies voor mijn originele MOC-ontwerpen, plus complete fysieke bouwwerken. Direct downloaden.',
+    shop_tab_all:'Alle Producten', shop_tab_ins:'📐 Instructies',
+    shop_tab_moc:'🏗️ Fysieke MOCs', shop_tab_bun:'📦 Bundels',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Auto\'s',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Icons',
+    buy_lego:'🛒 Kopen op LEGO.com', check_price:'Prijs bekijken op LEGO.com →',
+    aff_disclosure:'Affiliate openbaarmaking: Links gaan naar LEGO.com. Ik verdien een kleine commissie als je koopt — zonder extra kosten voor jou.',
+    browse_all:'🧱 Alle LEGO® Sets bekijken',
+    browse_sub:'Duizenden sets in elk thema — ontdek het volledige LEGO.com assortiment.',
+    browse_btn:'LEGO.com winkelen →',
+    newsletter_h:'📬 Word lid van de Bricktastic Nieuwsbrief',
+    newsletter_p:'Nieuwe video\'s, MOC releases & exclusieve aanbiedingen — rechtstreeks in je inbox',
+    newsletter_btn:'Abonneren 🎉',
+    newsletter_ph:'Jouw e-mailadres…',
+    footer_copy:'© 2026 Bricktastic Builds · Alle rechten voorbehouden',
+    notify_btn:'📧 Stel mij op de hoogte', coming_soon:'🔜 Binnenkort beschikbaar',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Bouwwerken,', blog_h1b:'Verhalen & Tips.',
+    blog_sub:'Diepgaande analyses, bouwgidsen, LEGO® nieuws en tips van een echte fan.',
+    moc_badge:'🏗️ Originele LEGO® Creaties', moc_h1a:'MOC', moc_h1b:'Galerij.',
+    moc_sub:'Elk origineel bouwwerk dat ik heb ontworpen — blader door de foto\'s.',
+    about_h2a:'Gebouwd door een', about_h2b:'Echte', about_h2c:'Fan.',
+    cart_title:'🛒 Jouw Winkelwagen', cart_empty:'Je winkelwagen is leeg!\nVoeg bouwwerken toe om te beginnen.',
+    cart_checkout:'🔒 Afrekenen',
+    trust_download:'Direct Downloaden', trust_download_sub:'PDF onmiddellijk naar je e-mail geleverd',
+    trust_bricklink:'BrickLink Lijst Inbegrepen', trust_bricklink_sub:'Elk onderdeel opgesomd voor eenvoudig sourcing',
+    trust_ships:'Wereldwijd Verzenden', trust_ships_sub:'Fysieke MOCs zorgvuldig gebouwd en verzonden',
+    trust_support:'Bouwondersteuning', trust_support_sub:'Vastgelopen? Vraag het in de YouTube-reacties',
+    trust_secure:'Veilig Afrekenen', trust_secure_sub:'Aangedreven door jouw favoriete betalingsverwerker',
+    btn_subscribe_yt:'Abonneren op YouTube', btn_visit_shop:'Bezoek de Winkel',
+  }
+};
+
+const LANG_META = {
+  en:{ flag:'🇬🇧', code:'EN' },
+  af:{ flag:'🇿🇦', code:'AF' },
+  fr:{ flag:'🇫🇷', code:'FR' },
+  de:{ flag:'🇩🇪', code:'DE' },
+  es:{ flag:'🇪🇸', code:'ES' },
+  pt:{ flag:'🇵🇹', code:'PT' },
+  nl:{ flag:'🇳🇱', code:'NL' },
+};
+
+let _currentLang = localStorage.getItem('bb_lang') || 'en';
+
+function toggleLangDropdown(e) {
+  e && e.stopPropagation();
+  const sw = document.getElementById('langSwitcher');
+  sw.classList.toggle('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', e => {
+  const sw = document.getElementById('langSwitcher');
+  if (sw && !sw.contains(e.target)) {
+    sw.classList.remove('open');
+  }
+});
+
+function setLang(lang) {
+  if (!I18N[lang]) return;
+  _currentLang = lang;
+  localStorage.setItem('bb_lang', lang);
+
+  // Update button display
+  const meta = LANG_META[lang];
+  document.getElementById('langFlag').textContent = meta.flag;
+  document.getElementById('langCode').textContent  = meta.code;
+
+  // Update active state in dropdown
+  document.querySelectorAll('.lang-option').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('onclick').includes(`'${lang}'`));
+  });
+
+  // Close dropdown
+  document.getElementById('langSwitcher').classList.remove('open');
+
+  // Apply translations
+  applyTranslations(lang);
+}
+
+function t(key) {
+  return (I18N[_currentLang] || I18N.en)[key] || (I18N.en)[key] || key;
+}
+
+function applyTranslations(lang) {
+  const T = I18N[lang] || I18N.en;
+
+  // data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[key]) el.innerHTML = T[key];
+  });
+
+  // Shop tabs
+  const tabMap = {
+    'filterShop(\'all\'': 'shop_tab_all', 'filterShop(\'ins\'': 'shop_tab_ins',
+    'filterShop(\'moc\'': 'shop_tab_moc', 'filterShop(\'bun\'': 'shop_tab_bun',
+    'filterShop(\'gaming\'': 'shop_tab_gaming', 'filterShop(\'cars\'': 'shop_tab_cars',
+    'filterShop(\'technic\'': 'shop_tab_technic', 'filterShop(\'icons\'': 'shop_tab_icons',
+  };
+  document.querySelectorAll('.shop-tab').forEach(btn => {
+    const oc = btn.getAttribute('onclick') || '';
+    for (const [match, key] of Object.entries(tabMap)) {
+      if (oc.includes(match) && T[key]) { btn.textContent = T[key]; break; }
+    }
+  });
+
+  // "Buy on LEGO.com" buttons
+  document.querySelectorAll('a[rel*="sponsored"]').forEach(a => {
+    if (a.textContent.trim().includes('Buy on') || a.textContent.trim().includes('Koop') ||
+        a.textContent.trim().includes('Acheter') || a.textContent.trim().includes('Kaufen') ||
+        a.textContent.trim().includes('Comprar') || a.textContent.trim().includes('Kopen') ||
+        a.textContent.trim().includes('LEGO.com')) {
+      a.textContent = T.buy_lego;
+    }
+  });
+
+  // "Check price" texts
+  document.querySelectorAll('[style*="color:#888"]').forEach(el => {
+    if (el.textContent.includes('Check price') || el.textContent.includes('prix') ||
+        el.textContent.includes('Preis') || el.textContent.includes('prijs') ||
+        el.textContent.includes('precio') || el.textContent.includes('preço') ||
+        el.textContent.includes('prys')) {
+      el.textContent = T.check_price;
+    }
+  });
+
+  // Newsletter sections
+  document.querySelectorAll('.newsletter-inner h3').forEach(el => { el.textContent = T.newsletter_h; });
+  document.querySelectorAll('.newsletter-inner p').forEach(el => { el.textContent = T.newsletter_p; });
+  document.querySelectorAll('.newsletter-btn').forEach(el => { el.textContent = T.newsletter_btn; });
+  document.querySelectorAll('.newsletter-input').forEach(el => { el.placeholder = T.newsletter_ph; });
+
+  // Cart
+  const cartHd = document.querySelector('.cart-hd h3');
+  if (cartHd) cartHd.textContent = T.cart_title;
+  const coBtn = document.querySelector('.co-btn');
+  if (coBtn) coBtn.textContent = T.cart_checkout;
+
+  // Footer copyright
+  document.querySelectorAll('.fc').forEach(el => { el.textContent = T.footer_copy; });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+}
+
+// Init on page load
+(function initLang() {
+  const saved = localStorage.getItem('bb_lang') || 'en';
+  // Auto-detect browser language if no saved preference
+  if (!localStorage.getItem('bb_lang')) {
+    const browser = navigator.language?.split('-')[0];
+    if (I18N[browser]) { _currentLang = browser; }
+  }
+  const meta = LANG_META[_currentLang] || LANG_META.en;
+  document.getElementById('langFlag').textContent = meta.flag;
+  document.getElementById('langCode').textContent  = meta.code;
+  document.querySelectorAll('.lang-option').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('onclick').includes(`'${_currentLang}'`));
+  });
+  if (_currentLang !== 'en') applyTranslations(_currentLang);
+})();
+</script>
 
 </body>
 </html>

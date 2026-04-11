@@ -1610,6 +1610,12 @@ window.addEventListener('load', function() {
         <div class="lang-option" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span> Español</div>
         <div class="lang-option" onclick="setLang('pt')"><span class="lang-flag">🇧🇷</span> Português</div>
         <div class="lang-option" onclick="setLang('nl')"><span class="lang-flag">🇳🇱</span> Nederlands</div>
+        <div class="lang-option" onclick="setLang('pl')"><span class="lang-flag">🇵🇱</span> Polski</div>
+        <div class="lang-option" onclick="setLang('it')"><span class="lang-flag">🇮🇹</span> Italiano</div>
+        <div class="lang-option" onclick="setLang('fil')"><span class="lang-flag">🇵🇭</span> Filipino</div>
+        <div class="lang-option" onclick="setLang('tr')"><span class="lang-flag">🇹🇷</span> Türkçe</div>
+        <div class="lang-option" onclick="setLang('id')"><span class="lang-flag">🇮🇩</span> Bahasa Indonesia</div>
+        <div class="lang-option" onclick="setLang('sv')"><span class="lang-flag">🇸🇪</span> Svenska</div>
       </div>
     </div>
     <a href="https://ko-fi.com/bricktasticbuilds" target="_blank" style="display:flex;align-items:center;gap:6px;background:#FF5E5B;color:#fff;font-weight:900;font-size:12px;padding:6px 13px;border-radius:8px;text-decoration:none;border:2px solid rgba(255,255,255,.25);transition:all .15s;white-space:nowrap" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">☕ Ko-fi</a>
@@ -1705,9 +1711,9 @@ window.addEventListener('load', function() {
       <h1><span class="y" id="typewriter-line1"></span><br><span class="r" id="typewriter-line2"></span><span class="typewriter-cursor" id="typewriter-cursor"></span></h1>
       <p class="hero-sub" data-i18n="home_sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
       <div class="hero-stats">
-        <div><span class="sn" id="statSubscribers">265+</span><span class="sl">Subscribers</span></div>
-        <div><span class="sn" id="statVideos">296</span><span class="sl">Videos</span></div>
-        <div><span class="sn">∞</span><span class="sl">Bricks Used</span></div>
+        <div><span class="sn" id="statSubscribers">265+</span><span class="sl" data-i18n="hero_subscribers">Subscribers</span></div>
+        <div><span class="sn" id="statVideos">296</span><span class="sl" data-i18n="stat_videos">Videos</span></div>
+        <div><span class="sn">∞</span><span class="sl" data-i18n="stat_bricks">Bricks Used</span></div>
       </div>
       <div class="hero-ctas">
         <a href="https://www.youtube.com/channel/UCqm_5GiesZWfnCkZLBzUgSA?sub_confirmation=1" target="_blank" class="btn btn-red" onclick="launchConfetti(this)">
@@ -1785,13 +1791,13 @@ window.addEventListener('load', function() {
   <!-- VIDEOS -->
   <section id="videos">
     <div class="container">
-      <span class="lbl lbl-r reveal">Latest Videos</span>
-      <h2 class="sec-title reveal">Fresh Off The Build Plate</h2>
-      <p class="sec-sub reveal">Click any video to watch on YouTube.</p>
+      <span class="lbl lbl-r reveal" data-i18n="lbl_latest">Latest Videos</span>
+      <h2 class="sec-title reveal" data-i18n="sec_latest_title">Fresh Off The Build Plate</h2>
+      <p class="sec-sub reveal" data-i18n="sec_latest_sub">Click any video to watch on YouTube.</p>
       <div class="vgrid" id="videoGrid"></div>
       <div style="text-align:center;margin-top:44px" class="reveal">
         <button onclick="showPage('videos')" class="btn btn-red btn-lg">
-          🎬 View All <span id="statVideos2">257+</span> Videos →
+          🎬 <span data-i18n="btn_view_all_pre">View All</span> <span id="statVideos2">257+</span> <span data-i18n="btn_view_all_post">Videos →</span>
         </button>
       </div>
     </div>
@@ -1932,7 +1938,7 @@ window.addEventListener('load', function() {
 
     <div class="atc-top">
       <div class="container" style="position:relative;z-index:1">
-        <span class="lbl lbl-r reveal atc-pill">About the Channel</span>
+        <span class="lbl lbl-r reveal atc-pill" data-i18n="lbl_about">About the Channel</span>
 
         <div class="atc-bio">
           <div class="atc-bio-left reveal">
@@ -2028,9 +2034,9 @@ window.addEventListener('load', function() {
   <!-- CATEGORIES -->
   <section style="background:var(--bg);padding:80px 0">
     <div class="container">
-      <span class="lbl lbl-b reveal">Browse By Topic</span>
-      <h2 class="sec-title reveal">Find Your LEGO® Obsession</h2>
-      <p class="sec-sub reveal">From epic city builds to rare piece deep dives — something for every LEGO® fan.</p>
+      <span class="lbl lbl-b reveal" data-i18n="lbl_browse">Browse By Topic</span>
+      <h2 class="sec-title reveal" data-i18n="sec_browse_title">Find Your LEGO® Obsession</h2>
+      <p class="sec-sub reveal" data-i18n="sec_browse_sub">From epic city builds to rare piece deep dives — something for every LEGO® fan.</p>
       <div class="cgrid">
 
         <!-- HISTORY OF LEGO® -->
@@ -2452,7 +2458,7 @@ window.addEventListener('load', function() {
   <section style="background:var(--bg);padding:60px 0 80px">
     <div class="container">
       <span class="lbl reveal" style="background:#7B2FBE;color:#fff">Original Builds</span>
-      <h2 class="sec-title reveal">Browse MOC Gallery</h2>
+      <h2 class="sec-title reveal" data-i18n="sec_moc_browse">Browse MOC Gallery</h2>
       <div class="moc-filter-bar reveal">
         <input class="moc-search" id="mocSearch" type="text" placeholder="🔍 Search MOCs…" oninput="filterMOCs()">
         <button class="moc-tag-btn active" onclick="setMocTag('all',this)">All</button>
@@ -12299,6 +12305,577 @@ const BLOG_POSTS = [
         url: '#'
       }
     ]
+    translations: {
+      af: {
+        title: `LEGO Icons-stelle wat hierdie jaar aftree — Gryp hulle voordat hulle weg is`,
+        excerpt: `Sommige van die beste stelle in LEGO se Icons-reeks is binnekort aan die einde van hul leeftyd. Hier is alles wat die moeite werd is om te kry voordat voorraad opraak.`,
+        read: `5 min lees`,
+        content: `<p>Elke jaar trek LEGO stilletjies 'n bondel stelle van sy katalogus terug — en sodra hulle weg is, is hulle vir altyd weg (tensy jy wederverkoperpryse wil betaal). Hierdie jaar is 'n handvol regtig uitstekende Icons-stelle op die kapblok. Ek het die die moeite waardige bymekaargesit, met spesifikasies en 'n direkte skakel vir elk sodat jy hulle kan kry terwyl hulle nog teen winkelprys beskikbaar is.</p>
+
+      <h3>🪲 Dune: Ornithopter (Stel #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Dune Ornithopter stel</span>
+      </div>
+      <p>Hierdie libelgeïnspireerde vliegtuig is een van die bevredigendste boue in die Icons-reeks. Die leme draai 'n volle 180 grade en trek skoon terug, die landingsgestel vou in, en die agt ingeslote minifigure dek al die sleutelkarakters — Paul Atreides, Lady Jessica, Gurney Halleck, Chani, Leto Atreides, Liet Kynes, Duncan Idaho, en 'n swewende Baron Harkonnen in sy vloeiende mantel. 1 369 stukkies · 8 minifigure · 23cm hoog · 57cm lank · 79cm wyd. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Stel #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Optimus Prime stel</span>
+      </div>
+      <p>Die 1 508-stukkie Autobot-leier verander van robot na vragmotor met 19 artkulasiepunte. Bors maak oop om die Matrix of Leadership te berg. Kom met ioonkanon, Energon-byl en straalpak. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Stel #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Bumblebee stel</span>
+      </div>
+      <p>Die 950-stukkie geel Autobot verander in 'n Volkswagen Kewer. Volledig geartikuleerde gewrigte, ioonkanon en straalpak ingesluit. Dieselfde skaal as Optimus Prime — hulle lyk pragtig langs mekaar. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Stel #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van The Endurance stel</span>
+      </div>
+      <p>Een treffende nabootsing van die historiese verkenningsvaartuig — drie maste, tien vol seile, 'n rooi vaandel en ingewikkelde tuiery. Die multivlak-dek verbind via trappe met verwyderbare afdelings wat poort- en stuurboordkajuite en 'n stoomenjin onthul. Vier losneembare reddingsbote, 'n gekettingde anker en 'n roer wat werklik die roer stuur. 3 011 stukkies · 47cm hoog · 80cm lank · 24cm wyd. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Stel #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Lamborghini Countach stel</span>
+      </div>
+      <p>Die ikoniese 450pk-wig in baksteenvorm — V12-enjin, werkende stuur, skêrdeurtjies en diep-bak vellings. 'n Behoorlike rakstuk vir motorliefhebbers. 1 506 stukkies. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Stel #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Sherlock Holmes Book Nook stel</span>
+      </div>
+      <p>Eerste in die boekhoeksreeks — Baker Street in miniatuur. Maak oop om 221B, 'n boekwinkel en 'n woonhuis te onthul. Maak dit toe en dit gly reg op jou boekrak. Sluit Sherlock se viool en ander boekgetroue rekwisiete in. 1 359 stukkies · 5 minifigure. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Stel #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Tranquil Garden stel</span>
+      </div>
+      <p>'n Zen-tuin-bou met kersebloeisel, boogbrug, koivysdam, lotusblomme, kliplanterns en 'n pawiljoen met 'n tee-seremoniekamer. Alle elemente is herposisioneerbaar op die basis. 1 363 stukkies. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Stel #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van PAC-MAN Arcade stel</span>
+      </div>
+      <p>'n Volledig meganiese kabinet wat regtig die speletjie speel met 'n draai van 'n handvatsel. 4-rigting-joystick, verligte muuntsleuf en 'n werkende doolhofkejerjag — kompleet met 'n 1980's arkade-toneelbou daarnaas. 2 651 stukkies. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="margin-top:8px">📸 Vervang met foto van Fountain Garden stel</span>
+      </div>
+      <p>Mediterreense vibes in baksteenvorm — 'n fontein, klassieke argitektuur, druiwestok, sipressbome, hibiskus, bougainvillea, gousblomme en 'n groep klein dierfiguurtjies insluitend 'n voël, padda en lunamsot. Een van die mooiste botaniese-styl stelle in die reeks. 1 302 stukkies. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+
+      <h3>🐦 Ook die moeite werd om te gryp voordat hulle verdwyn:</h3>
+      <p>Kingfisher Bird (10331), Leonardo da Vinci se Vliegmasjien (10363), en Everyone is Awesome (40516) is ook op die aftreelys. Almal werd om op te tel terwyl jy nog kan teen winkelprys.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Affiliaat-nota:</strong> Skakels hierbo gaan na LEGO.com. Ek verdien 'n klein kommissie as jy koop — sonder ekstra koste vir jou.</p>`,
+      },
+      de: {
+        title: `LEGO Icons-Sets, die dieses Jahr auslaufen — Greif sie, bevor sie weg sind`,
+        excerpt: `Einige der besten Sets aus LEGOs Icons-Reihe erreichen bald ihr End-of-Life. Hier ist alles, was es sich lohnt zu kaufen, bevor der Vorrat ausläuft.`,
+        read: `5 Min. Lesezeit`,
+        content: `<p>Jedes Jahr zieht LEGO still und leise eine Reihe von Sets aus seinem Katalog zurück — und wenn sie weg sind, sind sie für immer weg (es sei denn, man will Wiederverkäuferpreise zahlen). In diesem Jahr stehen einige wirklich ausgezeichnete Icons-Sets auf dem Prüfstand. Ich habe die aufgelistet, die es wert sind, mit Spezifikationen und einem direkten Link für jedes einzelne.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Dune Ornithopter Sets</span></div>
+      <p>Dieses libellen-inspirierte Fluggerät ist eines der befriedigendsten Bauprojekte der Icons-Reihe. Die Klingen drehen sich 180 Grad und ziehen sich sauber ein, das Fahrwerk klappt ein, und die acht enthaltenen Minifiguren decken alle Schlüsselfiguren ab. 1.369 Teile · 8 Minifiguren · 23cm hoch · 57cm lang · 79cm breit. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Optimus Prime Sets</span></div>
+      <p>Der 1.508-teilige Autobot-Anführer verwandelt sich mit 19 Gelenken von Roboter in LKW. Die Brust öffnet sich, um die Matrix of Leadership zu speichern. Kommt mit Ionenblaster, Energon-Axt und Jetpack. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Bumblebee Sets</span></div>
+      <p>Der 950-teilige gelbe Autobot verwandelt sich in einen Volkswagen Käfer. Vollständig bewegliche Gelenke, Ionenblaster und Jetpack inklusive. Gleicher Maßstab wie Optimus Prime — sie sehen nebeneinander toll aus. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des The Endurance Sets</span></div>
+      <p>Eine atemberaubende Nachbildung des historischen Erkundungsschiffs — drei Masten, zehn volle Segel, eine fliegende rote Flagge und kompliziertes Tauwerk. 3.011 Teile · 47cm hoch · 80cm lang · 24cm breit. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Lamborghini Countach Sets</span></div>
+      <p>Der ikonische 450-PS-Keil in Steinform — V12-Motor, funktionsfähige Lenkung, Scheren-Türen und Tiefbett-Felgen. Ein echtes Regalstück für Autoliebhaber. 1.506 Teile. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Sherlock Holmes Book Nook Sets</span></div>
+      <p>Erstes in der Book-Nook-Serie — Baker Street im Miniaturformat. Öffnet sich, um 221B, eine Buchhandlung und ein Reihenhaus zu enthüllen. Schließen Sie es und es passt direkt in Ihr Bücherregal. 1.359 Teile · 5 Minifiguren. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Tranquil Garden Sets</span></div>
+      <p>Ein Zen-Garten-Bau mit Kirschblüte, Bogenbrücke, Koi-Teich, Lotusblumen, Steinlaternen und einem Pavillon mit einem Teezeremonie-Raum. 1.363 Teile. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des PAC-MAN Arcade Sets</span></div>
+      <p>Ein vollständig mechanisches Kabinett, das das Spiel tatsächlich mit einer Kurbel spielt. 4-Wege-Joystick, beleuchteter Münzeinwurf und eine funktionierende Labyrinthjagd. 2.651 Teile. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersetzen Sie durch ein Foto des Fountain Garden Sets</span></div>
+      <p>Mediterranes Flair in Steinform — ein Brunnen, klassische Architektur, Weinrebe, Zypressen, Hibiskus, Bougainvillea, Ringelblumen und kleine Tierfiguren. Eines der schönsten botanischen Sets der Reihe. 1.302 Teile. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Auf LEGO.com holen →</a></p>
+
+      <h3>🐦 Ebenfalls wissenswert, bevor sie verschwinden:</h3>
+      <p>Kingfisher Bird (10331), Leonardo da Vincis Flugmaschine (10363) und Everyone is Awesome (40516) stehen ebenfalls auf der Abkündigungsliste. Alle lohnenswert, solange man sie noch zum Einzelhandelshandel kaufen kann.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Affiliate-Hinweis:</strong> Die obigen Links führen zu LEGO.com. Ich verdiene eine kleine Provision, wenn Sie kaufen — ohne zusätzliche Kosten für Sie.</p>`,
+      },
+      es: {
+        title: `Sets LEGO Icons que se retiran este año — Cómpralos antes de que desaparezcan`,
+        excerpt: `Algunos de los mejores sets de la línea Icons de LEGO están llegando al final de su vida útil pronto. Aquí está todo lo que vale la pena conseguir antes de que se agote el stock.`,
+        read: `5 min de lectura`,
+        content: `<p>Cada año, LEGO retira silenciosamente un lote de sets de su catálogo — y una vez que se van, se van para siempre (a menos que quieras pagar precios de revendedor). Este año, un puñado de excelentes sets Icons están en la lista negra. He reunido los que merecen tu atención.</p>
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Dune Ornithopter</span></div>
+      <p>Esta nave inspirada en libélulas es una de las construcciones más satisfactorias de la gama Icons. Las palas rotan 180 grados y se retraen limpiamente, el tren de aterrizaje se pliega, y las ocho minifiguras incluidas cubren todos los personajes clave. 1.369 piezas · 8 minifiguras · 23cm alto · 57cm largo · 79cm ancho. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Optimus Prime</span></div>
+      <p>El líder Autobot de 1.508 piezas se transforma de robot a camión con 19 puntos de articulación. El pecho se abre para guardar la Matrix of Leadership. Viene con blaster de iones, hacha Energon y mochila propulsora. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Bumblebee</span></div>
+      <p>El Autobot amarillo de 950 piezas se transforma en un Volkswagen Beetle. Articulaciones completamente articuladas, blaster de iones y mochila propulsora incluidos. Misma escala que Optimus Prime. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set The Endurance</span></div>
+      <p>Una impresionante recreación del histórico barco de exploración — tres mástiles, diez velas completas, pabellón rojo ondeante y rigging intrincado. 3.011 piezas · 47cm alto · 80cm largo · 24cm ancho. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Lamborghini Countach</span></div>
+      <p>La icónica cuña de 450cv en forma de ladrillos — motor V12, dirección funcional, puertas de tijera y llantas de cuenca profunda. 1.506 piezas. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Sherlock Holmes Book Nook</span></div>
+      <p>Primero de la serie book nook — Baker Street en miniatura. Se abre para revelar el 221B, una librería y una residencia en terraza. 1.359 piezas · 5 minifiguras. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Tranquil Garden</span></div>
+      <p>Una construcción de jardín zen con cerezo en flor, puente en arco, estanque koi, flores de loto, faroles de piedra y un pabellón con sala de ceremonia del té. 1.363 piezas. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set PAC-MAN Arcade</span></div>
+      <p>Un gabinete completamente mecánico que realmente juega el juego girando una manivela. Joystick de 4 direcciones, ranura para monedas iluminada. 2.651 piezas. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Reemplazar con foto del set Fountain Garden</span></div>
+      <p>Vibras mediterráneas en forma de ladrillos — fuente, arquitectura clásica, vid, cipreses, hibisco, buganvilla, caléndulas y pequeñas figuras de animales. 1.302 piezas. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🐦 También vale la pena comprar antes de que se vayan:</h3>
+      <p>Kingfisher Bird (10331), La Máquina Voladora de Leonardo da Vinci (10363) y Everyone is Awesome (40516) también están en la lista de retiro.</p>
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Nota de afiliado:</strong> Los enlaces de arriba van a LEGO.com. Gano una pequeña comisión si compras — sin costo adicional para ti.</p>`,
+      },
+      fil: {
+        title: `Mga LEGO Icons Sets na Magre-retire Ngayong Taon — Kunin Mo Bago Mawala`,
+        excerpt: `Ang ilan sa mga pinakamahusay na set sa linya ng Icons ng LEGO ay malapit nang maabot ang katapusan ng kanilang buhay. Narito ang lahat ng dapat mong kunin bago maubos ang stock.`,
+        read: `5 min basahin`,
+        content: `<p>Bawat taon, tahimik na inaalis ng LEGO ang isang batch ng mga set mula sa kanyang katalogo — at kapag nawala na, nawala na para sa lahat. Ngayong taon, ilang napakagandang Icons sets ang nasa listahan.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Dune Ornithopter</span></div>
+      <p>Ang sasakyang ito na inspired sa dragonfly ay isa sa mga pinaka-kasiya-siyang build sa linya ng Icons. Ang mga talim ay umiikot nang 180 degrees at nag-retract nang malinis, ang landing gear ay nag-fold. 1,369 piraso · 8 minifigure · 23cm mataas · 57cm mahaba · 79cm malawak. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Optimus Prime</span></div>
+      <p>Ang lider ng Autobot na may 1,508 piraso ay nagbabago mula robot patungong trak. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Bumblebee</span></div>
+      <p>Ang 950-piraso na dilaw na Autobot ay nagiging Volkswagen Beetle. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na The Endurance</span></div>
+      <p>Isang kahanga-hangang muling paglikha ng makasaysayang barko ng paggalugad — tatlong palo, sampung buong layag. 3,011 piraso · 47cm mataas · 80cm mahaba · 24cm malawak. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Lamborghini Countach</span></div>
+      <p>Ang ikoniko na 450hp na pares sa anyong bricks. 1,506 piraso. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Sherlock Holmes Book Nook</span></div>
+      <p>Una ang unang sa serye ng book nook — Baker Street sa miniatura. 1,359 piraso · 5 minifigure. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Tranquil Garden</span></div>
+      <p>Zen garden na may cherry blossom, arched bridge, koi pond. 1,363 piraso. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na PAC-MAN Arcade</span></div>
+      <p>Isang ganap na mekanikal na cabinet na talagang nilalaro ang laro. 2,651 piraso. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Palitan ng larawan ng set na Fountain Garden</span></div>
+      <p>Mediterranean na vibes sa anyong bricks. 1,302 piraso. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Ang Kingfisher Bird (10331), ang Flying Machine ni Leonardo da Vinci (10363), at Everyone is Awesome (40516) ay nasa listahan din ng pagreretiro:</h3>
+      <p>Ang Kingfisher Bird (10331), ang Flying Machine ni Leonardo da Vinci (10363), at Everyone is Awesome (40516) ay nasa listahan din ng pagreretiro.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Kaakibat:</strong> Ang mga link sa itaas ay napupunta sa LEGO.com. Kumikita ako ng maliit na komisyon kung bibili ka — nang walang dagdag na gastos para sa iyo.</p>`,
+      },
+      fr: {
+        title: `Sets LEGO Icons qui prennent leur retraite cette année — Attrapez-les avant qu'ils disparaissent`,
+        excerpt: `Certains des meilleurs sets de la gamme Icons de LEGO arrivent bientôt en fin de vie. Voici tout ce qui vaut la peine d'être acheté avant que le stock soit épuisé.`,
+        read: `5 min de lecture`,
+        content: `<p>Chaque année, LEGO retire discrètement un lot de sets de son catalogue — et une fois partis, ils sont partis pour de bon (à moins de vouloir payer les prix des revendeurs). Cette année, quelques excellents sets Icons sont sur la sellette. J'ai rassemblé ceux qui méritent votre attention, avec les specs et un lien direct pour chacun afin que vous puissiez les obtenir pendant qu'ils sont encore disponibles au prix de vente.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Dune Ornithopter</span></div>
+      <p>Cet engin inspiré de la libellule est l'une des constructions les plus satisfaisantes de la gamme Icons. Les pales pivotent à 180 degrés et se rétractent proprement, le train d'atterrissage se replie, et les huit minifigurines couvrent tous les personnages clés. 1 369 pièces · 8 minifigurines · 23cm haut · 57cm long · 79cm large. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Optimus Prime</span></div>
+      <p>Le chef Autobot de 1 508 pièces se transforme de robot en camion avec 19 points d'articulation. La poitrine s'ouvre pour stocker la Matrice du Leadership. Livré avec le blaster ionique, la hache Energon et le jetpack. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Bumblebee</span></div>
+      <p>L'Autobot jaune de 950 pièces se transforme en Volkswagen Beetle. Articulations entièrement articulées, blaster ionique et jetpack inclus. Même échelle qu'Optimus Prime — ils font superbe côte à côte. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set The Endurance</span></div>
+      <p>Une superbe recréation du navire d'exploration historique — trois mâts, dix voiles complètes, une enseigne rouge volante et un gréement complexe. 3 011 pièces · 47cm haut · 80cm long · 24cm large. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Lamborghini Countach</span></div>
+      <p>Le célèbre coin de 450ch en briques — moteur V12, direction fonctionnelle, portes en ciseaux et jantes à cuvette profonde. Une vraie pièce de collection pour les passionnés de voitures. 1 506 pièces. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Sherlock Holmes Book Nook</span></div>
+      <p>Premier de la série book nook — Baker Street en miniature. S'ouvre pour révéler le 221B, une librairie et une résidence en terrasse. Fermez-le et il s'insère directement sur votre étagère. 1 359 pièces · 5 minifigurines. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Tranquil Garden</span></div>
+      <p>Une construction de jardin zen avec cerisier en fleurs, pont en arche, étang à koïs, fleurs de lotus, lanternes en pierre et un pavillon avec une salle de cérémonie du thé. 1 363 pièces. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set PAC-MAN Arcade</span></div>
+      <p>Un cabinet entièrement mécanique qui joue vraiment au jeu en tournant une manivelle. Joystick 4 directions, fente à pièces illuminée et une véritable chasse dans le labyrinthe. 2 651 pièces. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Remplacer par une photo du set Fountain Garden</span></div>
+      <p>Ambiance méditerranéenne en briques — une fontaine, architecture classique, vigne, cyprès, hibiscus, bougainvillées, soucis et de petits animaux. L'un des plus beaux sets de style botanique de la gamme. 1 302 pièces. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Obtenir sur LEGO.com →</a></p>
+
+      <h3>🐦 À saisir aussi avant qu'ils disparaissent :</h3>
+      <p>Kingfisher Bird (10331), la Machine Volante de Léonard de Vinci (10363) et Everyone is Awesome (40516) figurent également sur la liste des retraités. Tous valent la peine d'être achetés pendant qu'on peut encore les trouver au prix de détail.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Note d'affiliation :</strong> Les liens ci-dessus mènent à LEGO.com. Je touche une petite commission si vous achetez — sans frais supplémentaires pour vous.</p>`,
+      },
+      id: {
+        title: `Set LEGO Icons yang Pensiun Tahun Ini — Ambil Sebelum Habis`,
+        excerpt: `Beberapa set terbaik dalam lini Icons LEGO akan segera habis masa produksinya. Ini semua yang layak dibeli sebelum stok habis.`,
+        read: `5 menit membaca`,
+        content: `<p>Setiap tahun, LEGO diam-diam menarik sejumlah set dari katalognya — dan begitu pergi, mereka pergi selamanya. Tahun ini, beberapa set Icons yang sangat bagus ada di daftar penghapusan.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Dune Ornithopter</span></div>
+      <p>Kendaraan terinspirasi capung ini adalah salah satu build paling memuaskan di lini Icons. Bilahnya berputar 180 derajat dan tertarik dengan rapi, roda pendaratan terlipat. 1.369 buah · 8 minifigur · 23cm tinggi · 57cm panjang · 79cm lebar. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Optimus Prime</span></div>
+      <p>Pemimpin Autobot 1.508 buah berubah dari robot ke truk dengan 19 titik artikulasi. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Bumblebee</span></div>
+      <p>Autobot kuning 950 buah berubah menjadi Volkswagen Beetle. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set The Endurance</span></div>
+      <p>Rekonstruksi menakjubkan dari kapal eksplorasi bersejarah — tiga tiang, sepuluh layar penuh. 3.011 buah · 47cm tinggi · 80cm panjang · 24cm lebar. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Lamborghini Countach</span></div>
+      <p>Baji ikonik 450hp dalam bentuk bata. 1.506 buah. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Sherlock Holmes Book Nook</span></div>
+      <p>Pertama dalam seri book nook — Baker Street dalam miniatur. 1.359 buah · 5 minifigur. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Tranquil Garden</span></div>
+      <p>Taman zen dengan bunga sakura, jembatan melengkung, kolam koi. 1.363 buah. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set PAC-MAN Arcade</span></div>
+      <p>Kabinet mekanikal penuh yang benar-benar memainkan permainannya. 2.651 buah. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ganti dengan foto set Fountain Garden</span></div>
+      <p>Nuansa Mediterania dalam bentuk bata. 1.302 buah. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Kingfisher Bird (10331), Mesin Terbang Leonardo da Vinci (10363), dan Everyone is Awesome (40516) juga ada dalam daftar pensiun:</h3>
+      <p>Kingfisher Bird (10331), Mesin Terbang Leonardo da Vinci (10363), dan Everyone is Awesome (40516) juga ada dalam daftar pensiun.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Afiliasi:</strong> Tautan di atas menuju ke LEGO.com. Saya mendapat komisi kecil jika Anda membeli — tanpa biaya tambahan untuk Anda.</p>`,
+      },
+      it: {
+        title: `Set LEGO Icons in Pensione Quest'Anno — Prendili Prima che Scompaiano`,
+        excerpt: `Alcuni dei migliori set della linea Icons di LEGO stanno per raggiungere la fine vita. Ecco tutto ciò che vale la pena acquistare prima che le scorte si esauriscano.`,
+        read: `5 min di lettura`,
+        content: `<p>Ogni anno, LEGO ritira silenziosamente un lotto di set dal suo catalogo — e una volta spariti, sono spariti per sempre. Quest'anno, alcuni eccellenti set Icons sono sulla lista.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Dune Ornithopter</span></div>
+      <p>Questo veicolo ispirato alla libellula è una delle costruzioni più soddisfacenti della gamma Icons. Le pale ruotano di 180 gradi e si retraggono perfettamente, il carrello di atterraggio si piega. 1.369 pezzi · 8 minifigure · 23cm alto · 57cm lungo · 79cm largo. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Optimus Prime</span></div>
+      <p>Il leader Autobot da 1.508 pezzi si trasforma da robot a camion con 19 punti di articolazione. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Bumblebee</span></div>
+      <p>Il Autobot giallo da 950 pezzi si trasforma in un Volkswagen Beetle. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set The Endurance</span></div>
+      <p>Una splendida ricreazione dello storico vascello esplorativo — tre alberi, dieci vele complete. 3.011 pezzi · 47cm alto · 80cm lungo · 24cm largo. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Lamborghini Countach</span></div>
+      <p>L'iconica berlina da 450cv. 1.506 pezzi. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Sherlock Holmes Book Nook</span></div>
+      <p>Primo della serie book nook — Baker Street in miniatura. 1.359 pezzi · 5 minifigure. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Tranquil Garden</span></div>
+      <p>Giardino zen con fiori di ciliegio, ponte ad arco, laghetto koi. 1.363 pezzi. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set PAC-MAN Arcade</span></div>
+      <p>Un cabinet completamente meccanico che gioca davvero al gioco. 2.651 pezzi. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Sostituire con foto del set Fountain Garden</span></div>
+      <p>Atmosfera mediterranea in mattoncini. 1.302 pezzi. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Kingfisher Bird (10331), la Macchina Volante di Leonardo da Vinci (10363) e Everyone is Awesome (40516) sono anch'essi sulla lista dei ritiri:</h3>
+      <p>Kingfisher Bird (10331), la Macchina Volante di Leonardo da Vinci (10363) e Everyone is Awesome (40516) sono anch'essi sulla lista dei ritiri.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Affiliazione:</strong> I link sopra portano a LEGO.com. Guadagno una piccola commissione se acquisti — senza costi aggiuntivi per te.</p>`,
+      },
+      nl: {
+        title: `LEGO Icons Sets die dit jaar met pensioen gaan — Grijp ze voordat ze weg zijn`,
+        excerpt: `Sommige van de beste sets in LEGO's Icons-lijn naderen binnenkort hun einde. Hier is alles wat het waard is om te pakken voordat de voorraad op is.`,
+        read: `5 min lezen`,
+        content: `<p>Elk jaar trekt LEGO stil een batch sets uit zijn catalogus — en als ze weg zijn, zijn ze voor altijd weg. Dit jaar staan een handvol uitstekende Icons-sets op de nominatie.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Dune Ornithopter</span></div>
+      <p>Dit door een libel geïnspireerde vaartuig is een van de meest bevredigende bouwwerken in de Icons-reeks. De wieken draaien 180 graden en trekken zich netjes terug, het landingsgestel klapt in. 1.369 stukken · 8 minifiguren · 23cm hoog · 57cm lang · 79cm breed. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Optimus Prime</span></div>
+      <p>De 1.508-stukken Autobot-leider transformeert van robot naar vrachtwagen met 19 gewrichtspunten. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Bumblebee</span></div>
+      <p>De 950-stukken gele Autobot transformeert in een Volkswagen Beetle. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van The Endurance</span></div>
+      <p>Een verbluffende recreatie van het historische verkenningsschip — drie masten, tien volle zeilen. 3.011 stukken · 47cm hoog · 80cm lang · 24cm breed. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Lamborghini Countach</span></div>
+      <p>De iconische 450pk wig in steenvorm — V12-motor, werkende besturing, schaarduren en diepe velgen. 1.506 stukken. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Sherlock Holmes Book Nook</span></div>
+      <p>Eerste in de book nook reeks — Baker Street in miniatuur. 1.359 stukken · 5 minifiguren. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Tranquil Garden</span></div>
+      <p>Zen-tuin met kersenbloesem, boogbrug, koivijver, lotusbloemen. 1.363 stukken. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van PAC-MAN Arcade</span></div>
+      <p>Een volledig mechanisch kabinet dat het spel daadwerkelijk speelt met een hendel. 2.651 stukken. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Vervang door foto van Fountain Garden</span></div>
+      <p>Mediterraan sfeer in steenvorm. 1.302 stukken. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Kingfisher Bird (10331), Leonardo da Vinci's Vliegmachine (10363) en Everyone is Awesome (40516) staan ook op de pensioenlijst:</h3>
+      <p>Kingfisher Bird (10331), Leonardo da Vinci's Vliegmachine (10363) en Everyone is Awesome (40516) staan ook op de pensioenlijst.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Affiliate:</strong> De bovenstaande links gaan naar LEGO.com. Ik verdien een kleine commissie als je koopt — zonder extra kosten voor jou.</p>`,
+      },
+      pl: {
+        title: `Zestawy LEGO Icons wycofywane w tym roku — Zgarnij je, zanim znikną`,
+        excerpt: `Niektóre z najlepszych zestawów z linii LEGO Icons wkrótce osiągną koniec życia. Oto wszystko, co warto zgarnąć, zanim skończy się zapas.`,
+        read: `5 min czytania`,
+        content: `<p>Każdego roku LEGO po cichu wycofuje zestawy ze swojego katalogu — a gdy znikną, znikają na zawsze. W tym roku kilka naprawdę świetnych zestawów Icons jest na liście do odejścia.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Dune Ornithopter</span></div>
+      <p>To zainspirowane ważką urządzenie jest jedną z najbardziej satysfakcjonujących budowli w serii Icons. Łopaty obracają się o 180 stopni i schowują się czysto, podwozie składa się. 1369 elementów · 8 minifigurek · 23cm wys. · 57cm dł. · 79cm szer. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Optimus Prime</span></div>
+      <p>Lider Autobot z 1.508 elementów przekształca się z robota w ciężarówkę z 19 punktami artykulacji. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Bumblebee</span></div>
+      <p>Żółty Autobot z 950 elementów zamienia się w Volkswagen Garbus. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu The Endurance</span></div>
+      <p>Niesamowita rekonstrukcja historycznego statku odkrywczego — trzy maszty, dziesięć pełnych żagli. 3011 elementów · 47cm wys. · 80cm dł. · 24cm szer. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Lamborghini Countach</span></div>
+      <p>Ikonische 450 pk wig in steenvorm. 1.506 elementen. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Sherlock Holmes Book Nook</span></div>
+      <p>Pierwszy z serii book nook — Baker Street w miniaturze. 1.359 elementów · 5 minifigurek. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Tranquil Garden</span></div>
+      <p>Ogród zen z kwiatem wiśni, łukowym mostem, stawem koi. 1.363 elementów. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu PAC-MAN Arcade</span></div>
+      <p>W pełni mechaniczny kabinet, który naprawdę gra w grę. 2.651 elementów. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Zastąp zdjęciem zestawu Fountain Garden</span></div>
+      <p>Śródziemnomorski klimat w formie klocków. 1.302 elementów. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Kingfisher Bird (10331), Maszyna Latająca Leonarda da Vinci (10363) i Everyone is Awesome (40516) również są na liście wycofania:</h3>
+      <p>Kingfisher Bird (10331), Maszyna Latająca Leonarda da Vinci (10363) i Everyone is Awesome (40516) również są na liście wycofania.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Affiliate:</strong> Linki powyżej prowadzą do LEGO.com. Zarabiam małą prowizję, jeśli kupujesz — bez dodatkowych kosztów dla Ciebie.</p>`,
+      },
+      pt: {
+        title: `Sets LEGO Icons a se Aposentar Este Ano — Compre-os Antes que Desapareçam`,
+        excerpt: `Alguns dos melhores sets da linha Icons da LEGO estão chegando ao fim da vida útil em breve. Aqui está tudo o que vale a pena comprar antes que o estoque acabe.`,
+        read: `5 min de leitura`,
+        content: `<p>Todo ano, a LEGO retira silenciosamente um lote de sets de seu catálogo — e quando somem, somem para sempre (a menos que você queira pagar preços de revendedor). Este ano, um punhado de excelentes sets Icons estão na lista negra. Reuni os que merecem sua atenção.</p>
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Dune Ornithopter</span></div>
+      <p>Esta nave inspirada em libélula é uma das construções mais satisfatórias da linha Icons. As lâminas giram 180 graus e recolhem de forma limpa, o trem de pouso dobra, e as oito minifiguras cobertas incluem todos os personagens principais. 1.369 peças · 8 minifiguras · 23cm alto · 57cm longo · 79cm largo. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Optimus Prime</span></div>
+      <p>O líder Autobot de 1.508 peças se transforma de robô em caminhão com 19 pontos de articulação. O peito abre para guardar a Matrix of Leadership. Vem com blaster de íons, machado Energon e jetpack. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Bumblebee</span></div>
+      <p>O Autobot amarelo de 950 peças se transforma em um Volkswagen Beetle. Articulações totalmente móveis, blaster de íons e jetpack incluídos. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set The Endurance</span></div>
+      <p>Uma recriação deslumbrante do histórico navio de exploração — três mastros, dez velas completas, uma bandeira vermelha e cordame intrincado. 3.011 peças · 47cm alto · 80cm longo · 24cm largo. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Lamborghini Countach</span></div>
+      <p>A icônica cunha de 450cv em forma de blocos — motor V12, direção funcional, portas de tesoura e aros de cubo profundo. 1.506 peças. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Sherlock Holmes Book Nook</span></div>
+      <p>Primeiro da série book nook — Baker Street em miniatura. 1.359 peças · 5 minifiguras. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Tranquil Garden</span></div>
+      <p>Uma construção de jardim zen com flor de cerejeira, ponte em arco, lago de koi, flores de lótus, lanternas de pedra e um pavilhão com sala de cerimônia do chá. 1.363 peças. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set PAC-MAN Arcade</span></div>
+      <p>Um gabinete totalmente mecânico que realmente joga o jogo com uma manivela. 2.651 peças. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Substituir pela foto do set Fountain Garden</span></div>
+      <p>Vibes mediterrâneas em bloco — fonte, arquitetura clássica, videira, ciprestes, hibisco, buganvília, malmequeres e figurinhas de animais. 1.302 peças. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🐦 Também vale a pena comprar antes que desapareçam:</h3>
+      <p>Kingfisher Bird (10331), a Máquina Voadora de Leonardo da Vinci (10363) e Everyone is Awesome (40516) também estão na lista de aposentadoria.</p>
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Nota de afiliado:</strong> Os links acima vão para LEGO.com. Ganho uma pequena comissão se você comprar — sem custo adicional para você.</p>`,
+      },
+      sv: {
+        title: `LEGO Icons-set som pensioneras i år — Ta dem innan de är borta`,
+        excerpt: `Några av de bästa seten i LEGOs Icons-serie närmar sig snart sitt slut. Här är allt som är värt att ta tag i innan lagret tar slut.`,
+        read: `5 min läsning`,
+        content: `<p>Varje år drar LEGO tyst tillbaka en batch set från sin katalog — och när de väl är borta är de borta för alltid. I år finns ett fåtal riktigt utmärkta Icons-set på listan.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Dune Ornithopter</span></div>
+      <p>Detta trollslända-inspirerade farkost är ett av de mest tillfredsställande byggen i Icons-serien. Bladen roterar hela 180 grader och dras in rent, landningsställen fälls in. 1 369 delar · 8 minifigurer · 23cm hög · 57cm lång · 79cm bred. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Optimus Prime</span></div>
+      <p>Den 1 508-delade Autobot-ledaren omvandlas från robot till lastbil med 19 leder. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Bumblebee</span></div>
+      <p>Den 950-delade gula Autoboten omvandlas till en Volkswagen Beetle. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set The Endurance</span></div>
+      <p>En fantastisk återskapning av det historiska utforskningsfartyget — tre master, tio fulla segel. 3 011 delar · 47cm hög · 80cm lång · 24cm bred. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Lamborghini Countach</span></div>
+      <p>Den ikoniska 450-hästs kilen i klossform. 1 506 delar. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Sherlock Holmes Book Nook</span></div>
+      <p>Första i book nook-serien — Baker Street i miniatyr. 1 359 delar · 5 minifigurer. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Tranquil Garden</span></div>
+      <p>Zenträdgård med körsbärsblom, valvbro, koidam. 1 363 delar. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set PAC-MAN Arcade</span></div>
+      <p>Ett helt mekaniskt skåp som verkligen spelar spelet. 2 651 delar. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Ersätt med foto av set Fountain Garden</span></div>
+      <p>Medelhavsvibes i klossform. 1 302 delar. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Kingfisher Bird (10331), Leonardo da Vincis Flygmaskin (10363) och Everyone is Awesome (40516) finns också på pensioneringslistlan:</h3>
+      <p>Kingfisher Bird (10331), Leonardo da Vincis Flygmaskin (10363) och Everyone is Awesome (40516) finns också på pensioneringslistlan.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Affiliate:</strong> Länkarna ovan leder till LEGO.com. Jag tjänar en liten provision om du köper — utan extra kostnad för dig.</p>`,
+      },
+      tr: {
+        title: `Bu Yıl Emekliye Ayrılan LEGO Icons Setleri — Gitmeden Önce Alın`,
+        excerpt: `LEGO'nun Icons serisindeki en iyi setlerden bazıları yakında ömrünü dolduracak. İşte stok tükenmeden önce almanız gereken her şey.`,
+        read: `5 dakika okuma`,
+        content: `<p>Her yıl, LEGO katalogdan bir dizi seti sessizce geri çeker — ve bir kez gittiklerinde, sonsuza kadar giderler. Bu yıl, gerçekten mükemmel birkaç Icons seti kesme listesinde.</p>
+
+      <h3>🪲 Dune: Ornithopter (Set #10327)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Dune Ornithopter</span></div>
+      <p>Bu yusufçuk ilhamlı araç, Icons serisindeki en tatmin edici yapılardan biridir. Kanatlar tam 180 derece döner ve temizce geri çekilir, iniş takımı katlanır. 1.369 parça · 8 minifigür · 23cm yüksek · 57cm uzun · 79cm geniş. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🤖 Optimus Prime (Set #10302)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Optimus Prime</span></div>
+      <p>1.508 parçalı Autobot lideri 19 eklem noktasıyla robottan kamyona dönüşür. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐝 Bumblebee (Set #10338)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Bumblebee</span></div>
+      <p>950 parçalı sarı Autobot Volkswagen Beetle'a dönüşür. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛵ The Endurance (Set #10335)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin The Endurance</span></div>
+      <p>Tarihi keşif gemisinin muhteşem bir replikası — üç direk, on tam yelken. 3.011 parça · 47cm yüksek · 80cm uzun · 24cm geniş. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🏎️ Lamborghini Countach 5000 Quattrovalvole (Set #10337)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Lamborghini Countach</span></div>
+      <p>İkonik 450 bg kama. 1.506 parça. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🔍 Sherlock Holmes Book Nook (Set #10351)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Sherlock Holmes Book Nook</span></div>
+      <p>Book nook serisinin ilki — minyatür Baker Street. 1.359 parça · 5 minifigür. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🌿 Tranquil Garden (Set #10315)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Tranquil Garden</span></div>
+      <p>Kiraz çiçeği, kemerli köprü, koi gölü ile zen bahçesi. 1.363 parça. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🕹️ PAC-MAN Arcade (Set #10323)</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin PAC-MAN Arcade</span></div>
+      <p>Gerçekten oyunu oynayan tamamen mekanik bir kabinet. 2.651 parça. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>⛲ Fountain Garden</h3>
+      <div style="width:100%;height:220px;background:#f0ede6;border:3px dashed #ccc;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px 0;color:#aaa;font-weight:700;font-size:13px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span style="margin-top:8px">📸 Seti fotoğrafıyla değiştirin Fountain Garden</span></div>
+      <p>Tuğla formunda Akdeniz havası. 1.302 parça. <a class="inline-aff" href="#" target="_blank" rel="nofollow sponsored">LEGO.com →</a></p>
+
+      <h3>🐦 Kingfisher Bird (10331), Leonardo da Vinci'nin Uçan Makinesi (10363) ve Everyone is Awesome (40516) da emeklilik listesinde:</h3>
+      <p>Kingfisher Bird (10331), Leonardo da Vinci'nin Uçan Makinesi (10363) ve Everyone is Awesome (40516) da emeklilik listesinde.</p>
+
+      <p style="margin-top:24px;padding:16px;background:#fff3cd;border-left:4px solid #FFD700;border-radius:0 8px 8px 0;font-size:14px"><strong>🔗 Ortaklık:</strong> Yukarıdaki bağlantılar LEGO.com'a gider. Satın alırsanız küçük bir komisyon kazanırım — size ek maliyet olmadan.</p>`,
+      },
+    },
   },
   {
     id: 1,
@@ -12344,6 +12921,176 @@ const BLOG_POSTS = [
         url: 'https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276'
       }
     ]
+    translations: {
+      af: {
+        title: `Beste LEGO Speletjie-stelle vir Volwassenes in 2026`,
+        excerpt: `Van PAC-MAN tot Game Boy — die ultieme gids tot die beste LEGO speletjie-stelle wat jy nou kan koop.`,
+        read: `5 min lees`,
+        content: `<p>As jy grootgeword het met 'n beheerder in jou hand, het LEGO 'n paar ongelooflike stelle wat jou gunsteling speletjie-herinneringe in baksteenvorm tot lewe bring. Hier is my topkeuses vir 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Dit is die koning van LEGO speletjie-stelle. Met 2 651 stukkies is dit 'n werkende meganiese arkadekabinet met 'n verborge 80's speelkamer daarin weggesteek. As jy hierdie jaar net een stel koop, maak dit hierdie een. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Kry dit op LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Byna 'n 1:1-skaalreplika van die oorspronklike Game Boy — kompleet met Super Mario Land- en Zelda-kassette. Dit raak vinnig uitverkoop by die meeste kleinhandelaars, so moenie hierop slaap nie. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Kyk beskikbaarheid →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario en sy icondiese rooi karretjie in 1 972 stukkies. Beweegbare kop en arms, 'n pragtige vertoonstaander — dit is 'n rakstuk wat elke Nintendo-aanhanger nodig het. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Koop op LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Die Creeper (21276)</h3>
+      <p>Reuse 665-stukkie Creeper met 'n bonus Varkmob — 'n verwysing na Minecraft-geskiedenis. Perfek vir aanhangers van die wêreld se gewildste speletjie. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Koop op LEGO.com →</a></p>`,
+      },
+      de: {
+        title: `Beste LEGO Gaming-Sets für Erwachsene 2026`,
+        excerpt: `Von PAC-MAN bis Game Boy — der ultimative Leitfaden zu den besten LEGO Gaming-Sets, die du jetzt kaufen kannst.`,
+        read: `5 Min. Lesezeit`,
+        content: `<p>Wenn du mit einem Controller in der Hand aufgewachsen bist, hat LEGO einige unglaubliche Sets, die deine liebsten Gaming-Erinnerungen in Steinform zum Leben erwecken. Hier sind meine Top-Picks für 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Das ist der König der LEGO Gaming-Sets. Mit 2.651 Teilen ist es ein funktionierendes mechanisches Arcade-Kabinett mit einem versteckten 80er-Jahre-Spielzimmer darin. Wenn du dieses Jahr nur ein Set kaufst, dann dieses. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Hol es auf LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Eine nahezu 1:1-Nachbildung des Original-Game Boys — mit Super Mario Land- und Zelda-Kassetten. Es ist bei den meisten Händlern schnell ausverkauft, also nicht warten. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Verfügbarkeit prüfen →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario und sein ikonischer roter Kart in 1.972 Teilen. Beweglicher Kopf und Arme, ein wunderschöner Displayständer — ein Regalstück, das jeder Nintendo-Fan braucht. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Kaufen auf LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Der Creeper (21276)</h3>
+      <p>Ein riesiger 665-teiliger Creeper mit einem Bonus-Schwein-Mob — eine Hommage an die Minecraft-Geschichte. Perfekt für Fans des beliebtesten Spiels der Welt. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Kaufen auf LEGO.com →</a></p>`,
+      },
+      es: {
+        title: `Mejores Sets LEGO Gaming para Adultos en 2026`,
+        excerpt: `De PAC-MAN a Game Boy — la guía definitiva de los mejores sets LEGO gaming que puedes comprar ahora mismo.`,
+        read: `5 min de lectura`,
+        content: `<p>Si creciste con un mando en la mano, LEGO tiene algunos sets increíbles que dan vida a tus recuerdos de videojuegos favoritos en forma de piezas. Aquí están mis mejores selecciones para 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Este es el rey de los sets LEGO gaming. Con 2.651 piezas, es una máquina recreativa mecánica funcional con una sala de juegos de los años 80 escondida dentro. Si solo compras un set este año, que sea este. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Consíguelo en LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Una réplica casi 1:1 del Game Boy original — completa con cartuchos de Super Mario Land y Zelda. Se agota rápido en la mayoría de los minoristas, así que no lo dejes para después. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Comprobar disponibilidad →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario y su icónico kart rojo en 1.972 piezas. Cabeza y brazos articulados, un hermoso soporte de exposición — es una pieza de estantería que todo fan de Nintendo necesita. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Comprar en LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft El Creeper (21276)</h3>
+      <p>Un enorme Creeper de 665 piezas con un mob Cerdo de bonificación — un guiño a la historia de Minecraft. Perfecto para los fans del juego más popular del mundo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Comprar en LEGO.com →</a></p>`,
+      },
+      fil: {
+        title: `Pinakamahusay na LEGO Gaming Sets para sa mga Adulto sa 2026`,
+        excerpt: `Mula sa PAC-MAN hanggang Game Boy — ang ulitmateng gabay sa pinakamahusay na LEGO gaming sets na mabibili mo ngayon.`,
+        read: `5 min basahin`,
+        content: `<p>Kung lumaki ka na may controller sa kamay, ang LEGO ay may mga kamangha-manghang set na nagbibigay-buhay sa iyong mga paboritong alaala sa paglalaro sa anyong bricks. Narito ang aking mga nangungunang pagpipilian para sa 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Ito ang hari ng mga LEGO gaming sets. Sa 2,651 piraso, ito ay isang gumaganang mekanikal na arcade cabinet na may nakatagong kwarto ng laruan mula sa mga '80s sa loob. Kung isang set lang ang bibilhin mo ngayong taon, ito na iyon. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Kunin ito sa LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Halos 1:1 na replika ng orihinal na Game Boy — kumpleto na may mga cartridge ng Super Mario Land at Zelda. Mabilis itong nauubos sa karamihan ng mga tindahan, kaya huwag nang antalahin. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Tingnan ang availability →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Si Mario at ang kanyang ikoniko na pulang kart sa 1,972 piraso. Naililipat na ulo at mga braso, magandang display stand — ito ay isang shelf piece na kailangan ng bawat Nintendo fan. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Bumili sa LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Ang Creeper (21276)</h3>
+      <p>Isang malaking 665-piraso na Creeper na may bonus na Baboy mob — isang pagkilala sa kasaysayan ng Minecraft. Perpekto para sa mga fans ng pinakasikat na laro sa mundo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Bumili sa LEGO.com →</a></p>`,
+      },
+      fr: {
+        title: `Meilleurs Sets LEGO Gaming pour Adultes en 2026`,
+        excerpt: `De PAC-MAN à Game Boy — le guide ultime des meilleurs sets LEGO gaming disponibles en ce moment.`,
+        read: `5 min de lecture`,
+        content: `<p>Si vous avez grandi avec une manette en main, LEGO propose des sets incroyables qui donnent vie à vos souvenirs de jeu préférés en briques. Voici mes meilleurs choix pour 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>C'est le roi des sets LEGO gaming. Avec 2 651 pièces, c'est une borne d'arcade mécanique fonctionnelle avec une salle de jeux cachée des années 80 à l'intérieur. Si vous n'achetez qu'un seul set cette année, faites-en celui-là. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Obtenez-le sur LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Une réplique quasi 1:1 de la Game Boy originale — avec les cartouches Super Mario Land et Zelda. Il se vend très vite chez la plupart des revendeurs, alors ne dormez pas là-dessus. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Vérifier la disponibilité →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario et son kart rouge iconique en 1 972 pièces. Tête et bras articulés, un magnifique présentoir — c'est une pièce de collection dont chaque fan Nintendo a besoin. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Acheter sur LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Le Creeper (21276)</h3>
+      <p>Un Creeper géant de 665 pièces avec un Cochon bonus — un clin d'œil à l'histoire de Minecraft. Parfait pour les fans du jeu le plus populaire au monde. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Acheter sur LEGO.com →</a></p>`,
+      },
+      id: {
+        title: `Set LEGO Gaming Terbaik untuk Dewasa di 2026`,
+        excerpt: `Dari PAC-MAN hingga Game Boy — panduan lengkap set LEGO gaming terbaik yang bisa kamu beli sekarang.`,
+        read: `5 menit membaca`,
+        content: `<p>Jika kamu tumbuh besar dengan kontroler di tangan, LEGO memiliki beberapa set luar biasa yang menghidupkan kenangan gaming favoritmu dalam bentuk bata. Berikut pilihan terbaik saya untuk 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Inilah raja set LEGO gaming. Dengan 2.651 buah, ini adalah kabinet arcade mekanikal yang berfungsi dengan ruang permainan tersembunyi era 80-an di dalamnya. Jika kamu hanya membeli satu set tahun ini, pilihlah yang ini. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Dapatkan di LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Replika hampir 1:1 dari Game Boy asli — lengkap dengan kartrid Super Mario Land dan Zelda. Cepat habis di sebagian besar pengecer, jadi jangan tunda. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Cek ketersediaan →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario dan kart merah ikoniknya dalam 1.972 buah. Kepala dan lengan yang bisa digerakkan, dudukan pajangan yang indah — ini adalah pajangan rak yang dibutuhkan setiap penggemar Nintendo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Beli di LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft The Creeper (21276)</h3>
+      <p>Creeper raksasa 665 buah dengan mob Babi bonus — penghormatan terhadap sejarah Minecraft. Sempurna untuk penggemar game paling populer di dunia. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Beli di LEGO.com →</a></p>`,
+      },
+      it: {
+        title: `I Migliori Set LEGO Gaming per Adulti nel 2026`,
+        excerpt: `Da PAC-MAN a Game Boy — la guida definitiva ai migliori set LEGO gaming che puoi acquistare adesso.`,
+        read: `5 min di lettura`,
+        content: `<p>Se sei cresciuto con un controller in mano, LEGO ha dei set incredibili che danno vita ai tuoi ricordi di gioco preferiti in forma di mattoncini. Ecco le mie scelte migliori per il 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Questo è il re dei set LEGO gaming. Con 2.651 pezzi, è un cabinato arcade meccanico funzionante con una sala giochi degli anni '80 nascosta all'interno. Se compri solo un set quest'anno, fa' in modo che sia questo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Prendilo su LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Una replica quasi 1:1 del Game Boy originale — completa di cartucce Super Mario Land e Zelda. Si esaurisce velocemente nella maggior parte dei rivenditori, quindi non aspettare. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Verifica disponibilità →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario e il suo iconico kart rosso in 1.972 pezzi. Testa e braccia snodabili, un bellissimo supporto espositivo — un pezzo da scaffale che ogni fan Nintendo deve avere. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Acquista su LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Il Creeper (21276)</h3>
+      <p>Un enorme Creeper da 665 pezzi con un mob Maiale bonus — un omaggio alla storia di Minecraft. Perfetto per i fan del gioco più popolare al mondo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Acquista su LEGO.com →</a></p>`,
+      },
+      nl: {
+        title: `Beste LEGO Gaming Sets voor Volwassenen in 2026`,
+        excerpt: `Van PAC-MAN tot Game Boy — de ultieme gids voor de beste LEGO gaming sets die je nu kunt kopen.`,
+        read: `5 min lezen`,
+        content: `<p>Als je bent opgegroeid met een controller in je hand, heeft LEGO geweldige sets die je favoriete gamingherinneringen tot leven brengen in steenvorm. Hier zijn mijn topkeuzes voor 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Dit is de koning van de LEGO gaming sets. Met 2.651 stukken is het een werkend mechanisch arcade-kabinet met een verborgen jaren 80-speelkamer erin. Als je dit jaar maar één set koopt, laat het dan deze zijn. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Haal hem op LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Een bijna 1:1 replica van de originele Game Boy — compleet met Super Mario Land- en Zelda-cartridges. Het raakt snel uitverkocht bij de meeste retailers, dus slaap er niet op. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Beschikbaarheid controleren →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario en zijn iconische rode kart in 1.972 stukken. Beweegbaar hoofd en armen, een prachtige displaystandaard — dit is een plankstuk dat elke Nintendo-fan nodig heeft. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Kopen op LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft De Creeper (21276)</h3>
+      <p>Een gigantische 665-delige Creeper met een bonus Varken-mob — een knipoog naar de Minecraft-geschiedenis. Perfect voor fans van het populairste spel ter wereld. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Kopen op LEGO.com →</a></p>`,
+      },
+      pl: {
+        title: `Najlepsze Zestawy LEGO Gaming dla Dorosłych w 2026`,
+        excerpt: `Od PAC-MAN do Game Boy — ostateczny przewodnik po najlepszych zestawach LEGO gaming, które możesz teraz kupić.`,
+        read: `5 min czytania`,
+        content: `<p>Jeśli dorastałeś z kontrolerem w ręku, LEGO ma kilka niesamowitych zestawów, które ożywiają twoje ulubione wspomnienia z gier w formie klocków. Oto moje najlepsze wybory na 2026 rok.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>To jest król zestawów LEGO gaming. Z 2651 elementami to działający mechaniczny automat arkadowy z ukrytym pokojem gier z lat 80. Jeśli kupujesz w tym roku tylko jeden zestaw, niech to będzie ten. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Kup na LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Niemal wierna replika w skali 1:1 oryginalnego Game Boya — z kasetami Super Mario Land i Zelda. Szybko wyprzedaje się w większości sklepów, więc nie zwlekaj. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Sprawdź dostępność →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario i jego kultowy czerwony kart w 1972 elementach. Ruchoma głowa i ręce, piękna podstawka do wystawiania — to element na półkę, którego potrzebuje każdy fan Nintendo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Kup na LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Creeper (21276)</h3>
+      <p>Gigantyczny Creeper z 665 elementów z bonusowym mobbem Świni — nawiązanie do historii Minecrafta. Idealny dla fanów najpopularniejszej gry na świecie. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Kup na LEGO.com →</a></p>`,
+      },
+      pt: {
+        title: `Melhores Sets LEGO Gaming para Adultos em 2026`,
+        excerpt: `De PAC-MAN a Game Boy — o guia definitivo dos melhores sets LEGO gaming que você pode comprar agora.`,
+        read: `5 min de leitura`,
+        content: `<p>Se você cresceu com um controle na mão, a LEGO tem alguns sets incríveis que dão vida às suas memórias de jogos favoritas em forma de peças. Aqui estão minhas principais escolhas para 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Este é o rei dos sets LEGO gaming. Com 2.651 peças, é um gabinete de arcade mecânico funcional com uma sala de jogos dos anos 80 escondida dentro. Se você só comprar um set este ano, que seja este. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Compre no LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Uma réplica quase 1:1 do Game Boy original — com cartuchos de Super Mario Land e Zelda. Está esgotando rapidamente na maioria dos varejistas, então não perca tempo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Verificar disponibilidade →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario e seu icônico kart vermelho em 1.972 peças. Cabeça e braços articulados, um lindo suporte de exibição — esta é uma peça de prateleira que todo fã da Nintendo precisa. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Comprar no LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft O Creeper (21276)</h3>
+      <p>Um Creeper gigante de 665 peças com um mob Porco bônus — uma homenagem à história do Minecraft. Perfeito para fãs do jogo mais popular do mundo. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Comprar no LEGO.com →</a></p>`,
+      },
+      sv: {
+        title: `Bästa LEGO Gaming-Set för Vuxna 2026`,
+        excerpt: `Från PAC-MAN till Game Boy — den ultimata guiden till de bästa LEGO gaming-seten du kan köpa just nu.`,
+        read: `5 min läsning`,
+        content: `<p>Om du växte upp med en handkontroll i handen har LEGO några otroliga set som ger dina favoritspelminnen liv i klossform. Här är mina bästa val för 2026.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Det här är kungen av LEGO gaming-set. Med 2 651 delar är det ett fungerande mekaniskt arkadskåp med ett dolt 80-tals spelrum inuti. Om du bara köper ett set i år, gör det till detta. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">Hämta det på LEGO.com →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>En nästan 1:1-skalig replika av den ursprungliga Game Boy — komplett med Super Mario Land- och Zelda-kassetter. Det säljs slut snabbt hos de flesta återförsäljare, så vänta inte. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Kontrollera tillgänglighet →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario och hans ikoniska röda kart i 1 972 delar. Rörligt huvud och armar, ett vackert displaystativ — detta är ett hyllstycke som varje Nintendo-fan behöver. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">Köp på LEGO.com →</a></p>
+      <h3>💚 LEGO® Minecraft Creepern (21276)</h3>
+      <p>En gigantisk 665-delars Creeper med en bonus Gris-mob — en nick till Minecrafts historia. Perfekt för fans av världens populäraste spel. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">Köp på LEGO.com →</a></p>`,
+      },
+      tr: {
+        title: `Yetişkinler için 2026'nın En İyi LEGO Oyun Setleri`,
+        excerpt: `PAC-MAN'dan Game Boy'a — şu anda satın alabileceğiniz en iyi LEGO oyun setlerinin nihai rehberi.`,
+        read: `5 dakika okuma`,
+        content: `<p>Elinizde bir kumanda ile büyüdüyseniz, LEGO'nun favori oyun anılarınızı tuğla formunda hayata geçiren inanılmaz setleri var. İşte 2026 için en iyi seçimlerim.</p>
+      <h3>🕹️ LEGO® PAC-MAN Arcade (10323)</h3>
+      <p>Bu LEGO oyun setlerinin kralıdır. 2.651 parçayla, içinde gizlenmiş bir 80'ler oyun odası bulunan çalışan mekanik bir arcade kabinetidir. Bu yıl sadece bir set satın alıyorsanız, bu olsun. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323" target="_blank" rel="nofollow sponsored">LEGO.com'dan alın →</a></p>
+      <h3>🎮 LEGO® Game Boy (72046)</h3>
+      <p>Orijinal Game Boy'un neredeyse 1:1 ölçekli replikası — Super Mario Land ve Zelda kasetleriyle birlikte. Çoğu perakendecide hızla tükeniyor, bu yüzden beklemeyin. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046" target="_blank" rel="nofollow sponsored">Stok durumunu kontrol edin →</a></p>
+      <h3>🏁 LEGO® Mario Kart (72037)</h3>
+      <p>Mario ve ikonik kırmızı kartu 1.972 parçada. Hareket edebilen kafa ve kollar, güzel bir sergileme standı — her Nintendo hayranının ihtiyaç duyduğu bir raf parçası. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037" target="_blank" rel="nofollow sponsored">LEGO.com'da satın alın →</a></p>
+      <h3>💚 LEGO® Minecraft Creeper (21276)</h3>
+      <p>Bonus bir Domuz mobu ile birlikte 665 parçalık devasa bir Creeper — Minecraft tarihine bir selam. Dünyanın en popüler oyununun hayranları için mükemmel. <a class="inline-aff" href="https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276" target="_blank" rel="nofollow sponsored">LEGO.com'da satın alın →</a></p>`,
+      },
+    },
   }
 ];
 
@@ -12383,7 +13130,13 @@ function renderBlog() {
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:80px 20px"><div style="font-size:64px;margin-bottom:16px">🧱</div><h3 style="font-family:'Boogaloo',cursive;font-size:28px;margin-bottom:10px">Posts coming soon!</h3><p style="color:#888;font-weight:600;font-size:15px">We're working on articles, build updates and tips. Check back soon!</p></div>`;
     return;
   }
-  grid.innerHTML = posts.map(p => `<div class="blog-card reveal" onclick="openBlogPost(${p.id})"><div class="blog-thumb" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span><span class="blog-cat-badge" style="background:${p.catColor}">${p.catLabel}</span></div><div class="blog-card-body"><div class="blog-card-title">${p.title}</div><div class="blog-card-excerpt">${p.excerpt}</div><div class="blog-card-meta"><span class="bdate">${p.date}</span><span>${p.read}</span></div></div></div>`).join('');
+  grid.innerHTML = posts.map(p => {
+    const tr = (p.translations && p.translations[_currentLang]) || {};
+    const title   = tr.title   || p.title;
+    const excerpt = tr.excerpt || p.excerpt;
+    const read    = tr.read    || p.read;
+    return `<div class="blog-card reveal" onclick="openBlogPost(${p.id})"><div class="blog-thumb" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span><span class="blog-cat-badge" style="background:${p.catColor}">${p.catLabel}</span></div><div class="blog-card-body"><div class="blog-card-title">${title}</div><div class="blog-card-excerpt">${excerpt}</div><div class="blog-card-meta"><span class="bdate">${p.date}</span><span>${read}</span></div></div></div>`;
+  }).join('');
   setTimeout(()=>initReveal(),80);
 }
 
@@ -12393,12 +13146,13 @@ function openBlogPost(id) {
   const heroEl = document.getElementById('bpHero');
   heroEl.innerHTML = `<span style="font-size:90px">${p.emoji}</span><button class="blog-post-x" onclick="document.getElementById('blogPostOv').classList.remove('open')">✕</button>`;
   heroEl.style.background = p.bg;
+  const bpTr = (p.translations && p.translations[_currentLang]) || {};
   document.getElementById('bpCat').textContent = p.catLabel;
   document.getElementById('bpCat').style.background = p.catColor;
-  document.getElementById('bpTitle').textContent = p.title;
+  document.getElementById('bpTitle').textContent = bpTr.title   || p.title;
   document.getElementById('bpDate').textContent = p.date;
-  document.getElementById('bpRead').textContent = p.read;
-  document.getElementById('bpContent').innerHTML = p.content;
+  document.getElementById('bpRead').textContent = bpTr.read    || p.read;
+  document.getElementById('bpContent').innerHTML = bpTr.content || p.content;
   // ── SHOP THIS POST ──────────────────────────────────────
   const stpEl = document.getElementById('bpShopThis');
   if (stpEl) {
@@ -13727,6 +14481,16 @@ const I18N = {
     trust_support:'Builder Support', trust_support_sub:'Stuck? Ask in the YouTube comments',
     trust_secure:'Secure Checkout', trust_secure_sub:'Powered by your preferred payment processor',
     btn_subscribe_yt:'Subscribe on YouTube', btn_visit_shop:'Visit the Shop',
+    home_badge:'LEGO® YouTube Channel + Shop',
+    home_sub:'Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.',
+    stat_videos:'Videos', stat_bricks:'Bricks Used',
+    lbl_latest:'Latest Videos', sec_latest_title:'Fresh Off The Build Plate',
+    sec_latest_sub:'Click any video to watch on YouTube.',
+    btn_view_all_pre:'View All', btn_view_all_post:'Videos →',
+    lbl_about:'About the Channel', lbl_browse:'Browse By Topic',
+    sec_browse_title:'Find Your LEGO® Obsession',
+    sec_browse_sub:'From epic city builds to rare piece deep dives — something for every LEGO® fan.',
+    sec_moc_browse:'Browse MOC Gallery',
   },
   af: {
     nav_home:'🏠 Tuis', nav_videos:'🎬 Videos', nav_mocs:'🏗️ MOC Galery',
@@ -13765,6 +14529,16 @@ const I18N = {
     trust_support:'Bouondersteuning', trust_support_sub:'Vasgevang? Vra in die YouTube-opmerkings',
     trust_secure:'Veilige Kassa', trust_secure_sub:'Aangedryf deur jou verkose betalingsverwerker',
     btn_subscribe_yt:'Teken in op YouTube', btn_visit_shop:'Besoek die Winkel',
+    home_badge:'LEGO® YouTube Kanaal + Winkel',
+    home_sub:'Epieuse LEGO® boue, diep duike, wenke & uitdagings — plus oorspronklike MOC instruksies wat jy tuis kan bou.',
+    stat_videos:'Videos', stat_bricks:'Bakstene Gebruik',
+    lbl_latest:'Nuutste Videos', sec_latest_title:'Vars Van Die Bouperseel',
+    sec_latest_sub:'Klik op enige video om op YouTube te kyk.',
+    btn_view_all_pre:'Sien Alle', btn_view_all_post:'Videos →',
+    lbl_about:'Oor die Kanaal', lbl_browse:'Blaai Per Onderwerp',
+    sec_browse_title:'Vind Jou LEGO® Obsessie',
+    sec_browse_sub:'Van epieuse stadboue tot seldsame onderdeel diepduike — iets vir elke LEGO® aanhanger.',
+    sec_moc_browse:'Blaai MOC Galery',
   },
   fr: {
     nav_home:'🏠 Accueil', nav_videos:'🎬 Vidéos', nav_mocs:'🏗️ Galerie MOC',
@@ -13803,6 +14577,16 @@ const I18N = {
     trust_support:'Support Constructeur', trust_support_sub:'Bloqué? Demandez dans les commentaires YouTube',
     trust_secure:'Paiement Sécurisé', trust_secure_sub:'Propulsé par votre processeur de paiement préféré',
     btn_subscribe_yt:"S'abonner sur YouTube", btn_visit_shop:'Visiter la Boutique',
+    home_badge:'Chaîne YouTube LEGO® + Boutique',
+    home_sub:'Constructions LEGO® épiques, analyses approfondies, conseils & défis — plus des instructions MOC originales à construire chez vous.',
+    stat_videos:'Vidéos', stat_bricks:'Briques Utilisées',
+    lbl_latest:'Dernières Vidéos', sec_latest_title:"Tout Frais De L'Atelier",
+    sec_latest_sub:'Cliquez sur une vidéo pour la regarder sur YouTube.',
+    btn_view_all_pre:'Voir Toutes les', btn_view_all_post:'Vidéos →',
+    lbl_about:'À Propos de la Chaîne', lbl_browse:'Parcourir par Thème',
+    sec_browse_title:'Trouvez Votre Obsession LEGO®',
+    sec_browse_sub:'Des constructions de ville épiques aux analyses de pièces rares — quelque chose pour chaque fan LEGO®.',
+    sec_moc_browse:'Parcourir la Galerie MOC',
   },
   de: {
     nav_home:'🏠 Startseite', nav_videos:'🎬 Videos', nav_mocs:'🏗️ MOC Galerie',
@@ -13841,6 +14625,16 @@ const I18N = {
     trust_support:'Bauunterstützung', trust_support_sub:'Stecken Sie fest? Fragen Sie in den YouTube-Kommentaren',
     trust_secure:'Sicherer Checkout', trust_secure_sub:'Betrieben von Ihrem bevorzugten Zahlungsanbieter',
     btn_subscribe_yt:'Auf YouTube abonnieren', btn_visit_shop:'Zum Shop',
+    home_badge:'LEGO® YouTube Kanal + Shop',
+    home_sub:'Epische LEGO® Bauten, Tiefenanalysen, Tipps & Herausforderungen — plus originale MOC Anleitungen zum Selberbauen.',
+    stat_videos:'Videos', stat_bricks:'Steine Verbaut',
+    lbl_latest:'Neueste Videos', sec_latest_title:'Frisch Von Der Bauplatte',
+    sec_latest_sub:'Klicken Sie auf ein Video um es auf YouTube anzusehen.',
+    btn_view_all_pre:'Alle', btn_view_all_post:'Videos ansehen →',
+    lbl_about:'Über den Kanal', lbl_browse:'Nach Thema Stöbern',
+    sec_browse_title:'Finde Deine LEGO® Obsession',
+    sec_browse_sub:'Von epischen Stadtbauten bis zu seltenen Teile-Analysen — etwas für jeden LEGO® Fan.',
+    sec_moc_browse:'MOC Galerie Durchsuchen',
   },
   es: {
     nav_home:'🏠 Inicio', nav_videos:'🎬 Vídeos', nav_mocs:'🏗️ Galería MOC',
@@ -13879,6 +14673,16 @@ const I18N = {
     trust_support:'Soporte al Constructor', trust_support_sub:'¿Atascado? Pregunta en los comentarios de YouTube',
     trust_secure:'Pago Seguro', trust_secure_sub:'Impulsado por tu procesador de pago preferido',
     btn_subscribe_yt:'Suscribirse en YouTube', btn_visit_shop:'Visitar la Tienda',
+    home_badge:'Canal de YouTube LEGO® + Tienda',
+    home_sub:'Construcciones LEGO® épicas, análisis profundos, consejos y desafíos — más instrucciones MOC originales para construir en casa.',
+    stat_videos:'Vídeos', stat_bricks:'Piezas Usadas',
+    lbl_latest:'Últimos Vídeos', sec_latest_title:'Recién Salido Del Horno',
+    sec_latest_sub:'Haz clic en cualquier vídeo para verlo en YouTube.',
+    btn_view_all_pre:'Ver Todos los', btn_view_all_post:'Vídeos →',
+    lbl_about:'Sobre el Canal', lbl_browse:'Explorar por Tema',
+    sec_browse_title:'Encuentra Tu Obsesión LEGO®',
+    sec_browse_sub:'Desde construcciones de ciudad épicas hasta análisis de piezas raras — algo para cada fan de LEGO®.',
+    sec_moc_browse:'Explorar Galería MOC',
   },
   pt: {
     nav_home:'🏠 Início', nav_videos:'🎬 Vídeos', nav_mocs:'🏗️ Galeria MOC',
@@ -13917,6 +14721,16 @@ const I18N = {
     trust_support:'Suporte ao Construtor', trust_support_sub:'Preso? Pergunte nos comentários do YouTube',
     trust_secure:'Checkout Seguro', trust_secure_sub:'Alimentado pelo seu processador de pagamento preferido',
     btn_subscribe_yt:'Subscrever no YouTube', btn_visit_shop:'Visitar a Loja',
+    home_badge:'Canal YouTube LEGO® + Loja',
+    home_sub:'Construções LEGO® épicas, análises profundas, dicas e desafios — mais instruções MOC originais para construir em casa.',
+    stat_videos:'Vídeos', stat_bricks:'Peças Usadas',
+    lbl_latest:'Últimos Vídeos', sec_latest_title:'Fresco Da Oficina',
+    sec_latest_sub:'Clique em qualquer vídeo para ver no YouTube.',
+    btn_view_all_pre:'Ver Todos os', btn_view_all_post:'Vídeos →',
+    lbl_about:'Sobre o Canal', lbl_browse:'Explorar por Tema',
+    sec_browse_title:'Encontre a Sua Obsessão LEGO®',
+    sec_browse_sub:'Desde construções de cidade épicas a análises de peças raras — algo para cada fã de LEGO®.',
+    sec_moc_browse:'Explorar Galeria MOC',
   },
   nl: {
     nav_home:'🏠 Thuis', nav_videos:'🎬 Video\'s', nav_mocs:'🏗️ MOC Galerij',
@@ -13955,8 +14769,305 @@ const I18N = {
     trust_support:'Bouwondersteuning', trust_support_sub:'Vastgelopen? Vraag het in de YouTube-reacties',
     trust_secure:'Veilig Afrekenen', trust_secure_sub:'Aangedreven door jouw favoriete betalingsverwerker',
     btn_subscribe_yt:'Abonneren op YouTube', btn_visit_shop:'Bezoek de Winkel',
+    home_badge:'LEGO® YouTube Kanaal + Winkel',
+    home_sub:'Epische LEGO® bouwwerken, diepgaande analyses, tips & uitdagingen — plus originele MOC instructies om thuis te bouwen.',
+    stat_videos:"Video's", stat_bricks:'Stenen Gebruikt',
+    lbl_latest:"Laatste Video's", sec_latest_title:'Vers Van De Bouwplaat',
+    sec_latest_sub:"Klik op een video om die op YouTube te bekijken.",
+    btn_view_all_pre:"Alle", btn_view_all_post:"Video's bekijken →",
+    lbl_about:'Over het Kanaal', lbl_browse:'Bladeren op Onderwerp',
+    sec_browse_title:'Vind Jouw LEGO® Obsessie',
+    sec_browse_sub:'Van epische stadsbouwwerken tot zeldzame onderdelen — iets voor elke LEGO® fan.',
+    sec_moc_browse:'MOC Galerij Doorzoeken',
+  },
+  pl: {
+    nav_home:'🏠 Strona Główna', nav_videos:'🎬 Filmy', nav_mocs:'🏗️ Galeria MOC',
+    nav_shop:'🛒 Sklep', nav_blog:'📰 Blog', nav_community:'👥 Społeczność',
+    nav_about:'👤 O nas', nav_game:'🎮 Gra',
+    hero_badge:'Kanał YouTube LEGO® + Sklep',
+    hero_sub:'Epickie budowle LEGO®, głębokie analizy, porady i wyzwania — plus oryginalne instrukcje MOC do budowania w domu.',
+    hero_subscribers:'Subskrybenci', hero_sub_yt:'Subskrybuj na YouTube',
+    shop_badge:'🛒 Sklep Bricktastic', shop_h1a:'Zbuduj Co', shop_h1b:'Widzisz.',
+    shop_sub:'Instrukcje PDF do moich oryginalnych projektów MOC, plus kompletne fizyczne budowle. Natychmiastowe pobieranie.',
+    shop_tab_all:'Wszystkie Produkty', shop_tab_ins:'📐 Instrukcje',
+    shop_tab_moc:'🏗️ Fizyczne MOC', shop_tab_bun:'📦 Zestawy',
+    shop_tab_gaming:'🎮 Gry', shop_tab_cars:'🏎️ Samochody',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Ikony',
+    buy_lego:'🛒 Kup na LEGO.com', check_price:'Sprawdź cenę na LEGO.com →',
+    aff_disclosure:'Ujawnienie afiliacji: Linki prowadzą do LEGO.com. Zarabiam małą prowizję, jeśli kupisz — bez dodatkowych kosztów dla Ciebie.',
+    browse_all:'🧱 Przeglądaj Wszystkie Zestawy LEGO®',
+    browse_sub:'Tysiące zestawów w każdym motywie — przeglądaj pełną ofertę LEGO.com.',
+    browse_btn:'Sklep LEGO.com →',
+    newsletter_h:'📬 Dołącz do Newslettera Bricktastic',
+    newsletter_p:'Nowe filmy, premiery MOC i ekskluzywne oferty — prosto do Twojej skrzynki',
+    newsletter_btn:'Subskrybuj 🎉',
+    newsletter_ph:'Twój adres e-mail…',
+    footer_copy:'© 2026 Bricktastic Builds · Wszelkie prawa zastrzeżone',
+    notify_btn:'📧 Powiadom Mnie', coming_soon:'🔜 Już Wkrótce',
+    blog_badge:'📰 Blog Bricktastic', blog_h1a:'Budowle,', blog_h1b:'Historie i Porady.',
+    blog_sub:'Głębokie analizy, przewodniki budowania, wiadomości LEGO® i porady od prawdziwego fana.',
+    moc_badge:'🏗️ Oryginalne Kreacje LEGO®', moc_h1a:'Galeria', moc_h1b:'MOC.',
+    moc_sub:'Każda oryginalna budowla, którą zaprojektowałem — przewijaj zdjęcia.',
+    about_h2a:'Zbudowane przez', about_h2b:'Prawdziwego', about_h2c:'Fana.',
+    cart_title:'🛒 Twój Koszyk', cart_empty:'Twój koszyk jest pusty!\nDodaj budowle, aby zacząć.',
+    cart_checkout:'🔒 Przejdź do Kasy',
+    trust_download:'Natychmiastowe Pobieranie', trust_download_sub:'PDF dostarczony natychmiast na Twój e-mail',
+    trust_bricklink:'Lista BrickLink Dołączona', trust_bricklink_sub:'Każda część wymieniona dla łatwego sourcingu',
+    trust_ships:'Wysyłka Światowa', trust_ships_sub:'Fizyczne MOC zbudowane i wysłane z troską',
+    trust_support:'Wsparcie Budowniczego', trust_support_sub:'Utknąłeś? Zapytaj w komentarzach YouTube',
+    trust_secure:'Bezpieczna Kasa', trust_secure_sub:'Obsługiwane przez Twój ulubiony procesor płatności',
+    btn_subscribe_yt:'Subskrybuj na YouTube', btn_visit_shop:'Odwiedź Sklep',
+    home_badge:'Kanał YouTube LEGO® + Sklep',
+    home_sub:'Epickie budowle LEGO®, głębokie analizy, porady i wyzwania — plus oryginalne instrukcje MOC do budowania w domu.',
+    stat_videos:'Filmy', stat_bricks:'Klocki Użyte',
+    lbl_latest:'Najnowsze Filmy', sec_latest_title:'Prosto Z Budowy',
+    sec_latest_sub:'Kliknij dowolny film, aby oglądać na YouTube.',
+    btn_view_all_pre:'Zobacz Wszystkie', btn_view_all_post:'Filmy →',
+    lbl_about:'O Kanale', lbl_browse:'Przeglądaj wg Tematu',
+    sec_browse_title:'Znajdź Swoją Obsesję LEGO®',
+    sec_browse_sub:'Od epickich budowli miejskich po rzadkie analizy klocków — coś dla każdego fana LEGO®.',
+    sec_moc_browse:'Przeglądaj Galerię MOC',
+  },
+  it: {
+    nav_home:'🏠 Home', nav_videos:'🎬 Video', nav_mocs:'🏗️ Galleria MOC',
+    nav_shop:'🛒 Negozio', nav_blog:'📰 Blog', nav_community:'👥 Comunità',
+    nav_about:'👤 Chi siamo', nav_game:'🎮 Gioco',
+    hero_badge:'Canale YouTube LEGO® + Negozio',
+    hero_sub:'Costruzioni LEGO® epiche, approfondimenti, consigli e sfide — più istruzioni MOC originali da costruire a casa.',
+    hero_subscribers:'Iscritti', hero_sub_yt:'Iscriviti su YouTube',
+    shop_badge:'🛒 Negozio Bricktastic', shop_h1a:'Costruisci Ciò', shop_h1b:'Che Vedi.',
+    shop_sub:'Istruzioni PDF per i miei design MOC originali, più costruzioni fisiche complete. Download immediato.',
+    shop_tab_all:'Tutti i Prodotti', shop_tab_ins:'📐 Istruzioni',
+    shop_tab_moc:'🏗️ MOC Fisici', shop_tab_bun:'📦 Bundle',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Auto',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Icone',
+    buy_lego:'🛒 Acquista su LEGO.com', check_price:'Controlla il prezzo su LEGO.com →',
+    aff_disclosure:'Informativa affiliazione: I link portano a LEGO.com. Guadagno una piccola commissione se acquisti — senza costi aggiuntivi per te.',
+    browse_all:'🧱 Sfoglia Tutti i Set LEGO®',
+    browse_sub:'Migliaia di set in ogni tema — esplora la gamma completa di LEGO.com.',
+    browse_btn:'Acquista su LEGO.com →',
+    newsletter_h:'📬 Iscriviti alla Newsletter Bricktastic',
+    newsletter_p:'Nuovi video, uscite MOC e offerte esclusive — direttamente nella tua casella di posta',
+    newsletter_btn:'Iscriviti 🎉',
+    newsletter_ph:'Il tuo indirizzo e-mail…',
+    footer_copy:'© 2026 Bricktastic Builds · Tutti i diritti riservati',
+    notify_btn:'📧 Avvisami', coming_soon:'🔜 Prossimamente',
+    blog_badge:'📰 Blog Bricktastic', blog_h1a:'Costruzioni,', blog_h1b:'Storie e Consigli.',
+    blog_sub:'Approfondimenti, guide di costruzione, notizie LEGO® e consigli da un vero fan.',
+    moc_badge:'🏗️ Creazioni LEGO® Originali', moc_h1a:'Galleria', moc_h1b:'MOC.',
+    moc_sub:'Ogni costruzione originale che ho progettato — scorri le foto.',
+    about_h2a:'Costruito da un', about_h2b:'Vero', about_h2c:'Fan.',
+    cart_title:'🛒 Il Tuo Carrello', cart_empty:'Il tuo carrello è vuoto!\nAggiungi delle costruzioni per iniziare.',
+    cart_checkout:'🔒 Procedi al Pagamento',
+    trust_download:'Download Immediato', trust_download_sub:'PDF consegnato immediatamente alla tua email',
+    trust_bricklink:'Lista BrickLink Inclusa', trust_bricklink_sub:'Ogni pezzo elencato per un facile reperimento',
+    trust_ships:'Spedizione Mondiale', trust_ships_sub:'MOC fisici costruiti e spediti con cura',
+    trust_support:'Supporto al Costruttore', trust_support_sub:'Bloccato? Chiedi nei commenti di YouTube',
+    trust_secure:'Pagamento Sicuro', trust_secure_sub:'Alimentato dal tuo processore di pagamento preferito',
+    btn_subscribe_yt:'Iscriviti su YouTube', btn_visit_shop:'Visita il Negozio',
+    home_badge:'Canale YouTube LEGO® + Negozio',
+    home_sub:'Costruzioni LEGO® epiche, approfondimenti, consigli e sfide — più istruzioni MOC originali da costruire a casa.',
+    stat_videos:'Video', stat_bricks:'Mattoncini Usati',
+    lbl_latest:'Ultimi Video', sec_latest_title:'Appena Uscito Dal Cantiere',
+    sec_latest_sub:'Clicca su qualsiasi video per guardarlo su YouTube.',
+    btn_view_all_pre:'Guarda Tutti i', btn_view_all_post:'Video →',
+    lbl_about:'Sul Canale', lbl_browse:'Sfoglia per Argomento',
+    sec_browse_title:'Trova la Tua Ossessione LEGO®',
+    sec_browse_sub:'Da epiche costruzioni urbane ad analisi di pezzi rari — qualcosa per ogni fan di LEGO®.',
+    sec_moc_browse:'Sfoglia la Galleria MOC',
+  },
+  fil: {
+    nav_home:'🏠 Home', nav_videos:'🎬 Mga Video', nav_mocs:'🏗️ MOC Gallery',
+    nav_shop:'🛒 Tindahan', nav_blog:'📰 Blog', nav_community:'👥 Komunidad',
+    nav_about:'👤 Tungkol', nav_game:'🎮 Laro',
+    hero_badge:'LEGO® YouTube Channel + Tindahan',
+    hero_sub:'Mga epikong LEGO® na gawa, malalim na pagsusuri, mga tip at hamon — kasama na ang mga orihinal na MOC na instruksyon na maaari mong itayo sa bahay.',
+    hero_subscribers:'Mga Subscriber', hero_sub_yt:'Mag-subscribe sa YouTube',
+    shop_badge:'🛒 Bricktastic Tindahan', shop_h1a:'Itayo Ang', shop_h1b:'Nakikita Mo.',
+    shop_sub:'Mga PDF na instruksyon para sa aking mga orihinal na MOC na disenyo, kasama ang kumpletong mga pisikal na gawa. Instant na pag-download.',
+    shop_tab_all:'Lahat ng Produkto', shop_tab_ins:'📐 Mga Instruksyon',
+    shop_tab_moc:'🏗️ Pisikal na MOC', shop_tab_bun:'📦 Mga Bundle',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Mga Sasakyan',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Mga Icon',
+    buy_lego:'🛒 Bumili sa LEGO.com', check_price:'Suriin ang presyo sa LEGO.com →',
+    aff_disclosure:'Pagsisiwalat ng Kaakibat: Ang mga link ay napupunta sa LEGO.com. Kumikita ako ng maliit na komisyon kung bibili ka — nang walang dagdag na gastos para sa iyo.',
+    browse_all:'🧱 I-browse ang Lahat ng LEGO® Set',
+    browse_sub:'Libu-libong set sa bawat tema — i-explore ang buong hanay ng LEGO.com.',
+    browse_btn:'Mamili sa LEGO.com →',
+    newsletter_h:'📬 Sumali sa Bricktastic Newsletter',
+    newsletter_p:'Mga bagong video, MOC na labasan at eksklusibong alok — direkta sa iyong inbox',
+    newsletter_btn:'Mag-subscribe 🎉',
+    newsletter_ph:'Ang iyong email address…',
+    footer_copy:'© 2026 Bricktastic Builds · Lahat ng karapatan ay nakalaan',
+    notify_btn:'📧 Abisuhan Ako', coming_soon:'🔜 Paparating Na',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Mga Gawa,', blog_h1b:'Kuwento at Tips.',
+    blog_sub:'Malalim na pagsusuri, mga gabay sa pagtatayo, balita ng LEGO® at mga tip mula sa isang tunay na tagahanga.',
+    moc_badge:'🏗️ Mga Orihinal na LEGO® Kreasyón', moc_h1a:'MOC', moc_h1b:'Gallery.',
+    moc_sub:'Bawat orihinal na gawa na aking idinisenyo — mag-scroll sa mga larawan.',
+    about_h2a:'Itinayo ng isang', about_h2b:'Tunay na', about_h2c:'Tagahanga.',
+    cart_title:'🛒 Ang Iyong Cart', cart_empty:'Walang laman ang iyong cart!\nMagdagdag ng mga gawa para makapagsimula.',
+    cart_checkout:'🔒 Magpatuloy sa Checkout',
+    trust_download:'Instant na Pag-download', trust_download_sub:'Ang PDF ay kaagad na maihahatid sa iyong email',
+    trust_bricklink:'Kasama ang BrickLink List', trust_bricklink_sub:'Bawat piraso ay nakalista para sa madaling paghahanap',
+    trust_ships:'Nagpapadala sa Buong Mundo', trust_ships_sub:'Mga pisikal na MOC na itinayo at ipinadala nang may pag-iingat',
+    trust_support:'Suporta ng Tagagawa', trust_support_sub:'Natigil? Magtanong sa mga komento ng YouTube',
+    trust_secure:'Ligtas na Checkout', trust_secure_sub:'Pinapagana ng iyong paboritong payment processor',
+    btn_subscribe_yt:'Mag-subscribe sa YouTube', btn_visit_shop:'Bisitahin ang Tindahan',
+    home_badge:'LEGO® YouTube Channel + Tindahan',
+    home_sub:'Mga epikong LEGO® na gawa, malalim na pagsusuri, mga tip at hamon — kasama na ang mga orihinal na MOC na instruksyon na maaari mong itayo sa bahay.',
+    stat_videos:'Mga Video', stat_bricks:'Mga Brickong Ginamit',
+    lbl_latest:'Mga Pinakabagong Video', sec_latest_title:'Sariwa Mula Sa Build Plate',
+    sec_latest_sub:'I-click ang anumang video para manood sa YouTube.',
+    btn_view_all_pre:'Tingnan ang Lahat ng', btn_view_all_post:'Mga Video →',
+    lbl_about:'Tungkol sa Channel', lbl_browse:'I-browse ayon sa Paksa',
+    sec_browse_title:'Hanapin ang Iyong LEGO® Obsesyon',
+    sec_browse_sub:'Mula sa mga epikong lungsod na gawa hanggang sa mga bihirang piraso — may para sa bawat tagahanga ng LEGO®.',
+    sec_moc_browse:'I-browse ang MOC Gallery',
+  },
+  tr: {
+    nav_home:'🏠 Ana Sayfa', nav_videos:'🎬 Videolar', nav_mocs:'🏗️ MOC Galerisi',
+    nav_shop:'🛒 Mağaza', nav_blog:'📰 Blog', nav_community:'👥 Topluluk',
+    nav_about:'👤 Hakkında', nav_game:'🎮 Oyun',
+    hero_badge:'LEGO® YouTube Kanalı + Mağaza',
+    hero_sub:'Destansı LEGO® yapıları, derin incelemeler, ipuçları ve meydan okumalar — evde inşa edebileceğiniz orijinal MOC talimatlarıyla birlikte.',
+    hero_subscribers:'Aboneler', hero_sub_yt:'YouTube\'da Abone Ol',
+    shop_badge:'🛒 Bricktastic Mağaza', shop_h1a:'Gördüğünü', shop_h1b:'İnşa Et.',
+    shop_sub:'Orijinal MOC tasarımlarım için PDF yapım talimatları, artı tam fiziksel yapılar. Anında indirme.',
+    shop_tab_all:'Tüm Ürünler', shop_tab_ins:'📐 Talimatlar',
+    shop_tab_moc:'🏗️ Fiziksel MOC\'lar', shop_tab_bun:'📦 Paketler',
+    shop_tab_gaming:'🎮 Oyun', shop_tab_cars:'🏎️ Arabalar',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ İkonlar',
+    buy_lego:'🛒 LEGO.com\'da Satın Al', check_price:'LEGO.com\'da fiyatı kontrol et →',
+    aff_disclosure:'Bağlı Kuruluş Açıklaması: Bağlantılar LEGO.com\'a gider. Satın alırsanız küçük bir komisyon kazanırım — size ek bir maliyet olmadan.',
+    browse_all:'🧱 Tüm LEGO® Setlerine Gözat',
+    browse_sub:'Her temada binlerce set — LEGO.com\'un tam aralığını keşfedin.',
+    browse_btn:'LEGO.com\'da Alışveriş Yap →',
+    newsletter_h:'📬 Bricktastic Bültenine Katıl',
+    newsletter_p:'Yeni videolar, MOC çıkışları ve özel teklifler — doğrudan gelen kutunuza',
+    newsletter_btn:'Abone Ol 🎉',
+    newsletter_ph:'E-posta adresiniz…',
+    footer_copy:'© 2026 Bricktastic Builds · Tüm hakları saklıdır',
+    notify_btn:'📧 Beni Bilgilendir', coming_soon:'🔜 Yakında',
+    blog_badge:'📰 Bricktastic Blog', blog_h1a:'Yapılar,', blog_h1b:'Hikayeler ve İpuçları.',
+    blog_sub:'Gerçek bir hayranın derin incelemeleri, yapım rehberleri, LEGO® haberleri ve ipuçları.',
+    moc_badge:'🏗️ Orijinal LEGO® Kreasyonları', moc_h1a:'MOC', moc_h1b:'Galerisi.',
+    moc_sub:'Tasarladığım her orijinal yapı — fotoğraflar arasında gezin.',
+    about_h2a:'Gerçek Bir', about_h2b:'Hayran', about_h2c:'Tarafından İnşa Edildi.',
+    cart_title:'🛒 Sepetiniz', cart_empty:'Sepetiniz boş!\nBaşlamak için yapılar ekleyin.',
+    cart_checkout:'🔒 Ödemeye Geç',
+    trust_download:'Anında İndirme', trust_download_sub:'PDF e-postanıza hemen teslim edilir',
+    trust_bricklink:'BrickLink Listesi Dahil', trust_bricklink_sub:'Kolay temin için her parça listelenmiştir',
+    trust_ships:'Dünya Genelinde Gönderim', trust_ships_sub:'Fiziksel MOC\'lar özenle inşa edilip gönderilir',
+    trust_support:'Yapımcı Desteği', trust_support_sub:'Takıldınız mı? YouTube yorumlarında sorun',
+    trust_secure:'Güvenli Ödeme', trust_secure_sub:'Tercih ettiğiniz ödeme işlemcisi tarafından desteklenir',
+    btn_subscribe_yt:'YouTube\'da Abone Ol', btn_visit_shop:'Mağazayı Ziyaret Et',
+    home_badge:'LEGO® YouTube Kanalı + Mağaza',
+    home_sub:'Destansı LEGO® yapıları, derin incelemeler, ipuçları ve meydan okumalar — evde inşa edebileceğiniz orijinal MOC talimatlarıyla birlikte.',
+    stat_videos:'Videolar', stat_bricks:'Kullanılan Tuğlalar',
+    lbl_latest:'Son Videolar', sec_latest_title:'Yapım Masasından Taze',
+    sec_latest_sub:'Herhangi bir videoya tıklayarak YouTube\'da izleyin.',
+    btn_view_all_pre:'Tüm', btn_view_all_post:'Videoları Gör →',
+    lbl_about:'Kanal Hakkında', lbl_browse:'Konuya Göre Gözat',
+    sec_browse_title:'LEGO® Takıntını Bul',
+    sec_browse_sub:'Destansı şehir yapılarından nadir parça derinlemelerine — her LEGO® hayranı için bir şeyler.',
+    sec_moc_browse:'MOC Galerisine Gözat',
+  },
+  id: {
+    nav_home:'🏠 Beranda', nav_videos:'🎬 Video', nav_mocs:'🏗️ Galeri MOC',
+    nav_shop:'🛒 Toko', nav_blog:'📰 Blog', nav_community:'👥 Komunitas',
+    nav_about:'👤 Tentang', nav_game:'🎮 Game',
+    hero_badge:'Saluran YouTube LEGO® + Toko',
+    hero_sub:'Kreasi LEGO® epik, ulasan mendalam, tips dan tantangan — plus instruksi MOC orisinal yang bisa kamu bangun di rumah.',
+    hero_subscribers:'Pelanggan', hero_sub_yt:'Berlangganan di YouTube',
+    shop_badge:'🛒 Toko Bricktastic', shop_h1a:'Bangun Apa', shop_h1b:'Yang Kamu Lihat.',
+    shop_sub:'Instruksi PDF untuk desain MOC orisinal saya, plus kreasi fisik lengkap. Unduh seketika.',
+    shop_tab_all:'Semua Produk', shop_tab_ins:'📐 Instruksi',
+    shop_tab_moc:'🏗️ MOC Fisik', shop_tab_bun:'📦 Paket',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Mobil',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Ikon',
+    buy_lego:'🛒 Beli di LEGO.com', check_price:'Cek harga di LEGO.com →',
+    aff_disclosure:'Pengungkapan Afiliasi: Tautan menuju ke LEGO.com. Saya mendapat komisi kecil jika kamu membeli — tanpa biaya tambahan untukmu.',
+    browse_all:'🧱 Jelajahi Semua Set LEGO®',
+    browse_sub:'Ribuan set dari setiap tema — jelajahi seluruh rangkaian LEGO.com.',
+    browse_btn:'Belanja LEGO.com →',
+    newsletter_h:'📬 Bergabung dengan Newsletter Bricktastic',
+    newsletter_p:'Video baru, rilis MOC & penawaran eksklusif — langsung ke kotak masukmu',
+    newsletter_btn:'Berlangganan 🎉',
+    newsletter_ph:'Alamat email kamu…',
+    footer_copy:'© 2026 Bricktastic Builds · Semua hak dilindungi',
+    notify_btn:'📧 Beritahu Saya', coming_soon:'🔜 Segera Hadir',
+    blog_badge:'📰 Blog Bricktastic', blog_h1a:'Kreasi,', blog_h1b:'Cerita & Tips.',
+    blog_sub:'Ulasan mendalam, panduan membangun, berita LEGO® dan tips dari penggemar sejati.',
+    moc_badge:'🏗️ Kreasi LEGO® Orisinal', moc_h1a:'Galeri', moc_h1b:'MOC.',
+    moc_sub:'Setiap kreasi orisinal yang saya rancang — gulir foto-fotonya.',
+    about_h2a:'Dibangun oleh', about_h2b:'Penggemar', about_h2c:'Sejati.',
+    cart_title:'🛒 Keranjang Kamu', cart_empty:'Keranjangmu kosong!\nTambahkan kreasi untuk mulai.',
+    cart_checkout:'🔒 Lanjutkan ke Pembayaran',
+    trust_download:'Unduh Seketika', trust_download_sub:'PDF dikirim langsung ke emailmu',
+    trust_bricklink:'Daftar BrickLink Termasuk', trust_bricklink_sub:'Setiap bagian terdaftar untuk kemudahan pengadaan',
+    trust_ships:'Pengiriman ke Seluruh Dunia', trust_ships_sub:'MOC fisik dibangun dan dikirim dengan penuh perhatian',
+    trust_support:'Dukungan Pembangun', trust_support_sub:'Bingung? Tanyakan di komentar YouTube',
+    trust_secure:'Pembayaran Aman', trust_secure_sub:'Didukung oleh pemroses pembayaran pilihanmu',
+    btn_subscribe_yt:'Berlangganan di YouTube', btn_visit_shop:'Kunjungi Toko',
+    home_badge:'Saluran YouTube LEGO® + Toko',
+    home_sub:'Kreasi LEGO® epik, ulasan mendalam, tips dan tantangan — plus instruksi MOC orisinal yang bisa kamu bangun di rumah.',
+    stat_videos:'Video', stat_bricks:'Brick Digunakan',
+    lbl_latest:'Video Terbaru', sec_latest_title:'Baru Dari Meja Bangun',
+    sec_latest_sub:'Klik video mana pun untuk menonton di YouTube.',
+    btn_view_all_pre:'Lihat Semua', btn_view_all_post:'Video →',
+    lbl_about:'Tentang Saluran', lbl_browse:'Jelajahi Berdasarkan Topik',
+    sec_browse_title:'Temukan Obsesi LEGO®-mu',
+    sec_browse_sub:'Dari kreasi kota epik hingga ulasan mendalam tentang bagian langka — sesuatu untuk setiap penggemar LEGO®.',
+    sec_moc_browse:'Jelajahi Galeri MOC',
+  },
+  sv: {
+    nav_home:'🏠 Hem', nav_videos:'🎬 Videor', nav_mocs:'🏗️ MOC-galleri',
+    nav_shop:'🛒 Butik', nav_blog:'📰 Blogg', nav_community:'👥 Gemenskap',
+    nav_about:'👤 Om oss', nav_game:'🎮 Spel',
+    hero_badge:'LEGO® YouTube-kanal + Butik',
+    hero_sub:'Episka LEGO®-byggen, djupdykningar, tips och utmaningar — plus originella MOC-instruktioner du kan bygga hemma.',
+    hero_subscribers:'Prenumeranter', hero_sub_yt:'Prenumerera på YouTube',
+    shop_badge:'🛒 Bricktastic Butik', shop_h1a:'Bygg Det Du', shop_h1b:'Ser.',
+    shop_sub:'PDF-bygginstruktioner för mina originella MOC-designer, plus kompletta fysiska byggen. Omedelbar nedladdning.',
+    shop_tab_all:'Alla Produkter', shop_tab_ins:'📐 Instruktioner',
+    shop_tab_moc:'🏗️ Fysiska MOC', shop_tab_bun:'📦 Paket',
+    shop_tab_gaming:'🎮 Gaming', shop_tab_cars:'🏎️ Bilar',
+    shop_tab_technic:'⚙️ Technic', shop_tab_icons:'🏛️ Ikoner',
+    buy_lego:'🛒 Köp på LEGO.com', check_price:'Kontrollera priset på LEGO.com →',
+    aff_disclosure:'Affiliate-information: Länkar går till LEGO.com. Jag tjänar en liten provision om du köper — utan extra kostnad för dig.',
+    browse_all:'🧱 Bläddra Alla LEGO®-set',
+    browse_sub:'Tusentals set i varje tema — utforska hela LEGO.com-sortimentet.',
+    browse_btn:'Handla LEGO.com →',
+    newsletter_h:'📬 Gå med i Bricktastic-nyhetsbrevet',
+    newsletter_p:'Nya videor, MOC-släpp och exklusiva erbjudanden — direkt till din inkorg',
+    newsletter_btn:'Prenumerera 🎉',
+    newsletter_ph:'Din e-postadress…',
+    footer_copy:'© 2026 Bricktastic Builds · Alla rättigheter förbehållna',
+    notify_btn:'📧 Meddela Mig', coming_soon:'🔜 Kommer Snart',
+    blog_badge:'📰 Bricktastic Blogg', blog_h1a:'Byggen,', blog_h1b:'Berättelser & Tips.',
+    blog_sub:'Djupdykningar, byggguider, LEGO®-nyheter och tips från en riktig fan.',
+    moc_badge:'🏗️ Originella LEGO®-skapelser', moc_h1a:'MOC', moc_h1b:'Galleri.',
+    moc_sub:'Varje originalbygge jag har designat — bläddra bland bilderna.',
+    about_h2a:'Byggt av en', about_h2b:'Riktig', about_h2c:'Fan.',
+    cart_title:'🛒 Din Varukorg', cart_empty:'Din varukorg är tom!\nLägg till byggen för att börja.',
+    cart_checkout:'🔒 Fortsätt till Kassan',
+    trust_download:'Omedelbar Nedladdning', trust_download_sub:'PDF levereras omedelbart till din e-post',
+    trust_bricklink:'BrickLink-lista Ingår', trust_bricklink_sub:'Varje del listad för enkel inköp',
+    trust_ships:'Leverans Världen Över', trust_ships_sub:'Fysiska MOC byggda och skickade med omsorg',
+    trust_support:'Byggarstöd', trust_support_sub:'Fastnat? Fråga i YouTube-kommentarerna',
+    trust_secure:'Säker Kassa', trust_secure_sub:'Drivs av din föredragna betalningsprocessor',
+    btn_subscribe_yt:'Prenumerera på YouTube', btn_visit_shop:'Besök Butiken',
+    home_badge:'LEGO® YouTube-kanal + Butik',
+    home_sub:'Episka LEGO®-byggen, djupdykningar, tips och utmaningar — plus originella MOC-instruktioner du kan bygga hemma.',
+    stat_videos:'Videor', stat_bricks:'Klossar Använda',
+    lbl_latest:'Senaste Videorna', sec_latest_title:'Färskt Från Byggplattan',
+    sec_latest_sub:'Klicka på valfri video för att titta på YouTube.',
+    btn_view_all_pre:'Visa Alla', btn_view_all_post:'Videor →',
+    lbl_about:'Om Kanalen', lbl_browse:'Bläddra efter Ämne',
+    sec_browse_title:'Hitta Din LEGO®-Besatthet',
+    sec_browse_sub:'Från episka stadsbyggen till sällsynta deldjupdykningar — något för varje LEGO®-fan.',
+    sec_moc_browse:'Bläddra MOC-galleri',
   }
-};
 
 const LANG_META = {
   en:{ flag:'🇬🇧', code:'EN' },
@@ -13966,6 +15077,12 @@ const LANG_META = {
   es:{ flag:'🇪🇸', code:'ES' },
   pt:{ flag:'🇵🇹', code:'PT' },
   nl:{ flag:'🇳🇱', code:'NL' },
+  pl:{ flag:'🇵🇱', code:'PL' },
+  it:{ flag:'🇮🇹', code:'IT' },
+  fil:{ flag:'🇵🇭', code:'FIL' },
+  tr:{ flag:'🇹🇷', code:'TR' },
+  id:{ flag:'🇮🇩', code:'ID' },
+  sv:{ flag:'🇸🇪', code:'SV' },
 };
 
 let _currentLang = localStorage.getItem('bb_lang') || 'en';
@@ -14038,6 +15155,9 @@ function applyTranslations(lang) {
     if (a.textContent.trim().includes('Buy on') || a.textContent.trim().includes('Koop') ||
         a.textContent.trim().includes('Acheter') || a.textContent.trim().includes('Kaufen') ||
         a.textContent.trim().includes('Comprar') || a.textContent.trim().includes('Kopen') ||
+        a.textContent.trim().includes('Acquista') || a.textContent.trim().includes('Satın') ||
+        a.textContent.trim().includes('Beli di') || a.textContent.trim().includes('Köp') ||
+        a.textContent.trim().includes('Kup na') || a.textContent.trim().includes('Bumili') ||
         a.textContent.trim().includes('LEGO.com')) {
       a.textContent = T.buy_lego;
     }
@@ -14070,6 +15190,19 @@ function applyTranslations(lang) {
 
   // Update html lang attribute
   document.documentElement.lang = lang;
+
+  // Re-render blog cards with translated titles/excerpts
+  if (_blogInited) {
+    renderBlog();
+    // If a blog post is currently open, refresh its content
+    const ov = document.getElementById('blogPostOv');
+    if (ov && ov.classList.contains('open')) {
+      const titleEl = document.getElementById('bpTitle');
+      const curPost = BLOG_POSTS.find(p => p.title === titleEl.textContent ||
+        (p.translations && Object.values(p.translations).some(t => t.title === titleEl.textContent)));
+      if (curPost) openBlogPost(curPost.id);
+    }
+  }
 }
 
 // Init on page load

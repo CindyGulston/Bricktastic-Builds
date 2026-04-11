@@ -1,0 +1,467 @@
+{
+  "_meta": {
+    "feed": "Bricktastic Builds – Product Feed",
+    "site": "https://www.bricktasticbuilds.co.za",
+    "youtube": "https://www.youtube.com/@BricktasticBuilds",
+    "amazon_tag": "bricktasticbu-20",
+    "updated": "2026-04-11",
+    "version": "1.1",
+    "note": "Update this file to auto-sync all shop cards, blog posts and future YouTube tags. Amazon tag: bricktasticbu-20. Format: https://www.amazon.com/dp/ASIN/?tag=bricktasticbu-20"
+  },
+  "products": [
+
+    {
+      "id": "lego-10327",
+      "set_number": "10327",
+      "name": "Dune Atreides Royal Ornithopter",
+      "category": ["icons"],
+      "tags": ["dune", "icons", "featured", "sci-fi"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt94d23cfa7d9023b0/10327.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416470459&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fdune-atreides-royal-ornithopter-10327",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBQ/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 1369,
+      "minifigures": 8,
+      "description": "Dragonfly-inspired craft from the Icons range. Blades rotate 180° and retract cleanly, landing gear folds, and 8 minifigures included. 23cm high · 57cm long · 79cm wide.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-10302",
+      "set_number": "10302",
+      "name": "Optimus Prime",
+      "category": ["icons"],
+      "tags": ["transformers", "icons", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt36fb03cdeb25ad1a/10302.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416379772&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2foptimus-prime-10302",
+      "amazon_url": "https://www.amazon.com/dp/B09NQMFQ4N/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 1508,
+      "minifigures": 0,
+      "description": "1,508-piece Autobot leader transforms from robot to truck with 19 points of articulation. Chest opens to store the Matrix of Leadership. Includes ion blaster, Energon ax, and jetpack.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-10338",
+      "set_number": "10338",
+      "name": "Bumblebee",
+      "category": ["icons"],
+      "tags": ["transformers", "icons", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltba5ac23eed5d9c36/10338.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416471392&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fbumblebee-10338",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBR/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 950,
+      "minifigures": 0,
+      "description": "950-piece yellow Autobot transforms into a Volkswagen Beetle. Fully articulated joints, ion blaster, and jetpack included. Same scale as Optimus Prime.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-10335",
+      "set_number": "10335",
+      "name": "The Endurance",
+      "category": ["icons"],
+      "tags": ["ship", "icons", "display", "history"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt3d163abce4f7ba5f/10335_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416470467&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-endurance-10335",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBS/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 3011,
+      "minifigures": 0,
+      "description": "Historic exploration vessel — three masts, ten full sails, flying red ensign, and intricate rigging. 47cm high · 80cm long · 24cm wide.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-10337",
+      "set_number": "10337",
+      "name": "Lamborghini Countach 5000 Quattrovalvole",
+      "category": ["icons", "cars"],
+      "tags": ["lamborghini", "icons", "cars", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt9b3c20d77c24bafe/10337.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416471390&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2flamborghini-countach-5000-quattrovalvole-10337",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBT/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 1506,
+      "minifigures": 0,
+      "description": "The iconic 450hp wedge in brick form — V12 engine, working steering, scissor doors, and deep-dish rims. A proper shelf piece for car lovers.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-10351",
+      "set_number": "10351",
+      "name": "Sherlock Holmes Book Nook",
+      "category": ["icons"],
+      "tags": ["book-nook", "icons", "display", "sherlock"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt0578aa258e06dd5d/10351_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416529390&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fsherlock-holmes-book-nook-10351",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBU/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 1359,
+      "minifigures": 5,
+      "description": "First in the book nook series — Baker Street in miniature. Opens to reveal 221B, a bookstore, and a terraced residence. Slots onto your bookshelf.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-10315",
+      "set_number": "10315",
+      "name": "Tranquil Garden",
+      "category": ["icons"],
+      "tags": ["botanical", "icons", "display", "garden"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltc1a3afc5b5af3287/10315.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426499&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2ftranquil-garden-10315",
+      "amazon_url": "https://www.amazon.com/dp/B0BXQ8QZPN/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 1363,
+      "minifigures": 0,
+      "description": "Zen garden build with cherry blossom, arched bridge, koi pond, lotus flowers, stone lanterns and a tea-ceremony pavilion. All elements repositionable.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-10323",
+      "set_number": "10323",
+      "name": "PAC-MAN Arcade",
+      "category": ["gaming", "icons"],
+      "tags": ["gaming", "icons", "arcade", "pacman", "featured"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt74da473b5ba874fe/10323.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416426513&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fpac-man-arcade-10323",
+      "amazon_url": "https://www.amazon.com/dp/B0BXQ8QZPM/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 2651,
+      "minifigures": 0,
+      "description": "Fully mechanical cabinet that actually plays the game with a turn of a handle. 4-way joystick, illuminated coin slot, and a working maze chase. Complete with 1980s arcade scene.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-10359",
+      "set_number": "10359",
+      "name": "Fountain Garden",
+      "category": ["icons"],
+      "tags": ["botanical", "icons", "garden", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltcb731f5cf5424350/10359_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526758&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2ffountain-garden-10359",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBV/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 1302,
+      "minifigures": 0,
+      "description": "Mediterranean vibes in brick form — a fountain, classic architecture, grape vine, cypress trees, hibiscus, bougainvillea, marigolds, and tiny animal figures.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-10331",
+      "set_number": "10331",
+      "name": "Kingfisher Bird",
+      "category": ["icons"],
+      "tags": ["botanical", "bird", "icons", "nature", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt6cf7f51b0edcecfd/10331.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416474623&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fkingfisher-bird-10331",
+      "amazon_url": "https://www.amazon.com/dp/B0BXQ8QZPL/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "Vivid kingfisher perched on a branch, wings displayed, with cherry blossom details. One of the most striking nature builds in the range.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-10363",
+      "set_number": "10363",
+      "name": "Leonardo da Vinci's Flying Machine",
+      "category": ["icons"],
+      "tags": ["icons", "display", "history", "davinci"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltfb6b9d757d63ea76/10363_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526762&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fleonardo-da-vincis-flying-machine-10363",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBW/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "Beautiful recreation of da Vinci's ornithopter concept — a working display model capturing the spirit of Renaissance invention in brick form.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-40516",
+      "set_number": "40516",
+      "name": "Everyone Is Awesome",
+      "category": ["icons"],
+      "tags": ["icons", "minifigures", "collector"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltced1e10e43211f84/40516_Prod.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416368951&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2feveryone-is-awesome-40516",
+      "amazon_url": "https://www.amazon.com/dp/B094NQCXQD/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 11,
+      "description": "Eleven rainbow-coloured minifigures celebrating inclusion — a small but meaningful build and collector favourite.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-10330",
+      "set_number": "10330",
+      "name": "McLaren MP4/4 & Ayrton Senna",
+      "category": ["icons", "cars"],
+      "tags": ["mclaren", "f1", "icons", "cars", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltf8476f68fa47b137/10330.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416470463&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmclaren-mp44-ayrton-senna-10330",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBX/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "Iconic F1 McLaren MP4/4 with Ayrton Senna minifigure. One of the most celebrated cars in motorsport history, recreated in LEGO Icons.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-10350",
+      "set_number": "10350",
+      "name": "Tudor Corner",
+      "category": ["icons"],
+      "tags": ["icons", "modular", "display", "architecture"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltc38b5911d77d1733/10350_Prod.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526662&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2ftudor-corner-10350",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBY/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "Tudor-style corner building for your LEGO Icons collection — detailed facade with classic half-timbered architecture.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-72046",
+      "set_number": "72046",
+      "name": "Game Boy",
+      "category": ["gaming"],
+      "tags": ["gaming", "nintendo", "retro", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt96a11f71928f8103/72046_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526971&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fgame-boy-72046",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPBZ/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "Classic Nintendo Game Boy recreated in LEGO — perfect retro gaming display piece.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-72037",
+      "set_number": "72037",
+      "name": "Mario Kart – Mario & Standard Kart",
+      "category": ["gaming"],
+      "tags": ["gaming", "mario", "nintendo", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt9b9bd9113f7f11d9/72037_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526957&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fmario-kart-mario-standard-kart-72037",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPCA/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "Mario Kart comes to LEGO — Mario in his standard kart, perfect for gaming fans and collectors.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-21276",
+      "set_number": "21276",
+      "name": "Minecraft The Creeper",
+      "category": ["gaming"],
+      "tags": ["gaming", "minecraft", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt92debaf1862a31c3/21276_Prod_en-gb.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526792&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fthe-creeper-21276",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPCB/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "The iconic Minecraft Creeper in large-scale LEGO brick form — a must-have for any Minecraft fan.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-42143",
+      "set_number": "42143",
+      "name": "Ferrari Daytona SP3",
+      "category": ["cars", "technic"],
+      "tags": ["ferrari", "cars", "technic", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/bltb862bc546852bd71/42143.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416379494&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fferrari-daytona-sp3-42143",
+      "amazon_url": "https://www.amazon.com/dp/B09NQMFQ4P/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "LEGO Technic Ferrari Daytona SP3 — one of the most stunning supercar builds in the Technic lineup.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-77237",
+      "set_number": "77237",
+      "name": "Dodge Challenger SRT Hellcat",
+      "category": ["cars"],
+      "tags": ["dodge", "cars", "muscle-car", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt0874acf12357a48e/77237_Prod.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526985&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fdodge-challenger-srt-hellcat-sports-car-77237",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPCC/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "LEGO Dodge Challenger SRT Hellcat — the American muscle car legend recreated in brick form.",
+      "featured": false
+    },
+
+    {
+      "id": "lego-42210",
+      "set_number": "42210",
+      "name": "2 Fast 2 Furious Nissan Skyline GT-R R34",
+      "category": ["cars", "technic"],
+      "tags": ["nissan", "cars", "technic", "2fast2furious"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt4281f045b5e8888c/42210_Prod.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526826&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2f2-fast-2-furious-nissan-skyline-gt-r-r34-car-42210",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPCD/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "The legendary Skyline from 2 Fast 2 Furious in LEGO Technic — iconic JDM car for fans of the franchise.",
+      "featured": true
+    },
+
+    {
+      "id": "lego-77239",
+      "set_number": "77239",
+      "name": "Porsche 911 GT3 RS",
+      "category": ["cars", "technic"],
+      "tags": ["porsche", "cars", "technic", "display"],
+      "image": "https://www.lego.com/cdn/cs/set/assets/blt830d24c0694e92f3/77239_Prod.png?format=jpg&fit=bounds&quality=80",
+      "lego_url": "https://click.linksynergy.com/link?id=ht%2azY%2aRuBhQ&offerid=1536590.506416526989&type=2&murl=https%3a%2f%2fwww.lego.com%2ffr-fr%2fproduct%2fporsche-911-gt3-rs-super-car-77239",
+      "amazon_url": "https://www.amazon.com/dp/B0CG5XFPCE/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "minifigures": 0,
+      "description": "LEGO Technic Porsche 911 GT3 RS — the track-focused 911 in stunning detail.",
+      "featured": false
+    },
+
+    {
+      "id": "bb-ps5-moc",
+      "set_number": null,
+      "name": "PS5 LEGO® MOC Instructions – Mini Console Display Build",
+      "category": ["instructions"],
+      "tags": ["moc", "instructions", "ps5", "gaming", "original"],
+      "image": "https://pe56d.s3.amazonaws.com/o_1jlgpb0rj1pke4g21qk8aqa1op515.jpg",
+      "lego_url": "",
+      "amazon_url": "",
+      "buy_url": "https://payhip.com/b/2mHk6",
+      "buy_label": "🛒 Buy Now — $2.99",
+      "availability": true,
+      "pieces": 13,
+      "minifigures": 0,
+      "price": 2.99,
+      "currency": "USD",
+      "type": "digital",
+      "description": "Build a miniature PlayStation 5 from LEGO® bricks! Compact PS5 MOC in micro scale. Perfect desk display for any gamer and LEGO fan. Easy PDF instructions.",
+      "featured": true
+    },
+
+    {
+      "id": "kit-camera",
+      "set_number": null,
+      "name": "Sony ZV-E10 Mirrorless Camera",
+      "category": ["creator-kit"],
+      "tags": ["creator-kit", "camera", "filming", "youtube"],
+      "image": "https://m.media-amazon.com/images/I/71TWpGNBxoL._AC_SL1500_.jpg",
+      "lego_url": "",
+      "amazon_url": "https://www.amazon.com/dp/B098K51MB4/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "description": "The camera I use for filming LEGO builds — great image quality, lightweight, and perfect for close-up detail shots.",
+      "featured": true,
+      "creator_note": "My go-to filming camera"
+    },
+
+    {
+      "id": "kit-lightbox",
+      "set_number": null,
+      "name": "PULUZ LED Photo Light Box",
+      "category": ["creator-kit"],
+      "tags": ["creator-kit", "lighting", "photography", "filming"],
+      "image": "https://m.media-amazon.com/images/I/71kBVdpfVwL._AC_SL1500_.jpg",
+      "lego_url": "",
+      "amazon_url": "https://www.amazon.com/dp/B07GVMHZ2W/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "description": "Perfect lightbox for clean LEGO photography — makes your builds look professional with zero setup hassle.",
+      "featured": true,
+      "creator_note": "What I use for product shots"
+    },
+
+    {
+      "id": "kit-storage-drawers",
+      "set_number": null,
+      "name": "Akro-Mils 64-Drawer Parts Storage Cabinet",
+      "category": ["creator-kit"],
+      "tags": ["creator-kit", "storage", "organisation", "parts"],
+      "image": "https://m.media-amazon.com/images/I/81b8v9pGmAL._AC_SL1500_.jpg",
+      "lego_url": "",
+      "amazon_url": "https://www.amazon.com/dp/B00BVNXK00/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "description": "The best parts storage solution for serious LEGO builders. 64 drawers — sort by colour, size, or category. A game changer.",
+      "featured": true,
+      "creator_note": "How I organise my entire parts collection"
+    },
+
+    {
+      "id": "kit-building-mat",
+      "set_number": null,
+      "name": "LEGO Building Plate Baseplates Green",
+      "category": ["creator-kit"],
+      "tags": ["creator-kit", "building", "baseplate", "essentials"],
+      "image": "https://m.media-amazon.com/images/I/71qS6vbBrGL._AC_SL1500_.jpg",
+      "lego_url": "",
+      "amazon_url": "https://www.amazon.com/dp/B01NAEPXVH/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "description": "Essential baseplates for any MOC build — gives you a solid foundation and easy to combine for larger builds.",
+      "featured": false,
+      "creator_note": "Always keep a stack of these"
+    },
+
+    {
+      "id": "kit-brick-separator",
+      "set_number": null,
+      "name": "LEGO Brick Separator Tool (10 Pack)",
+      "category": ["creator-kit"],
+      "tags": ["creator-kit", "tools", "essentials", "building"],
+      "image": "https://m.media-amazon.com/images/I/61PFrNTbPoL._AC_SL1500_.jpg",
+      "lego_url": "",
+      "amazon_url": "https://www.amazon.com/dp/B07RQDGWCD/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "description": "You can never have enough brick separators. Keep them everywhere — desk, couch, spare room. Trust me.",
+      "featured": false,
+      "creator_note": "Non-negotiable for any builder"
+    },
+
+    {
+      "id": "kit-tripod",
+      "set_number": null,
+      "name": "Joby GorillaPod 3K Flexible Mini Tripod",
+      "category": ["creator-kit"],
+      "tags": ["creator-kit", "filming", "camera", "youtube"],
+      "image": "https://m.media-amazon.com/images/I/61MJbLb5v1L._AC_SL1500_.jpg",
+      "lego_url": "",
+      "amazon_url": "https://www.amazon.com/dp/B0746QNYZR/?tag=bricktasticbu-20",
+      "availability": true,
+      "pieces": 0,
+      "description": "Flexible mini tripod — perfect for getting those low-angle LEGO build shots and time-lapse footage.",
+      "featured": false,
+      "creator_note": "Great for awkward filming angles"
+    }
+
+  ]
+}

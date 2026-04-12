@@ -625,6 +625,14 @@ footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
 /* SHOP */
 .shop-hero{background:var(--black);padding:52px 0 44px;position:relative;overflow:hidden;margin-top:66px}
 .shop-tabs{display:flex;gap:0;margin-bottom:36px;border:3px solid var(--black);border-radius:12px;overflow:hidden;width:fit-content}
+.currency-toggle{display:flex;align-items:center;gap:8px;background:var(--black);border:3px solid var(--black);border-radius:12px;padding:4px;margin-bottom:36px}
+.currency-btn{font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:6px 16px;border-radius:8px;border:none;cursor:pointer;background:transparent;color:#aaa;transition:all .15s}
+.currency-btn.active{background:var(--yellow);color:var(--black)}
+.currency-btn:hover:not(.active){color:#fff}
+.price-zar{display:none}
+.show-zar .price-usd{display:none}
+.show-zar .price-zar{display:block}
+.rate-note{font-size:11px;font-weight:700;color:#aaa;margin-left:4px}
 .shop-tab{font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:11px 24px;border:none;cursor:pointer;background:#fff;color:#666;text-transform:uppercase;letter-spacing:.5px;transition:all .15s;border-right:3px solid var(--black)}
 .shop-tab:last-child{border-right:none}
 .shop-tab.active{background:var(--black);color:var(--yellow)}
@@ -2554,6 +2562,13 @@ window.addEventListener('load', function() {
           <h2 class="sec-title" style="margin-bottom:4px">The Bricktastic Shop</h2>
           <p style="color:#888;font-weight:700;font-size:14px">PDF instructions delivered instantly · Physical MOCs ship worldwide</p>
         </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <div class="currency-toggle" id="currencyToggle">
+            <button class="currency-btn active" id="btnUSD" onclick="setCurrency('usd')">🇺🇸 USD</button>
+            <button class="currency-btn" id="btnZAR" onclick="setCurrency('zar')">🇿🇦 ZAR</button>
+            <span class="rate-note" id="rateNote">loading...</span>
+          </div>
+        </div>
         <div class="shop-tabs">
           <button class="shop-tab active" onclick="filterShop('all',this)">All Products</button>
           <button class="shop-tab" onclick="filterShop('ins',this)">📐 Instructions</button>
@@ -2580,7 +2595,8 @@ window.addEventListener('load', function() {
             <div class="pname">PS5 LEGO® MOC Instructions – Mini Console Display Build</div>
             <div class="pdesc">Build a miniature PlayStation 5 in LEGO® brick form! Micro-scale desk display. ~13 pieces · Easy · Instant PDF download.</div>
             <div class="pfooter">
-              <div class="price">$2.99</div>
+              <div class="price price-usd">$2.99</div>
+              <div class="price price-zar" data-usd="2.99"></div>
               <button class="acb btn-lg" onclick="event.stopPropagation();window.open('https://payhip.com/b/2mHk6','_blank')" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
@@ -2597,7 +2613,8 @@ window.addEventListener('load', function() {
             <div class="pname">Xbox Series X Mini LEGO® MOC – Building Instructions</div>
             <div class="pdesc">Build a miniature Xbox Series X in LEGO® brick form! Micro-scale desk display. ~7 pieces · Easy · Instant PDF download.</div>
             <div class="pfooter">
-              <div class="price">$2.99</div>
+              <div class="price price-usd">$2.99</div>
+              <div class="price price-zar" data-usd="2.99"></div>
               <button class="acb btn-lg" onclick="event.stopPropagation();window.open('https://payhip.com/b/n5xiV','_blank')" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
@@ -2614,7 +2631,8 @@ window.addEventListener('load', function() {
             <div class="pname">Xbox Series S Mini LEGO® MOC – Building Instructions</div>
             <div class="pdesc">Build a miniature Xbox Series S in LEGO® brick form! Micro-scale desk display. ~5 pieces · Easy · Instant PDF download.</div>
             <div class="pfooter">
-              <div class="price">$2.99</div>
+              <div class="price price-usd">$2.99</div>
+              <div class="price price-zar" data-usd="2.99"></div>
               <button class="acb btn-lg" onclick="event.stopPropagation();window.open('https://payhip.com/b/I58hV','_blank')" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
@@ -2631,7 +2649,8 @@ window.addEventListener('load', function() {
             <div class="pname">Yellow Go-Kart Mini LEGO® MOC – Building Instructions</div>
             <div class="pdesc">A vibrant micro-scale yellow go-kart packed with detail! ~61 pieces · Intermediate · Instant PDF download.</div>
             <div class="pfooter">
-              <div class="price">$4.99</div>
+              <div class="price price-usd">$4.99</div>
+              <div class="price price-zar" data-usd="4.99"></div>
               <button class="acb btn-lg" onclick="event.stopPropagation();window.open('https://payhip.com/b/xhNg9','_blank')" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
@@ -15325,6 +15344,51 @@ function applyTranslations(lang) {
     }
   }
 }
+
+// ══ CURRENCY TOGGLE ══
+let _zarRate = null;
+let _currencyMode = 'usd';
+
+async function fetchZARRate() {
+  try {
+    const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+    const data = await res.json();
+    _zarRate = data.rates.ZAR;
+    document.getElementById('rateNote').textContent = 'R' + _zarRate.toFixed(2) + ' per $1';
+    updateZARPrices();
+  } catch(e) {
+    // fallback rate if API fails
+    _zarRate = 18.50;
+    document.getElementById('rateNote').textContent = '~R' + _zarRate.toFixed(2) + ' per $1';
+    updateZARPrices();
+  }
+}
+
+function updateZARPrices() {
+  if (!_zarRate) return;
+  document.querySelectorAll('.price-zar[data-usd]').forEach(el => {
+    const usd = parseFloat(el.getAttribute('data-usd'));
+    const zar = (usd * _zarRate).toFixed(2);
+    el.textContent = 'R' + zar;
+  });
+}
+
+function setCurrency(mode) {
+  _currencyMode = mode;
+  const grid = document.getElementById('shopGrid');
+  if (mode === 'zar') {
+    grid.classList.add('show-zar');
+    document.getElementById('btnZAR').classList.add('active');
+    document.getElementById('btnUSD').classList.remove('active');
+  } else {
+    grid.classList.remove('show-zar');
+    document.getElementById('btnUSD').classList.add('active');
+    document.getElementById('btnZAR').classList.remove('active');
+  }
+}
+
+// Fetch rate on load
+fetchZARRate();
 
 // Init on page load
 (function initLang() {

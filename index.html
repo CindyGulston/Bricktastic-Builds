@@ -2586,7 +2586,7 @@ window.addEventListener('load', function() {
         <!-- PS5 MOC INSTRUCTIONS -->
         <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)">
           <div class="pthumb" style="padding:0;position:relative;overflow:hidden">
-            <img src="https://pe56d.s3.amazonaws.com/o_1jlgpb0rj1pke4g21qk8aqa1op515.jpg" alt="PS5 LEGO MOC Instructions" style="width:100%;height:100%;object-fit:cover;display:block">
+            <img src="https://pe56d.s3.amazonaws.com/o_1jlu6s2h7vbbgta1h0l1kes16nu15.png" alt="PS5 LEGO MOC Instructions" style="width:100%;height:100%;object-fit:cover;display:block">
             <span style="position:absolute;top:12px;left:12px;background:#00d4ff;color:#0a0a0a;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:4px">📐 Instructions</span>
             <span style="position:absolute;top:12px;right:12px;background:var(--green);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:4px">✅ Available Now</span>
           </div>
@@ -3035,7 +3035,7 @@ window.addEventListener('load', function() {
 <script>
 // DATA
 const P=[
-  {id:1,name:"PS5 LEGO® MOC Instructions – Mini Console Display Build",type:"📐 Instructions",price:2.99,emoji:"🎮",img:"https://pe56d.s3.amazonaws.com/o_1jlgpb0rj1pke4g21qk8aqa1op515.jpg",bg:"linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e)",tc:"#00d4ff",buyUrl:"https://payhip.com/b/2mHk6",buyLabel:"🛒 Buy Now — $2.99",desc:"Build a miniature PlayStation 5 from LEGO® bricks! This compact PS5 MOC recreates the iconic curved white panels and sleek black centre strip in micro scale. Perfect as a desk display or shelf piece for any gamer and LEGO® fan. Easy to follow for builders of all ages.",specs:[["~13","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
+  {id:1,name:"PS5 LEGO® MOC Instructions – Mini Console Display Build",type:"📐 Instructions",price:2.99,emoji:"🎮",img:"https://pe56d.s3.amazonaws.com/o_1jlu6s2h7vbbgta1h0l1kes16nu15.png",bg:"linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e)",tc:"#00d4ff",buyUrl:"https://payhip.com/b/2mHk6",buyLabel:"🛒 Buy Now — $2.99",desc:"Build a miniature PlayStation 5 from LEGO® bricks! This compact PS5 MOC recreates the iconic curved white panels and sleek black centre strip in micro scale. Perfect as a desk display or shelf piece for any gamer and LEGO® fan. Easy to follow for builders of all ages.",specs:[["~13","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
   {id:2,name:"Xbox Series X Mini LEGO® MOC – Building Instructions",type:"📐 Instructions",price:2.99,emoji:"🟩",img:"https://pe56d.s3.amazonaws.com/o_1jludarn71mupotabo01r9i1r4p2d.png",bg:"linear-gradient(135deg,#0a1a0a,#107C10,#1a2e1a)",tc:"#4CAF50",buyUrl:"https://payhip.com/b/n5xiV",buyLabel:"🛒 Buy Now — $2.99",desc:"Build a miniature Xbox Series X from LEGO® bricks! The tall, bold tower design recreated in micro scale — just 7 pieces and perfectly display-worthy. Great for any gaming fan's desk or shelf.",specs:[["~7","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
   {id:3,name:"Xbox Series S Mini LEGO® MOC – Building Instructions",type:"📐 Instructions",price:2.99,emoji:"🎮",img:"https://pe56d.s3.amazonaws.com/o_1jlu77n39g6f1g2kqg1dpc1qf1a.png",bg:"linear-gradient(135deg,#0a1a0a,#107C10,#1a2e1a)",tc:"#4CAF50",buyUrl:"https://payhip.com/b/I58hV",buyLabel:"🛒 Buy Now — $2.99",desc:"Build a miniature Xbox Series S from LEGO® bricks! The compact all-digital console recreated in LEGO® micro scale — only 5 pieces and instantly recognisable. Perfect for desk displays and gaming setups.",specs:[["~5","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
   {id:4,name:"Yellow Go-Kart Mini LEGO® MOC – Building Instructions",type:"📐 Instructions",price:4.99,emoji:"🏎️",img:"https://pe56d.s3.amazonaws.com/o_1jluga4fo50e1jcipf94hr1l241a.jpg",bg:"linear-gradient(135deg,#1a1a00,#FFD700,#ff6b00)",tc:"#FFD700",buyUrl:"https://payhip.com/b/xhNg9",buyLabel:"🛒 Buy Now — $4.99",desc:"A fun and vibrant micro-scale LEGO® MOC of a classic yellow go-kart! Bright, bold and packed with detail — this 61-piece build is a satisfying step up for any LEGO® fan. Perfect as a desk display or shelf piece for any racing fan.",specs:[["~61","Pieces"],["PDF","Format"],["⭐⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full step-by-step PDF instructions","Clear isometric diagrams","Parts count list","Instant digital download"]},
@@ -3563,7 +3563,7 @@ function checkout(){
 
 // MODAL
 function openMod(id){
-  curMod=id;const p=P[id];
+  curMod=id;const p=P.find(x=>x.id===id)||P[id];
   const h=document.getElementById('modHero');
   h.style.background=p.bg;
   h.innerHTML=p.img
@@ -3590,7 +3590,7 @@ function openMod(id){
 function closeModOv(e){if(e.target===document.getElementById('modOv'))document.getElementById('modOv').classList.remove('open')}
 function addFromMod(){
   if(curMod===null)return;
-  const p=P[curMod];
+  const p=P.find(x=>x.id===curMod)||P[curMod];
   if(p.buyUrl){
     window.open(p.buyUrl,'_blank');
   } else {

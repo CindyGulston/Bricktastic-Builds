@@ -64,6 +64,80 @@ nav ul li a:hover{background:var(--yellow);color:var(--black);border-color:var(-
 .nav-blog-a{background:#006CB7!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
 .nav-blog-a:hover{background:#005a9a!important;color:#fff!important}
 .nav-gallery-a{background:#00B5AD!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
+.nav-garage-a{background:#1a1a1a!important;color:#FFD700!important;border:2px solid #FFD700!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
+.nav-garage-a:hover{background:#FFD700!important;color:#1a1a1a!important}
+/* ── MOC GARAGE PAGE ── */
+#page-mocgarage{background:#b0b0b0}
+#mg-wrap{position:relative;height:calc(100vh - 66px);margin-top:66px;overflow:hidden;background:#b0b0b0}
+#mg-show{position:absolute;top:0;left:0;right:0;bottom:175px;overflow:hidden}
+#mg-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.4,0,.2,1);will-change:transform}
+.mg-slide{min-width:100%;height:100%;position:relative;flex-shrink:0;overflow:hidden}
+.mg-slide-blur{display:none}
+.mg-slide-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:65% center;z-index:1;filter:brightness(1)}
+.mg-slide.active .mg-slide-img{filter:brightness(1)}
+.mg-slide-ph{position:absolute;inset:0;background:#aaaaaa;display:flex;align-items:center;justify-content:center;font-size:140px;opacity:.15}
+.mg-slide-grad{position:absolute;inset:0;background:linear-gradient(0deg,rgba(200,200,200,.6) 0%,rgba(200,200,200,.1) 20%,transparent 45%),linear-gradient(90deg,rgba(200,200,200,.4) 0%,transparent 35%);z-index:2}
+.mg-slide-content{position:absolute;bottom:40px;left:56px;right:52%;z-index:5}
+.mg-slide-tag{display:inline-block;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:2.5px;padding:4px 14px;border-radius:30px;background:#FFD700;color:#111;margin-bottom:14px;opacity:0;transform:translateY(10px);transition:opacity .45s .1s,transform .45s .1s}
+.mg-slide.active .mg-slide-tag{opacity:1;transform:none}
+.mg-slide-title{font-family:'Boogaloo',cursive;font-size:clamp(38px,7vw,90px);color:#1a1a1a;line-height:.95;text-shadow:none;margin-bottom:16px;opacity:0;transform:translateY(24px);transition:opacity .5s .22s,transform .5s .22s}
+.mg-slide.active .mg-slide-title{opacity:1;transform:none}
+.mg-slide-meta{font-size:13px;font-weight:800;color:rgba(0,0,0,.5);text-transform:uppercase;letter-spacing:1.5px;opacity:0;transform:translateY(10px);transition:opacity .45s .35s,transform .45s .35s}
+.mg-slide.active .mg-slide-meta{opacity:1;transform:none}
+.mg-slide-cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:11px 26px;border-radius:30px;border:none;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;background:#FFD700;color:#111;box-shadow:0 5px 0 #a07800;cursor:pointer;position:relative;top:0;transition:top .12s,box-shadow .12s,opacity .45s .42s,transform .45s .42s;opacity:0;transform:translateY(12px)}
+.mg-slide.active .mg-slide-cta{opacity:1;transform:none}
+.mg-slide-cta:hover{top:3px;box-shadow:0 2px 0 #a07800}
+.mg-slide-cta.mg-soon{background:#e8e8e8;color:#999;box-shadow:none;border:1px solid #ddd;cursor:default}
+.mg-slide-cta.mg-soon:hover{top:0}
+#mg-counter{position:absolute;top:16px;right:22px;z-index:10;font-size:11px;font-weight:900;letter-spacing:1.5px;color:rgba(0,0,0,.3);text-transform:uppercase;font-family:'Nunito',sans-serif}
+#mg-counter b{color:#E3000B;font-size:16px}
+.mg-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:48px;height:70px;background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.1);color:#1a1a1a;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:10px;transition:background .15s,border-color .15s;backdrop-filter:blur(4px);box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.mg-arr:hover{background:rgba(227,0,11,.9);color:#fff;border-color:transparent}
+#mg-arrL{left:14px}#mg-arrR{right:14px}
+/* MOC Garage Category Filter */
+#mg-filters{position:absolute;bottom:175px;left:0;right:0;height:44px;background:#888;border-top:1px solid #777;border-bottom:1px solid #777;display:flex;align-items:center;gap:8px;padding:0 16px;z-index:21}
+.mg-filter-btn{font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:5px 16px;border-radius:20px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;transition:all .15s}
+.mg-filter-btn:hover{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.4)}
+.mg-filter-btn.active{background:#FFD700;color:#111;border-color:#FFD700}
+#mg-show{position:absolute;top:0;left:0;right:0;bottom:219px;overflow:hidden}
+#mg-strip{position:absolute;bottom:0;left:0;right:0;height:175px;background:#999999;border-top:1px solid #888888;display:flex;align-items:center;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;gap:10px;padding:0 16px;z-index:20}
+#mg-strip::-webkit-scrollbar{display:none}
+.mg-thumb{flex-shrink:0;width:130px;height:155px;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;position:relative;transition:border-color .2s,transform .2s,opacity .2s;opacity:.5;background:#aaaaaa}
+.mg-thumb:hover{opacity:.8;transform:translateY(-3px)}
+.mg-thumb.active{border-color:#FFD700;opacity:1;transform:translateY(-4px)}
+.mg-thumb-img{width:100%;height:118px;object-fit:cover;display:block;background:#aaaaaa;filter:brightness(.5);transition:filter .2s}
+.mg-thumb.active .mg-thumb-img,.mg-thumb:hover .mg-thumb-img{filter:brightness(1)}
+.mg-thumb-ph{width:100%;height:118px;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:32px;opacity:.5}
+.mg-thumb-lbl{padding:5px 7px;font-size:8.5px;font-weight:900;color:#888;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.mg-thumb.active .mg-thumb-lbl{color:#FFD700}
+#mg-modalWrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:300;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(12px)}
+#mg-modalWrap.open{display:flex}
+#mg-modal{background:#141414;border:1.5px solid #252525;border-radius:20px;width:100%;max-width:580px;overflow:hidden;animation:mgmIn .28s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto;scrollbar-width:none}
+#mg-modal::-webkit-scrollbar{display:none}
+@keyframes mgmIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:none}}
+.mg-m-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.6);border:1.5px solid #333;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;transition:background .15s}
+.mg-m-close:hover{background:#E3000B;border-color:#E3000B}
+.mg-m-imgwrap{position:relative;background:#000;line-height:0}
+#mg-mMainImg{width:100%;max-height:480px;object-fit:contain;display:block;background:#000}
+.mg-m-noimg{width:100%;height:220px;background:#111;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:.18}
+.mg-m-grad{position:absolute;bottom:0;left:0;right:0;height:90px;background:linear-gradient(0deg,#141414,transparent);pointer-events:none}
+#mg-mThumbs{display:flex;gap:6px;padding:8px 10px;background:#0c0c0c;overflow-x:auto;scrollbar-width:none}
+#mg-mThumbs:empty{display:none}
+#mg-mThumbs::-webkit-scrollbar{display:none}
+.mg-mt{flex-shrink:0;width:72px;height:52px;border-radius:6px;object-fit:cover;cursor:pointer;opacity:.4;border:2px solid transparent;transition:opacity .2s,border-color .2s}
+.mg-mt:hover{opacity:.75}
+.mg-mt.active{opacity:1;border-color:#FFD700}
+.mg-m-body{padding:20px 24px 26px;position:relative}
+.mg-m-title{font-family:'Boogaloo',cursive;font-size:32px;color:#fff;line-height:1;margin-bottom:4px}
+.mg-m-sub{font-size:11px;font-weight:800;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
+.mg-m-specs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.mg-m-spec{background:#1a1a1a;border:1px solid #222;border-radius:10px;padding:10px 6px;text-align:center}
+.mg-m-spec-val{font-family:'Boogaloo',cursive;font-size:15px;color:#FFD700}
+.mg-m-spec-lbl{font-size:8px;font-weight:800;color:#333;text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
+.mg-m-btn{display:block;width:100%;padding:14px;border-radius:12px;border:none;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:.8px;background:#FFD700;color:#111;box-shadow:0 5px 0 #a07800;cursor:pointer;text-align:center;text-decoration:none;position:relative;top:0;transition:top .12s,box-shadow .12s}
+.mg-m-btn:hover{top:3px;box-shadow:0 2px 0 #a07800}
+.mg-m-btn.mg-soon{background:#1a1a1a;color:#2a2a2a;box-shadow:none;border:1.5px solid #222;cursor:default}
+.mg-m-btn.mg-soon:hover{top:0}
 .nav-gallery-a:hover{background:#009990!important;color:#fff!important}
 .nav-about-a:hover{background:#e6bb00!important;color:var(--black)!important}
 .nav-contact-a{background:#00B5AD!important;color:#fff!important;border-radius:20px;padding:6px 16px!important;font-weight:900;margin-right:4px}
@@ -1602,6 +1676,7 @@ window.addEventListener('load', function() {
     <li><a onclick="showPage('home')" class="nav-home-a" data-i18n="nav_home">🏠 Home</a></li>
     <li><a onclick="showPage('videos')" class="nav-videos-a" data-i18n="nav_videos">🎬 Videos</a></li>
     <li><a onclick="showPage('mocs')" class="nav-mocs-a" data-i18n="nav_mocs">🏗️ MOC Gallery</a></li>
+    <li><a onclick="showPage('mocgarage')" class="nav-garage-a">🎬 MOC Garage</a></li>
     <li><a onclick="showPage('shop')" class="nav-shop-a" data-i18n="nav_shop">🛒 Shop</a></li>
     <li><a onclick="showPage('blog')" class="nav-blog-a" data-i18n="nav_blog">📰 Blog</a></li>
     <li><a onclick="showPage('gallery')" class="nav-gallery-a" data-i18n="nav_community">👥 Community</a></li>
@@ -2526,6 +2601,43 @@ window.addEventListener('load', function() {
 </footer>
 </div>
 
+<!-- ══ MOC GARAGE PAGE ══ -->
+<div id="page-mocgarage" class="page">
+  <div id="mg-wrap">
+    <div id="mg-counter"><b id="mg-curNum">1</b> / <span id="mg-totNum">1</span></div>
+    <div id="mg-show">
+      <div id="mg-track"></div>
+      <button class="mg-arr" id="mg-arrL" onclick="mgGo(-1)">&#8249;</button>
+      <button class="mg-arr" id="mg-arrR" onclick="mgGo(1)">&#8250;</button>
+    </div>
+    <div id="mg-filters">
+      <button class="mg-filter-btn active" onclick="mgFilter('all')">🧱 All</button>
+      <button class="mg-filter-btn" onclick="mgFilter('car')">🏎️ Cars</button>
+      <button class="mg-filter-btn" onclick="mgFilter('gaming')">🎮 Gaming</button>
+      <button class="mg-filter-btn" onclick="mgFilter('building')">🏠 Buildings</button>
+      <button class="mg-filter-btn" onclick="mgFilter('accessory')">🔧 Accessories</button>
+      <button class="mg-filter-btn" onclick="mgFilter('jewelry')">💎 Jewelry</button>
+      <button class="mg-filter-btn" onclick="mgFilter('ship')">⚓ Ships</button>
+      <button class="mg-filter-btn" onclick="mgFilter('weapon')">⚔️ Weapons</button>
+      <button class="mg-filter-btn" onclick="mgFilter('minecraft')">⛏️ Minecraft</button>
+      <button class="mg-filter-btn" onclick="mgFilter('other')">🎨 Other</button>
+    </div>
+    <div id="mg-strip"></div>
+  </div>
+  <div id="mg-modalWrap" onclick="mgBgClose(event)">
+    <div id="mg-modal">
+      <button class="mg-m-close" onclick="mgCloseModal()">×</button>
+      <div class="mg-m-imgwrap" id="mg-mImgWrap"></div>
+      <div class="mg-m-body">
+        <div class="mg-m-title" id="mg-mTitle"></div>
+        <div class="mg-m-sub"   id="mg-mSub"></div>
+        <div class="mg-m-specs" id="mg-mSpecs"></div>
+        <a   class="mg-m-btn"   id="mg-mBtn" target="_blank"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ SHOP PAGE ══ -->
 <div id="page-shop" class="page">
   <div class="hero" style="min-height:300px;margin-top:66px;position:relative;overflow:hidden">
@@ -2891,72 +3003,120 @@ window.addEventListener('load', function() {
 
         <div class="pc" data-cat="creator-kit">
           <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
-            <img src="https://m.media-amazon.com/images/I/71TWpGNBxoL._AC_SL1500_.jpg" alt="Sony ZV-E10 Camera" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+            <img src="https://m.media-amazon.com/images/I/71TWpGNBxoL._AC_SL1500_.jpg" alt="Sony Alpha ZV-E10 Camera" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
           </div>
           <div style="padding:14px">
-            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">Sony ZV-E10 Mirrorless Camera</div>
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">Sony Alpha ZV-E10 Mirrorless Vlog Camera</div>
             <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">My go-to filming camera</div>
-            <a href="https://www.amazon.com/dp/B098K51MB4/?tag=bricktasticbu-20" target="_blank" rel="nofollow sponsored"
+            <a href="https://amzn.to/48N1GGe" target="_blank" rel="nofollow sponsored"
                style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
           </div>
         </div>
 
         <div class="pc" data-cat="creator-kit">
           <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
-            <img src="https://m.media-amazon.com/images/I/71kBVdpfVwL._AC_SL1500_.jpg" alt="PULUZ LED Light Box" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+            <img src="https://m.media-amazon.com/images/I/71kBVdpfVwL._AC_SL1500_.jpg" alt="PULUZ Mini Photo Studio Light Box" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
           </div>
           <div style="padding:14px">
-            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">PULUZ LED Photo Light Box</div>
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">PULUZ Mini Photo Studio Light Box</div>
             <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">What I use for product shots</div>
-            <a href="https://www.amazon.com/dp/B07GVMHZ2W/?tag=bricktasticbu-20" target="_blank" rel="nofollow sponsored"
+            <a href="https://amzn.to/4t8sY1T" target="_blank" rel="nofollow sponsored"
                style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
           </div>
         </div>
 
         <div class="pc" data-cat="creator-kit">
           <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
-            <img src="https://m.media-amazon.com/images/I/81b8v9pGmAL._AC_SL1500_.jpg" alt="Akro-Mils Storage Cabinet" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+            <img src="https://m.media-amazon.com/images/I/81b8v9pGmAL._AC_SL1500_.jpg" alt="Akro-Mils 64-Drawer Storage Cabinet" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
           </div>
           <div style="padding:14px">
             <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">Akro-Mils 64-Drawer Storage Cabinet</div>
             <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">How I organise my parts collection</div>
-            <a href="https://www.amazon.com/dp/B00BVNXK00/?tag=bricktasticbu-20" target="_blank" rel="nofollow sponsored"
+            <a href="https://amzn.to/4mtgkYN" target="_blank" rel="nofollow sponsored"
                style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
           </div>
         </div>
 
         <div class="pc" data-cat="creator-kit">
           <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
-            <img src="https://m.media-amazon.com/images/I/71qS6vbBrGL._AC_SL1500_.jpg" alt="LEGO Baseplates" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+            <img src="https://m.media-amazon.com/images/I/71qS6vbBrGL._AC_SL1500_.jpg" alt="LEGO Building Plate Baseplates" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
           </div>
           <div style="padding:14px">
-            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">LEGO Building Plate Baseplates</div>
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">LEGO Building Plate Baseplates 6 Pack</div>
             <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Always keep a stack of these</div>
-            <a href="https://www.amazon.com/dp/B01NAEPXVH/?tag=bricktasticbu-20" target="_blank" rel="nofollow sponsored"
+            <a href="https://amzn.to/4sBmx6G" target="_blank" rel="nofollow sponsored"
                style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
           </div>
         </div>
 
         <div class="pc" data-cat="creator-kit">
           <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
-            <img src="https://m.media-amazon.com/images/I/61PFrNTbPoL._AC_SL1500_.jpg" alt="LEGO Brick Separators" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+            <img src="https://m.media-amazon.com/images/I/61PFrNTbPoL._AC_SL1500_.jpg" alt="LEGO Brick and Axel Separator" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
           </div>
           <div style="padding:14px">
-            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">LEGO Brick Separator Tool (10 Pack)</div>
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">LEGO Brick & Axel Separator Tool (3 Pack)</div>
             <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Non-negotiable for any builder</div>
-            <a href="https://www.amazon.com/dp/B07RQDGWCD/?tag=bricktasticbu-20" target="_blank" rel="nofollow sponsored"
+            <a href="https://amzn.to/3Q7swCB" target="_blank" rel="nofollow sponsored"
                style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
           </div>
         </div>
 
         <div class="pc" data-cat="creator-kit">
           <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
-            <img src="https://m.media-amazon.com/images/I/61MJbLb5v1L._AC_SL1500_.jpg" alt="Joby GorillaPod Tripod" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+            <img src="https://m.media-amazon.com/images/I/61MJbLb5v1L._AC_SL1500_.jpg" alt="Joby GorillaPod 3K Mini Tripod" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
           </div>
           <div style="padding:14px">
             <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">Joby GorillaPod 3K Mini Tripod</div>
             <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Great for awkward filming angles</div>
-            <a href="https://www.amazon.com/dp/B0746QNYZR/?tag=bricktasticbu-20" target="_blank" rel="nofollow sponsored"
+            <a href="https://amzn.to/4tfnQcw" target="_blank" rel="nofollow sponsored"
+               style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
+          </div>
+        </div>
+
+        <div class="pc" data-cat="creator-kit">
+          <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
+            <img src="https://m.media-amazon.com/images/I/71Z+r2RVHFL._AC_SL1500_.jpg" alt="HUIZDQ 1500 Piece Building Bricks" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+          </div>
+          <div style="padding:14px">
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">HUIZDQ 1500 Piece Building Bricks</div>
+            <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Great bulk brick starter set</div>
+            <a href="https://amzn.to/4svaXKg" target="_blank" rel="nofollow sponsored"
+               style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
+          </div>
+        </div>
+
+        <div class="pc" data-cat="creator-kit">
+          <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
+            <img src="https://m.media-amazon.com/images/I/71Q2dR+IQKL._AC_SL1500_.jpg" alt="Display Case for Minifigures and Cars" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+          </div>
+          <div style="padding:14px">
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">Display Case for Minifigures & Cars</div>
+            <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Show off your collection</div>
+            <a href="https://amzn.to/4ta6OML" target="_blank" rel="nofollow sponsored"
+               style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
+          </div>
+        </div>
+
+        <div class="pc" data-cat="creator-kit">
+          <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
+            <img src="https://m.media-amazon.com/images/I/71M2GBMPWFL._AC_SL1500_.jpg" alt="LED Light Up Building Bricks" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+          </div>
+          <div style="padding:14px">
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">LED Light Up Building Bricks 16pc Set</div>
+            <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Light up your MOC builds</div>
+            <a href="https://amzn.to/4sCDHAT" target="_blank" rel="nofollow sponsored"
+               style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
+          </div>
+        </div>
+
+        <div class="pc" data-cat="creator-kit">
+          <div style="width:100%;aspect-ratio:1;overflow:hidden;background:#f7f5f0;display:flex;align-items:center;justify-content:center">
+            <img src="https://m.media-amazon.com/images/I/61JXzDcXeIL._AC_SL1500_.jpg" alt="Infinity 360 Motorized Turntable" style="width:100%;height:100%;object-fit:contain;padding:12px" loading="lazy">
+          </div>
+          <div style="padding:14px">
+            <div style="font-weight:900;font-size:13px;line-height:1.35;margin-bottom:4px;color:var(--black)">Infinity 360 Motorized Turntable Display Stand</div>
+            <div style="font-size:11px;color:#888;margin-bottom:8px;font-weight:700">Perfect for filming LEGO set reveals</div>
+            <a href="https://amzn.to/3NZg6fy" target="_blank" rel="nofollow sponsored"
                style="display:block;padding:9px 12px;background:#FF9900;color:#111;font-family:'Boogaloo',cursive;font-size:14px;text-align:center;border-radius:6px;text-decoration:none">🛒 Check on Amazon</a>
           </div>
         </div>
@@ -3565,6 +3725,7 @@ function showPage(id){
     if(id==='tips-tricks') initTipsTricksPage();
     if(id==='videos') buildVideoIndex();
     if(id==='mocs') initMOCPage();
+    if(id==='mocgarage') initMGarage();
     if(id==='about') initAboutPage();
     // game hub inits its own games via openGame()
     if(id==='blog') initBlogPage();
@@ -15440,6 +15601,214 @@ function applyTranslations(lang) {
     }
   }
 }
+
+// ══ MOC GARAGE ══
+const MG_MOCS = [
+  // ── CARS ──
+  {name:'Yellow Go-Kart',         cat:'car', tag:'New Release',  pieces:'~61', diff:'Intermediate', price:'$4.99', url:'https://payhip.com/b/xhNg9', img:'https://pe56d.s3.amazonaws.com/o_1jluga4fo50e1jcipf94hr1l241a.jpg', forSale:true},
+  {name:'BMW G82 M4',             cat:'car', tag:'Coming Soon',  pieces:'~80', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776057917/BMW_G82_M4_01-removebg-preview_s5jz41.png', forSale:false},
+  {name:'1965 Chevrolet C10',     cat:'car', tag:'Coming Soon',  pieces:'~80', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776057917/1965_Chevrolet_C10_02-removebg-preview_iqk96e.png', forSale:false},
+  {name:'Dodge Challenger 1979',  cat:'car', tag:'Coming Soon',  pieces:'~80', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776124740/Dodge_Challenger_1979_04-removebg-preview_gunzcp.png', forSale:false},
+  {name:'Ferrari 812',            cat:'car', tag:'Coming Soon',  pieces:'~80', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776124726/Ferrari_812_01-removebg-preview_ifk6ex.png', forSale:false},
+  {name:'Honda NSX',              cat:'car', tag:'Coming Soon',  pieces:'~75', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122502/Honda_NSX-removebg-preview_e3jufe.png', forSale:false},
+  {name:'Lamborghini Huracán',    cat:'car', tag:'Coming Soon',  pieces:'~80', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122500/Lamborghini_Hurac%C3%A1n-removebg-preview_1_jui3lx.png', forSale:false},
+  {name:'Nissan R35',             cat:'car', tag:'Coming Soon',  pieces:'~75', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122441/Nissan_R35-removebg-preview_nnykzl.png', forSale:false},
+  {name:'Nissan R34',             cat:'car', tag:'Coming Soon',  pieces:'~75', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122440/Nissan_R34-removebg-preview_u3przn.png', forSale:false},
+  {name:'Nissan R35 Skyline',     cat:'car', tag:'Coming Soon',  pieces:'~75', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122438/Nissan_R35_Skyline_01-removebg-preview_ohm7j4.png', forSale:false},
+  {name:'Nissan R32',             cat:'car', tag:'Coming Soon',  pieces:'~75', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122429/Nissan_R32-removebg-preview_1_vrcj29.png', forSale:false},
+  {name:'Jeep Sahara',            cat:'car', tag:'Coming Soon',  pieces:'~90', diff:'Intermediate', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128463/Jeep_Sahara-removebg-preview_ikbn8q.png', forSale:false},
+  {name:'Flat Bed Tow Truck',     cat:'car', tag:'Coming Soon',  pieces:'~95', diff:'Advanced',     price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131211/Flat_bed_Tow_Truck-removebg-preview_xogl1i.png', forSale:false},
+  // ── placeholder cars (no images yet) ──
+  {name:'1964 Cadillac Convertible', cat:'car', tag:'Coming Soon', pieces:'~80', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136901/1964_Cadillac_convertible_01_yfad3l-removebg-preview_cjyvk8.png', forSale:false},
+  {name:'Black Sleek Car',          cat:'car', tag:'Coming Soon', pieces:'~75', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136895/Black_Sleek_Car_02_ezuc44-removebg-preview_lnci2v.png', forSale:false},
+  {name:'Chevrolet Camaro',         cat:'car', tag:'Coming Soon', pieces:'~80', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136889/Chevrolet_Camero_01_dgryop-removebg-preview_ta8ajv.png', forSale:false},
+  {name:'Blue Go-Kart',             cat:'car', tag:'Coming Soon', pieces:'~61', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136862/Go_Kart_Blue_01_x2r9i1-removebg-preview_lte9i3.png', forSale:false},
+  {name:'Porsche 911 RSR',          cat:'car', tag:'Coming Soon', pieces:'~80', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136750/Porsche_911_RSR_01_uamjaw-removebg-preview_dnus6y.png', forSale:false},
+  {name:'Red Car',                  cat:'car', tag:'Coming Soon', pieces:'~70', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136648/Red_Car_03_ylhpn0-removebg-preview_esphrh.png', forSale:false},
+  // ── GAMING ──
+  {name:'PS5 Mini MOC',           cat:'gaming', tag:'Best Seller', pieces:'~13', diff:'Easy', price:'$2.99', url:'https://payhip.com/b/2mHk6', img:'https://pe56d.s3.amazonaws.com/o_1jlu6s2h7vbbgta1h0l1kes16nu15.png', forSale:true},
+  {name:'Xbox Series X',          cat:'gaming', tag:'For Sale',    pieces:'~7',  diff:'Easy', price:'$2.99', url:'https://payhip.com/b/n5xiV', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776057916/Xbox_Series_X_01-removebg-preview_b39fv0.png', forSale:true},
+  {name:'Xbox Series S',          cat:'gaming', tag:'For Sale',    pieces:'~5',  diff:'Easy', price:'$2.99', url:'https://payhip.com/b/I58hV', img:'https://pe56d.s3.amazonaws.com/o_1jlu77n39g6f1g2kqg1dpc1qf1a.png', forSale:true},
+  {name:'Xbox Series S',          cat:'gaming', tag:'Coming Soon', pieces:'~5',  diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122486/Xbox_Series_S_01_knihop.png', forSale:false},
+  {name:'Xbox 360 Controller',    cat:'gaming', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122482/xbox_360_controller-removebg-preview_r2q6vv.png', forSale:false},
+  {name:'PS1',                    cat:'gaming', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122481/Xbox_01-removebg-preview_o16gad.png', forSale:false},
+  {name:'PS4',                    cat:'gaming', tag:'Coming Soon', pieces:'~12', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122476/PS4-removebg-preview_xyb6r2.png', forSale:false},
+  {name:'PS3',                    cat:'gaming', tag:'Coming Soon', pieces:'~12', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122470/PS3-removebg-preview_ibsplw.png', forSale:false},
+  {name:'Xbox Classic',           cat:'gaming', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122469/Paystation_1_02-removebg-preview_ysfyeb.png', forSale:false},
+  {name:'PS5',                    cat:'gaming', tag:'Coming Soon', pieces:'~13', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122441/PS5-removebg-preview_vzzvqi.png', forSale:false},
+  {name:'Mini PC',                cat:'gaming', tag:'Coming Soon', pieces:'~8',  diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122427/Mini_PC_01-removebg-preview_cincxh.png', forSale:false},
+  {name:'Nintendo Switch',        cat:'gaming', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon',  url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131212/Nintendo_Switch_01-removebg-preview_gmtlao.png', forSale:false},
+  {name:'Mini Gaming PC Setup',   cat:'gaming', tag:'Coming Soon', pieces:'~30', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136870/Lego_Mini_Gaming_PC_Setup_7_uxqhxx-removebg-preview_etgb5h.png', forSale:false},
+  {name:'Mini Gaming Chair',      cat:'gaming', tag:'Coming Soon', pieces:'~20', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136876/Lego_Mini_Gaming_PC_Setup_8_embtxv-removebg-preview_xyfebv.png', forSale:false},
+  {name:'Mini Gaming Desk',       cat:'gaming', tag:'Coming Soon', pieces:'~20', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136883/Lego_Mini_Gaming_PC_Setup_uf5nra-removebg-preview_tqkmvg.png', forSale:false},
+  // ── BUILDINGS ──
+  {name:'Car Repair Shop',        cat:'building', tag:'Coming Soon', pieces:'~150', diff:'Advanced',     price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776124741/Car_repair_shop-removebg-preview_cbqwiq.png', forSale:false},
+  {name:'1958 Small House',       cat:'building', tag:'Coming Soon', pieces:'~100', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128728/1958_Small_House_04_cahywx.png', forSale:false},
+  {name:'1957 Garage with Auto Door', cat:'building', tag:'Coming Soon', pieces:'~120', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128714/1957_Garage_With_Automatic_Door_05_y5bohv.png', forSale:false},
+  {name:'1955 Small Store',       cat:'building', tag:'Coming Soon', pieces:'~90',  diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128689/1955_Small_Store_05_m8o2gv.png', forSale:false},
+  // ── ACCESSORIES ──
+  {name:'Coffee Machine',         cat:'accessory', tag:'Coming Soon', pieces:'~20', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776124739/Coffee_machine-removebg-preview_zc6fzb.png', forSale:false},
+  {name:'Tool Rack',              cat:'accessory', tag:'Coming Soon', pieces:'~15', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131210/Tool_Rack-removebg-preview_vjhb0c.png', forSale:false},
+  {name:'Wheel Balancer',         cat:'accessory', tag:'Coming Soon', pieces:'~20', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131202/Wheel_balancer-removebg-preview_vsddx2.png', forSale:false},
+  {name:'Tyre Changer Machine',   cat:'accessory', tag:'Coming Soon', pieces:'~20', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131201/Tyre_changer_machine-removebg-preview_rvkmlv.png', forSale:false},
+  {name:'Vehicle Jack',           cat:'accessory', tag:'Coming Soon', pieces:'~15', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131201/Vehicle_Jack-removebg-preview_lemznc.png', forSale:false},
+  // ── JEWELRY ──
+  {name:'Bracelet 1',             cat:'jewelry', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776124740/bracelet_05-removebg-preview_alror3.png', forSale:false},
+  {name:'Bracelet 2',             cat:'jewelry', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122508/bracelet_04-removebg-preview_urhbnk.png', forSale:false},
+  {name:'Bracelets',              cat:'jewelry', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122506/bracelet_01-removebg-preview_wrjyqb.png', forSale:false},
+  // ── SHIPS ──
+  {name:'Mini Black Pearl',       cat:'ship', tag:'Coming Soon', pieces:'~40', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122426/Mini_Black_Pearl-removebg-preview_zjiqba.png', forSale:false},
+  {name:'Battleship',             cat:'ship', tag:'Coming Soon', pieces:'~60', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128462/Battleship_02-removebg-preview_fpofxt.png', forSale:false},
+  {name:'Ship in Aquarium',       cat:'ship', tag:'Coming Soon', pieces:'~50', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128462/Ship_in_Aquarium_01-removebg-preview_cbn5zd.png', forSale:false},
+  // ── WEAPONS ──
+  {name:'Sasuke Kusanagi Sword',  cat:'weapon', tag:'Coming Soon', pieces:'~20', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776122478/Sasuke_Uchiha_s_Kusanagi_Sword_and_Holder_01-removebg-preview_tx7hop.png', forSale:false},
+  {name:'Knuckle Buster',         cat:'weapon', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128462/Knuckle_Buster_01-removebg-preview_gkvfl5.png', forSale:false},
+  {name:'Ketana and Stand',       cat:'weapon', tag:'Coming Soon', pieces:'~15', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136854/Lego_Ketana_and_Stand_01_cgjrat-removebg-preview_abjno9.png', forSale:false},
+  {name:'Katana Sword and Stand', cat:'weapon', tag:'Coming Soon', pieces:'~15', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136816/Katana_Sword_and_Stand_01_jlqgcb-removebg-preview_md0etw.png', forSale:false},
+  // ── MINECRAFT ──
+  {name:'Minecraft Frame + Accessories', cat:'minecraft', tag:'Coming Soon', pieces:'~50', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131222/Minecraft_CreeperFace_Frame_07-removebg-preview_ck8d9g.png', forSale:false},
+  {name:'Minecraft',              cat:'minecraft', tag:'Coming Soon', pieces:'~30', diff:'Easy',         price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131220/Minecraft-removebg-preview_be7lil.png', forSale:false},
+  {name:'Minecraft Frame',        cat:'minecraft', tag:'Coming Soon', pieces:'~40', diff:'Intermediate', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131440/Minecraft_CreeperFace_Frame_01-removebg-preview_wv4sik.png', forSale:false},
+  // ── OTHER ──
+  {name:'Fortnite Pencil Holder', cat:'other', tag:'Coming Soon', pieces:'~25', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776125169/Fortnite_Pencil_Holder_01-removebg-preview_xhnpaa.png', forSale:false},
+  {name:'Indonesian Flag',        cat:'other', tag:'Coming Soon', pieces:'~30', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128463/Indonesian_Flag_01-removebg-preview_ole91v.png', forSale:false},
+  {name:'Lighter',                cat:'other', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128461/Lighter_01-removebg-preview_1_yi5ijr.png', forSale:false},
+  {name:'Cigarette and Box',      cat:'other', tag:'Coming Soon', pieces:'~10', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128461/Cigarette_and_Box_01-removebg-preview_1_qdohnq.png', forSale:false},
+  {name:'Heart',                  cat:'other', tag:'Coming Soon', pieces:'~15', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776128460/Lego_Heart_06-removebg-preview_mbdbl2.png', forSale:false},
+  {name:'Mini Aircraft White',    cat:'other', tag:'Coming Soon', pieces:'~20', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131218/Mini_Aircraft_White_01-removebg-preview_panarr.png', forSale:false},
+  {name:'Mini Aircraft Blue',     cat:'other', tag:'Coming Soon', pieces:'~20', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776131214/Mini_Aircraft_Blue_01-removebg-preview_azjonp.png', forSale:false},
+  {name:'Skibidi Toilet & Cameraman', cat:'other', tag:'Coming Soon', pieces:'~20', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136640/Skibidi_Toilet_and_Cameraman_01_wngvkt-removebg-preview_bsqvlk.png', forSale:false},
+  {name:'Mini Cameras',           cat:'other', tag:'Coming Soon', pieces:'~15', diff:'Easy', price:'Soon', url:'', img:'https://res.cloudinary.com/dqrowyx0h/image/upload/v1776136783/Mini_Camera_03_epugur-removebg-preview_ze70gb.png', forSale:false},
+];
+const MG_ICON = {
+  car:'🏎️', gaming:'🎮', building:'🏠', accessory:'🔧',
+  jewelry:'💎', ship:'⚓', weapon:'⚔️', minecraft:'⛏️', other:'🧱'
+};
+const MG_STARS = {Easy:'⭐⭐',Intermediate:'⭐⭐⭐',Advanced:'⭐⭐⭐⭐'};
+let mgCur = 0;
+let mgTimer = null;
+let mgInited = false;
+let mgActiveFilter = 'all';
+let mgList = [];
+const MG_DELAY = 6000;
+
+function initMGarage(){
+  if(mgInited) return;
+  mgInited = true;
+  mgApplyFilter('all');
+}
+
+function mgApplyFilter(cat){
+  mgActiveFilter = cat;
+  clearInterval(mgTimer);
+  document.querySelectorAll('.mg-filter-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('onclick').includes(`'${cat}'`));
+  });
+  mgList = MG_MOCS.map((m,i) => ({moc:m, origIdx:i})).filter(item => cat==='all' || item.moc.cat===cat);
+  const track = document.getElementById('mg-track');
+  const strip  = document.getElementById('mg-strip');
+  track.innerHTML = '';
+  strip.innerHTML = '';
+  track.style.transition = 'none';
+  track.style.transform  = 'translateX(0)';
+  mgList.forEach(({moc:m, origIdx}, pos) => {
+    const icon  = MG_ICON[m.cat] || '🧱';
+    const labels = {car:'Car MOC',console:'Console MOC',building:'Building MOC',accessory:'Accessory MOC',jewelry:'Jewelry MOC',ship:'Ship MOC',weapon:'Weapon MOC',minecraft:'Minecraft MOC',other:'MOC'};
+    const label = labels[m.cat] || 'MOC';
+    const slide = document.createElement('div');
+    slide.className = 'mg-slide';
+    slide.id = 'mg-slide' + pos;
+    slide.innerHTML = (m.img
+      ? `<div class="mg-slide-blur" style="background-image:url('${m.img}')"></div><img class="mg-slide-img" src="${m.img}" alt="${m.name}">`
+      : `<div class="mg-slide-ph">${icon}</div>`)
+      + `<div class="mg-slide-grad"></div><div class="mg-slide-content">
+         <div class="mg-slide-tag">${m.tag||'MOC'}</div>
+         <div class="mg-slide-title">${m.name}</div>
+         <div class="mg-slide-meta">${label} &nbsp;·&nbsp; ${m.pieces} pieces &nbsp;·&nbsp; ${m.diff}</div>
+         <button class="mg-slide-cta${m.forSale?'':' mg-soon'}" onclick="mgOpenModal(${origIdx})">${m.forSale?'▶ View Build &amp; Buy':'🔜 Coming Soon'}</button>
+         </div>`;
+    track.appendChild(slide);
+    const thumb = document.createElement('div');
+    thumb.className = 'mg-thumb';
+    thumb.id = 'mg-thumb' + pos;
+    thumb.onclick = () => mgGoTo(pos);
+    thumb.innerHTML = (m.img
+      ? `<img class="mg-thumb-img" src="${m.img}" loading="lazy" onerror="this.outerHTML='<div class=mg-thumb-ph>${icon}</div>'">`
+      : `<div class="mg-thumb-ph">${icon}</div>`)
+      + `<div class="mg-thumb-lbl">${m.name}</div>`;
+    strip.appendChild(thumb);
+  });
+  document.getElementById('mg-totNum').textContent = mgList.length;
+  document.getElementById('mg-curNum').textContent  = 1;
+  mgCur = 0;
+  requestAnimationFrame(() => {
+    track.style.transition = '';
+    mgActivateSlide(0);
+  });
+  mgTimer = setInterval(() => mgGo(1), MG_DELAY);
+}
+
+function mgActivateSlide(n){
+  document.querySelectorAll('.mg-slide').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.mg-thumb').forEach(t => t.classList.remove('active'));
+  const slide = document.getElementById('mg-slide' + n);
+  const thumb = document.getElementById('mg-thumb' + n);
+  if(slide) slide.classList.add('active');
+  if(thumb){ thumb.classList.add('active'); thumb.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+  document.getElementById('mg-track').style.transform = `translateX(-${n*100}%)`;
+  document.getElementById('mg-curNum').textContent = n + 1;
+}
+
+function mgGoTo(n){
+  const total = mgList.length;
+  if(!total) return;
+  n = ((n % total) + total) % total;
+  mgCur = n;
+  mgActivateSlide(n);
+  clearInterval(mgTimer);
+  mgTimer = setInterval(() => mgGo(1), MG_DELAY);
+}
+function mgGo(dir){ mgGoTo(mgCur + dir); }
+function mgFilter(cat){ mgApplyFilter(cat); }
+function mgOpenModal(i){
+  const m=MG_MOCS[i];
+  const allImgs=[m.img,...(m.imgs||[])].filter(Boolean);
+  const icon=MG_ICON[m.cat]||'🧱';
+  const labels={car:'Car MOC',gaming:'Gaming MOC',building:'Building MOC',accessory:'Accessory MOC',jewelry:'Jewelry MOC',ship:'Ship MOC',weapon:'Weapon MOC',minecraft:'Minecraft MOC',other:'MOC'};
+  const label=labels[m.cat]||'MOC';
+  const wrap=document.getElementById('mg-mImgWrap');
+  if(allImgs.length){
+    const thumbs=allImgs.length>1?`<div id="mg-mThumbs">${allImgs.map((s,j)=>`<img class="mg-mt${j===0?' active':''}" src="${s}" onclick="mgSwapImg(this,'${s}')" loading="lazy">`).join('')}</div>`:'<div id="mg-mThumbs"></div>';
+    wrap.innerHTML=`<img id="mg-mMainImg" src="${allImgs[0]}"><div class="mg-m-grad"></div>${thumbs}`;
+  } else {
+    wrap.innerHTML=`<div class="mg-m-noimg">${icon}</div><div id="mg-mThumbs"></div>`;
+  }
+  document.getElementById('mg-mTitle').textContent=m.name;
+  document.getElementById('mg-mSub').textContent=label+' · '+m.diff+' build';
+  document.getElementById('mg-mSpecs').innerHTML=
+    `<div class="mg-m-spec"><div class="mg-m-spec-val">${m.pieces}</div><div class="mg-m-spec-lbl">Pieces</div></div>`+
+    `<div class="mg-m-spec"><div class="mg-m-spec-val">PDF</div><div class="mg-m-spec-lbl">Format</div></div>`+
+    `<div class="mg-m-spec"><div class="mg-m-spec-val">${MG_STARS[m.diff]||'⭐⭐'}</div><div class="mg-m-spec-lbl">Difficulty</div></div>`+
+    `<div class="mg-m-spec"><div class="mg-m-spec-val">${m.forSale?m.price:'Soon'}</div><div class="mg-m-spec-lbl">${m.forSale?'Price':'Status'}</div></div>`;
+  const btn=document.getElementById('mg-mBtn');
+  btn.textContent=m.forSale?'▶ Buy Instructions on Payhip':'Coming Soon — Instructions in progress';
+  btn.href=m.forSale?m.url:'#';
+  btn.className=m.forSale?'mg-m-btn':'mg-m-btn mg-soon';
+  document.getElementById('mg-modalWrap').classList.add('open');
+}
+function mgSwapImg(el,src){
+  document.getElementById('mg-mMainImg').src=src;
+  document.querySelectorAll('.mg-mt').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function mgCloseModal(){document.getElementById('mg-modalWrap').classList.remove('open');}
+function mgBgClose(e){if(e.target.id==='mg-modalWrap')mgCloseModal();}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('page-mocgarage').classList.contains('active'))return;
+  if(e.key==='ArrowLeft')mgGo(-1);
+  if(e.key==='ArrowRight')mgGo(1);
+  if(e.key==='Escape')mgCloseModal();
+});
 
 // ══ CURRENCY TOGGLE ══
 let _zarRate = null;

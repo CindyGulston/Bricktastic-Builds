@@ -3842,7 +3842,8 @@ function filterShop(cat,btn){
       c.style.display = dc.includes(cat) ? '' : 'none';
     } else {
       // Standard categories (ins, moc, bun)
-      c.style.display = (c.dataset.cat===cat) ? '' : 'none';
+      const dc = c.dataset.cat || '';
+      c.style.display = dc.includes(cat) ? '' : 'none';
     }
   });
   const f=document.querySelector('.pc.feat');

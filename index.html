@@ -1633,6 +1633,63 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
   .newsletter-inner h3 { font-size: 22px !important; }
   .newsletter-input { min-width: 100% !important; }
   .newsletter-btn { width: 100% !important; }
+
+  /* 7. Shop header — stack elements vertically */
+  #page-shop > section > .container > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .currency-toggle { width: 100% !important; justify-content: flex-start !important; }
+  .shop-tabs { width: 100% !important; }
+
+  /* 8. Shop grid — 1 column on mobile */
+  .sgrid { grid-template-columns: 1fr !important; }
+  .pc.feat { grid-column: span 1 !important; grid-template-columns: 1fr !important; }
+  .pc.feat .pthumb { min-height: 200px !important; }
+
+  /* 9. Product card footer — wrap price and button */
+  .pfooter { flex-wrap: wrap !important; gap: 8px !important; }
+  .acb { font-size: 12px !important; padding: 8px 12px !important; }
+
+  /* 10. Product images — ensure correct display */
+  .pthumb { aspect-ratio: 4/3 !important; }
+  .pthumb img { width: 100% !important; height: 100% !important; object-fit: contain !important; display: block !important; }
+  .pinfo { padding: 16px !important; }
+  .pname { font-size: 14px !important; }
+  .pdesc { font-size: 13px !important; }
+
+  /* 11. MOC Garage on mobile */
+  #mg-strip { height: 140px !important; }
+  #mg-modal { max-width: 100% !important; }
+  #mg-mMainImg { max-height: 260px !important; }
+  .mg-m-spec-val { font-size: 16px !important; }
+  .mg-m-spec-lbl { font-size: 10px !important; }
+
+  /* 12. Shop hero */
+  .shop-hero { padding: 32px 0 28px !important; }
+
+  /* 13. Bundle grid */
+  .bundle-grid { grid-template-columns: 1fr !important; }
+
+  /* 14. Prevent horizontal overflow */
+  #page-shop, #page-mocgarage { overflow-x: hidden !important; }
+
+  /* 15. Product modal */
+  .mod { max-width: 100% !important; margin: 10px !important; }
+  .mod-title { font-size: 22px !important; }
+  .mod-specs { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  /* Extra small phones */
+  .pfooter { flex-direction: column !important; align-items: stretch !important; }
+  .acb { width: 100% !important; justify-content: center !important; font-size: 13px !important; padding: 10px !important; }
+  .currency-toggle { flex-wrap: wrap !important; }
+  .rate-note { width: 100% !important; margin-top: 4px !important; }
+  .sec-title { font-size: 26px !important; }
+  .pname { font-size: 13px !important; }
+  .price { font-size: 18px !important; }
+  #mg-strip { height: 120px !important; }
 }
 
 </style>

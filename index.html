@@ -15725,8 +15725,11 @@ function mgOpenModal(i){
     `<div class="mg-m-spec"><div class="mg-m-spec-val">${MG_STARS[m.diff]||'⭐⭐'}</div><div class="mg-m-spec-lbl">Difficulty</div></div>`+
     `<div class="mg-m-spec"><div class="mg-m-spec-val">${m.forSale?m.price:'Soon'}</div><div class="mg-m-spec-lbl">${m.forSale?'Price':'Status'}</div></div>`;
   const btn=document.getElementById('mg-mBtn');
-  btn.textContent=m.forSale?'▶ Buy Instructions on Payhip':'Coming Soon — Instructions in progress';
-  btn.href=m.forSale?m.url:'#';
+  const mgUrls = Object.values(BUY_URLS).find(u => u.usd === m.url);
+  const mgBuyUrl = m.forSale ? ((_currencyMode === 'zar' && mgUrls?.zar) ? mgUrls.zar : m.url) : '#';
+  const mgLabel = m.forSale ? (_currencyMode === 'zar' && mgUrls?.zar ? '▶ Buy Instructions on Paystack' : '▶ Buy Instructions on Payhip') : 'Coming Soon — Instructions in progress';
+  btn.textContent = mgLabel;
+  btn.href = mgBuyUrl;
   btn.className=m.forSale?'mg-m-btn':'mg-m-btn mg-soon';
   document.getElementById('mg-modalWrap').classList.add('open');
 }
@@ -15802,7 +15805,7 @@ const BUY_URLS = {
 function openBuyUrl(id) {
   const urls = BUY_URLS[id];
   if (!urls) return;
-  const url = (_isSA && urls.zar) ? urls.zar : urls.usd;
+  const url = (_currencyMode === 'zar' && urls.zar) ? urls.zar : urls.usd;
   window.open(url, '_blank');
 }
 

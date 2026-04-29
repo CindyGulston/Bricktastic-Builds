@@ -14773,7 +14773,8 @@ async function submitContact() {
           name: nameParts[0] || name,
           last_name: nameParts.slice(1).join(' ') || '',
           source: 'contact-form',
-          company: order ? 'Order #' + order : ''
+          company: order ? 'Order #' + order : '',
+          message: message || ''
         },
         groups: ['184138598939886744']
       })

@@ -704,8 +704,10 @@ footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
 .currency-btn.active{background:var(--yellow);color:var(--black)}
 .currency-btn:hover:not(.active){color:#fff}
 .price-zar{display:none}
-.show-zar .price-usd{display:none}
-.show-zar .price-zar{display:block}
+.price-usd { display: block; }
+.price-zar { display: none; }
+.show-zar .price-usd { display: none; }
+.show-zar .price-zar { display: block; }
 .rate-note{font-size:11px;font-weight:700;color:#aaa;margin-left:4px}
 .shop-tab{font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;padding:11px 24px;border:none;cursor:pointer;background:#fff;color:#666;text-transform:uppercase;letter-spacing:.5px;transition:all .15s;border-right:3px solid var(--black)}
 .shop-tab:last-child{border-right:none}
@@ -2750,7 +2752,7 @@ window.addEventListener('load', function() {
         </div>
       </div>
 
-      <div class="sgrid show-zar" id="shopGrid">
+      <div class="sgrid" id="shopGrid">
         <!-- COMING SOON -->
         <!-- PS5 MOC INSTRUCTIONS -->
         <div class="pc" data-cat="ins" data-id="1" onclick="openMod(1)">
@@ -15854,14 +15856,16 @@ function setCurrency(mode) {
 
 // Geo-detect visitor location and auto-set currency
 async function detectAndSetCurrency() {
-  updateZARPrices();
+  updateZARPrices(); // populate R values before showing
+  let isSA = false;
   try {
     const res = await fetch('https://ipapi.co/json/');
     const data = await res.json();
-    _isSA = data.country_code === 'ZA';
+    isSA = data.country_code === 'ZA';
   } catch(e) {
-    _isSA = false;
+    isSA = false;
   }
+  _isSA = isSA;
   setCurrency(_isSA ? 'zar' : 'usd');
 }
 

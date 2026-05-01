@@ -1694,6 +1694,78 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
   #mg-strip { height: 120px !important; }
 }
 
+/* ══ HOME PAGE MOBILE FIXES ══ */
+@media (max-width: 768px) {
+  /* Hero — tighter padding, center everything */
+  .hero { grid-template-columns: 1fr !important; }
+  .hero-right { display: none !important; }
+  .hero-left {
+    padding: 36px 20px 32px !important;
+    text-align: center;
+  }
+  .hero-left h1 { font-size: clamp(38px, 10vw, 56px) !important; }
+  .hero-sub {
+    font-size: 15px !important;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Hero stats — spread evenly */
+  .hero-stats {
+    justify-content: center !important;
+    gap: 16px !important;
+  }
+  .hero-stats .sn { font-size: 28px !important; }
+  .hero-stats .sl { font-size: 10px !important; }
+
+  /* Hero CTAs — stack vertically, full width */
+  .hero-ctas {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+  .hero-ctas .btn {
+    justify-content: center !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 14px 20px !important;
+  }
+
+  /* Featured Build — stack image above text */
+  .home-featured-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding-bottom: 32px !important;
+  }
+
+  /* Start Here — text first, hide the video thumbnail */
+  .home-starthere-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  #startHereThumb { display: none !important; }
+
+  /* Section padding */
+  #page-home section { padding: 36px 0 !important; }
+  #page-home .container { padding: 0 16px !important; }
+
+  /* CTA buttons in sections — full width on mobile */
+  .home-featured-grid div[style*="display:flex"] a,
+  .home-starthere-grid div[style*="display:flex"] a {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-left { padding: 28px 16px 24px !important; }
+  .hero-stats { gap: 10px !important; }
+  .hero-stats .sn { font-size: 24px !important; }
+}
+
 </style>
 <!-- MailerLite Universal -->
 <script>
@@ -1890,7 +1962,7 @@ window.addEventListener('load', function() {
   <!-- FEATURED BUILD -->
   <section style="background:var(--black);padding:48px 0 0">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-bottom:48px;border-bottom:2px solid rgba(255,255,255,.08)">
+      <div class="home-featured-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-bottom:48px;border-bottom:2px solid rgba(255,255,255,.08)">
         <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6);border:4px solid rgba(255,215,0,.3)">
           <img loading="lazy" src="hero-build.jpg" alt="Custom LEGO® MOC Build" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
           <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:24px 20px 18px">
@@ -1915,7 +1987,7 @@ window.addEventListener('load', function() {
   <!-- START HERE -->
   <section style="background:var(--black);padding:56px 0">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div class="home-starthere-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
         <div>
           <div style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:6px 16px;border-radius:6px;margin-bottom:20px;box-shadow:0 4px 0 #8b0000">👋 New Here? Start Here</div>
           <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4vw,52px);line-height:1;color:#fff;margin-bottom:16px">Watch My <span style="color:var(--yellow)">Most Popular</span> Build</h2>
@@ -12551,6 +12623,72 @@ function bbGameOver(){
 <script>
 // ── BLOG DATA ────────────────────────────────────────────────────────────────
 const BLOG_POSTS = [
+  {
+    id: 10,
+    cat: 'news',
+    catLabel: '📰 Newsletter',
+    catColor: '#006CB7',
+    emoji: '🧱',
+    img: 'https://images.brickset.com/sets/images/21164-1.jpg',
+    bg: 'linear-gradient(135deg,#1A1A1A,#006CB7)',
+    title: 'Weekly Roundup: Coral Reef Build, Xbox MOC & May the 4th Star Wars Day!',
+    excerpt: 'This week: a new Minecraft Coral Reef build video drops Saturday, a brand new Xbox One S MOC is live in the shop, and everything you need to know about LEGO® Star Wars™ Day 2026.',
+    date: 'May 2026',
+    read: '4 min read',
+    content: `
+      <p>Hey Builder! 👋 Welcome to this week's Bricktastic Builds roundup. We've got a brand new build video dropping this Saturday, a fresh MOC added to the shop, and some exciting LEGO® Star Wars™ Day news just in time for May the 4th. Let's get into it!</p>
+
+      <h3>🎬 This Saturday's Build — LEGO® Minecraft The Coral Reef (21164)</h3>
+      <img src="https://images.brickset.com/sets/images/21164-1.jpg" alt="LEGO Minecraft The Coral Reef 21164" style="width:100%;border-radius:8px;margin:12px 0;display:block">
+      <p>This Saturday I'm building the <strong>LEGO® Minecraft The Coral Reef (21164)</strong> — a colourful underwater adventure set featuring Alex, a Drowned zombie, a tropical fish and a treasure chest hidden in the coral. A fun, vibrant set that's perfect for Minecraft fans of all ages!</p>
+      <ul style="padding-left:20px;margin-bottom:16px;line-height:2">
+        <li><strong>Set Number:</strong> 21164</li>
+        <li><strong>Pieces:</strong> 92 pieces</li>
+        <li><strong>Minifigures:</strong> Alex + Drowned</li>
+        <li><strong>Video Drops:</strong> This Saturday!</li>
+      </ul>
+      <p><a class="inline-aff" href="https://www.youtube.com/@BricktasticBuilds?sub_confirmation=1" target="_blank">🎬 Watch on YouTube &rarr;</a></p>
+
+      <h3>🛒 New in Shop — Xbox One S Mini LEGO® MOC Instructions</h3>
+      <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jndt4c3v17u1gdr104d1fv1ot01a.png" alt="Xbox One S LEGO MOC" style="width:100%;max-width:300px;border-radius:8px;margin:12px 0;display:block">
+      <p>A brand new MOC has just dropped in the shop! Build a miniature <strong>Xbox One S</strong> in LEGO® brick form — a brilliant micro-scale display model capturing the clean white design and iconic Xbox styling. Perfect for your gaming desk or LEGO collection!</p>
+      <ul style="padding-left:20px;margin-bottom:16px;line-height:2">
+        <li><strong>Pieces:</strong> ~12 pieces</li>
+        <li><strong>Difficulty:</strong> Easy — Ages 8+</li>
+        <li><strong>Format:</strong> Instant PDF Download</li>
+        <li><strong>Price:</strong> R25 / $1.50</li>
+      </ul>
+      <p><a class="inline-aff" href="https://payhip.com/b/eDu9o" target="_blank">🛒 Buy Now — R25 / $1.50 &rarr;</a></p>
+
+      <h3>⭐ LEGO® News — May the 4th Be With You! 🚀</h3>
+      <p>The biggest event in the galaxy is here on <strong>4 May 2026</strong>! Here's everything dropping for LEGO® Star Wars™ Day — including an exclusive UCS set, free gifts with purchase, and exciting new SMART Play sets.</p>
+      <p style="background:#fff8e1;border-left:4px solid #FFD700;border-radius:4px;padding:12px 16px;font-size:13px;">🇿🇦 <strong>Note for South African readers:</strong> The May the 4th GWP promotions, SMART Play sets and LEGO.com deals are <strong>not available in South Africa</strong>. You can shop the new Star Wars sets locally at <a class="inline-aff" href="https://lego-gybc.co.za/collections/lego-star-wars">lego-gybc.co.za</a> — SA's official LEGO Certified Store.</p>
+
+      <h3>⭐ Featured Release — The Mandalorian's N-1 Starfighter™ (75442)</h3>
+      <img src="https://images.brickset.com/sets/images/75442-1.jpg" alt="N-1 Starfighter 75442" style="width:100%;border-radius:8px;margin:12px 0;display:block">
+      <p>A never-done-before UCS version of the Mandalorian's N-1 Starfighter as seen in <em>Book of Boba Fett</em> and <em>The Mandalorian</em> Season 3. A highly detailed display model joining the Ultimate Collector Series. LEGO® Insiders got early access 1–3 May. Open to all from 4 May. <strong>£229.99 / €249.99</strong></p>
+      <p><a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fthe-mandalorians-n-1-starfighter-75442" target="_blank" rel="nofollow sponsored">🔗 View on LEGO.com &rarr;</a></p>
+
+      <h3>🎁 Free Gifts With Purchase (1–6 May)</h3>
+      <p><strong>The Mandalorian™ &amp; Grogu™ Display (5010320)</strong> — Free when you purchase the N-1 Starfighter (75442), while stocks last. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fthe-mandalorian-and-grogu-allies-villains-40856" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><strong>The Darksaber (40917)</strong> — Free when you spend £145/€160 on any Star Wars™ purchase, while stocks last. ⚠️ Not available in South Africa. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2F40917" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><strong>The Razor Crest™ Mini-Build (30728)</strong> — Free when you spend £35/€40 on selected Star Wars™ purchases, while stocks last. ⚠️ Not available in South Africa. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2F30728" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+
+      <h3>🤖 LEGO® SMART Play™ Sets</h3>
+      <p>⚠️ <em>LEGO® SMART Play™ is not yet available in South Africa.</em></p>
+      <p><strong>Darth Vader's TIE Fighter™ (75421)</strong> — Hear roaring engines, dodge incoming fire from the Rebel outpost and activate laser-shooting sounds with this interactive build. £59.99 / €69.99. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fsmart-play-darth-vaders-tie-fighter-75421" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><strong>Luke's Red Five X-Wing™ (75423)</strong> — Hear the engine's roar, activate laser-shooting sounds, and bring SMART Luke Skywalker and Princess Leia to life. £79.99 / €89.99. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fsmart-play-lukes-red-five-x-wing-75423" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><strong>Throne Room Duel &amp; A-Wing™ (75427)</strong> — Listen to "The Imperial March", hear Lightsabers™ hum as Luke and Vader duel, and activate the A-wing's laser shooters. £139.99 / €159.99. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fsmart-play-throne-room-duel-a-wing-75427" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+
+      <h3>🚀 More Star Wars™ Sets</h3>
+      <p><strong>Jango Fett™ Helmet (75408)</strong> — Display your respect for a legendary bounty hunter. £69.99 / €79.99. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fjango-fett-helmet-75408" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><strong>Rebel U-Wing Starfighter™ (75399)</strong> — Relive heroic adventures from Star Wars: Andor™ Season 2. £59.99 / €69.99. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Frebel-u-wing-fighter-75155" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><strong>Chopper (C1-10P)™ Astromech Droid (75416)</strong> — Create a playful display with Chopper as seen in Star Wars: Ahsoka™. £94.99 / €109.99. <a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl%2Fproduct%2Fchopper-c1-10p-astromech-droid-75416" target="_blank" rel="nofollow sponsored">View on LEGO.com &rarr;</a></p>
+      <p><a class="inline-aff" href="https://click.linksynergy.com/deeplink?id=ht%2azY%2aRuBhQ&mid=50641&murl=https%3A%2F%2Fwww.lego.com%2Fen-nl" target="_blank" rel="nofollow sponsored">🚀 Shop All Star Wars™ Sets on LEGO.com &rarr;</a></p>
+
+      <p style="font-size:13px;color:#666;margin-top:14px;line-height:1.65">LEGO® is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this article. LEGO® product links may include affiliate links. As a LEGO® affiliate, Bricktastic Builds may earn a small commission on qualifying purchases at no extra cost to you.</p>
+    `,
+  },
   {
     id: 2,
     cat: 'news',

@@ -12530,7 +12530,10 @@ function bbGameOver(){
       </div>
 
       <!-- Community Builds Grid -->
-      <div class="gallery-tabs" id="galleryTabs"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:4px">
+        <div class="gallery-tabs" id="galleryTabs" style="margin-bottom:0"></div>
+        <button onclick="_galleryInited=false;loadLiveBuilds()" style="background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;padding:7px 16px;border-radius:20px;cursor:pointer;white-space:nowrap;transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">🔄 Refresh Builds</button>
+      </div>
       <div class="gallery-grid" id="galleryGrid"></div>
 
       <!-- Submit Your Build -->
@@ -13771,9 +13774,23 @@ function initGalleryPage() {
 
 async function loadLiveBuilds() {
   try {
-    _liveBuilds = await supaFetch('builds?status=eq.approved&order=created_at.desc&select=*');
+    const data = await supaFetch('builds?select=*&order=created_at.desc');
+    // Filter client-side to handle any case variation (Approved, approved, APPROVED)
+    _liveBuilds = data.filter(b => b.status && b.status.toLowerCase() === 'approved');
+    if (_liveBuilds.length === 0 && data.length > 0) {
+      console.warn('[Gallery] Fetched', data.length, 'builds but none are approved. Statuses found:', [...new Set(data.map(b=>b.status))]);
+    }
   } catch(e) {
+    console.error('[Gallery] Supabase fetch error:', e.message);
     _liveBuilds = [];
+    // Show error in grid so it is visible
+    const grid = document.getElementById('galleryGrid');
+    if (grid) grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px 20px;background:rgba(227,0,11,.08);border:2px solid rgba(227,0,11,.3);border-radius:12px">
+      <div style="font-size:36px;margin-bottom:10px">⚠️</div>
+      <div style="font-family:'Boogaloo',cursive;font-size:22px;color:#fff;margin-bottom:6px">Could not load builds</div>
+      <p style="color:rgba(255,255,255,.6);font-size:13px;font-weight:700;margin-bottom:16px">${e.message}</p>
+      <button onclick="_galleryInited=false;loadLiveBuilds()" style="background:var(--yellow);color:var(--black);font-weight:900;font-size:13px;padding:9px 22px;border-radius:8px;border:none;cursor:pointer">Try Again</button>
+    </div>`;
   }
   renderGallery();
 }

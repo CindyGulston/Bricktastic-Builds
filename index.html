@@ -2870,7 +2870,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
               <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(1)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(1)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -2888,7 +2888,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
               <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(2)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(2)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -2906,7 +2906,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
               <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(3)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(3)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -2924,7 +2924,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
               <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(5)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(5)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -2942,7 +2942,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
               <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(6)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(6)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -2960,7 +2960,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$2.00</div>
               <div class="price price-zar" data-usd="2.00" data-zar="33"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(4)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(4)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -2978,7 +2978,7 @@ window.addEventListener('load', function() {
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
               <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();openBuyUrl(10)" style="background:var(--green)">🛒 Buy Now</button>
+              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(10)" style="background:var(--green)">🛒 Buy Now</button>
             </div>
           </div>
         </div>
@@ -3737,7 +3737,7 @@ function renderWishlistPanel() {
         <div class="wishlist-item-name">${p.name}</div>
         <div class="wishlist-item-price">$${p.price}</div>
         <div class="wishlist-item-actions">
-          <button class="wishlist-item-buy" onclick="openBuyUrl(${p.id});toggleWishlistPanel()">🛒 Buy Now</button>
+          <button class="wishlist-item-buy" onclick="buyNow(${p.id});toggleWishlistPanel()">🛒 Buy Now</button>
           <button class="wishlist-item-remove" onclick="removeFromWishlist(${p.id})">✕ Remove</button>
         </div>
       </div>
@@ -3915,7 +3915,7 @@ function openMod(id){
     ab.style.background = 'var(--red)';
   } else {
     ab.innerHTML = p.buyLabel||'🛒 Buy Now';
-    ab.onclick = () => openBuyUrl(p.id);
+    ab.onclick = () => buyNow(p.id);
     ab.style.background = 'var(--green)';
   }
   ab.dataset.buyUrl=p.buyUrl||'';
@@ -16192,7 +16192,7 @@ const _seedPins = [
 function initWorldMap() {
   if (_wmInited) return;
   _wmInited = true;
-  setTimeout(() => {
+  setTimeout(async () => {
     const mapEl = document.getElementById('wm-map');
     if (!mapEl || _wmMap) return;
     _wmMap = L.map('wm-map', {zoomControl:true, scrollWheelZoom:false}).setView([20, 10], 2);
@@ -16760,38 +16760,17 @@ function preparePayfast() {
 }
 
 async function coSendIntlEmail() {
-  const name    = document.getElementById('co-name').value.trim();
-  const email   = document.getElementById('co-email').value.trim();
+  const name     = document.getElementById('co-name').value.trim();
+  const email    = document.getElementById('co-email').value.trim();
   const subtotal = _coItems.reduce((s,p) => s + p.price, 0);
   const disc     = getBundleDiscount(_coItems.length);
   const total    = subtotal - (subtotal * disc);
   const token    = generateToken();
   const itemList = _coItems.map(p => p.name).join(', ');
-
   await coSaveOrder(token);
-
-  const subject = encodeURIComponent('Bricktastic Builds Order Request – ' + itemList);
-  const body    = encodeURIComponent(
-    'Hi Bricktastic Builds,
-
-I would like to purchase the following:
-
-' +
-    _coItems.map(p => '- ' + p.name + ' ($' + p.price.toFixed(2) + ')').join('
-') +
-    '
-
-Order Total: $' + total.toFixed(2) +
-    '
-My Name: ' + name +
-    '
-My Email: ' + email +
-    '
-Order Token: ' + token +
-    '
-
-Please send me a payment link. Thank you!'
-  );
+  const lines = _coItems.map(p => '- ' + p.name + ' ($' + p.price.toFixed(2) + ')').join('%0A');
+  const subject = encodeURIComponent('Bricktastic Builds Order Request - ' + itemList);
+  const body = 'Hi Bricktastic Builds,%0A%0AI would like to purchase the following:%0A%0A' + lines + '%0A%0AOrder Total: $' + total.toFixed(2) + '%0AMy Name: ' + encodeURIComponent(name) + '%0AMy Email: ' + encodeURIComponent(email) + '%0AOrder Token: ' + token + '%0A%0APlease send me a payment link. Thank you!';
   window.open('mailto:bricktasticbuilds01@gmail.com?subject=' + subject + '&body=' + body);
   document.getElementById('co-panel-3').style.display = 'none';
   document.getElementById('co-panel-success').style.display = 'block';
@@ -16823,13 +16802,13 @@ function closeBundle() {
 function renderBundleGrid() {
   const grid = document.getElementById('bundle-grid');
   grid.innerHTML = SHOP_PRODUCTS.map(p => `
-    <div class="bundle-item-card" id="bic-${p.id}" onclick="toggleBundleItem('${p.id}')">
+    <div class="bundle-item-card" id="bic-${p.id}" onclick="toggleBundleItem(${p.id})">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
         <span style="font-size:24px">${p.emoji}</span>
         <div class="bi-check" style="display:none;width:24px;height:24px;background:var(--yellow);border-radius:50%;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--black)">✓</div>
       </div>
       <div style="font-size:13px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:6px">${p.name}</div>
-      <div style="font-size:14px;font-weight:900;color:${p.color}">$${p.price.toFixed(2)}</div>
+      <div style="font-size:14px;font-weight:900;color:${p.tc||'var(--yellow)'}">$${p.price.toFixed(2)}</div>
     </div>
   `).join('');
 }

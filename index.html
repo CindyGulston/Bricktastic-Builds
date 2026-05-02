@@ -3737,7 +3737,7 @@ function renderWishlistPanel() {
         <div class="wishlist-item-name">${p.name}</div>
         <div class="wishlist-item-price">$${p.price}</div>
         <div class="wishlist-item-actions">
-          <button class="wishlist-item-buy" onclick="buyNow(${p.id});toggleWishlistPanel()">🛒 Buy Now</button>
+          <button class="wishlist-item-buy" onclick="openBuyUrl(${p.id});toggleWishlistPanel()">🛒 Buy Now</button>
           <button class="wishlist-item-remove" onclick="removeFromWishlist(${p.id})">✕ Remove</button>
         </div>
       </div>
@@ -16073,8 +16073,7 @@ const BUY_URLS = {
 function openBuyUrl(id) {
   const urls = BUY_URLS[id];
   if (!urls) return;
-  const url = urls.usd;
-  window.open(url, '_blank');
+  window.open(urls.usd, '_blank');
 }
 
 detectAndSetCurrency();
@@ -16681,19 +16680,16 @@ function coGoStep(n) {
     if (!email || !email.includes('@')) { document.getElementById('co-email').style.borderColor='var(--red)'; document.getElementById('co-email').focus(); return; }
     if (!country) { document.getElementById('co-country').style.borderColor='var(--red)'; document.getElementById('co-country').focus(); return; }
     // Show correct payment section
-    const isSA = country === 'ZA';
-    document.getElementById('co-payfast-section').style.display = isSA ? 'block' : 'none';
-    document.getElementById('co-intl-section').style.display    = isSA ? 'none'  : 'block';
+    // All users routed to PayPal/Payhip until PayFast is verified
+    document.getElementById('co-payfast-section').style.display = 'none';
+    document.getElementById('co-intl-section').style.display    = 'block';
     // Store token and product IDs for PayPal
     const token = generateToken();
     window._coToken = token;
     window._coProductIds = _coItems.map(p => p.id);
     coSaveOrder(token);
-    // Init PayPal if international
-    if (!isSA) {
-      _paypalRendered = false;
-      setTimeout(initPayPalButton, 200);
-    }
+    _paypalRendered = false;
+    setTimeout(initPayPalButton, 200);
   }
 
   _coStep = n;
@@ -16778,7 +16774,7 @@ async function coSendIntlEmail() {
 
 // ══ BUY NOW (single product) ══
 function buyNow(productId) {
-  const p = SHOP_PRODUCTS.find(x => x.id === productId);
+  const p = P.find(x => x.id === productId) || SHOP_PRODUCTS.find(x => String(x.id) === String(productId));
   if (!p) return;
   openCheckout([p]);
 }
@@ -16802,7 +16798,7 @@ function closeBundle() {
 function renderBundleGrid() {
   const grid = document.getElementById('bundle-grid');
   grid.innerHTML = SHOP_PRODUCTS.map(p => `
-    <div class="bundle-item-card" id="bic-${p.id}" onclick="toggleBundleItem(${p.id})">
+    <div class="bundle-item-card" id="bic-${p.id}" onclick="toggleBundleItem('${p.id}')">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
         <span style="font-size:24px">${p.emoji}</span>
         <div class="bi-check" style="display:none;width:24px;height:24px;background:var(--yellow);border-radius:50%;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--black)">✓</div>
@@ -16814,6 +16810,7 @@ function renderBundleGrid() {
 }
 
 function toggleBundleItem(id) {
+  id = String(id);
   if (_bundleSelected.has(id)) _bundleSelected.delete(id);
   else _bundleSelected.add(id);
   document.getElementById('bic-' + id).classList.toggle('selected', _bundleSelected.has(id));
@@ -16822,7 +16819,7 @@ function toggleBundleItem(id) {
 
 function updateBundleSummary() {
   const count    = _bundleSelected.size;
-  const selected = SHOP_PRODUCTS.filter(p => _bundleSelected.has(p.id));
+  const selected = SHOP_PRODUCTS.filter(p => _bundleSelected.has(String(p.id)));
   const subtotal = selected.reduce((s,p) => s + p.price, 0);
   const disc     = getBundleDiscount(count);
   const discAmt  = subtotal * disc;
@@ -16866,7 +16863,7 @@ function updateBundleSummary() {
 }
 
 function addBundleToCheckout() {
-  const selected = SHOP_PRODUCTS.filter(p => _bundleSelected.has(p.id));
+  const selected = SHOP_PRODUCTS.filter(p => _bundleSelected.has(String(p.id)));
   if (!selected.length) return;
   closeBundle();
   openCheckout(selected);

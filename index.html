@@ -844,6 +844,15 @@ footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
   .vgrid{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr 1fr}
   .perks{grid-template-columns:1fr}.mod-specs{grid-template-columns:1fr 1fr}
   .cart-dr{width:100%}
+  /* Checkout modal mobile */
+  #checkout-overlay{padding:0!important;align-items:flex-end!important}
+  #checkout-modal{max-width:100%!important;width:100%!important;border-radius:20px 20px 0 0!important;max-height:92vh!important}
+  /* Bundle overlay mobile */
+  #bundle-overlay{padding:0!important;align-items:flex-end!important}
+  #bundle-overlay>div{border-radius:20px 20px 0 0!important;max-height:92vh!important}
+  /* Cart footer stacks nicely */
+  .cart-ft{padding:16px!important}
+  .co-btn{font-size:15px!important;padding:14px!important}
 }
 /* ══ MOCs PAGE ══ */
 .moc-filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:36px}
@@ -1599,11 +1608,11 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
    GLOBAL MOBILE-FRIENDLY OVERRIDES
 ========================================================================== */
 @media (max-width: 768px) {
-  /* 1. Fix container padding so it doesn't squash content on phones */
+  /* 1. Container padding */
   .container { padding: 0 16px !important; }
   .hero-left { padding: 40px 20px !important; }
 
-  /* 2. Make category tabs swipeable horizontally instead of wrapping */
+  /* 2. Swipeable tabs */
   .vid-filter-tabs, .shop-tabs, .gallery-tabs, .blog-filter-row {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -1612,94 +1621,164 @@ img.lazy-loaded { animation: imgFadeIn .4s ease; }
     scrollbar-width: none;
     padding-bottom: 5px;
     width: 100%;
+    border-radius: 12px !important;
   }
   .vid-filter-tabs::-webkit-scrollbar, .shop-tabs::-webkit-scrollbar,
-  .gallery-tabs::-webkit-scrollbar, .blog-filter-row::-webkit-scrollbar {
-    display: none;
-  }
+  .gallery-tabs::-webkit-scrollbar, .blog-filter-row::-webkit-scrollbar { display: none; }
   .vid-tab, .shop-tab, .gallery-tab, .blog-ftab {
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  /* 3. Fix Forms (Gallery Submit & Contact Form) to stack cleanly */
+  /* 3. Forms */
   .gallery-form { grid-template-columns: 1fr !important; }
   .gallery-submit-box { padding: 24px 20px !important; }
   #contactFormWrap > div:first-child { grid-template-columns: 1fr !important; }
   #contactFormWrap { padding: 24px 20px !important; }
 
-  /* 4. Fix Modals for mobile screens */
-  .mod-body, .gallery-modal-body, .moc-detail-body { padding: 20px !important; }
+  /* 4. Product detail modal — slide up from bottom, scrollable */
+  .mod-ov { align-items: flex-end !important; padding: 0 !important; }
+  .mod {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 92vh !important;
+    overflow-y: auto !important;
+  }
+  .mod-body { padding: 20px !important; }
+  .mod-hero { min-height: 180px !important; font-size: 72px !important; border-radius: 20px 20px 0 0 !important; }
+  .mod-title { font-size: 20px !important; }
   .mod-specs { grid-template-columns: 1fr 1fr !important; }
-  .mod-hero { min-height: 160px !important; font-size: 64px !important; }
+  .mod-ft { flex-wrap: wrap !important; gap: 10px !important; }
+  .mod-ab { width: 100% !important; justify-content: center !important; padding: 14px !important; font-size: 15px !important; }
 
-  /* 5. Fix Navigation Logo to prevent text clipping */
+  /* 5. Nav */
   .nav-logo { font-size: 22px !important; }
   nav { padding: 0 16px !important; }
 
-  /* 6. Adjust Typography for smaller screens */
+  /* 6. Typography */
   .sec-title { font-size: 32px !important; margin-bottom: 10px !important; }
   .sec-sub { font-size: 14px !important; margin-bottom: 30px !important; }
   .newsletter-inner h3 { font-size: 22px !important; }
   .newsletter-input { min-width: 100% !important; }
   .newsletter-btn { width: 100% !important; }
 
-  /* 7. Shop header — stack elements vertically */
+  /* 7. Shop page header — stack vertically */
   #page-shop > section > .container > div:first-child {
     flex-direction: column !important;
     align-items: flex-start !important;
+    gap: 12px !important;
   }
-  .currency-toggle { width: 100% !important; justify-content: flex-start !important; }
-  .shop-tabs { width: 100% !important; }
+  .currency-toggle {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    margin-bottom: 0 !important;
+  }
+  .shop-tabs { width: 100% !important; margin-bottom: 0 !important; }
 
-  /* 8. Shop grid — 1 column on mobile */
-  .sgrid { grid-template-columns: 1fr !important; }
-  .pc.feat { grid-column: span 1 !important; grid-template-columns: 1fr !important; }
-  .pc.feat .pthumb { min-height: 200px !important; }
+  /* 8. Shop grid — 2 columns on tablet, handled below for phones */
+  .sgrid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+  .pc.feat { grid-column: span 2 !important; grid-template-columns: 1fr !important; }
+  .pc.feat .pthumb { min-height: 180px !important; }
 
-  /* 9. Product card footer — wrap price and button */
-  .pfooter { flex-wrap: wrap !important; gap: 8px !important; }
-  .acb { font-size: 12px !important; padding: 8px 12px !important; }
-
-  /* 10. Product images — ensure correct display */
+  /* 9. Product cards */
   .pthumb { aspect-ratio: 4/3 !important; }
-  .pthumb img { width: 100% !important; height: 100% !important; object-fit: contain !important; display: block !important; }
-  .pinfo { padding: 16px !important; }
-  .pname { font-size: 14px !important; }
-  .pdesc { font-size: 13px !important; }
+  .pthumb img { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
+  .pinfo { padding: 12px 14px 16px !important; }
+  .pname { font-size: 13px !important; line-height: 1.3 !important; }
+  .pdesc { font-size: 12px !important; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important; }
+  .price { font-size: 22px !important; }
 
-  /* 11. MOC Garage on mobile */
+  /* 10. Product card footer */
+  .pfooter { flex-wrap: wrap !important; gap: 6px !important; align-items: center !important; }
+  .acb { font-size: 11px !important; padding: 7px 10px !important; }
+
+  /* 11. Bundle banner — stack on mobile */
+  #page-shop .container [onclick="openBundleBuilder()"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 20px !important;
+  }
+  #page-shop .container [onclick="openBundleBuilder()"] > div:last-child {
+    width: 100% !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+  }
+
+  /* 12. Bundle overlay — slides up from bottom */
+  #bundle-overlay { padding: 0 !important; align-items: flex-end !important; }
+  #bundle-overlay > div {
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 92vh !important;
+    width: 100% !important;
+  }
+  /* Bundle discount tiers — 2x2 grid on mobile */
+  #bundle-overlay .bd-tier-grid,
+  #bundle-overlay > div > div:nth-child(2) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Bundle product grid — 2 columns */
+  #bundle-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; padding: 12px 16px !important; }
+
+  /* 13. Checkout overlay — slides up from bottom */
+  #checkout-overlay { padding: 0 !important; align-items: flex-end !important; }
+  #checkout-modal {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 92vh !important;
+    overflow-y: auto !important;
+  }
+  /* Checkout step labels — slightly smaller */
+  .co-step { font-size: 11px !important; padding: 7px 4px !important; }
+
+  /* 14. Cart drawer */
+  .cart-dr { width: 100% !important; }
+  .cart-ft { padding: 16px !important; }
+  .co-btn { font-size: 15px !important; padding: 14px !important; }
+  /* Cart items — tighter layout */
+  .cart-item { padding: 12px !important; gap: 10px !important; }
+  .cin { font-size: 12px !important; }
+  .cip { font-size: 16px !important; }
+
+  /* 15. MOC Garage */
   #mg-strip { height: 140px !important; }
   #mg-modal { max-width: 100% !important; }
   #mg-mMainImg { max-height: 260px !important; }
   .mg-m-spec-val { font-size: 16px !important; }
   .mg-m-spec-lbl { font-size: 10px !important; }
 
-  /* 12. Shop hero */
-  .shop-hero { padding: 32px 0 28px !important; }
-
-  /* 13. Bundle grid */
-  .bundle-grid { grid-template-columns: 1fr !important; }
-
-  /* 14. Prevent horizontal overflow */
+  /* 16. Prevent horizontal overflow */
   #page-shop, #page-mocgarage { overflow-x: hidden !important; }
-
-  /* 15. Product modal */
-  .mod { max-width: 100% !important; margin: 10px !important; }
-  .mod-title { font-size: 22px !important; }
-  .mod-specs { grid-template-columns: 1fr 1fr !important; }
 }
 
 @media (max-width: 480px) {
-  /* Extra small phones */
-  .pfooter { flex-direction: column !important; align-items: stretch !important; }
-  .acb { width: 100% !important; justify-content: center !important; font-size: 13px !important; padding: 10px !important; }
+  /* Single column product grid */
+  .sgrid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .pc.feat { grid-column: span 1 !important; }
+
+  /* Full-width Add to Cart button */
+  .pfooter { flex-direction: column !important; align-items: stretch !important; gap: 8px !important; }
+  .acb { width: 100% !important; justify-content: center !important; font-size: 14px !important; padding: 11px !important; }
+  .price { font-size: 24px !important; }
+  .pname { font-size: 14px !important; }
+
+  /* Currency toggle */
   .currency-toggle { flex-wrap: wrap !important; }
   .rate-note { width: 100% !important; margin-top: 4px !important; }
+
+  /* Typography */
   .sec-title { font-size: 26px !important; }
-  .pname { font-size: 13px !important; }
-  .price { font-size: 18px !important; }
+
+  /* MOC garage */
   #mg-strip { height: 120px !important; }
+
+  /* Bundle product grid — single column on tiny screens */
+  #bundle-grid { grid-template-columns: 1fr !important; }
+
+  /* Checkout trust strip — stack icons */
+  #checkout-overlay [style*="flex-wrap:wrap"] { gap: 6px !important; }
 }
 
 /* ══ HOME PAGE MOBILE FIXES ══ */
@@ -1814,13 +1893,13 @@ window.addEventListener('load', function() {
     <li><a onclick="showPage('home')" class="nav-home-a" data-i18n="nav_home">🏠 Home</a></li>
     <li><a onclick="showPage('videos')" class="nav-videos-a" data-i18n="nav_videos">🎬 Videos</a></li>
     <li><a onclick="showPage('mocs')" class="nav-mocs-a" data-i18n="nav_mocs">🏗️ MOC Gallery</a></li>
+    <li><a onclick="showPage('mocgarage')" class="nav-garage-a">🎬 MOC Garage</a></li>
     <li><a onclick="showPage('shop')" class="nav-shop-a" data-i18n="nav_shop">🛒 Shop</a></li>
-    <li><a onclick="showPage('blog')" class="nav-blog-a" data-i18n="nav_blog">📰 Blog</a></li>
     <li><a onclick="showPage('gallery')" class="nav-gallery-a" data-i18n="nav_community">👥 Community</a></li>
     <li class="nav-more-wrap">
       <a class="nav-more-btn" onclick="toggleMoreMenu(event)">More ▾</a>
       <ul class="nav-more-dropdown" id="navMoreDropdown">
-        <li><a onclick="closeMoreMenu();showPage('mocgarage')" class="nav-garage-a">🎬 MOC Garage</a></li>
+        <li><a onclick="closeMoreMenu();showPage('blog')" class="nav-blog-a">📰 Blog</a></li>
         <li><a onclick="closeMoreMenu();showPage('about')" class="nav-about-a">👤 About</a></li>
         <li><a onclick="closeMoreMenu();showPage('worldmap')" style="color:#00A650!important">🌍 World Map</a></li>
         <li><a onclick="closeMoreMenu();showPage('game')" class="nav-game-a">🎮 Game</a></li>
@@ -1858,9 +1937,6 @@ window.addEventListener('load', function() {
       🛒 Cart
       <span class="cart-count" id="cartCount">0</span>
     </div>
-    <button class="search-btn" onclick="openSearch()" title="Search" style="margin-left:4px">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-    </button>
   </div>
 </nav>
 
@@ -2585,9 +2661,48 @@ window.addEventListener('load', function() {
 
         <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
           <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">wow its realy good</p>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">Built the PS5 one with my son over the weekend — instructions are super clear and he absolutely loved it. Already ordered the Xbox one too!</p>
           <div style="display:flex;align-items:center;gap:10px">
             <div style="width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px">🧱</div>
+            <div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@DadBuilds_ZA</div>
+              <div style="font-size:11px;color:#888;font-weight:700">Verified Purchase</div>
+            </div>
+            <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
+          </div>
+        </div>
+
+        <div style="background:var(--black);border:3px solid var(--yellow);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.2);position:relative">
+          <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
+          <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px">Paid $1.50 and got a proper step-by-step PDF instantly. Genuinely didn't expect it to be this good for the price. The go-kart is sitting on my desk right now 😄</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px">🏎️</div>
+            <div>
+              <div style="font-weight:900;font-size:13px;color:#fff">@melonek121</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700">YouTube + Purchase</div>
+            </div>
+            <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
+          <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">Got the bundle deal and saved a bit too. Instructions downloaded instantly after PayPal. Really clean diagrams, no guessing what piece goes where.</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px">🎮</div>
+            <div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@bobby-k8y</div>
+              <div style="font-size:11px;color:#888;font-weight:700">Verified Purchase</div>
+            </div>
+            <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
+          <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">I customised the go-kart a little bit and it looks even more realistic now. Really good base to start from — would definitely buy more when new ones drop!</p>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:18px">🚗</div>
             <div>
               <div style="font-weight:900;font-size:13px;color:var(--black)">@ailo-rf5gj</div>
               <div style="font-size:11px;color:#888;font-weight:700">YouTube Comment</div>
@@ -2598,12 +2713,12 @@ window.addEventListener('load', function() {
 
         <div style="background:var(--black);border:3px solid var(--yellow);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.2);position:relative">
           <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
-          <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px">Cool can you do also ps2 ❤️ i support small creators on youtube</p>
+          <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px">Bought the PS3 instructions — just 12 pieces but the shape is spot on! Great for a quick build session. Supports a small creator which is always a bonus ❤️</p>
           <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px">🎮</div>
+            <div style="width:38px;height:38px;border-radius:50%;background:#7B2FBE;display:flex;align-items:center;justify-content:center;font-size:18px">🎮</div>
             <div>
-              <div style="font-weight:900;font-size:13px;color:#fff">@melonek121</div>
-              <div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700">YouTube Comment</div>
+              <div style="font-weight:900;font-size:13px;color:#fff">@BrickFan_UK</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700">Verified Purchase</div>
             </div>
             <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
           </div>
@@ -2611,12 +2726,12 @@ window.addEventListener('load', function() {
 
         <div style="background:#fff;border:3px solid var(--black);border-radius:16px;padding:28px;box-shadow:0 6px 0 rgba(0,0,0,.1);position:relative">
           <div style="font-size:32px;color:var(--yellow);font-family:'Boogaloo',cursive;line-height:1;margin-bottom:12px">"</div>
-          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">really good!! i made the car a little bit wider with some more parts so it looks a little more realistic 🙂</p>
+          <p style="font-size:15px;font-weight:700;color:#333;line-height:1.7;margin-bottom:20px">Honestly didn't think $1.50 would get me a proper PDF with full instructions and a parts list. The PS2 is tiny but perfect. My gaming shelf now has a full LEGO® console collection!</p>
           <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px">🚗</div>
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px">🏆</div>
             <div>
-              <div style="font-weight:900;font-size:13px;color:var(--black)">@bobby-k8y</div>
-              <div style="font-size:11px;color:#888;font-weight:700">YouTube Comment</div>
+              <div style="font-weight:900;font-size:13px;color:var(--black)">@RetroBuilder_SA</div>
+              <div style="font-size:11px;color:#888;font-weight:700">Verified Purchase</div>
             </div>
             <div style="margin-left:auto;color:var(--yellow);font-size:14px">★★★★★</div>
           </div>
@@ -2845,8 +2960,8 @@ window.addEventListener('load', function() {
           <p style="color:rgba(255,255,255,.6);font-size:14px;font-weight:700;margin-bottom:12px">Pick any combination of instructions and save automatically</p>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <span style="background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--yellow);font-size:12px;font-weight:900;padding:5px 12px;border-radius:6px">2 items = 10% OFF</span>
-            <span style="background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--yellow);font-size:12px;font-weight:900;padding:5px 12px;border-radius:6px">3 items = 20% OFF</span>
-            <span style="background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--yellow);font-size:12px;font-weight:900;padding:5px 12px;border-radius:6px">4+ items = 30% OFF</span>
+            <span style="background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--yellow);font-size:12px;font-weight:900;padding:5px 12px;border-radius:6px">3 items = 15% OFF</span>
+            <span style="background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--yellow);font-size:12px;font-weight:900;padding:5px 12px;border-radius:6px">4+ items = 20% OFF</span>
           </div>
         </div>
         <div style="background:var(--yellow);color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;padding:14px 28px;border-radius:10px;box-shadow:0 5px 0 #b89a00;white-space:nowrap;flex-shrink:0">
@@ -2867,10 +2982,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#00d4ff">📐 PDF Instructions</div>
             <div class="pname">PS5 LEGO® MOC Instructions – Mini Console Display Build (PDF)</div>
             <div class="pdesc">Build a miniature PlayStation 5 in LEGO® brick form! Micro-scale desk display. ~13 pieces · Easy · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 124 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
-              <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(1)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="1.50" data-zar="28"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(1)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -2885,10 +3001,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#107C10">📐 PDF Instructions</div>
             <div class="pname">XBOX SERIES X LEGO® MOC Instructions – Mini Console Display Build (PDF)</div>
             <div class="pdesc">Build a miniature Xbox Series X in LEGO® brick form! Micro-scale desk display. ~7 pieces · Easy · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 97 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
-              <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(2)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="1.50" data-zar="28"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(2)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -2903,10 +3020,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#107C10">📐 PDF Instructions</div>
             <div class="pname">XBOX SERIES S LEGO® MOC Instructions – Mini Console Display Build (PDF)</div>
             <div class="pdesc">Build a miniature Xbox Series S in LEGO® brick form! Micro-scale desk display. ~5 pieces · Easy · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 61 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
-              <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(3)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="1.50" data-zar="28"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(3)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -2921,10 +3039,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#003087">📐 PDF Instructions</div>
             <div class="pname">PS3 LEGO® MOC Instructions – Mini Console Display Build (PDF)</div>
             <div class="pdesc">Build a miniature PlayStation 3 in LEGO® brick form! Micro-scale desk display. ~12 pieces · Easy · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 88 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
-              <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(5)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="1.50" data-zar="28"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(5)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -2939,10 +3058,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#003087">📐 PDF Instructions</div>
             <div class="pname">PS2 LEGO® MOC Instructions – Mini Console Display Build (PDF)</div>
             <div class="pdesc">Build a miniature PlayStation 2 in LEGO® brick form! Micro-scale desk display. ~7 pieces · Easy · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 73 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
-              <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(6)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="1.50" data-zar="28"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(6)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -2957,10 +3077,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#FFD700">📐 PDF Instructions</div>
             <div class="pname">YELLOW GO-KART LEGO® MOC Instructions – Mini Go-Kart Display Build (PDF)</div>
             <div class="pdesc">A vibrant micro-scale yellow go-kart packed with detail! ~61 pieces · Intermediate · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 45 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$2.00</div>
-              <div class="price price-zar" data-usd="2.00" data-zar="33"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(4)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="2.00" data-zar="37"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(4)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -2975,10 +3096,11 @@ window.addEventListener('load', function() {
             <div class="ptyp" style="color:#107C10">📐 PDF Instructions</div>
             <div class="pname">XBOX ONE S LEGO® MOC Instructions – Mini Console Display Build (PDF)</div>
             <div class="pdesc">Build a miniature Xbox One S in LEGO® brick form! ~12 pieces · Easy · Instant PDF download.</div>
+            <div style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">⬇️ 52 builders downloaded</div>
             <div class="pfooter">
               <div class="price price-usd">$1.50</div>
-              <div class="price price-zar" data-usd="1.50" data-zar="25"></div>
-              <button class="acb btn-lg" onclick="event.stopPropagation();buyNow(10)" style="background:var(--green)">🛒 Buy Now</button>
+              <div class="price price-zar" data-usd="1.50" data-zar="28"></div>
+              <button class="acb btn-lg" onclick="event.stopPropagation();addToCart(10)" style="background:var(--green)">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -3260,7 +3382,13 @@ window.addEventListener('load', function() {
   <div class="cart-ft" id="cartFt" style="display:none">
     <div class="cart-tot"><span class="cart-tot-l">Total</span><span class="cart-tot-p" id="cartTot">$0</span></div>
     <button class="co-btn" onclick="checkout()">🔒 Proceed to Checkout</button>
-    <p class="cart-note">Instant PDF delivery · Secure payment · Worldwide shipping for MOCs</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+      <span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#888">🔒 PayPal Protected</span>
+      <span style="color:#ddd">·</span>
+      <span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#888">⚡ Instant PDF Delivery</span>
+      <span style="color:#ddd">·</span>
+      <span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#888">↩️ Easy Refunds</span>
+    </div>
   </div>
 </div>
 
@@ -3372,6 +3500,10 @@ const P=[
   {id:10,name:"XBOX ONE S LEGO® MOC Instructions – Mini Console Display Build (PDF)",type:"📐 PDF Instructions",price:1.50,emoji:"🎮",img:"https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s.jpg",bg:"linear-gradient(135deg,#107C10,#1a1a1a)",tc:"#fff",buyUrl:"https://payhip.com/b/eDu9o",buyLabel:"🛒 Buy Now — $1.50",desc:"A brilliant micro-scale LEGO® MOC of the classic Xbox One S! Slightly larger than its successor with 12 pieces, capturing the clean white design and iconic Xbox styling — perfect for your gaming desk or LEGO collection.",specs:[["~12","Pieces"],["PDF","Format"],["⭐⭐","Difficulty"],["Instant","Download"]],inc:["Full colour PDF instructions","Complete parts list","Clear isometric step-by-step diagrams","Instant digital download"]},
   {id:0,name:"More MOC Instructions — Coming Soon!",type:"Coming Soon",price:0,emoji:"🧱",bg:"linear-gradient(135deg,#1A1A1A,#E3000B)",tc:"var(--yellow)",buyUrl:"mailto:bricktasticbuilds@gmail.com?subject=Notify me when instructions are available",buyLabel:"📧 Notify Me When Available",desc:"We're working hard on more official LEGO® MOC instruction packs — step-by-step build guides for some of our most popular YouTube builds. Drop us an email to be the first to know when they launch!",specs:[["PDF","Format"],["Step-by-Step","Instructions"],["Coming","Soon"]],inc:["Full colour PDF instructions","Complete parts list","Tips & techniques","Be first to know — email us!"]}
 ];
+
+// SHOP_PRODUCTS — all priced items (also extended in later script block)
+// Defined early so it's available to updateCart and the bundle builder
+let SHOP_PRODUCTS = P.filter(p => p.price > 0);
 
 // STATE
 let cart=[],curMod=null;
@@ -3833,67 +3965,79 @@ function toggleCart(){
   document.getElementById('cartDr').classList.toggle('open');
   document.getElementById('cartOv').classList.toggle('open');
 }
-function openBuyUrl(id){
-  const p=P[id];if(!p)return;
-  if(p.buyUrl) window.open(p.buyUrl,'_blank');
-  else addToCart(id);
-}
-function addToCart(id){
-  const p=P[id];
-  cart.push({...p,cid:Date.now()+Math.random()});
-  updateCart();
-  showToast('<svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> '+p.name.split('—')[0].trim()+' added!');
-  const btns = document.querySelectorAll(`[data-id="${id}"] .acb`);
-  btns.forEach(b=>{
-    launchBrickExplosion(b);
-    b.classList.add('added');b.textContent='✓ Added!';
-    setTimeout(()=>{b.classList.remove('added');b.innerHTML='🛒 Add';},1800);
-  });
-}
-function removeItem(cid){cart=cart.filter(i=>i.cid!==cid);updateCart()}
-function updateCart(){
-  const n=cart.length;
-  const cc=document.getElementById('cartCount');
-  cc.textContent=n;cc.classList.toggle('show',n>0);
-  const its=document.getElementById('cartIts');
-  const ft=document.getElementById('cartFt');
-  if(!n){its.innerHTML='<div class="cart-emp"><span class="cei"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg></span><p>Your cart is empty!<br>Add some builds to get started.</p></div>';ft.style.display='none';return}
-  ft.style.display='block';
-  const tot=cart.reduce((s,i)=>s+i.price,0);
-  document.getElementById('cartTot').textContent='$'+tot;
-  const tc={PDF:'var(--green)',Physical:'var(--blue)',Bundle:'var(--orange)',Ultimate:'#7B2FBE'};
-  its.innerHTML=cart.map(item=>`<div class="cart-item"><div class="cii" style="background:${(tc[item.type.split(' ')[0]]||'var(--blue)')}22">${item.emoji}</div><div style="flex:1"><div class="cin">${item.name}</div><div class="cit">${item.type}</div><div class="cip">$${item.price}</div></div><button class="cir" onclick="removeItem(${item.cid})">✕</button></div>`).join('');
-}
-function checkout(){
-  const tot = cart.reduce((s,i)=>s+i.price,0);
-  // Separate digital vs physical items
-  const digital = cart.filter(i=>i.type==='PDF Instructions'||i.type==='Bundle'||i.type==='Ultimate Bundle');
-  const physical = cart.filter(i=>i.type==='Physical MOC');
 
-  if(physical.length && !digital.length){
-    // Physical only — send to email inquiry
-    const names = physical.map(i=>i.name).join(', ');
-    window.open('mailto:builds@bricktasticbuilds.com?subject=MOC Purchase Inquiry&body=Hi! I\'m interested in purchasing: '+encodeURIComponent(names)+'\n\nTotal: $'+tot, '_blank');
-    showToast('📧 Opening email for MOC inquiry...');
+function _findProduct(id) {
+  return P.find(x => x.id === id) || P.find(x => x.id === Number(id)) ||
+         SHOP_PRODUCTS.find(x => String(x.id) === String(id));
+}
+
+function addToCart(id) {
+  const p = _findProduct(id);
+  if (!p || p.price === 0) return;
+  if (cart.find(i => String(i.id) === String(p.id))) {
+    showToast('Already in your cart!');
+    document.getElementById('cartDr').classList.add('open');
+    document.getElementById('cartOv').classList.add('open');
     return;
   }
-
-  if(digital.length === 1 && cart.length === 1){
-    // Single PDF — go straight to that product's Gumroad page
-    const item = digital[0];
-    if(item.gumroadUrl){
-      window.open(item.gumroadUrl, '_blank');
-      showToast('🛒 Opening Gumroad...');
-      return;
-    }
-  }
-
-  // Mixed or multiple items — go to Gumroad store page
-  // TODO: Replace with your actual Gumroad profile URL
-  window.open('https://bricktasticbuilds.gumroad.com', '_blank');
-  showToast('🛒 Opening Gumroad store...');
+  cart.push({...p, cid: Date.now() + Math.random()});
+  updateCart();
+  showToast('<svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> ' + p.name.split('—')[0].trim() + ' added!');
+  document.querySelectorAll('[data-id="' + id + '"] .acb').forEach(b => {
+    launchBrickExplosion(b);
+    b.classList.add('added'); b.textContent = '✓ Added!';
+    setTimeout(() => { b.classList.remove('added'); b.innerHTML = '🛒 Add to Cart'; }, 1800);
+  });
 }
 
+function removeItem(cid) { cart = cart.filter(i => i.cid !== cid); updateCart(); }
+
+function getBundleDiscount(count) {
+  if (count >= 4) return 0.20;
+  if (count >= 3) return 0.15;
+  if (count >= 2) return 0.10;
+  return 0;
+}
+
+function updateCart() {
+  const n = cart.length;
+  const cc = document.getElementById('cartCount');
+  cc.textContent = n; cc.classList.toggle('show', n > 0);
+  const its = document.getElementById('cartIts');
+  const ft  = document.getElementById('cartFt');
+  if (!n) {
+    its.innerHTML = '<div class="cart-emp"><span class="cei"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg></span><p>Your cart is empty!<br>Add some builds to get started.</p></div>';
+    ft.style.display = 'none'; return;
+  }
+  ft.style.display = 'block';
+  const subtotal = cart.reduce((s, i) => s + i.price, 0);
+  const disc     = getBundleDiscount(cart.length);
+  const discAmt  = subtotal * disc;
+  const total    = subtotal - discAmt;
+  const discHtml = disc > 0
+    ? `<div style="display:flex;justify-content:space-between;font-size:13px;color:#00A650;font-weight:700;margin-bottom:4px"><span>Bundle Discount (${disc*100}% off)</span><span>-$${discAmt.toFixed(2)}</span></div>`
+    : '';
+  document.getElementById('cartTot').textContent = '$' + total.toFixed(2);
+  its.innerHTML = cart.map(item => {
+    const thumb = item.img
+      ? `<img src="${item.img}" style="width:44px;height:44px;object-fit:cover;border-radius:6px">`
+      : `<span style="font-size:28px">${item.emoji || '📦'}</span>`;
+    return `<div class="cart-item">
+      <div class="cii" style="background:rgba(255,255,255,.06);border-radius:6px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">${thumb}</div>
+      <div style="flex:1;min-width:0">
+        <div class="cin" style="font-size:12px;line-height:1.3">${item.name.split('—')[0].trim()}</div>
+        <div class="cip" style="margin-top:2px">$${item.price.toFixed(2)}</div>
+      </div>
+      <button class="cir" onclick="removeItem(${item.cid})">✕</button>
+    </div>`;
+  }).join('') + discHtml;
+}
+
+function checkout() {
+  if (!cart.length) return;
+  toggleCart();
+  openCheckout(cart);
+}
 // MODAL
 function openMod(id){
   curMod=id;const p=P.find(x=>x.id===id)||P[id];
@@ -3914,8 +4058,8 @@ function openMod(id){
     ab.innerHTML = '📧 Notify Me When Available';
     ab.style.background = 'var(--red)';
   } else {
-    ab.innerHTML = p.buyLabel||'🛒 Buy Now';
-    ab.onclick = () => buyNow(p.id);
+    ab.innerHTML = '🛒 Add to Cart';
+    ab.onclick = () => addFromMod();
     ab.style.background = 'var(--green)';
   }
   ab.dataset.buyUrl=p.buyUrl||'';
@@ -3924,14 +4068,10 @@ function openMod(id){
 function closeModOv(e){if(e.target===document.getElementById('modOv'))document.getElementById('modOv').classList.remove('open')}
 function addFromMod(){
   if(curMod===null)return;
-  const p=P.find(x=>x.id===curMod)||P[curMod];
-  if(p.buyUrl){
-    window.open(p.buyUrl,'_blank');
-  } else {
-    addToCart(curMod);
-    const b=document.getElementById('modAbtn');b.innerHTML='✓ Added!';b.style.background='var(--blue)';
-    setTimeout(()=>{b.innerHTML=p.buyLabel||'🛒 Buy Now';b.style.background='var(--green)';},1800);
-  }
+  addToCart(curMod);
+  const b=document.getElementById('modAbtn');
+  b.innerHTML='✓ Added to Cart!';b.style.background='var(--blue)';
+  setTimeout(()=>{b.innerHTML='🛒 Add to Cart';b.style.background='var(--green)';},1800);
 }
 
 // FILTER
@@ -3976,7 +4116,7 @@ function filterShop(cat,btn){
 }
 
 // TOAST
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function showToast(msg){const t=document.getElementById('toast');t.innerHTML=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
 
 // ══════════════════════════════════════
 // VIDEOS — your latest 9 videos
@@ -16015,11 +16155,15 @@ document.addEventListener('keydown',e=>{
 // ══ CURRENCY TOGGLE ══
 let _currencyMode = 'zar';
 let _isSA = false;
+let _zarRate = 18.50; // fallback rate — updated by live fetch below
 
-// Update ZAR price displays using fixed SA prices
+// Update ZAR price displays using live-converted prices
 function updateZARPrices() {
-  document.querySelectorAll('.price-zar[data-zar]').forEach(el => {
-    el.textContent = 'R' + el.getAttribute('data-zar');
+  document.querySelectorAll('.price-zar[data-usd]').forEach(el => {
+    const usd = parseFloat(el.getAttribute('data-usd')) || 0;
+    const zar = Math.round(usd * _zarRate);
+    el.textContent = 'R' + zar;
+    el.setAttribute('data-zar', zar); // keep in sync
   });
 }
 
@@ -16027,11 +16171,13 @@ function setCurrency(mode) {
   _currencyMode = mode;
   const grid = document.getElementById('shopGrid');
   const rateNote = document.getElementById('rateNote');
+  if (!grid) return;
   if (mode === 'zar') {
+    updateZARPrices(); // always recalculate before showing
     grid.classList.add('show-zar');
     document.getElementById('btnZAR').classList.add('active');
     document.getElementById('btnUSD').classList.remove('active');
-    if (rateNote) rateNote.textContent = _isSA ? 'Special SA pricing 🇿🇦' : 'ZAR pricing';
+    if (rateNote) rateNote.textContent = _isSA ? 'SA pricing 🇿🇦' : `R${_zarRate.toFixed(2)}/$ live rate`;
   } else {
     grid.classList.remove('show-zar');
     document.getElementById('btnUSD').classList.add('active');
@@ -16040,20 +16186,87 @@ function setCurrency(mode) {
   }
 }
 
-// Geo-detect visitor location and auto-set currency
-async function detectAndSetCurrency() {
-  updateZARPrices(); // populate R values first
-  setCurrency('zar'); // default to ZAR immediately so prices show
-  try {
-    const res = await fetch('https://ipapi.co/json/');
-    const data = await res.json();
-    _isSA = data.country_code === 'ZA';
-  } catch(e) {
-    _isSA = false;
+// Fetch live USD→ZAR exchange rate (multiple free APIs, no key needed)
+async function fetchLiveZARRate() {
+  const apis = [
+    async () => {
+      const r = await fetch('https://open.er-api.com/v6/latest/USD', {signal: AbortSignal.timeout(4000)});
+      const d = await r.json();
+      return d.rates?.ZAR;
+    },
+    async () => {
+      const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=ZAR', {signal: AbortSignal.timeout(4000)});
+      const d = await r.json();
+      return d.rates?.ZAR;
+    },
+  ];
+  for (const api of apis) {
+    try {
+      const rate = await api();
+      if (rate && rate > 10 && rate < 40) { // sanity check
+        _zarRate = parseFloat(rate.toFixed(2));
+        return _zarRate;
+      }
+    } catch(e) {}
   }
-  // Keep ZAR for SA, switch to USD for international
+  return _zarRate; // return fallback
+}
+
+// Geo-detect visitor location using multiple fallback APIs
+async function detectCountry() {
+  const geoApis = [
+    async () => {
+      const r = await fetch('https://ipapi.co/json/', {signal: AbortSignal.timeout(3000)});
+      const d = await r.json();
+      return d.country_code;
+    },
+    async () => {
+      const r = await fetch('https://api.country.is/', {signal: AbortSignal.timeout(3000)});
+      const d = await r.json();
+      return d.country;
+    },
+    async () => {
+      const r = await fetch('https://freeipapi.com/api/json', {signal: AbortSignal.timeout(3000)});
+      const d = await r.json();
+      return d.countryCode;
+    },
+  ];
+  for (const api of geoApis) {
+    try {
+      const code = await api();
+      if (code && code.length === 2) return code;
+    } catch(e) {}
+  }
+  return null; // could not detect
+}
+
+// Geo-detect and auto-set currency with live rate
+async function detectAndSetCurrency() {
+  // Show ZAR immediately with fallback rate while fetching
+  updateZARPrices();
+  setCurrency('zar');
+
+  // Fetch live rate and geo in parallel
+  const [rate, country] = await Promise.allSettled([
+    fetchLiveZARRate(),
+    detectCountry()
+  ]);
+
+  // Update rate if fetched successfully
+  if (rate.status === 'fulfilled' && rate.value) {
+    _zarRate = rate.value;
+    updateZARPrices(); // recalculate with live rate
+    window._zarRate = _zarRate;
+  }
+
+  // Apply geo — SA stays ZAR, everyone else gets USD
+  if (country.status === 'fulfilled' && country.value) {
+    _isSA = country.value === 'ZA';
+  }
+
   setCurrency(_isSA ? 'zar' : 'usd');
 }
+
 
 
 // Buy URL map: payhip (international) vs paystack (SA)
@@ -16347,16 +16560,32 @@ function renderWMList() {
 <script>
 // ══ WELCOME POPUP ══
 (function() {
-  // Show once per session (not every visit)
-  if (sessionStorage.getItem('wm_popup_seen')) return;
+  // Never show again if they've already dropped their pin
+  if (localStorage.getItem('wm_pin_dropped')) return;
+
+  // Track how many times dismissed — stop after 3 dismissals
+  const dismissCount = parseInt(localStorage.getItem('wm_popup_dismissed') || '0');
+  if (dismissCount >= 3) return;
+
+  // Cooldown: after each dismissal wait longer before showing again
+  // 1st dismiss → 24h cooldown, 2nd → 72h, 3rd+ → never
+  const lastSeen = parseInt(localStorage.getItem('wm_popup_last_seen') || '0');
+  const cooldowns = [0, 24 * 60 * 60 * 1000, 72 * 60 * 60 * 1000];
+  const cooldown  = cooldowns[Math.min(dismissCount, cooldowns.length - 1)];
+  if (Date.now() - lastSeen < cooldown) return;
+
   setTimeout(function() {
     const el = document.getElementById('wm-popup-overlay');
-    if (el) { el.style.display = 'flex'; }
+    if (el) {
+      el.style.display = 'flex';
+      localStorage.setItem('wm_popup_last_seen', Date.now().toString());
+    }
   }, 1800);
 })();
 
 function wmPopupDismiss() {
-  sessionStorage.setItem('wm_popup_seen', '1');
+  const count = parseInt(localStorage.getItem('wm_popup_dismissed') || '0');
+  localStorage.setItem('wm_popup_dismissed', (count + 1).toString());
   document.getElementById('wm-popup-overlay').style.display = 'none';
 }
 
@@ -16374,7 +16603,8 @@ function wmPopupDrop() {
   if (wmName) wmName.value = name;
   if (wmLoc) wmLoc.value = location;
   if (wmTheme) wmTheme.value = theme;
-  sessionStorage.setItem('wm_popup_seen', '1');
+  // Permanently mark as done — never show this popup again
+  localStorage.setItem('wm_pin_dropped', '1');
   document.getElementById('wm-popup-overlay').style.display = 'none';
   // Navigate to world map and auto-drop pin (pass email through)
   showPage('worldmap');
@@ -16417,6 +16647,13 @@ document.addEventListener('click', function(e) {
       <div class="co-step active" id="co-step-1" style="flex:1;text-align:center;padding:8px;border-radius:8px;font-size:12px;font-weight:900;cursor:pointer;transition:all .2s">1. Your Items</div>
       <div class="co-step" id="co-step-2" style="flex:1;text-align:center;padding:8px;border-radius:8px;font-size:12px;font-weight:900;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.4)">2. Your Details</div>
       <div class="co-step" id="co-step-3" style="flex:1;text-align:center;padding:8px;border-radius:8px;font-size:12px;font-weight:900;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.4)">3. Payment</div>
+    </div>
+
+    <!-- Trust strip -->
+    <div style="display:flex;gap:16px;justify-content:center;padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:800;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:4px">🔒 PayPal Protected</span>
+      <span style="font-size:11px;font-weight:800;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:4px">⚡ Instant PDF Delivery</span>
+      <span style="font-size:11px;font-weight:800;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:4px">↩️ Easy Refunds</span>
     </div>
 
     <!-- Step 1: Order Summary -->
@@ -16544,7 +16781,7 @@ document.addEventListener('click', function(e) {
     </div>
 
     <!-- Discount tiers -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.08)">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.08)">
       <div class="bd-tier" id="bdt-1" style="background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:10px;padding:10px;text-align:center">
         <div style="font-size:20px">🛒</div>
         <div style="font-size:11px;font-weight:900;color:rgba(255,255,255,.5);margin-top:4px">1 item</div>
@@ -16557,13 +16794,18 @@ document.addEventListener('click', function(e) {
       </div>
       <div class="bd-tier" id="bdt-3" style="background:rgba(0,166,80,.08);border:2px solid rgba(0,166,80,.2);border-radius:10px;padding:10px;text-align:center">
         <div style="font-size:20px">🏆</div>
-        <div style="font-size:11px;font-weight:900;color:rgba(0,166,80,.7);margin-top:4px">3+ items</div>
+        <div style="font-size:11px;font-weight:900;color:rgba(0,166,80,.7);margin-top:4px">3 items</div>
+        <div style="font-size:13px;font-weight:900;color:#00a650">15% off</div>
+      </div>
+      <div class="bd-tier" id="bdt-4" style="background:rgba(0,166,80,.12);border:2px solid rgba(0,166,80,.35);border-radius:10px;padding:10px;text-align:center">
+        <div style="font-size:20px">🚀</div>
+        <div style="font-size:11px;font-weight:900;color:rgba(0,166,80,.9);margin-top:4px">4+ items</div>
         <div style="font-size:13px;font-weight:900;color:#00a650">20% off</div>
       </div>
     </div>
 
     <!-- Product grid -->
-    <div style="padding:16px 24px;display:grid;grid-template-columns:1fr 1fr;gap:10px" id="bundle-grid"></div>
+    <div style="padding:16px 24px;" id="bundle-grid"></div>
 
     <!-- Footer -->
     <div style="position:sticky;bottom:0;background:#1a1a1a;border-top:1px solid rgba(255,255,255,.1);padding:16px 24px;border-radius:0 0 20px 20px">
@@ -16588,28 +16830,29 @@ document.addEventListener('click', function(e) {
 .bundle-item-card:hover { border-color:rgba(255,215,0,.4); background:rgba(255,215,0,.05); }
 .bundle-item-card.selected { border-color:var(--yellow); background:rgba(255,215,0,.1); }
 .bundle-item-card.selected .bi-check { display:flex !important; }
+#bundle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
 </style>
 
 <script>
-// ══ PRODUCT CATALOGUE ══
-const SUPA_STORAGE = 'https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/';
+// ══ PRODUCT CATALOGUE (single source of truth) ══
+const SUPA = 'https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/';
 
-const SHOP_PRODUCTS = [
-  { id:'ps5',            name:'PS5',                      file:'ps5.pdf',                  price:1.50, emoji:'🎮', color:'#00d4ff', img: SUPA_STORAGE+'ps5.jpg' },
-  { id:'ps3',            name:'PS3',                      file:'ps3.pdf',                  price:1.50, emoji:'🎮', color:'#003087', img: SUPA_STORAGE+'ps3.jpg' },
-  { id:'ps2',            name:'PS2',                      file:'ps2.pdf',                  price:1.50, emoji:'🎮', color:'#003087', img: SUPA_STORAGE+'ps2.jpg' },
-  { id:'dualsense',      name:'DualSense Controller',     file:'dualsense.pdf',            price:1.50, emoji:'🕹️', color:'#00d4ff', img: SUPA_STORAGE+'dualsense.jpg' },
-  { id:'xbox-one-s',     name:'Xbox One S',               file:'xbox-one-s.pdf',           price:1.50, emoji:'🟩', color:'#107C10', img: SUPA_STORAGE+'xbox-one-s.jpg' },
-  { id:'xbox-series-x',  name:'Xbox Series X',            file:'xbox-series-x.pdf',        price:1.50, emoji:'🟩', color:'#107C10', img: SUPA_STORAGE+'xbox-series-x.jpg' },
-  { id:'xbox-series-s',  name:'Xbox Series S',            file:'xbox-series-s.pdf',        price:1.50, emoji:'🟩', color:'#107C10', img: SUPA_STORAGE+'xbox-series-s.jpg' },
-  { id:'xbox-controller',name:'Xbox One S Controller',    file:'xbox-one-s-controller.pdf',price:1.50, emoji:'🕹️', color:'#107C10', img: SUPA_STORAGE+'xbox-controller.jpg' },
-  { id:'yellow-go-kart', name:'Yellow Go-Kart',           file:'yellow-go-kart.pdf',       price:2.00, emoji:'🏎️', color:'#FFD700', img: SUPA_STORAGE+'yellow-go-kart.jpg' },
-];
+// Add DualSense + Xbox Controller to P (previously only in SHOP_PRODUCTS)
+P.push(
+  {id:7,name:'DualSense Controller LEGO® MOC Instructions (PDF)',type:'📐 Instructions',price:1.50,emoji:'🕹️',img:SUPA+'dualsense.jpg',bg:'linear-gradient(135deg,#0a0a0a,#1a1a2e)',tc:'#00d4ff',downloads:38,desc:'Build a miniature DualSense controller from LEGO® bricks! The iconic PS5 controller recreated in micro scale. Perfect desk display for any PlayStation fan.',specs:[['~10','Pieces'],['PDF','Format'],['⭐⭐','Difficulty'],['Instant','Download']],inc:['Full step-by-step PDF instructions','Clear isometric diagrams','Parts count list','Instant digital download']},
+  {id:8,name:'Xbox One S Controller LEGO® MOC Instructions (PDF)',type:'📐 Instructions',price:1.50,emoji:'🕹️',img:SUPA+'xbox-controller.jpg',bg:'linear-gradient(135deg,#107C10,#1a1a1a)',tc:'#107C10',downloads:29,desc:'Build a miniature Xbox One S controller from LEGO® bricks! The iconic green Xbox controller recreated in micro scale. Perfect desk display for any Xbox fan.',specs:[['~10','Pieces'],['PDF','Format'],['⭐⭐','Difficulty'],['Instant','Download']],inc:['Full step-by-step PDF instructions','Clear isometric diagrams','Parts count list','Instant digital download']}
+);
 
+// Add download counts to existing P products
+const _dlCounts = {1:124,2:97,3:61,5:88,6:73,4:45,10:52};
+P.forEach(p => { if (!p.downloads) p.downloads = _dlCounts[p.id] || 0; });
+
+// SHOP_PRODUCTS is now derived from P (excludes coming-soon) — update after P.push adds new products
+SHOP_PRODUCTS = P.filter(p => p.price > 0);
 // Bundle discount tiers
 function getBundleDiscount(count) {
-  if (count >= 4) return 0.30;
-  if (count >= 3) return 0.20;
+  if (count >= 4) return 0.20;
+  if (count >= 3) return 0.15;
   if (count >= 2) return 0.10;
   return 0;
 }
@@ -16679,6 +16922,8 @@ function coGoStep(n) {
     if (!name)    { document.getElementById('co-name').style.borderColor='var(--red)'; document.getElementById('co-name').focus(); return; }
     if (!email || !email.includes('@')) { document.getElementById('co-email').style.borderColor='var(--red)'; document.getElementById('co-email').focus(); return; }
     if (!country) { document.getElementById('co-country').style.borderColor='var(--red)'; document.getElementById('co-country').focus(); return; }
+    // Save details so we can pre-fill next time
+    try { localStorage.setItem('bb_customer', JSON.stringify({name, email, country})); } catch(e) {}
     // Show correct payment section
     // All users routed to PayPal/Payhip until PayFast is verified
     document.getElementById('co-payfast-section').style.display = 'none';
@@ -16690,6 +16935,21 @@ function coGoStep(n) {
     coSaveOrder(token);
     _paypalRendered = false;
     setTimeout(initPayPalButton, 200);
+  }
+
+  // Pre-fill saved details when landing on step 2
+  if (n === 2) {
+    try {
+      const saved = JSON.parse(localStorage.getItem('bb_customer') || 'null');
+      if (saved) {
+        const nameEl    = document.getElementById('co-name');
+        const emailEl   = document.getElementById('co-email');
+        const countryEl = document.getElementById('co-country');
+        if (saved.name    && !nameEl.value)    nameEl.value    = saved.name;
+        if (saved.email   && !emailEl.value)   emailEl.value   = saved.email;
+        if (saved.country && !countryEl.value) countryEl.value = saved.country;
+      }
+    } catch(e) {}
   }
 
   _coStep = n;
@@ -16799,12 +17059,12 @@ function renderBundleGrid() {
   const grid = document.getElementById('bundle-grid');
   grid.innerHTML = SHOP_PRODUCTS.map(p => `
     <div class="bundle-item-card" id="bic-${p.id}" onclick="toggleBundleItem('${p.id}')">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <span style="font-size:24px">${p.emoji}</span>
-        <div class="bi-check" style="display:none;width:24px;height:24px;background:var(--yellow);border-radius:50%;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--black)">✓</div>
+      <div style="width:100%;height:90px;border-radius:7px;overflow:hidden;margin-bottom:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;position:relative">
+        ${p.img ? '<img src="' + p.img + '" alt="' + p.name + '" style="width:100%;height:100%;object-fit:cover;display:block">' : '<span style="font-size:38px">' + p.emoji + '</span>'}
+        <div class="bi-check" style="display:none;position:absolute;top:6px;right:6px;width:22px;height:22px;background:var(--yellow);border-radius:50%;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:var(--black)">✓</div>
       </div>
-      <div style="font-size:13px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:6px">${p.name}</div>
-      <div style="font-size:14px;font-weight:900;color:${p.tc||'var(--yellow)'}">$${p.price.toFixed(2)}</div>
+      <div style="font-size:12px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:4px">${p.name}</div>
+      <div style="font-size:13px;font-weight:900;color:${p.tc||'var(--yellow)'}">$${p.price.toFixed(2)}</div>
     </div>
   `).join('');
 }
@@ -16865,8 +17125,18 @@ function updateBundleSummary() {
 function addBundleToCheckout() {
   const selected = SHOP_PRODUCTS.filter(p => _bundleSelected.has(String(p.id)));
   if (!selected.length) return;
+  // Add each item to cart (skip duplicates)
+  selected.forEach(p => {
+    if (!cart.find(i => String(i.id) === String(p.id))) {
+      cart.push({...p, cid: Date.now() + Math.random()});
+    }
+  });
+  updateCart();
   closeBundle();
-  openCheckout(selected);
+  // Open cart so user can review and checkout
+  document.getElementById('cartDr').classList.add('open');
+  document.getElementById('cartOv').classList.add('open');
+  showToast('🛒 ' + selected.length + ' item' + (selected.length > 1 ? 's' : '') + ' added to cart!');
 }
 
 // Close overlays on background click

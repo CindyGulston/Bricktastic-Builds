@@ -17152,7 +17152,24 @@ document.getElementById('bundle-overlay').addEventListener('click', function(e) 
 <!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=AYQWsZL1ws1eibz9dQNsghtL1QKGdTyRMcVlSeRbHP6nP9a0sFedYm1n_uOEetX131L9bYCduzfp5Kwe&currency=USD"></script>
 <script>
-let _paypalRendered = false;
+// ─── PayPal Integration (fixed) ────────────────────────────────────────────
+// FIX 1: Supabase anon key added to all requests (was causing 401 → "Connection error")
+// FIX 2: Double-charge guard via _captureInProgress flag
+// FIX 3: Better error messages — distinguishes network vs server errors
+// FIX 4: Validates order total before creating order to prevent $0 charges
+const SUPABASE_URL  = 'https://dueokuazfuvtsreutkya.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1ZW9rdWF6ZnV2dHNyZXV0a3lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ2NDA5NjQsImV4cCI6MjA2MDIxNjk2NH0.rDRfBBMZHuqXNqxTrqsUHFV5BcPMTLcbJkFdRJIkBJc';
+
+let _paypalRendered    = false;
+let _captureInProgress = false; // FIX 2: prevents double-capture
+
+function _showPaypalError(msg) {
+  document.getElementById('paypal-processing').style.display = 'none';
+  document.getElementById('paypal-button-container').style.display = 'block';
+  alert(msg);
+  _paypalRendered    = false;
+  _captureInProgress = false;
+}
 
 function initPayPalButton() {
   if (_paypalRendered) return;
@@ -17171,7 +17188,13 @@ function initPayPalButton() {
     },
 
     createOrder: function(data, actions) {
-      const total = parseFloat(document.getElementById('co-pay-total').textContent.replace('$','').replace(',','')) || 0;
+      // FIX 4: validate total before creating order
+      const raw   = (document.getElementById('co-pay-total').textContent || '').replace('$','').replace(',','');
+      const total = parseFloat(raw) || 0;
+      if (total <= 0) {
+        alert('Order total is missing. Please go back and try again.');
+        return Promise.reject(new Error('Invalid order total'));
+      }
       const itemName = document.getElementById('co-pay-items').textContent || 'LEGO MOC Instructions';
       return actions.order.create({
         purchase_units: [{
@@ -17187,48 +17210,80 @@ function initPayPalButton() {
     },
 
     onApprove: async function(data, actions) {
+      // FIX 2: block duplicate captures (e.g. user double-clicks)
+      if (_captureInProgress) return;
+      _captureInProgress = true;
+
       document.getElementById('paypal-processing').style.display = 'block';
       document.getElementById('paypal-button-container').style.display = 'none';
+
       try {
-        const res = await fetch('https://dueokuazfuvtsreutkya.supabase.co/functions/v1/payfast-webhook/paypal-capture', {
+        // FIX 1: include Authorization header with Supabase anon key
+        const res = await fetch(SUPABASE_URL + '/functions/v1/payfast-webhook/paypal-capture', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + SUPABASE_ANON,
+            'apikey': SUPABASE_ANON
+          },
           body: JSON.stringify({
-            orderId: data.orderID,
-            token: window._coToken || '',
+            orderId:    data.orderID,
+            token:      window._coToken      || '',
             productIds: window._coProductIds || [],
-            email: document.getElementById('co-email').value,
-            name: document.getElementById('co-name').value
+            email:      document.getElementById('co-email').value,
+            name:       document.getElementById('co-name').value
           })
         });
+
+        // FIX 3: detect non-2xx HTTP status before parsing JSON
+        if (!res.ok) {
+          const statusText = res.status + ' ' + res.statusText;
+          console.error('Supabase capture error:', statusText);
+          _showPaypalError(
+            'Payment was received by PayPal but our server returned an error (' + statusText + ').\n\n' +
+            'Please DO NOT pay again. Email bricktasticbuilds01@gmail.com with your PayPal order ID:\n' +
+            data.orderID
+          );
+          return;
+        }
+
         const result = await res.json();
         if (result.success) {
+          _captureInProgress = false;
+          _paypalRendered    = false;
           closeCheckout();
           document.querySelectorAll('.co-panel').forEach(p => p.style.display = 'none');
           document.getElementById('co-panel-success').style.display = 'block';
-          _paypalRendered = false;
         } else {
-          alert('Payment error: ' + (result.error || 'Unknown error. Please contact us.'));
-          document.getElementById('paypal-processing').style.display = 'none';
-          document.getElementById('paypal-button-container').style.display = 'block';
-          _paypalRendered = false;
+          // FIX 3: show server's actual error message
+          console.error('Capture result error:', result.error);
+          _showPaypalError(
+            'Payment processing error: ' + (result.error || 'Unknown error') + '\n\n' +
+            'If you were charged, please email bricktasticbuilds01@gmail.com with PayPal order ID: ' + data.orderID
+          );
         }
       } catch(e) {
-        alert('Connection error. Please try again or contact bricktasticbuilds01@gmail.com');
-        document.getElementById('paypal-processing').style.display = 'none';
-        document.getElementById('paypal-button-container').style.display = 'block';
-        _paypalRendered = false;
+        // FIX 3: network-level failure (DNS, offline, CORS, etc.)
+        console.error('PayPal capture network error:', e);
+        _showPaypalError(
+          'Network error — could not reach our server.\n\n' +
+          'If PayPal charged you, DO NOT pay again. Email bricktasticbuilds01@gmail.com with:\n' +
+          '• PayPal Order ID: ' + data.orderID + '\n' +
+          '• Your email address'
+        );
       }
     },
 
     onError: function(err) {
-      console.error('PayPal error:', err);
-      alert('PayPal error. Please try again or contact bricktasticbuilds01@gmail.com');
-      _paypalRendered = false;
+      console.error('PayPal SDK error:', err);
+      _captureInProgress = false;
+      _paypalRendered    = false;
+      alert('PayPal encountered an error. Please try again or contact bricktasticbuilds01@gmail.com');
     },
 
     onCancel: function() {
-      _paypalRendered = false;
+      _captureInProgress = false;
+      _paypalRendered    = false;
       initPayPalButton();
     }
 
@@ -17236,7 +17291,6 @@ function initPayPalButton() {
 }
 
 // Hook into the existing coGoStep function to init PayPal when step 3 shows
-const _origCoGoStep = window.coGoStep;
 document.addEventListener('DOMContentLoaded', function() {
   const origFn = window.coGoStep;
   if (origFn) {
@@ -17246,7 +17300,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
           const intlSection = document.getElementById('co-intl-section');
           if (intlSection && intlSection.style.display !== 'none') {
-            _paypalRendered = false;
+            _paypalRendered    = false;
+            _captureInProgress = false;
             initPayPalButton();
           }
         }, 100);

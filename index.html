@@ -16721,6 +16721,7 @@ document.addEventListener('click', function(e) {
         <div style="font-size:12px;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:4px">Order Total</div>
         <div style="font-family:'Boogaloo',cursive;font-size:28px;color:var(--yellow)" id="co-pay-total">$0.00</div>
         <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px" id="co-pay-items"></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:6px">💳 All payments processed in USD via PayPal. Your bank may convert to your local currency.</div>
       </div>
 
       <!-- SA customers - PayFast -->
@@ -16744,7 +16745,7 @@ document.addEventListener('click', function(e) {
         </form>
       </div>
 
-      <!-- International customers - PayPal -->
+      <!-- All customers - PayPal -->
       <div id="co-intl-section" style="display:none">
         <div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:700;margin-bottom:12px;text-align:center">🌍 Pay securely with PayPal</div>
         <div id="paypal-button-container" style="margin-bottom:10px"></div>
@@ -16984,8 +16985,8 @@ async function coSaveOrder(token) {
         product_id:    _coItems.map(p => p.id).join(','),
         product_name:  _coItems.map(p => p.name).join(' + '),
         amount:        total,
-        currency:      country === 'ZA' ? 'ZAR' : 'USD',
-        payment_method: country === 'ZA' ? 'payfast' : 'paypal',
+        currency:      'USD',
+        payment_method: 'paypal',
         download_token: token,
         download_count: 0,
         token_expires_at: expires,

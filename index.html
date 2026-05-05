@@ -4025,7 +4025,7 @@ function openMod(id){
   document.getElementById('modDesc').textContent=p.desc;
   document.getElementById('modSpecs').innerHTML=p.specs.map(([v,k])=>`<div class="spec-box"><span class="sv">${v}</span><span class="sk">${k}</span></div>`).join('');
   document.getElementById('modInc').innerHTML=`<h4>What's Included</h4><div class="inc-list">${p.inc.map(i=>`<span>✓ ${i}</span>`).join('')}</div>`;
-  document.getElementById('modPrice').textContent = p.price === 0 ? '🔜 Coming Soon' : '$'+p.price;
+  document.getElementById('modPrice').textContent = p.price === 0 ? '🔜 Coming Soon' : formatAmount(getItemPrice(p));
   const ab=document.getElementById('modAbtn');
   if (p.price === 0) {
     ab.innerHTML = '📧 Notify Me When Available';
@@ -16891,15 +16891,15 @@ function payWithPaystack() {
 async function coSendIntlEmail() {
   const name     = document.getElementById('co-name').value.trim();
   const email    = document.getElementById('co-email').value.trim();
-  const subtotal = _coItems.reduce((s,p) => s + p.price, 0);
+  const subtotal = _coItems.reduce((s,p) => s + getItemPrice(p), 0);
   const disc     = getBundleDiscount(_coItems.length);
   const total    = subtotal - (subtotal * disc);
   const token    = generateToken();
   const itemList = _coItems.map(p => p.name).join(', ');
   await coSaveOrder(token);
-  const lines = _coItems.map(p => '- ' + p.name + ' ($' + p.price.toFixed(2) + ')').join('%0A');
+  const lines = _coItems.map(p => '- ' + p.name + ' (' + formatAmount(getItemPrice(p)) + ')').join('%0A');
   const subject = encodeURIComponent('Bricktastic Builds Order Request - ' + itemList);
-  const body = 'Hi Bricktastic Builds,%0A%0AI would like to purchase the following:%0A%0A' + lines + '%0A%0AOrder Total: $' + total.toFixed(2) + '%0AMy Name: ' + encodeURIComponent(name) + '%0AMy Email: ' + encodeURIComponent(email) + '%0AOrder Token: ' + token + '%0A%0APlease send me a payment link. Thank you!';
+  const body = 'Hi Bricktastic Builds,%0A%0AI would like to purchase the following:%0A%0A' + lines + '%0A%0AOrder Total: ' + formatAmount(total) + '%0AMy Name: ' + encodeURIComponent(name) + '%0AMy Email: ' + encodeURIComponent(email) + '%0AOrder Token: ' + token + '%0A%0APlease send me a payment link. Thank you!';
   window.open('mailto:bricktasticbuilds01@gmail.com?subject=' + subject + '&body=' + body);
   document.getElementById('co-panel-3').style.display = 'none';
   document.getElementById('co-panel-success').style.display = 'block';

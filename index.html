@@ -16840,6 +16840,22 @@ async function coSaveOrder(token) {
       })
     });
   } catch(e) { console.warn('Order save error:', e.message); }
+
+  // If customer ticked the newsletter checkbox, add them to the subscriber list
+  const newsletterChecked = document.getElementById('co-newsletter')?.checked;
+  if (newsletterChecked) {
+    try {
+      await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          fields: { name, source: 'checkout' },
+          groups: []
+        })
+      });
+    } catch(e) { console.warn('Newsletter subscribe error:', e.message); }
+  }
 }
 
 function payWithPaystack() {
@@ -16863,7 +16879,8 @@ function payWithPaystack() {
       amount: amountKobo,
       currency: 'ZAR',
       ref: token,
-      label: name,
+      firstname: name.split(' ')[0],
+      lastname: name.split(' ').slice(1).join(' ') || '',
       metadata: {
         custom_fields: [
           { display_name: 'Customer Name', variable_name: 'name',        value: name },
@@ -16875,6 +16892,15 @@ function payWithPaystack() {
         [1,2,3].forEach(i => { document.getElementById('co-panel-' + i).style.display = 'none'; });
         document.getElementById('co-panel-success').style.display = 'block';
         document.getElementById('checkout-modal').scrollTop = 0;
+        // Subscribe to newsletter if checkbox was ticked
+        const newsletterChecked = document.getElementById('co-newsletter')?.checked;
+        if (newsletterChecked) {
+          fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, fields: { source: 'footer', name }, groups: [] })
+          }).catch(() => {});
+        }
         cart = []; updateCart();
       },
       onClose: function() {

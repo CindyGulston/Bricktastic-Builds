@@ -16809,7 +16809,7 @@ function coGoStep(n) {
 }
 
 function generateToken() {
-  return 'bb_' + Date.now() + '_' + Math.random().toString(36).substr(2,9);
+  return 'BB-' + Math.random().toString(36).substr(2,8).toUpperCase();
 }
 
 async function coSaveOrder(token) {

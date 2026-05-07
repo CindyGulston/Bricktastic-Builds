@@ -17039,7 +17039,24 @@ function payWithPaystack() {
         ]
       },
       callback: function(response) {
-        // Payment successful — webhook handles the email, just show success screen
+        // Payment successful — update order status to completed
+        supaFetch('orders?download_token=eq.' + token, {
+          method: 'PATCH',
+          body: JSON.stringify({ status: 'completed' })
+        }).catch(e => console.warn('Status update error:', e.message));
+
+        // Trigger download email via worker
+        fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev/order-complete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            name,
+            token,
+            product_name: _coItems.map(p => p.name).join(' + ')
+          })
+        }).catch(e => console.warn('Email trigger error:', e.message));
+
         [1,2,3].forEach(i => { document.getElementById('co-panel-' + i).style.display = 'none'; });
         document.getElementById('co-panel-success').style.display = 'block';
         document.getElementById('checkout-modal').scrollTop = 0;

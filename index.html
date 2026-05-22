@@ -32,6 +32,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root {
   --red:#E3000B; --yellow:#FFD700; --blue:#006CB7; --green:#00A650;
@@ -3971,7 +3973,7 @@ function showPage(id){
     // game hub inits its own games via openGame()
     if(id==='blog') initBlogPage();
     if(id==='gallery') initGalleryPage();
-    if(id==='worldmap') { initWorldMap(); setTimeout(()=>{ if(typeof _wmMap!=='undefined' && _wmMap) _wmMap.invalidateSize(); }, 350); }
+    if(id==='worldmap') { initWorldMap(); setTimeout(()=>{ if(_wmMap) _wmMap.invalidateSize(); }, 600); }
     setTimeout(()=>{initStuds();initReveal();initFloats();},80);
   }
   if(ov){
@@ -16473,9 +16475,6 @@ updateZARPrices();
 }
 </style>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
 <script>
 // ══ BUILDER CARD ══
 // ══ WORLD MAP ══
@@ -16494,21 +16493,25 @@ const _seedPins = [
 ];
 
 function initWorldMap() {
-  if (_wmInited) {
-    // Already inited — just invalidate size in case the container was hidden
-    if (_wmMap) { setTimeout(() => _wmMap.invalidateSize(), 100); }
-    return;
-  }
+  const mapEl = document.getElementById('wm-map');
+  if (!mapEl) return;
+
+  // Destroy and re-create every time so it renders correctly after page switches
+  if (_wmMap) { _wmMap.remove(); _wmMap = null; }
+  _wmInited = false;
   _wmInited = true;
+
   setTimeout(async () => {
-    const mapEl = document.getElementById('wm-map');
-    if (!mapEl) return;
-    // Destroy any stale map instance
-    if (_wmMap) { _wmMap.remove(); _wmMap = null; }
     _wmMap = L.map('wm-map', {zoomControl:true, scrollWheelZoom:false}).setView([20, 10], 2);
-    // Force Leaflet to recalculate container size (fixes hidden-container blank map)
-    setTimeout(() => _wmMap.invalidateSize(), 300);
-    // Load pins from Supabase
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18
+    }).addTo(_wmMap);
+
+    // Add seed pins immediately so map is never empty
+    _seedPins.forEach(p => addMarker(p));
+
+    // Fetch saved pins — don't block map render on this
     try {
       const saved = await supaFetch('community_pins?select=name,email,location,theme,lat,lng&order=created_at.desc');
       _wmPins = Array.isArray(saved) ? saved : [];
@@ -16516,14 +16519,13 @@ function initWorldMap() {
       console.warn('Could not load pins from Supabase:', e.message);
       _wmPins = JSON.parse(localStorage.getItem('bb_wm_pins') || '[]');
     }
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18
-    }).addTo(_wmMap);
-    const allPins = [..._seedPins, ..._wmPins];
-    allPins.forEach(p => addMarker(p));
+    _wmPins.forEach(p => addMarker(p));
     updateWMStats();
     renderWMList();
-  }, 200);
+
+    // Force size recalc after everything is painted
+    setTimeout(() => _wmMap && _wmMap.invalidateSize(), 200);
+  }, 250);
 }
 
 function addMarker(pin) {
@@ -16735,9 +16737,15 @@ function wmPopupDrop() {
   // Permanently mark as done — never show this popup again
   localStorage.setItem('wm_pin_dropped', '1');
   document.getElementById('wm-popup-overlay').style.display = 'none';
-  // Navigate to world map and auto-drop pin (pass email through)
+  // Navigate to world map, then wait until the map instance is ready before dropping pin
   showPage('worldmap');
-  setTimeout(function() { addPin(email); }, 600);
+  (function waitForMap(attempts) {
+    if (_wmMap) {
+      addPin(email);
+    } else if (attempts > 0) {
+      setTimeout(function() { waitForMap(attempts - 1); }, 200);
+    }
+  })(20); // polls every 200ms, up to 4 seconds total
 }
 </script>
 

@@ -3971,7 +3971,7 @@ function showPage(id){
     // game hub inits its own games via openGame()
     if(id==='blog') initBlogPage();
     if(id==='gallery') initGalleryPage();
-    if(id==='worldmap') initWorldMap();
+    if(id==='worldmap') { initWorldMap(); setTimeout(()=>{ if(typeof _wmMap!=='undefined' && _wmMap) _wmMap.invalidateSize(); }, 350); }
     setTimeout(()=>{initStuds();initReveal();initFloats();},80);
   }
   if(ov){
@@ -16494,16 +16494,24 @@ const _seedPins = [
 ];
 
 function initWorldMap() {
-  if (_wmInited) return;
+  if (_wmInited) {
+    // Already inited — just invalidate size in case the container was hidden
+    if (_wmMap) { setTimeout(() => _wmMap.invalidateSize(), 100); }
+    return;
+  }
   _wmInited = true;
   setTimeout(async () => {
     const mapEl = document.getElementById('wm-map');
-    if (!mapEl || _wmMap) return;
+    if (!mapEl) return;
+    // Destroy any stale map instance
+    if (_wmMap) { _wmMap.remove(); _wmMap = null; }
     _wmMap = L.map('wm-map', {zoomControl:true, scrollWheelZoom:false}).setView([20, 10], 2);
+    // Force Leaflet to recalculate container size (fixes hidden-container blank map)
+    setTimeout(() => _wmMap.invalidateSize(), 300);
     // Load pins from Supabase
     try {
       const saved = await supaFetch('community_pins?select=name,email,location,theme,lat,lng&order=created_at.desc');
-      _wmPins = saved || [];
+      _wmPins = Array.isArray(saved) ? saved : [];
     } catch(e) {
       console.warn('Could not load pins from Supabase:', e.message);
       _wmPins = JSON.parse(localStorage.getItem('bb_wm_pins') || '[]');
@@ -16534,31 +16542,60 @@ async function addPin(emailOverride) {
   const theme = document.getElementById('wm-theme').value;
   const email = emailOverride || '';
   if (!name || !location) { alert('Please enter your name and location!'); return; }
-  // Geocode using nominatim
+
+  // Disable button while processing
+  const btn = document.querySelector('[onclick="addPin()"]');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Dropping pin…'; }
+
   try {
     const res = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(location) + '&format=json&limit=1');
     const data = await res.json();
-    if (!data.length) { alert("Couldn't find that location. Try being more specific!"); return; }
+    if (!data.length) {
+      if (btn) { btn.disabled = false; btn.textContent = '📍 Drop My Pin'; }
+      alert("Couldn't find that location. Try being more specific (e.g. 'Cape Town, South Africa')!");
+      return;
+    }
     const lat = parseFloat(data[0].lat);
     const lng = parseFloat(data[0].lon);
     const pin = { name, location, theme, lat, lng };
+
     // Save to Supabase
+    let savedToCloud = false;
     try {
-      await supaFetch('community_pins', {
+      const saveRes = await fetch(SUPA_URL + '/rest/v1/community_pins', {
         method: 'POST',
+        headers: {
+          'apikey': SUPA_KEY,
+          'Authorization': 'Bearer ' + SUPA_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
         body: JSON.stringify({ name, email, location, theme, lat, lng })
       });
-    } catch(e) { console.warn('Supabase save failed:', e.message); }
+      if (saveRes.ok || saveRes.status === 201) {
+        savedToCloud = true;
+      } else {
+        const errText = await saveRes.text();
+        console.warn('Supabase save failed (' + saveRes.status + '):', errText);
+      }
+    } catch(e) {
+      console.warn('Supabase network error:', e.message);
+    }
+
     _wmPins.push(pin);
     localStorage.setItem('bb_wm_pins', JSON.stringify(_wmPins));
     addMarker(pin);
-    _wmMap.flyTo([lat, lng], 5, {duration:1.5});
+    if (_wmMap) _wmMap.flyTo([lat, lng], 5, {duration:1.5});
     updateWMStats();
     renderWMList();
     document.getElementById('wm-name').value = '';
     document.getElementById('wm-location').value = '';
-    alert('📍 Pin dropped! Welcome to the Bricktastic community, ' + name + '!');
+    if (btn) { btn.disabled = false; btn.textContent = '📍 Drop My Pin'; }
+    const cloudNote = savedToCloud ? '' : '
+(Note: saved locally — cloud sync may be unavailable)';
+    alert('📍 Pin dropped! Welcome to the Bricktastic community, ' + name + '!' + cloudNote);
   } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = '📍 Drop My Pin'; }
     alert('Could not geocode location. Check your connection and try again.');
   }
 }

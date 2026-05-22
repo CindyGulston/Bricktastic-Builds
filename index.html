@@ -1862,10 +1862,13 @@ ml('account', '2252432');
 @keyframes loaderBrick{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 </style>
 <script>
-window.addEventListener('load', function() {
+function _dismissLoader() {
   const loader = document.getElementById('pageLoader');
-  if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 400); }
-});
+  if (loader && loader.parentNode) { loader.style.opacity = '0'; setTimeout(() => { if (loader.parentNode) loader.remove(); }, 400); }
+}
+window.addEventListener('load', _dismissLoader);
+// Hard fallback: always dismiss loader after 4 seconds no matter what
+setTimeout(_dismissLoader, 4000);
 </script>
 
 <!-- NAV -->
@@ -17277,7 +17280,7 @@ document.getElementById('bundle-overlay').addEventListener('click', function(e) 
 
 
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://js.paystack.co/v1/inline.js" async></script>
 
 </body>
 </html>

@@ -16544,12 +16544,27 @@ async function addPin(emailOverride) {
     const lng = parseFloat(data[0].lon);
     const pin = { name, location, theme, lat, lng };
     // Save to Supabase
+    let saveError = null;
     try {
-      await supaFetch('community_pins', {
+      const res = await fetch(SUPA_URL + '/rest/v1/community_pins', {
         method: 'POST',
+        headers: {
+          'apikey': SUPA_KEY,
+          'Authorization': 'Bearer ' + SUPA_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
         body: JSON.stringify({ name, email, location, theme, lat, lng })
       });
-    } catch(e) { console.warn('Supabase save failed:', e.message); }
+      if (!res.ok) {
+        const errText = await res.text();
+        saveError = errText;
+        console.error('Supabase save failed:', res.status, errText);
+      }
+    } catch(e) {
+      saveError = e.message;
+      console.error('Supabase save error:', e.message);
+    }
     _wmPins.push(pin);
     localStorage.setItem('bb_wm_pins', JSON.stringify(_wmPins));
     addMarker(pin);
@@ -16558,7 +16573,11 @@ async function addPin(emailOverride) {
     renderWMList();
     document.getElementById('wm-name').value = '';
     document.getElementById('wm-location').value = '';
-    alert('📍 Pin dropped! Welcome to the Bricktastic community, ' + name + '!');
+    if (saveError) {
+      alert('📍 Pin dropped on the map, ' + name + '! (Note: could not save to database — ' + saveError + ')');
+    } else {
+      alert('📍 Pin dropped! Welcome to the Bricktastic community, ' + name + '!');
+    }
   } catch(e) {
     alert('Could not geocode location. Check your connection and try again.');
   }

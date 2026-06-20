@@ -17818,51 +17818,43 @@ document.getElementById('bundle-overlay').addEventListener('click', function(e) 
 const PDF_BASE = 'https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/products/';
 
 // Download limits
-const DIRECT_DOWNLOAD_LIMIT = 1;  // success panel (right after payment)
+const DIRECT_DOWNLOAD_LIMIT = 1;  // currently unused — success panel direct-download removed, email link is the only download path
 const EMAIL_DOWNLOAD_LIMIT  = 2;  // ?download=TOKEN link (email)
 
 // ── SUCCESS PANEL (immediate download after payment) ──────────────────────────
-// Buttons here are tracked via direct_download_count — limit: 1
+// Direct-download buttons removed — the email link (download_count, limit: 2)
+// is the single reliable download path. Keeping one path avoids the
+// public/private bucket mismatch between this panel and the email flow.
 function renderSuccessPanel(token, items) {
   const container = document.getElementById('co-download-btns');
   if (!container) return;
-  const products = items.filter(p => p.pdfKey);
-  if (!products.length) {
-    container.innerHTML = '<p style="color:rgba(255,255,255,.5);font-size:13px">A download link has been sent to your email.</p>';
-    return;
-  }
-  container.innerHTML = products.map(p => `
-    <button onclick="directDownload('${token}','${PDF_BASE}${p.pdfKey}','${p.pdfKey}')"
-            style="display:flex;align-items:center;gap:12px;background:var(--green);color:#fff;
-                   font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;padding:14px 20px;
-                   border-radius:10px;border:none;cursor:pointer;justify-content:center;
-                   width:100%;box-shadow:0 4px 0 #004d25">
-      ⬇️ Download — ${p.name.split('–')[0].trim()}
-    </button>
-  `).join('');
+  container.innerHTML =
+    '<p style="color:rgba(255,255,255,.7);font-size:14px;line-height:1.6;text-align:center;margin:0">' +
+      '📧 Your download link has been sent to your email.<br>' +
+      '<span style="color:rgba(255,255,255,.45);font-size:12px">Check your inbox (and spam folder) for your PDF instructions.</span>' +
+    '</p>';
 }
 
-async function directDownload(token, url, filename) {
-  // Check + increment direct_download_count — limit 1
+// Hardened download trigger — resistant to browser extensions (Rakuten, Honey,
+// Capital One Shopping, etc.) that inject link-click interceptors into every
+// page. Those scripts sometimes throw on synthetic <a> clicks; wrapping in
+// try/catch means a third-party crash can never block the customer's download.
+function triggerFileDownload(url, filename) {
   try {
-    const rows = await supaFetch('orders?download_token=eq.' + token + '&select=direct_download_count');
-    const count = rows && rows[0] ? (rows[0].direct_download_count || 0) : 0;
-    if (count >= DIRECT_DOWNLOAD_LIMIT) {
-      alert('You have already used your 1 direct download. Use the link in your email for up to 2 more downloads.');
-      return;
-    }
-    await supaFetch('orders?download_token=eq.' + token, {
-      method: 'PATCH',
-      body: JSON.stringify({ direct_download_count: count + 1 })
-    });
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   } catch (e) {
-    console.warn('Could not update direct download count:', e.message);
-    // Still allow the download — don't punish the customer for a network blip
+    console.warn('Download trigger interfered with (likely a browser extension):', e && e.message);
+    // Fallback: plain navigation. window.open bypasses the synthetic-click
+    // path entirely, so even if an extension breaks the <a>.click() flow,
+    // the customer still gets the file.
+    try { window.open(url, '_blank'); } catch (e2) { /* last resort failed too */ }
   }
-  // Trigger download
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.target = '_blank';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 // ── EMAIL LINK PAGE (?download=TOKEN) ────────────────────────────────────────
@@ -17959,9 +17951,7 @@ async function emailDownload(token, url, filename, btn) {
     console.warn('Could not update download count:', e.message);
     // Still allow download
   }
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.target = '_blank';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  triggerFileDownload(url, filename);
 }
 
 // On page load: check for ?download=TOKEN in the URL

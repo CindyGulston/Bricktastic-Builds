@@ -1596,13 +1596,16 @@ footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
 .msg-panel-hd{background:var(--black);color:var(--yellow);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;font-family:'Boogaloo',cursive;font-size:20px;flex-shrink:0}
 .msg-panel-x{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .msg-panel-x:hover{background:var(--red)}
-.msg-panel-body{padding:18px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.msg-panel-body{padding:18px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:14px}
 .msg-panel-sub{font-size:13px;color:#777;font-weight:600;margin:0 0 4px}
-.msg-panel-body input,.msg-panel-body textarea{width:100%;padding:11px 12px;border:2px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical}
+.msg-field label{display:block;font-weight:900;font-size:11px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;color:var(--black)}
+.msg-panel-body input,.msg-panel-body textarea{width:100%;padding:11px 12px;border:3px solid #ddd;border-radius:8px;font-size:14px;font-family:'Nunito',sans-serif;font-weight:700;resize:vertical;outline:none;transition:border-color .15s;box-sizing:border-box}
 .msg-panel-body textarea{min-height:90px}
 .msg-panel-body input:focus,.msg-panel-body textarea:focus{outline:none;border-color:var(--blue)}
-.msg-send-btn{background:var(--black);color:var(--yellow);border:none;padding:12px;border-radius:8px;font-family:'Boogaloo',cursive;font-size:17px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);transition:top .1s}
+.msg-send-btn{width:100%;background:var(--black);color:var(--yellow);border:none;padding:14px;border-radius:8px;font-family:'Boogaloo',cursive;font-size:20px;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.3);position:relative;top:0;transition:top .1s,box-shadow .1s}
+.msg-send-btn:active{top:4px;box-shadow:0 2px 0 rgba(0,0,0,.3)}
 .msg-send-btn:disabled{opacity:.6;cursor:default}
+.msg-panel-note{margin:0;font-size:11px;font-weight:700;color:#aaa;text-align:center}
 @media (max-width:520px){.msg-fab{bottom:16px;right:16px}.msg-panel{bottom:0;right:0;width:100%;max-width:100%;max-height:80vh;border-radius:16px 16px 0 0}}
 .cart-hd{padding:22px 24px;background:var(--black);color:var(--yellow);display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid var(--yellow)}
 .cart-hd h3{font-family:'Boogaloo',cursive;font-size:26px}
@@ -6015,16 +6018,28 @@ setTimeout(_dismissLoader, 4000);
 <div class="msg-panel" id="msgPanel" role="dialog" aria-label="Contact us">
   <div class="msg-panel-hd"><span>Contact Us</span><button class="msg-panel-x" onclick="toggleMessageWidget()" aria-label="Close">✕</button></div>
   <div class="msg-panel-body">
-    <div id="qmFormWrap">
-      <p class="msg-panel-sub">We'll respond as soon as we can.</p>
-      <input id="qm-email" type="email" placeholder="Your email" autocomplete="email">
-      <textarea id="qm-message" placeholder="Enter your question or message here"></textarea>
-      <button class="msg-send-btn" id="qmBtn" onclick="submitQuickMessage()">Send</button>
+    <div id="qmFormWrap" style="display:flex;flex-direction:column;gap:14px">
+      <p class="msg-panel-sub">Questions about an order, a build, or just want to say hi? We reply within 24 hours.</p>
+      <div class="msg-field">
+        <label for="qm-name">Your Name *</label>
+        <input id="qm-name" type="text" placeholder="Brick Builder" autocomplete="name">
+      </div>
+      <div class="msg-field">
+        <label for="qm-email">Email Address *</label>
+        <input id="qm-email" type="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="msg-field">
+        <label for="qm-message">Message *</label>
+        <textarea id="qm-message" placeholder="Tell us what's on your mind…"></textarea>
+      </div>
+      <button class="msg-send-btn" id="qmBtn" onclick="submitQuickMessage()">✉️ Send Message</button>
+      <p class="msg-panel-note">We aim to reply within 24 hours · Your email is never shared</p>
     </div>
     <div id="qmSuccess" style="display:none;text-align:center;padding:20px 4px">
-      <div style="font-size:36px;margin-bottom:8px">✅</div>
-      <p style="font-weight:800;margin-bottom:4px">Message sent!</p>
-      <p class="msg-panel-sub">Thanks — we'll get back to you soon.</p>
+      <div style="font-size:40px;margin-bottom:10px">🎉</div>
+      <p style="font-family:'Boogaloo',cursive;font-size:22px;margin:0 0 8px">Message Sent!</p>
+      <p style="font-weight:700;color:#555;font-size:13px;margin-bottom:6px">We've got your message and will reply within 24 hours.</p>
+      <p class="msg-panel-sub">📬 A confirmation email has been sent to your inbox.</p>
     </div>
   </div>
 </div>
@@ -6673,23 +6688,41 @@ function toggleMessageWidget(){
   if(open){
     document.getElementById('cartDr')?.classList.remove('open');
     document.getElementById('cartOv')?.classList.remove('open');
-    setTimeout(()=>document.getElementById('qm-email')?.focus(), 180);
+    setTimeout(()=>document.getElementById('qm-name')?.focus(), 180);
+  } else {
+    setTimeout(()=>{
+      if(document.getElementById('qmSuccess').style.display === 'block'){
+        document.getElementById('qmSuccess').style.display = 'none';
+        document.getElementById('qmFormWrap').style.display = 'flex';
+        ['qm-name','qm-email','qm-message'].forEach(id=>{ const el = document.getElementById(id); if(el) el.value=''; });
+        const btn = document.getElementById('qmBtn');
+        btn.textContent = '✉️ Send Message'; btn.disabled = false;
+      }
+    }, 220);
   }
 }
 async function submitQuickMessage(){
+  const name = document.getElementById('qm-name')?.value.trim();
   const email = document.getElementById('qm-email')?.value.trim();
   const message = document.getElementById('qm-message')?.value.trim();
+  if(!name){ highlight('qm-name'); return; }
   if(!email || !email.includes('@')){ highlight('qm-email'); return; }
   if(!message){ highlight('qm-message'); return; }
   const btn = document.getElementById('qmBtn');
-  btn.textContent = 'Sending…'; btn.disabled = true;
+  btn.textContent = '⏳ Sending…'; btn.disabled = true;
   try{
+    const nameParts = name.split(' ');
     const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         email: email.toLowerCase(),
-        fields: { source:'quick-message-widget', message },
+        fields: {
+          name: nameParts[0] || name,
+          last_name: nameParts.slice(1).join(' ') || '',
+          source: 'contact-form',
+          message
+        },
         groups: ['184138598939886744']
       })
     });
@@ -6697,8 +6730,8 @@ async function submitQuickMessage(){
     document.getElementById('qmFormWrap').style.display = 'none';
     document.getElementById('qmSuccess').style.display = 'block';
   } catch(e){
-    btn.textContent = 'Failed — try again'; btn.disabled = false;
-    setTimeout(()=>{ btn.textContent = 'Send'; }, 2500);
+    btn.textContent = '❌ Failed — try again'; btn.disabled = false;
+    setTimeout(()=>{ btn.textContent = '✉️ Send Message'; }, 2500);
   }
 }
 

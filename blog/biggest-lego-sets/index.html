@@ -810,6 +810,14 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.min(curIdx+1,SETS.length-1));
   if(e.key==='ArrowLeft'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.max(curIdx-1,0));
 });
+// Expose to window: the close button, overlay-click-to-close, and the
+// modal's prev/next buttons are wired via inline onclick="" attributes in
+// the HTML, which resolve against the global scope — but these functions
+// are declared inside initBiggestSetsPage(), so without this they silently
+// fail to be found and the buttons do nothing.
+window.openMod = openMod;
+window.closeMod = closeMod;
+window.closeModBtn = closeModBtn;
 
 // ─── Scroll reveal ───
 setTimeout(()=>{

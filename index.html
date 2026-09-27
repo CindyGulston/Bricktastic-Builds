@@ -3848,7 +3848,7 @@ setTimeout(_dismissLoader, 4000);
   <div class="search-box">
     <div class="search-input-wrap">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-      <input class="search-input" id="searchInput" placeholder="Search videos, shop, blog..." oninput="runSearch(this.value)" autocomplete="off">
+      <input class="search-input" id="searchInput" placeholder="Search shop, blog, gallery, pages..." oninput="runSearch(this.value)" autocomplete="off">
       <button class="search-close" onclick="closeSearch()">✕</button>
     </div>
     <div class="search-results" id="searchResults">
@@ -4525,7 +4525,7 @@ setTimeout(_dismissLoader, 4000);
   </script>
 
   <!-- CATEGORIES -->
-  <section style="background:var(--bg);padding:80px 0">
+  <section id="home-obsession" style="background:var(--bg);padding:80px 0">
     <div class="container">
       <span class="lbl lbl-b reveal">Browse By Topic</span>
       <h2 class="sec-title reveal">Find Your LEGO® Obsession</h2>
@@ -6404,16 +6404,49 @@ function runSearch(q) {
   const lq = q.toLowerCase();
   let hits = [];
 
-  // Search videos
-  VIDEOS.filter(v => v.title.toLowerCase().includes(lq)).slice(0, 6).forEach(v => {
-    const ytLink = v.isShort ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
-    hits.push(`<a class="search-result-item" href="${ytLink}" target="_blank">
-      <img loading="lazy" class="search-result-thumb" src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}" onerror="this.style.display='none'">
-      <div><div class="search-result-title">${v.title}</div><div class="search-result-cat">🎬 Video</div></div>
-    </a>`);
+  // Static pages, on-page sections & deep-dive articles
+  SITE_SEARCH_PAGES.filter(p => p.title.toLowerCase().includes(lq)).forEach(p => {
+    hits.push(`<div class="search-result-item" onclick="closeSearch();${p.action}">
+      <div style="width:60px;height:40px;background:#f0ede6;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">${p.cat.split(' ')[0]}</div>
+      <div><div class="search-result-title">${_escSearch(p.title)}</div><div class="search-result-cat">${p.cat}</div></div>
+    </div>`);
   });
 
-  // Search shop items
+  // Blog posts
+  (typeof BLOG_POSTS !== 'undefined' ? BLOG_POSTS : []).filter(b => b.title.toLowerCase().includes(lq)).slice(0, 6).forEach(b => {
+    const thumb = b.img
+      ? `<img loading="lazy" src="${b.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`
+      : `<span style="font-size:20px">${b.emoji || '📰'}</span>`;
+    hits.push(`<div class="search-result-item" onclick="closeSearch();showPage('blog');setTimeout(()=>openBlogPost(${b.id}),350)">
+      <div style="width:60px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:${b.bg || '#1A1A1A'}">${thumb}</div>
+      <div><div class="search-result-title">${_escSearch(b.title)}</div><div class="search-result-cat">📰 Blog</div></div>
+    </div>`);
+  });
+
+  // MOC Gallery tiles (my builds)
+  (typeof MOCS !== 'undefined' ? MOCS : []).filter(m => m.name.toLowerCase().includes(lq)).slice(0, 6).forEach(m => {
+    hits.push(`<div class="search-result-item" onclick="closeSearch();openMocFromSearch('${m.id}')">
+      <div style="width:60px;height:40px;background:${m.accent || '#7B2FBE'};border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">${m.emoji || '🏗️'}</div>
+      <div><div class="search-result-title">${_escSearch(m.name)}</div><div class="search-result-cat">🏗️ MOC Gallery</div></div>
+    </div>`);
+  });
+
+  // Community gallery submissions (fan builds)
+  const communityItems = [
+    ...(typeof _liveBuilds !== 'undefined' ? _liveBuilds : []),
+    ...(typeof GALLERY_ITEMS !== 'undefined' ? GALLERY_ITEMS : [])
+  ];
+  communityItems.filter(i => (i.name || '').toLowerCase().includes(lq)).slice(0, 6).forEach(i => {
+    const thumb = i.photo_url
+      ? `<img loading="lazy" src="${i.photo_url}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`
+      : `<span style="font-size:20px">${i.emoji || '🏗️'}</span>`;
+    hits.push(`<div class="search-result-item" onclick="closeSearch();showPage('gallery');setTimeout(()=>openGalleryModal('${i.id}'),350)">
+      <div style="width:60px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#7B2FBE">${thumb}</div>
+      <div><div class="search-result-title">${_escSearch(i.name)}</div><div class="search-result-cat">👥 Community Gallery</div></div>
+    </div>`);
+  });
+
+  // Shop items
   document.querySelectorAll('.pname').forEach(el => {
     if (el.textContent.toLowerCase().includes(lq)) {
       hits.push(`<div class="search-result-item" onclick="closeSearch();showPage('shop')">
@@ -6681,7 +6714,44 @@ function scrollS(id){setTimeout(()=>{const el=document.getElementById(id);if(el)
 
 
 
-// FLOATING MESSAGE WIDGET
+// SEARCH
+// Static pages & on-page sections that aren't in a data array (P, MOCS, BLOG_POSTS)
+const SITE_SEARCH_PAGES = [
+  {title:'Home',        cat:'📄 Page', action:"showPage('home')"},
+  {title:'Shop',        cat:'📄 Page', action:"showPage('shop')"},
+  {title:'MOC Gallery', cat:'📄 Page', action:"showPage('mocs')"},
+  {title:'Blog',        cat:'📄 Page', action:"showPage('blog')"},
+  {title:'About',       cat:'📄 Page', action:"showPage('about')"},
+  {title:'Contact',     cat:'📄 Page', action:"showPage('contact')"},
+  {title:'Pricing',     cat:'📄 Page', action:"showPage('pricing')"},
+  {title:'Licence',     cat:'📄 Page', action:"showPage('licence')"},
+  {title:'Terms',       cat:'📄 Page', action:"window.location.href='https://www.bricktasticbuilds.co.za/terms/'"},
+  {title:'Privacy',     cat:'📄 Page', action:"window.location.href='https://www.bricktasticbuilds.co.za/privacy/'"},
+  {title:'Refunds',     cat:'📄 Page', action:"window.location.href='https://www.bricktasticbuilds.co.za/refunds/'"},
+  {title:'FAQ',                          cat:'📄 Section', action:"showPage('home');setTimeout(()=>document.getElementById('home-faq')?.scrollIntoView({behavior:'smooth'}),400)"},
+  {title:'How It Works',                 cat:'📄 Section', action:"showPage('home');setTimeout(()=>document.getElementById('how-it-works')?.scrollIntoView({behavior:'smooth'}),400)"},
+  {title:'Find Your LEGO® Obsession',    cat:'📄 Section', action:"showPage('home');setTimeout(()=>document.getElementById('home-obsession')?.scrollIntoView({behavior:'smooth'}),400)"},
+  {title:'Newsletter',                   cat:'📄 Section', action:"showPage('home');setTimeout(()=>document.getElementById('home-subscribe')?.scrollIntoView({behavior:'smooth'}),400)"},
+  {title:'MOC Instructions',             cat:'📄 Section', action:"showPage('home');setTimeout(()=>document.getElementById('home-moc-instructions')?.scrollIntoView({behavior:'smooth'}),400)"},
+  {title:'90 Years of Brick: The Complete LEGO® History',     cat:'📰 Deep Dive', action:"showPage('lego-history')"},
+  {title:'11 Biggest LEGO® Sets Ever Released',                cat:'📰 Deep Dive', action:"showPage('biggest-sets')"},
+  {title:'Rare LEGO® Pieces Every Collector Should Know',      cat:'📰 Deep Dive', action:"showPage('lego-collecting')"},
+  {title:'LEGO® Tips & Tricks: Level Up Your Builds',          cat:'📰 Deep Dive', action:"showPage('tips-tricks')"},
+  {title:'LEGO® Challenge Guide',                              cat:'📰 Deep Dive', action:"showPage('lego-challenges')"},
+];
+function _escSearch(s){ return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function openMocFromSearch(id){
+  const m = MOCS.find(x=>x.id===id);
+  showPage('mocs');
+  setTimeout(()=>{
+    mocActiveTag = 'all';
+    document.querySelectorAll('.moc-tag-btn').forEach((b,i)=>b.classList.toggle('active', i===0));
+    const input = document.getElementById('mocSearch');
+    if (input && m) input.value = m.name;
+    filterMOCs();
+    document.getElementById('mocGrid')?.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 350);
+}
 function toggleMessageWidget(){
   const panel = document.getElementById('msgPanel');
   const open = panel.classList.toggle('open');

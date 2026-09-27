@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGO® Tips &amp; Tricks: Level Up Your Builds | Bricktastic Builds</title>
+<meta name="description" content="Practical tips and techniques to take your LEGO building skills to the next level.">
+<link rel="canonical" href="https://www.bricktasticbuilds.co.za/blog/lego-tips-and-tricks/">
+<meta property="og:title" content="LEGO® Tips &amp; Tricks: Level Up Your Builds">
+<meta property="og:description" content="Practical tips and techniques to take your LEGO building skills to the next level.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.bricktasticbuilds.co.za/blog/lego-tips-and-tricks/">
+<meta property="og:locale" content="en_ZA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LEGO® Tips &amp; Tricks: Level Up Your Builds">
+<meta name="twitter:description" content="Practical tips and techniques to take your LEGO building skills to the next level.">
+<meta name="theme-color" content="#FFD700">
+<link rel="icon" type="image/png" href="https://www.bricktasticbuilds.co.za/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://dueokuazfuvtsreutkya.supabase.co">
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LEGO\u00ae Tips & Tricks: Level Up Your Builds",
+  "description": "Practical tips and techniques to take your LEGO building skills to the next level.",
+  "url": "https://www.bricktasticbuilds.co.za/blog/lego-tips-and-tricks/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bricktastic Builds"
+  }
+}
+</script>
+<style>body{margin:0;background:#111;font-family:'Nunito',Arial,sans-serif}</style>
+</head>
+<body>
+
+<style id="tips-tricks-styles">
+  #tips-tricks-body { font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.75; overflow-x: hidden; background: #F8F5EF; color: #1A1A1A; }
+  #tips-tricks-body *, #tips-tricks-body *::before, #tips-tricks-body *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* CSS vars scoped */
+  #tips-tricks-body {
+    --gold:#b89a00;--gold-light:#f5c518;
+    --red:#D01012;--blue:#006DB7;--green:#00A650;
+    --dark:#1A1A1A;--light:#F8F5EF;--mid:#F0EBE0;
+  }
+  /* Back button */
+  #tips-tricks-back { position: fixed; top: 14px; left: 14px; z-index: 10000; font-family: 'Space Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; padding: 9px 16px; background: rgba(0,0,0,.7); color: #fff; border: 1px solid rgba(255,255,255,.2); border-radius: 4px; cursor: pointer; transition: background .2s; backdrop-filter: blur(6px); }
+  #tips-tricks-back:hover { background: rgba(0,0,0,.9); }
+
+  
+  
+  
+
+#tips-tricks-body .reading-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold-light);width:0%;z-index:9999;transition:width .1s linear;}
+
+  /* ── HERO ── */
+#tips-tricks-body .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 6vw 60px;overflow:hidden;background:var(--dark);}
+#tips-tricks-body .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1.5px,transparent 1.5px);background-size:28px 28px;}
+#tips-tricks-body .hero-eyebrow{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-light);margin-bottom:28px;position:relative;display:flex;align-items:center;gap:14px;}
+#tips-tricks-body .hero-eyebrow::before{content:'';display:block;width:40px;height:2px;background:var(--gold-light);flex-shrink:0;}
+#tips-tricks-body .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,11rem);line-height:.9;color:#fff;position:relative;z-index:1;letter-spacing:.01em;}
+#tips-tricks-body .hero-title span{display:block;-webkit-text-stroke:2px var(--gold-light);color:transparent;}
+#tips-tricks-body .hero-title em{font-style:normal;color:var(--gold-light);}
+#tips-tricks-body .hero-subtitle{margin-top:36px;max-width:560px;color:rgba(255,255,255,.65);font-size:1.1rem;font-weight:300;line-height:1.7;position:relative;z-index:1;}
+#tips-tricks-body .hero-meta{margin-top:28px;display:flex;gap:28px;flex-wrap:wrap;position:relative;z-index:1;}
+#tips-tricks-body .hero-meta-item{font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
+#tips-tricks-body .hero-meta-item strong{display:block;color:rgba(255,255,255,.85);font-size:1.1rem;font-family:'Bebas Neue',sans-serif;letter-spacing:.05em;margin-bottom:2px;}
+#tips-tricks-body .hero-blocks{position:absolute;right:-40px;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(3,80px);grid-template-rows:repeat(4,80px);gap:8px;opacity:.25;pointer-events:none;}
+  @media(min-width:900px){.hero-blocks{opacity:.55;right:6vw;}}
+#tips-tricks-body .block{border-radius:6px;position:relative;}
+#tips-tricks-body .block::after{content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);width:38px;height:14px;border-radius:50%;background:rgba(255,255,255,.25);}
+#tips-tricks-body .b1{background:var(--gold)}.b2{background:var(--red)}.b3{background:var(--blue)}
+#tips-tricks-body .b4{background:var(--green)}.b5{background:#F47216}.b6{background:#7B2FBE}
+#tips-tricks-body .b7{background:#fff}.b8{background:#555}.b9{background:var(--gold)}
+#tips-tricks-body .b10{background:var(--red)}.b11{background:var(--blue)}.b12{background:var(--green)}
+#tips-tricks-body .scroll-hint{margin-top:60px;display:flex;align-items:center;gap:12px;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);position:relative;z-index:1;}
+#tips-tricks-body .scroll-line{width:50px;height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden;}
+#tips-tricks-body .scroll-line::after{content:'';position:absolute;inset:0;background:var(--gold-light);animation:tt_slideX 2s ease-in-out infinite;}
+  @keyframes tt_slideX{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+  /* ── LAYOUT ── */
+#tips-tricks-body .container{max-width:820px;margin:0 auto;padding:0 6vw;}
+#tips-tricks-body .container-wide{max-width:1140px;margin:0 auto;padding:0 6vw;}
+#tips-tricks-body section{padding:80px 0;}
+#tips-tricks-body .section-label{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+#tips-tricks-body h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;letter-spacing:.02em;margin-bottom:28px;color:var(--dark);}
+#tips-tricks-body h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:.03em;margin-bottom:14px;margin-top:44px;}
+#tips-tricks-body p{margin-bottom:20px;color:#3a3a3a;}
+#tips-tricks-body p:last-child{margin-bottom:0;}
+#tips-tricks-body strong{color:var(--dark);font-weight:700;}
+#tips-tricks-body .divider{width:60px;height:4px;background:var(--gold);margin:24px 0 36px;}
+#tips-tricks-body .pull-quote{margin:60px 0;padding:48px 0;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);}
+#tips-tricks-body .pull-quote p{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;letter-spacing:.02em;color:var(--dark);margin:0;}
+#tips-tricks-body .pull-quote em{font-style:normal;color:var(--gold);}
+
+  /* ── TECHNIQUES BROWSER (dark, mirrors ch-section) ── */
+#tips-tricks-body .tech-section{background:var(--dark);padding:80px 0;}
+#tips-tricks-body .tech-section h2{color:#fff;}
+#tips-tricks-body .tech-section .section-label{color:var(--gold-light);}
+#tips-tricks-body .tech-section .divider{background:var(--gold-light);}
+#tips-tricks-body .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:40px 0 32px;}
+#tips-tricks-body .fbtn{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;border-radius:2px;transition:all .2s;}
+#tips-tricks-body .fbtn:hover{border-color:var(--gold-light);color:var(--gold-light);}
+#tips-tricks-body .fbtn.active{background:var(--gold-light);color:var(--dark);border-color:var(--gold-light);font-weight:700;}
+#tips-tricks-body .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+#tips-tricks-body .t-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:26px;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,transform .2s,border-color .2s;}
+#tips-tricks-body .t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-light);transform:scaleX(0);transition:transform .25s;transform-origin:left;}
+#tips-tricks-body .t-card:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);border-color:rgba(255,255,255,.2);}
+#tips-tricks-body .t-card:hover::before{transform:scaleX(1);}
+#tips-tricks-body .t-tag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;opacity:.8;}
+#tips-tricks-body .t-icon{font-size:2.2rem;margin-bottom:10px;display:block;}
+#tips-tricks-body .t-title{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.03em;color:#fff;margin-bottom:8px;line-height:1.1;}
+#tips-tricks-body .t-desc{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.55;}
+#tips-tricks-body .t-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;}
+#tips-tricks-body .t-level{font-family:'Space Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;}
+#tips-tricks-body .t-dots{display:flex;gap:3px;}
+#tips-tricks-body .t-dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.12);}
+#tips-tricks-body .t-dots span.on{background:var(--gold-light);}
+
+  /* ── MODAL (identical to challenges) ── */
+#tips-tricks-body .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+#tips-tricks-body .overlay.open{display:flex;}
+#tips-tricks-body .modal{background:var(--dark);border:1px solid rgba(255,255,255,.12);border-radius:8px;max-width:740px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:tt_mIn .3s ease both;}
+  @keyframes tt_mIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .modal-close{position:sticky;top:16px;float:right;margin:16px 20px 0 0;background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;border-radius:4px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5;}
+#tips-tricks-body .modal-close:hover{background:rgba(255,255,255,.1);color:#fff;}
+#tips-tricks-body .modal-inner{padding:32px 36px 40px;clear:both;}
+  @media(max-width:500px){.modal-inner{padding:24px 20px 32px;}}
+#tips-tricks-body .m-eyebrow{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;}
+#tips-tricks-body .m-icon{font-size:2.8rem;display:block;margin-bottom:12px;}
+#tips-tricks-body .m-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3rem);letter-spacing:.02em;color:#fff;line-height:1;margin-bottom:14px;}
+#tips-tricks-body .m-sub{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.65;margin-bottom:20px;}
+#tips-tricks-body .m-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+#tips-tricks-body .mpill{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;background:rgba(255,255,255,.07);border-radius:2px;color:rgba(255,255,255,.45);}
+#tips-tricks-body .mpill.hi{background:rgba(245,197,24,.15);color:var(--gold-light);}
+#tips-tricks-body .m-divider{height:1px;background:rgba(255,255,255,.08);margin:0 0 28px;}
+#tips-tricks-body .m-body h2{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:.04em;color:var(--gold-light);margin:28px 0 10px;}
+#tips-tricks-body .m-body h2:first-child{margin-top:0;}
+#tips-tricks-body .m-body p{color:rgba(255,255,255,.68);font-size:.93rem;line-height:1.75;margin-bottom:16px;}
+#tips-tricks-body .m-body strong{color:var(--gold-light);}
+#tips-tricks-body .m-body ul{margin:0 0 16px 20px;color:rgba(255,255,255,.68);font-size:.93rem;line-height:1.75;}
+#tips-tricks-body .m-body li{margin-bottom:6px;}
+#tips-tricks-body .fact-box{background:rgba(184,154,0,.1);border-left:3px solid var(--gold-light);padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.65;}
+#tips-tricks-body .fact-box strong{color:var(--gold-light);display:block;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;margin-bottom:4px;}
+#tips-tricks-body .steps-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:20px 24px;margin:0 0 20px;}
+#tips-tricks-body .steps-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:#fff;margin-bottom:12px;}
+#tips-tricks-body .steps-box ol{margin:0 0 0 18px;}
+#tips-tricks-body .steps-box li{color:rgba(255,255,255,.65);font-size:.88rem;margin-bottom:5px;}
+#tips-tricks-body .m-nav{display:flex;gap:10px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;}
+#tips-tricks-body .mnav-btn{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.6);cursor:pointer;border-radius:2px;transition:all .2s;}
+#tips-tricks-body .mnav-btn:hover{background:var(--gold-light);color:var(--dark);border-color:var(--gold-light);}
+
+  /* ── LEVELS GRID (mirrors diff-section) ── */
+#tips-tricks-body .levels-section{background:#fff;padding:80px 0;}
+#tips-tricks-body .level-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2px;margin-top:48px;border:2px solid var(--dark);border-radius:4px;overflow:hidden;}
+#tips-tricks-body .level-cell{padding:28px 22px;background:var(--light);cursor:default;transition:background .2s,transform .2s;position:relative;}
+#tips-tricks-body .level-cell:hover{background:var(--gold-light);transform:scale(1.02);z-index:2;}
+#tips-tricks-body .l-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:rgba(0,0,0,.08);line-height:1;margin-bottom:4px;transition:color .2s;}
+#tips-tricks-body .level-cell:hover .l-num{color:rgba(0,0,0,.15);}
+#tips-tricks-body .l-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;margin-bottom:6px;}
+#tips-tricks-body .l-focus{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;transition:color .2s;}
+#tips-tricks-body .level-cell:hover .l-focus{color:var(--dark);}
+#tips-tricks-body .l-desc{font-size:.83rem;color:#555;line-height:1.55;}
+#tips-tricks-body .level-cell:hover .l-desc{color:var(--dark);}
+#tips-tricks-body .l-skills{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;}
+#tips-tricks-body .l-skill{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;background:rgba(0,0,0,.06);border-radius:2px;color:#777;transition:background .2s,color .2s;}
+#tips-tricks-body .level-cell:hover .l-skill{background:rgba(0,0,0,.12);color:var(--dark);}
+
+  /* ── TIPS BAND (identical to challenges) ── */
+#tips-tricks-body .tips-band{background:var(--gold-light);padding:80px 0;}
+#tips-tricks-body .tips-band h2{color:var(--dark);}
+#tips-tricks-body .tips-band .section-label{color:rgba(26,26,26,.5);}
+#tips-tricks-body .tips-band .divider{background:var(--dark);}
+#tips-tricks-body .tips-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:24px;margin-top:40px;}
+#tips-tricks-body .tips-list li{background:var(--dark);color:#fff;padding:28px 28px 28px 70px;border-radius:4px;position:relative;font-size:.93rem;line-height:1.65;transition:transform .18s,box-shadow .18s;cursor:default;}
+#tips-tricks-body .tips-list li:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.25);}
+#tips-tricks-body .tips-list li::before{content:attr(data-num);position:absolute;left:20px;top:24px;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold-light);line-height:1;}
+#tips-tricks-body .tips-list li strong{color:var(--gold-light);display:block;margin-bottom:6px;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.05em;}
+
+  /* ── COLOUR PALETTE TOOL (gold bg, mirrors timer-section) ── */
+#tips-tricks-body .palette-section{background:var(--gold);padding:80px 0;}
+#tips-tricks-body .palette-section h2{color:var(--dark);}
+#tips-tricks-body .palette-section .section-label{color:rgba(26,26,26,.5);}
+#tips-tricks-body .palette-section .divider{background:var(--dark);}
+#tips-tricks-body .palette-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;margin-top:40px;}
+  @media(max-width:700px){.palette-grid{grid-template-columns:1fr;}}
+#tips-tricks-body .palette-widget{background:var(--dark);border-radius:8px;overflow:hidden;}
+#tips-tricks-body .pw-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;}
+#tips-tricks-body .pw-tab{flex:1;min-width:70px;padding:13px 8px;text-align:center;cursor:pointer;font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.05em;color:rgba(255,255,255,.4);border-right:1px solid rgba(255,255,255,.08);transition:all .2s;user-select:none;line-height:1.3;}
+#tips-tricks-body .pw-tab:last-child{border-right:none;}
+#tips-tricks-body .pw-tab:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8);}
+#tips-tricks-body .pw-tab.active{background:var(--gold-light);color:var(--dark);}
+#tips-tricks-body .pw-tab small{display:block;font-family:'DM Sans',sans-serif;font-size:.6rem;opacity:.7;}
+#tips-tricks-body .pw-display{padding:28px 28px 20px;}
+#tips-tricks-body .pw-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px;}
+#tips-tricks-body .pw-swatches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+#tips-tricks-body .swatch{width:44px;height:44px;border-radius:4px;flex-shrink:0;position:relative;cursor:default;transition:transform .15s;}
+#tips-tricks-body .swatch:hover{transform:scale(1.12);}
+#tips-tricks-body .swatch-name{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.9);color:#fff;font-family:'Space Mono',monospace;font-size:.55rem;white-space:nowrap;padding:4px 8px;border-radius:3px;pointer-events:none;}
+#tips-tricks-body .swatch:hover .swatch-name{display:block;}
+#tips-tricks-body .pw-rule{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;color:var(--gold-light);margin-bottom:6px;}
+#tips-tricks-body .pw-tip{font-size:.83rem;color:rgba(255,255,255,.5);line-height:1.6;min-height:54px;}
+#tips-tricks-body .palette-info-box{background:var(--dark);border-radius:8px;overflow:hidden;}
+#tips-tricks-body .pi-top{padding:24px 28px;border-bottom:1px solid rgba(255,255,255,.08);}
+#tips-tricks-body .pi-title{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.04em;color:#fff;margin-bottom:6px;}
+  .pi-
+#tips-tricks-body .pi-rules{padding:20px 28px 24px;}
+#tips-tricks-body .pi-rule{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+#tips-tricks-body .pi-rule:last-child{border-bottom:none;}
+#tips-tricks-body .pi-pct{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold-light);line-height:1;min-width:48px;}
+#tips-tricks-body .pi-text{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.5;}
+#tips-tricks-body .pi-text strong{color:#fff;display:block;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.04em;margin-bottom:2px;}
+
+  /* ── QUIZ (white bg) ── */
+#tips-tricks-body .quiz-section{background:#fff;padding:80px 0;}
+#tips-tricks-body .quiz-widget{background:var(--dark);border-radius:8px;overflow:hidden;max-width:680px;margin:40px auto 0;}
+#tips-tricks-body .quiz-q{padding:32px 32px 20px;}
+#tips-tricks-body .quiz-num{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px;}
+#tips-tricks-body .quiz-question{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,3vw,2rem);color:#fff;line-height:1.15;letter-spacing:.02em;}
+#tips-tricks-body .quiz-options{display:grid;gap:8px;padding:20px 32px 0;}
+#tips-tricks-body .qopt{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:13px 18px;color:rgba(255,255,255,.7);font-size:.92rem;cursor:pointer;text-align:left;transition:all .2s;font-family:'DM Sans',sans-serif;width:100%;}
+#tips-tricks-body .qopt:hover:not([disabled]){background:rgba(255,255,255,.1);border-color:var(--gold-light);color:#fff;}
+#tips-tricks-body .qopt.correct{background:rgba(0,166,80,.18)!important;border-color:var(--green)!important;color:#fff!important;}
+#tips-tricks-body .qopt.wrong{background:rgba(208,16,18,.18)!important;border-color:var(--red)!important;color:#fff!important;}
+#tips-tricks-body .quiz-feedback{padding:16px 32px;font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.6;min-height:60px;}
+#tips-tricks-body .quiz-feedback strong{color:var(--gold-light);}
+#tips-tricks-body .quiz-bar{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+#tips-tricks-body .quiz-score{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+#tips-tricks-body .quiz-next{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.08em;padding:10px 24px;background:var(--gold-light);color:var(--dark);border:none;border-radius:4px;cursor:pointer;transition:all .2s;opacity:0;pointer-events:none;}
+#tips-tricks-body .quiz-next.show{opacity:1;pointer-events:auto;}
+#tips-tricks-body .quiz-next:hover{background:#e6b800;}
+#tips-tricks-body .quiz-result{padding:48px 32px;text-align:center;display:none;}
+#tips-tricks-body .qr-score{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:var(--gold-light);line-height:1;}
+#tips-tricks-body .qr-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:24px;}
+#tips-tricks-body .qr-msg{color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.65;margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto;}
+#tips-tricks-body .quiz-restart{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.08em;padding:12px 28px;background:transparent;color:var(--gold-light);border:2px solid var(--gold-light);border-radius:4px;cursor:pointer;transition:all .2s;}
+#tips-tricks-body .quiz-restart:hover{background:var(--gold-light);color:var(--dark);}
+
+  /* ── FOOTER ── */
+#tips-tricks-body footer{background:var(--dark);padding:60px 6vw;text-align:center;border-top:3px solid var(--gold-light);}
+#tips-tricks-body footer p{color:rgba(255,255,255,.35);font-size:.85rem;margin:0;}
+#tips-tricks-body .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.15em;color:var(--gold-light);margin-bottom:16px;}
+
+  /* ── ANIMATIONS ── */
+  @keyframes tt_fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .hero > *{animation:tt_fadeUp .8s ease both;}
+#tips-tricks-body .hero > *:nth-child(1){animation-delay:.1s}
+#tips-tricks-body .hero > *:nth-child(2){animation-delay:.25s}
+#tips-tricks-body .hero > *:nth-child(3){animation-delay:.4s}
+#tips-tricks-body .hero > *:nth-child(4){animation-delay:.5s}
+#tips-tricks-body .hero > *:nth-child(5){animation-delay:.6s}
+#tips-tricks-body .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+#tips-tricks-body .reveal.visible{opacity:1;transform:translateY(0);}
+
+</style>
+
+<button id="tips-tricks-back" href="https://www.bricktasticbuilds.co.za/">← Back</button>
+
+<div id="tips-tricks-body">
+<div class="reading-bar" id="readingBar"></div>
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Builder's Guide · Level Up Your Builds</div>
+  <h1 class="hero-title">
+    Tips &amp;<br>
+    <span>Tricks</span><br>
+    <em>Level Up</em>
+  </h1>
+  <p class="hero-subtitle">The techniques, habits, and mindset shifts that separate average builds from the ones people stop and stare at. No special parts required — just better decisions.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>30+</strong>Techniques</div>
+    <div class="hero-meta-item"><strong>5</strong>Skill levels</div>
+    <div class="hero-meta-item"><strong>6</strong>Categories</div>
+    <div class="hero-meta-item"><strong>Built-in</strong>Colour tool</div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll to explore</div>
+  <div class="hero-blocks">
+    <div class="block b1"></div><div class="block b2"></div><div class="block b3"></div>
+    <div class="block b4"></div><div class="block b5"></div><div class="block b6"></div>
+    <div class="block b7"></div><div class="block b8"></div><div class="block b9"></div>
+    <div class="block b10"></div><div class="block b11"></div><div class="block b12"></div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ INTRO -->
+<section>
+  <div class="container">
+    <div class="section-label reveal">The Honest Truth</div>
+    <h2 class="reveal">Most Builders Plateau Without Knowing It</h2>
+    <div class="divider reveal"></div>
+    <p class="reveal">You build regularly. You enjoy it. But somewhere after the first year, every build starts looking suspiciously like the last one — same colour choices, same structural approach, same instinctive reach for the same handful of parts. That's not a creativity problem. It's a vocabulary problem.</p>
+    <p class="reveal">The gap between a builder who looks at their own work and thinks <em>"something's not quite right"</em> and one who knows exactly what's wrong and can fix it in ten minutes comes down to named, learnable techniques. <strong>Technique gives you precision.</strong> Without it, you're guessing. With it, every decision you make is intentional.</p>
+    <p class="reveal">This guide covers thirty-plus techniques across six categories — structure, colour, texture, SNOT, scale, and mindset. Work through it in order if you're starting out, or jump to whatever's limiting your builds right now. Everything here is immediately applicable.</p>
+    <div class="pull-quote reveal">
+      <p>"Every technique you learn is a <em>new sentence</em> you can write with bricks."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ TECHNIQUE BROWSER -->
+<section class="tech-section">
+  <div class="container-wide">
+    <div class="section-label">The Full Toolkit</div>
+    <h2>Browse All Techniques</h2>
+    <div class="divider"></div>
+    <p style="max-width:560px;color:rgba(255,255,255,.6)">Filter by category. Click any card to open the full breakdown — what it is, how to apply it, and a pro tip for getting the most out of it.</p>
+    <div class="filter-row">
+      <button class="fbtn active" onclick="filterTech('all',this)">All 30+</button>
+      <button class="fbtn" onclick="filterTech('structure',this)">🏗️ Structure</button>
+      <button class="fbtn" onclick="filterTech('colour',this)">🎨 Colour</button>
+      <button class="fbtn" onclick="filterTech('texture',this)">🪨 Texture</button>
+      <button class="fbtn" onclick="filterTech('snot',this)">🔩 SNOT</button>
+      <button class="fbtn" onclick="filterTech('scale',this)">🔭 Scale</button>
+      <button class="fbtn" onclick="filterTech('mindset',this)">🧠 Mindset</button>
+    </div>
+    <div class="cards-grid" id="techGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SKILL LEVELS -->
+<section class="levels-section">
+  <div class="container-wide">
+    <div class="section-label reveal">Where Do You Sit?</div>
+    <h2 class="reveal">The Five Builder Levels</h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="max-width:600px;color:#555">Knowing your level points you to the techniques that will move the needle fastest right now. Don't skip ahead — the foundations matter more than the flashy stuff.</p>
+    <div class="level-grid reveal">
+      <div class="level-cell">
+        <div class="l-num">01</div>
+        <div class="l-name">Follower</div>
+        <div class="l-focus">Foundation</div>
+        <div class="l-desc">Building from instructions. Discovering which sets and themes spark something. Learning how parts connect and what they're called.</div>
+        <div class="l-skills"><span class="l-skill">Part names</span><span class="l-skill">Stud fit</span><span class="l-skill">Basic structure</span></div>
+      </div>
+      <div class="level-cell">
+        <div class="l-num">02</div>
+        <div class="l-name">Modifier</div>
+        <div class="l-focus">Instinct</div>
+        <div class="l-desc">Swapping colours, adding details, changing official sets. First instincts about what looks right or wrong — even if you can't explain why yet.</div>
+        <div class="l-skills"><span class="l-skill">Colour swaps</span><span class="l-skill">Detail adding</span><span class="l-skill">Set modding</span></div>
+      </div>
+      <div class="level-cell">
+        <div class="l-num">03</div>
+        <div class="l-name">Creator</div>
+        <div class="l-focus">Vocabulary</div>
+        <div class="l-desc">Building original MOCs from scratch. Developing personal style. Beginning to use SNOT and unconventional orientations deliberately.</div>
+        <div class="l-skills"><span class="l-skill">MOC builds</span><span class="l-skill">Basic SNOT</span><span class="l-skill">Colour theory</span></div>
+      </div>
+      <div class="level-cell">
+        <div class="l-num">04</div>
+        <div class="l-name">Technician</div>
+        <div class="l-focus">Precision</div>
+        <div class="l-desc">Deliberate palettes planned before building. Structural planning. Advanced techniques applied with intention. Builds that impress other builders.</div>
+        <div class="l-skills"><span class="l-skill">Palette planning</span><span class="l-skill">Advanced SNOT</span><span class="l-skill">Armatures</span></div>
+      </div>
+      <div class="level-cell">
+        <div class="l-num">05</div>
+        <div class="l-name">Artist</div>
+        <div class="l-focus">Voice</div>
+        <div class="l-desc">A distinctive personal voice that shows up consistently. Technique serves vision. Every decision — angle, colour, texture — is there for a reason.</div>
+        <div class="l-skills"><span class="l-skill">Signature style</span><span class="l-skill">Full control</span><span class="l-skill">Original vision</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ TOP 12 HABITS -->
+<section class="tips-band">
+  <div class="container-wide">
+    <div class="section-label">Apply These Today</div>
+    <h2>12 Habits of Strong Builders</h2>
+    <div class="divider"></div>
+    <ul class="tips-list">
+      <li data-num="01"><strong>Plan Your Palette First</strong>Decide your three colours before placing the first brick. Colour decisions made mid-build are always reactive. Decisions made upfront are intentional. The results look completely different.</li>
+      <li data-num="02"><strong>Build the Skeleton First</strong>Construct the internal structure before any surface detail. Retrofitting an armature after you've added detail means tearing half the build apart. Skeleton first — every time.</li>
+      <li data-num="03"><strong>Step Back at Arm's Length</strong>The detail that looks perfect up close often vanishes at viewing distance. Step back every 15 minutes. You're designing for the distance someone stands when they look at it, not the distance you build at.</li>
+      <li data-num="04"><strong>Use Three Values of Every Colour</strong>For any colour in your build, source it in light, mid, and dark values. One flat colour reads as plastic. Three values of the same hue read as a material. The parts exist — find them.</li>
+      <li data-num="05"><strong>Photograph as You Build</strong>A phone propped on a box, one angle. Watching your own process back reveals decisions you didn't consciously notice making. It's the fastest feedback loop available to any builder.</li>
+      <li data-num="06"><strong>Finish One Section Completely</strong>Resist blocking in the whole build before adding any detail. Finishing one section to display quality gives you a reference point and keeps motivation high enough to get through the rest.</li>
+      <li data-num="07"><strong>Steal Shamelessly</strong>Study builds you admire and identify the specific technique that makes them work. Then use it. Describe what you're doing when you take a screenshot of someone else's work — "I'm stealing the cheese slope rock face" — and practice it.</li>
+      <li data-num="08"><strong>Name What Looks Wrong</strong>When something feels off, describe it before changing anything. "This looks boring" is not actionable. "This has no depth contrast" is. Language gives you direction. Vague feelings just waste time.</li>
+      <li data-num="09"><strong>Sort Your Parts</strong>A disorganised collection is a tax on every creative decision you make. Two hours sorting pays compounding dividends on every single build you ever do. Sort by colour, then by type within colour.</li>
+      <li data-num="10"><strong>Don't Demolish — Redirect</strong>When something isn't working, the instinct is to tear it down. That wastes everything already built. Find a way to redirect the existing structure first. Most "failed" sections are one decision away from working.</li>
+      <li data-num="11"><strong>Build Smaller, Finish More</strong>A perfectly executed small build beats an abandoned large one every time. Completion is itself a skill. Build at a scale where you can finish — then gradually scale up.</li>
+      <li data-num="12"><strong>Run It Again</strong>The second attempt at any subject is always better than the first. The techniques you use improve with repetition. Schedule a rebuild of something you weren't happy with before you move on.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ COLOUR TOOL -->
+<section class="palette-section">
+  <div class="container-wide">
+    <div class="section-label">Colour Made Practical</div>
+    <h2>The Colour Palette Tool</h2>
+    <div class="divider"></div>
+    <p style="max-width:500px;color:rgba(26,26,26,.72)">Pick a palette type to see the recommended LEGO® colour combinations — actual part colours you can order or sort for. Hover each swatch for its official name.</p>
+    <div class="palette-grid">
+      <div class="palette-widget reveal">
+        <div class="pw-tabs">
+          <div class="pw-tab active" onclick="setPalette('natural',this)">Natural<small>Landscape</small></div>
+          <div class="pw-tab" onclick="setPalette('urban',this)">Urban<small>City/Castle</small></div>
+          <div class="pw-tab" onclick="setPalette('bold',this)">Bold<small>Statement</small></div>
+          <div class="pw-tab" onclick="setPalette('space',this)">Space<small>Sci-fi</small></div>
+        </div>
+        <div class="pw-display">
+          <div class="pw-label">Dominant · Secondary · Accent</div>
+          <div class="pw-swatches" id="pwSwatches"></div>
+          <div class="pw-rule" id="pwRule"></div>
+          <div class="pw-tip" id="pwTip"></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="palette-info-box">
+          <div class="pi-top">
+            <div class="pi-title">The 60 · 30 · 10 Rule</div>
+            <div class="pi-body">The single most impactful colour decision you can make before building. Three colours. Fixed proportions. Non-negotiable dominance.</div>
+          </div>
+          <div class="pi-rules">
+            <div class="pi-rule">
+              <div class="pi-pct">60%</div>
+              <div class="pi-text"><strong>Dominant</strong>Your main colour. Sets the mood and read of the entire build. Usually a mid-value neutral or earthy tone.</div>
+            </div>
+            <div class="pi-rule">
+              <div class="pi-pct">30%</div>
+              <div class="pi-text"><strong>Secondary</strong>Supports and contrasts the dominant. Often a lighter or darker value of the same family, or a closely related hue.</div>
+            </div>
+            <div class="pi-rule">
+              <div class="pi-pct">10%</div>
+              <div class="pi-text"><strong>Accent</strong>The smallest portion — but the most memorable. Your accent is where the eye lands. Make it count.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ QUIZ -->
+<section class="quiz-section">
+  <div class="container">
+    <div class="section-label reveal">Test Your Knowledge</div>
+    <h2 class="reveal">How Sharp Is Your Technique?</h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="max-width:560px;color:#555">10 questions across structure, colour, SNOT, and builder mindset. Every answer includes an explanation so you leave knowing more than when you started.</p>
+    <div class="quiz-widget">
+      <div id="quizActive">
+        <div class="quiz-q">
+          <div class="quiz-num" id="qNum"></div>
+          <div class="quiz-question" id="qText"></div>
+        </div>
+        <div class="quiz-options" id="qOptions"></div>
+        <div class="quiz-feedback" id="qFeedback"></div>
+        <div class="quiz-bar">
+          <span class="quiz-score" id="qScoreLabel">Score: 0 / 10</span>
+          <button class="quiz-next" id="qNext" onclick="nextQ()">Next Question →</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="qr-score" id="qFinalScore"></div>
+        <div class="qr-label">out of 10</div>
+        <div class="qr-msg" id="qFinalMsg"></div>
+        <button class="quiz-restart" onclick="restartQuiz()">Try Again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ CLOSING -->
+<section>
+  <div class="container">
+    <div class="section-label reveal">Go Build</div>
+    <h2 class="reveal">Apply One Thing Right Now</h2>
+    <div class="divider reveal"></div>
+    <p class="reveal">The failure mode of reading a guide like this one is finishing it, thinking "that was interesting," closing the tab, and building exactly the same way you did before. Don't do that.</p>
+    <p class="reveal">Pick one technique from the browser above — one you haven't tried before. Close this page. Open your parts bin. Use that technique on something today. It doesn't have to be a display build. It doesn't need to be finished. It just needs to be the moment you actually applied it for the first time rather than only reading about it. <strong>That's where the improvement actually happens.</strong></p>
+    <div class="pull-quote reveal">
+      <p>"Read it once. Build it ten times. <em>Then you know it.</em>"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ MODAL -->
+<div class="overlay" id="overlay" onclick="closeOv(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeOvDirect()">✕</button>
+    <div class="modal-inner">
+      <span class="m-icon" id="mIcon"></span>
+      <div class="m-eyebrow" id="mEyebrow"></div>
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-sub" id="mSub"></div>
+      <div class="m-pills" id="mPills"></div>
+      <div class="m-divider"></div>
+      <div class="m-body" id="mBody"></div>
+      <div class="m-nav" id="mNav"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+
+let ttPageInited = false;
+function initTipsTricksPage() {
+  if (ttPageInited) return;
+  ttPageInited = true;
+  const ttBody = document.getElementById('tips-tricks-body');
+  
+  // Reading bar
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const bar = ttBody.querySelector('#readingBar');
+    if (bar) bar.style.width = (scrollY / h * 100) + '%';
+  });
+
+  // Scroll reveal
+  const ttRO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ttRO.unobserve(e.target); } });
+  }, {threshold: .08});
+  ttBody.querySelectorAll('.reveal').forEach(el => ttRO.observe(el));
+
+// ── Reading bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('readingBar').style.width=(scrollY/h*100)+'%';
+});
+
+// ── Scroll reveal
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// ══════════════════════════════════════════════════════════════════
+// TECHNIQUE DATA
+// ══════════════════════════════════════════════════════════════════
+const TECHS=[
+  // ── STRUCTURE ──────────────────────────────────────────
+  {cat:'structure',icon:'🏗️',title:'Build the Armature First',level:2,
+   sub:'Plan and build the hidden internal skeleton before adding any surface detail.',
+   how:['Sketch or mentally plan the full intended shape of the build before touching any bricks.','Build the internal skeleton — just enough structure to hold the final form in place.','Test armature stability before adding any visible layers. Apply light lateral pressure in all directions.','Only once the skeleton is solid, begin building the surface.'],
+   tip:'The armature doesn\'t need to be beautiful. It needs to do one job: hold the shape under display conditions. Technic beams and plates work better than bricks for internal structure.',
+   watch:'Surface details built onto a wobbly structure always need to be rebuilt. Every minute spent on a solid armature saves five minutes later.',
+   why:'Display failures are almost always armature failures. The visible part of the build gets all the credit, but the skeleton is what actually holds it together.'},
+  {cat:'structure',icon:'<svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg>',title:'Locked Plate Stacking',level:2,
+   sub:'Offset plate rows like real brickwork to eliminate structural shear points.',
+   how:['Never stack plates in perfectly aligned vertical columns — this creates shear points that fail suddenly.','Offset each row by 1–2 studs horizontally, exactly like real masonry bricklaying.','For large flat surfaces, add cross-bracing perpendicular plate layers every 4–6 rows.','Test by applying light lateral pressure before building further — a well-locked surface is noticeably stiffer.'],
+   tip:'Real architects learned this principle thousands of years ago. The staggered joint distributes force laterally across the structure instead of concentrating it at a single vertical line.',
+   watch:'Perfectly aligned columns look fine until they suddenly don\'t. The failure mode is abrupt — a full wall section peeling away cleanly.',
+   why:'Large flat builds — castle walls, cliff faces, building facades — built in straight columns fall apart when moved. Locked stacking doesn\'t.'},
+  {cat:'structure',icon:'📐',title:'The Pythagorean Angle Offset',level:4,
+   sub:'Achieve precise non-90° angles using known stud-count ratios.',
+   how:['Identify the angle you need. The two most useful: 3-4-5 triangle = 36.87° (essentially 37°).','For the second most useful: 5-12-13 triangle = 22.6° angle.','Connect two sections with a hinge plate at the calculated offset point.','Brace both sides of the angle to prevent flex — unsupported hinges always drift under weight.'],
+   tip:'Memorise just these two: 3-4-5 gives you ~37°, 5-12-13 gives you ~22.5°. Combined, these cover the vast majority of intentional angle constructions in LEGO® building.',
+   watch:'Half-stud offsets compound over long spans in ways that are hard to predict. Always measure the actual result against your intended angle.',
+   why:'Breaking out of the 90° grid is the single most visible differentiator between standard and advanced builds. It\'s what makes a vehicle or landscape look organic instead of blocky.'},
+  {cat:'structure',icon:'🔗',title:'Technic Integration',level:3,
+   sub:'Use Technic axles, pins, and beams inside System builds for hidden strength.',
+   how:['Use Technic liftarms for any load-bearing span longer than 4 studs — they\'re dramatically stronger than brick rows.','Axles inserted through System bricks pin sections together and eliminate flex.','For hinged structures, use Technic turntable elements — they hold angles under load without drifting.','Build Technic integration into the plan from the start. Retrofitting it is extremely difficult.'],
+   tip:'The reason official LEGO® Technic vehicles feel solid and display LEGO® vehicles feel fragile is almost entirely down to Technic integration. The system exists to solve exactly this problem.',
+   watch:'Technic axles that are too short allow their elements to twist rather than lock. Use full-length axles that pin through both sides of a structure.',
+   why:'System bricks are not designed for mechanical stress. Technic is. Using the right sub-system for the right job is what makes advanced builds both detailed and durable.'},
+
+  // ── COLOUR ────────────────────────────────────────────
+  {cat:'colour',icon:'🎨',title:'The 60-30-10 Palette Rule',level:1,
+   sub:'Assign dominant, secondary, and accent roles before placing a single brick.',
+   how:['Pick your dominant colour — this covers roughly 60% of the build\'s visible surface.','Pick a secondary colour for roughly 30% — often a neutral or a value-shifted version of the dominant.','Reserve one accent colour for the final 10%. This is your focal point. Place it deliberately.','Lay all three colours out side by side before building. The eye test reveals clashes you\'d miss mid-build.'],
+   tip:'The most common mistake is equal weighting — three colours in roughly equal proportion. Equal amounts create unresolved visual tension. One colour must clearly dominate.',
+   watch:'Avoid four or more colours at similar saturation. They compete with each other for attention and produce visually noisy builds. Three colours beats four almost every time.',
+   why:'Colour decisions made during a build are reactive. Decisions made before a build are intentional. The finished results look completely different.'},
+  {cat:'colour',icon:'🌡️',title:'Warm vs Cool Temperature Contrast',level:2,
+   sub:'Use warm foreground colours and cool background colours to create atmospheric depth.',
+   how:['Decide your foreground and background zones before choosing any colours.','Select slightly warmer (more orange/yellow-tinted) brick colours for foreground elements.','Select slightly cooler (more blue-tinted) colours for background elements.','Test by squinting at the finished build — the foreground should appear to advance visually.'],
+   tip:'Even a one-step warm-to-cool shift reads clearly. You don\'t need extreme contrast. Dark Tan in the foreground, Dark Bluish Gray in the background produces a visible difference.',
+   watch:'Don\'t push the temperature shift too hard. Subtle reads as intentional. Extreme reads as wrong.',
+   why:'Every landscape painter has used this technique for five hundred years. Warm colours advance, cool colours recede. It works identically in plastic.'},
+  {cat:'colour',icon:'🔇',title:'Desaturate the Background',level:3,
+   sub:'Muted, greyed versions of your main colours make the saturated foreground pop harder.',
+   how:['Identify your main palette for the build.','Find the muted equivalent in the LEGO® range: Tan → Dark Tan, Bright Blue → Medium Blue, Red → Dark Red.','Use muted versions exclusively for background and structural areas.','Reserve fully saturated colours for detail and focal point areas at the front of the build.'],
+   tip:'This is the single most impactful colour move available on a large build. The contrast between saturated and desaturated zones reads immediately even from across a room.',
+   watch:'Don\'t grey everything. The saturated elements need somewhere unsaturated to contrast against — otherwise the technique doesn\'t work.',
+   why:'Saturation contrast is more powerful than hue contrast. It\'s what professional photo colour grading and film production design use to direct attention.'},
+  {cat:'colour',icon:'⬜',title:'The Neutral Buffer',level:1,
+   sub:'Insert white, grey, or tan between colours that clash to resolve visual tension.',
+   how:['Identify two colours in your build that are visually fighting each other.','Insert a 2–4 stud band of Light Bluish Gray, White, or Tan between them.','The neutral acts as a reset — the eye reads each colour independently rather than comparing them directly.','Also works as mortar lines in castle walls and between building floors.'],
+   tip:'This is why real buildings use grout, mortar, and window frames. Neutrals prevent colour clash by creating visual separation. Apply exactly the same logic to your builds.',
+   watch:'Don\'t over-use neutral buffers. A build that is mostly neutral with small accents is usually stronger than a neutral-buffer system applied to clashing colours.',
+   why:'Colour clashes are resolved by separation, not by choosing different colours. The neutral buffer is almost always faster and more effective than starting the colour selection over.'},
+  {cat:'colour',icon:'🌈',title:'Three Values, One Hue',level:2,
+   sub:'Use light, mid, and dark versions of the same hue to create material depth.',
+   how:['Choose your hue (e.g. grey, tan, green).','Find every LEGO® element available in that hue at different values — Light Bluish Gray, Dark Bluish Gray, and Black for a grey palette.','Use lighter values at highlight points — exposed edges, top surfaces, areas that would catch light.','Use darker values at shadow points — undercuts, recesses, interior walls.'],
+   tip:'A single flat colour reads as a toy. Three values of the same hue read as a material. The parts already exist across almost every major LEGO® colour family — you just need to identify and source them.',
+   watch:'Don\'t use value contrast as texture contrast. If your surface has value shifts AND texture elements, the two will compete. Use one or the other as your primary technique.',
+   why:'This is the foundational realism technique in LEGO® building. It directly mimics how light behaves on real surfaces.'},
+
+  // ── TEXTURE ───────────────────────────────────────────
+  {cat:'texture',icon:'🪨',title:'Cheese Slope Rocks',level:2,
+   sub:'Dense 1×1 cheese slopes in multiple close values create convincing geological texture.',
+   how:['Build the base structure with standard bricks or plates first.','Apply 1×1 cheese slopes (part 54200) densely across the surface, all generally facing the same direction.','Vary the orientation in irregular patches to break up the pattern.','Use at minimum three close values of the same grey or brown — e.g. Light Bluish Gray, Dark Bluish Gray, Dark Tan.'],
+   tip:'Full-coverage cheese slopes are the standard technique for cliff faces and rocky ground. The irregular shadow lines they create look genuinely geological.',
+   watch:'Cheese slopes in one flat colour look unmistakably like plastic. The value variation is not optional — it\'s what makes the texture work.',
+   why:'Repeated small elements create the optical illusion of a different material entirely. This is the foundational texture principle in LEGO® building.'},
+  {cat:'texture',icon:'🌿',title:'Layered Organic Foliage',level:2,
+   sub:'Natural-looking trees and bushes built from mixed element types at multiple heights.',
+   how:['Layer multiple foliage element types at different heights — never use one element type for an entire tree.','Clip plates held at 45° angles on clip-and-bar connections for irregular leaf clusters.','Mix at minimum three greens: Bright Green, Medium Green, Dark Green, with optional Olive Green for realism.','Add 1×1 round plates in dark brown at branch intersections for bark texture.'],
+   tip:'The standard round LEGO® tree element reads immediately as a toy tree. Breaking it up with added clip-plate foliage layers shifts it toward a diorama read.',
+   watch:'Avoid single-colour foliage on any large-scale build. No real forest is one shade of green.',
+   why:'Foliage quality determines whether a scene reads as a toy build or a display piece. The difference in part count is minimal; the difference in result is significant.'},
+  {cat:'texture',icon:'🌊',title:'Convincing Water Surfaces',level:3,
+   sub:'Three techniques for still, moving, and deep water using standard LEGO® elements.',
+   how:['Still/shallow water: 1×1 trans-clear and trans-light-blue tiles mixed 60/40 in a flat SNOT surface.','Moving water: trans-dark-blue 1×1 round plates mixed with white 1×1 cheese slopes for foam and turbulence.','Deep/dark water: solid Dark Blue or Dark Navy base with occasional lighter highlight tiles — no transparency needed.','Reflections: repeat nearby build colours in the water surface at greatly reduced saturation.'],
+   tip:'Trans-clear mixed with trans-light-blue at roughly 6:1 produces the closest approximation to clear shallow water achievable in LEGO®.',
+   watch:'All-blue water looks like a blue surface. Real water picks up the sky colour, surrounding objects, and shadow. The reflection and mixing techniques are what create the water read.',
+   why:'Water appears in nearly every landscape, city, and fantasy build. Convincing water elevates an entire scene — poor water undermines it regardless of how good the rest is.'},
+  {cat:'texture',icon:'<svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg>',title:'Brickwork and Masonry Patterns',level:2,
+   sub:'Simulate real brickwork using colour variation, depth variation, and staggered joints.',
+   how:['Use 1×2 tiles for brick faces placed sideways via SNOT, with the mortar colour exposed between them.','Offset each row by one stud horizontally to simulate authentic bricklaying bond patterns.','Add 10–15% variation in brick colour — slightly lighter or darker bricks distributed irregularly.','Include occasional recessed or projecting bricks for surface relief.'],
+   tip:'Perfect, uniform brickwork looks digitally generated. Real stone and brick buildings have enormous colour variation accumulated over decades of weathering. Allow the variation.',
+   watch:'Too much variation becomes visual noise. The variance should be subtle — noticeable up close but reading as unified texture from a step back.',
+   why:'Architectural builds live or die on surface texture. Convincing masonry is the most broadly applicable texture skill in LEGO® building.'},
+
+  // ── SNOT ──────────────────────────────────────────────
+  {cat:'snot',icon:'🔩',title:'SNOT Fundamentals',level:3,
+   sub:'Studs Not On Top — building sideways and downward to unlock new surface possibilities.',
+   how:['Understand the core ratio first: 5 plates = 2 studs in height. This is the fundamental SNOT measurement.','Use headlight bricks (part 4070) to redirect a single stud sideways.','Use 1×2 SNOT bricks (part 87087) for two-stud sideways connections.','Plan SNOT sections before building the surrounding structure. Retrofitting SNOT is extremely difficult.'],
+   tip:'Every SNOT construction is built from multiples of the 5-plate-to-2-stud relationship. If you only memorise one number in this whole guide, make it this one.',
+   watch:'SNOT sections not properly connected back to the main structure will flex and eventually detach. Every sideways section needs a return connection.',
+   why:'SNOT is how you add surface texture, non-vertical detail, and smooth-looking surfaces to builds that would otherwise look blocky and toy-like.'},
+  {cat:'snot',icon:'🔄',title:'Full Sideways Surfaces',level:3,
+   sub:'Build entire faces of a structure sideways for completely stud-free smooth surfaces.',
+   how:['Build a row of SNOT bricks at the base of the section you want to lay sideways.','Build the sideways section extending outward — what was "up" is now "out".','Connect the top of the sideways section back to the main structure with standard plates.','The result is a completely smooth face with no visible studs.'],
+   tip:'The most common castle technique for smooth wall sections. Also the standard approach for vehicle body panels, water planes, and ground surfaces.',
+   watch:'Sideways sections without a top return connection will lean outward gradually under their own weight.',
+   why:'A fully smooth surface reads as a different material from exposed studs. The contrast between smooth and studded areas is one of the most powerful texture decisions available.'},
+  {cat:'snot',icon:'🎯',title:'Jumper Plate Half-Stud Offsets',level:3,
+   sub:'Shift elements by exactly half a stud for precise centring and positioning.',
+   how:['Place a 1×2 jumper plate (single centred stud) wherever you need a half-stud offset.','Build the offset element on top of the jumper.','For centring: one jumper on each side of a symmetrical build pushes the centre element into correct alignment.','Combine with SNOT for precise angled fine-positioning.'],
+   tip:'Jumper plates are what make facial features on portrait mosaic builds look correct. Without them, eyes and mouth sit in the wrong position.',
+   watch:'Half-stud offsets accumulate. Three jumper plates in sequence = 1.5-stud offset, which may not connect cleanly to adjacent standard-stud elements.',
+   why:'The difference between a portrait or figure mosaic that looks right and one that looks off is almost always a half-stud positioning error.'},
+
+  // ── SCALE ─────────────────────────────────────────────
+  {cat:'scale',icon:'🔭',title:'Choosing Your Scale',level:1,
+   sub:'The three common LEGO® build scales and what each one makes possible.',
+   how:['Minifigure scale (~1:40): Standard. One LEGO® stud ≈ 8cm real. Most interior detail possible. Standard for city, castle, and play builds.','Micro scale (1:500+): Entire cities fit on a baseplate. Silhouette is everything — no room for detail. Each element represents a whole building.','Display scale (1:12–1:24): Larger than minifigure. Mechanical authenticity, full interior furnishing, and realistic proportions become achievable.'],
+   tip:'Pick your scale before you build the first piece and lock it in. Mixed-scale builds look wrong unless the difference is so extreme it\'s clearly intentional (a minifigure next to a micro-scale city).',
+   watch:'Minifigure-scale vehicles are always too short for their width — a convention of the system, not a mistake. Fighting this convention with a wider-than-standard vehicle usually makes things worse.',
+   why:'Scale determines everything: which parts are appropriate, how much detail is achievable, how the finished build reads. Making the decision after you\'ve started costs you the whole build.'},
+  {cat:'scale',icon:'🏙️',title:'Micro Scale City Techniques',level:3,
+   sub:'Building convincing city environments at extreme reduction.',
+   how:['Buildings: 2×2 round bricks become towers; 1×2 bricks become entire commercial buildings.','Windows: 1×1 trans-clear round plates on facades. For night builds, lit window colour instead.','Roads: Dark gray plates. White 1×2 tiles in lines for lane markings.','Trees: A single dark brown 1×1 round brick with a 1×1 dark green round plate on top. That\'s an entire tree.'],
+   tip:'In micro scale, the silhouette IS the building. All your design energy goes into getting distinctive shapes right. Ground level detail is entirely secondary.',
+   watch:'Too many colours at micro scale reads as chaotic. Real city skylines are mostly cool greys with accent colour on landmark buildings only.',
+   why:'Micro scale lets you build an entire city block in the space of a single large baseplate. It\'s the most efficient way to create impressive LEGO® scenes that tell a story about a place rather than a single object.'},
+
+  // ── MINDSET ───────────────────────────────────────────
+  {cat:'mindset',icon:'🧠',title:'Pre-Build Planning',level:2,
+   sub:'Spend 10 minutes planning before touching a single brick — it saves 2 hours.',
+   how:['Write or sketch: subject, scale, palette (3 colours max), one interesting thing you want to include.','Check your parts inventory for your three palette colours before committing to them.','Identify the single most challenging element of the build and plan how you\'ll solve it.','Set a size limit. "Fills a 32×32 baseplate" beats "as big as it needs to be" every time.'],
+   tip:'The plan will change. That\'s fine. The plan\'s purpose is not to predict the build — it\'s to give you a default decision when you stall mid-build and don\'t know what to do next.',
+   watch:'Over-planning kills the exploratory energy that makes building enjoyable. 10 minutes maximum. Write the decisions that are hard to change; leave the rest open.',
+   why:'Most abandoned builds stall at decision points that planning would have resolved before they became blockers. Planning reduces friction at exactly the moments you need momentum.'},
+  {cat:'mindset',icon:'📸',title:'The Reference Image Habit',level:1,
+   sub:'Collect reference images before and during every build — even for subjects you think you know.',
+   how:['Before building: search for your subject and collect 5–10 images from different angles.','Pay specific attention to silhouette, proportion, key identifying details, and which details are visible vs hidden.','During building: revisit the reference every 20–30 minutes and compare.','After building: compare the final build to the reference and name specifically what the differences are.'],
+   tip:'The reason most LEGO® vehicles and buildings look "off" is skipped reference. We think we know what a car looks like. We don\'t — not at the level of detail that makes a build convincing.',
+   watch:'Reference is a tool, not a constraint. You\'re not trying to recreate the photo exactly. You\'re extracting the specific proportions and details that make the subject identifiable.',
+   why:'Reference images replace guesswork with observation. The result is a more accurate build produced in less time with fewer dead ends.'},
+  {cat:'mindset',icon:'👁️',title:'The Three-Metre Test',level:1,
+   sub:'Every display build should be designed for the distance at which it will actually be viewed.',
+   how:['While building, periodically move the build to viewing distance — typically 1–3 metres — and assess it from there.','Note which details are visible and which disappear entirely at that distance.','Reduce effort on details that vanish at viewing distance. Increase effort on shapes and colour reads that define the build from far away.','The silhouette should be identifiable from 5 metres. The interesting details reward moving closer.'],
+   tip:'First impressions happen at 3 metres. Second impressions happen at 1 metre. Third impressions happen at 30cm. Design your build to reward all three distances, in that order of priority.',
+   watch:'Builders who work at arm\'s length the whole time consistently over-detail areas that disappear at display distance and under-develop the large-scale reads that define the build.',
+   why:'The three-metre test aligns your building decisions with the actual experience of the people who will look at your finished work.'},
+  {cat:'mindset',icon:'🔁',title:'Iterative Rebuilding',level:2,
+   sub:'The fastest way to improve is to build the same subject twice in a row.',
+   how:['Finish a build — even if you\'re not satisfied with it.','Write down three specific things you\'d change (not vague: "it looks boring" — specific: "the roof line is too flat" or "I used too many browns").','Rebuild the same subject applying those three changes.','Note which of the three actually improved the build and which didn\'t. Apply the findings to the next subject.'],
+   tip:'The second attempt at any subject is always dramatically better than the first. You spent the first build solving the basic shape problem. The second build can spend that energy on quality.',
+   watch:'Don\'t spend more than 2 days on a single subject without a break. Time away lets you see the build\'s weaknesses more clearly than any amount of close scrutiny.',
+   why:'The iterative cycle is how skilled builders in every discipline actually improve — not by doing new things, but by doing the same things with better understanding.'},
+];
+
+const LEVEL_LABEL=['','Beginner','Foundation','Intermediate','Advanced','Expert'];
+
+function filterTech(cat,btn){
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTech(cat);
+}
+
+function renderTech(cat){
+  const grid=document.getElementById('techGrid');
+  const list=cat==='all'?TECHS:TECHS.filter(t=>t.cat===cat);
+  grid.innerHTML='';
+  list.forEach((t,i)=>{
+    const dots=[1,2,3,4,5].map(n=>`<span class="${n<=t.level?'on':''}"></span>`).join('');
+    const card=document.createElement('div');
+    card.className='t-card';
+    card.style.cssText=`animation:fadeUp .4s ${i*.04}s ease both`;
+    card.innerHTML=`
+      <div class="t-tag">${t.cat}</div>
+      <span class="t-icon">${t.icon}</span>
+      <div class="t-title">${t.title}</div>
+      <div class="t-desc">${t.sub}</div>
+      <div class="t-footer">
+        <span class="t-level">${LEVEL_LABEL[t.level]}</span>
+        <div class="t-dots">${dots}</div>
+      </div>`;
+    card.onclick=()=>openModal(t);
+    grid.appendChild(card);
+  });
+}
+renderTech('all');
+
+// ── Modal
+function openModal(t){
+  const idx=TECHS.indexOf(t);
+  document.getElementById('mIcon').textContent=t.icon;
+  document.getElementById('mEyebrow').textContent=`${t.cat.toUpperCase()} · ${LEVEL_LABEL[t.level]}`;
+  document.getElementById('mTitle').textContent=t.title;
+  document.getElementById('mSub').textContent=t.sub;
+  const dots=[1,2,3,4,5].map(n=>n<=t.level?'●':'○').join(' ');
+  document.getElementById('mPills').innerHTML=`
+    <span class="mpill hi">${LEVEL_LABEL[t.level]}</span>
+    <span class="mpill">${t.cat}</span>
+    <span class="mpill">${dots}</span>`;
+  const stepsHTML=t.how.map(s=>`<li>${s}</li>`).join('');
+  document.getElementById('mBody').innerHTML=`
+    <div class="steps-box"><div class="steps-title">📋 How to Apply It</div><ul>${stepsHTML}</ul></div>
+    <h2>Pro Tip</h2><p>${t.tip}</p>
+    <div class="fact-box"><strong>Watch Out For</strong>${t.watch}</div>
+    <h2>Why It Matters</h2><p>${t.why}</p>`;
+  const prev=TECHS[idx-1],next=TECHS[idx+1];
+  const nav=document.getElementById('mNav');
+  nav.innerHTML='';
+  if(prev){const b=document.createElement('button');b.className='mnav-btn';b.textContent=`← ${prev.icon} ${prev.title}`;b.onclick=()=>openModal(prev);nav.appendChild(b);}
+  if(next){const b=document.createElement('button');b.className='mnav-btn';b.textContent=`${next.icon} ${next.title} →`;b.onclick=()=>openModal(next);nav.appendChild(b);}
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('modal').scrollTop=0;
+}
+function closeOv(e){if(e.target===document.getElementById('overlay'))closeOvDirect();}
+function closeOvDirect(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOvDirect();});
+
+// ══════════════════════════════════════════════════════════════════
+// COLOUR PALETTE TOOL
+// ══════════════════════════════════════════════════════════════════
+const PALETTES={
+  natural:{
+    rule:'Earthy Dominant · Neutral Secondary · Gold Accent',
+    tip:'The most versatile natural palette. Tan and Dark Tan carry the landscape. Light Bluish Gray handles stone and path. A handful of Gold or Reddish Brown details snap the whole build into focus.',
+    swatches:[
+      {hex:'#D8B785',name:'Tan'},
+      {hex:'#A0785A',name:'Dark Tan'},
+      {hex:'#6B7A85',name:'Light Bluish Gray'},
+      {hex:'#8A6E3F',name:'Medium Dark Flesh'},
+      {hex:'#1E5E1E',name:'Dark Green'},
+      {hex:'#3BAA35',name:'Bright Green'},
+      {hex:'#B8860B',name:'Pearl Gold'},
+    ]
+  },
+  urban:{
+    rule:'Stone Dominant · Dark Grey Secondary · Red or Blue Accent',
+    tip:'Light Bluish Gray as the mass of walls and roofs. Dark Bluish Gray for shadows, roads, and base. One strong colour — classic Red or Blue — on doors, shutters, and signage. Keeps the city read without becoming chaotic.',
+    swatches:[
+      {hex:'#A0ACBD',name:'Light Bluish Gray'},
+      {hex:'#6B7785',name:'Dark Bluish Gray'},
+      {hex:'#2D2D2D',name:'Dark Stone Gray'},
+      {hex:'#C91D18',name:'Red'},
+      {hex:'#D8D8D8',name:'Light Gray'},
+      {hex:'#8B6914',name:'Reddish Brown'},
+      {hex:'#F5F5F0',name:'White'},
+    ]
+  },
+  bold:{
+    rule:'Deep Blue Dominant · Warm Gold Secondary · Red Accent',
+    tip:'Deep Blue or Dark Blue dominates. Gold and Tan provide warmth against the cool blue. Red is used sparingly — flags, gems, a single door. High-contrast, high-drama. Works for fantasy, heraldic, or statement builds.',
+    swatches:[
+      {hex:'#1B4B8A',name:'Dark Blue'},
+      {hex:'#0057A8',name:'Blue'},
+      {hex:'#F5C518',name:'Yellow (Gold)'},
+      {hex:'#C8A951',name:'Warm Gold'},
+      {hex:'#D01012',name:'Red'},
+      {hex:'#F5F0E8',name:'White'},
+      {hex:'#2A2A2A',name:'Black'},
+    ]
+  },
+  space:{
+    rule:'Black Dominant · Dark Grey Secondary · Trans Colour Accent',
+    tip:'Black as the structural mass. Dark Bluish Gray for mid-tones and detail. A single trans colour — trans-neon green, trans-light-blue, or trans-red — for energy sources, viewports, and weapons. The trans colour accent is where the whole build comes alive.',
+    swatches:[
+      {hex:'#1A1A1A',name:'Black'},
+      {hex:'#4A5560',name:'Dark Bluish Gray'},
+      {hex:'#7A8A98',name:'Light Bluish Gray'},
+      {hex:'#C0C8D0',name:'Flat Silver'},
+      {hex:'#44D62C',name:'Trans-Neon Green'},
+      {hex:'#AADCF0',name:'Trans-Light Blue'},
+      {hex:'#F0D060',name:'Trans-Yellow'},
+    ]
+  }
+};
+
+function setPalette(key,el){
+  document.querySelectorAll('.pw-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const p=PALETTES[key];
+  document.getElementById('pwRule').textContent=p.rule;
+  document.getElementById('pwTip').textContent=p.tip;
+  document.getElementById('pwSwatches').innerHTML=p.swatches.map(s=>
+    `<div class="swatch" style="background:${s.hex}"><span class="swatch-name">${s.name}</span></div>`
+  ).join('');
+}
+setPalette('natural',document.querySelector('.pw-tab'));
+
+// ══════════════════════════════════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════════════════════════════════
+const QS=[
+  {q:'In the 60-30-10 colour rule, which portion is the accent colour?',
+   opts:['60% — it\'s the dominant','30% — supporting role','10% — the focal pop','All three are equal'],
+   ans:2,exp:'The accent is the smallest portion — 10% — but the most memorable. It\'s where your eye lands. Used more than that, it stops being an accent and starts competing with the dominant.'},
+  {q:'What does SNOT stand for in advanced LEGO® building?',
+   opts:['Sideways Notch Offset Technique','Studs Not On Top','Structural Non-Orthogonal Technique','Standard Non-Oriented Tile'],
+   ans:1,exp:'Studs Not On Top. Any technique where bricks are oriented so their studs face sideways or downward rather than straight up. It unlocks smooth surfaces, textures, and non-vertical detail.'},
+  {q:'How many plates equal 2 studs in height — the fundamental SNOT ratio?',
+   opts:['3 plates','4 plates','5 plates','6 plates'],
+   ans:2,exp:'5 plates = 2 studs in height. This ratio is the foundation of all SNOT construction. Every sideways connection calculation starts from this relationship.'},
+  {q:'What is the most structurally sound method for building a large flat surface from plates?',
+   opts:['Stack plates in perfectly aligned vertical columns','Offset each row by 1–2 studs, like real bricklaying','Use only 2×4 bricks for large surfaces','Cap the surface with tiles to lock everything in place'],
+   ans:1,exp:'Staggered joints distribute force laterally — exactly like real masonry. Perfectly aligned columns create shear points that fail suddenly. The offset is what creates structural lock.'},
+  {q:'What does "atmospheric perspective" mean in a LEGO® landscape build?',
+   opts:['Using fan elements to create the impression of wind','Placing warm colours in the foreground and cool colours in the background','Using transparent elements for sky areas','Scaling background buildings smaller than foreground ones'],
+   ans:1,exp:'Warm colours visually advance, cool colours recede. Using warmer brick colours in the foreground and cooler ones in the background mimics how real atmosphere affects perceived depth. Five hundred years of landscape painting uses this exact principle.'},
+  {q:'Which element is most commonly used for convincing rock and cliff textures?',
+   opts:['2×2 curved slopes in large quantities','1×1 cheese slopes (part 54200) in multiple close values','1×2 jumper plates arranged irregularly','Rough texture tiles placed sideways via SNOT'],
+   ans:1,exp:'Dense coverage of 1×1 cheese slopes creates irregular shadow lines that read as genuinely geological. The critical step is using at minimum three close values of the same grey or brown — one flat colour produces an obviously plastic surface.'},
+  {q:'What is the purpose of a "neutral buffer" in colour building?',
+   opts:['A grey baseplate used to unify all builds','A band of neutral colour placed between two clashing colours to resolve visual tension','A SNOT technique for creating smooth transitions between surfaces','Deliberately leaving unpainted gaps in brick surfaces'],
+   ans:1,exp:'Inserting a neutral colour between two colours that fight each other gives the eye a reset between them. The neutral acts as a separator — each colour reads independently rather than competing directly.'},
+  {q:'At which builder level do most people begin using SNOT deliberately?',
+   opts:['Level 1 — Follower','Level 2 — Modifier','Level 3 — Creator','Level 5 — Artist'],
+   ans:2,exp:'Level 3 — Creator. This is when builders move from working within existing sets and modifications to building original MOCs from scratch, which is when techniques like SNOT become necessary tools rather than optional extras.'},
+  {q:'What is the "armature" in LEGO® building?',
+   opts:['The base plate a build is constructed on','The internal structural skeleton built before any surface detail','The Technic framework visible on the outside of a build','The colour palette decided before building starts'],
+   ans:1,exp:'The armature is the internal skeleton — built first, before any surface detail. Its only job is to hold the shape under display conditions. Display failures are almost always armature failures.'},
+  {q:'What is the key insight of the Three-Metre Test?',
+   opts:['Builds should look good from exactly three metres, and no other distance','The first three metres of a room define where display builds should be placed','Builds should be designed for the actual viewing distance, not the building distance','Three metres is the maximum safe display height for structural stability'],
+   ans:2,exp:'Most builders design at close range — 30–50cm. But viewers experience the build at 1–3 metres. The Three-Metre Test aligns your building decisions with how the finished work will actually be seen — which often means less close-up detail and more investment in silhouette and large-scale colour reads.'},
+];
+
+let qIdx=0,score=0,answered=false;
+
+function loadQ(){
+  answered=false;
+  const q=QS[qIdx];
+  document.getElementById('qNum').textContent=`Question ${qIdx+1} of ${QS.length}`;
+  document.getElementById('qText').textContent=q.q;
+  document.getElementById('qFeedback').innerHTML='';
+  document.getElementById('qNext').classList.remove('show');
+  document.getElementById('qOptions').innerHTML=q.opts.map((o,i)=>
+    `<button class="qopt" onclick="answerQ(${i})">${o}</button>`
+  ).join('');
+}
+
+function answerQ(chosen){
+  if(answered)return;
+  answered=true;
+  const q=QS[qIdx];
+  document.querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  if(chosen===q.ans){
+    document.querySelectorAll('.qopt')[chosen].classList.add('correct');
+    score++;
+    document.getElementById('qFeedback').innerHTML=`<strong style="color:var(--green)">✓ Correct.</strong> ${q.exp}`;
+  } else {
+    document.querySelectorAll('.qopt')[chosen].classList.add('wrong');
+    document.querySelectorAll('.qopt')[q.ans].classList.add('correct');
+    document.getElementById('qFeedback').innerHTML=`<strong style="color:var(--red)">✗ Not quite.</strong> ${q.exp}`;
+  }
+  document.getElementById('qScoreLabel').textContent=`Score: ${score} / ${QS.length}`;
+  if(qIdx<QS.length-1){
+    document.getElementById('qNext').classList.add('show');
+  } else {
+    setTimeout(showResult,900);
+  }
+}
+
+function nextQ(){qIdx++;loadQ();}
+
+function showResult(){
+  document.getElementById('quizActive').style.display='none';
+  const r=document.getElementById('quizResult');
+  r.style.display='block';
+  document.getElementById('qFinalScore').textContent=score;
+  const msgs=[
+    'Plenty of room to grow — that\'s what this guide is for. Pick one technique and apply it today.',
+    'Solid start. Focus on the Colour and Structure sections — they\'ll give you the fastest visible improvement.',
+    'Good foundation. The SNOT and Scale sections will likely unlock your next level.',
+    'Strong technique knowledge. You\'re building at Creator or Technician level.',
+    'Excellent — you know this craft well. Now go build something that pushes you.',
+    'Perfect score. You\'re past reading about techniques. Go do something ambitious today.'
+  ];
+  document.getElementById('qFinalMsg').textContent=msgs[Math.min(Math.floor(score/2),5)];
+}
+
+function restartQuiz(){
+  qIdx=0;score=0;answered=false;
+  document.getElementById('quizActive').style.display='block';
+  document.getElementById('quizResult').style.display='none';
+  document.getElementById('qScoreLabel').textContent='Score: 0 / 10';
+  loadQ();
+}
+
+loadQ();
+}
+
+</script>
+
+
+<script>
+window.addEventListener('DOMContentLoaded', function(){ if (typeof initTipsTricksPage === 'function') initTipsTricksPage(); });
+</script>
+</body>
+</html>

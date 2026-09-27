@@ -12983,9 +12983,9 @@ setTimeout(()=>{
 <!-- ═══ FOOTER ═══ -->
 
 <!-- ═══ MODAL ═══ -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeMod(event)">
+<div class="modal-overlay" id="modalOverlay" onclick="bsCloseMod(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModBtn()">✕</button>
+    <button class="modal-close" onclick="bsCloseModBtn()">✕</button>
     <div class="modal-hero">
       <img loading="lazy" id="mImg" src="" alt="" loading="lazy">
       <div class="modal-hero-rank" id="mRank"></div>
@@ -13303,7 +13303,7 @@ SETS.forEach((s,i)=>{
       </div>
       <div class="se-arrow">→</div>
     </div>`;
-  el.addEventListener('click',()=>openMod(i));
+  el.addEventListener('click',()=>bsOpenMod(i));
   setList.appendChild(el);
 });
 
@@ -13362,7 +13362,7 @@ TIPS.forEach(t=>{
 
 // ─── Modal ───
 let curIdx=0;
-function openMod(i){
+function bsOpenMod(i){
   curIdx=i;
   const s=SETS[i];
   document.getElementById('mImg').src=s.img;
@@ -13379,22 +13379,29 @@ function openMod(i){
     <div class="spec-cell"><div class="spec-val" style="font-size:1rem;padding-top:4px">${s.status}</div><div class="spec-lbl">Status</div></div>
     <div class="spec-cell" style="grid-column:1/-1"><div class="spec-val" style="font-size:1rem;padding-top:4px">${s.dims}</div><div class="spec-lbl">Dimensions</div></div>`;
   document.getElementById('mNav').innerHTML=`
-    ${i>0?`<button class="mnav-btn" onclick="openMod(${i-1})">← #${SETS[i-1].rank} ${SETS[i-1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}
-    ${i<SETS.length-1?`<button class="mnav-btn" onclick="openMod(${i+1})">→ #${SETS[i+1].rank} ${SETS[i+1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}`;
+    ${i>0?`<button class="mnav-btn" onclick="bsOpenMod(${i-1})">← #${SETS[i-1].rank} ${SETS[i-1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}
+    ${i<SETS.length-1?`<button class="mnav-btn" onclick="bsOpenMod(${i+1})">→ #${SETS[i+1].rank} ${SETS[i+1].name.split(' ').slice(0,3).join(' ')}…</button>`:''}`;
   document.getElementById('modalOverlay').classList.add('open');
   document.getElementById('modal').scrollTop=0;
   document.body.style.overflow='hidden';
 }
-function closeMod(e){if(e.target===document.getElementById('modalOverlay'))closeModBtn();}
-function closeModBtn(){
+function bsCloseMod(e){if(e.target===document.getElementById('modalOverlay'))bsCloseModBtn();}
+function bsCloseModBtn(){
   document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape')closeModBtn();
-  if(e.key==='ArrowRight'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.min(curIdx+1,SETS.length-1));
-  if(e.key==='ArrowLeft'&&document.getElementById('modalOverlay').classList.contains('open'))openMod(Math.max(curIdx-1,0));
+  if(e.key==='Escape')bsCloseModBtn();
+  if(e.key==='ArrowRight'&&document.getElementById('modalOverlay').classList.contains('open'))bsOpenMod(Math.min(curIdx+1,SETS.length-1));
+  if(e.key==='ArrowLeft'&&document.getElementById('modalOverlay').classList.contains('open'))bsOpenMod(Math.max(curIdx-1,0));
 });
+// These are wired via inline onclick="" attributes in the HTML, which
+// resolve against the global scope — but they're declared inside
+// initBiggestSetsPage(), so without this the close/prev/next buttons
+// silently fail to find them and do nothing.
+window.bsOpenMod = bsOpenMod;
+window.bsCloseMod = bsCloseMod;
+window.bsCloseModBtn = bsCloseModBtn;
 
 // ─── Scroll reveal ───
 setTimeout(()=>{

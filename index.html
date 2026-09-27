@@ -3848,7 +3848,7 @@ setTimeout(_dismissLoader, 4000);
   <div class="search-box">
     <div class="search-input-wrap">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-      <input class="search-input" id="searchInput" placeholder="Search videos, shop, blog..." oninput="runSearch(this.value)" autocomplete="off">
+      <input class="search-input" id="searchInput" placeholder="Search everything: products, MOCs, blog, pages..." oninput="runSearch(this.value)" autocomplete="off">
       <button class="search-close" onclick="closeSearch()">✕</button>
     </div>
     <div class="search-results" id="searchResults">
@@ -4525,10 +4525,7 @@ setTimeout(_dismissLoader, 4000);
   </script>
 
   <!-- CATEGORIES -->
-  <section style="background:var(--bg);padding:80px 0">
-    <div class="container">
-      <span class="lbl lbl-b reveal">Browse By Topic</span>
-      <h2 class="sec-title reveal">Find Your LEGO® Obsession</h2>
+  <section id="find-your-obsession" style="background:var(--bg);padding:80px 0">
       <p class="sec-sub reveal">From epic city builds to rare piece deep dives — something for every LEGO® fan.</p>
       <div class="cgrid">
 
@@ -6395,40 +6392,90 @@ function closeSearch() {
 function closeSearchOutside(e) {
   if (e.target === document.getElementById('searchOverlay')) closeSearch();
 }
+// ══════════════════════════════════════
+// SITE-WIDE SEARCH INDEX
+// ══════════════════════════════════════
+let _searchIndex = null;
+function buildSearchIndex() {
+  const idx = [];
+
+  // Static pages & sections
+  const STATIC_ENTRIES = [
+    { title: 'Home', cat: 'Page', icon: '🏠', action: () => showPage('home') },
+    { title: 'Shop', cat: 'Page', icon: '🛒', action: () => showPage('shop') },
+    { title: 'MOC Gallery', cat: 'Page', icon: '🏗️', action: () => showPage('mocs') },
+    { title: 'Blog', cat: 'Page', icon: '📰', action: () => showPage('blog') },
+    { title: 'About', cat: 'Page', icon: 'ℹ️', action: () => showPage('about') },
+    { title: 'Contact', cat: 'Page', icon: '✉️', action: () => showPage('contact') },
+    { title: 'Pricing', cat: 'Page', icon: '💰', action: () => showPage('pricing') },
+    { title: 'Terms', cat: 'Legal', icon: '📄', action: () => showPage('terms') },
+    { title: 'Licence', cat: 'Legal', icon: '📄', action: () => showPage('licence') },
+    { title: 'Privacy', cat: 'Legal', icon: '📄', action: () => showPage('privacy') },
+    { title: 'Refunds', cat: 'Legal', icon: '📄', action: () => showPage('refunds') },
+    { title: 'FAQ', cat: 'Section', icon: '❓', action: () => { showPage('home'); setTimeout(() => document.getElementById('home-faq')?.scrollIntoView({behavior:'smooth'}), 400); } },
+    { title: 'How It Works', cat: 'Section', icon: '⚙️', action: () => { showPage('home'); setTimeout(() => document.getElementById('how-it-works')?.scrollIntoView({behavior:'smooth'}), 400); } },
+    { title: 'Find Your LEGO® Obsession', cat: 'Section', icon: '🧭', action: () => { showPage('home'); setTimeout(() => document.getElementById('find-your-obsession')?.scrollIntoView({behavior:'smooth'}), 400); } },
+    { title: 'Newsletter', cat: 'Section', icon: '📬', action: () => { showPage('home'); setTimeout(() => document.getElementById('home-subscribe')?.scrollIntoView({behavior:'smooth'}), 400); } },
+    { title: 'MOC Instructions', cat: 'Section', icon: '📐', action: () => { showPage('home'); setTimeout(() => document.getElementById('home-moc-instructions')?.scrollIntoView({behavior:'smooth'}), 400); } },
+  ];
+  const BLOG_ENTRIES = [
+    { title: '90 Years of Brick — The Complete History of LEGO®', cat: 'Blog', icon: '📖', action: () => showPage('lego-history') },
+    { title: '11 Biggest LEGO® Sets Ever', cat: 'Blog', icon: '📖', action: () => showPage('biggest-sets') },
+    { title: 'Rare LEGO® Pieces Every Collector Should Know', cat: 'Blog', icon: '📖', action: () => showPage('lego-collecting') },
+    { title: 'Tips & Tricks: Level Up Your Builds', cat: 'Blog', icon: '📖', action: () => showPage('tips-tricks') },
+    { title: 'LEGO® Challenge Guide', cat: 'Blog', icon: '📖', action: () => showPage('lego-challenges') },
+  ];
+
+  STATIC_ENTRIES.forEach(e => idx.push(e));
+  BLOG_ENTRIES.forEach(e => idx.push(e));
+
+  // Every product
+  (typeof P !== 'undefined' ? P : []).filter(p => p.price > 0 && p.id !== 0).forEach(p => {
+    idx.push({
+      title: p.name, cat: '🛒 Shop', icon: '🛒', thumb: p.img,
+      action: () => { showPage('shop'); setTimeout(() => openMod(p.id), 350); }
+    });
+  });
+
+  // Every MOC gallery tile
+  (typeof MOCS !== 'undefined' ? MOCS : []).forEach(m => {
+    const thumb = (m.gallery && m.gallery[0] && m.gallery[0].src) || (m.images && m.images[0]) || '';
+    idx.push({
+      title: m.name, cat: '🏗️ MOC Gallery', icon: '🏗️', thumb,
+      action: () => { showPage('mocs'); setTimeout(() => openMocLightbox(m.id), 350); }
+    });
+  });
+
+  return idx;
+}
+
 function runSearch(q) {
   const results = document.getElementById('searchResults');
   if (!q || q.length < 2) {
     results.innerHTML = '<div class="search-empty">Start typing to search across all content…</div>';
     return;
   }
+  if (!_searchIndex) _searchIndex = buildSearchIndex();
   const lq = q.toLowerCase();
-  let hits = [];
-
-  // Search videos
-  VIDEOS.filter(v => v.title.toLowerCase().includes(lq)).slice(0, 6).forEach(v => {
-    const ytLink = v.isShort ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
-    hits.push(`<a class="search-result-item" href="${ytLink}" target="_blank">
-      <img loading="lazy" class="search-result-thumb" src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}" onerror="this.style.display='none'">
-      <div><div class="search-result-title">${v.title}</div><div class="search-result-cat">🎬 Video</div></div>
-    </a>`);
-  });
-
-  // Search shop items
-  document.querySelectorAll('.pname').forEach(el => {
-    if (el.textContent.toLowerCase().includes(lq)) {
-      hits.push(`<div class="search-result-item" onclick="closeSearch();showPage('shop')">
-        <div style="width:60px;height:40px;background:#FFD700;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🛒</div>
-        <div><div class="search-result-title">${el.textContent}</div><div class="search-result-cat">🛒 Shop</div></div>
-      </div>`);
-    }
-  });
+  const hits = _searchIndex.filter(e => e.title.toLowerCase().includes(lq)).slice(0, 40);
 
   if (hits.length === 0) {
     results.innerHTML = `<div class="search-empty">No results for "<strong>${q}</strong>"</div>`;
-  } else {
-    results.innerHTML = hits.join('');
+    return;
   }
+
+  results.innerHTML = hits.map((e, i) => {
+    _searchResultActions[i] = e.action;
+    const thumbHTML = e.thumb
+      ? `<img class="search-result-thumb" src="${e.thumb}" alt="" loading="lazy">`
+      : `<div style="width:60px;height:40px;background:#FFD700;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">${e.icon || '🔍'}</div>`;
+    return `<div class="search-result-item" onclick="closeSearch();_searchResultActions[${i}]()">
+      ${thumbHTML}
+      <div><div class="search-result-title">${e.title}</div><div class="search-result-cat">${e.cat}</div></div>
+    </div>`;
+  }).join('');
 }
+let _searchResultActions = {};
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSearch(); const modOv=document.getElementById('modOv'); if(modOv&&modOv.classList.contains('open')){modOv.classList.remove('open');document.body.style.overflow='';} } if ((e.ctrlKey||e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); } });
 
 // ══════════════════════════════════════

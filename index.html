@@ -4463,14 +4463,17 @@ setTimeout(_dismissLoader, 4000);
       </div>
       <!-- RIGHT: Newsletter -->
       <div class="home-sub-nl">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:6px 18px;border-radius:20px;margin-bottom:22px;box-shadow:0 4px 0 #8b0000;width:fit-content">📬 Newsletter</div>
-        <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4.5vw,52px);line-height:1;color:var(--black);margin-bottom:16px">New builds. New instructions.<br>First to know.</h2>
-        <p style="font-size:14px;font-weight:700;color:rgba(0,0,0,.6);line-height:1.65;margin-bottom:28px">Drop your email and I'll let you know when new MOC instructions drop, new videos go up, or when something special is happening on the channel. No spam — just LEGO®.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <input id="home-sub-email" class="sub-nl-input" type="email" placeholder="your@email.com" style="flex:1;min-width:200px;padding:13px 18px;border-radius:10px;border:3px solid rgba(0,0,0,.15);background:#fff;color:var(--black);font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;outline:none" onkeydown="if(event.key==='Enter')subscribeNewsletter('home-sub-email')">
-          <button onclick="subscribeNewsletter('home-sub-email')" style="display:inline-flex;align-items:center;gap:8px;font-family:'Boogaloo',cursive;font-size:18px;padding:13px 26px;border-radius:10px;border:none;background:var(--black);color:#fff;cursor:pointer;white-space:nowrap;box-shadow:0 5px 0 rgba(0,0,0,.35)">🚀 Subscribe Free</button>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:6px 18px;border-radius:20px;margin-bottom:22px;box-shadow:0 4px 0 #8b0000;width:fit-content">Free mini build</div>
+        <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,4.5vw,52px);line-height:1;color:var(--black);margin-bottom:16px">Get a free LEGO&reg; MOC PDF.<br>Sent to your inbox.</h2>
+        <p style="font-size:14px;font-weight:700;color:rgba(0,0,0,.6);line-height:1.65;margin-bottom:28px">Drop your email and I'll send you the step-by-step instructions for the Heart (a quick 5-piece build) straight away. You'll also hear first when new builds and videos go up.</p>
+        <div id="free-build-form" style="display:flex;gap:10px;flex-wrap:wrap">
+          <input id="home-sub-email" class="sub-nl-input" type="email" autocomplete="email" placeholder="your@email.com" style="flex:1;min-width:200px;padding:13px 18px;border-radius:10px;border:3px solid rgba(0,0,0,.15);background:#fff;color:var(--black);font-family:'Nunito',sans-serif;font-weight:700;font-size:15px;outline:none" onkeydown="if(event.key==='Enter'){claimFreeBuild()}">
+          <input id="free-build-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <button id="free-build-btn" onclick="claimFreeBuild()" style="display:inline-flex;align-items:center;gap:8px;font-family:'Boogaloo',cursive;font-size:18px;padding:13px 26px;border-radius:10px;border:none;background:var(--black);color:#fff;cursor:pointer">Send my free build</button>
         </div>
-        <p style="font-size:12px;color:rgba(0,0,0,.4);font-weight:700;margin-top:12px">No spam · Unsubscribe any time · Just LEGO®</p>
+        <p id="free-build-msg" role="status" style="display:none;font-size:13px;font-weight:800;margin-top:12px"></p>
+        <div id="free-build-ok" style="display:none;padding:16px 20px;background:var(--green);color:#fff;border-radius:10px;font-weight:900;font-size:15px;line-height:1.5;box-shadow:0 4px 0 #004d25">Sent! Check your inbox (and your spam folder) for your free Heart build.</div>
+        <p style="font-size:12px;color:rgba(0,0,0,.45);font-weight:700;margin-top:12px">By signing up you also join the newsletter. No spam &middot; Unsubscribe any time &middot; Just LEGO&reg;</p>
       </div>
     </div>
   </section>
@@ -6703,6 +6706,65 @@ function updateStartHere() {
   if (img) {
     img.src = `https://img.youtube.com/vi/${PINNED_ID}/maxresdefault.jpg`;
     img.onerror = function() { this.src = `https://img.youtube.com/vi/${PINNED_ID}/hqdefault.jpg`; };
+  }
+}
+
+// -- FREE BUILD SIGN-UP -------------------------------------------------------
+// Calls the worker's POST /free-sample route. The worker picks the free PDF,
+// creates the signed download link, and sends the email through Resend.
+async function claimFreeBuild() {
+  const input = document.getElementById('home-sub-email');
+  const btn   = document.getElementById('free-build-btn');
+  const msg   = document.getElementById('free-build-msg');
+  const ok    = document.getElementById('free-build-ok');
+  const form  = document.getElementById('free-build-form');
+  if (!input) return;
+  const say = (text, color) => { if (msg) { msg.textContent = text; msg.style.display = 'block'; msg.style.color = color || 'var(--black)'; } };
+
+  const email = input.value.trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    input.style.borderColor = 'var(--red)';
+    setTimeout(() => input.style.borderColor = '', 2000);
+    say('Please enter a valid email address.', 'var(--red)');
+    return;
+  }
+
+  const originalLabel = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+  input.disabled = true;
+  if (msg) msg.style.display = 'none';
+
+  try {
+    const trap = document.getElementById('free-build-website');
+    const res = await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev/free-sample', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, website: trap ? trap.value : '' })
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (res.status === 429) {
+      throw new Error('Too many requests. Please try again in an hour.');
+    }
+    if (!res.ok || !data.success) throw new Error(data.error || ('Request failed (' + res.status + ')'));
+
+    if (data.already) {
+      // This address already got the free build in the last 30 days
+      input.disabled = false;
+      if (btn) { btn.textContent = originalLabel; btn.disabled = false; }
+      say('That address already received the free build. Check your inbox and spam folder.');
+      return;
+    }
+
+    if (form) form.style.display = 'none';
+    if (msg) msg.style.display = 'none';
+    if (ok) ok.style.display = 'block';
+    if (typeof launchConfetti === 'function') { try { launchConfetti(ok); } catch (e) {} }
+  } catch (e) {
+    console.warn('Free build error:', e && e.message);
+    input.disabled = false;
+    if (btn) { btn.textContent = originalLabel; btn.disabled = false; }
+    say((e && /Too many/.test(e.message)) ? e.message : 'Something went wrong. Please try again, or email bricktasticbuilds01@gmail.com.', 'var(--red)');
   }
 }
 

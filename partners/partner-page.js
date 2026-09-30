@@ -77,7 +77,8 @@
     document.getElementById('pp-count').textContent=list.length+(list.length===1?' product':' products');
     if(!list.length){grid.innerHTML='<div class="pp-empty" style="grid-column:1/-1"><h2>No matches</h2><p>Try a different search or category.</p></div>';return;}
     grid.innerHTML=list.map(function(p){
-      var img=p.image?'<img src="'+esc(p.image)+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.remove()">':'';
+      var src=p.image||(p.slug?'/partners/images/'+key+'/products/'+p.slug+'.jpg':'');
+      var img=src?'<img src="'+esc(src)+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.remove()">':'';
       var flag=p.sample?'<span class="pp-flag sample">Sample</span>':(p.badge?'<span class="pp-flag">'+esc(p.badge)+'</span>':'');
       return '<article class="pp-prod"><div class="pp-img">'+img+flag+'</div><div class="pp-info">'+
         (p.category?'<div class="pp-cat">'+esc(p.category)+'</div>':'')+
@@ -117,15 +118,21 @@
     });
     function fin(){ if(--left) return; var good=ok.filter(Boolean); if(good.length) build(good); }
     function build(good){
-      hero.classList.add('has-slides');
-      var box=document.createElement('div');box.className='pp-slides';
-      box.innerHTML=good.map(function(u,i){return '<div class="pp-slide'+(i===0?' on':'')+'" style="background-image:url(&quot;'+esc(u)+'&quot;)"></div>';}).join('')+'<div class="pp-shade"></div>';
-      hero.insertBefore(box,hero.firstChild);
+      var wrap=hero.querySelector('.wrap');
+      var box=document.createElement('div');box.className='pp-banner';
+      var link=P.shopUrl?affUrl(P.shopUrl):'';
+      box.innerHTML=good.map(function(u,i){
+        var img='<img src="'+esc(u)+'" alt="'+esc(P.name)+' banner '+(i+1)+'">';
+        return link
+          ?'<a class="pp-slide'+(i===0?' on':'')+'" href="'+esc(link)+'" target="_blank" rel="sponsored nofollow noopener">'+img+'</a>'
+          :'<div class="pp-slide'+(i===0?' on':'')+'">'+img+'</div>';
+      }).join('');
+      wrap.appendChild(box);
       if(good.length<2) return;
       var slides=box.querySelectorAll('.pp-slide'),idx=0,timer=null;
       var ctrl=document.createElement('div');ctrl.className='pp-ctrl';
       ctrl.innerHTML='<button type="button" class="pp-arrow" data-d="-1" aria-label="Previous picture">‹</button><span class="pp-dots">'+good.map(function(_,i){return '<button type="button" class="pp-dot'+(i===0?' on':'')+'" data-i="'+i+'" aria-label="Picture '+(i+1)+'"></button>';}).join('')+'</span><button type="button" class="pp-arrow" data-d="1" aria-label="Next picture">›</button>';
-      hero.appendChild(ctrl);
+      box.appendChild(ctrl);
       var dots=ctrl.querySelectorAll('.pp-dot');
       function go(n){
         idx=(n+slides.length)%slides.length;
@@ -143,8 +150,8 @@
         else if(d)go(parseInt(d.getAttribute('data-i'),10));
         start();
       });
-      hero.addEventListener('mouseenter',stop);hero.addEventListener('mouseleave',start);
-      hero.addEventListener('focusin',stop);hero.addEventListener('focusout',start);
+      box.addEventListener('mouseenter',stop);box.addEventListener('mouseleave',start);
+      box.addEventListener('focusin',stop);box.addEventListener('focusout',start);
       start();
     }
   })();

@@ -38,7 +38,7 @@ a{color:var(--blue)}
 .pp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
 .pp-prod{background:#fff;border:2px solid #e8e4da;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
 .pp-prod:hover{transform:translateY(-3px);border-color:var(--yellow)}
-.pp-img{position:relative;aspect-ratio:4/3;background:#f6f3ec;display:flex;align-items:center;justify-content:center;font-size:54px}
+.pp-img{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#f6f3ec,#ebe6d9);display:flex;align-items:center;justify-content:center}
 .pp-img img{width:100%;height:100%;object-fit:cover;display:block}
 .pp-flag{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:4px}
 .pp-flag.sample{background:var(--blue)}
@@ -58,3 +58,21 @@ a{color:var(--blue)}
 .pp-more a.pl:hover{border-color:var(--yellow)}
 .pp-foot{border-top:1px solid #ddd;margin-top:40px;padding-top:18px;font-size:13px;color:#999}
 @media(max-width:760px){.pp-about{grid-template-columns:1fr}.wrap{padding:0 20px}.pp-hero{padding:40px 0 38px}}
+
+/* header banner pictures */
+.pp-hero>.wrap{position:relative;z-index:2}
+.pp-hero:after{z-index:3}
+.pp-hero.has-slides{min-height:400px;display:flex;align-items:center;padding:80px 0 76px}
+.pp-hero.has-slides>.wrap{width:100%}
+.pp-slides{position:absolute;inset:0;z-index:0}
+.pp-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}
+.pp-slide.on{opacity:1}
+.pp-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,17,.9) 0%,rgba(17,17,17,.62) 45%,rgba(17,17,17,.2) 100%)}
+.pp-ctrl{position:absolute;right:24px;bottom:26px;z-index:4;display:flex;align-items:center;gap:10px}
+.pp-arrow{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.35);color:#fff;font-size:20px;line-height:1;cursor:pointer;font-family:inherit}
+.pp-arrow:hover{border-color:var(--yellow);color:var(--yellow)}
+.pp-dots{display:flex;gap:7px}
+.pp-dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.45);cursor:pointer}
+.pp-dot.on{background:var(--yellow)}
+@media(max-width:760px){.pp-hero.has-slides{min-height:340px;padding:56px 0 64px}.pp-shade{background:rgba(17,17,17,.72)}}
+@media(prefers-reduced-motion:reduce){.pp-slide{transition:none}}

@@ -10,6 +10,7 @@
   var esc=function(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
 
   function affUrl(u){
+    if(!u||!P.shopUrl) return u||'#';
     try{
       var x=new URL(u,P.shopUrl);
       var host=new URL(P.shopUrl).hostname.replace(/^www\./,'');
@@ -29,11 +30,12 @@
 
   var html='';
   html+='<div class="pp-topbar"><div class="wrap"><a href="/">← Bricktastic Builds</a><a href="/partners/">All partners &amp; affiliates</a></div></div>';
-  html+='<header class="pp-hero"><div class="wrap">';
+  html+='<header class="pp-hero" id="pp-hero"><div class="wrap">';
   html+='<span class="pp-badge">Official Partner</span>';
-  html+='<h1>'+esc(P.emoji||'')+' '+esc(P.name)+'</h1>';
+  html+='<h1>'+esc(P.name)+'</h1>';
   html+='<p class="tag">'+esc(P.tagline)+'</p>';
-  html+='<div class="pp-actions"><a class="btn" href="'+esc(affUrl(P.shopUrl))+'" target="_blank" rel="sponsored nofollow noopener">Visit '+esc(P.name)+' →</a>';
+  html+='<div class="pp-actions">';
+  if(P.shopUrl){html+='<a class="btn" href="'+esc(affUrl(P.shopUrl))+'" target="_blank" rel="sponsored nofollow noopener">Visit '+esc(P.name)+' →</a>';}
   if(P.code){html+='<span class="code-chip">Code <b id="pp-code">'+esc(P.code)+'</b>'+(P.codeNote?' · '+esc(P.codeNote):'')+' <button type="button" id="pp-copy">Copy</button></span>';}
   html+='</div></div></header>';
 
@@ -46,7 +48,7 @@
   if(preview){html+='<div class="pp-preview"><strong>Preview mode:</strong> sample products are showing. Visitors do not see them.</div>';}
 
   if(!all.length){
-    html+='<div class="pp-empty"><h2>Products coming soon</h2><p>We are putting together our favourite picks from '+esc(P.name)+'. In the meantime you can browse their full range.</p><a class="btn" href="'+esc(affUrl(P.shopUrl))+'" target="_blank" rel="sponsored nofollow noopener">Browse '+esc(P.name)+' →</a></div>';
+    html+='<div class="pp-empty"><h2>Products coming soon</h2><p>We are putting together our favourite picks from '+esc(P.name)+'. '+(P.shopUrl?'In the meantime you can browse their full range.</p><a class="btn" href="'+esc(affUrl(P.shopUrl))+'" target="_blank" rel="sponsored nofollow noopener">Browse '+esc(P.name)+' →</a></div>':'Check back soon.</p></div>');
   }else{
     html+='<h2 style="font-family:\'Boogaloo\',cursive;font-size:32px;color:var(--black);margin:0 0 14px">Our picks</h2>';
     html+='<div class="pp-toolbar"><input type="search" id="pp-q" placeholder="Search products…" aria-label="Search products"><select id="pp-sort" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="az">Name: A to Z</option></select></div>';
@@ -56,7 +58,7 @@
 
   html+='<div class="pp-disclose"><strong>🔗 Affiliate disclosure:</strong> Bricktastic Builds is a partner of '+esc(P.name)+'. If you buy through links on this page we may earn a commission at no extra cost to you. See our <a href="/partners/">partners &amp; affiliates page</a> and <a href="/privacy/">privacy policy</a>.</div>';
 
-  if(others.length){html+='<div class="pp-more"><h3>More partners</h3>'+others.map(function(k){var o=window.PARTNERS[k];return '<a class="pl" href="/partners/'+esc(k)+'/">'+esc(o.emoji||'')+' '+esc(o.name)+'</a>';}).join('')+'<a class="pl" href="/partners/">All partners &amp; affiliates</a></div>';}
+  if(others.length){html+='<div class="pp-more"><h3>More partners</h3>'+others.map(function(k){var o=window.PARTNERS[k];return '<a class="pl" href="/partners/'+esc(k)+'/">'+esc(o.name)+'</a>';}).join('')+'<a class="pl" href="/partners/">All partners &amp; affiliates</a></div>';}
   html+='<div class="pp-foot">© 2026 Bricktastic Builds · bricktasticbuilds.co.za</div>';
   html+='</div></main>';
   app.innerHTML=html;
@@ -77,12 +79,12 @@
     grid.innerHTML=list.map(function(p){
       var img=p.image?'<img src="'+esc(p.image)+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.remove()">':'';
       var flag=p.sample?'<span class="pp-flag sample">Sample</span>':(p.badge?'<span class="pp-flag">'+esc(p.badge)+'</span>':'');
-      return '<article class="pp-prod"><div class="pp-img">🧱'+img+flag+'</div><div class="pp-info">'+
+      return '<article class="pp-prod"><div class="pp-img">'+img+flag+'</div><div class="pp-info">'+
         (p.category?'<div class="pp-cat">'+esc(p.category)+'</div>':'')+
         '<div class="pp-name">'+esc(p.name)+'</div>'+
         (p.note?'<div class="pp-note">'+esc(p.note)+'</div>':'')+
         (typeof p.price==='number'?'<div class="pp-price">'+esc(cur)+p.price.toFixed(2)+'</div>':'')+
-        '<a class="btn" href="'+esc(affUrl(p.url))+'" target="_blank" rel="sponsored nofollow noopener">View on '+esc(P.name)+' →</a></div></article>';
+        (p.url?'<a class="btn" href="'+esc(affUrl(p.url))+'" target="_blank" rel="sponsored nofollow noopener">View on '+esc(P.name)+' →</a>':'')+'</div></article>';
     }).join('');
   }
   var qEl=document.getElementById('pp-q'),sEl=document.getElementById('pp-sort'),chips=document.getElementById('pp-chips');
@@ -100,5 +102,51 @@
     var done=function(){cp.textContent='Copied!';setTimeout(function(){cp.textContent='Copy';},1500);};
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){});}
   });
+
+  /* ---- scrolling banner pictures in the header ---- */
+  (function(){
+    var hero=document.getElementById('pp-hero');
+    var list=(P.banners||[]).slice();
+    if(!hero||!list.length) return;
+    var ok=[],left=list.length;
+    list.forEach(function(src,i){
+      var im=new Image();
+      im.onload=function(){ok[i]=src;fin();};
+      im.onerror=fin;
+      im.src=src;
+    });
+    function fin(){ if(--left) return; var good=ok.filter(Boolean); if(good.length) build(good); }
+    function build(good){
+      hero.classList.add('has-slides');
+      var box=document.createElement('div');box.className='pp-slides';
+      box.innerHTML=good.map(function(u,i){return '<div class="pp-slide'+(i===0?' on':'')+'" style="background-image:url(&quot;'+esc(u)+'&quot;)"></div>';}).join('')+'<div class="pp-shade"></div>';
+      hero.insertBefore(box,hero.firstChild);
+      if(good.length<2) return;
+      var slides=box.querySelectorAll('.pp-slide'),idx=0,timer=null;
+      var ctrl=document.createElement('div');ctrl.className='pp-ctrl';
+      ctrl.innerHTML='<button type="button" class="pp-arrow" data-d="-1" aria-label="Previous picture">‹</button><span class="pp-dots">'+good.map(function(_,i){return '<button type="button" class="pp-dot'+(i===0?' on':'')+'" data-i="'+i+'" aria-label="Picture '+(i+1)+'"></button>';}).join('')+'</span><button type="button" class="pp-arrow" data-d="1" aria-label="Next picture">›</button>';
+      hero.appendChild(ctrl);
+      var dots=ctrl.querySelectorAll('.pp-dot');
+      function go(n){
+        idx=(n+slides.length)%slides.length;
+        [].forEach.call(slides,function(el,i){el.classList.toggle('on',i===idx);});
+        [].forEach.call(dots,function(el,i){el.classList.toggle('on',i===idx);});
+      }
+      function start(){
+        if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        stop();timer=setInterval(function(){go(idx+1);},5000);
+      }
+      function stop(){if(timer){clearInterval(timer);timer=null;}}
+      ctrl.addEventListener('click',function(e){
+        var a=e.target.closest('.pp-arrow'),d=e.target.closest('.pp-dot');
+        if(a)go(idx+parseInt(a.getAttribute('data-d'),10));
+        else if(d)go(parseInt(d.getAttribute('data-i'),10));
+        start();
+      });
+      hero.addEventListener('mouseenter',stop);hero.addEventListener('mouseleave',start);
+      hero.addEventListener('focusin',stop);hero.addEventListener('focusout',start);
+      start();
+    }
+  })();
   render();
 })();

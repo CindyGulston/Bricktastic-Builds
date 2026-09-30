@@ -41,10 +41,7 @@
   html+='</div></div></header>';
 
   html+='<main class="pp-body"><div class="wrap">';
-  html+='<div class="pp-about"><div class="pp-card"><h2>About '+esc(P.name)+'</h2>'+(P.about||[]).map(function(t){return '<p>'+esc(t)+'</p>';}).join('')+'</div>';
-  if(P.myTake){html+='<div class="pp-card"><h2>Our take</h2><p>'+esc(P.myTake)+'</p></div>';}
-  else{html+='<div class="pp-card"><h2>Good to know</h2><p>Links on this page are affiliate links. If you buy through them we may earn a small commission, at no extra cost to you.</p></div>';}
-  html+='</div>';
+  if(P.myTake){html+='<div class="pp-card" style="margin-bottom:32px"><h2>Our take</h2><p>'+esc(P.myTake)+'</p></div>';}
 
   if(preview){html+='<div class="pp-preview"><strong>Preview mode:</strong> sample products are showing. Visitors do not see them.</div>';}
 

@@ -68,6 +68,7 @@ a{color:var(--blue)}
 .pp-slide{position:absolute;inset:0;display:block;opacity:0;pointer-events:none;transition:opacity 1s ease}
 .pp-slide.on{opacity:1;pointer-events:auto;z-index:1}
 .pp-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.pp-slide.fit img{object-fit:contain}
 .pp-ctrl{position:absolute;right:14px;bottom:14px;z-index:3;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:999px}
 .pp-arrow{width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.35);color:#fff;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;padding:0}
 .pp-arrow:hover{border-color:var(--yellow);color:var(--yellow)}

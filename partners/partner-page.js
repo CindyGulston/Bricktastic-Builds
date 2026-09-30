@@ -36,6 +36,7 @@
   html+='<p class="tag">'+esc(P.tagline)+'</p>';
   html+='<div class="pp-actions">';
   if(P.shopUrl){html+='<a class="btn" href="'+esc(affUrl(P.shopUrl))+'" target="_blank" rel="sponsored nofollow noopener">Visit '+esc(P.name)+' →</a>';}
+  if(P.extraLink&&P.extraLink.url){html+='<a class="btn ghost" href="'+esc(affUrl(P.extraLink.url))+'" target="_blank" rel="sponsored nofollow noopener">'+esc(P.extraLink.label||'Shop now')+' →</a>';}
   if(P.code){html+='<span class="code-chip">Code <b id="pp-code">'+esc(P.code)+'</b>'+(P.codeNote?' · '+esc(P.codeNote):'')+' <button type="button" id="pp-copy">Copy</button></span>';}
   html+='</div></div></header>';
 
@@ -112,7 +113,7 @@
     var ok=[],left=list.length;
     list.forEach(function(src,i){
       var im=new Image();
-      im.onload=function(){ok[i]=src;fin();};
+      im.onload=function(){ok[i]={src:src,fit:(im.width&&im.height&&im.width/im.height<2.4)};fin();};
       im.onerror=fin;
       im.src=src;
     });
@@ -121,11 +122,12 @@
       var wrap=hero.querySelector('.wrap');
       var box=document.createElement('div');box.className='pp-banner';
       var link=P.shopUrl?affUrl(P.shopUrl):'';
-      box.innerHTML=good.map(function(u,i){
-        var img='<img src="'+esc(u)+'" alt="'+esc(P.name)+' banner '+(i+1)+'">';
+      box.innerHTML=good.map(function(b,i){
+        var img='<img src="'+esc(b.src)+'" alt="'+esc(P.name)+' banner '+(i+1)+'">';
+        var cls='pp-slide'+(i===0?' on':'')+(b.fit?' fit':'');
         return link
-          ?'<a class="pp-slide'+(i===0?' on':'')+'" href="'+esc(link)+'" target="_blank" rel="sponsored nofollow noopener">'+img+'</a>'
-          :'<div class="pp-slide'+(i===0?' on':'')+'">'+img+'</div>';
+          ?'<a class="'+cls+'" href="'+esc(link)+'" target="_blank" rel="sponsored nofollow noopener">'+img+'</a>'
+          :'<div class="'+cls+'">'+img+'</div>';
       }).join('');
       wrap.appendChild(box);
       if(good.length<2) return;

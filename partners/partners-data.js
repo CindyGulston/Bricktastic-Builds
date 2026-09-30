@@ -28,7 +28,7 @@ window.PARTNERS = {
   lumibricks: {
     name: "Lumibricks",
     tagline: "Display building sets with the lighting built into the design.",
-    banners: ["/partners/images/lumibricks/banner-1.jpg","/partners/images/lumibricks/banner-2.jpg","/partners/images/lumibricks/banner-3.jpg"],
+    banners: ["/partners/images/lumibricks/banner-1.jpg","/partners/images/lumibricks/banner-2.jpg","/partners/images/lumibricks/banner-3.jpg","/partners/images/lumibricks/banner-4.jpg"],
     about: [
       "Lumibricks makes all-in-one building sets with integrated lighting, so what you build is ready to switch on and put on the shelf."
     ],
@@ -54,22 +54,23 @@ window.PARTNERS = {
     tagline: "Kits and accessories for LEGO® fans.",
     banners: ["/partners/images/letbricks/banner-1.jpg","/partners/images/letbricks/banner-2.jpg","/partners/images/letbricks/banner-3.jpg","/partners/images/letbricks/banner-4.jpg"],
     about: [
-      "Letbricks makes building-block kits for LEGO fans, including MOC kits, conversion kits, lighting kits and accessories, and display boxes."
+      "Brick or treat! Find the perfect spooky-season gifts, from haunted houses to pumpkin builds, all hand-picked for MOC fans."
     ],
     myTake: "",            // TODO: your own experience with Letbricks, 1-3 sentences. Hidden while empty.
     shopUrl: "https://www.letbricks.com/",
+    extraLink: { label: "Shop the Halloween collection", url: "https://www.letbricks.com/product-category/best-gifts/halloween/" },   // second header button. Delete this line after the season.
     ref: "hxqfkedi",
     refParam: "ref",
-    code: "",
-    codeNote: "",
-    currency: "$",
+    code: "Halloween15",
+    codeNote: "Halloween offer",   // Delete the code and this note after the season.
+    currency: "US$",
     products: [
-      { slug: "product-1", name: "Product 1 name", url: "https://www.letbricks.com/", price: null, category: "MOC kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-2", name: "Product 2 name", url: "https://www.letbricks.com/", price: null, category: "MOC kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-3", name: "Product 3 name", url: "https://www.letbricks.com/", price: null, category: "Lighting", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-4", name: "Product 4 name", url: "https://www.letbricks.com/", price: null, category: "Lighting", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-5", name: "Product 5 name", url: "https://www.letbricks.com/", price: null, category: "Display", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-6", name: "Product 6 name", url: "https://www.letbricks.com/", price: null, category: "Display", badge: "", note: "Add a short description here.", sample: true }
+      { slug: "product-1", name: "Big Boy Train Halloween Edition (Union Pacific 4014 Big Boy)", url: "https://www.letbricks.com/product/moc-19554-union-pacific-4014-big-boy/", price: 264.99, category: "Halloween", badge: "", note: "The Star of Halloween. MOC-89126, 3200+ pieces, from designer Morningstrummer." },
+      { slug: "product-2", name: "Raven Bird Building Blocks Set", url: "https://www.letbricks.com/product-category/best-gifts/halloween/", price: 32.99, category: "Halloween", badge: "", note: "The Mysterious Guardian. MOC-217187, 357 pieces, by designer Skarbam." },
+      { slug: "product-3", name: "Medieval Haunted Cemetery", url: "https://www.letbricks.com/product-category/best-gifts/halloween/", price: 169.99, category: "Halloween", badge: "", note: "Spooky Atmosphere. MOC-118177, 2025 pieces." },
+      { slug: "product-4", name: "Baba Yaga’s Hut", url: "https://www.letbricks.com/product-category/best-gifts/halloween/", price: 75.99, category: "Halloween", badge: "", note: "The Witch’s Legend. Baba Yaga’s Hut model, 1464 pieces." },
+      { slug: "product-5", name: "Necropolis", url: "https://www.letbricks.com/product-category/best-gifts/halloween/", price: 170.99, category: "Halloween", badge: "", note: "City of the Dead. MOC-214995, 2272 pieces." },
+      { slug: "product-6", name: "Medieval Dark Magic Mountain", url: "https://www.letbricks.com/product-category/best-gifts/halloween/", price: 863.99, category: "Halloween", badge: "", note: "The Epic Masterpiece. MOC-233504, 11,441 pieces." }
     ]
   },
 

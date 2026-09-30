@@ -1,4 +1,5 @@
-Put pictures for gameofbricks here:
-  card.jpg      homepage card picture (16:9, about 800 x 450)
-  banner-1.jpg ... banner-4.jpg   scrolling header pictures (wide, about 1600 x 600)
-Keep each file under about 300 KB. Only use pictures you have permission to use.
+Pictures for gameofbricks:
+  card.jpg                        homepage card, 16:9, 800 x 450
+  banner-1.jpg ... banner-4.jpg   scrolling header, wide 3:1, 1600 x 533 (square pictures also work and are shown whole)
+  products/product-1.jpg ...      product pictures, 800 x 600 (or square)
+Keep each file under about 300 KB. Save as a real JPEG. Only use pictures you have permission to use.

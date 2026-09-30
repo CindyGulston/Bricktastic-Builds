@@ -3,7 +3,7 @@
  *
  * HOW TO ADD A PRODUCT (each partner already has 6 ready-made slots below)
  *   1. Upload the product picture to  /partners/images/<partner>/products/<slug>.jpg
- *      (for example  /partners/images/lumibricks/products/product-1.jpg ). Wide or square, about 800 x 600, under 300 KB.
+ *      (for example  /partners/images/lumibricks/products/product-1.jpg ). Square (or close to it), about 800 x 800, under 300 KB.
  *   2. Change  name,  url  (the product page on the partner's shop),  price  and  note  (your description).
  *   3. Delete  sample: true  from that line. The product then shows for visitors.
  *   Products that still say  sample: true  are hidden. Add ?preview=1 to a page address to see them.
@@ -78,15 +78,15 @@ window.PARTNERS = {
     ref: "12448920.4G1M6YemPL",
     refParam: "sca_ref",   // Game of Bricks uses sca_ref instead of ref
     code: "BRICKTASTIC",
-    codeNote: "",          // e.g. "10% off". Add the discount amount once you have confirmed it.
+    codeNote: "20% off",
     currency: "€",
     products: [
-      { slug: "product-1", name: "Product 1 name", url: "https://gameofbricks.eu/", price: null, category: "Light kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-2", name: "Product 2 name", url: "https://gameofbricks.eu/", price: null, category: "Light kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-3", name: "Product 3 name", url: "https://gameofbricks.eu/", price: null, category: "Light kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-4", name: "Product 4 name", url: "https://gameofbricks.eu/", price: null, category: "Light kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-5", name: "Product 5 name", url: "https://gameofbricks.eu/", price: null, category: "Light kits", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-6", name: "Product 6 name", url: "https://gameofbricks.eu/", price: null, category: "Light kits", badge: "", note: "Add a short description here.", sample: true }
+      { slug: "product-1", name: "All Lights", url: "https://gameofbricks.eu/collections/lego-light-kits?sca_ref=12448920.4G1M6YemPL", price: null, category: "Light kits", badge: "", note: "All light kits. 763 kits." },
+      { slug: "product-2", name: "Franchise Lights", url: "https://gameofbricks.eu/collections/lego-themes-light-kits?sca_ref=12448920.4G1M6YemPL", price: null, category: "Light kits", badge: "", note: "Light kits for LEGO® themes and franchises. 309 kits." },
+      { slug: "product-3", name: "Vehicle Lights", url: "https://gameofbricks.eu/collections/lego-cars-and-trucks-light-kits?sca_ref=12448920.4G1M6YemPL", price: null, category: "Light kits", badge: "", note: "Light kits for cars and trucks. 284 kits." },
+      { slug: "product-4", name: "Building Lights", url: "https://gameofbricks.eu/collections/lego-buildings-light-kits?sca_ref=12448920.4G1M6YemPL", price: null, category: "Light kits", badge: "", note: "Light kits for buildings. 266 kits." },
+      { slug: "product-5", name: "Custom Creations", url: "https://gameofbricks.eu/collections/lego-light-kits-accessories?sca_ref=12448920.4G1M6YemPL", price: null, category: "Accessories", badge: "", note: "Lighting parts for your own builds. 47 parts." },
+      { slug: "product-6", name: "LED Nameplates", url: "https://gameofbricks.eu/collections/led-nameplates-for-lego?sca_ref=12448920.4G1M6YemPL", price: null, category: "Accessories", badge: "", note: "Personalised LED nameplates for LEGO® displays." }
     ]
   }
 

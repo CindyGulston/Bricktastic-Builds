@@ -5406,21 +5406,19 @@ setTimeout(_dismissLoader, 4000);
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px">
         <div>
           <h1 style="font-family:'Boogaloo',cursive;font-size:clamp(32px,5vw,48px);line-height:1;color:var(--black);margin:0 0 6px">The Bricktastic Shop</h1>
-          <p style="margin:0;font-size:15px;font-weight:700;color:#666">PDF instructions delivered instantly · Physical MOCs ship worldwide</p>
+          <p style="margin:0;font-size:15px;font-weight:700;color:#666">PDF instructions delivered instantly</p>
         </div>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <button class="btn btn-red" onclick="toggleWishlistPanel()">❤️ My Wishlist <span id="wishlistShopCount" style="display:none;background:rgba(255,255,255,.3);color:#fff;font-size:11px;font-weight:900;padding:1px 7px;border-radius:10px;margin-left:4px">0</span></button>
         <div class="shop-tabs">
           <button class="shop-tab active" onclick="filterShop('all',this)">All Products</button>
-          <button class="shop-tab" onclick="filterShop('ins',this)">📐 Instructions</button>
-          <button class="shop-tab" onclick="filterShop('moc',this)">🏗️ Physical MOCs</button>
-
+          <button class="shop-tab" id="shopWishlistTab" onclick="toggleWishlistPanel()">❤️ Wishlist <span id="wishlistShopCount" style="display:none;background:#d6101f;color:#fff;font-size:11px;font-weight:900;padding:1px 7px;border-radius:10px;margin-left:4px">0</span></button>
+          <button class="shop-tab" id="shopBundleTab" onclick="toggleBundleTab(this)">🧱 Build Your Own Bundle</button>
         </div>
         </div>
       </div>
 
       <!-- BUNDLE BUILDER BANNER -->
-      <div onclick="openBundleBuilder()" style="cursor:pointer;background:linear-gradient(135deg,#1a1a1a,#2a1a00);border:2px solid var(--yellow);border-radius:16px;padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;transition:all .2s" onmouseover="this.style.borderColor='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--yellow)';this.style.transform=''">
+      <div id="bundleBanner" onclick="openBundleBuilder()" style="display:none;cursor:pointer;background:linear-gradient(135deg,#1a1a1a,#2a1a00);border:2px solid var(--yellow);border-radius:16px;padding:24px 28px;margin-bottom:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;transition:all .2s" onmouseover="this.style.borderColor='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--yellow)';this.style.transform=''">
         <div>
           <div style="display:inline-flex;align-items:center;gap:6px;background:var(--yellow);color:var(--black);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:4px;margin-bottom:10px">🔥 Best Value</div>
           <h3 style="font-family:'Boogaloo',cursive;font-size:26px;color:#fff;margin-bottom:6px">Build Your Own Bundle!</h3>
@@ -7205,6 +7203,14 @@ function addFromMod(){
   setTimeout(()=>{b.innerHTML='🛒 Add to Cart';b.style.background='var(--green)';},1800);
 }
 
+// BUNDLE TAB: selecting shows the bundle banner, deselecting hides it
+function toggleBundleTab(btn){
+  if(btn.classList.contains('active')){
+    filterShop('all',document.querySelector('.shop-tab[onclick^="filterShop(\'all\'"]'));
+  } else {
+    filterShop('bundle',btn);
+  }
+}
 // FILTER
 function filterShop(cat,btn){
   const legoCategories = ['gaming','cars','technic','icons'];
@@ -7218,6 +7224,8 @@ function filterShop(cat,btn){
     }
   });
   btn.classList.add('active');
+  const _bb=document.getElementById('bundleBanner'); if(_bb) _bb.style.display = (cat==='bundle') ? 'flex' : 'none';
+  if(cat==='bundle') cat='all'; // bundle tab shows the normal product grid below the banner
   // When a lego tab is active make it go dark
   if(btn.classList.contains('lego-tab')){
     if(!btn.getAttribute('data-orig-bg')) btn.setAttribute('data-orig-bg', btn.style.background);

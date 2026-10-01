@@ -3973,6 +3973,36 @@ pre, code { overflow-x:auto; }
 .seo-links-toggle[open] summary::after{content:' \25B4'}
 .seo-links-toggle .seo-links{border-top:0;padding-top:20px}
 @media(max-width:700px){.seo-links{grid-template-columns:1fr}}
+/* Home: MOC Instructions heading + banner sits where the hero used to be (clears fixed nav) */
+#page-home section.home-moc-top{padding:114px 0 64px!important}
+@media(max-width:900px){#page-home section.home-moc-top{padding-top:106px!important}}
+@media(max-width:640px){#page-home section.home-moc-top{padding:94px 0 36px!important}}
+
+/* Home banner: slide-in carousel, brand frame, progress bar */
+@keyframes homeSliderIn{from{transform:translateX(90px) rotate(1.5deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes homeShine{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
+#homeSlider{animation:homeSliderIn .9s cubic-bezier(.22,1,.36,1) both}
+#homeSlider .shop-slide{opacity:1;transform:translate3d(100%,0,0);transition:none;will-change:transform}
+#homeSlider .shop-slide.on{transform:none;z-index:2}
+#homeSlider .shop-slide.leave-l{transform:translate3d(-100%,0,0);z-index:1}
+#homeSlider .shop-slide.leave-r{transform:translate3d(100%,0,0);z-index:1}
+#homeSlider.anim .shop-slide{transition:transform .85s cubic-bezier(.77,0,.18,1)}
+#homeSlider .shop-slide img{transform:scale(1.12)}
+#homeSlider .shop-slide.on img,#homeSlider .shop-slide.leave-l img,#homeSlider .shop-slide.leave-r img{transform:scale(1)}
+#homeSlider .shop-slide.on img{transition:transform 1.8s cubic-bezier(.22,1,.36,1)}
+#homeSlider .shop-slide::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%);transform:translateX(-130%)}
+#homeSlider.anim .shop-slide.on::after{animation:homeShine 1.2s ease .55s both}
+#homeSlider .shop-slide-name{left:20px;bottom:20px;background:var(--yellow);color:var(--black);font-size:18px;padding:8px 18px;border:3px solid var(--black);box-shadow:4px 4px 0 var(--black);transform:translateY(40px);opacity:0}
+#homeSlider .shop-slide.on .shop-slide-name{transform:none;opacity:1;transition:transform .7s cubic-bezier(.34,1.56,.64,1) .5s,opacity .3s ease .5s}
+#homeSlider .shop-slide.leave-l .shop-slide-name,#homeSlider .shop-slide.leave-r .shop-slide-name{transform:none;opacity:1}
+@media(max-width:760px){#homeSlider .shop-slide-name{font-size:13px;left:12px;bottom:64px;padding:6px 12px}}
+@media(prefers-reduced-motion:reduce){#homeSlider,#homeSlider.anim .shop-slide,#homeSlider .shop-slide.on img,#homeSlider .shop-slide.on .shop-slide-name{animation:none!important;transition:none!important}#homeSlider .shop-slide::after{display:none}}
+/* Home banner: cut-out photos on bright colours */
+#homeSlider .shop-slide{background:var(--c,#fff);display:grid;place-items:center}
+#homeSlider .shop-slide::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(255,255,255,.5),transparent 60%)}
+#homeSlider .shop-slide img,#homeSlider .shop-slide img[loading="lazy"]{position:relative;width:auto;height:var(--h,80%);max-width:78%;object-fit:contain;background:transparent;filter:drop-shadow(0 22px 18px rgba(0,0,0,.38))}
+#homeSlider .shop-slide-name{background:#fff!important;color:#111!important}
+@media(max-width:760px){#homeSlider .shop-slide img,#homeSlider .shop-slide img[loading="lazy"]{max-width:86%}}
 </style>
 </head>
 <body>
@@ -4132,43 +4162,73 @@ setTimeout(_dismissLoader, 4000);
 
 <!-- ══ HOME PAGE ══ -->
 <div id="page-home" class="page active" role="main">
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-left">
-      <span class="hero-badge"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> <span>LEGO® YouTube Channel + Shop</span></span>
-      <h1><span class="sr-only">Bricktastic Builds – LEGO® MOC Instructions &amp; YouTube Channel</span><span aria-hidden="true"><span class="y" id="typewriter-line1"></span><br><span class="r" id="typewriter-line2"></span><span class="typewriter-cursor" id="typewriter-cursor"></span></span></h1>
-      <p class="hero-sub">Epic LEGO® builds, deep dives, tips & challenges — plus original MOC instructions you can build at home.</p>
-      <div class="hero-stats">
-        <div><span class="sn" id="statSubscribers">320+</span><span class="sl">Subscribers</span></div>
-        <div><span class="sn" id="statVideos">352</span><span class="sl">Videos</span></div>
-        <div><span class="sn" id="statViews">—</span><span class="sl">Total Views</span></div>
+  <!-- HOME TOP: MOC INSTRUCTIONS HEADING + BANNER (replaces old hero) -->
+  <section id="home-moc-instructions" class="home-moc-top" style="background:var(--bg);padding:88px 0">
+    <div class="container">
+
+      <!-- Photo banner of all shop items (filled from the shop banner by script) -->
+      <div class="shop-slider" id="homeSlider" style="margin:0 0 28px" aria-label="Photos of all shop items">
+<a href="/shop/skibidi-toilet/" style="--c:#F2CD37;--h:82%" class="shop-slide on" tabindex="0" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(36);return false" aria-label="Skibidi Toilet"><img src="banner/skibidi-toilet.webp" width="469" height="313" alt="Skibidi Toilet"><span class="shop-slide-name">Skibidi Toilet</span></a>
+<a href="/shop/ps5/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(1);return false" aria-label="PS5"><img src="banner/ps5.webp" width="220" height="293" alt="PS5" loading="lazy"><span class="shop-slide-name">PS5</span></a>
+<a href="/shop/xbox-series-x/" style="--c:#0055BF;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(2);return false" aria-label="Xbox Series X"><img src="banner/xbox-series-x.webp" width="127" height="243" alt="Xbox Series X" loading="lazy"><span class="shop-slide-name">Xbox Series X</span></a>
+<a href="/shop/xbox-series-s/" style="--c:#FE8A18;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(3);return false" aria-label="Xbox Series S"><img src="banner/xbox-series-s.webp" width="112" height="204" alt="Xbox Series S" loading="lazy"><span class="shop-slide-name">Xbox Series S</span></a>
+<a href="/shop/ps3/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(5);return false" aria-label="PS3"><img src="banner/ps3.webp" width="261" height="134" alt="PS3" loading="lazy"><span class="shop-slide-name">PS3</span></a>
+<a href="/shop/ps2/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(6);return false" aria-label="PS2"><img src="banner/ps2.webp" width="172" height="315" alt="PS2" loading="lazy"><span class="shop-slide-name">PS2</span></a>
+<a href="/shop/yellow-go-kart/" style="--c:#0055BF;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(4);return false" aria-label="Yellow Go-Kart"><img src="banner/yellow-go-kart.webp" width="535" height="238" alt="Yellow Go-Kart" loading="lazy"><span class="shop-slide-name">Yellow Go-Kart</span></a>
+<a href="/shop/xbox-one-s/" style="--c:#237841;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(10);return false" aria-label="Xbox One S"><img src="banner/xbox-one-s.webp" width="309" height="160" alt="Xbox One S" loading="lazy"><span class="shop-slide-name">Xbox One S</span></a>
+<a href="/shop/nintendo-switch/" style="--c:#FE8A18;--h:58%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(11);return false" aria-label="Nintendo Switch"><img src="banner/nintendo-switch.webp" width="470" height="145" alt="Nintendo Switch" loading="lazy"><span class="shop-slide-name">Nintendo Switch</span></a>
+<a href="/shop/xbox-original/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(12);return false" aria-label="Xbox Original"><img src="banner/xbox-original.webp" width="338" height="215" alt="Xbox Original" loading="lazy"><span class="shop-slide-name">Xbox Original</span></a>
+<a href="/shop/dualsense/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(13);return false" aria-label="DualSense PS5 Controller"><img src="banner/dualsense.webp" width="183" height="250" alt="DualSense PS5 Controller" loading="lazy"><span class="shop-slide-name">DualSense PS5 Controller</span></a>
+<a href="/shop/ps1/" style="--c:#0055BF;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(14);return false" aria-label="PS1"><img src="banner/ps1.webp" width="268" height="179" alt="PS1" loading="lazy"><span class="shop-slide-name">PS1</span></a>
+<a href="/shop/xbox-360/" style="--c:#237841;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(15);return false" aria-label="Xbox 360"><img src="banner/xbox-360.webp" width="199" height="306" alt="Xbox 360" loading="lazy"><span class="shop-slide-name">Xbox 360</span></a>
+<a href="/shop/xbox-series-s-big/" style="--c:#FE8A18;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(16);return false" aria-label="Xbox Series S Bigger"><img src="banner/xbox-series-s-big.webp" width="398" height="240" alt="Xbox Series S Bigger" loading="lazy"><span class="shop-slide-name">Xbox Series S Bigger</span></a>
+<a href="/shop/xbox-360-controller/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(17);return false" aria-label="Xbox 360 Controller"><img src="banner/xbox-360-controller.webp" width="342" height="221" alt="Xbox 360 Controller" loading="lazy"><span class="shop-slide-name">Xbox 360 Controller</span></a>
+<a href="/shop/xbox-one-s-controller/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(18);return false" aria-label="Xbox One S Controller"><img src="banner/xbox-one-s-controller.webp" width="340" height="219" alt="Xbox One S Controller" loading="lazy"><span class="shop-slide-name">Xbox One S Controller</span></a>
+<a href="/shop/xbox-series-x-controller/" style="--c:#0055BF;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(19);return false" aria-label="Xbox Series X Controller"><img src="banner/xbox-series-x-controller.webp" width="339" height="219" alt="Xbox Series X Controller" loading="lazy"><span class="shop-slide-name">Xbox Series X Controller</span></a>
+<a href="/shop/xbox-controllers-bundle/" style="--c:#FE8A18;--h:36%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(20);return false" aria-label="Xbox Controllers Bundle"><img src="banner/xbox-controllers-bundle.webp" width="510" height="99" alt="Xbox Controllers Bundle" loading="lazy"><span class="shop-slide-name">Xbox Controllers Bundle</span></a>
+<a href="/shop/among-us/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(21);return false" aria-label="Among Us"><img src="banner/among-us.webp" width="327" height="424" alt="Among Us" loading="lazy"><span class="shop-slide-name">Among Us</span></a>
+<a href="/shop/gaming-chair/" style="--c:#FE8A18;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(22);return false" aria-label="Gaming Chair"><img src="banner/gaming-chair.webp" width="306" height="399" alt="Gaming Chair" loading="lazy"><span class="shop-slide-name">Gaming Chair</span></a>
+<a href="/shop/gaming-desk/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(23);return false" aria-label="Gaming Desk"><img src="banner/gaming-desk.webp" width="417" height="225" alt="Gaming Desk" loading="lazy"><span class="shop-slide-name">Gaming Desk</span></a>
+<a href="/shop/gaming-monitor/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(24);return false" aria-label="Gaming Monitor"><img src="banner/gaming-monitor.webp" width="332" height="408" alt="Gaming Monitor" loading="lazy"><span class="shop-slide-name">Gaming Monitor</span></a>
+<a href="/shop/gaming-pc-setup/" style="--c:#FE8A18;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(25);return false" aria-label="Gaming PC Setup Bundle"><img src="banner/gaming-pc-setup.webp" width="418" height="381" alt="Gaming PC Setup Bundle" loading="lazy"><span class="shop-slide-name">Gaming PC Setup Bundle</span></a>
+<a href="/shop/creeper-face-frame/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(26);return false" aria-label="Creeper Face Frame"><img src="banner/creeper-face-frame.webp" width="251" height="280" alt="Creeper Face Frame" loading="lazy"><span class="shop-slide-name">Creeper Face Frame</span></a>
+<a href="/shop/naruto-kunai/" style="--c:#C91A09;--h:42%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(27);return false" aria-label="Naruto Kunai"><img src="banner/naruto-kunai.webp" width="391" height="87" alt="Naruto Kunai" loading="lazy"><span class="shop-slide-name">Naruto Kunai</span></a>
+<a href="/shop/1965-chevrolet-c10/" style="--c:#0055BF;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(28);return false" aria-label="1965 Chevrolet C10"><img src="banner/1965-chevrolet-c10.webp" width="454" height="296" alt="1965 Chevrolet C10" loading="lazy"><span class="shop-slide-name">1965 Chevrolet C10</span></a>
+<a href="/shop/desk/" style="--c:#FE8A18;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(29);return false" aria-label="Office Desk"><img src="banner/desk.webp" width="419" height="208" alt="Office Desk" loading="lazy"><span class="shop-slide-name">Office Desk</span></a>
+<a href="/shop/pc/" style="--c:#F2CD37;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(30);return false" aria-label="PC Tower"><img src="banner/pc.webp" width="295" height="250" alt="PC Tower" loading="lazy"><span class="shop-slide-name">PC Tower</span></a>
+<a href="/shop/roblox-logo/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(31);return false" aria-label="Roblox Logo"><img src="banner/roblox-logo.webp" width="321" height="314" alt="Roblox Logo" loading="lazy"><span class="shop-slide-name">Roblox Logo</span></a>
+<a href="/shop/fortnite-pencil-holder/" style="--c:#FE8A18;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(32);return false" aria-label="Fortnite Pencil Holder"><img src="banner/fortnite-pencil-holder.webp" width="186" height="346" alt="Fortnite Pencil Holder" loading="lazy"><span class="shop-slide-name">Fortnite Pencil Holder</span></a>
+<a href="/shop/nintendo-switch-big/" style="--c:#F2CD37;--h:79%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(33);return false" aria-label="Nintendo Switch Big"><img src="banner/nintendo-switch-big.webp" width="365" height="154" alt="Nintendo Switch Big" loading="lazy"><span class="shop-slide-name">Nintendo Switch Big</span></a>
+<a href="/shop/heart/" style="--c:#C91A09;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(34);return false" aria-label="Heart"><img src="banner/heart.webp" width="385" height="361" alt="Heart" loading="lazy"><span class="shop-slide-name">Heart</span></a>
+<a href="/shop/jeep/" style="--c:#0055BF;--h:82%" class="shop-slide" tabindex="-1" onclick="if(event.ctrlKey||event.metaKey||event.shiftKey||event.button){return}openMod(35);return false" aria-label="Jeep"><img src="banner/jeep.webp" width="503" height="344" alt="Jeep" loading="lazy"><span class="shop-slide-name">Jeep</span></a>
+        <div class="shop-ctrl"><button type="button" class="shop-arrow" data-d="-1" aria-label="Previous item">‹</button><span class="shop-count" >1 / 33</span><button type="button" class="shop-arrow" data-d="1" aria-label="Next item">›</button></div>
       </div>
-      <div class="hero-ctas">
-        <a href="https://www.youtube.com/channel/UCqm_5GiesZWfnCkZLBzUgSA?sub_confirmation=1" target="_blank" class="btn btn-red" onclick="launchConfetti(this)">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-          <span>Subscribe on YouTube</span>
-        </a>
-        <a class="btn btn-yellow" onclick="showPage('shop')"><svg class="lego-brick-icon" viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="6" width="32" height="16" rx="2" fill="#E3000B"/><rect x="0" y="6" width="32" height="5" rx="2" fill="rgba(255,255,255,.22)"/><rect x="0" y="18" width="32" height="4" rx="1" fill="#8b0000"/><rect x="2" y="8" width="3" height="12" rx="1" fill="rgba(255,255,255,.12)"/><ellipse cx="9" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="9" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="9" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/><ellipse cx="23" cy="6" rx="5" ry="3.5" fill="#E3000B"/><ellipse cx="23" cy="4.5" rx="5" ry="2.2" fill="rgba(255,255,255,.25)"/><ellipse cx="23" cy="7.5" rx="5" ry="1.2" fill="#8b0000"/></svg> <span>Visit the Shop</span></a>
+
+      <!-- Tagline + count -->
+      <div style="text-align:center;margin-bottom:24px">
+        <h1 style="font-family:'Boogaloo',cursive;font-size:clamp(34px,4.5vw,54px);line-height:1;color:var(--black);margin:0 0 8px"><span class="sr-only">Bricktastic Builds – LEGO® </span>MOC Instructions <span style="color:var(--red)">&amp; YouTube Channel</span></h1>
+        <p style="font-size:15px;font-weight:600;color:#666;margin:0 0 8px">Premium step-by-step building guides for original LEGO® designs</p>
+        <span id="home-moc-count" style="font-size:13px;font-weight:800;color:#999;white-space:nowrap">33 builds available</span>
       </div>
+
+      <!-- View All button -->
+      <div style="text-align:center;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center">
+        <button onclick="showPage('shop')" style="display:inline-flex;align-items:center;gap:10px;padding:16px 48px;border-radius:40px;border:3px solid var(--black);background:var(--yellow);color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;cursor:pointer;box-shadow:0 6px 0 #b89a00;position:relative;top:0;transition:top .12s,box-shadow .12s" onmouseover="this.style.top='-3px';this.style.boxShadow='0 9px 0 #b89a00'" onmouseout="this.style.top='0';this.style.boxShadow='0 6px 0 #b89a00'">View All Builds</button>
+        <a href="https://www.youtube.com/@BricktasticBuilds?sub_confirmation=1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border-radius:40px;border:3px solid var(--black);background:var(--red);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;text-decoration:none;cursor:pointer;box-shadow:0 6px 0 #8f0008;position:relative;top:0;transition:top .12s,box-shadow .12s" onmouseover="this.style.top='-3px';this.style.boxShadow='0 9px 0 #8f0008'" onmouseout="this.style.top='0';this.style.boxShadow='0 6px 0 #8f0008'">▶ Subscribe</a>
+      </div>
+
     </div>
-    <div class="hero-right" id="heroR">
-      <div class="hcb">
-        <div class="big-brick" style="background:var(--red);box-shadow:0 12px 0 #8b0000,0 18px 40px rgba(0,0,0,.5)">
-          <div class="bs" style="left:16px;background:var(--red)"></div>
-          <div class="bs" style="left:78px;background:var(--red)"></div>
-          <div class="bs" style="left:140px;background:var(--red)"></div>
-          <div class="bs" style="left:202px;background:var(--red)"></div>
-          <div class="big-brick-bottom"></div>
-        </div>
-        <div class="ch-tag">@BricktasticBuilds</div>
-      </div>
-    </div>
-  </div>
+  </section>
 
     <!-- HOME PARTNERS STRIP -->
   <section id="home-partners" style="background:var(--bg);padding:56px 0 60px">
     <div class="container">
+      <div class="hiw-dots">
+        <div class="hiw-dot" style="background:#E3000B"></div>
+        <div class="hiw-dot" style="background:#FFD700"></div>
+        <div class="hiw-dot" style="background:#006DB7"></div>
+        <div class="hiw-dot" style="background:#00A650"></div>
+      </div>
       <div style="text-align:center;margin-bottom:30px">
         <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(30px,4vw,44px);color:var(--black);line-height:1;margin-bottom:10px">Our Partners</h2>
         <p style="font-size:16px;font-weight:600;color:#666;max-width:520px;margin:0 auto">Brands we work with and recommend to fellow builders.</p>
@@ -4279,69 +4339,6 @@ setTimeout(_dismissLoader, 4000);
     </div>
   </section>
 
-  <!-- MOC INSTRUCTIONS SECTION -->
-  <section id="home-moc-instructions" style="background:var(--bg);padding:88px 0">
-    <div class="container">
-
-      <!-- Header -->
-      <div style="text-align:center;margin-bottom:24px">
-        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px">
-          <span style="width:14px;height:14px;border-radius:50%;background:var(--yellow);display:inline-block"></span>
-          <span style="width:14px;height:14px;border-radius:50%;background:var(--red);display:inline-block"></span>
-          <span style="width:14px;height:14px;border-radius:50%;background:var(--blue);display:inline-block"></span>
-          <span style="width:14px;height:14px;border-radius:50%;background:var(--green);display:inline-block"></span>
-          <span style="width:14px;height:14px;border-radius:50%;background:var(--yellow);display:inline-block"></span>
-        </div>
-        <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(34px,4.5vw,54px);line-height:1;color:var(--black);margin-bottom:8px">MOC Instructions</h2>
-        <p style="font-size:15px;font-weight:600;color:#666;margin:0 0 8px">Premium step-by-step building guides for original LEGO® designs</p>
-        <span id="home-moc-count" style="font-size:13px;font-weight:800;color:#999;white-space:nowrap">33 builds available</span>
-      </div>
-
-      <!-- Photo banner of all shop items (filled from the shop banner by script) -->
-      <div class="shop-slider" id="homeSlider" style="margin:32px 0 48px" aria-label="Photos of all shop items">
-<a class="shop-slide on" role="button" tabindex="0" onclick="openMod(36)" onkeydown="if(event.key==='Enter')openMod(36)" aria-label="Skibidi Toilet"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/skibidi-toilet.png" alt="Skibidi Toilet"><span class="shop-slide-name">Skibidi Toilet</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(1)" onkeydown="if(event.key==='Enter')openMod(1)" aria-label="PS5"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps5.jpg" alt="PS5" loading="lazy"><span class="shop-slide-name">PS5</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(2)" onkeydown="if(event.key==='Enter')openMod(2)" aria-label="Xbox Series X"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-x.jpg" alt="Xbox Series X" loading="lazy"><span class="shop-slide-name">Xbox Series X</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(3)" onkeydown="if(event.key==='Enter')openMod(3)" aria-label="Xbox Series S"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-s.jpg" alt="Xbox Series S" loading="lazy"><span class="shop-slide-name">Xbox Series S</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(5)" onkeydown="if(event.key==='Enter')openMod(5)" aria-label="PS3"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps3.jpg" alt="PS3" loading="lazy"><span class="shop-slide-name">PS3</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(6)" onkeydown="if(event.key==='Enter')openMod(6)" aria-label="PS2"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps2.jpg" alt="PS2" loading="lazy"><span class="shop-slide-name">PS2</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(4)" onkeydown="if(event.key==='Enter')openMod(4)" aria-label="Yellow Go-Kart"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/yellow-go-kart.jpg" alt="Yellow Go-Kart" loading="lazy"><span class="shop-slide-name">Yellow Go-Kart</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(10)" onkeydown="if(event.key==='Enter')openMod(10)" aria-label="Xbox One S"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s.jpg" alt="Xbox One S" loading="lazy"><span class="shop-slide-name">Xbox One S</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(11)" onkeydown="if(event.key==='Enter')openMod(11)" aria-label="Nintendo Switch"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/nintendo-switch.jpg" alt="Nintendo Switch" loading="lazy"><span class="shop-slide-name">Nintendo Switch</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(12)" onkeydown="if(event.key==='Enter')openMod(12)" aria-label="Xbox Original"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-original.jpg" alt="Xbox Original" loading="lazy"><span class="shop-slide-name">Xbox Original</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(13)" onkeydown="if(event.key==='Enter')openMod(13)" aria-label="DualSense PS5 Controller"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/dualsense.jpg" alt="DualSense PS5 Controller" loading="lazy"><span class="shop-slide-name">DualSense PS5 Controller</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(14)" onkeydown="if(event.key==='Enter')openMod(14)" aria-label="PS1"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps1.jpg" alt="PS1" loading="lazy"><span class="shop-slide-name">PS1</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(15)" onkeydown="if(event.key==='Enter')openMod(15)" aria-label="Xbox 360"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-360.jpg" alt="Xbox 360" loading="lazy"><span class="shop-slide-name">Xbox 360</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(16)" onkeydown="if(event.key==='Enter')openMod(16)" aria-label="Xbox Series S Bigger"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-s-big.jpg" alt="Xbox Series S Bigger" loading="lazy"><span class="shop-slide-name">Xbox Series S Bigger</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(17)" onkeydown="if(event.key==='Enter')openMod(17)" aria-label="Xbox 360 Controller"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-360-controller.jpg" alt="Xbox 360 Controller" loading="lazy"><span class="shop-slide-name">Xbox 360 Controller</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(18)" onkeydown="if(event.key==='Enter')openMod(18)" aria-label="Xbox One S Controller"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s-controller.jpg" alt="Xbox One S Controller" loading="lazy"><span class="shop-slide-name">Xbox One S Controller</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(19)" onkeydown="if(event.key==='Enter')openMod(19)" aria-label="Xbox Series X Controller"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-x-controller.jpg" alt="Xbox Series X Controller" loading="lazy"><span class="shop-slide-name">Xbox Series X Controller</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(20)" onkeydown="if(event.key==='Enter')openMod(20)" aria-label="Xbox Controllers Bundle"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-controllers-bundle.jpg" alt="Xbox Controllers Bundle" loading="lazy"><span class="shop-slide-name">Xbox Controllers Bundle</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(21)" onkeydown="if(event.key==='Enter')openMod(21)" aria-label="Among Us"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/among-us.jpg" alt="Among Us" loading="lazy"><span class="shop-slide-name">Among Us</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(22)" onkeydown="if(event.key==='Enter')openMod(22)" aria-label="Gaming Chair"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-chair.jpg" alt="Gaming Chair" loading="lazy"><span class="shop-slide-name">Gaming Chair</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(23)" onkeydown="if(event.key==='Enter')openMod(23)" aria-label="Gaming Desk"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-desk.jpg" alt="Gaming Desk" loading="lazy"><span class="shop-slide-name">Gaming Desk</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(24)" onkeydown="if(event.key==='Enter')openMod(24)" aria-label="Gaming Monitor"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-monitor.jpg" alt="Gaming Monitor" loading="lazy"><span class="shop-slide-name">Gaming Monitor</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(25)" onkeydown="if(event.key==='Enter')openMod(25)" aria-label="Gaming PC Setup Bundle"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-pc-setup.jpg" alt="Gaming PC Setup Bundle" loading="lazy"><span class="shop-slide-name">Gaming PC Setup Bundle</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(26)" onkeydown="if(event.key==='Enter')openMod(26)" aria-label="Creeper Face Frame"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/creeper-face-frame.jpg" alt="Creeper Face Frame" loading="lazy"><span class="shop-slide-name">Creeper Face Frame</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(27)" onkeydown="if(event.key==='Enter')openMod(27)" aria-label="Naruto Kunai"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/naruto-kunai.jpg" alt="Naruto Kunai" loading="lazy"><span class="shop-slide-name">Naruto Kunai</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(28)" onkeydown="if(event.key==='Enter')openMod(28)" aria-label="1965 Chevrolet C10"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/1965-chevrolet-c10.jpg" alt="1965 Chevrolet C10" loading="lazy"><span class="shop-slide-name">1965 Chevrolet C10</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(29)" onkeydown="if(event.key==='Enter')openMod(29)" aria-label="Office Desk"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/desk.jpg" alt="Office Desk" loading="lazy"><span class="shop-slide-name">Office Desk</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(30)" onkeydown="if(event.key==='Enter')openMod(30)" aria-label="PC Tower"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/pc.jpg" alt="PC Tower" loading="lazy"><span class="shop-slide-name">PC Tower</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(31)" onkeydown="if(event.key==='Enter')openMod(31)" aria-label="Roblox Logo"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/roblox-logo.jpg" alt="Roblox Logo" loading="lazy"><span class="shop-slide-name">Roblox Logo</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(32)" onkeydown="if(event.key==='Enter')openMod(32)" aria-label="Fortnite Pencil Holder"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/fortnite-pencil-holder.jpg" alt="Fortnite Pencil Holder" loading="lazy"><span class="shop-slide-name">Fortnite Pencil Holder</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(33)" onkeydown="if(event.key==='Enter')openMod(33)" aria-label="Nintendo Switch Big"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/nintendo-switch-big.jpg" alt="Nintendo Switch Big" loading="lazy"><span class="shop-slide-name">Nintendo Switch Big</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(34)" onkeydown="if(event.key==='Enter')openMod(34)" aria-label="Heart"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/heart.jpg" alt="Heart" loading="lazy"><span class="shop-slide-name">Heart</span></a>
-<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(35)" onkeydown="if(event.key==='Enter')openMod(35)" aria-label="Jeep"><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/jeep.jpg" alt="Jeep" loading="lazy"><span class="shop-slide-name">Jeep</span></a>
-        <div class="shop-ctrl"><button type="button" class="shop-arrow" data-d="-1" aria-label="Previous item">‹</button><span class="shop-count" >1 / 33</span><button type="button" class="shop-arrow" data-d="1" aria-label="Next item">›</button></div>
-      </div>
-
-      <!-- View All button -->
-      <div style="text-align:center">
-        <button onclick="showPage('shop')" style="display:inline-flex;align-items:center;gap:10px;padding:16px 48px;border-radius:40px;border:3px solid var(--black);background:var(--yellow);color:var(--black);font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;cursor:pointer;box-shadow:0 6px 0 #b89a00;position:relative;top:0;transition:top .12s,box-shadow .12s" onmouseover="this.style.top='-3px';this.style.boxShadow='0 9px 0 #b89a00'" onmouseout="this.style.top='0';this.style.boxShadow='0 6px 0 #b89a00'">View All Builds</button>
-      </div>
-
-    </div>
-  </section>
 
   <script>
   // ── HOME MOC INSTRUCTIONS SECTION ──
@@ -5355,26 +5352,49 @@ setTimeout(_dismissLoader, 4000);
   var home=document.getElementById('homeSlider');
   function init(box){
     if(!box)return;
-    var slides=box.querySelectorAll('.shop-slide'),cnt=box.querySelector('.shop-count'),idx=0,timer=null;
+    var slides=box.querySelectorAll('.shop-slide'),cnt=box.querySelector('.shop-count'),idx=0,timer=null,last=0,swiped=false,DELAY=3500;
     if(!slides.length)return;
-    function go(n){
-      slides[idx].classList.remove('on');slides[idx].tabIndex=-1;
-      idx=(n+slides.length)%slides.length;
-      slides[idx].classList.add('on');slides[idx].tabIndex=0;
+    function eager(n){var im=slides[(n+slides.length)%slides.length].querySelector('img');if(im)im.loading='eager';}
+    function go(n,dir){
+      var now=Date.now();if(now-last<500)return;
+      var to=(n+slides.length)%slides.length;if(to===idx)return;
+      last=now;dir=dir||1;
+      var old=slides[idx],nw=slides[to];
+      box.classList.remove('anim');
+      for(var i=0;i<slides.length;i++){var s=slides[i];if(s!==old&&s!==nw){s.classList.remove('on','leave-l','leave-r');s.style.transform='';s.tabIndex=-1;}}
+      nw.classList.remove('on','leave-l','leave-r');
+      nw.style.transform='translate3d('+(dir>0?'100':'-100')+'%,0,0)';
+      void nw.offsetWidth;
+      box.classList.add('anim');
+      nw.style.transform='';
+      nw.classList.add('on');nw.tabIndex=0;
+      old.classList.remove('on');old.classList.add(dir>0?'leave-l':'leave-r');old.tabIndex=-1;
+      idx=to;
       if(cnt)cnt.textContent=(idx+1)+' / '+slides.length;
-      var nx=slides[(idx+1)%slides.length].querySelector('img');if(nx)nx.loading='eager';
+      eager(idx+1);eager(idx+2);
     }
     function stop(){if(timer){clearInterval(timer);timer=null;}}
     function start(){
       if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-      stop();timer=setInterval(function(){go(idx+1);},2500);
+      stop();timer=setInterval(function(){go(idx+1,1);},DELAY);
     }
     box.querySelector('.shop-ctrl').addEventListener('click',function(e){
       var a=e.target.closest('.shop-arrow');if(!a)return;
-      go(idx+parseInt(a.getAttribute('data-d'),10));start();
+      var d=parseInt(a.getAttribute('data-d'),10);
+      go(idx+d,d);start();
     });
+    var sx=null,sy=0;
+    box.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;stop();},{passive:true});
+    box.addEventListener('touchend',function(e){
+      if(sx===null)return;
+      var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;
+      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){swiped=true;setTimeout(function(){swiped=false;},400);go(idx+(dx<0?1:-1),dx<0?1:-1);}
+      start();
+    },{passive:true});
+    box.addEventListener('click',function(e){if(swiped){e.stopPropagation();e.preventDefault();swiped=false;}},true);
     box.addEventListener('mouseenter',stop);box.addEventListener('mouseleave',start);
     box.addEventListener('focusin',stop);box.addEventListener('focusout',start);
+    eager(1);eager(2);
     start();
   }
   init(home);

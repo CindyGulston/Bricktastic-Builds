@@ -4294,18 +4294,11 @@ setTimeout(_dismissLoader, 4000);
         </div>
         <h2 style="font-family:'Boogaloo',cursive;font-size:clamp(34px,4.5vw,54px);line-height:1;color:var(--black);margin-bottom:8px">MOC Instructions</h2>
         <p style="font-size:15px;font-weight:600;color:#666;margin:0 0 8px">Premium step-by-step building guides for original LEGO® designs</p>
-        <span id="home-moc-count" style="font-size:13px;font-weight:800;color:#999;white-space:nowrap">9 builds available</span>
+        <span id="home-moc-count" style="font-size:13px;font-weight:800;color:#999;white-space:nowrap">33 builds available</span>
       </div>
 
-      <!-- Category filter pills -->
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 36px;justify-content:center">
-        <button onclick="homeMocFilter('all')" id="hmf-all" style="display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:30px;border:2px solid var(--black);background:var(--black);color:var(--yellow);font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;cursor:pointer;transition:all .15s">🧱 All Builds</button>
-        <button onclick="homeMocFilter('Gaming')" id="hmf-gaming" style="display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:30px;border:2px solid #ccc;background:#fff;color:var(--black);font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:all .15s">🎮 Gaming Consoles</button>
-        <button onclick="homeMocFilter('Vehicle')" id="hmf-veh" style="display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:30px;border:2px solid #ccc;background:#fff;color:var(--black);font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:all .15s">🏎️ Vehicles</button>
-      </div>
-
-      <!-- Cards grid -->
-      <div id="home-moc-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px"></div>
+      <!-- Photo banner of all shop items (filled from the shop banner by script) -->
+      <div class="shop-slider" id="homeSlider" aria-label="Photos of all shop items" style="margin:32px 0 48px"></div>
 
       <!-- View All button -->
       <div style="text-align:center">
@@ -5369,27 +5362,42 @@ setTimeout(_dismissLoader, 4000);
   </div>
 <script>
 (function(){
-  var box=document.getElementById('shopSlider');if(!box)return;
-  var slides=box.querySelectorAll('.shop-slide'),cnt=document.getElementById('shopSlideCount'),idx=0,timer=null;
-  function go(n){
-    slides[idx].classList.remove('on');slides[idx].tabIndex=-1;
-    idx=(n+slides.length)%slides.length;
-    slides[idx].classList.add('on');slides[idx].tabIndex=0;
-    cnt.textContent=(idx+1)+' / '+slides.length;
-    var nx=slides[(idx+1)%slides.length].querySelector('img');if(nx)nx.loading='eager';
+  var src=document.getElementById('shopSlider');
+  var home=document.getElementById('homeSlider');
+  // homepage banner = copy of the shop banner
+  if(src&&home){
+    home.innerHTML=src.innerHTML;
+    [].forEach.call(home.querySelectorAll('.shop-slide'),function(el,i){
+      el.classList.toggle('on',i===0);el.tabIndex=i===0?0:-1;
+      var im=el.querySelector('img');if(im&&i===0)im.removeAttribute('loading');
+    });
+    var c=home.querySelector('.shop-count');if(c)c.removeAttribute('id');
   }
-  function stop(){if(timer){clearInterval(timer);timer=null;}}
-  function start(){
-    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    stop();timer=setInterval(function(){go(idx+1);},2500);
+  function init(box){
+    if(!box)return;
+    var slides=box.querySelectorAll('.shop-slide'),cnt=box.querySelector('.shop-count'),idx=0,timer=null;
+    if(!slides.length)return;
+    function go(n){
+      slides[idx].classList.remove('on');slides[idx].tabIndex=-1;
+      idx=(n+slides.length)%slides.length;
+      slides[idx].classList.add('on');slides[idx].tabIndex=0;
+      if(cnt)cnt.textContent=(idx+1)+' / '+slides.length;
+      var nx=slides[(idx+1)%slides.length].querySelector('img');if(nx)nx.loading='eager';
+    }
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    function start(){
+      if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      stop();timer=setInterval(function(){go(idx+1);},2500);
+    }
+    box.querySelector('.shop-ctrl').addEventListener('click',function(e){
+      var a=e.target.closest('.shop-arrow');if(!a)return;
+      go(idx+parseInt(a.getAttribute('data-d'),10));start();
+    });
+    box.addEventListener('mouseenter',stop);box.addEventListener('mouseleave',start);
+    box.addEventListener('focusin',stop);box.addEventListener('focusout',start);
+    start();
   }
-  box.querySelector('.shop-ctrl').addEventListener('click',function(e){
-    var a=e.target.closest('.shop-arrow');if(!a)return;
-    go(idx+parseInt(a.getAttribute('data-d'),10));start();
-  });
-  box.addEventListener('mouseenter',stop);box.addEventListener('mouseleave',start);
-  box.addEventListener('focusin',stop);box.addEventListener('focusout',start);
-  start();
+  init(src);init(home);
 })();
 </script>
   <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s3"></div></div>

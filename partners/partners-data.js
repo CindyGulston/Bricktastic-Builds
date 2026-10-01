@@ -38,12 +38,16 @@ window.PARTNERS = {
     codeNote: "",
     currency: "$",
     products: [
-      { slug: "product-1", name: "Product 1 name", url: "https://www.lumibricks.com/", price: null, category: "Sets", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-2", name: "Product 2 name", url: "https://www.lumibricks.com/", price: null, category: "Sets", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-3", name: "Product 3 name", url: "https://www.lumibricks.com/", price: null, category: "Sets", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-4", name: "Product 4 name", url: "https://www.lumibricks.com/", price: null, category: "Accessories", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-5", name: "Product 5 name", url: "https://www.lumibricks.com/", price: null, category: "Accessories", badge: "", note: "Add a short description here.", sample: true },
-      { slug: "product-6", name: "Product 6 name", url: "https://www.lumibricks.com/", price: null, category: "Accessories", badge: "", note: "Add a short description here.", sample: true }
+      { slug: "product-1", name: "Blade Runner 2049", url: "https://www.lumibricks.com/collections/blade-runner-2049?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Blade Runner 2049 collection. 4 sets." },
+      { slug: "product-2", name: "Town Life", url: "https://www.lumibricks.com/collections/town-life?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Town Life collection. 19 sets." },
+      { slug: "product-3", name: "Street Fusion", url: "https://www.lumibricks.com/collections/street-fusion?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Street Fusion collection. 17 sets." },
+      { slug: "product-4", name: "Cyberpunk Neon City", url: "https://www.lumibricks.com/collections/cyberpunk?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Cyberpunk Neon City collection. 15 sets." },
+      { slug: "product-5", name: "The Old West", url: "https://www.lumibricks.com/collections/the-old-west?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "The Old West collection. 20 sets." },
+      { slug: "product-6", name: "Retro House", url: "https://www.lumibricks.com/collections/retro-house?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Retro House collection. 9 sets." },
+      { slug: "product-7", name: "Steampunk World", url: "https://www.lumibricks.com/collections/steampunk-world?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Steampunk World collection. 11 sets." },
+      { slug: "product-8", name: "Farm Life", url: "https://www.lumibricks.com/collections/farm-life?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Farm Life collection. 7 sets." },
+      { slug: "product-9", name: "Middle Ages", url: "https://www.lumibricks.com/collections/middle-ages?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Middle Ages collection. 11 sets." },
+      { slug: "product-10", name: "Vacation", url: "https://www.lumibricks.com/collections/vacation?ref=lktpglzs", price: null, category: "Collections", badge: "", note: "Vacation collection. 1 set." }
     ]
   },
 

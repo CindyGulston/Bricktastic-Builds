@@ -77,3 +77,4 @@ a{color:var(--blue)}
 .pp-dot.on{background:var(--yellow)}
 @media(max-width:760px){.pp-banner{aspect-ratio:2/1;margin-top:24px}.pp-hero{padding-bottom:52px}}
 @media(prefers-reduced-motion:reduce){.pp-slide{transition:none}}
+

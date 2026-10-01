@@ -1719,6 +1719,20 @@ footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
 
 /* SHOP */
 .shop-hero{background:var(--black);padding:52px 0 44px;position:relative;overflow:hidden;margin-top:0}
+.shop-banner{background:var(--black);padding:26px 0 30px;margin-top:0}
+.shop-banner-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.shop-banner-title{font-family:'Boogaloo',cursive;font-size:28px;color:var(--yellow)}
+.shop-slider{position:relative;aspect-ratio:12/5;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 12px 34px rgba(0,0,0,.45)}
+.shop-slide{position:absolute;inset:0;display:block;opacity:0;pointer-events:none;transition:opacity .5s ease;cursor:pointer;overflow:hidden}
+.shop-slide.on{opacity:1;pointer-events:auto;z-index:1}
+.shop-slide-bg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(28px) brightness(.55)}
+.shop-slide img{position:relative;width:100%;height:100%;object-fit:contain;display:block}
+.shop-slide-name{position:absolute;left:16px;bottom:14px;z-index:2;background:rgba(0,0,0,.55);color:#fff;font-weight:900;font-size:14px;padding:6px 14px;border-radius:999px}
+.shop-ctrl{position:absolute;right:14px;bottom:14px;z-index:3;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:999px;color:#fff;font-weight:800;font-size:12px}
+.shop-arrow{width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.35);color:#fff;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;padding:0}
+.shop-arrow:hover{border-color:var(--yellow);color:var(--yellow)}
+@media(max-width:760px){.shop-slider{aspect-ratio:4/3}.shop-slide-name{font-size:12px;left:10px;bottom:62px}.shop-banner{padding:20px 0 22px}.shop-banner-title{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.shop-slide{transition:none}}
 .shop-tabs{display:flex;gap:0;margin-bottom:36px;border:3px solid var(--black);border-radius:12px;overflow:hidden;width:fit-content}
 .price-zar { display: block; }
 .price-usd { display: none; }
@@ -5307,29 +5321,75 @@ setTimeout(_dismissLoader, 4000);
 
 <!-- ══ SHOP PAGE ══ -->
 <div id="page-shop" class="page">
-  <div class="hero" style="min-height:300px;margin-top:0;position:relative;overflow:hidden">
-    <div class="hero-bg" id="heroBgShop"></div>
-    <div class="hero-left">
-      <span class="hero-badge">🛒 Bricktastic Shop</span>
-      <h1><span class="y">Build What</span> <span class="r">You See.</span></h1>
-      <p class="hero-sub">PDF building instructions for my original MOC designs, plus complete physical builds. Instant download.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-yellow" onclick="showPage('shop')" style="cursor:pointer">📐 Browse Instructions</a>
+  <div class="shop-banner">
+    <div class="container">
+      <div class="shop-banner-top">
+        <span class="shop-banner-title">🛒 Bricktastic Shop</span>
         <button class="btn btn-red" onclick="toggleWishlistPanel()">❤️ My Wishlist <span id="wishlistShopCount" style="display:none;background:rgba(255,255,255,.3);color:#fff;font-size:11px;font-weight:900;padding:1px 7px;border-radius:10px;margin-left:4px">0</span></button>
       </div>
-    </div>
-    <div class="hero-right" id="heroR-shop">
-      <div class="hcb">
-        <div class="big-brick" style="background:var(--orange);box-shadow:0 12px 0 #8b3a00,0 18px 40px rgba(0,0,0,.5)">
-          <div class="bs" style="left:16px;background:var(--orange)"></div>
-          <div class="bs" style="left:78px;background:var(--orange)"></div>
-          <div class="bs" style="left:140px;background:var(--orange)"></div>
-          <div class="bs" style="left:202px;background:var(--orange)"></div>
-        </div>
-        <div class="ch-tag">🟢 Shop Open</div>
+      <div class="shop-slider" id="shopSlider" aria-label="Photos of all shop items">
+<a class="shop-slide on" role="button" tabindex="0" onclick="openMod(36)" onkeydown="if(event.key==='Enter')openMod(36)" aria-label="Skibidi Toilet"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/skibidi-toilet.png')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/skibidi-toilet.png" alt="Skibidi Toilet"><span class="shop-slide-name">Skibidi Toilet</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(1)" onkeydown="if(event.key==='Enter')openMod(1)" aria-label="PS5"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps5.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps5.jpg" alt="PS5" loading="lazy"><span class="shop-slide-name">PS5</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(2)" onkeydown="if(event.key==='Enter')openMod(2)" aria-label="Xbox Series X"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-x.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-x.jpg" alt="Xbox Series X" loading="lazy"><span class="shop-slide-name">Xbox Series X</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(3)" onkeydown="if(event.key==='Enter')openMod(3)" aria-label="Xbox Series S"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-s.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-s.jpg" alt="Xbox Series S" loading="lazy"><span class="shop-slide-name">Xbox Series S</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(5)" onkeydown="if(event.key==='Enter')openMod(5)" aria-label="PS3"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps3.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps3.jpg" alt="PS3" loading="lazy"><span class="shop-slide-name">PS3</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(6)" onkeydown="if(event.key==='Enter')openMod(6)" aria-label="PS2"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps2.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps2.jpg" alt="PS2" loading="lazy"><span class="shop-slide-name">PS2</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(4)" onkeydown="if(event.key==='Enter')openMod(4)" aria-label="Yellow Go-Kart"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/yellow-go-kart.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/yellow-go-kart.jpg" alt="Yellow Go-Kart" loading="lazy"><span class="shop-slide-name">Yellow Go-Kart</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(10)" onkeydown="if(event.key==='Enter')openMod(10)" aria-label="Xbox One S"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s.jpg" alt="Xbox One S" loading="lazy"><span class="shop-slide-name">Xbox One S</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(11)" onkeydown="if(event.key==='Enter')openMod(11)" aria-label="Nintendo Switch"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/nintendo-switch.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/nintendo-switch.jpg" alt="Nintendo Switch" loading="lazy"><span class="shop-slide-name">Nintendo Switch</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(12)" onkeydown="if(event.key==='Enter')openMod(12)" aria-label="Xbox Original"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-original.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-original.jpg" alt="Xbox Original" loading="lazy"><span class="shop-slide-name">Xbox Original</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(13)" onkeydown="if(event.key==='Enter')openMod(13)" aria-label="DualSense PS5 Controller"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/dualsense.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/dualsense.jpg" alt="DualSense PS5 Controller" loading="lazy"><span class="shop-slide-name">DualSense PS5 Controller</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(14)" onkeydown="if(event.key==='Enter')openMod(14)" aria-label="PS1"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps1.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/ps1.jpg" alt="PS1" loading="lazy"><span class="shop-slide-name">PS1</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(15)" onkeydown="if(event.key==='Enter')openMod(15)" aria-label="Xbox 360"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-360.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-360.jpg" alt="Xbox 360" loading="lazy"><span class="shop-slide-name">Xbox 360</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(16)" onkeydown="if(event.key==='Enter')openMod(16)" aria-label="Xbox Series S Bigger"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-s-big.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-s-big.jpg" alt="Xbox Series S Bigger" loading="lazy"><span class="shop-slide-name">Xbox Series S Bigger</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(17)" onkeydown="if(event.key==='Enter')openMod(17)" aria-label="Xbox 360 Controller"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-360-controller.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-360-controller.jpg" alt="Xbox 360 Controller" loading="lazy"><span class="shop-slide-name">Xbox 360 Controller</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(18)" onkeydown="if(event.key==='Enter')openMod(18)" aria-label="Xbox One S Controller"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s-controller.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-one-s-controller.jpg" alt="Xbox One S Controller" loading="lazy"><span class="shop-slide-name">Xbox One S Controller</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(19)" onkeydown="if(event.key==='Enter')openMod(19)" aria-label="Xbox Series X Controller"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-x-controller.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-series-x-controller.jpg" alt="Xbox Series X Controller" loading="lazy"><span class="shop-slide-name">Xbox Series X Controller</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(20)" onkeydown="if(event.key==='Enter')openMod(20)" aria-label="Xbox Controllers Bundle"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-controllers-bundle.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/xbox-controllers-bundle.jpg" alt="Xbox Controllers Bundle" loading="lazy"><span class="shop-slide-name">Xbox Controllers Bundle</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(21)" onkeydown="if(event.key==='Enter')openMod(21)" aria-label="Among Us"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/among-us.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/among-us.jpg" alt="Among Us" loading="lazy"><span class="shop-slide-name">Among Us</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(22)" onkeydown="if(event.key==='Enter')openMod(22)" aria-label="Gaming Chair"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-chair.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-chair.jpg" alt="Gaming Chair" loading="lazy"><span class="shop-slide-name">Gaming Chair</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(23)" onkeydown="if(event.key==='Enter')openMod(23)" aria-label="Gaming Desk"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-desk.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-desk.jpg" alt="Gaming Desk" loading="lazy"><span class="shop-slide-name">Gaming Desk</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(24)" onkeydown="if(event.key==='Enter')openMod(24)" aria-label="Gaming Monitor"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-monitor.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-monitor.jpg" alt="Gaming Monitor" loading="lazy"><span class="shop-slide-name">Gaming Monitor</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(25)" onkeydown="if(event.key==='Enter')openMod(25)" aria-label="Gaming PC Setup Bundle"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-pc-setup.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/gaming-pc-setup.jpg" alt="Gaming PC Setup Bundle" loading="lazy"><span class="shop-slide-name">Gaming PC Setup Bundle</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(26)" onkeydown="if(event.key==='Enter')openMod(26)" aria-label="Creeper Face Frame"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/creeper-face-frame.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/creeper-face-frame.jpg" alt="Creeper Face Frame" loading="lazy"><span class="shop-slide-name">Creeper Face Frame</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(27)" onkeydown="if(event.key==='Enter')openMod(27)" aria-label="Naruto Kunai"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/naruto-kunai.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/naruto-kunai.jpg" alt="Naruto Kunai" loading="lazy"><span class="shop-slide-name">Naruto Kunai</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(28)" onkeydown="if(event.key==='Enter')openMod(28)" aria-label="1965 Chevrolet C10"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/1965-chevrolet-c10.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/1965-chevrolet-c10.jpg" alt="1965 Chevrolet C10" loading="lazy"><span class="shop-slide-name">1965 Chevrolet C10</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(29)" onkeydown="if(event.key==='Enter')openMod(29)" aria-label="Office Desk"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/desk.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/desk.jpg" alt="Office Desk" loading="lazy"><span class="shop-slide-name">Office Desk</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(30)" onkeydown="if(event.key==='Enter')openMod(30)" aria-label="PC Tower"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/pc.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/pc.jpg" alt="PC Tower" loading="lazy"><span class="shop-slide-name">PC Tower</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(31)" onkeydown="if(event.key==='Enter')openMod(31)" aria-label="Roblox Logo"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/roblox-logo.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/roblox-logo.jpg" alt="Roblox Logo" loading="lazy"><span class="shop-slide-name">Roblox Logo</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(32)" onkeydown="if(event.key==='Enter')openMod(32)" aria-label="Fortnite Pencil Holder"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/fortnite-pencil-holder.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/fortnite-pencil-holder.jpg" alt="Fortnite Pencil Holder" loading="lazy"><span class="shop-slide-name">Fortnite Pencil Holder</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(33)" onkeydown="if(event.key==='Enter')openMod(33)" aria-label="Nintendo Switch Big"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/nintendo-switch-big.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/nintendo-switch-big.jpg" alt="Nintendo Switch Big" loading="lazy"><span class="shop-slide-name">Nintendo Switch Big</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(34)" onkeydown="if(event.key==='Enter')openMod(34)" aria-label="Heart"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/heart.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/heart.jpg" alt="Heart" loading="lazy"><span class="shop-slide-name">Heart</span></a>
+<a class="shop-slide" role="button" tabindex="-1" onclick="openMod(35)" onkeydown="if(event.key==='Enter')openMod(35)" aria-label="Jeep"><span class="shop-slide-bg" style="background-image:url('https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/jeep.jpg')"></span><img src="https://dueokuazfuvtsreutkya.supabase.co/storage/v1/object/public/shop-images/jeep.jpg" alt="Jeep" loading="lazy"><span class="shop-slide-name">Jeep</span></a>
+        <div class="shop-ctrl"><button type="button" class="shop-arrow" data-d="-1" aria-label="Previous item">‹</button><span class="shop-count" id="shopSlideCount">1 / 33</span><button type="button" class="shop-arrow" data-d="1" aria-label="Next item">›</button></div>
       </div>
     </div>
   </div>
+<script>
+(function(){
+  var box=document.getElementById('shopSlider');if(!box)return;
+  var slides=box.querySelectorAll('.shop-slide'),cnt=document.getElementById('shopSlideCount'),idx=0,timer=null;
+  function go(n){
+    slides[idx].classList.remove('on');slides[idx].tabIndex=-1;
+    idx=(n+slides.length)%slides.length;
+    slides[idx].classList.add('on');slides[idx].tabIndex=0;
+    cnt.textContent=(idx+1)+' / '+slides.length;
+    var nx=slides[(idx+1)%slides.length].querySelector('img');if(nx)nx.loading='eager';
+  }
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function start(){
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    stop();timer=setInterval(function(){go(idx+1);},2500);
+  }
+  box.querySelector('.shop-ctrl').addEventListener('click',function(e){
+    var a=e.target.closest('.shop-arrow');if(!a)return;
+    go(idx+parseInt(a.getAttribute('data-d'),10));start();
+  });
+  box.addEventListener('mouseenter',stop);box.addEventListener('mouseleave',start);
+  box.addEventListener('focusin',stop);box.addEventListener('focusout',start);
+  start();
+})();
+</script>
   <div class="stud-bar" style="background:var(--yellow)"><div class="inner" id="s3"></div></div>
 
 

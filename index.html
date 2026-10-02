@@ -4002,6 +4002,33 @@ pre, code { overflow-x:auto; }
 #homeSlider a.shop-slide,#homeSlider a.shop-slide:hover{text-decoration:none;color:inherit}
 @media(max-width:760px){#homeSlider .shop-slide img,#homeSlider .shop-slide img[loading="lazy"]{max-width:86%}}
 </style>
+<style>
+/* CUSTOM MOC SERVICE */
+.cm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.cm-card{background:#fff;border:3px solid var(--black);padding:22px;box-shadow:0 6px 0 var(--black)}
+.cm-card .cm-ic{font-size:30px;margin-bottom:10px}
+.cm-card h3{font-family:'Boogaloo',cursive;font-size:22px;margin-bottom:6px}
+.cm-card p{font-size:14px;font-weight:700;color:#555;line-height:1.55}
+.cm-step{display:flex;gap:14px;align-items:flex-start}
+.cm-num{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--yellow);border:3px solid var(--black);font-family:'Boogaloo',cursive;font-size:20px;display:flex;align-items:center;justify-content:center}
+.cm-step h4{font-weight:900;font-size:15px;margin-bottom:2px}
+.cm-step p{font-size:13.5px;font-weight:700;color:#666;line-height:1.5}
+.cm-lbl{display:block;font-weight:900;font-size:13px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.cm-lbl small{color:#aaa;font-weight:700;text-transform:none;letter-spacing:0}
+.cm-in{width:100%;padding:12px 14px;border:3px solid #ddd;border-radius:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;outline:none;background:#fff;transition:border-color .15s}
+.cm-in:focus{border-color:var(--blue)}
+.cm-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:600px){.cm-row{grid-template-columns:1fr}#cmFormWrap{padding:24px 18px !important}}
+</style>
+<style>
+.cm-list{list-style:none;display:grid;gap:8px;margin-top:4px}
+.cm-list li{font-size:14px;font-weight:700;color:#444;line-height:1.5;padding-left:26px;position:relative}
+.cm-list li::before{content:'✔';position:absolute;left:0;color:var(--green);font-weight:900}
+.cm-note{background:#fff;border:3px solid var(--black);padding:22px 24px;box-shadow:0 6px 0 var(--black)}
+.cm-note li{font-size:13.5px;font-weight:700;color:#555;line-height:1.6;margin-left:18px;margin-bottom:6px}
+.cm-chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;font-weight:700;color:#444;line-height:1.5;cursor:pointer}
+.cm-chk input{margin-top:3px;width:18px;height:18px;accent-color:var(--black);flex-shrink:0}
+</style>
 </head>
 <body>
 <a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--yellow);color:var(--black);padding:8px 16px;font-weight:900;border-radius:0 0 8px 8px" onfocus="this.style.left='50%';this.style.transform='translateX(-50%)';this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px'">Skip to main content</a>
@@ -5417,6 +5444,15 @@ setTimeout(_dismissLoader, 4000);
         </div>
       </div>
 
+      <!-- CUSTOM MOC SERVICE BANNER -->
+      <div onclick="showPage('custom')" style="cursor:pointer;background:linear-gradient(135deg,#0b2a45,#006CB7);border:2px solid var(--yellow);border-radius:16px;padding:24px 28px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;transition:all .2s" onmouseover="this.style.borderColor='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--yellow)';this.style.transform=''">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:6px;background:var(--yellow);color:var(--black);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:4px 12px;border-radius:4px;margin-bottom:10px">🎨 New Service</div>
+          <h3 style="font-family:'Boogaloo',cursive;font-size:26px;color:#fff;margin-bottom:6px">Custom MOC Design</h3>
+          <p style="color:rgba(255,255,255,.75);font-size:14px;font-weight:700">Your idea, designed by us, with step-by-step instructions</p>
+        </div>
+        <div style="background:var(--yellow);color:var(--black);font-weight:900;font-size:15px;padding:14px 28px;border-radius:10px;box-shadow:0 5px 0 #b89a00;white-space:nowrap;flex-shrink:0">✏️ Request a Quote →</div>
+      </div>
       <!-- BUNDLE BUILDER BANNER -->
       <div id="bundleBanner" onclick="openBundleBuilder()" style="display:none;cursor:pointer;background:linear-gradient(135deg,#1a1a1a,#2a1a00);border:2px solid var(--yellow);border-radius:16px;padding:24px 28px;margin-bottom:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;transition:all .2s" onmouseover="this.style.borderColor='#fff';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--yellow)';this.style.transform=''">
         <div>
@@ -6882,6 +6918,7 @@ const SITE_SEARCH_PAGES = [
   {title:'Blog',        cat:'📄 Page', action:"showPage('blog')"},
   {title:'About',       cat:'📄 Page', action:"showPage('about')"},
   {title:'Contact',     cat:'📄 Page', action:"showPage('contact')"},
+  {title:'Custom MOC Design', cat:'📄 Page', action:"showPage('custom')"},
   {title:'Pricing',     cat:'📄 Page', action:"showPage('pricing')"},
   {title:'Licence',     cat:'📄 Page', action:"showPage('licence')"},
   {title:'Terms',       cat:'📄 Page', action:"window.location.href='https://www.bricktasticbuilds.co.za/terms/'"},
@@ -18445,6 +18482,131 @@ if ('IntersectionObserver' in window) {
   </section>
 </div>
 <!-- ══ CONTACT PAGE ══ -->
+<div id="page-custom" class="page">
+  <div style="margin-top:0;background:var(--black);padding:56px 0 48px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;opacity:.05;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px)"></div>
+    <div style="max-width:880px;margin:0 auto;padding:0 32px;position:relative;z-index:2">
+      <span style="background:var(--yellow);color:var(--black);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding:5px 14px;border-radius:4px;display:inline-block;margin-bottom:18px">🎨 New Service</span>
+      <h1 style="font-family:'Boogaloo',cursive;font-size:clamp(36px,5.5vw,64px);color:#fff;line-height:1.05;margin-bottom:12px">Custom MOC Design</h1>
+      <p style="color:#bbb;font-weight:700;font-size:16px;max-width:600px;line-height:1.6">Turn your idea into a buildable custom brick model. A special building, vehicle, display piece, character, diorama or gift: if you can imagine it, we can design it as an original MOC with digital building instructions.</p>
+      <a href="#cmFormWrap" onclick="event.preventDefault();document.getElementById('cmFormWrap').scrollIntoView({behavior:'smooth',block:'start'})" style="display:inline-block;margin-top:22px;background:var(--yellow);color:var(--black);font-weight:900;font-size:15px;padding:13px 26px;border-radius:10px;box-shadow:0 5px 0 #b89a00;text-decoration:none">✏️ Request a Quote →</a>
+    </div>
+  </div>
+
+  <section style="background:var(--bg);padding:52px 0 24px">
+    <div style="max-width:880px;margin:0 auto;padding:0 32px">
+      <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:8px">A custom model made for your idea</h2>
+      <p style="font-size:15px;font-weight:700;color:#555;line-height:1.65;max-width:680px;margin-bottom:20px">Every project starts with your concept: a personal gift, a themed display, a business project, a fantasy idea, a miniature scene or something completely unique. You might know exactly what you want, or only have a rough idea. Either way, the goal is a design that looks great, makes sense structurally and is enjoyable to build.</p>
+      <div class="cm-grid">
+        <div class="cm-card"><div class="cm-ic">📐</div><h3>PDF instructions</h3><p>Clear step-by-step digital building instructions for your model.</p></div>
+        <div class="cm-card"><div class="cm-ic">🧾</div><h3>Parts list</h3><p>A full parts list so you can source everything you need.</p></div>
+        <div class="cm-card"><div class="cm-ic">🧠</div><h3>Original design</h3><p>A one-of-a-kind model based on your idea, planned to be built for real, not just a render.</p></div>
+      </div>
+      <p style="margin-top:16px;font-size:13px;font-weight:800;color:#777">This is a digital design service. Physical bricks are not included.</p>
+    </div>
+  </section>
+
+  <section style="background:var(--bg);padding:24px 0 24px">
+    <div style="max-width:880px;margin:0 auto;padding:0 32px">
+      <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:18px">How it works</h2>
+      <div class="cm-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px">
+        <div class="cm-step"><div class="cm-num">1</div><div><h4>Send your idea</h4><p>Use the form below. Add reference links, size preferences and any details that matter.</p></div></div>
+        <div class="cm-step"><div class="cm-num">2</div><div><h4>Project review</h4><p>We review your idea and estimate the complexity, design direction and expected parts count.</p></div></div>
+        <div class="cm-step"><div class="cm-num">3</div><div><h4>Custom quote</h4><p>You receive a quote based on the size and complexity of the model.</p></div></div>
+        <div class="cm-step"><div class="cm-num">4</div><div><h4>Design work begins</h4><p>After approval and payment, your model is designed with buildability, style and instruction quality in mind.</p></div></div>
+        <div class="cm-step"><div class="cm-num">5</div><div><h4>Files delivered</h4><p>When the project is complete, you receive your digital instructions and parts list.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg);padding:24px 0 24px">
+    <div style="max-width:880px;margin:0 auto;padding:0 32px">
+      <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:8px">Pricing</h2>
+      <p style="font-size:15px;font-weight:700;color:#555;line-height:1.65;max-width:680px">Every custom model is different, so the price depends on the size, complexity, level of detail and amount of work involved. Small, simple models sit at the lower end; large, complex or highly detailed projects need a bigger budget. You get a quote after we've reviewed your project details, and nothing is charged until you approve it.</p>
+    </div>
+  </section>
+
+  <section style="background:var(--bg);padding:24px 0 24px">
+    <div style="max-width:880px;margin:0 auto;padding:0 32px">
+      <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:14px">Why order a custom MOC?</h2>
+      <ul class="cm-list">
+        <li>A unique model that doesn't exist anywhere else</li>
+        <li>A personal gift or display piece</li>
+        <li>A custom build for your collection</li>
+        <li>A model based on a place, object, theme or idea you love</li>
+        <li>A professional digital design instead of working everything out yourself</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="background:var(--bg);padding:24px 0 24px">
+    <div style="max-width:880px;margin:0 auto;padding:0 32px">
+      <div class="cm-note">
+        <h3 style="font-family:'Boogaloo',cursive;font-size:24px;margin-bottom:10px">Important notes</h3>
+        <ul>
+          <li>The final product is digital files only. Physical bricks are not included.</li>
+          <li>The price does not include the cost of buying the bricks.</li>
+          <li>Copyright and design rights remain with Bricktastic Builds unless a different written agreement is made before the project begins.</li>
+          <li>After completion, Bricktastic Builds may publish, display, promote and sell the design as part of its own catalogue, unless exclusivity or private-use rights are agreed in advance.</li>
+          <li>Exclusive or private-use designs may be available for an additional fee and must be agreed before the project starts.</li>
+          <li>Bricktastic Builds is an independent creator and is not affiliated with, sponsored by or endorsed by the LEGO® Group.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg);padding:24px 0 80px">
+    <div style="max-width:880px;margin:0 auto;padding:0 32px">
+      <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:8px">Ready to start?</h2>
+      <p style="font-size:14.5px;font-weight:700;color:#555;line-height:1.6;margin-bottom:16px">The more detail you include, the easier it is to give you an accurate quote. It helps to tell us:</p>
+      <ul class="cm-list" style="margin-bottom:22px">
+        <li>What you want the model to be</li>
+        <li>The size or scale you have in mind</li>
+        <li>Whether you want it simple, detailed, realistic, playful or display-focused</li>
+        <li>Any reference images or links</li>
+        <li>Whether it's for personal use, a gift, a business or a special project</li>
+        <li>Your target budget, if you have one</li>
+      </ul>
+      <div id="cmFormWrap" style="max-width:680px;background:#fff;border:3px solid var(--black);padding:36px;box-shadow:0 8px 0 var(--black)">
+        <div class="cm-row">
+          <div><label class="cm-lbl" for="cm-name">Your Name *</label><input id="cm-name" class="cm-in" type="text" placeholder="Brick Builder"></div>
+          <div><label class="cm-lbl" for="cm-email">Email Address *</label><input id="cm-email" class="cm-in" type="email" placeholder="you@example.com"></div>
+        </div>
+        <div style="margin-bottom:16px">
+          <label class="cm-lbl" for="cm-idea">What should we build? *</label>
+          <textarea id="cm-idea" class="cm-in" rows="6" style="resize:vertical" placeholder="Describe your idea: what it is, colours, details that matter, who it's for…"></textarea>
+        </div>
+        <div class="cm-row">
+          <div><label class="cm-lbl" for="cm-size">Size / scale</label><select id="cm-size" class="cm-in"><option>Not sure yet</option><option>Micro / mini (desk display)</option><option>Small</option><option>Medium</option><option>Large / display piece</option></select></div>
+          <div><label class="cm-lbl" for="cm-style">Style</label><select id="cm-style" class="cm-in"><option>Not sure yet</option><option>Simple</option><option>Detailed</option><option>Realistic</option><option>Playful</option><option>Display-focused</option></select></div>
+        </div>
+        <div class="cm-row">
+          <div><label class="cm-lbl" for="cm-use">What's it for?</label><select id="cm-use" class="cm-in"><option>Personal use</option><option>A gift</option><option>A business</option><option>A special project</option></select></div>
+          <div><label class="cm-lbl" for="cm-budget">Target budget <small>(optional)</small></label><input id="cm-budget" class="cm-in" type="text" placeholder="e.g. R2,000"></div>
+        </div>
+        <div style="margin-bottom:16px">
+          <label class="cm-lbl" for="cm-links">Reference links <small>(optional)</small></label>
+          <input id="cm-links" class="cm-in" type="text" placeholder="Links to photos or examples of what you have in mind">
+        </div>
+        <div style="margin-bottom:24px">
+          <label class="cm-chk"><input id="cm-excl" type="checkbox"><span>I'd like exclusive / private-use rights for this design <small style="color:#999">(additional fee, agreed before the project starts)</small></span></label>
+        </div>
+        <button onclick="submitCustomMoc()" id="cmBtn" style="width:100%;padding:14px;background:var(--black);color:var(--yellow);font-family:'Boogaloo',cursive;font-size:22px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.3)">🎨 Send My Request</button>
+        <p id="cmFail" style="display:none;margin-top:14px;font-size:13px;font-weight:800;color:var(--red);text-align:center"></p>
+        <p style="margin-top:14px;font-size:12px;font-weight:700;color:#aaa;text-align:center">No payment now · We'll reply with a quote · Your email is never shared</p>
+      </div>
+
+      <div id="cmSuccess" style="max-width:680px;display:none;background:#fff;border:3px solid var(--green);padding:48px 36px;box-shadow:0 8px 0 var(--green);text-align:center">
+        <div style="font-size:56px;margin-bottom:16px">🎉</div>
+        <h2 style="font-family:'Boogaloo',cursive;font-size:32px;margin-bottom:10px">Request Sent!</h2>
+        <p style="font-weight:700;color:#555;margin-bottom:24px">Thanks, we've got your idea and will review it and get back to you with the next steps.</p>
+        <button onclick="showPage('shop')" style="background:var(--black);color:var(--yellow);border:none;padding:12px 28px;border-radius:8px;font-family:'Boogaloo',cursive;font-size:20px;cursor:pointer">Back to the Shop</button>
+      </div>
+      <p style="margin-top:28px;font-size:12px;color:#888;font-weight:600;line-height:1.6;text-align:center">LEGO® is a trademark of the LEGO® Group, which does not sponsor, authorise, or endorse this service.</p>
+    </div>
+  </section>
+</div>
+
 <div id="page-contact" class="page">
   <div style="margin-top:0;background:var(--black);padding:52px 0 44px;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;opacity:.05;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.3) 28px,rgba(255,255,255,.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 56px,rgba(255,255,255,.3) 56px,rgba(255,255,255,.3) 58px)"></div>
@@ -19350,6 +19512,7 @@ document.getElementById('bundle-overlay').addEventListener('click', function(e) 
           <li><a href="https://www.bricktasticbuilds.co.za/licence/" onclick="showPage('licence');return false;" style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer;transition:color .15s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Licence</a></li>
           <li><a href="https://www.bricktasticbuilds.co.za/privacy/" style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer;transition:color .15s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy</a></li>
           <li><a href="https://www.bricktasticbuilds.co.za/refunds/" style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer;transition:color .15s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Refunds</a></li>
+          <li><a onclick="showPage('custom')" style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer;transition:color .15s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Custom MOC Design</a></li>
           <li><a onclick="showPage('pricing')" style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer;transition:color .15s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Pricing</a></li>
           <li><a onclick="showPage('home');setTimeout(()=>document.getElementById('home-faq')?.scrollIntoView({behavior:'smooth'}),500)" style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer;transition:color .15s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">FAQ</a></li>
         </ul>
@@ -19608,5 +19771,36 @@ async function emailDownload(token, url, filename, btn) {
 })();
 </script>
 
+<script>
+async function submitCustomMoc(){
+  const v=id=>(document.getElementById(id)?.value||'').trim();
+  const name=v('cm-name'), email=v('cm-email'), idea=v('cm-idea');
+  if(!name){highlight('cm-name');return;}
+  if(!email||!email.includes('@')){highlight('cm-email');return;}
+  if(!idea){highlight('cm-idea');return;}
+  const message=['CUSTOM MOC REQUEST','Idea: '+idea,'Size/scale: '+v('cm-size'),'Style: '+v('cm-style'),'Use: '+v('cm-use'),
+    'Target budget: '+(v('cm-budget')||'not given'),'References: '+(v('cm-links')||'none'),
+    'Exclusive/private-use rights: '+(document.getElementById('cm-excl')?.checked?'YES (requested)':'no')].join('\n');
+  const btn=document.getElementById('cmBtn'), fail=document.getElementById('cmFail');
+  fail.style.display='none'; btn.textContent='⏳ Sending…'; btn.disabled=true;
+  try{
+    const parts=name.split(' ');
+    const res=await fetch('https://bricktastic-mailerlite.bricktasticbuilds01.workers.dev',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email.toLowerCase(),
+        fields:{name:parts[0]||name,last_name:parts.slice(1).join(' ')||'',source:'custom-moc-request',company:'Custom MOC request',message:message},
+        groups:['184138598939886744']})
+    });
+    if(!res.ok) throw new Error('Failed');
+    document.getElementById('cmFormWrap').style.display='none';
+    document.getElementById('cmSuccess').style.display='block';
+    document.getElementById('cmSuccess').scrollIntoView({behavior:'smooth',block:'center'});
+  }catch(e){
+    btn.textContent='🎨 Send My Request'; btn.disabled=false;
+    fail.innerHTML='Something went wrong. Please try again, or email us at <a href="mailto:bricktasticbuilds01@gmail.com?subject='+encodeURIComponent('Custom MOC request')+'&body='+encodeURIComponent(message)+'" style="color:var(--blue)">bricktasticbuilds01@gmail.com</a>.';
+    fail.style.display='block';
+  }
+}
+</script>
 </body>
 </html>

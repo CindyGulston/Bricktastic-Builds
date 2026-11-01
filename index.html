@@ -1922,6 +1922,23 @@ footer.footer-split .fc{margin-left:auto;flex-shrink:0;text-align:right}
 .rv-vp{display:inline-block;background:#e6f6ec;color:#0a7a3d;border-radius:20px;padding:2px 8px;font-size:11px;font-weight:900;margin-left:6px}
 .rv-body{font-size:13px;color:#444;font-weight:600;line-height:1.65;white-space:pre-wrap;word-break:break-word}
 .rv-empty{font-size:13px;color:#666;font-weight:700;margin-bottom:12px;line-height:1.6}
+.rv-cardstars{font-size:13px;font-weight:800;color:#777;margin:2px 0 8px;display:none}
+.rv-cardstars .rv-stars{font-size:14px;letter-spacing:1px;margin-right:4px}
+#home-reviews{display:none;padding:70px 0;background:#fff}
+#home-reviews .hrv-wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+#home-reviews .hrv-kicker{font-weight:900;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#b7791f;text-align:center}
+#home-reviews h2{font-family:'Boogaloo',cursive;font-size:clamp(32px,5vw,48px);text-align:center;margin:6px 0 4px;font-weight:400;color:#111}
+#home-reviews .hrv-score{text-align:center;font-weight:800;color:#666;font-size:14px;margin-bottom:28px}
+#home-reviews .hrv-score b{font-family:'Boogaloo',cursive;font-size:26px;color:#111;margin-right:6px;font-weight:400}
+#home-reviews .hrv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+#home-reviews .hrv-card{background:#fff;border:3px solid #111;box-shadow:0 5px 0 #111;border-radius:6px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:transform .15s}
+#home-reviews .hrv-card:hover{transform:translateY(-3px)}
+#home-reviews .hrv-q{font-size:14px;font-weight:700;color:#333;line-height:1.65;word-break:break-word}
+#home-reviews .hrv-ph{display:flex;gap:6px;flex-wrap:wrap}
+#home-reviews .hrv-ph img{width:56px;height:56px;object-fit:cover;border-radius:6px;border:2px solid #e8e4da}
+#home-reviews .hrv-who{margin-top:auto;font-size:12px;font-weight:800;color:#888}
+#home-reviews .hrv-who b{color:#111}
+#home-reviews .hrv-cta{text-align:center;margin-top:26px}
 .rv-btn{background:#111;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:8px;padding:11px 18px;cursor:pointer}
 .rv-more{background:none;border:none;color:#111;font-weight:900;font-size:12px;text-decoration:underline;cursor:pointer;padding:6px 0;font-family:'Nunito',sans-serif}
 #rv-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10050;align-items:center;justify-content:center;padding:16px}
@@ -4641,6 +4658,17 @@ setTimeout(_dismissLoader, 4000);
         <div id="free-build-ok" style="display:none;padding:16px 20px;background:var(--green);color:#fff;border-radius:10px;font-weight:900;font-size:15px;line-height:1.5;box-shadow:0 4px 0 #004d25">Sent! Check your inbox (and your spam folder) for your free Heart build.</div>
         <p style="font-size:12px;color:rgba(0,0,0,.45);font-weight:700;margin-top:12px">By signing up you also join the newsletter. No spam &middot; Unsubscribe any time &middot; Just LEGO&reg;</p>
       </div>
+    </div>
+  </section>
+
+  <!-- HOME REVIEWS (shows only when there are 3 or more approved reviews) -->
+  <section id="home-reviews" aria-labelledby="hrv-h">
+    <div class="hrv-wrap">
+      <div class="hrv-kicker">What builders say</div>
+      <h2 id="hrv-h">Real Reviews From Real Builders</h2>
+      <div class="hrv-score" id="hrv-score"></div>
+      <div class="hrv-grid" id="hrv-grid"></div>
+      <div class="hrv-cta"><button type="button" class="rv-btn" onclick="showPage('shop')">Browse the shop</button></div>
     </div>
   </section>
 
@@ -17318,6 +17346,64 @@ async function submitReview() {
   }
 }
 
+// ── One request for every approved review: card stars + homepage section ──
+let _rvAll = null;
+function rvProdName(pid) {
+  const p = (typeof P !== 'undefined') ? P.find(x => x.id === pid) : null;
+  return p ? String(p.name).split('–')[0].replace(/LEGO®?\s*MOC Instructions/i, '').trim() : '';
+}
+async function loadAllReviews() {
+  if (_rvAll) return _rvAll;
+  try {
+    const rows = await supaFetch('product_reviews_public?select=*&order=created_at.desc&limit=1000');
+    if (!Array.isArray(rows)) return [];
+    _rvAll = rows;
+    const by = {};
+    rows.forEach(r => { (by[r.product_id] = by[r.product_id] || []).push(r); });
+    if (typeof P !== 'undefined') P.forEach(p => { _rvCache[p.id] = by[p.id] || []; });   // pop-ups open instantly
+  } catch (e) { _rvAll = null; return []; }
+  return _rvAll;
+}
+function decorateCardStars() {
+  if (!_rvAll) return;
+  const by = {};
+  _rvAll.forEach(r => { (by[r.product_id] = by[r.product_id] || []).push(r); });
+  document.querySelectorAll('.pc[data-id]').forEach(card => {
+    const pid = parseInt(card.getAttribute('data-id'), 10);
+    const rows = by[pid];
+    let slot = card.querySelector('.rv-cardstars');
+    if (!rows || !rows.length) { if (slot) slot.style.display = 'none'; return; }
+    if (!slot) {
+      const f = card.querySelector('.pfooter'); if (!f) return;
+      f.insertAdjacentHTML('beforebegin', '<div class="rv-cardstars"></div>'); slot = card.querySelector('.rv-cardstars');
+    }
+    const avg = rows.reduce((t, r) => t + (r.rating || 0), 0) / rows.length;
+    slot.innerHTML = rvStars(avg) + '(' + rows.length + ')';
+    slot.style.display = 'block';
+  });
+}
+function renderHomeReviews() {
+  const sec = document.getElementById('home-reviews');
+  if (!sec || !_rvAll || _rvAll.length < 3) return;          // hidden until there are 3+ approved reviews
+  const n = _rvAll.length, avg = _rvAll.reduce((t, r) => t + (r.rating || 0), 0) / n;
+  document.getElementById('hrv-score').innerHTML = '<b>' + avg.toFixed(1) + '</b>' + rvStars(avg) + ' &nbsp;based on ' + n + ' review' + (n > 1 ? 's' : '');
+  const pick = _rvAll.filter(r => (r.photo_urls || []).some(rvPhotoOk)).concat(_rvAll.filter(r => !(r.photo_urls || []).some(rvPhotoOk))).slice(0, 6);
+  document.getElementById('hrv-grid').innerHTML = pick.map(r => {
+    const q = String(r.body || ''); const short = q.length > 220 ? q.slice(0, 217).trim() + '…' : q;
+    const ph = (r.photo_urls || []).filter(rvPhotoOk).slice(0, 3).map(u => '<img loading="lazy" src="' + rvEsc(u) + '" alt="Photo of a finished build">').join('');
+    return '<div class="hrv-card" onclick="openMod(' + r.product_id + ')">' + rvStars(r.rating) +
+      (r.title ? '<div style="font-weight:900;font-size:15px;color:#111">' + rvEsc(r.title) + '</div>' : '') +
+      '<div class="hrv-q">' + rvEsc(short) + '</div>' + (ph ? '<div class="hrv-ph">' + ph + '</div>' : '') +
+      '<div class="hrv-who"><b>' + rvEsc(r.name) + '</b>' + (r.verified ? '<span class="rv-vp">✓ Verified purchase</span>' : '') + (rvProdName(r.product_id) ? '<br>Built: ' + rvEsc(rvProdName(r.product_id)) : '') + '</div></div>';
+  }).join('');
+  sec.style.display = 'block';
+}
+async function initReviewDisplays() {
+  await loadAllReviews();
+  decorateCardStars();
+  renderHomeReviews();
+}
+
 function initGalleryPage() {
   if (_galleryInited) return;
   _galleryInited = true;
@@ -18932,6 +19018,7 @@ function openBuyUrl(id) {
 }
 applyCurrencyUI();
 refineCurrencyByCountry();
+try { initReviewDisplays(); } catch (e) {}
 </script>
 
 <!-- ══ BUILDER CARD PAGE ══ -->
